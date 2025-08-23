@@ -441,7 +441,7 @@ if __name__ == '__main__':
     '''
 
     # compile jack programs (JackCompiler, translator)
-    # projects 1-11 accounted for, not included in compiler
+    # projects 1-11 accounted for, not included in compiler (jack_filepaths)
     jack_dirpaths = [
         r"..\projects\09\Average",
         r"..\projects\09\Fraction",
@@ -593,10 +593,10 @@ if __name__ == '__main__':
         r'..\projects\07\StackArithmetic\StackTest',
         r'..\projects\08\ProgramFlow\BasicLoop',
         r'..\projects\08\ProgramFlow\FibonacciSeries',
-        # r'..\projects\08\FunctionCalls\FibonacciElement',  # bootstrap
-        # r'..\projects\08\FunctionCalls\NestedCall',  # bootstrap
+        # r'..\projects\08\FunctionCalls\FibonacciElement',  # requires non-spec bootstrap (_vm_bootstrap_paths)
+        # r'..\projects\08\FunctionCalls\NestedCall',  # requires non-spec bootstrap (_vm_bootstrap_paths)
         r'..\projects\08\FunctionCalls\SimpleFunction',
-        # r'..\projects\08\FunctionCalls\StaticsTest'  # bootstrap
+        # r'..\projects\08\FunctionCalls\StaticsTest'  # requires non-spec bootstrap (_vm_bootstrap_paths)
         r"..\projects\09\Average",
         r"..\projects\09\Fraction",
         r"..\projects\09\HelloWorld",
@@ -682,19 +682,19 @@ if __name__ == '__main__':
         r'..\projects\09\List\List.asm',
         r'..\projects\09\Square\Square.asm',
         r'..\projects\10\ArrayTest\ArrayTest.asm',
-        r'..\projects\10\Square\Square.asm',  # 17 bit addresses (different Main.jack to 9/11)
+        # r'..\projects\10\Square\Square.asm',  # 17 bit addresses (different Main.jack to 9/11)
         r'..\projects\11\Average\Average.asm',
-        r'..\projects\11\ComplexArrays\ComplexArrays.asm',  # 17 bit addresses
+        # r'..\projects\11\ComplexArrays\ComplexArrays.asm',  # 17 bit addresses
         r'..\projects\11\ConvertToBin\ConvertToBin.asm',
-        r'..\projects\11\Pong\Pong.asm',  # 17 bit addresses
+        # r'..\projects\11\Pong\Pong.asm',  # 17 bit addresses
         r'..\projects\11\Seven\Seven.asm',
         r'..\projects\11\Square\Square.asm',
 
         # TODO: Project 12
         r"..\projects\12\SysTest\SysTest.asm",
         r"..\projects\12\ArrayTest\ArrayTest.asm",
-        r"..\projects\12\KeyboardTest\KeyboardTest.asm",  # 17 bit addresses + access violation
-        r"..\projects\12\StringTest\StringTest.asm",  # 17 bit addresses + access violation
+        # r"..\projects\12\KeyboardTest\KeyboardTest.asm",  # 17 bit addresses + access violation
+        # r"..\projects\12\StringTest\StringTest.asm",  # 17 bit addresses + access violation
     ]
 
     # HDL tests (HardwareSimulator): project 1-12 accounted for, not included in tester/python_hdl!
@@ -777,44 +777,46 @@ if __name__ == '__main__':
         # r'..\projects\12\SysTest
         # r'..\projects\12\KeyboardTest
         # r'..\projects\12\StringTest
+        
+        # FIXME: IndexError: list index out of range
+        # File "d:\dev\nand2tetris\interpreter\interpreter.py", line 156, in run
+        #     hw["M"] = hw["RAM"][address]  # set M register to value of @address held in RAM
 
-        r'..\projects\12\ArrayTest\ArrayTest.tst',
-
+        # r'..\projects\12\ArrayTest\ArrayTest.tst', 
         # r'..\projects\12\MathTest\MathTest.tst',
         # r'..\projects\12\MemoryTest\MemoryTest.tst',
         # r'..\projects\12\MemoryTest\MemoryDiag.tst'
     ]
 
-    debug_runs = [True]
+    debug_runs = [False]
 
     vm_static_dicts = {}
     for _debug in debug_runs:
-        # TODO: enable?
-        # # compile Jack to VM (course compiler)
-        # for jack_dir in jack_dirpaths:
-        #     result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)
-        #     if result.stderr:
-        #         raise RuntimeError(result.stderr)
-        #     else:
-        #         print("Course Compiler: %s" % result.stdout.strip())
-        #
-        # # tokenize / analyze Jack (not required with course compiler)
-        # for _filepath in jack_filepaths:
-        #     tokenizer.main(_filepath, debug=_debug)
-        #     analyzer.main(_filepath, debug=_debug)
-        #
-        # # compile Jack to VM (match against course compiler)
-        # compiler._compile(jack_filepath_lists, jack_matches)
-        #
-        # # translate VM to ASM
-        # for _vm_dir in _vm_dirpaths:
-        #     vm_static_dicts[_vm_dir] = translator.translate(_vm_dir, _vm_bootstrap_paths, debug=_debug)
-        #
-        # # assemble all ASM to HACK and binary match if available
-        # _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
-        # for _asm_filepath in _asm_filepaths:
-        #     assembler.assemble(_asm_filepath, debug=_debug)
-        # warnings.simplefilter("default")  # reset warning filter
+        # compile Jack to VM (course compiler)
+        for jack_dir in jack_dirpaths:
+            result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)
+            if result.stderr:
+                raise RuntimeError(result.stderr)
+            else:
+                print("Course Compiler: %s" % result.stdout.strip())
+        
+        # tokenize / analyze Jack (not required with course compiler)
+        for _filepath in jack_filepaths:
+            tokenizer.main(_filepath, debug=_debug)
+            analyzer.main(_filepath, debug=_debug)
+        
+        # compile Jack to VM (match against course compiler)
+        compiler._compile(jack_filepath_lists, jack_matches)
+        
+        # translate VM to ASM
+        for _vm_dir in _vm_dirpaths:
+            vm_static_dicts[_vm_dir] = translator.translate(_vm_dir, _vm_bootstrap_paths, debug=_debug)
+        
+        # assemble all ASM to HACK and binary match if available
+        _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
+        for _asm_filepath in _asm_filepaths:
+            assembler.assemble(_asm_filepath, debug=_debug)
+        warnings.simplefilter("default")  # reset warning filter
 
         # load & execute modules without test scripts
         for _asm_filepath in binary_asm_filepaths:
@@ -825,79 +827,79 @@ if __name__ == '__main__':
                               % _asm_filepath)
                 traceback.print_exc()
 
-        # # load & execute modules with test scripts
-        # for _asm_filepath in vm_asm_filepaths:
-        #     _tst_filepath = _asm_filepath.replace(".asm", ".tst")
-        #     _cmp_filepath = _asm_filepath.replace(".asm", ".cmp")
-        #     _tst_params = tester.load_tst(_tst_filepath, debug=_debug)
-        #     _tst_params["compare"] = tester.load_cmp(_cmp_filepath, debug=_debug)
-        #
-        #     # retrieve static_dict from translator run
-        #     _static_dict = None
-        #     for _vm_dir in _vm_dirpaths:
-        #         if _vm_dir in _asm_filepath:
-        #             _static_dict = vm_static_dicts[_vm_dir]
-        #
-        #     # execute
-        #     run(_asm_filepath, static_dict=_static_dict, tst_params=_tst_params, debug=_debug)
-        #
-        # # run hdl tests (HardwareSimulator)
-        # cmd = r'..\tools\HardwareSimulator.bat'
-        # for test in hw_tst_files:
-        #     print(r"Running: %s %s" % (cmd, test))
-        #     result = subprocess.run([cmd, test], capture_output=True, text=True)
-        #     if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-        #         raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        #
-        #     # different style of TST file, but the test has passed
-        #     if test in (r'..\projects\05\CPU-external.tst', r'..\projects\05\CPU.tst'):
-        #         continue
-        #
-        #     line = 0
-        #     out_file = test.replace(".tst", ".out")
-        #     cmp_file = test.replace(".tst", ".cmp")
-        #     with open(out_file) as out:
-        #         with open(cmp_file) as cmp:
-        #             for index, (solution, current) in enumerate(zip(cmp, out)):
-        #                 if solution != current:
-        #                     raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-        #             line += 1
-        #
-        # # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
-        # cmd = r'..\tools\CPUEmulator.bat'
-        # for test in cpu_tst_files:
-        #     print(r"Running: %s %s" % (cmd, test))
-        #     result = subprocess.run([cmd, test], capture_output=True, text=True)
-        #     if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-        #         raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        #
-        #     line = 0
-        #     out_file = test.replace(".tst", ".out")
-        #     cmp_file = test.replace(".tst", ".cmp")
-        #     with open(out_file) as out:
-        #         with open(cmp_file) as cmp:
-        #             for index, (solution, current) in enumerate(zip(cmp, out)):
-        #                 if solution != current:
-        #                     raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-        #             line += 1
-        #
-        # # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
-        # cmd = r'..\tools\VMEmulator.bat'
-        # for test in vm_tst_files:
-        #     print(r"Running: %s %s" % (cmd, test))
-        #     result = subprocess.run([cmd, test], capture_output=True, text=True)
-        #     if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-        #         raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        #
-        #     line = 0
-        #     out_file = test.replace("VME.tst", ".out")
-        #     cmp_file = test.replace("VME.tst", ".cmp")
-        #     with open(out_file) as out:
-        #         with open(cmp_file) as cmp:
-        #             for index, (solution, current) in enumerate(zip(cmp, out)):
-        #                 if solution != current:
-        #                     raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-        #             line += 1
+        # load & execute modules with test scripts
+        for _asm_filepath in vm_asm_filepaths:
+            _tst_filepath = _asm_filepath.replace(".asm", ".tst")
+            _cmp_filepath = _asm_filepath.replace(".asm", ".cmp")
+            _tst_params = tester.load_tst(_tst_filepath, debug=_debug)
+            _tst_params["compare"] = tester.load_cmp(_cmp_filepath, debug=_debug)
+        
+            # retrieve static_dict from translator run
+            _static_dict = None
+            for _vm_dir in _vm_dirpaths:
+                if _vm_dir in _asm_filepath:
+                    _static_dict = vm_static_dicts[_vm_dir]
+        
+            # execute
+            run(_asm_filepath, static_dict=_static_dict, tst_params=_tst_params, debug=_debug)
+        
+        # run hdl tests (HardwareSimulator)
+        cmd = r'..\tools\HardwareSimulator.bat'
+        for test in hw_tst_files:
+            print(r"Running: %s %s" % (cmd, test))
+            result = subprocess.run([cmd, test], capture_output=True, text=True)
+            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+        
+            # different style of TST file, but the test has passed
+            if test in (r'..\projects\05\CPU-external.tst', r'..\projects\05\CPU.tst'):
+                continue
+        
+            line = 0
+            out_file = test.replace(".tst", ".out")
+            cmp_file = test.replace(".tst", ".cmp")
+            with open(out_file) as out:
+                with open(cmp_file) as cmp:
+                    for index, (solution, current) in enumerate(zip(cmp, out)):
+                        if solution != current:
+                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                    line += 1
+        
+        # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
+        cmd = r'..\tools\CPUEmulator.bat'
+        for test in cpu_tst_files:
+            print(r"Running: %s %s" % (cmd, test))
+            result = subprocess.run([cmd, test], capture_output=True, text=True)
+            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+        
+            line = 0
+            out_file = test.replace(".tst", ".out")
+            cmp_file = test.replace(".tst", ".cmp")
+            with open(out_file) as out:
+                with open(cmp_file) as cmp:
+                    for index, (solution, current) in enumerate(zip(cmp, out)):
+                        if solution != current:
+                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                    line += 1
+        
+        # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
+        cmd = r'..\tools\VMEmulator.bat'
+        for test in vm_tst_files:
+            print(r"Running: %s %s" % (cmd, test))
+            result = subprocess.run([cmd, test], capture_output=True, text=True)
+            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+        
+            line = 0
+            out_file = test.replace("VME.tst", ".out")
+            cmp_file = test.replace("VME.tst", ".cmp")
+            with open(out_file) as out:
+                with open(cmp_file) as cmp:
+                    for index, (solution, current) in enumerate(zip(cmp, out)):
+                        if solution != current:
+                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                    line += 1
 
     # project
     # TODO: comment remaining sys.errors
@@ -911,18 +913,18 @@ if __name__ == '__main__':
     # TODO: dynamically count lines in jack/strict matches
 
     # compiler
-    # TODO: int cannot exceed 32767
-    # TODO: non-void without return value / void with return value
-    # TODO: statement without keyword/statement type
-    # TODO: non-terminated statement
-    # TODO: // in string strips the string
-    # TODO: prevent using reserved keywords as identifiers
-    # TODO: prevent duplicate variable/subroutine declaration
-    # TODO: check num args match called function
-    # TODO: check subroutine returns
-    # TODO: check constructor return type is class type
-    # TODO: check constructor returns this
-    # TODO: check for unexpected tokens after statement expression (if/while)
+    # FIXME: // in string strips the string
+    # TODO: error check - int cannot exceed 32767
+    # TODO: error check - non-void without return value / void with return value
+    # TODO: error check - statement without keyword/statement type
+    # TODO: error check - non-terminated statement
+    # TODO: error check - prevent using reserved keywords as identifiers
+    # TODO: error check - prevent duplicate variable/subroutine declaration
+    # TODO: error check - check num args match called function
+    # TODO: error check - check subroutine returns
+    # TODO: error check - check constructor return type is class type
+    # TODO: error check - check constructor returns this
+    # TODO: error check - check for unexpected tokens after statement expression (if/while)
 
     # interpreter
     # TODO: translator finish stack mapping: other stack manip(stacksize), functions(stackframes)
