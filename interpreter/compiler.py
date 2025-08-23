@@ -1283,7 +1283,7 @@ def _compile(jack_filepaths, strict_matches):
 
 if __name__ == '__main__':
     jack_filepaths = [
-        # TODO: projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
+        # projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
         [r"..\projects\09\Average\Main.jack"],
         [r"..\projects\09\Fraction\Main.jack",
          r"..\projects\09\Fraction\Fraction.jack"],

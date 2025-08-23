@@ -874,9 +874,8 @@ def translate(vm_dir, vm_bootstrap_paths=(), debug=False):
 
 
 if __name__ == "__main__":
-    # TODO: projects 1-11 accounted for, included in interpreter
-
     # regular VM programs
+    # projects 1-11 accounted for, included in interpreter
     _vm_dirpaths = [
         r'..\projects\07\MemoryAccess\BasicTest',
         r'..\projects\07\MemoryAccess\PointerTest',
