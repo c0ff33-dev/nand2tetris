@@ -389,7 +389,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
             table.add_row(row_code + row_stack, row_reg)
             console.print(table)
 
-            # TODO: debug gui -----------------------------------------------------------------------------
+            # end debug gui -----------------------------------------------------------------------------
 
         cycle += 1  # always advance clock cycle
 
@@ -440,7 +440,8 @@ if __name__ == '__main__':
                   Only Project 10 has CST/AST solution XML files
     '''
 
-    # compile jack programs (JackCompiler, translator) # TODO: projects 1-11 accounted for, not included in compiler
+    # compile jack programs (JackCompiler, translator)
+    # projects 1-11 accounted for, not included in compiler
     jack_dirpaths = [
         r"..\projects\09\Average",
         r"..\projects\09\Fraction",
@@ -465,7 +466,8 @@ if __name__ == '__main__':
         r"..\projects\12\MemoryTest",
     ]
 
-    # tokenizer/analyzer # TODO: projects 1-11 accounted for, included in tokenizer/analyzer/compiler
+    # tokenizer/analyzer
+    # projects 1-11 accounted for, included in tokenizer/analyzer/compiler
     jack_filepaths = [
         r"..\projects\09\Average\Main.jack",
         r"..\projects\09\Fraction\Main.jack",
@@ -507,7 +509,8 @@ if __name__ == '__main__':
     ]
 
     # compiler
-    jack_filepath_lists = [  # TODO: projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
+    jack_filepath_lists = [  
+        # projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
         [r"..\projects\09\Average\Main.jack"],
         [r"..\projects\09\Fraction\Main.jack",
          r"..\projects\09\Fraction\Fraction.jack"],
@@ -548,7 +551,8 @@ if __name__ == '__main__':
     ]
 
     # enforce matching of compiler against course compiler
-    jack_matches = {  # TODO: projects 1-11 accounted for
+    # projects 1-11 accounted for
+    jack_matches = {  
         # all
         r"..\projects\09\Average\Main.vm": 149,
         r"..\projects\11\Seven\Main.vm": 10,
@@ -579,7 +583,8 @@ if __name__ == '__main__':
         r"..\projects\12\StringTest\String.vm": 393,
     }
 
-    # VM programs (translator only, interpreted below) # TODO: projects 1-11 accounted for, included in translator
+    # VM programs (translator only, interpreted below)
+    # projects 1-11 accounted for, included in translator
     _vm_dirpaths = [
         r'..\projects\07\MemoryAccess\BasicTest',
         r'..\projects\07\MemoryAccess\PointerTest',
@@ -614,7 +619,8 @@ if __name__ == '__main__':
         r"..\projects\12\StringTest",
     ]
 
-    # VM programs # TODO: projects 1-11 accounted for, included in translator
+    # VM programs
+    # projects 1-11 accounted for, included in translator
     # that require non-spec bootstrap to pass tests (translator only, interpreted/tested below)
     # (bootstrap is injected into ASM which is loaded by tester + CPUEmulator)
     _vm_bootstrap_paths = [
@@ -625,7 +631,8 @@ if __name__ == '__main__':
 
     _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
 
-    # VM test scripts # TODO: projects 1-11 accounted for, included in assembler/python_hdl
+    # VM test scripts
+    # projects 1-11 accounted for, included in assembler/python_hdl
     # (assembler/tester/interpreter)
     vm_asm_filepaths = [
         r"..\projects\07\MemoryAccess\BasicTest\BasicTest.asm",
@@ -641,7 +648,8 @@ if __name__ == '__main__':
         r"..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeries.asm",
     ]
 
-    # assembler/interpreter # TODO: projects 1-11 accounted for, included in assembler/python_hdl
+    # assembler/interpreter
+    # projects 1-11 accounted for, included in assembler/python_hdl
     # (tested against HACK solutions for project 6)
     binary_asm_filepaths = [
         r"..\projects\04\fill\fill.asm",
@@ -749,7 +757,8 @@ if __name__ == '__main__':
         r'..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeries.tst',
     ]
 
-    # VM tests (VMEmulator): # TODO: project 1-12 accounted for, not included in tester
+    # VM tests (VMEmulator): 
+    # project 1-12 accounted for, not included in tester
     vm_tst_files = [
         r'..\projects\07\MemoryAccess\BasicTest\BasicTestVME.tst',
         r'..\projects\07\MemoryAccess\PointerTest\PointerTestVME.tst',
@@ -780,6 +789,7 @@ if __name__ == '__main__':
 
     vm_static_dicts = {}
     for _debug in debug_runs:
+        # TODO: enable?
         # # compile Jack to VM (course compiler)
         # for jack_dir in jack_dirpaths:
         #     result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)

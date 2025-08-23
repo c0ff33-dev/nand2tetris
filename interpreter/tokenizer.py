@@ -154,7 +154,7 @@ def main(filepath, debug=False):
 
 if __name__ == '__main__':
     jack_filepaths = [
-        # TODO: projects 1-11 accounted for, included in interpreter/analyzer/compiler
+        # projects 1-11 accounted for, included in interpreter/analyzer/compiler
         r"..\projects\09\Average\Main.jack",
         r"..\projects\09\Fraction\Main.jack",
         r"..\projects\09\Fraction\Fraction.jack",
