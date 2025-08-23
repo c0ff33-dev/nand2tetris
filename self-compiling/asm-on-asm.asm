@@ -34,6 +34,7 @@
 //  "ARG": 2, "THIS": 3, "THAT": 4, "BASE": 15
 //  }
 
+// _t = temporary/local var
 // R0 = data_ptr
 // R1 = next_instruction
 // R2 = base10_t
@@ -67,7 +68,7 @@ D=A
 @R4
 M=D // initialize R4(heap_ptr) = 57
 
-// assume data is bootstrapped to 8192
+// assume data is bootstrapped to 8192 (max 24576 source chars to encode)
 
 @8192
 D=A
