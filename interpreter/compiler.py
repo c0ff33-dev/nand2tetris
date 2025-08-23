@@ -113,7 +113,7 @@ def store_pcode(pcode, cmd):
     global debug
 
     if debug:
-        # TODO: for performance reasons this should not be persistent not called every time
+        # TODO: for performance reasons this should be persistent not called every time
         count = 0
         for p in pcode:
             if not p.startswith("//"):

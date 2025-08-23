@@ -804,7 +804,7 @@ def translate(vm_dir, vm_bootstrap_paths=(), debug=False):
     offset_list = []
 
     # TODO: this should probably be a glob pattern w/ logic to preserve order where it matters (sys.vm)
-    # TODO: _out.vm files not processed (relevant if diverging later)
+    # TODO: _out.vm files not processed (relevant if diverging from course compiler implementation later)
     # spec dictates that Sys.init() is first function to run on boot which then calls Main.main()
     # so functionally anything after sys.vm doesn't matter other than changing compilation order
     vm_filelist = [
@@ -884,10 +884,10 @@ if __name__ == "__main__":
         r'..\projects\07\StackArithmetic\StackTest',
         r'..\projects\08\ProgramFlow\BasicLoop',
         r'..\projects\08\ProgramFlow\FibonacciSeries',
-        # r'..\projects\08\FunctionCalls\FibonacciElement',  # bootstrap
-        # r'..\projects\08\FunctionCalls\NestedCall',  # bootstrap
+        # r'..\projects\08\FunctionCalls\FibonacciElement',  # requires non-spec bootstrap (_vm_bootstrap_paths)
+        # r'..\projects\08\FunctionCalls\NestedCall',  # requires non-spec bootstrap (_vm_bootstrap_paths)
         r'..\projects\08\FunctionCalls\SimpleFunction',
-        # r'..\projects\08\FunctionCalls\StaticsTest'  # bootstrap
+        # r'..\projects\08\FunctionCalls\StaticsTest'  # requires non-spec bootstrap (_vm_bootstrap_paths)
         r"..\projects\09\Average",
         r"..\projects\09\Fraction",
         r"..\projects\09\HelloWorld",
