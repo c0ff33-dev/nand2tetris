@@ -3,6 +3,7 @@ Python bindings & test framework for Nand2Tetris HACK Assembly language
 """
 import warnings
 import traceback
+import os
 
 import assembler
 import tester
@@ -16,7 +17,7 @@ from pynput import keyboard
 from rich.console import Console
 from rich.table import Table
 console = Console()
-
+step = False
 
 def dump_call_tree(call_tree, debug_msg):
     if len(call_tree) == 0:
@@ -27,9 +28,9 @@ def dump_call_tree(call_tree, debug_msg):
     return debug_msg
 
 
-def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, step=False):
+def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     # highlight current command in red
-    gui_log.append("[red]%s[/red]" % debug_cmd)
+    gui_log.append(f"[red]{src_line}: {debug_cmd}[/red]")
     if len(gui_log) > 1:
         gui_log[-2] = gui_log[-2].replace("[red]", "").replace("[/red]", "")
     
@@ -118,16 +119,22 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, step=False):
         raise RuntimeError()
 
     table.add_row(row_code + row_stack, row_reg)
-
     if src_line in breakpoints or step:
         console.print(table)
 
-        # TODO: implement step/continue buttons
         def on_press(key):
+            global step
             try:
-                if key.char == 'q':
-                    print("Quitting listener...")
-                    return False  # stop the listener
+                if key.char == 'q': 
+                    os._exit(0) # quit
+                elif key.char == 'p':
+                    # continue
+                    step = False
+                    return False
+                elif key.char == 'n':
+                    # step to next instruction
+                    step = True
+                    return False
             except AttributeError:
                 pass
 
@@ -136,7 +143,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, step=False):
 
 
 # DEBUG: static breakpoints
-def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[5], debug=False):
+def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[5,12,20], debug=False):
     debug_log = []
     gui_log = []
 
@@ -397,7 +404,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[5], debug=
             if debug_msg:
                 debug_log.append(debug_msg)
             
-            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, step=False)
+            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
         cycle += 1  # always advance clock cycle
 
     # program end
