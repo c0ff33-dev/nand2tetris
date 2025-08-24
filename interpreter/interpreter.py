@@ -283,12 +283,15 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
                 debug_log.append(debug_msg)
 
             # TODO: debug gui -----------------------------------------------------------------------------
+            # TODO: add breakpoints, step/run controls
 
-            # queue
+            # highlight current command in red
             gui_log.append("[red]%s[/red]" % debug_cmd)
             if len(gui_log) > 1:
                 gui_log[-2] = gui_log[-2].replace("[red]", "").replace("[/red]", "")
-            if len(gui_log) > 10:
+            
+            # how many lines to show in code panel
+            if len(gui_log) > 17:
                 gui_log.pop(0)
 
             # DEBUG: overwrite values (formatting debug)
@@ -315,7 +318,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
                 return _code
 
             row_code = title("Code", 80) + code(gui_log)
-            row_stack = title("Stack", 80) + code(gui_log)
+            row_stack = title("Stack", 80) + "[TODO]"
 
             if debug_cmd.startswith("@") or debug_cmd.startswith("A="):
                 row_reg = title("Registers", 0) +\
@@ -790,7 +793,7 @@ if __name__ == '__main__':
         jack_matches = {}
         vm_dirpaths = []
         vm_asm_filepaths = []
-        binary_asm_filepaths = [r'..\self-compiling\asm-on-asm.asm']
+        binary_asm_filepaths = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.asm',]
         hw_tst_files = []
         cpu_tst_files = []
         vm_tst_files = []
