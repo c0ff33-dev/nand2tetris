@@ -12,6 +12,7 @@ import tokenizer
 import analyzer
 import compiler
 
+from pynput import keyboard
 from rich.console import Console
 from rich.table import Table
 console = Console()
@@ -26,7 +27,116 @@ def dump_call_tree(call_tree, debug_msg):
     return debug_msg
 
 
-def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
+def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, step=False):
+    # highlight current command in red
+    gui_log.append("[red]%s[/red]" % debug_cmd)
+    if len(gui_log) > 1:
+        gui_log[-2] = gui_log[-2].replace("[red]", "").replace("[/red]", "")
+    
+    # how many lines to show in code panel
+    if len(gui_log) > 17:
+        gui_log.pop(0)
+
+    table = Table(show_header=False)
+    table.add_column(justify="left")
+    table.add_column(justify="left")
+
+    def title(header, size):
+        multi = int((size - len(header)) / 2)
+        return "[bold magenta]%s[/bold magenta]" % ("[" + "-" * multi + header + "-" * multi + "]\n")
+
+    def code(gui_log):
+        _code = ""
+        for cmd in gui_log:
+            _code += (cmd + "\n")
+        return _code
+
+    row_code = title("Code", 80) + code(gui_log)
+    row_stack = title("Stack", 80) + "[TODO]"
+
+    if debug_cmd.startswith("@") or debug_cmd.startswith("A="):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] [bold yellow]%s[/bold yellow]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["M"]) +\
+        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("D="):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] %s\n[red]D[/red] [bold yellow]%s[/bold yellow]\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["M"]) +\
+        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("M="):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] %s\n[red]D[/red] %s\n[red]M[/red] [bold yellow]%s[/bold yellow]\n" %\
+            (hw["A"], hw["D"], hw["M"]) +\
+        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("D;"):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] [bold cyan]%s[/bold cyan]\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["M"]) +\
+        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("0;"):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["M"]) +\
+        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    else:
+        raise RuntimeError()
+
+    table.add_row(row_code + row_stack, row_reg)
+
+    if src_line in breakpoints or step:
+        console.print(table)
+
+        # TODO: implement step/continue buttons
+        def on_press(key):
+            try:
+                if key.char == 'q':
+                    print("Quitting listener...")
+                    return False  # stop the listener
+            except AttributeError:
+                pass
+
+        with keyboard.Listener(on_press=on_press, suppress=True) as listener:
+            listener.join()
+
+
+# DEBUG: static breakpoints
+def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[5], debug=False):
     debug_log = []
     gui_log = []
 
@@ -95,7 +205,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
     debug_asm = []
     raw_asm = []
     symbol = False
-    for debug_cmd in asm_content:  # some lines get parsed out so don't use enumerate here
+
+    for src_line, debug_cmd in enumerate(asm_content, start=1):
         debug_cmd = debug_cmd.strip()  # remove indentation / trailing whitespace
         if debug_cmd == "":
             continue  # empty line
@@ -118,8 +229,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
                 symbol = False
             line += 1
 
-        debug_asm.append(debug_cmd)  # preserve comments
-        raw_asm.append(raw_cmd)  # code only
+        debug_asm.append([src_line, debug_cmd])  # preserve comments
+        raw_asm.append([src_line, raw_cmd])  # code only
 
     hw["ROM"] = {"raw": raw_asm, "debug": debug_asm}
 
@@ -129,8 +240,12 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
     stacksize = 0
     while cycle < hw["MAX"] and hw["PC"] < len(hw["ROM"]["raw"]):
         assignment = False
-        raw_cmd = hw["ROM"]["raw"][hw["PC"]]
-        debug_cmd = hw["ROM"]["debug"][hw["PC"]]
+        raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
+        debug_cmd = hw["ROM"]["debug"][hw["PC"]][1]
+        src_line = hw["ROM"]["raw"][hw["PC"]][0]
+
+        if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
+            raise RuntimeError("Interpreter: Debug/Raw line number mismatch!")           
 
         if raw_cmd[0] == "(":
             raise RuntimeError("Interpreter: Symbols should already be parsed out!")
@@ -281,113 +396,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
 
             if debug_msg:
                 debug_log.append(debug_msg)
-
-            # TODO: debug gui -----------------------------------------------------------------------------
-            # TODO: add breakpoints, step/run controls
-
-            # highlight current command in red
-            gui_log.append("[red]%s[/red]" % debug_cmd)
-            if len(gui_log) > 1:
-                gui_log[-2] = gui_log[-2].replace("[red]", "").replace("[/red]", "")
             
-            # how many lines to show in code panel
-            if len(gui_log) > 17:
-                gui_log.pop(0)
-
-            # DEBUG: overwrite values (formatting debug)
-            # i = 0
-            # while i < 16:
-            #     hw["RAM"][i] = 32768
-            #     i += 1
-            # hw["A"] = 32768
-            # hw["D"] = 32768
-            # hw["M"] = 32768
-
-            table = Table(show_header=False)
-            table.add_column(justify="left")
-            table.add_column(justify="left")
-
-            def title(header, size):
-                multi = int((size - len(header)) / 2)
-                return "[bold magenta]%s[/bold magenta]" % ("[" + "-" * multi + header + "-" * multi + "]\n")
-
-            def code(gui_log):
-                _code = ""
-                for cmd in gui_log:
-                    _code += (cmd + "\n")
-                return _code
-
-            row_code = title("Code", 80) + code(gui_log)
-            row_stack = title("Stack", 80) + "[TODO]"
-
-            if debug_cmd.startswith("@") or debug_cmd.startswith("A="):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] [bold yellow]%s[/bold yellow]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("D="):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] %s\n[red]D[/red] [bold yellow]%s[/bold yellow]\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("M="):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] %s\n[red]D[/red] %s\n[red]M[/red] [bold yellow]%s[/bold yellow]\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("D;"):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] [bold cyan]%s[/bold cyan]\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("0;"):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            else:
-                raise RuntimeError()
-
-            table.add_row(row_code + row_stack, row_reg)
-            console.print(table)
-
-            # end debug gui -----------------------------------------------------------------------------
-
+            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, step=False)
         cycle += 1  # always advance clock cycle
 
     # program end
