@@ -778,20 +778,22 @@ if __name__ == '__main__':
         # r'..\projects\12\MemoryTest\MemoryDiag.tst'
     ]
 
-    debug = False
-    vm_static_dicts = {} # init
+    # init
+    debug = True
+    vm_static_dicts = {} 
 
     # DEBUG: overrides
-    # jack_dirpaths = [] 
-    # jack_filepaths = []
-    # jack_filepath_lists = []
-    # jack_matches = {}
-    # vm_dirpaths = []
-    # vm_asm_filepaths = []
-    # binary_asm_filepaths = []
-    # hw_tst_files = []
-    # cpu_tst_files = []
-    # vm_tst_files = []
+    if debug:
+        jack_dirpaths = [] 
+        jack_filepaths = []
+        jack_filepath_lists = []
+        jack_matches = {}
+        vm_dirpaths = []
+        vm_asm_filepaths = []
+        binary_asm_filepaths = [r'..\self-compiling\asm-on-asm.asm']
+        hw_tst_files = []
+        cpu_tst_files = []
+        vm_tst_files = []
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
