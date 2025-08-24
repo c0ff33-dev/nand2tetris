@@ -1111,7 +1111,7 @@ M=0 // reset R17(dam_one_flag)
     // one 111111 4032
 
 // TODO: reset sum, a_flag, c_flag, jump_flag, assign_flag, m_flag, not_flag, negative_flag,
-    dam_one_flag, dam_one_plus_minus_flag
+    // dam_one_flag, dam_one_plus_minus_flag
 
 // ---------------------------------------------------------------------------------------
 
@@ -1217,7 +1217,7 @@ M=M-1 // data_ptr--, next digit
 D=A
 @R0
 A=M
-D=M-A
+D=D-M
 @a_write
 D;JEQ // jump if *data_ptr == @
 
