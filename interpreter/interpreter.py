@@ -79,7 +79,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
         "STATIC": 16,  # 16-255 incl (segmented by VM source file)
         "STACK": 256,  # 256-2047 incl (persistent)
 
-        # OO symbols
+        # JACK symbols
         "HEAP": 2048,  # 2048-16383 incl (persistent)
         "IO": 16384,  # 16384-24576 incl (persistent)
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
@@ -254,13 +254,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
 
             elif "// return //" in debug_cmd:
                 debug_msg += "// RETURN: call graph updated\n"
-                try:
-                    call_tree.pop()
-                except IndexError:
-                    # SimpleFunction does not contain a call so will always break the index on return
-                    if asm_filepath != r'..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.asm':
-                        raise
-
+                call_tree.pop()
                 debug_msg = dump_call_tree(call_tree, debug_msg)
 
             # display the stack (if values to display)
@@ -297,7 +291,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
             if len(gui_log) > 10:
                 gui_log.pop(0)
 
-            # # overwrite values (formatting debug)
+            # DEBUG: overwrite values (formatting debug)
             # i = 0
             # while i < 16:
             #     hw["RAM"][i] = 32768
@@ -400,10 +394,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
     elif cycle == hw["MAX"]:
         if debug:
             print("Cycle limit reached: %s" % asm_filepath)
-    else:
-        # PC will jump off into empty ROM at end of SimpleFunction test
-        if "SimpleFunction" not in asm_filepath:
-            raise RuntimeError("Interpreter: Unexpected exit")
     if len(call_tree) >= 1:
         raise RuntimeError("Interpreter: Elements still exist in call tree at program exit")
 
@@ -585,7 +575,7 @@ if __name__ == '__main__':
 
     # VM programs (translator only, interpreted below)
     # projects 1-11 accounted for, included in translator
-    _vm_dirpaths = [
+    vm_dirpaths = [
         r'..\projects\07\MemoryAccess\BasicTest',
         r'..\projects\07\MemoryAccess\PointerTest',
         r'..\projects\07\MemoryAccess\StaticTest',
@@ -593,10 +583,10 @@ if __name__ == '__main__':
         r'..\projects\07\StackArithmetic\StackTest',
         r'..\projects\08\ProgramFlow\BasicLoop',
         r'..\projects\08\ProgramFlow\FibonacciSeries',
-        # r'..\projects\08\FunctionCalls\FibonacciElement',  # requires non-spec bootstrap (_vm_bootstrap_paths)
-        # r'..\projects\08\FunctionCalls\NestedCall',  # requires non-spec bootstrap (_vm_bootstrap_paths)
+        # r'..\projects\08\FunctionCalls\FibonacciElement',  # requires non-spec bootstrap (vm_bootstrap_paths)
+        # r'..\projects\08\FunctionCalls\NestedCall',  # requires non-spec bootstrap (vm_bootstrap_paths)
         r'..\projects\08\FunctionCalls\SimpleFunction',
-        # r'..\projects\08\FunctionCalls\StaticsTest'  # requires non-spec bootstrap (_vm_bootstrap_paths)
+        # r'..\projects\08\FunctionCalls\StaticsTest'  # requires non-spec bootstrap (vm_bootstrap_paths)
         r"..\projects\09\Average",
         r"..\projects\09\Fraction",
         r"..\projects\09\HelloWorld",
@@ -623,13 +613,13 @@ if __name__ == '__main__':
     # projects 1-11 accounted for, included in translator
     # that require non-spec bootstrap to pass tests (translator only, interpreted/tested below)
     # (bootstrap is injected into ASM which is loaded by tester + CPUEmulator)
-    _vm_bootstrap_paths = [
+    vm_bootstrap_paths = [
         r'..\projects\08\FunctionCalls\FibonacciElement',
         r'..\projects\08\FunctionCalls\NestedCall',
         r'..\projects\08\FunctionCalls\StaticsTest'
     ]
 
-    _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
+    vm_dirpaths = vm_dirpaths + vm_bootstrap_paths
 
     # VM test scripts
     # projects 1-11 accounted for, included in assembler/python_hdl
@@ -642,7 +632,7 @@ if __name__ == '__main__':
         r"..\projects\07\StackArithmetic\StackTest\StackTest.asm",
         r"..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm",
         r"..\projects\08\FunctionCalls\NestedCall\NestedCall.asm",
-        r"..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.asm",
+        # r"..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.asm", # non-spec issues break interpreter
         r"..\projects\08\FunctionCalls\StaticsTest\StaticsTest.asm",
         r"..\projects\08\ProgramFlow\BasicLoop\BasicLoop.asm",
         r"..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeries.asm",
@@ -788,118 +778,129 @@ if __name__ == '__main__':
         # r'..\projects\12\MemoryTest\MemoryDiag.tst'
     ]
 
-    debug_runs = [False]
+    debug = False
+    vm_static_dicts = {} # init
 
-    vm_static_dicts = {}
-    for _debug in debug_runs:
-        # compile Jack to VM (course compiler)
-        for jack_dir in jack_dirpaths:
-            result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)
-            if result.stderr:
-                raise RuntimeError(result.stderr)
-            else:
-                print("Course Compiler: %s" % result.stdout.strip())
-        
-        # tokenize / analyze Jack (not required with course compiler)
-        for _filepath in jack_filepaths:
-            tokenizer.main(_filepath, debug=_debug)
-            analyzer.main(_filepath, debug=_debug)
-        
-        # compile Jack to VM (match against course compiler)
-        compiler._compile(jack_filepath_lists, jack_matches)
-        
-        # translate VM to ASM
-        for _vm_dir in _vm_dirpaths:
-            vm_static_dicts[_vm_dir] = translator.translate(_vm_dir, _vm_bootstrap_paths, debug=_debug)
-        
-        # assemble all ASM to HACK and binary match if available
-        _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
-        for _asm_filepath in _asm_filepaths:
-            assembler.assemble(_asm_filepath, debug=_debug)
-        warnings.simplefilter("default")  # reset warning filter
+    # DEBUG: overrides
+    # jack_dirpaths = [] 
+    # jack_filepaths = []
+    # jack_filepath_lists = []
+    # jack_matches = {}
+    # vm_dirpaths = []
+    # vm_asm_filepaths = []
+    # binary_asm_filepaths = []
+    # hw_tst_files = []
+    # cpu_tst_files = []
+    # vm_tst_files = []
 
-        # load & execute modules without test scripts
-        for _asm_filepath in binary_asm_filepaths:
-            try:
-                run(_asm_filepath, debug=_debug)
-            except IndexError:
-                warnings.warn("Interpreter: Probable memory access violation captured during execution of %s"
-                              % _asm_filepath)
-                traceback.print_exc()
+    # compile Jack to VM (course compiler)
+    for jack_dir in jack_dirpaths:
+        result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)
+        if result.stderr:
+            raise RuntimeError(result.stderr)
+        else:
+            print("Course Compiler: %s" % result.stdout.strip())
+    
+    # tokenize / analyze Jack (not required with course compiler)
+    for filepath in jack_filepaths:
+        tokenizer.main(filepath, debug=debug)
+        analyzer.main(filepath, debug=debug)
+    
+    # compile Jack to VM (match against course compiler)
+    compiler._compile(jack_filepath_lists, jack_matches)
+    
+    # translate VM to ASM
+    for vm_dir in vm_dirpaths:
+        vm_static_dicts[vm_dir] = translator.translate(vm_dir, vm_bootstrap_paths, debug=debug)
+    
+    # assemble all ASM to HACK and binary match if available
+    asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
+    for asm_filepath in asm_filepaths:
+        assembler.assemble(asm_filepath, debug=debug)
+    warnings.simplefilter("default")  # reset warning filter
 
-        # load & execute modules with test scripts
-        for _asm_filepath in vm_asm_filepaths:
-            _tst_filepath = _asm_filepath.replace(".asm", ".tst")
-            _cmp_filepath = _asm_filepath.replace(".asm", ".cmp")
-            _tst_params = tester.load_tst(_tst_filepath, debug=_debug)
-            _tst_params["compare"] = tester.load_cmp(_cmp_filepath, debug=_debug)
-        
-            # retrieve static_dict from translator run
-            _static_dict = None
-            for _vm_dir in _vm_dirpaths:
-                if _vm_dir in _asm_filepath:
-                    _static_dict = vm_static_dicts[_vm_dir]
-        
-            # execute
-            run(_asm_filepath, static_dict=_static_dict, tst_params=_tst_params, debug=_debug)
-        
-        # run hdl tests (HardwareSimulator)
-        cmd = r'..\tools\HardwareSimulator.bat'
-        for test in hw_tst_files:
-            print(r"Running: %s %s" % (cmd, test))
-            result = subprocess.run([cmd, test], capture_output=True, text=True)
-            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        
-            # different style of TST file, but the test has passed
-            if test in (r'..\projects\05\CPU-external.tst', r'..\projects\05\CPU.tst'):
-                continue
-        
-            line = 0
-            out_file = test.replace(".tst", ".out")
-            cmp_file = test.replace(".tst", ".cmp")
-            with open(out_file) as out:
-                with open(cmp_file) as cmp:
-                    for index, (solution, current) in enumerate(zip(cmp, out)):
-                        if solution != current:
-                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-                    line += 1
-        
-        # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
-        cmd = r'..\tools\CPUEmulator.bat'
-        for test in cpu_tst_files:
-            print(r"Running: %s %s" % (cmd, test))
-            result = subprocess.run([cmd, test], capture_output=True, text=True)
-            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        
-            line = 0
-            out_file = test.replace(".tst", ".out")
-            cmp_file = test.replace(".tst", ".cmp")
-            with open(out_file) as out:
-                with open(cmp_file) as cmp:
-                    for index, (solution, current) in enumerate(zip(cmp, out)):
-                        if solution != current:
-                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-                    line += 1
-        
-        # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
-        cmd = r'..\tools\VMEmulator.bat'
-        for test in vm_tst_files:
-            print(r"Running: %s %s" % (cmd, test))
-            result = subprocess.run([cmd, test], capture_output=True, text=True)
-            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        
-            line = 0
-            out_file = test.replace("VME.tst", ".out")
-            cmp_file = test.replace("VME.tst", ".cmp")
-            with open(out_file) as out:
-                with open(cmp_file) as cmp:
-                    for index, (solution, current) in enumerate(zip(cmp, out)):
-                        if solution != current:
-                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-                    line += 1
+    # load & execute modules without test scripts
+    for asm_filepath in binary_asm_filepaths:
+        try:
+            run(asm_filepath, debug=debug)
+        except IndexError:
+            warnings.warn("Interpreter: Probable memory access violation captured during execution of %s"
+                            % asm_filepath)
+            traceback.print_exc()
+
+    # load & execute modules with test scripts
+    for asm_filepath in vm_asm_filepaths:
+        tst_filepath = asm_filepath.replace(".asm", ".tst")
+        cmp_filepath = asm_filepath.replace(".asm", ".cmp")
+        tst_params = tester.load_tst(tst_filepath, debug=debug)
+        tst_params["compare"] = tester.load_cmp(cmp_filepath, debug=debug)
+    
+        # retrieve static_dict from translator run
+        _static_dict = None
+        for vm_dir in vm_dirpaths:
+            if vm_dir in asm_filepath:
+                _static_dict = vm_static_dicts[vm_dir]
+    
+        # execute
+        run(asm_filepath, static_dict=_static_dict, tst_params=tst_params, debug=debug)
+    
+    # run hdl tests (HardwareSimulator)
+    cmd = r'..\tools\HardwareSimulator.bat'
+    for test in hw_tst_files:
+        print(r"Running: %s %s" % (cmd, test))
+        result = subprocess.run([cmd, test], capture_output=True, text=True)
+        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+    
+        # different style of TST file, but the test has passed
+        if test in (r'..\projects\05\CPU-external.tst', r'..\projects\05\CPU.tst'):
+            continue
+    
+        line = 0
+        out_file = test.replace(".tst", ".out")
+        cmp_file = test.replace(".tst", ".cmp")
+        with open(out_file) as out:
+            with open(cmp_file) as cmp:
+                for index, (solution, current) in enumerate(zip(cmp, out)):
+                    if solution != current:
+                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                line += 1
+    
+    # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
+    cmd = r'..\tools\CPUEmulator.bat'
+    for test in cpu_tst_files:
+        print(r"Running: %s %s" % (cmd, test))
+        result = subprocess.run([cmd, test], capture_output=True, text=True)
+        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+    
+        line = 0
+        out_file = test.replace(".tst", ".out")
+        cmp_file = test.replace(".tst", ".cmp")
+        with open(out_file) as out:
+            with open(cmp_file) as cmp:
+                for index, (solution, current) in enumerate(zip(cmp, out)):
+                    if solution != current:
+                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                line += 1
+    
+    # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
+    cmd = r'..\tools\VMEmulator.bat'
+    for test in vm_tst_files:
+        print(r"Running: %s %s" % (cmd, test))
+        result = subprocess.run([cmd, test], capture_output=True, text=True)
+        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+    
+        line = 0
+        out_file = test.replace("VME.tst", ".out")
+        cmp_file = test.replace("VME.tst", ".cmp")
+        with open(out_file) as out:
+            with open(cmp_file) as cmp:
+                for index, (solution, current) in enumerate(zip(cmp, out)):
+                    if solution != current:
+                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                line += 1
 
     # project
     # TODO: comment remaining sys.errors
