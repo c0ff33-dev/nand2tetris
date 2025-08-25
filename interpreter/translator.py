@@ -19,7 +19,7 @@ def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_
         asm += "A=M\n"  # [esp]
         asm += "M=D\n"  # [esp] = literal
         asm += "@SP\n"  # *esp
-        asm += "M=M+1 // stacksize++\n"  # *esp = *esp++
+        asm += "M=M+1 // stacksize++\n"  # *esp++
     else:
         # retrieve a value from segment+offset and push it onto the stack
         if vm_segment == "temp":
@@ -53,7 +53,7 @@ def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_
 
 def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
-    pop a value onto the stack into a segment+offset
+    pop a value from the stack into a segment+offset
     """
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
@@ -78,18 +78,18 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
         asm += "D=M\n"  # d = [asm_segment]
 
     asm += "@%s // retrieve the *dst (segment+offset) and temporarily store it at *esp // offset\n" % value  # offset
-    asm += "D=D+A // d = [asm_segment+offset] (*dst)\n"  #
-    asm += "@SP // *esp\n"  #
-    asm += "A=M // [esp]\n"  #
-    asm += "M=D // [esp] = *dst\n"  #
+    asm += "D=D+A // d = [asm_segment+offset] (*dst)\n"
+    asm += "@SP // *esp\n"
+    asm += "A=M // [esp]\n"
+    asm += "M=D // [esp] = *dst\n"
 
     asm += "@SP // retrieve the *src pointer from esp-1 // *esp\n"
-    asm += "M=M-1 // *esp-- (*src)\n"
+    asm += "M=M-1 // *esp-- (*src) // stacksize--\n"
     asm += "A=M // [src]\n"
     asm += "D=M // d = [src]\n"
 
     asm += "@SP // restore esp (*esp)\n"
-    asm += "M=M+1 // *esp++ (**dst)\n"
+    asm += "M=M+1 // *esp++ (**dst) // stacksize++\n"
 
     asm += "A=M // copy [src] to [dst] // *dst\n"
     asm += "A=M // [dst]\n"
@@ -109,17 +109,17 @@ def add(asm, cmd, comment_count, debug=False):
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    # add two values, push result, dec esp
+    # add two values, push result, dec/inc esp
     asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1\n"  # *esp-- // *val2
+    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val2
     asm += "A=M\n"  # [val2]
     asm += "D=M\n"  # d = [val2]
     asm += "@SP\n"  # *esp // *val2
-    asm += "M=M-1\n"  # *esp-- // *val1
+    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val1
     asm += "A=M\n"  # [esp] // [val1]
     asm += "M=D+M\n"  # [esp] = [val1] + [val2]
     asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp++
+    asm += "M=M+1 // stacksize++\n"  # *esp++
 
     return asm, comment_count
 
@@ -133,15 +133,15 @@ def sub(asm, cmd, comment_count, debug=False):
 
     # eval two values, push result, dec esp
     asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1\n"  # *esp-- // *val2
+    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val2
     asm += "A=M\n"  # [val2]
     asm += "D=M\n"  # d = [val2]
     asm += "@SP\n"  # *esp // *val2
-    asm += "M=M-1\n"  # *esp-- // *val1
+    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val1
     asm += "A=M\n"  # [esp] // [val1]
     asm += "M=M-D\n"  # [esp] = [val1] - [val2]
     asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp++
+    asm += "M=M+1 // stacksize++\n"  # *esp++
 
     return asm, comment_count
 
@@ -155,11 +155,11 @@ def eq(asm, cmd, guids, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     asm += "@SP // %s // *esp \n" % cmd
-    asm += "M=M-1 // *esp-- (*val2)\n"
+    asm += "M=M-1 // *esp-- (*val2) // stacksize--\n"
     asm += "A=M // [val2]\n"
     asm += "D=M // d = [val2]\n"
     asm += "@SP // *esp (*val2)\n"
-    asm += "M=M-1 // *esp-- (*val1)\n"
+    asm += "M=M-1 // *esp-- (*val1) // stacksize--\n"
     asm += "A=M // [esp] ([val1])\n"
     asm += "D=M-D // d = [val1] - [val2]\n"
 
@@ -185,7 +185,7 @@ def eq(asm, cmd, guids, comment_count, debug=False):
     asm += "M=D // [esp] = eq result\n"
 
     asm += "@SP // *esp\n"
-    asm += "M=M+1 // *esp++\n"
+    asm += "M=M+1 // *esp++ // stacksize++\n"
 
     return asm, guids, comment_count
 
@@ -209,11 +209,11 @@ def lt(asm, cmd, guids, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     asm += "@SP // *esp // %s\n" % cmd
-    asm += "M=M-1 // *esp-- (*val2)\n"
+    asm += "M=M-1 // *esp-- (*val2) // stacksize--\n"
     asm += "A=M // [val2]\n"
     asm += "D=M // d = [val2]\n"
     asm += "@SP // *esp (*val2)\n"
-    asm += "M=M-1 // *esp-- (*val1)\n"
+    asm += "M=M-1 // *esp-- (*val1) // stacksize--\n"
     asm += "A=M // [esp] ([val1])\n"
     asm += "D=M-D // d = [val1] - [val2]\n"
 
@@ -239,7 +239,7 @@ def lt(asm, cmd, guids, comment_count, debug=False):
     asm += "M=D // [esp] = eq result\n"
 
     asm += "@SP // *esp\n"
-    asm += "M=M+1 // *esp++\n"
+    asm += "M=M+1 // *esp++ // stacksize++\n"
 
     return asm, guids, comment_count
 
