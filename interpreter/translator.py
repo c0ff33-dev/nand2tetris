@@ -3,6 +3,7 @@ VM to HACK Assembly Translator
 """
 import os
 
+# TODO: common asm blocks should only be emitted once & reused
 
 def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
@@ -13,40 +14,42 @@ def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_
 
     # push an arbitrary value onto the stack
     if vm_segment == "constant":
-        asm += "@%s // %s\n" % (value, cmd)  # literal
-        asm += "D=A\n"  # d = literal
-        asm += "@SP\n"  # *esp
-        asm += "A=M\n"  # [esp]
-        asm += "M=D\n"  # [esp] = literal
-        asm += "@SP\n"  # *esp
-        asm += "M=M+1 // stacksize++\n"  # *esp++
+        asm += "@%s // %s (constant)\n" % (value, cmd)
+        asm += "D=A // d = constant\n"
+        asm += "@SP // &esp\n"
+        asm += "A=M // *esp\n" 
+        asm += "M=D // esp = constant\n" 
+        asm += "@SP // &esp\n"
+        asm += "M=M+1 // &esp++\n" 
     else:
         # retrieve a value from segment+offset and push it onto the stack
         if vm_segment == "temp":
-            # but also account for the temp mapping
-            asm += "@5 // %s\n" % cmd  # *asm_segment
-            asm += "D=A\n"  # d = *asm_segment
+            # fixed 8 word segment at RAM[5-12]
+            asm += "@5 // %s (&asm_segment)\n" % cmd
+            asm += "D=A // d = &asm_segment\n" 
         elif vm_segment == "pointer":
-            asm += "@3 // %s\n" % cmd  # *asm_segment
-            asm += "D=A\n"  # d = *asm_segment
+            # fixed 2 word segment at RAM[3-4] (THIS/THAT)
+            asm += "@3 // %s (&asm_segment)\n" % cmd 
+            asm += "D=A // d = &asm_segment\n"
         elif vm_segment == "static":
+            # fixed 240 word segment at RAM[16-255] (namespace per file)
             pos = static_dict[vm_filepath][0]
             offset = 16 + (offset_list[pos])
-            asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)  # *asm_segment
-            asm += "D=A\n"  # d = *asm_segment
+            asm += "@%s // %s (&asm_segment) // static + src offset (%s)\n" % (offset, cmd, vm_filepath)
+            asm += "D=A // d = &asm_segment\n"
         else:
-            # normal segment resolution
-            asm += "@%s // %s\n" % (asm_segment, cmd)  # *asm_segment
-            asm += "D=M\n"  # d = [asm_segment]
+            # deref the virtual segment (local, argument, this, that)
+            asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
+            asm += "D=M // d = *asm_segment\n"
 
-        asm += "@%s\n" % value  # offset
-        asm += "A=D+A\n"  # [asm_segment+offset]
-        asm += "D=M\n"  # d = [asm_segment+offset]
-        asm += "@SP\n"  # *esp
-        asm += "A=M\n"  # [esp]
-        asm += "M=D\n"  # [esp] = [asm_segment+offset]
-        asm += "@SP\n"  # *esp
-        asm += "M=M+1 // stacksize++\n"  # *esp++
+        asm += "@%s // offset\n" % value
+        asm += "A=D+A // &(asm_segment+offset)\n"
+        asm += "D=M // d = *(asm_segment+offset)\n" 
+        asm += "@SP // &esp\n"
+        asm += "A=M // *esp\n"
+        asm += "M=D // esp = *(asm_segment+offset)\n"
+        asm += "@SP // &esp\n"
+        asm += "M=M+1 // &esp++\n"
 
     return asm, comment_count
 
@@ -61,43 +64,50 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
     # pop a value from the stack and store it in segment+offset
     # (copy from src to dst and dec esp)
 
-    # account for temp mapping vs normal segment resolution
+    # resolve segment base address
     if vm_segment == "temp":
-        asm += "@5 // %s\n" % cmd  # *asm_segment
-        asm += "D=A\n"  # d = *asm_segment
+        # fixed 8 word segment at RAM[5-12]
+        asm += "@5 // %s (&asm_segment)\n" % cmd
+        asm += "D=A // d = &asm_segment\n"
     elif vm_segment == "pointer":
-        asm += "@3 // %s\n" % cmd  # *asm_segment
-        asm += "D=A\n"  # d = *asm_segment
+        # fixed 2 word segment at RAM[3-4] (THIS/THAT)
+        asm += "@3 // %s (&asm_segment)\n" % cmd
+        asm += "D=A // d = &asm_segment\n"
     elif vm_segment == "static":
+        # fixed 240 word segment at RAM[16-255] (namespace per file)
         pos = static_dict[vm_filepath][0]
         offset = 16 + (offset_list[pos])
-        asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)  # *asm_segment
-        asm += "D=A\n"  # d = *asm_segment
+        asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)
+        asm += "D=A // d = &asm_segment\n"
     else:
-        asm += "@%s // %s\n" % (asm_segment, cmd)  # *asm_segment
-        asm += "D=M\n"  # d = [asm_segment]
+        # resolve the base address of the remaining segments (local, argument, this, that)
+        asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
+        asm += "D=M // d = *asm_segment\n"
 
-    asm += "@%s // retrieve the *dst (segment+offset) and temporarily store it at *esp // offset\n" % value  # offset
-    asm += "D=D+A // d = [asm_segment+offset] (*dst)\n"
-    asm += "@SP // *esp\n"
-    asm += "A=M // [esp]\n"
-    asm += "M=D // [esp] = *dst\n"
+    asm += "@%s // offset // retrieve &dst (segment+offset) and store at *esp\n" % value
+    asm += "D=D+A // d = &dst (asm_segment+offset)\n"
+    asm += "@SP // &esp\n"
+    asm += "A=M // *esp\n"
+    asm += "M=D // esp = &dst\n"
 
-    asm += "@SP // retrieve the *src pointer from esp-1 // *esp\n"
-    asm += "M=M-1 // *esp-- (*src) // stacksize--\n"
-    asm += "A=M // [src]\n"
-    asm += "D=M // d = [src]\n"
+    asm += "@SP // &esp // retrieve &src from top of the stack\n"
+    asm += "M=M-1 // &esp-- (&src)\n"
+    asm += "A=M // *src\n"
+    asm += "D=M // d = src\n"
 
-    asm += "@SP // restore esp (*esp)\n"
-    asm += "M=M+1 // *esp++ (**dst) // stacksize++\n"
+    asm += "@SP // restore esp (&esp)\n"
+    asm += "M=M+1 // &esp++ (&dst)\n"
 
-    asm += "A=M // copy [src] to [dst] // *dst\n"
-    asm += "A=M // [dst]\n"
-    asm += "M=D // [dst] = [src] (pop)\n"
+    # local/argument/this/that have an extra level of indirection to the virtual segment
+    if vm_segment not in ("temp", "pointer", "static"):
+        asm += "A=M // **dst (virtual segment)\n"
+
+    asm += "A=M // *dst\n"
+    asm += "M=D // dst = src (pop)\n"
 
     # free the slot on the stack
-    asm += "@SP // *esp\n"
-    asm += "M=M-1 // *esp-- (*src) // stacksize--\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M-1 // &esp--\n"
 
     return asm, comment_count
 
@@ -110,16 +120,16 @@ def add(asm, cmd, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     # add two values, push result, dec/inc esp
-    asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val2
-    asm += "A=M\n"  # [val2]
-    asm += "D=M\n"  # d = [val2]
-    asm += "@SP\n"  # *esp // *val2
-    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val1
-    asm += "A=M\n"  # [esp] // [val1]
-    asm += "M=D+M\n"  # [esp] = [val1] + [val2]
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1 // stacksize++\n"  # *esp++
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val2)\n"
+    asm += "A=M // *val2\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp\n" 
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "M=D+M // esp = val2 + val1\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, comment_count
 
@@ -132,19 +142,18 @@ def sub(asm, cmd, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     # eval two values, push result, dec esp
-    asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val2
-    asm += "A=M\n"  # [val2]
-    asm += "D=M\n"  # d = [val2]
-    asm += "@SP\n"  # *esp // *val2
-    asm += "M=M-1 // stacksize--\n"  # *esp-- // *val1
-    asm += "A=M\n"  # [esp] // [val1]
-    asm += "M=M-D\n"  # [esp] = [val1] - [val2]
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1 // stacksize++\n"  # *esp++
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val2)\n"
+    asm += "A=M // *val2\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp (&val2)\n"
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "M=M-D // esp = val1 - val2\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, comment_count
-
 
 def eq(asm, cmd, guids, comment_count, debug=False):
     """
@@ -154,14 +163,14 @@ def eq(asm, cmd, guids, comment_count, debug=False):
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    asm += "@SP // %s // *esp \n" % cmd
-    asm += "M=M-1 // *esp-- (*val2) // stacksize--\n"
-    asm += "A=M // [val2]\n"
-    asm += "D=M // d = [val2]\n"
-    asm += "@SP // *esp (*val2)\n"
-    asm += "M=M-1 // *esp-- (*val1) // stacksize--\n"
-    asm += "A=M // [esp] ([val1])\n"
-    asm += "D=M-D // d = [val1] - [val2]\n"
+    asm += "@SP // %s // &esp \n" % cmd
+    asm += "M=M-1 // &esp-- (&val2)\n"
+    asm += "A=M // *val2\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp (&val2)\n"
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "D=M-D // d = val1 - val2\n"
 
     asm += "@EQ_TRUE_%s\n" % guid
     asm += "D;JEQ\n"
@@ -180,12 +189,12 @@ def eq(asm, cmd, guids, comment_count, debug=False):
 
     comment_count -= 1
     asm += "(EQ_END_%s)\n" % guid
-    asm += "@SP // *esp (*val1)\n"
-    asm += "A=M // [esp] ([val1])\n"
-    asm += "M=D // [esp] = eq result\n"
+    asm += "@SP // &esp (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "M=D // esp = eq result\n"
 
-    asm += "@SP // *esp\n"
-    asm += "M=M+1 // *esp++ // stacksize++\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, guids, comment_count
 
@@ -208,14 +217,14 @@ def lt(asm, cmd, guids, comment_count, debug=False):
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    asm += "@SP // *esp // %s\n" % cmd
-    asm += "M=M-1 // *esp-- (*val2) // stacksize--\n"
-    asm += "A=M // [val2]\n"
-    asm += "D=M // d = [val2]\n"
-    asm += "@SP // *esp (*val2)\n"
-    asm += "M=M-1 // *esp-- (*val1) // stacksize--\n"
-    asm += "A=M // [esp] ([val1])\n"
-    asm += "D=M-D // d = [val1] - [val2]\n"
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val2)\n"
+    asm += "A=M // *val2\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp (&val2)\n"
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "D=M-D // d = val1 - val2\n"
 
     asm += "@JLT_TRUE_%s\n" % guid
     asm += "D;JLT\n"
@@ -234,12 +243,12 @@ def lt(asm, cmd, guids, comment_count, debug=False):
 
     comment_count -= 1
     asm += "(JLT_END_%s)\n" % guid
-    asm += "@SP // *esp (*val1)\n"
-    asm += "A=M // [esp] ([val1])\n"
-    asm += "M=D // [esp] = eq result\n"
+    asm += "@SP // &esp (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "M=D // esp = lt result\n"
 
-    asm += "@SP // *esp\n"
-    asm += "M=M+1 // *esp++ // stacksize++\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, guids, comment_count
 
@@ -253,14 +262,14 @@ def gt(asm, cmd, guids, comment_count, debug=False):
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    asm += "@SP // *esp // %s\n" % cmd
-    asm += "M=M-1 // *esp-- (*val2)\n"
-    asm += "A=M // [val2]\n"
-    asm += "D=M // d = [val2]\n"
-    asm += "@SP // *esp (*val2)\n"
-    asm += "M=M-1 // *esp-- (*val1)\n"
-    asm += "A=M // [esp] ([val1])\n"
-    asm += "D=M-D // d = [val1] - [val2]\n"
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val2)\n"
+    asm += "A=M // *val2\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp (&val2)\n"
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "D=M-D // d = val1 - val2\n"
 
     asm += "@JGT_TRUE_%s\n" % guid
     asm += "D;JGT\n"
@@ -279,12 +288,12 @@ def gt(asm, cmd, guids, comment_count, debug=False):
 
     comment_count -= 1
     asm += "(JGT_END_%s)\n" % guid
-    asm += "@SP // *esp (*val1)\n"
-    asm += "A=M // [esp] ([val1])\n"
-    asm += "M=D // [esp] = eq result\n"
+    asm += "@SP // &esp (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "M=D // esp = gt result\n"
 
-    asm += "@SP // *esp\n"
-    asm += "M=M+1 // *esp++\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, guids, comment_count
 
@@ -297,16 +306,16 @@ def _and(asm, cmd, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     # eval two values, push result, dec esp
-    asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1\n"  # *esp-- // *val2
-    asm += "A=M\n"  # [val2]
-    asm += "D=M\n"  # d = [val2]
-    asm += "@SP\n"  # *esp // *val2
-    asm += "M=M-1\n"  # *esp-- // *val1
-    asm += "A=M\n"  # [esp] // [val1]
-    asm += "M=D&M\n"  # [esp] = [val1] & [val2]
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp++
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val2)\n" 
+    asm += "A=M // *esp (*val2)\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp (&val2)\n"
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp = val1\n"
+    asm += "M=D&M // esp = val2 & val1\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, comment_count
 
@@ -319,16 +328,16 @@ def _or(asm, cmd, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     # eval two values, push result, dec esp
-    asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1\n"  # *esp-- // *val2
-    asm += "A=M\n"  # [val2]
-    asm += "D=M\n"  # d = [val2]
-    asm += "@SP\n"  # *esp // *val2
-    asm += "M=M-1\n"  # *esp-- // *val1
-    asm += "A=M\n"  # [esp] // [val1]
-    asm += "M=M|D\n"  # [esp] = [val1] | [val2]
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp++
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val2)\n"
+    asm += "A=M // *esp (*val2)\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp (&val2)\n"
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "M=M|D // esp = val1 | val2\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, comment_count
 
@@ -341,12 +350,12 @@ def _not(asm, cmd, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     # eval one value, push result
-    asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1\n"  # *esp-- // *val1
-    asm += "A=M\n"  # [esp] // [val1]
-    asm += "M=!M\n"  # [esp] = ![val1]
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp++
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // esp* (*val1)\n"
+    asm += "M=!M // esp = !val1\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, comment_count
 
@@ -359,12 +368,12 @@ def neg(asm, cmd, comment_count, debug=False):
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
     # eval one value, push result
-    asm += "@SP // %s\n" % cmd  # *esp
-    asm += "M=M-1\n"  # *esp-- // *val1
-    asm += "A=M\n"  # [esp] // [val1]
-    asm += "M=-M\n"  # [esp] = -[val1]
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp++
+    asm += "@SP // &esp // %s\n" % cmd
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "M=-M // esp = -val1\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
     return asm, comment_count
 
@@ -429,22 +438,22 @@ def if_goto(asm, cmd, src, comment_count, debug=False):
 
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    asm += "@0 // %s\n" % cmd  # literal
-    asm += "D=A // push a zero onto the stack\n"  # d = literal
-    asm += "@SP\n"  # *esp
-    asm += "A=M\n"  # [esp]
-    asm += "M=D\n"  # [esp] = literal
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp = *esp++
+    asm += "@0 // constant (0) // %s\n" % cmd
+    asm += "D=A // d = 0 // push a zero onto the stack\n"
+    asm += "@SP // &esp\n"
+    asm += "A=M // *esp\n"
+    asm += "M=D // esp = 0\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
-    asm += "@SP // *esp // compare val1 (if-goto conditional) with val2 (zero)\n"
-    asm += "M=M-1 // *esp-- (*val2)\n"
-    asm += "A=M // [val2]\n"
-    asm += "D=M // d = [val2]\n"
-    asm += "@SP // *esp (*val2)\n"
-    asm += "M=M-1 // *esp-- (*val1)\n"
-    asm += "A=M // [esp] ([val1])\n"
-    asm += "D=M-D // d = [val1] - [val2] // leave esp here (pop equivalent)\n"
+    asm += "@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)\n"
+    asm += "M=M-1 // &esp-- (&val2)\n"
+    asm += "A=M // *val2\n"
+    asm += "D=M // d = val2\n"
+    asm += "@SP // &esp (&val2)\n"
+    asm += "M=M-1 // &esp-- (&val1)\n"
+    asm += "A=M // *esp (*val1)\n"
+    asm += "D=M-D // d = val1 - val2 // leave esp here (pop equivalent)\n"
 
     asm += "@%s\n" % asm_label
     asm += "D;JNE // jump if not zero\n"  # true = -1 on VM eval so hopefully this is alright
@@ -457,14 +466,14 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     save the caller stack frame and initialize the callee ARG/LCL segments
     """
     comment_count -= 3  # always injects a label first
-    prologue_size = 64  # the number of instructions required to realign RIP pointer
+    prologue_size = 64  # the number of instructions required to realign EIP pointer
 
     num_args = int(cmd.split(" ")[2])
-    func_label = cmd.split(" ")[1]  # function EIP
-    asm, guids, comment_count, label_str = label(asm, cmd, src, guids, comment_count, debug=debug)  # RIP label
+    func_label = cmd.split(" ")[1]  # Module.funcName (entry point)
+    asm, guids, comment_count, label_str = label(asm, cmd, src, guids, comment_count, debug=debug)
 
     # stack frame before call = <args>...<SP>
-    # stack frame after call = <args>...<RIP><LCL><ARG><THIS><THAT><locals>...<SP>
+    # stack frame after call = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<SP>
 
     if num_args == 0:
         asm, comment_count = push(asm, "push constant 9999 // call %s // if no args, create a space on the stack for "
@@ -473,33 +482,34 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
         prologue_size += 7  # 7 instructions added by conditional push for return placeholder
         num_args = 1
         # adjust comment for cleaner debug output
-        asm += "@%s // push RIP\n" % label_str  # *rip
+        asm += "@%s // push RP\n" % label_str # return point (RP)
     else:
-        asm += "@%s // call %s // push RIP\n" % (label_str, func_label)  # *rip
+        asm += "@%s // call %s // push RP\n" % (label_str, func_label)
 
-    asm += "D=A\n"  # d = [rip]
-    asm += "@SP\n"  # *esp
-    asm += "A=M\n"  # [esp]
-    asm += "M=D\n"  # [esp] = [rip]
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp = *esp++
+    asm += "D=A // d = RP\n"
+    asm += "@SP // &esp\n"
+    asm += "A=M // *esp\n"
+    asm += "M=D // esp = RP\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
-    asm += "@LCL // capture the LCL pointer and push it to the stack\n"  # **lcl
-    asm += "D=M\n"  # d = *lcl
-    asm += "@SP\n"  # *esp
-    asm += "A=M\n"  # [esp]
-    asm += "M=D\n"  # [esp] = *lcl
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp = *esp++
+    asm += "@LCL // &lcl // save LCL to the stack\n"
+    asm += "D=M // d = *lcl\n"
+    asm += "@SP // &esp\n"
+    asm += "A=M // *esp\n"
+    asm += "M=D // esp = lcl\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
-    asm += "@ARG // capture the ARG pointer and push it to the stack\n"  # *arg
-    asm += "D=M\n"  # d = *arg
-    asm += "@SP\n"  # *esp
-    asm += "A=M\n"  # [esp]
-    asm += "M=D\n"  # [esp] = *arg
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp = *esp++
+    asm += "@ARG // &arg // save ARG to the stack\n"
+    asm += "D=M // d = *arg\n"
+    asm += "@SP // &esp\n"
+    asm += "A=M // *esp\n"
+    asm += "M=D // esp = arg\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
+    # TODO: refactor comments (you are here)
     asm += "@THIS // capture the THIS pointer and push it to the stack\n"  # *this
     asm += "D=M\n"  # d = *this
     asm += "@SP\n"  # *esp
@@ -557,15 +567,15 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     asm += "@LCL // *LCL\n"
     asm += "M=D // [LCL] = *SP-num_locals ([LCL])\n"
 
-    asm += "@%s // *func (parsed from call <label> <num_args>)\n" % func_label
-    asm += "0;JMP // jump into EIP (*func)\n"
+    asm += "@%s // &func (parsed from call <label> <num_args>)\n" % func_label
+    asm += "0;JMP // *func\n"
 
     return asm, guids, comment_count
 
 
 def function(asm, cmd, src, guids, comment_count, debug=False):
     """
-    define a function label (eip)
+    define a function label (entry point)
     """
     comment_count -= 2
 
