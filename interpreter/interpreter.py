@@ -142,8 +142,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
             listener.join()
 
 
-# DEBUG: static breakpoints
-def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[5,12,20], debug=False):
+def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=False):
     debug_log = []
     gui_log = []
 
@@ -801,19 +800,21 @@ if __name__ == '__main__':
     # init
     debug = True
     vm_static_dicts = {} 
+    breakpoints = []
 
     # DEBUG: overrides
-    if debug:
-        jack_dirpaths = [] 
-        jack_filepaths = []
-        jack_filepath_lists = []
-        jack_matches = {}
-        vm_dirpaths = []
-        vm_asm_filepaths = []
-        binary_asm_filepaths = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.asm',]
-        hw_tst_files = []
-        cpu_tst_files = []
-        vm_tst_files = []
+    # if debug:
+    #     jack_dirpaths = [] 
+    #     jack_filepaths = []
+    #     jack_filepath_lists = []
+    #     jack_matches = {}
+    #     vm_dirpaths = []
+    #     vm_asm_filepaths = []
+    #     binary_asm_filepaths = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.asm',]
+    #     hw_tst_files = []
+    #     cpu_tst_files = []
+    #     vm_tst_files = []
+    #     breakpoints = [12, 32, 50]
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
@@ -844,7 +845,7 @@ if __name__ == '__main__':
     # load & execute modules without test scripts
     for asm_filepath in binary_asm_filepaths:
         try:
-            run(asm_filepath, debug=debug)
+            run(asm_filepath, breakpoints=breakpoints, debug=debug)
         except IndexError:
             warnings.warn("Interpreter: Probable memory access violation captured during execution of %s"
                             % asm_filepath)
@@ -949,13 +950,10 @@ if __name__ == '__main__':
     # TODO: error check - check constructor returns this
     # TODO: error check - check for unexpected tokens after statement expression (if/while)
 
-    # interpreter
-    # TODO: translator finish stack mapping: other stack manip(stacksize), functions(stackframes)
-    # TODO: maybe stacksize should be <start-sp>-esp function instead?
-    # TODO: maybe stack metadata could use address labels dict?
-    # TODO: experiment with ebp (stackframe pointer) implementation
-    # TODO: move remaining python comments to asm: associate all asm with function, check linebreaks
-    # TODO: doc strings
+    # interpreter: translator
+    # TODO: move python comments to asm
+    # TODO: replace stacksize with esp/ebp (emitted by translator, tracked by interpreter)
+    # TODO: remove comment_count
 
     # TODO: Jack OS Error Codes
     '''

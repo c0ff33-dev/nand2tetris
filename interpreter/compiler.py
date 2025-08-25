@@ -716,7 +716,7 @@ def main(filepath, file_list):
         - parse the AST
         - prescan the AST for class/function declarations
         - tag metadata as tokens are parsed
-        -- tag scope is defined by tree depth, some need to be carried forward, others cleared on depth change
+          - tag scope is defined by tree depth, some need to be carried forward, others cleared on depth change
         - call compile functions once enough information is parsed
     """
     global debug
