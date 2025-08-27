@@ -99,8 +99,8 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
     asm += "M=M+1 // &esp++ (&dst)\n"
 
     # local/argument/this/that have an extra level of indirection to the virtual segment
-    if vm_segment not in ("temp", "pointer", "static"):
-        asm += "A=M // **dst (virtual segment)\n"
+    # TODO: Basic/Pointer/StaticTest also requires temp/pointer/static to be a double deref but that doesn't seem right?
+    asm += "A=M // **dst (virtual segment)\n"
 
     asm += "A=M // *dst\n"
     asm += "M=D // dst = src (pop)\n"

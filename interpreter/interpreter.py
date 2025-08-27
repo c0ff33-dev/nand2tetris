@@ -116,7 +116,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         "[red]R15[/red] %s" % (hw["RAM"][15])
 
     else:
-        raise RuntimeError()
+        raise RuntimeError(debug_cmd)
 
     table.add_row(row_code + row_stack, row_reg)
     if src_line in breakpoints or step:
@@ -803,18 +803,18 @@ if __name__ == '__main__':
     breakpoints = []
 
     # DEBUG: overrides
-    # if debug:
-    #     jack_dirpaths = [] 
-    #     jack_filepaths = []
-    #     jack_filepath_lists = []
-    #     jack_matches = {}
-    #     vm_dirpaths = []
-    #     vm_asm_filepaths = []
-    #     binary_asm_filepaths = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.asm',]
-    #     hw_tst_files = []
-    #     cpu_tst_files = []
-    #     vm_tst_files = []
-    #     breakpoints = [12, 32, 50]
+    if debug:
+        jack_dirpaths = [] 
+        jack_filepaths = []
+        jack_filepath_lists = []
+        jack_matches = {}
+        vm_dirpaths = []
+        vm_asm_filepaths = []
+        binary_asm_filepaths = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.asm',]
+        hw_tst_files = []
+        cpu_tst_files = []
+        vm_tst_files = []
+        breakpoints = [186]
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
