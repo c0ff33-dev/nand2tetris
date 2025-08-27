@@ -84,7 +84,7 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
         asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
         asm += "D=M // d = *asm_segment\n"
 
-    asm += "@%s // offset // retrieve &dst (segment+offset) and store at *esp\n" % value
+    asm += "@%s // retrieve &dst (segment+offset) and store at *esp\n" % value
     asm += "D=D+A // d = &dst (asm_segment+offset)\n"
     asm += "@SP // &esp\n"
     asm += "A=M // *esp\n"
@@ -95,7 +95,7 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
     asm += "A=M // *src\n"
     asm += "D=M // d = src\n"
 
-    asm += "@SP // restore esp (&esp)\n"
+    asm += "@SP // &esp // restore esp\n"
     asm += "M=M+1 // &esp++ (&dst)\n"
 
     # local/argument/this/that have an extra level of indirection to the virtual segment
@@ -493,11 +493,11 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     asm += "@SP // &esp\n"
     asm += "M=M+1 // &esp++\n"
 
-    asm += "@LCL // &lcl // save LCL to the stack\n"
-    asm += "D=M // d = *lcl\n"
+    asm += "@LCL // &lcl[0] // save LCL to the stack\n"
+    asm += "D=M // d = *lcl[0]\n"
     asm += "@SP // &esp\n"
     asm += "A=M // *esp\n"
-    asm += "M=D // esp = lcl\n"
+    asm += "M=D // esp = lcl[0]\n"
     asm += "@SP // &esp\n"
     asm += "M=M+1 // &esp++\n"
 
@@ -510,65 +510,66 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     asm += "M=M+1 // &esp++\n"
 
     # TODO: refactor comments (you are here)
-    asm += "@THIS // capture the THIS pointer and push it to the stack\n"  # *this
-    asm += "D=M\n"  # d = *this
-    asm += "@SP\n"  # *esp
-    asm += "A=M\n"  # [esp]
-    asm += "M=D\n"  # [esp] = *this
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp = *esp++
+    asm += "@THIS // &this // save THIS to the stack\n"
+    asm += "D=M // d = *this\n"
+    asm += "@SP // &esp\n"
+    asm += "A=M // *esp\n"
+    asm += "M=D // esp = this\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
-    asm += "@THAT // capture the THAT pointer and push it to the stack\n"  # *that
-    asm += "D=M\n"  # d = *that
-    asm += "@SP\n"  # *esp
-    asm += "A=M\n"  # [esp]
-    asm += "M=D\n"  # [esp] = *that
-    asm += "@SP\n"  # *esp
-    asm += "M=M+1\n"  # *esp = *esp++
+    asm += "@THAT // &that // save THAT to the stack\n"
+    asm += "D=M // d = *that\n"
+    asm += "@SP // &esp\n" 
+    asm += "A=M // *esp\n"
+    asm += "M=D // esp = that\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M+1 // &esp++\n"
 
+    # num_locals can be computed in advance but push() writes to asm
     current_function = cmd.split(" ")[1]
     if current_function in local_dict:
         num_locals = local_dict[current_function]
         for i in range(0, num_locals):
             asm, comment_count = push(asm, "push constant 0 // local(%s) init" % i, "constant", "constant", 0,
                                       static_dict, offset_list, vm_filepath, comment_count, debug=debug)
-            prologue_size += 7
+            prologue_size += 7  # TODO: is this really +7 for every local?
     else:
         num_locals = 0
 
-    asm += "@%s // increment RIP (SP-5+num_locals) by prologue_size " \
-           "(all the instructions added by call)\n" % (5+num_locals)
+    # TODO: can this be refactored to push the correct value above rather than double handling?
+    asm += "@%s // increment RP (SP-5+num_locals) by prologue_size\n" % (5+num_locals)
     asm += "D=A // d = 5+num_locals\n"
-    asm += "@SP // **esp\n"
-    asm += "M=M-D // *esp = *esp-(5+num_locals) (*rip)\n"
+    asm += "@SP // &esp\n"
+    asm += "M=M-D // &esp = &esp-(5+num_locals) (&rp)\n"
     asm += "@%s // prologue_size\n" % prologue_size
     asm += "D=A // d = prologue_size\n"
-    asm += "@SP // **esp (**rip)\n"
-    asm += "A=M // *rip\n"
-    asm += "M=M+D // *rip = *rip+prologue_size\n"
+    asm += "@SP // &esp (&rp)\n"
+    asm += "A=M // *esp (*rp)\n"
+    asm += "M=M+D // rp = rp+prologue_size\n"
     asm += "@%s // 5+num_locals\n" % (5+num_locals)
     asm += "D=A // d = 5+num_locals\n"
-    asm += "@SP // **esp\n"
+    asm += "@SP // &esp\n"
     asm += "M=M+D // *esp = *esp+(5+num_locals)\n"
 
     asm += "@%s // (5+num_locals) // initialize ARG segment for callee\n" % (5+num_locals)
     asm += "D=A // d = (5+num_locals)\n"
-    asm += "@SP // *esp (bottom of stack)\n"
-    asm += "D=M-D // d = [esp]-5-num_locals (*RIP) \n"
+    asm += "@SP // &esp\n"
+    asm += "D=M-D // d = *esp-(5+num_locals) (*RP) \n"
     asm += "@%s // parse num_args from call <label> <num_args>\n" % num_args
-    asm += "D=D-A // d = [esp]-5-[num_args] // (*RIP-num_args = *arg1)\n"
-    asm += "@ARG // *ARG\n"
-    asm += "M=D // [ARG] = [esp-5-num_args] // [ARG]=*arg1)\n"
+    asm += "D=D-A // d = rp-num_args (&arg1)\n"
+    asm += "@ARG // &arg\n"
+    asm += "M=D // *arg = &arg1\n"
 
     asm += "@%s // (num_locals) // initialize callee LCL (same as SP if none) \n" % num_locals
     asm += "D=A // d = num_locals\n"
-    asm += "@SP // (SP currently at bottom of stack frame)\n"
-    asm += "D=M-D // d = [SP]-num_locals ([LCL])\n"
-    asm += "@LCL // *LCL\n"
-    asm += "M=D // [LCL] = *SP-num_locals ([LCL])\n"
+    asm += "@SP // (&esp currently at bottom of stack frame)\n"
+    asm += "D=M-D // d = *esp-num_locals (&lcl[0])\n"
+    asm += "@LCL // &lcl[0]\n"
+    asm += "M=D // &lcl[0] = &lcl[0]\n"
 
     asm += "@%s // &func (parsed from call <label> <num_args>)\n" % func_label
-    asm += "0;JMP // *func\n"
+    asm += "0;JMP // *func // jump to function\n"
 
     return asm, guids, comment_count
 
@@ -591,60 +592,59 @@ def _return(asm, cmd, static_dict, offset_list, vm_filepath, comment_count, debu
     """
     comment_count -= 2
 
-    # stack frame before return = <args>...<RIP><LCL><ARG><THIS><THAT><locals>...<result><SP>
-    # stack frame after return = <result><SP> // ...<RIP><LCL><ARG><THIS><THAT><locals>
-    # jump to RIP
+    # stack frame before return = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<result><SP>
+    # stack frame after return = <result><SP> // ...<RP><LCL><ARG><THIS><THAT><locals>
 
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
-    asm, comment_count = pop(asm, "pop argument 0 // return // move result to ARG[0] (soon to be last stack "
+    asm, comment_count = pop(asm, "pop argument 0 // return // move result to &arg[0] (soon to be last stack "
                              "item)", "argument", "ARG", 0, static_dict, offset_list, vm_filepath, comment_count,
                              debug=debug)
 
-    asm += "@ARG // *ARG[0] // return: discard the callee stack leaving result in ARG[0] and SP at ARG[0]+1\n"
-    asm += "D=M+1 // d = *ARG[0]+1 // whether this is ARG[1] (2+ args) or RIP doesn't matter\n"
-    asm += "@SP // *esp // as the intent is to discard everything after result at this point\n"
-    asm += "M=D // [esp] = *ARG[0]+1\n"
+    asm += "@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]\n"
+    asm += "D=M+1 // d = *arg[1]\n"
+    asm += "@SP // &esp\n"
+    asm += "M=D // *esp = arg[1]\n"
 
-    asm += "@LCL // *LCL // return: restore caller stack (THAT)\n"
-    asm += "A=M-1 // *LCL-1 (**THAT)\n"
-    asm += "D=M // d = [LCL-1] (*THAT)\n"
+    asm += "@LCL // &lcl[0] // return: restore caller stack (THAT)\n"
+    asm += "A=M-1 // &that\n"
+    asm += "D=M // d = *that\n"
     asm += "@THAT\n"
-    asm += "M=D // [THAT] = [LCL-1] (*THAT)\n"
+    asm += "M=D // *that = *that\n"
 
     asm += "@2 // return: restore caller stack (THIS)\n"
     asm += "D=A // d=2\n"
-    asm += "@LCL // *LCL \n"
-    asm += "A=M-D // *LCL-2 (**THIS)\n"
-    asm += "D=M // d = [LCL-2] (*THIS)\n"
+    asm += "@LCL // &lcl\n"
+    asm += "A=M-D // &this\n"
+    asm += "D=M // d = *this\n"
     asm += "@THIS\n"
-    asm += "M=D // [THIS] = [LCL-2] (*THIS)\n"
+    asm += "M=D // *this = *this\n"
 
     asm += "@3 // return: restore caller stack (ARG)\n"
     asm += "D=A // d=3\n"
-    asm += "@LCL // *LCL \n"
-    asm += "A=M-D // *LCL-3 (**ARG)\n"
-    asm += "D=M // d = [LCL-3] (*ARG)\n"
+    asm += "@LCL // &lcl \n"
+    asm += "A=M-D // &lcl-3 (&arg)\n"
+    asm += "D=M // d = *arg\n"
     asm += "@ARG\n"
-    asm += "M=D // [ARG] = [LCL-3] (*ARG)\n"
+    asm += "M=D // *arg = *arg\n"
 
-    asm += "@LCL // *LCL // before restoring LCL, save it at R13\n"
-    asm += "D=M // d = [LCL]\n"
-    asm += "@R13 // *R13\n"
-    asm += "M=D // [R13] = [LCL]\n"
+    asm += "@LCL // &lcl // before restoring LCL, save it to R13\n"
+    asm += "D=M // d = *lcl\n"
+    asm += "@R13 // &r13\n"
+    asm += "M=D // *r13 = lcl\n"
 
     asm += "@4 // return: restore caller stack (LCL)\n"
     asm += "D=A // d=4\n"
-    asm += "@LCL // *LCL \n"
-    asm += "A=M-D // *LCL-4 (**LCL)\n"
-    asm += "D=M // d = [LCL-4] (*LCL)\n"
+    asm += "@LCL // &lcl\n"
+    asm += "A=M-D // &lcl-4\n"
+    asm += "D=M // d = *lcl-4\n"
     asm += "@LCL\n"
-    asm += "M=D // [LCL] = [LCL-4] (*LCL)\n"
+    asm += "M=D // *lcl = *lcl-4\n"
 
-    asm += "@5 // return: unconditional jump to LCL-5 (RIP)\n"
+    asm += "@5 // return: unconditional jump to LCL-5 (RP)\n"
     asm += "D=A // d=5\n"
-    asm += "@R13 // *R13 (old *LCL)\n"
-    asm += "A=M-D // *LCL-5 (*LCL)\n"
-    asm += "A=M // d = [LCL-5] (*LCL)\n"
+    asm += "@R13 // &r13 (old_lcl)\n"
+    asm += "A=M-D // &old_lcl-5 (&lcl)\n"
+    asm += "A=M // d = *lcl-5 (*lcl)\n"
     asm += "0;JMP // return (jump to RIP)\n"
 
     return asm, comment_count
