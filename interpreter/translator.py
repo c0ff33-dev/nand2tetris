@@ -67,18 +67,18 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
     # resolve segment base address
     if vm_segment == "temp":
         # fixed 8 word segment at RAM[5-12]
-        asm += "@5 // %s (&asm_segment)\n" % cmd
-        asm += "D=A // d = &asm_segment\n"
+        asm += "@5 // %s (&temp)\n" % cmd
+        asm += "D=A // d = &temp\n"
     elif vm_segment == "pointer":
         # fixed 2 word segment at RAM[3-4] (THIS/THAT)
-        asm += "@3 // %s (&asm_segment)\n" % cmd
-        asm += "D=A // d = &asm_segment\n"
+        asm += "@3 // %s (&pointer)\n" % cmd
+        asm += "D=A // d = &pointer\n"
     elif vm_segment == "static":
         # fixed 240 word segment at RAM[16-255] (namespace per file)
         pos = static_dict[vm_filepath][0]
         offset = 16 + (offset_list[pos])
         asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)
-        asm += "D=A // d = &asm_segment\n"
+        asm += "D=A // d = &(static+offset)\n"
     else:
         # resolve the base address of the remaining segments (local, argument, this, that)
         asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
@@ -95,13 +95,10 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
     asm += "A=M // *src\n"
     asm += "D=M // d = src\n"
 
-    asm += "@SP // &esp // restore esp\n"
+    # the extra level of indirection for local/argument/this/that is already handled above
+    asm += "@SP // &esp // restore esp and complete the pop\n"
     asm += "M=M+1 // &esp++ (&dst)\n"
-
-    # local/argument/this/that have an extra level of indirection to the virtual segment
-    # TODO: Basic/Pointer/StaticTest also requires temp/pointer/static to be a double deref but that doesn't seem right?
-    asm += "A=M // **dst (virtual segment)\n"
-
+    asm += "A=M // *esp (&dst)\n"
     asm += "A=M // *dst\n"
     asm += "M=D // dst = src (pop)\n"
 
