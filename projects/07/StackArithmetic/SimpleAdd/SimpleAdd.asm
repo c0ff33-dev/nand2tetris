@@ -1,30 +1,30 @@
 
 // (-3) push constant 7
-@7 // push constant 7
-D=A
-@SP
-A=M
-M=D
-@SP
-M=M+1 // stacksize++
+@7 // push constant 7 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
 
 // (-5) push constant 8
-@8 // push constant 8
-D=A
-@SP
-A=M
-M=D
-@SP
-M=M+1 // stacksize++
+@8 // push constant 8 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
 
 // (-7) add
-@SP // add
-M=M-1
-A=M
-D=M
-@SP
-M=M-1
-A=M
-M=D+M
-@SP
-M=M+1
+@SP // &esp // add
+M=M-1 // &esp-- (&val2)
+A=M // *val2
+D=M // d = val2
+@SP // &esp
+M=M-1 // &esp-- (&val1)
+A=M // *esp (*val1)
+M=D+M // esp = val2 + val1
+@SP // &esp
+M=M+1 // &esp++
