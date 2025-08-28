@@ -91,8 +91,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-13) pop temp 0 // Dumps the return value
-@5 // pop temp 0 // Dumps the return value (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 // Dumps the return value (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -102,9 +102,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -196,8 +196,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-22) pop temp 0 // Dumps the return value
-@5 // pop temp 0 // Dumps the return value (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 // Dumps the return value (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -207,9 +207,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -390,7 +390,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 // (-44) pop static 0
 @16 // pop static 0 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -400,9 +400,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -422,7 +422,7 @@ M=M+1 // &esp++
 
 // (-48) pop static 1
 @16 // pop static 1 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -432,9 +432,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -463,9 +463,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -509,7 +509,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-56) function Class1.get 0
 (Class1.get) // function Class1.get 0
@@ -563,9 +563,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -609,7 +609,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-69) function Class2.set 0
 (Class2.set) // function Class2.set 0
@@ -627,7 +627,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 // (-74) pop static 0
 @18 // pop static 0 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -637,9 +637,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -659,7 +659,7 @@ M=M+1 // &esp++
 
 // (-78) pop static 1
 @18 // pop static 1 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -669,9 +669,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -700,9 +700,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -746,7 +746,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-86) function Class2.get 0
 (Class2.get) // function Class2.get 0
@@ -800,9 +800,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -846,4 +846,4 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)

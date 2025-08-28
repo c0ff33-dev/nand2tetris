@@ -183,7 +183,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "R10": 10,  # TEMP
         "R11": 11,  # TEMP
         "R12": 12,  # TEMP
-        "BASE": 15,  # R15 (statics assigned at BASE+X)
+        "BASE": 15,  # R15 (statics assigned at BASE+n, starting at 1 e.g. RAM[16])
 
         # VM symbols
         "SP": 0,  # segmented by function (saved)
@@ -192,10 +192,10 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "THIS": 3,  # segmented by function (saved)
         "THAT": 4,  # segmented by function (saved)
         "TEMP": 5,  # 5-12 incl (volatile)
-        "R13": 13,  # general purpose (volatile)
-        "R14": 14,  # general purpose (volatile)
-        "R15": 15,  # general purpose (volatile)
-        "STATIC": 16,  # 16-255 incl (segmented by VM source file)
+        "R13": 13,  # reserved for VM translator (volatile)
+        "R14": 14,  # reserved for VM translator (volatile)
+        "R15": 15,  # reserved for VM translator (volatile)
+        "STATIC": 16,  # 16-255 incl (segmented by VM source file, max 240 values)
         "STACK": 256,  # 256-2047 incl (persistent)
 
         # JACK symbols
@@ -801,7 +801,7 @@ if __name__ == '__main__':
     ]
 
     # init
-    debug = True
+    debug = False
     vm_static_dicts = {} 
     breakpoints = []
 
@@ -817,7 +817,7 @@ if __name__ == '__main__':
         hw_tst_files = []
         cpu_tst_files = []
         vm_tst_files = []
-        breakpoints = [186]
+        breakpoints = []
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
@@ -954,7 +954,6 @@ if __name__ == '__main__':
     # TODO: error check - check for unexpected tokens after statement expression (if/while)
 
     # interpreter: translator
-    # TODO: move python comments to asm
     # TODO: replace stacksize with esp/ebp (emitted by translator, tracked by interpreter)
     # TODO: remove comment_count
 

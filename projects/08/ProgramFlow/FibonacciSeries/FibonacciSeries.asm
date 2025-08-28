@@ -12,8 +12,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-5) pop pointer 1 // that = argument[1]
-@3 // pop pointer 1 // that = argument[1] (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 // that = argument[1] (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -23,9 +23,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52,9 +52,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81,9 +81,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -134,9 +134,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -231,9 +231,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -273,8 +273,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-49) pop pointer 1 // that += 1
-@3 // pop pointer 1 // that += 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 // that += 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -284,9 +284,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -337,9 +337,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp

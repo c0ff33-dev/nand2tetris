@@ -78,8 +78,8 @@ M=D // &lcl[0] = &lcl[0]
 @Memory.init // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 // (-11) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -89,9 +89,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -183,8 +183,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-20) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -194,9 +194,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -288,8 +288,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-29) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -299,9 +299,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -384,8 +384,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-36) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -395,9 +395,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -480,8 +480,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-43) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -491,9 +491,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -594,8 +594,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-54) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -605,9 +605,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -690,8 +690,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-61) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -701,9 +701,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -732,9 +732,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -778,7 +778,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-69) function Sys.halt 0
 (Sys.halt) // function Sys.halt 0
@@ -859,9 +859,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -905,7 +905,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-94) function Sys.wait 1
 (Sys.wait) // function Sys.wait 1
@@ -1060,8 +1060,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-118) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -1071,9 +1071,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1181,9 +1181,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1312,9 +1312,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1372,9 +1372,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1410,9 +1410,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1456,7 +1456,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-191) function Sys.error 0
 (Sys.error) // function Sys.error 0
@@ -1537,8 +1537,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-199) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -1548,9 +1548,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1633,8 +1633,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-206) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -1644,9 +1644,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1729,8 +1729,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-213) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -1740,9 +1740,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1828,8 +1828,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-220) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -1839,9 +1839,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1924,8 +1924,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-227) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -1935,9 +1935,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -1966,9 +1966,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2012,7 +2012,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-235) function Main.main 2
 (Main.main) // function Main.main 2
@@ -2104,9 +2104,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2192,8 +2192,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-250) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -2203,9 +2203,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2299,9 +2299,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2407,9 +2407,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2515,9 +2515,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2623,9 +2623,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2731,9 +2731,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -2839,9 +2839,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -4225,8 +4225,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-396) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -4236,9 +4236,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -4342,8 +4342,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-407) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -4353,9 +4353,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -5967,8 +5967,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-516) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -5978,9 +5978,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -6063,8 +6063,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-523) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -6074,9 +6074,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -6170,9 +6170,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -6303,8 +6303,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-547) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -6314,9 +6314,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -7092,8 +7092,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-601) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -7103,9 +7103,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -7209,8 +7209,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-612) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -7220,9 +7220,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -8834,8 +8834,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-721) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -8845,9 +8845,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -8930,8 +8930,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-728) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -8941,9 +8941,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -9082,8 +9082,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-747) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -9093,9 +9093,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -9871,8 +9871,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-801) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -9882,9 +9882,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -9988,8 +9988,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-812) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -9999,9 +9999,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -11689,8 +11689,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-926) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -11700,9 +11700,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -11785,8 +11785,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-933) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -11796,9 +11796,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -12574,8 +12574,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-987) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -12585,9 +12585,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -12740,8 +12740,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-997) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -12751,9 +12751,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -14061,8 +14061,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1086) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -14072,9 +14072,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -14157,8 +14157,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1093) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -14168,9 +14168,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -15174,8 +15174,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1162) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -15185,9 +15185,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -15349,8 +15349,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1174) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -15360,9 +15360,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -16746,8 +16746,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1268) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -16757,9 +16757,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -16842,8 +16842,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1275) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -16853,9 +16853,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -16959,8 +16959,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1286) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -16970,9 +16970,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -18508,8 +18508,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1390) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -18519,9 +18519,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -18625,8 +18625,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1401) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -18636,9 +18636,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -20250,8 +20250,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1510) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -20261,9 +20261,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -20346,8 +20346,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1517) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -20357,9 +20357,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -20445,8 +20445,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1524) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -20456,9 +20456,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -21766,8 +21766,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1613) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -21777,9 +21777,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -21883,8 +21883,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1624) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -21894,9 +21894,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -23432,8 +23432,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1728) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -23443,9 +23443,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -23528,8 +23528,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1735) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -23539,9 +23539,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -23863,9 +23863,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -24793,8 +24793,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1821) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -24804,9 +24804,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -25004,8 +25004,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1841) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -25015,9 +25015,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -26477,8 +26477,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1940) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -26488,9 +26488,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -26573,8 +26573,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-1947) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -26584,9 +26584,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -27136,9 +27136,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -28066,8 +28066,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2048) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -28077,9 +28077,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -28277,8 +28277,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2068) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -28288,9 +28288,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -29978,8 +29978,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2182) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -29989,9 +29989,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -30074,8 +30074,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2189) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -30085,9 +30085,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -31091,8 +31091,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2258) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -31102,9 +31102,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -31254,8 +31254,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2268) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -31265,9 +31265,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -32727,8 +32727,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2367) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -32738,9 +32738,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -32823,8 +32823,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2374) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -32834,9 +32834,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -33992,8 +33992,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2453) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -34003,9 +34003,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -34155,8 +34155,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2463) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -34166,9 +34166,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -35552,8 +35552,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2557) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -35563,9 +35563,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -35648,8 +35648,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2564) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -35659,9 +35659,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -36513,8 +36513,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2623) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -36524,9 +36524,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -36676,8 +36676,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2633) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -36687,9 +36687,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38149,8 +38149,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2732) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -38160,9 +38160,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38245,8 +38245,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2739) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -38256,9 +38256,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38344,8 +38344,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2746) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -38355,9 +38355,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38443,8 +38443,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2753) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -38454,9 +38454,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38485,9 +38485,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38531,7 +38531,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-2761) function Array.new 0
 (Array.new) // function Array.new 0
@@ -38694,8 +38694,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2787) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -38705,9 +38705,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38827,9 +38827,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -38873,7 +38873,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-2805) function Array.dispose 0
 (Array.dispose) // function Array.dispose 0
@@ -38890,8 +38890,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-2810) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -38901,9 +38901,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39007,8 +39007,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2821) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -39018,9 +39018,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39049,9 +39049,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39095,7 +39095,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-2829) function Keyboard.init 0
 (Keyboard.init) // function Keyboard.init 0
@@ -39122,9 +39122,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39168,7 +39168,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-2838) function Keyboard.keyPressed 0
 (Keyboard.keyPressed) // function Keyboard.keyPressed 0
@@ -39262,9 +39262,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39308,7 +39308,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-2850) function Keyboard.readChar 2
 (Keyboard.readChar) // function Keyboard.readChar 2
@@ -39389,8 +39389,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2858) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -39400,9 +39400,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39634,9 +39634,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39740,9 +39740,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -39902,8 +39902,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2930) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -39913,9 +39913,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40001,8 +40001,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2937) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -40012,9 +40012,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40046,9 +40046,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40092,7 +40092,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-2945) function Keyboard.readLine 5
 (Keyboard.readLine) // function Keyboard.readLine 5
@@ -40184,9 +40184,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40290,8 +40290,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-2964) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -40301,9 +40301,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40397,9 +40397,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40493,9 +40493,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40657,9 +40657,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40728,9 +40728,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -40939,8 +40939,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-3045) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -40950,9 +40950,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41068,9 +41068,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41115,9 +41115,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41161,7 +41161,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-3078) function Keyboard.readInt 2
 (Keyboard.readInt) // function Keyboard.readInt 2
@@ -41301,9 +41301,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41445,9 +41445,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41533,8 +41533,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-3120) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -41544,9 +41544,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41578,9 +41578,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41624,7 +41624,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-3128) function Math.init 1
 (Math.init) // function Math.init 1
@@ -41706,7 +41706,7 @@ M=D // &lcl[0] = &lcl[0]
 
 // (-3136) pop static 1
 @16 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Math.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -41716,9 +41716,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41802,7 +41802,7 @@ M=D // &lcl[0] = &lcl[0]
 
 // (-3143) pop static 0
 @16 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Math.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -41812,9 +41812,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41863,8 +41863,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-3153) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -41874,17 +41874,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-3155) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -41894,9 +41894,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -41926,9 +41926,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42057,9 +42057,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42159,8 +42159,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3201) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -42170,9 +42170,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42248,8 +42248,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3215) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -42259,9 +42259,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42292,8 +42292,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3221) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -42303,17 +42303,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-3223) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -42323,9 +42323,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42355,9 +42355,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42393,9 +42393,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42439,7 +42439,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-3240) function Math.abs 0
 (Math.abs) // function Math.abs 0
@@ -42549,9 +42549,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42586,9 +42586,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42632,7 +42632,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-3274) function Math.multiply 5
 (Math.multiply) // function Math.multiply 5
@@ -42876,9 +42876,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -42975,9 +42975,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43074,9 +43074,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43183,9 +43183,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43215,9 +43215,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43247,9 +43247,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43418,8 +43418,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3396) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -43429,9 +43429,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43591,9 +43591,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43648,8 +43648,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3436) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -43659,9 +43659,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43703,9 +43703,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43762,9 +43762,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43815,9 +43815,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43900,9 +43900,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43937,9 +43937,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -43983,7 +43983,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-3492) function Math.divide 4
 (Math.divide) // function Math.divide 4
@@ -44138,8 +44138,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-3516) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -44149,9 +44149,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -44400,9 +44400,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -44521,8 +44521,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-3576) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -44532,17 +44532,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-3578) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -44552,9 +44552,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -44584,9 +44584,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -44683,9 +44683,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -44847,8 +44847,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3621) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -44858,9 +44858,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -44948,8 +44948,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3637) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -44959,9 +44959,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45039,9 +45039,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45187,8 +45187,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3679) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -45198,9 +45198,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45255,8 +45255,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3689) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -45266,9 +45266,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45299,8 +45299,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3695) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -45310,17 +45310,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-3697) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -45330,9 +45330,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45362,9 +45362,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45428,8 +45428,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3713) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -45439,9 +45439,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45552,9 +45552,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45651,9 +45651,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45795,8 +45795,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3788) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -45806,9 +45806,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -45990,8 +45990,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3824) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -46001,9 +46001,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46045,9 +46045,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46102,8 +46102,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3840) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -46113,9 +46113,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46157,9 +46157,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46213,9 +46213,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46298,9 +46298,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46335,9 +46335,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46381,7 +46381,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-3888) function Math.sqrt 4
 (Math.sqrt) // function Math.sqrt 4
@@ -46536,8 +46536,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-3912) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -46547,9 +46547,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46579,9 +46579,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46722,8 +46722,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-3947) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -46733,9 +46733,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46777,9 +46777,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -46933,9 +46933,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47118,9 +47118,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47174,9 +47174,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47215,9 +47215,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47261,7 +47261,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4031) function Math.max 0
 (Math.max) // function Math.max 0
@@ -47366,9 +47366,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47403,9 +47403,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47449,7 +47449,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4063) function Math.min 0
 (Math.min) // function Math.min 0
@@ -47554,9 +47554,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47591,9 +47591,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47637,7 +47637,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4095) function Memory.init 0
 (Memory.init) // function Memory.init 0
@@ -47652,7 +47652,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 // (-4100) pop static 0
 @18 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Memory.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -47662,9 +47662,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47713,8 +47713,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-4110) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -47724,17 +47724,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4112) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -47744,9 +47744,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47776,9 +47776,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47827,8 +47827,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-4126) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -47838,17 +47838,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4128) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -47858,9 +47858,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47890,9 +47890,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47921,9 +47921,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -47967,7 +47967,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4140) function Memory.peek 0
 (Memory.peek) // function Memory.peek 0
@@ -48008,8 +48008,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4149) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -48019,9 +48019,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48053,9 +48053,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48099,7 +48099,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4157) function Memory.poke 0
 (Memory.poke) // function Memory.poke 0
@@ -48152,8 +48152,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-4168) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -48163,17 +48163,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4170) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -48183,9 +48183,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48215,9 +48215,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48246,9 +48246,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48292,7 +48292,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4182) function Memory.alloc 2
 (Memory.alloc) // function Memory.alloc 2
@@ -48447,8 +48447,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-4206) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -48458,9 +48458,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48564,9 +48564,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48596,9 +48596,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48689,8 +48689,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4256) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -48700,9 +48700,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48832,8 +48832,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4279) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -48843,9 +48843,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48875,9 +48875,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -48917,8 +48917,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4291) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -48928,9 +48928,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49078,8 +49078,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4319) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49089,9 +49089,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49207,9 +49207,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49289,8 +49289,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4360) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49300,9 +49300,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49378,8 +49378,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4374) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49389,9 +49389,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49422,8 +49422,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4380) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49433,17 +49433,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4382) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49453,9 +49453,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49485,9 +49485,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49527,8 +49527,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4394) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49538,9 +49538,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49711,8 +49711,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4428) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49722,17 +49722,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4430) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49742,9 +49742,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49774,9 +49774,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49856,8 +49856,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4453) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49867,9 +49867,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49888,8 +49888,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-4457) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49899,17 +49899,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4459) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -49919,9 +49919,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -49951,9 +49951,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50147,8 +50147,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-4501) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50158,9 +50158,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50203,8 +50203,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4512) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50214,9 +50214,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50411,8 +50411,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4550) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50422,9 +50422,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50488,8 +50488,8 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // (-4562) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50499,17 +50499,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4564) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50519,9 +50519,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50551,9 +50551,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50593,8 +50593,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4576) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50604,9 +50604,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50825,8 +50825,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4618) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50836,17 +50836,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4620) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -50856,9 +50856,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50888,9 +50888,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -50994,8 +50994,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4647) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51005,9 +51005,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51026,8 +51026,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-4651) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51037,17 +51037,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4653) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51057,9 +51057,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51089,9 +51089,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51191,8 +51191,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4678) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51202,17 +51202,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4680) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51222,9 +51222,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51254,9 +51254,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51308,8 +51308,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-4697) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51319,17 +51319,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4699) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51339,9 +51339,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51371,9 +51371,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51426,9 +51426,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51472,7 +51472,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4715) function Memory.deAlloc 2
 (Memory.deAlloc) // function Memory.deAlloc 2
@@ -51521,9 +51521,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51563,8 +51563,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4732) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51574,9 +51574,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51606,9 +51606,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51648,8 +51648,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4744) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51659,9 +51659,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51808,8 +51808,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4774) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51819,9 +51819,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51885,8 +51885,8 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // (-4786) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51896,17 +51896,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4788) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -51916,9 +51916,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -51948,9 +51948,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52030,8 +52030,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4811) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52041,9 +52041,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52119,8 +52119,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4825) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52130,9 +52130,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52163,8 +52163,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4831) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52174,17 +52174,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4833) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52194,9 +52194,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52226,9 +52226,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52268,8 +52268,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4845) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52279,9 +52279,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52452,8 +52452,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4879) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52463,17 +52463,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4881) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52483,9 +52483,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52515,9 +52515,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52597,8 +52597,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-4904) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52608,9 +52608,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52629,8 +52629,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-4908) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52640,17 +52640,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-4910) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52660,9 +52660,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52692,9 +52692,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52729,9 +52729,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52775,7 +52775,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4928) function Output.init 0
 (Output.init) // function Output.init 0
@@ -52790,7 +52790,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 // (-4933) pop static 4
 @19 // pop static 4 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @4 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52800,9 +52800,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52827,7 +52827,7 @@ M=M+1 // &esp++
 
 // (-4939) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52837,9 +52837,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52856,7 +52856,7 @@ M=M+1 // &esp++
 
 // (-4943) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52866,9 +52866,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52885,7 +52885,7 @@ M=M+1 // &esp++
 
 // (-4947) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52895,9 +52895,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -52981,7 +52981,7 @@ M=D // &lcl[0] = &lcl[0]
 
 // (-4954) pop static 3
 @19 // pop static 3 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @3 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -52991,9 +52991,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -53076,8 +53076,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-4961) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -53087,9 +53087,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -53208,8 +53208,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-4976) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -53219,9 +53219,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -53250,9 +53250,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -53296,7 +53296,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-4984) function Output.initMap 0
 (Output.initMap) // function Output.initMap 0
@@ -53378,7 +53378,7 @@ M=D // &lcl[0] = &lcl[0]
 
 // (-4992) pop static 5
 @19 // pop static 5 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @5 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -53388,9 +53388,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -53581,8 +53581,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5023) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -53592,9 +53592,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -53785,8 +53785,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5054) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -53796,9 +53796,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -53989,8 +53989,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5085) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -54000,9 +54000,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -54193,8 +54193,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5116) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -54204,9 +54204,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -54397,8 +54397,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5147) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -54408,9 +54408,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -54601,8 +54601,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5178) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -54612,9 +54612,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -54805,8 +54805,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5209) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -54816,9 +54816,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -55009,8 +55009,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5240) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -55020,9 +55020,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -55213,8 +55213,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5271) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -55224,9 +55224,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -55417,8 +55417,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5302) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -55428,9 +55428,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -55621,8 +55621,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5333) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -55632,9 +55632,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -55825,8 +55825,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5364) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -55836,9 +55836,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -56029,8 +56029,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5395) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -56040,9 +56040,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -56233,8 +56233,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5426) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -56244,9 +56244,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -56437,8 +56437,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5457) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -56448,9 +56448,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -56641,8 +56641,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5488) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -56652,9 +56652,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -56845,8 +56845,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5519) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -56856,9 +56856,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -57049,8 +57049,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5550) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -57060,9 +57060,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -57253,8 +57253,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5581) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -57264,9 +57264,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -57457,8 +57457,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5612) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -57468,9 +57468,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -57661,8 +57661,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5643) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -57672,9 +57672,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -57865,8 +57865,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5674) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -57876,9 +57876,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -58069,8 +58069,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5705) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -58080,9 +58080,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -58273,8 +58273,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5736) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -58284,9 +58284,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -58477,8 +58477,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5767) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -58488,9 +58488,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -58681,8 +58681,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5798) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -58692,9 +58692,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -58885,8 +58885,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5829) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -58896,9 +58896,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -59089,8 +59089,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5860) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -59100,9 +59100,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -59293,8 +59293,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5891) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -59304,9 +59304,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -59497,8 +59497,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5922) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -59508,9 +59508,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -59701,8 +59701,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5953) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -59712,9 +59712,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -59905,8 +59905,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-5984) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -59916,9 +59916,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -60109,8 +60109,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6015) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -60120,9 +60120,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -60313,8 +60313,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6046) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -60324,9 +60324,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -60517,8 +60517,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6077) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -60528,9 +60528,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -60721,8 +60721,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6108) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -60732,9 +60732,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -60925,8 +60925,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6139) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -60936,9 +60936,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -61129,8 +61129,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6170) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -61140,9 +61140,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -61333,8 +61333,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6201) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -61344,9 +61344,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -61537,8 +61537,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6232) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -61548,9 +61548,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -61741,8 +61741,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6263) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -61752,9 +61752,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -61945,8 +61945,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6294) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -61956,9 +61956,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -62149,8 +62149,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6325) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -62160,9 +62160,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -62353,8 +62353,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6356) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -62364,9 +62364,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -62557,8 +62557,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6387) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -62568,9 +62568,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -62761,8 +62761,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6418) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -62772,9 +62772,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -62965,8 +62965,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6449) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -62976,9 +62976,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -63169,8 +63169,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6480) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -63180,9 +63180,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -63373,8 +63373,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6511) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -63384,9 +63384,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -63577,8 +63577,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6542) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -63588,9 +63588,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -63781,8 +63781,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6573) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -63792,9 +63792,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -63985,8 +63985,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6604) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -63996,9 +63996,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -64189,8 +64189,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6635) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -64200,9 +64200,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -64393,8 +64393,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6666) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -64404,9 +64404,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -64597,8 +64597,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6697) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -64608,9 +64608,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -64801,8 +64801,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6728) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -64812,9 +64812,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -65005,8 +65005,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6759) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -65016,9 +65016,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -65209,8 +65209,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6790) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -65220,9 +65220,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -65413,8 +65413,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6821) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -65424,9 +65424,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -65617,8 +65617,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6852) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -65628,9 +65628,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -65821,8 +65821,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6883) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -65832,9 +65832,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -66025,8 +66025,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6914) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -66036,9 +66036,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -66229,8 +66229,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6945) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -66240,9 +66240,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -66433,8 +66433,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-6976) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -66444,9 +66444,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -66637,8 +66637,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7007) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -66648,9 +66648,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -66841,8 +66841,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7038) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -66852,9 +66852,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -67045,8 +67045,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7069) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -67056,9 +67056,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -67249,8 +67249,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7100) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -67260,9 +67260,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -67453,8 +67453,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7131) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -67464,9 +67464,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -67657,8 +67657,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7162) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -67668,9 +67668,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -67861,8 +67861,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7193) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -67872,9 +67872,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -68065,8 +68065,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7224) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -68076,9 +68076,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -68269,8 +68269,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7255) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -68280,9 +68280,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -68473,8 +68473,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7286) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -68484,9 +68484,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -68677,8 +68677,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7317) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -68688,9 +68688,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -68881,8 +68881,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7348) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -68892,9 +68892,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -69085,8 +69085,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7379) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -69096,9 +69096,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -69289,8 +69289,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7410) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -69300,9 +69300,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -69493,8 +69493,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7441) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -69504,9 +69504,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -69697,8 +69697,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7472) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -69708,9 +69708,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -69901,8 +69901,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7503) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -69912,9 +69912,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -70105,8 +70105,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7534) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -70116,9 +70116,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -70309,8 +70309,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7565) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -70320,9 +70320,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -70513,8 +70513,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7596) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -70524,9 +70524,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -70717,8 +70717,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7627) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -70728,9 +70728,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -70921,8 +70921,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7658) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -70932,9 +70932,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -71125,8 +71125,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7689) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -71136,9 +71136,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -71329,8 +71329,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7720) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -71340,9 +71340,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -71533,8 +71533,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7751) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -71544,9 +71544,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -71737,8 +71737,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7782) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -71748,9 +71748,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -71941,8 +71941,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7813) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -71952,9 +71952,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -72145,8 +72145,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7844) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -72156,9 +72156,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -72349,8 +72349,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7875) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -72360,9 +72360,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -72553,8 +72553,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7906) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -72564,9 +72564,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -72757,8 +72757,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7937) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -72768,9 +72768,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -72961,8 +72961,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-7968) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -72972,9 +72972,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73003,9 +73003,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73049,7 +73049,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-7976) function Output.create 1
 (Output.create) // function Output.create 1
@@ -73141,9 +73141,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73198,8 +73198,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-7994) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73209,17 +73209,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-7996) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73229,9 +73229,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73261,9 +73261,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73315,8 +73315,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8010) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73326,17 +73326,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8012) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73346,9 +73346,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73378,9 +73378,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73432,8 +73432,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8026) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73443,17 +73443,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8028) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73463,9 +73463,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73495,9 +73495,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73549,8 +73549,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8042) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73560,17 +73560,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8044) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73580,9 +73580,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73612,9 +73612,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73666,8 +73666,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8058) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73677,17 +73677,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8060) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73697,9 +73697,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73729,9 +73729,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73783,8 +73783,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8074) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73794,17 +73794,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8076) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73814,9 +73814,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73846,9 +73846,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73900,8 +73900,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8090) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73911,17 +73911,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8092) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -73931,9 +73931,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -73963,9 +73963,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74017,8 +74017,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8106) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74028,17 +74028,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8108) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74048,9 +74048,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74080,9 +74080,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74134,8 +74134,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8122) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74145,17 +74145,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8124) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74165,9 +74165,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74197,9 +74197,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74251,8 +74251,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8138) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74262,17 +74262,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8140) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74282,9 +74282,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74314,9 +74314,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74368,8 +74368,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8154) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74379,17 +74379,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8156) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74399,9 +74399,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74431,9 +74431,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74485,8 +74485,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8170) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74496,17 +74496,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8172) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74516,9 +74516,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74548,9 +74548,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74579,9 +74579,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74625,7 +74625,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8184) function Output.createShiftedMap 4
 (Output.createShiftedMap) // function Output.createShiftedMap 4
@@ -74707,7 +74707,7 @@ M=D // &lcl[0] = &lcl[0]
 
 // (-8192) pop static 6
 @19 // pop static 6 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @6 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74717,9 +74717,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74746,9 +74746,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74869,8 +74869,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-8220) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -74880,9 +74880,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -74912,9 +74912,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75008,9 +75008,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75065,8 +75065,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-8241) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -75076,17 +75076,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8243) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -75096,9 +75096,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75128,9 +75128,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75157,9 +75157,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75316,8 +75316,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-8281) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -75327,9 +75327,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75469,8 +75469,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8300) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -75480,17 +75480,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8302) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -75500,9 +75500,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75532,9 +75532,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75585,9 +75585,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75695,9 +75695,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75755,9 +75755,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75796,9 +75796,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -75842,7 +75842,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8368) function Output.getMap 1
 (Output.getMap) // function Output.getMap 1
@@ -76001,9 +76001,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76087,8 +76087,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-8420) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -76098,9 +76098,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76130,9 +76130,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76182,8 +76182,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-8437) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -76193,9 +76193,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76225,9 +76225,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76262,9 +76262,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76308,7 +76308,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8452) function Output.drawChar 4
 (Output.drawChar) // function Output.drawChar 4
@@ -76412,9 +76412,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76444,9 +76444,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76605,8 +76605,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-8499) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -76616,9 +76616,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76677,9 +76677,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76729,8 +76729,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-8522) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -76740,9 +76740,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76793,9 +76793,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76877,8 +76877,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-8547) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -76888,9 +76888,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76933,8 +76933,8 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-8555) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -76944,17 +76944,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-8557) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -76964,9 +76964,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -76996,9 +76996,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -77049,9 +77049,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -77102,9 +77102,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -77140,9 +77140,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -77186,7 +77186,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8590) function Output.moveCursor 0
 (Output.moveCursor) // function Output.moveCursor 0
@@ -77521,8 +77521,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8647) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -77532,9 +77532,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -77669,7 +77669,7 @@ M=D // &lcl[0] = &lcl[0]
 
 // (-8667) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -77679,9 +77679,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -77867,7 +77867,7 @@ M=M+1 // &esp++
 
 // (-8694) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -77877,9 +77877,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -78059,7 +78059,7 @@ M=M+1 // &esp++
 
 // (-8720) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -78069,9 +78069,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -78190,8 +78190,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8735) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -78201,9 +78201,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -78232,9 +78232,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -78278,7 +78278,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8743) function Output.printChar 0
 (Output.printChar) // function Output.printChar 0
@@ -78500,8 +78500,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8770) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -78511,9 +78511,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -78744,8 +78744,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8801) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -78755,9 +78755,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -78886,8 +78886,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8821) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -78897,9 +78897,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -78986,7 +78986,7 @@ M=M+1 // &esp++
 
 // (-8840) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -78996,9 +78996,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79039,7 +79039,7 @@ M=M+1 // &esp++
 
 // (-8848) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -79049,9 +79049,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79211,8 +79211,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8874) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -79222,9 +79222,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79259,7 +79259,7 @@ M=M+1 // &esp++
 
 // (-8885) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -79269,9 +79269,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79309,9 +79309,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79355,7 +79355,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8902) function Output.printString 2
 (Output.printString) // function Output.printString 2
@@ -79450,9 +79450,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79698,8 +79698,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8938) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -79709,9 +79709,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79762,9 +79762,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79800,9 +79800,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -79846,7 +79846,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8959) function Output.printInt 0
 (Output.printInt) // function Output.printInt 0
@@ -79978,8 +79978,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8977) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -79989,9 +79989,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80095,8 +80095,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-8988) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80106,9 +80106,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80137,9 +80137,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80183,7 +80183,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-8996) function Output.println 0
 (Output.println) // function Output.println 0
@@ -80246,7 +80246,7 @@ M=M+1 // &esp++
 
 // (-9009) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80256,9 +80256,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80275,7 +80275,7 @@ M=M+1 // &esp++
 
 // (-9013) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80285,9 +80285,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80312,7 +80312,7 @@ M=M+1 // &esp++
 
 // (-9019) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80322,9 +80322,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80415,7 +80415,7 @@ M=M+1 // &esp++
 
 // (-9039) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80425,9 +80425,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80459,9 +80459,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80505,7 +80505,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9050) function Output.backSpace 0
 (Output.backSpace) // function Output.backSpace 0
@@ -80656,7 +80656,7 @@ M=M+1 // &esp++
 
 // (-9084) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80666,9 +80666,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80709,7 +80709,7 @@ M=M+1 // &esp++
 
 // (-9092) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80719,9 +80719,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80745,7 +80745,7 @@ M=M+1 // &esp++
 
 // (-9101) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80755,9 +80755,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80848,7 +80848,7 @@ M=M+1 // &esp++
 
 // (-9121) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80858,9 +80858,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80904,7 +80904,7 @@ M=M+1 // &esp++
 
 // (-9132) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80914,9 +80914,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80936,7 +80936,7 @@ M=M+1 // &esp++
 
 // (-9139) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80946,9 +80946,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -80980,7 +80980,7 @@ M=M+1 // &esp++
 
 // (-9150) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Output.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -80990,9 +80990,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81114,8 +81114,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-9168) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81125,9 +81125,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81156,9 +81156,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81202,7 +81202,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9176) function Screen.init 1
 (Screen.init) // function Screen.init 1
@@ -81217,7 +81217,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 // (-9181) pop static 1
 @26 // pop static 1 // static + src segment offset (..\projects\12\StringTest\Screen.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81227,9 +81227,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81254,7 +81254,7 @@ M=M+1 // &esp++
 
 // (-9187) pop static 2
 @26 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Screen.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81264,9 +81264,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81350,7 +81350,7 @@ M=D // &lcl[0] = &lcl[0]
 
 // (-9194) pop static 0
 @26 // pop static 0 // static + src segment offset (..\projects\12\StringTest\Screen.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81360,9 +81360,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81411,8 +81411,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-9204) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81422,17 +81422,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-9206) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81442,9 +81442,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81474,9 +81474,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81605,9 +81605,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81707,8 +81707,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-9252) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81718,9 +81718,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81796,8 +81796,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-9266) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81807,9 +81807,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81840,8 +81840,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-9272) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81851,17 +81851,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-9274) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -81871,9 +81871,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81903,9 +81903,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81941,9 +81941,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -81987,7 +81987,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9291) function Screen.clearScreen 1
 (Screen.clearScreen) // function Screen.clearScreen 1
@@ -82115,8 +82115,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-9318) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82126,17 +82126,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-9320) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82146,9 +82146,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82178,9 +82178,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82231,9 +82231,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82269,9 +82269,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82315,7 +82315,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9345) function Screen.updateLocation 0
 (Screen.updateLocation) // function Screen.updateLocation 0
@@ -82430,8 +82430,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-9369) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82441,9 +82441,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82486,8 +82486,8 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-9377) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82497,17 +82497,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-9379) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82517,9 +82517,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82549,9 +82549,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82637,8 +82637,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-9402) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82648,9 +82648,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82701,8 +82701,8 @@ M=D&M // esp = val2 & val1
 M=M+1 // &esp++
 
 // (-9412) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82712,17 +82712,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-9414) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82732,9 +82732,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82764,9 +82764,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82798,9 +82798,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82844,7 +82844,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9429) function Screen.setColor 0
 (Screen.setColor) // function Screen.setColor 0
@@ -82862,7 +82862,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 // (-9434) pop static 2
 @26 // pop static 2 // static + src segment offset (..\projects\12\StringTest\Screen.vm)
-D=A // d = &asm_segment
+D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -82872,9 +82872,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82903,9 +82903,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -82949,7 +82949,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9442) function Screen.drawPixel 3
 (Screen.drawPixel) // function Screen.drawPixel 3
@@ -83284,8 +83284,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-9499) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -83295,9 +83295,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -83442,9 +83442,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -83619,9 +83619,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -83796,9 +83796,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -83853,8 +83853,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-9575) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -83864,9 +83864,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -83952,8 +83952,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-9582) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -83963,9 +83963,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -83994,9 +83994,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -84040,7 +84040,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9590) function Screen.drawConditional 0
 (Screen.drawConditional) // function Screen.drawConditional 0
@@ -84201,8 +84201,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-9615) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -84212,9 +84212,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -84346,8 +84346,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-9635) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -84357,9 +84357,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -84391,9 +84391,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -84437,7 +84437,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-9646) function Screen.drawLine 11
 (Screen.drawLine) // function Screen.drawLine 11
@@ -84772,8 +84772,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-9703) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -84783,9 +84783,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -84909,9 +84909,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85032,9 +85032,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85103,9 +85103,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85331,9 +85331,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85363,9 +85363,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85395,9 +85395,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85427,9 +85427,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85459,9 +85459,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85491,9 +85491,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85564,9 +85564,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85596,9 +85596,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85628,9 +85628,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85660,9 +85660,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85692,9 +85692,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85724,9 +85724,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85795,9 +85795,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85834,9 +85834,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85866,9 +85866,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85898,9 +85898,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -85969,9 +85969,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -86149,9 +86149,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -86302,9 +86302,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -86479,9 +86479,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -86591,8 +86591,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-9954) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -86602,9 +86602,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -86813,9 +86813,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -86876,9 +86876,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -86967,9 +86967,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -87027,9 +87027,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -87086,9 +87086,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -87198,8 +87198,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10062) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -87209,9 +87209,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -87247,9 +87247,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -87293,7 +87293,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-10075) function Screen.drawRectangle 9
 (Screen.drawRectangle) // function Screen.drawRectangle 9
@@ -87754,8 +87754,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10154) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -87765,9 +87765,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -87912,9 +87912,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88089,9 +88089,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88233,9 +88233,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88410,9 +88410,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88455,8 +88455,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-10245) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -88466,9 +88466,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88527,9 +88527,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88593,8 +88593,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-10267) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -88604,9 +88604,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88657,9 +88657,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88834,9 +88834,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -88890,9 +88890,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89035,9 +89035,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89233,8 +89233,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10361) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -89244,9 +89244,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89351,8 +89351,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10375) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -89362,9 +89362,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89415,9 +89415,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89601,8 +89601,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10410) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -89612,9 +89612,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89665,9 +89665,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89772,8 +89772,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10432) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -89783,9 +89783,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89839,9 +89839,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89916,9 +89916,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -89954,9 +89954,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -90000,7 +90000,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-10468) function Screen.drawHorizontal 11
 (Screen.drawHorizontal) // function Screen.drawHorizontal 11
@@ -90107,9 +90107,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -90218,9 +90218,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -90596,9 +90596,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -90704,9 +90704,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -90848,9 +90848,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91025,9 +91025,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91169,9 +91169,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91346,9 +91346,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91391,8 +91391,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-10646) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -91402,9 +91402,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91463,9 +91463,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91529,8 +91529,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-10668) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -91540,9 +91540,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91593,9 +91593,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91770,9 +91770,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91826,9 +91826,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -91882,9 +91882,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92080,8 +92080,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10744) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -92091,9 +92091,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92198,8 +92198,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10758) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -92209,9 +92209,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92262,9 +92262,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92448,8 +92448,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10793) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -92459,9 +92459,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92512,9 +92512,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92619,8 +92619,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10815) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -92630,9 +92630,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92667,9 +92667,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -92713,7 +92713,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-10829) function Screen.drawSymetric 0
 (Screen.drawSymetric) // function Screen.drawSymetric 0
@@ -92992,8 +92992,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10875) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -93003,9 +93003,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -93286,8 +93286,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10920) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -93297,9 +93297,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -93580,8 +93580,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-10965) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -93591,9 +93591,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -93874,8 +93874,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11010) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -93885,9 +93885,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -93916,9 +93916,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -93962,7 +93962,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11018) function Screen.drawCircle 3
 (Screen.drawCircle) // function Screen.drawCircle 3
@@ -94297,8 +94297,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11075) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -94308,9 +94308,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -94746,8 +94746,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11150) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -94757,9 +94757,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -94792,9 +94792,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -94845,9 +94845,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -94969,8 +94969,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11178) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -94980,9 +94980,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -95333,9 +95333,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -95562,9 +95562,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -95615,9 +95615,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -95671,9 +95671,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -95795,8 +95795,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11305) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -95806,9 +95806,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -95844,9 +95844,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -95890,7 +95890,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11318) function String.new 0
 (String.new) // function String.new 0
@@ -95989,8 +95989,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11330) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -96000,9 +96000,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96159,8 +96159,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11353) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -96170,9 +96170,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96346,9 +96346,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96381,9 +96381,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96410,9 +96410,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96444,9 +96444,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96490,7 +96490,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11398) function String.dispose 0
 (String.dispose) // function String.dispose 0
@@ -96507,8 +96507,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11403) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -96518,9 +96518,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96680,8 +96680,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11426) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -96691,9 +96691,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96800,8 +96800,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11440) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -96811,9 +96811,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96842,9 +96842,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96888,7 +96888,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11448) function String.length 0
 (String.length) // function String.length 0
@@ -96905,8 +96905,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11453) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -96916,9 +96916,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96950,9 +96950,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -96996,7 +96996,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11461) function String.charAt 0
 (String.charAt) // function String.charAt 0
@@ -97013,8 +97013,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11466) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -97024,9 +97024,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97309,8 +97309,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11511) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -97320,9 +97320,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97368,8 +97368,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-11522) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -97379,9 +97379,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97413,9 +97413,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97459,7 +97459,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11530) function String.setCharAt 0
 (String.setCharAt) // function String.setCharAt 0
@@ -97476,8 +97476,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11535) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -97487,9 +97487,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97772,8 +97772,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11580) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -97783,9 +97783,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97843,8 +97843,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-11593) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -97854,17 +97854,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-11595) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -97874,9 +97874,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97906,9 +97906,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97937,9 +97937,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -97983,7 +97983,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11607) function String.appendChar 0
 (String.appendChar) // function String.appendChar 0
@@ -98000,8 +98000,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11612) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -98011,9 +98011,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98173,8 +98173,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11635) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -98184,9 +98184,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98244,8 +98244,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-11648) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -98255,17 +98255,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-11650) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -98275,9 +98275,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98307,9 +98307,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98360,9 +98360,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98394,9 +98394,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98440,7 +98440,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11670) function String.eraseLastChar 0
 (String.eraseLastChar) // function String.eraseLastChar 0
@@ -98457,8 +98457,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11675) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -98468,9 +98468,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98627,8 +98627,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11698) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -98638,9 +98638,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98694,9 +98694,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98725,9 +98725,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98771,7 +98771,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11717) function String.intValue 5
 (String.intValue) // function String.intValue 5
@@ -98788,8 +98788,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11722) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -98799,9 +98799,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98904,9 +98904,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -98950,7 +98950,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11746) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -98984,9 +98984,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99026,8 +99026,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-11761) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -99037,9 +99037,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99148,9 +99148,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99177,9 +99177,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99330,8 +99330,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-11818) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -99341,9 +99341,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99394,9 +99394,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99530,9 +99530,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99745,9 +99745,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99798,9 +99798,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99886,9 +99886,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99923,9 +99923,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -99969,7 +99969,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-11924) function String.setInt 4
 (String.setInt) // function String.setInt 4
@@ -99986,8 +99986,8 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-11929) pop pointer 0
-@3 // pop pointer 0 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 0 (&pointer)
+D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -99997,9 +99997,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100156,8 +100156,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-11952) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -100167,9 +100167,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100266,9 +100266,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100377,9 +100377,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100417,9 +100417,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100452,9 +100452,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100674,9 +100674,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100897,8 +100897,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-12063) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -100908,17 +100908,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-12065) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -100928,9 +100928,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -100960,9 +100960,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101013,9 +101013,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101045,9 +101045,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101144,8 +101144,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-12105) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101155,17 +101155,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-12107) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101175,9 +101175,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101207,9 +101207,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101260,9 +101260,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101425,8 +101425,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-12145) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101436,9 +101436,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101564,8 +101564,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // (-12174) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101575,17 +101575,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-12176) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101595,9 +101595,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101627,9 +101627,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101656,9 +101656,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101692,9 +101692,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101899,8 +101899,8 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // (-12231) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101910,9 +101910,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101931,8 +101931,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-12235) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101942,17 +101942,17 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
 M=M-1 // &esp--
 
 // (-12237) pop pointer 1
-@3 // pop pointer 1 (&asm_segment)
-D=A // d = &asm_segment
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -101962,9 +101962,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -101994,9 +101994,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -102047,9 +102047,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -102145,8 +102145,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function
 
 // (-12264) pop temp 0
-@5 // pop temp 0 (&asm_segment)
-D=A // d = &asm_segment
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at *esp
 D=D+A // d = &dst (asm_segment+offset)
 @SP // &esp
@@ -102156,9 +102156,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -102187,9 +102187,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -102233,7 +102233,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-12272) function String.newLine 0
 (String.newLine) // function String.newLine 0
@@ -102260,9 +102260,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -102306,7 +102306,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-12281) function String.backSpace 0
 (String.backSpace) // function String.backSpace 0
@@ -102333,9 +102333,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -102379,7 +102379,7 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
 
 // (-12290) function String.doubleQuote 0
 (String.doubleQuote) // function String.doubleQuote 0
@@ -102406,9 +102406,9 @@ M=D // esp = &dst
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp
+@SP // &esp // restore esp and complete the pop
 M=M+1 // &esp++ (&dst)
-A=M // **dst (virtual segment)
+A=M // *esp (&dst)
 A=M // *dst
 M=D // dst = src (pop)
 @SP // &esp
@@ -102452,4 +102452,4 @@ D=A // d=5
 @R13 // &r13 (old_lcl)
 A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RIP)
+0;JMP // return (jump to RP)
