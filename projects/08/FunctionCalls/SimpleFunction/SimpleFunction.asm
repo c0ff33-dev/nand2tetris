@@ -98,22 +98,17 @@ M=M+1 // &esp++
 // (-24) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp

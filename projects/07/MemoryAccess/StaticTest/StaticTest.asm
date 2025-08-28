@@ -29,62 +29,47 @@ M=M+1 // &esp++
 // (-9) pop static 8
 @16 // pop static 8 // static + src segment offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &(static+offset)
-@8 // retrieve &dst (segment+offset) and store at *esp
+@8 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11) pop static 3
 @16 // pop static 3 // static + src segment offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &(static+offset)
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-13) pop static 1
 @16 // pop static 1 // static + src segment offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-15) push static 3
 @16 // push static 3 (&asm_segment) // static + src offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)

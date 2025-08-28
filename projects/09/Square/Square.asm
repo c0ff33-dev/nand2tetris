@@ -80,22 +80,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-11) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-14) call Math.init 0
 (sys.Math.init.2) // call Math.init 0
@@ -185,22 +180,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-20) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-23) call Screen.init 0
 (sys.Screen.init.3) // call Screen.init 0
@@ -290,22 +280,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-29) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-32) call Output.init 0
 (sys.Output.init.4) // call Output.init 0
@@ -386,22 +371,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-36) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-39) call Keyboard.init 0
 (sys.Keyboard.init.5) // call Keyboard.init 0
@@ -482,22 +462,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-43) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-46) call Main.main 0
 (sys.Main.main.6) // call Main.main 0
@@ -587,22 +562,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-52) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-55) call Sys.halt 0
 (sys.Sys.halt.7) // call Sys.halt 0
@@ -683,22 +653,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-59) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-61) push constant 0
 @0 // push constant 0 (constant)
@@ -714,22 +679,17 @@ M=M+1 // &esp++
 // (-65) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -841,22 +801,17 @@ M=M+1 // &esp++
 // (-90) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -1053,22 +1008,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-116) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-118) label IF_FALSE0
 (sys.IF_FALSE0) // label IF_FALSE0
@@ -1163,22 +1113,17 @@ M=M+1 // &esp++
 // (-139) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-141) label WHILE_EXP1
 (sys.WHILE_EXP1) // label WHILE_EXP1
@@ -1294,22 +1239,17 @@ M=M+1 // &esp++
 // (-163) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-165) goto WHILE_EXP1
 @sys.WHILE_EXP1 // goto WHILE_EXP1
@@ -1354,22 +1294,17 @@ M=M+1 // &esp++
 // (-176) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-178) goto WHILE_EXP0
 @sys.WHILE_EXP0 // goto WHILE_EXP0
@@ -1392,22 +1327,17 @@ M=M+1 // &esp++
 // (-187) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -1530,22 +1460,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-197) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-199) push constant 82
 @82 // push constant 82 (constant)
@@ -1626,22 +1551,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-204) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-206) push constant 82
 @82 // push constant 82 (constant)
@@ -1722,22 +1642,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-211) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-213) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -1821,22 +1736,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-218) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-221) call Sys.halt 0
 (sys.Sys.halt.16) // call Sys.halt 0
@@ -1917,22 +1827,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-225) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-227) push constant 0
 @0 // push constant 0 (constant)
@@ -1948,22 +1853,17 @@ M=M+1 // &esp++
 // (-231) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -2086,22 +1986,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-241) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-243) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -2203,22 +2098,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-252) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-254) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -2302,22 +2192,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-259) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-261) push constant 0
 @0 // push constant 0 (constant)
@@ -2333,22 +2218,17 @@ M=M+1 // &esp++
 // (-265) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -2489,22 +2369,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-279) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-281) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -2521,22 +2396,17 @@ M=M+1 // &esp++
 // (-283) pop this 0
 @THIS // pop this 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-285) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -2553,22 +2423,17 @@ M=M+1 // &esp++
 // (-287) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-289) push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -2585,22 +2450,17 @@ M=M+1 // &esp++
 // (-291) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-293) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -2684,22 +2544,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-298) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-300) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -2718,22 +2573,17 @@ M=M+1 // &esp++
 // (-304) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -2792,22 +2642,17 @@ M=M+1 // &esp++
 // (-311) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-313) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -2909,22 +2754,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-322) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-324) push constant 0
 @0 // push constant 0 (constant)
@@ -2940,22 +2780,17 @@ M=M+1 // &esp++
 // (-328) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -3014,22 +2849,17 @@ M=M+1 // &esp++
 // (-335) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-337) push constant 0
 @0 // push constant 0 (constant)
@@ -3118,22 +2948,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-344) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-346) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -3382,22 +3207,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-383) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-385) push constant 0
 @0 // push constant 0 (constant)
@@ -3413,22 +3233,17 @@ M=M+1 // &esp++
 // (-389) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -3487,22 +3302,17 @@ M=M+1 // &esp++
 // (-396) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-398) push constant 0
 @0 // push constant 0 (constant)
@@ -3583,22 +3393,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-403) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-405) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -3847,22 +3652,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-442) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-444) push constant 0
 @0 // push constant 0 (constant)
@@ -3878,22 +3678,17 @@ M=M+1 // &esp++
 // (-448) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -3952,22 +3747,17 @@ M=M+1 // &esp++
 // (-455) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-457) push this 1
 @THIS // push this 1 (&asm_segment)
@@ -4233,22 +4023,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-497) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-499) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -4286,22 +4071,17 @@ M=M+1 // &esp++
 // (-505) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-507) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -4385,22 +4165,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-512) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-514) label IF_FALSE0
 (Square.IF_FALSE0) // label IF_FALSE0
@@ -4419,22 +4194,17 @@ M=M+1 // &esp++
 // (-521) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -4493,22 +4263,17 @@ M=M+1 // &esp++
 // (-528) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-530) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -4666,22 +4431,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-551) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-553) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -4719,22 +4479,17 @@ M=M+1 // &esp++
 // (-559) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-561) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -4818,22 +4573,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-566) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-568) label IF_FALSE0
 (Square.IF_FALSE0) // label IF_FALSE0
@@ -4852,22 +4602,17 @@ M=M+1 // &esp++
 // (-575) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -4926,22 +4671,17 @@ M=M+1 // &esp++
 // (-582) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-584) push this 1
 @THIS // push this 1 (&asm_segment)
@@ -5096,22 +4836,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-605) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-607) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -5405,22 +5140,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-652) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-654) push this 1
 @THIS // push this 1 (&asm_segment)
@@ -5458,22 +5188,17 @@ M=M+1 // &esp++
 // (-660) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-662) push constant 0
 @0 // push constant 0 (constant)
@@ -5562,22 +5287,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-669) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-671) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -5823,22 +5543,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-708) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-710) label IF_FALSE0
 (Square.IF_FALSE0) // label IF_FALSE0
@@ -5857,22 +5572,17 @@ M=M+1 // &esp++
 // (-717) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -5931,22 +5641,17 @@ M=M+1 // &esp++
 // (-724) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-726) push this 1
 @THIS // push this 1 (&asm_segment)
@@ -6125,22 +5830,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-751) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-753) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -6386,22 +6086,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-790) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-792) push this 1
 @THIS // push this 1 (&asm_segment)
@@ -6439,22 +6134,17 @@ M=M+1 // &esp++
 // (-798) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-800) push constant 0
 @0 // push constant 0 (constant)
@@ -6543,22 +6233,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-807) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-809) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -6852,22 +6537,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-854) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-856) label IF_FALSE0
 (Square.IF_FALSE0) // label IF_FALSE0
@@ -6886,22 +6566,17 @@ M=M+1 // &esp++
 // (-863) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -6960,22 +6635,17 @@ M=M+1 // &esp++
 // (-870) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-872) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -7130,22 +6800,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-893) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-895) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -7439,22 +7104,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-940) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-942) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -7492,22 +7152,17 @@ M=M+1 // &esp++
 // (-948) pop this 0
 @THIS // pop this 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-950) push constant 0
 @0 // push constant 0 (constant)
@@ -7596,22 +7251,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-957) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-959) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -7857,22 +7507,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-996) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-998) label IF_FALSE0
 (Square.IF_FALSE0) // label IF_FALSE0
@@ -7891,22 +7536,17 @@ M=M+1 // &esp++
 // (-1005) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -7965,22 +7605,17 @@ M=M+1 // &esp++
 // (-1012) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1014) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -8159,22 +7794,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1039) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1041) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -8420,22 +8050,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1078) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1080) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -8473,22 +8098,17 @@ M=M+1 // &esp++
 // (-1086) pop this 0
 @THIS // pop this 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1088) push constant 0
 @0 // push constant 0 (constant)
@@ -8577,22 +8197,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1095) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1097) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -8886,22 +8501,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1142) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1144) label IF_FALSE0
 (Square.IF_FALSE0) // label IF_FALSE0
@@ -8920,22 +8530,17 @@ M=M+1 // &esp++
 // (-1151) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -9140,22 +8745,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1179) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1181) label IF_FALSE0
 (Array.IF_FALSE0) // label IF_FALSE0
@@ -9262,22 +8862,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1195) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -9336,22 +8931,17 @@ M=M+1 // &esp++
 // (-1202) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1204) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -9453,22 +9043,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1213) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1215) push constant 0
 @0 // push constant 0 (constant)
@@ -9484,22 +9069,17 @@ M=M+1 // &esp++
 // (-1219) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -9557,22 +9137,17 @@ M=M+1 // &esp++
 // (-1228) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -9697,22 +9272,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1240) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -9835,22 +9405,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1250) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1252) label WHILE_EXP0
 (Keyboard.WHILE_EXP0) // label WHILE_EXP0
@@ -10069,22 +9634,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1284) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1286) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -10175,22 +9735,17 @@ M=M+1 // &esp++
 // (-1304) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1306) label IF_FALSE0
 (Keyboard.IF_FALSE0) // label IF_FALSE0
@@ -10348,22 +9903,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1322) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1324) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -10447,22 +9997,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1329) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1331) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -10481,22 +10026,17 @@ M=M+1 // &esp++
 // (-1335) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -10619,22 +10159,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1345) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1347) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -10736,22 +10271,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1356) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1359) call String.newLine 0
 (Keyboard.String.newLine.69) // call String.newLine 0
@@ -10832,22 +10362,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1363) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1366) call String.backSpace 0
 (Keyboard.String.backSpace.70) // call String.backSpace 0
@@ -10928,22 +10453,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1370) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1372) label WHILE_EXP0
 (Keyboard.WHILE_EXP0) // label WHILE_EXP0
@@ -11092,22 +10612,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1392) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1394) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -11163,22 +10678,17 @@ M=M+1 // &esp++
 // (-1403) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1405) push local 4
 @LCL // push local 4 (&asm_segment)
@@ -11385,22 +10895,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1437) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1439) goto IF_END1
 @Keyboard.IF_END1 // goto IF_END1
@@ -11503,22 +11008,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1451) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1453) label IF_END1
 (Keyboard.IF_END1) // label IF_END1
@@ -11550,22 +11050,17 @@ M=M+1 // &esp++
 // (-1468) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -11736,22 +11231,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1488) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1490) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -11880,22 +11370,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1505) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1507) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -11979,22 +11464,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1512) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1514) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -12013,22 +11493,17 @@ M=M+1 // &esp++
 // (-1518) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -12151,22 +11626,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1528) pop static 1
 @16 // pop static 1 // static + src segment offset (..\projects\09\Square\Math.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1530) push constant 16
 @16 // push constant 16 (constant)
@@ -12247,22 +11717,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1535) pop static 0
 @16 // pop static 0 // static + src segment offset (..\projects\09\Square\Math.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1537) push constant 0
 @0 // push constant 0 (constant)
@@ -12309,42 +11774,32 @@ M=M+1 // &esp++
 // (-1545) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1547) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1549) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -12361,22 +11816,17 @@ M=M+1 // &esp++
 // (-1551) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1553) label WHILE_EXP0
 (Math.WHILE_EXP0) // label WHILE_EXP0
@@ -12492,22 +11942,17 @@ M=M+1 // &esp++
 // (-1575) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1577) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12605,22 +12050,17 @@ M=M+1 // &esp++
 // (-1593) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1595) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -12694,22 +12134,17 @@ M=M+1 // &esp++
 // (-1607) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1609) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -12738,42 +12173,32 @@ M=M+1 // &esp++
 // (-1613) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1615) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1617) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -12790,22 +12215,17 @@ M=M+1 // &esp++
 // (-1619) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1621) goto WHILE_EXP0
 @Math.WHILE_EXP0 // goto WHILE_EXP0
@@ -12828,22 +12248,17 @@ M=M+1 // &esp++
 // (-1630) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -12984,22 +12399,17 @@ M=M+1 // &esp++
 // (-1655) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1657) label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
@@ -13021,22 +12431,17 @@ M=M+1 // &esp++
 // (-1664) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -13311,22 +12716,17 @@ M=M+1 // &esp++
 // (-1711) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1713) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -13410,22 +12810,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1718) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1720) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -13509,22 +12904,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1725) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1727) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -13618,22 +13008,17 @@ M=M+1 // &esp++
 // (-1745) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1747) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -13650,22 +13035,17 @@ M=M+1 // &esp++
 // (-1749) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1751) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -13682,22 +13062,17 @@ M=M+1 // &esp++
 // (-1753) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1755) label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
@@ -13864,22 +13239,17 @@ M=M+1 // &esp++
 // (-1788) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1790) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -14026,22 +13396,17 @@ M=M+1 // &esp++
 // (-1818) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1820) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -14094,22 +13459,17 @@ M=M+1 // &esp++
 // (-1828) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1830) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -14138,22 +13498,17 @@ M=M+1 // &esp++
 // (-1834) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1836) label IF_FALSE1
 (Math.IF_FALSE1) // label IF_FALSE1
@@ -14197,22 +13552,17 @@ M=M+1 // &esp++
 // (-1845) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1847) push local 3
 @LCL // push local 3 (&asm_segment)
@@ -14250,22 +13600,17 @@ M=M+1 // &esp++
 // (-1853) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1855) goto WHILE_EXP0
 @Math.WHILE_EXP0 // goto WHILE_EXP0
@@ -14335,22 +13680,17 @@ M=M+1 // &esp++
 // (-1873) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1875) label IF_FALSE2
 (Math.IF_FALSE2) // label IF_FALSE2
@@ -14372,22 +13712,17 @@ M=M+1 // &esp++
 // (-1882) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -14584,22 +13919,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1908) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1910) label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
@@ -14835,22 +14165,17 @@ M=M+1 // &esp++
 // (-1955) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1957) push constant 0
 @0 // push constant 0 (constant)
@@ -14967,42 +14292,32 @@ M=D // &lcl[0] = &lcl[0]
 // (-1968) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1970) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1972) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -15019,22 +14334,17 @@ M=M+1 // &esp++
 // (-1974) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1976) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -15118,22 +14428,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-1981) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-1983) label WHILE_EXP0
 (Math.WHILE_EXP0) // label WHILE_EXP0
@@ -15293,22 +14598,17 @@ M=M+1 // &esp++
 // (-2013) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2015) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -15394,22 +14694,17 @@ M=M+1 // &esp++
 // (-2029) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2031) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -15474,22 +14769,17 @@ M=M+1 // &esp++
 // (-2042) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2044) push local 3
 @LCL // push local 3 (&asm_segment)
@@ -15633,22 +14923,17 @@ M=M+1 // &esp++
 // (-2071) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2073) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -15701,22 +14986,17 @@ M=M+1 // &esp++
 // (-2081) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2083) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -15745,42 +15025,32 @@ M=M+1 // &esp++
 // (-2087) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2089) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2091) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -15797,22 +15067,17 @@ M=M+1 // &esp++
 // (-2093) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2095) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -15874,22 +15139,17 @@ M=M+1 // &esp++
 // (-2105) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2107) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -15987,22 +15247,17 @@ M=M+1 // &esp++
 // (-2124) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2126) push local 3
 @LCL // push local 3 (&asm_segment)
@@ -16086,22 +15341,17 @@ M=M+1 // &esp++
 // (-2143) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2145) label IF_FALSE2
 (Math.IF_FALSE2) // label IF_FALSE2
@@ -16241,22 +15491,17 @@ M=M+1 // &esp++
 // (-2180) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2182) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -16436,22 +15681,17 @@ M=M+1 // &esp++
 // (-2216) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2218) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -16480,22 +15720,17 @@ M=M+1 // &esp++
 // (-2222) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2224) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -16548,22 +15783,17 @@ M=M+1 // &esp++
 // (-2232) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2234) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -16592,22 +15822,17 @@ M=M+1 // &esp++
 // (-2238) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2240) label IF_FALSE3
 (Math.IF_FALSE3) // label IF_FALSE3
@@ -16648,22 +15873,17 @@ M=M+1 // &esp++
 // (-2249) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2251) goto WHILE_EXP1
 @Math.WHILE_EXP1 // goto WHILE_EXP1
@@ -16733,22 +15953,17 @@ M=M+1 // &esp++
 // (-2269) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2271) label IF_FALSE4
 (Math.IF_FALSE4) // label IF_FALSE4
@@ -16770,22 +15985,17 @@ M=M+1 // &esp++
 // (-2278) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -16982,22 +16192,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-2304) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2306) label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
@@ -17014,22 +16219,17 @@ M=M+1 // &esp++
 // (-2311) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2313) label WHILE_EXP0
 (Math.WHILE_EXP0) // label WHILE_EXP0
@@ -17168,22 +16368,17 @@ M=M+1 // &esp++
 // (-2339) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2341) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -17212,22 +16407,17 @@ M=M+1 // &esp++
 // (-2345) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2347) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -17368,22 +16558,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-2364) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2366) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -17553,22 +16738,17 @@ M=M+1 // &esp++
 // (-2399) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2401) label IF_FALSE1
 (Math.IF_FALSE1) // label IF_FALSE1
@@ -17609,22 +16789,17 @@ M=M+1 // &esp++
 // (-2410) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2412) goto WHILE_EXP0
 @Math.WHILE_EXP0 // goto WHILE_EXP0
@@ -17650,22 +16825,17 @@ M=M+1 // &esp++
 // (-2421) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -17801,22 +16971,17 @@ M=M+1 // &esp++
 // (-2444) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2446) label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
@@ -17838,22 +17003,17 @@ M=M+1 // &esp++
 // (-2453) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -17989,22 +17149,17 @@ M=M+1 // &esp++
 // (-2476) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2478) label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
@@ -18026,22 +17181,17 @@ M=M+1 // &esp++
 // (-2485) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -18097,22 +17247,17 @@ M=M+1 // &esp++
 // (-2492) pop static 0
 @18 // pop static 0 // static + src segment offset (..\projects\09\Square\Memory.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2494) push constant 2048
 @2048 // push constant 2048 (constant)
@@ -18159,42 +17304,32 @@ M=M+1 // &esp++
 // (-2502) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2504) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2506) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -18211,22 +17346,17 @@ M=M+1 // &esp++
 // (-2508) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2510) push constant 2049
 @2049 // push constant 2049 (constant)
@@ -18273,42 +17403,32 @@ M=M+1 // &esp++
 // (-2518) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2520) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2522) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -18325,22 +17445,17 @@ M=M+1 // &esp++
 // (-2524) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2526) push constant 0
 @0 // push constant 0 (constant)
@@ -18356,22 +17471,17 @@ M=M+1 // &esp++
 // (-2530) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -18454,22 +17564,17 @@ M=M+1 // &esp++
 // (-2541) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2543) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -18488,22 +17593,17 @@ M=M+1 // &esp++
 // (-2547) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -18598,42 +17698,32 @@ M=M+1 // &esp++
 // (-2560) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2562) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2564) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -18650,22 +17740,17 @@ M=M+1 // &esp++
 // (-2566) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2568) push constant 0
 @0 // push constant 0 (constant)
@@ -18681,22 +17766,17 @@ M=M+1 // &esp++
 // (-2572) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -18893,22 +17973,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-2598) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2600) label IF_FALSE0
 (Memory.IF_FALSE0) // label IF_FALSE0
@@ -18999,22 +18074,17 @@ M=M+1 // &esp++
 // (-2621) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2623) label IF_FALSE1
 (Memory.IF_FALSE1) // label IF_FALSE1
@@ -19031,22 +18101,17 @@ M=M+1 // &esp++
 // (-2628) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2630) label WHILE_EXP0
 (Memory.WHILE_EXP0) // label WHILE_EXP0
@@ -19135,22 +18200,17 @@ M=M+1 // &esp++
 // (-2648) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2650) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -19278,22 +18338,17 @@ M=M+1 // &esp++
 // (-2671) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2673) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -19310,22 +18365,17 @@ M=M+1 // &esp++
 // (-2675) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2677) push constant 0
 @0 // push constant 0 (constant)
@@ -19363,22 +18413,17 @@ M=M+1 // &esp++
 // (-2683) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2685) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -19524,22 +18569,17 @@ M=M+1 // &esp++
 // (-2711) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2713) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -19642,22 +18682,17 @@ M=M+1 // &esp++
 // (-2733) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2735) goto IF_END2
 @Memory.IF_END2 // goto IF_END2
@@ -19735,22 +18770,17 @@ M=M+1 // &esp++
 // (-2752) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2754) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -19824,22 +18854,17 @@ M=M+1 // &esp++
 // (-2766) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2768) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -19868,42 +18893,32 @@ M=M+1 // &esp++
 // (-2772) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2774) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2776) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -19920,22 +18935,17 @@ M=M+1 // &esp++
 // (-2778) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2780) push constant 1
 @1 // push constant 1 (constant)
@@ -19973,22 +18983,17 @@ M=M+1 // &esp++
 // (-2786) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2788) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -20157,42 +19162,32 @@ M=M+1 // &esp++
 // (-2820) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2822) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2824) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -20209,22 +19204,17 @@ M=M+1 // &esp++
 // (-2826) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2828) goto IF_END3
 @Memory.IF_END3 // goto IF_END3
@@ -20302,22 +19292,17 @@ M=M+1 // &esp++
 // (-2845) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2847) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -20334,42 +19319,32 @@ M=M+1 // &esp++
 // (-2849) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2851) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2853) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -20386,22 +19361,17 @@ M=M+1 // &esp++
 // (-2855) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2857) label IF_END3
 (Memory.IF_END3) // label IF_END3
@@ -20593,22 +19563,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-2893) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2895) label IF_FALSE4
 (Memory.IF_FALSE4) // label IF_FALSE4
@@ -20649,22 +19614,17 @@ M=M+1 // &esp++
 // (-2904) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2906) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -20857,22 +19817,17 @@ M=M+1 // &esp++
 // (-2942) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2944) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -20934,42 +19889,32 @@ M=M+1 // &esp++
 // (-2954) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2956) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2958) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -20986,22 +19931,17 @@ M=M+1 // &esp++
 // (-2960) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2962) push constant 1
 @1 // push constant 1 (constant)
@@ -21039,22 +19979,17 @@ M=M+1 // &esp++
 // (-2968) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-2970) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -21271,42 +20206,32 @@ M=M+1 // &esp++
 // (-3010) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3012) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3014) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -21323,22 +20248,17 @@ M=M+1 // &esp++
 // (-3016) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3018) goto IF_END6
 @Memory.IF_END6 // goto IF_END6
@@ -21440,22 +20360,17 @@ M=M+1 // &esp++
 // (-3039) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3041) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -21472,42 +20387,32 @@ M=M+1 // &esp++
 // (-3043) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3045) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3047) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -21524,22 +20429,17 @@ M=M+1 // &esp++
 // (-3049) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3051) label IF_END6
 (Memory.IF_END6) // label IF_END6
@@ -21637,42 +20537,32 @@ M=M+1 // &esp++
 // (-3070) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3072) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3074) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -21689,22 +20579,17 @@ M=M+1 // &esp++
 // (-3076) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3078) label IF_FALSE5
 (Memory.IF_FALSE5) // label IF_FALSE5
@@ -21754,42 +20639,32 @@ M=M+1 // &esp++
 // (-3089) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3091) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3093) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -21806,22 +20681,17 @@ M=M+1 // &esp++
 // (-3095) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3097) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -21861,22 +20731,17 @@ M=M+1 // &esp++
 // (-3105) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -21956,22 +20821,17 @@ M=M+1 // &esp++
 // (-3116) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3118) push constant 1
 @1 // push constant 1 (constant)
@@ -22009,22 +20869,17 @@ M=M+1 // &esp++
 // (-3124) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3126) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -22041,22 +20896,17 @@ M=M+1 // &esp++
 // (-3128) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3130) push constant 0
 @0 // push constant 0 (constant)
@@ -22094,22 +20944,17 @@ M=M+1 // &esp++
 // (-3136) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3138) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -22254,22 +21099,17 @@ M=M+1 // &esp++
 // (-3166) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3168) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -22331,42 +21171,32 @@ M=M+1 // &esp++
 // (-3178) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3180) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3182) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -22383,22 +21213,17 @@ M=M+1 // &esp++
 // (-3184) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3186) goto IF_END0
 @Memory.IF_END0 // goto IF_END0
@@ -22476,22 +21301,17 @@ M=M+1 // &esp++
 // (-3203) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3205) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -22565,22 +21385,17 @@ M=M+1 // &esp++
 // (-3217) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3219) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -22609,42 +21424,32 @@ M=M+1 // &esp++
 // (-3223) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3225) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3227) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -22661,22 +21466,17 @@ M=M+1 // &esp++
 // (-3229) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3231) push constant 1
 @1 // push constant 1 (constant)
@@ -22714,22 +21514,17 @@ M=M+1 // &esp++
 // (-3237) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3239) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -22898,42 +21693,32 @@ M=M+1 // &esp++
 // (-3271) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3273) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3275) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -22950,22 +21735,17 @@ M=M+1 // &esp++
 // (-3277) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3279) goto IF_END1
 @Memory.IF_END1 // goto IF_END1
@@ -23043,22 +21823,17 @@ M=M+1 // &esp++
 // (-3296) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3298) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -23075,42 +21850,32 @@ M=M+1 // &esp++
 // (-3300) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3302) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3304) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -23127,22 +21892,17 @@ M=M+1 // &esp++
 // (-3306) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3308) label IF_END1
 (Memory.IF_END1) // label IF_END1
@@ -23164,22 +21924,17 @@ M=M+1 // &esp++
 // (-3318) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -23235,22 +21990,17 @@ M=M+1 // &esp++
 // (-3325) pop static 4
 @19 // pop static 4 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3327) push constant 0
 @0 // push constant 0 (constant)
@@ -23272,22 +22022,17 @@ M=M+1 // &esp++
 // (-3331) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3333) push constant 32
 @32 // push constant 32 (constant)
@@ -23301,22 +22046,17 @@ M=M+1 // &esp++
 // (-3335) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3337) push constant 0
 @0 // push constant 0 (constant)
@@ -23330,22 +22070,17 @@ M=M+1 // &esp++
 // (-3339) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3341) push constant 6
 @6 // push constant 6 (constant)
@@ -23426,22 +22161,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3346) pop static 3
 @19 // pop static 3 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3349) call Output.initMap 0
 (Output.Output.initMap.129) // call Output.initMap 0
@@ -23522,22 +22252,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3353) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3356) call Output.createShiftedMap 0
 (Output.Output.createShiftedMap.130) // call Output.createShiftedMap 0
@@ -23654,22 +22379,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3368) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3370) push constant 0
 @0 // push constant 0 (constant)
@@ -23685,22 +22405,17 @@ M=M+1 // &esp++
 // (-3374) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -23823,22 +22538,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3384) pop static 5
 @19 // pop static 5 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@5 // retrieve &dst (segment+offset) and store at *esp
+@5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3386) push constant 0
 @0 // push constant 0 (constant)
@@ -24027,22 +22737,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3415) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3417) push constant 32
 @32 // push constant 32 (constant)
@@ -24231,22 +22936,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3446) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3448) push constant 33
 @33 // push constant 33 (constant)
@@ -24435,22 +23135,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3477) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3479) push constant 34
 @34 // push constant 34 (constant)
@@ -24639,22 +23334,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3508) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3510) push constant 35
 @35 // push constant 35 (constant)
@@ -24843,22 +23533,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3539) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3541) push constant 36
 @36 // push constant 36 (constant)
@@ -25047,22 +23732,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3570) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3572) push constant 37
 @37 // push constant 37 (constant)
@@ -25251,22 +23931,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3601) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3603) push constant 38
 @38 // push constant 38 (constant)
@@ -25455,22 +24130,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3632) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3634) push constant 39
 @39 // push constant 39 (constant)
@@ -25659,22 +24329,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3663) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3665) push constant 40
 @40 // push constant 40 (constant)
@@ -25863,22 +24528,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3694) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3696) push constant 41
 @41 // push constant 41 (constant)
@@ -26067,22 +24727,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3725) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3727) push constant 42
 @42 // push constant 42 (constant)
@@ -26271,22 +24926,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3756) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3758) push constant 43
 @43 // push constant 43 (constant)
@@ -26475,22 +25125,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3787) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3789) push constant 44
 @44 // push constant 44 (constant)
@@ -26679,22 +25324,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3818) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3820) push constant 45
 @45 // push constant 45 (constant)
@@ -26883,22 +25523,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3849) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3851) push constant 46
 @46 // push constant 46 (constant)
@@ -27087,22 +25722,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3880) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3882) push constant 47
 @47 // push constant 47 (constant)
@@ -27291,22 +25921,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3911) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3913) push constant 48
 @48 // push constant 48 (constant)
@@ -27495,22 +26120,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3942) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3944) push constant 49
 @49 // push constant 49 (constant)
@@ -27699,22 +26319,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-3973) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-3975) push constant 50
 @50 // push constant 50 (constant)
@@ -27903,22 +26518,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4004) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4006) push constant 51
 @51 // push constant 51 (constant)
@@ -28107,22 +26717,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4035) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4037) push constant 52
 @52 // push constant 52 (constant)
@@ -28311,22 +26916,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4066) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4068) push constant 53
 @53 // push constant 53 (constant)
@@ -28515,22 +27115,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4097) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4099) push constant 54
 @54 // push constant 54 (constant)
@@ -28719,22 +27314,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4128) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4130) push constant 55
 @55 // push constant 55 (constant)
@@ -28923,22 +27513,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4159) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4161) push constant 56
 @56 // push constant 56 (constant)
@@ -29127,22 +27712,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4190) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4192) push constant 57
 @57 // push constant 57 (constant)
@@ -29331,22 +27911,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4221) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4223) push constant 58
 @58 // push constant 58 (constant)
@@ -29535,22 +28110,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4252) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4254) push constant 59
 @59 // push constant 59 (constant)
@@ -29739,22 +28309,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4283) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4285) push constant 60
 @60 // push constant 60 (constant)
@@ -29943,22 +28508,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4314) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4316) push constant 61
 @61 // push constant 61 (constant)
@@ -30147,22 +28707,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4345) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4347) push constant 62
 @62 // push constant 62 (constant)
@@ -30351,22 +28906,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4376) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4378) push constant 64
 @64 // push constant 64 (constant)
@@ -30555,22 +29105,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4407) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4409) push constant 63
 @63 // push constant 63 (constant)
@@ -30759,22 +29304,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4438) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4440) push constant 65
 @65 // push constant 65 (constant)
@@ -30963,22 +29503,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4469) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4471) push constant 66
 @66 // push constant 66 (constant)
@@ -31167,22 +29702,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4500) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4502) push constant 67
 @67 // push constant 67 (constant)
@@ -31371,22 +29901,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4531) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4533) push constant 68
 @68 // push constant 68 (constant)
@@ -31575,22 +30100,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4562) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4564) push constant 69
 @69 // push constant 69 (constant)
@@ -31779,22 +30299,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4593) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4595) push constant 70
 @70 // push constant 70 (constant)
@@ -31983,22 +30498,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4624) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4626) push constant 71
 @71 // push constant 71 (constant)
@@ -32187,22 +30697,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4655) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4657) push constant 72
 @72 // push constant 72 (constant)
@@ -32391,22 +30896,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4686) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4688) push constant 73
 @73 // push constant 73 (constant)
@@ -32595,22 +31095,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4717) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4719) push constant 74
 @74 // push constant 74 (constant)
@@ -32799,22 +31294,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4748) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4750) push constant 75
 @75 // push constant 75 (constant)
@@ -33003,22 +31493,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4779) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4781) push constant 76
 @76 // push constant 76 (constant)
@@ -33207,22 +31692,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4810) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4812) push constant 77
 @77 // push constant 77 (constant)
@@ -33411,22 +31891,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4841) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4843) push constant 78
 @78 // push constant 78 (constant)
@@ -33615,22 +32090,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4872) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4874) push constant 79
 @79 // push constant 79 (constant)
@@ -33819,22 +32289,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4903) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4905) push constant 80
 @80 // push constant 80 (constant)
@@ -34023,22 +32488,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4934) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4936) push constant 81
 @81 // push constant 81 (constant)
@@ -34227,22 +32687,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4965) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4967) push constant 82
 @82 // push constant 82 (constant)
@@ -34431,22 +32886,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-4996) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-4998) push constant 83
 @83 // push constant 83 (constant)
@@ -34635,22 +33085,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5027) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5029) push constant 84
 @84 // push constant 84 (constant)
@@ -34839,22 +33284,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5058) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5060) push constant 85
 @85 // push constant 85 (constant)
@@ -35043,22 +33483,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5089) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5091) push constant 86
 @86 // push constant 86 (constant)
@@ -35247,22 +33682,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5120) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5122) push constant 87
 @87 // push constant 87 (constant)
@@ -35451,22 +33881,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5151) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5153) push constant 88
 @88 // push constant 88 (constant)
@@ -35655,22 +34080,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5182) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5184) push constant 89
 @89 // push constant 89 (constant)
@@ -35859,22 +34279,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5213) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5215) push constant 90
 @90 // push constant 90 (constant)
@@ -36063,22 +34478,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5244) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5246) push constant 91
 @91 // push constant 91 (constant)
@@ -36267,22 +34677,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5275) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5277) push constant 92
 @92 // push constant 92 (constant)
@@ -36471,22 +34876,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5306) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5308) push constant 93
 @93 // push constant 93 (constant)
@@ -36675,22 +35075,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5337) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5339) push constant 94
 @94 // push constant 94 (constant)
@@ -36879,22 +35274,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5368) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5370) push constant 95
 @95 // push constant 95 (constant)
@@ -37083,22 +35473,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5399) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5401) push constant 96
 @96 // push constant 96 (constant)
@@ -37287,22 +35672,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5430) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5432) push constant 97
 @97 // push constant 97 (constant)
@@ -37491,22 +35871,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5461) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5463) push constant 98
 @98 // push constant 98 (constant)
@@ -37695,22 +36070,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5492) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5494) push constant 99
 @99 // push constant 99 (constant)
@@ -37899,22 +36269,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5523) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5525) push constant 100
 @100 // push constant 100 (constant)
@@ -38103,22 +36468,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5554) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5556) push constant 101
 @101 // push constant 101 (constant)
@@ -38307,22 +36667,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5585) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5587) push constant 102
 @102 // push constant 102 (constant)
@@ -38511,22 +36866,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5616) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5618) push constant 103
 @103 // push constant 103 (constant)
@@ -38715,22 +37065,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5647) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5649) push constant 104
 @104 // push constant 104 (constant)
@@ -38919,22 +37264,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5678) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5680) push constant 105
 @105 // push constant 105 (constant)
@@ -39123,22 +37463,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5709) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5711) push constant 106
 @106 // push constant 106 (constant)
@@ -39327,22 +37662,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5740) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5742) push constant 107
 @107 // push constant 107 (constant)
@@ -39531,22 +37861,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5771) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5773) push constant 108
 @108 // push constant 108 (constant)
@@ -39735,22 +38060,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5802) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5804) push constant 109
 @109 // push constant 109 (constant)
@@ -39939,22 +38259,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5833) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5835) push constant 110
 @110 // push constant 110 (constant)
@@ -40143,22 +38458,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5864) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5866) push constant 111
 @111 // push constant 111 (constant)
@@ -40347,22 +38657,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5895) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5897) push constant 112
 @112 // push constant 112 (constant)
@@ -40551,22 +38856,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5926) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5928) push constant 113
 @113 // push constant 113 (constant)
@@ -40755,22 +39055,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5957) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5959) push constant 114
 @114 // push constant 114 (constant)
@@ -40959,22 +39254,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-5988) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-5990) push constant 115
 @115 // push constant 115 (constant)
@@ -41163,22 +39453,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6019) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6021) push constant 116
 @116 // push constant 116 (constant)
@@ -41367,22 +39652,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6050) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6052) push constant 117
 @117 // push constant 117 (constant)
@@ -41571,22 +39851,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6081) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6083) push constant 118
 @118 // push constant 118 (constant)
@@ -41775,22 +40050,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6112) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6114) push constant 119
 @119 // push constant 119 (constant)
@@ -41979,22 +40249,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6143) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6145) push constant 120
 @120 // push constant 120 (constant)
@@ -42183,22 +40448,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6174) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6176) push constant 121
 @121 // push constant 121 (constant)
@@ -42387,22 +40647,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6205) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6207) push constant 122
 @122 // push constant 122 (constant)
@@ -42591,22 +40846,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6236) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6238) push constant 123
 @123 // push constant 123 (constant)
@@ -42795,22 +41045,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6267) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6269) push constant 124
 @124 // push constant 124 (constant)
@@ -42999,22 +41244,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6298) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6300) push constant 125
 @125 // push constant 125 (constant)
@@ -43203,22 +41443,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6329) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6331) push constant 126
 @126 // push constant 126 (constant)
@@ -43407,22 +41642,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6360) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6362) push constant 0
 @0 // push constant 0 (constant)
@@ -43438,22 +41668,17 @@ M=M+1 // &esp++
 // (-6366) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -43576,22 +41801,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6376) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6378) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -43644,42 +41864,32 @@ M=M+1 // &esp++
 // (-6386) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6388) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6390) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -43696,22 +41906,17 @@ M=M+1 // &esp++
 // (-6392) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6394) push constant 0
 @0 // push constant 0 (constant)
@@ -43761,42 +41966,32 @@ M=M+1 // &esp++
 // (-6402) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6404) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6406) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -43813,22 +42008,17 @@ M=M+1 // &esp++
 // (-6408) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6410) push constant 1
 @1 // push constant 1 (constant)
@@ -43878,42 +42068,32 @@ M=M+1 // &esp++
 // (-6418) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6420) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6422) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -43930,22 +42110,17 @@ M=M+1 // &esp++
 // (-6424) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6426) push constant 2
 @2 // push constant 2 (constant)
@@ -43995,42 +42170,32 @@ M=M+1 // &esp++
 // (-6434) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6436) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6438) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44047,22 +42212,17 @@ M=M+1 // &esp++
 // (-6440) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6442) push constant 3
 @3 // push constant 3 (constant)
@@ -44112,42 +42272,32 @@ M=M+1 // &esp++
 // (-6450) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6452) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6454) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44164,22 +42314,17 @@ M=M+1 // &esp++
 // (-6456) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6458) push constant 4
 @4 // push constant 4 (constant)
@@ -44229,42 +42374,32 @@ M=M+1 // &esp++
 // (-6466) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6468) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6470) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44281,22 +42416,17 @@ M=M+1 // &esp++
 // (-6472) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6474) push constant 5
 @5 // push constant 5 (constant)
@@ -44346,42 +42476,32 @@ M=M+1 // &esp++
 // (-6482) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6484) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6486) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44398,22 +42518,17 @@ M=M+1 // &esp++
 // (-6488) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6490) push constant 6
 @6 // push constant 6 (constant)
@@ -44463,42 +42578,32 @@ M=M+1 // &esp++
 // (-6498) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6500) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6502) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44515,22 +42620,17 @@ M=M+1 // &esp++
 // (-6504) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6506) push constant 7
 @7 // push constant 7 (constant)
@@ -44580,42 +42680,32 @@ M=M+1 // &esp++
 // (-6514) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6516) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6518) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44632,22 +42722,17 @@ M=M+1 // &esp++
 // (-6520) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6522) push constant 8
 @8 // push constant 8 (constant)
@@ -44697,42 +42782,32 @@ M=M+1 // &esp++
 // (-6530) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6532) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6534) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44749,22 +42824,17 @@ M=M+1 // &esp++
 // (-6536) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6538) push constant 9
 @9 // push constant 9 (constant)
@@ -44814,42 +42884,32 @@ M=M+1 // &esp++
 // (-6546) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6548) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6550) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44866,22 +42926,17 @@ M=M+1 // &esp++
 // (-6552) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6554) push constant 10
 @10 // push constant 10 (constant)
@@ -44931,42 +42986,32 @@ M=M+1 // &esp++
 // (-6562) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6564) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6566) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -44983,22 +43028,17 @@ M=M+1 // &esp++
 // (-6568) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6570) push constant 0
 @0 // push constant 0 (constant)
@@ -45014,22 +43054,17 @@ M=M+1 // &esp++
 // (-6574) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -45152,22 +43187,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6584) pop static 6
 @19 // pop static 6 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@6 // retrieve &dst (segment+offset) and store at *esp
+@6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6586) push constant 0
 @0 // push constant 0 (constant)
@@ -45181,22 +43211,17 @@ M=M+1 // &esp++
 // (-6588) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6590) label WHILE_EXP0
 (Output.WHILE_EXP0) // label WHILE_EXP0
@@ -45315,22 +43340,17 @@ M=M+1 // &esp++
 // (-6612) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6614) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -45347,22 +43367,17 @@ M=M+1 // &esp++
 // (-6616) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6618) push constant 11
 @11 // push constant 11 (constant)
@@ -45443,22 +43458,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6623) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6625) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -45511,42 +43521,32 @@ M=M+1 // &esp++
 // (-6633) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6635) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6637) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -45563,22 +43563,17 @@ M=M+1 // &esp++
 // (-6639) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6641) push constant 0
 @0 // push constant 0 (constant)
@@ -45592,22 +43587,17 @@ M=M+1 // &esp++
 // (-6643) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6645) label WHILE_EXP1
 (Output.WHILE_EXP1) // label WHILE_EXP1
@@ -45762,22 +43752,17 @@ M=M+1 // &esp++
 // (-6673) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6675) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -45915,42 +43900,32 @@ M=D // &lcl[0] = &lcl[0]
 // (-6692) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6694) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6696) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -45967,22 +43942,17 @@ M=M+1 // &esp++
 // (-6698) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6700) push local 3
 @LCL // push local 3 (&asm_segment)
@@ -46020,22 +43990,17 @@ M=M+1 // &esp++
 // (-6706) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6708) goto WHILE_EXP1
 @Output.WHILE_EXP1 // goto WHILE_EXP1
@@ -46130,22 +44095,17 @@ M=M+1 // &esp++
 // (-6731) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6733) goto IF_END0
 @Output.IF_END0 // goto IF_END0
@@ -46190,22 +44150,17 @@ M=M+1 // &esp++
 // (-6744) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6746) label IF_END0
 (Output.IF_END0) // label IF_END0
@@ -46231,22 +44186,17 @@ M=M+1 // &esp++
 // (-6758) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -46436,22 +44386,17 @@ M=M+1 // &esp++
 // (-6792) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6794) label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
@@ -46533,22 +44478,17 @@ M=M+1 // &esp++
 // (-6812) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6814) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -46565,22 +44505,17 @@ M=M+1 // &esp++
 // (-6816) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6818) goto IF_END1
 @Output.IF_END1 // goto IF_END1
@@ -46628,22 +44563,17 @@ M=M+1 // &esp++
 // (-6829) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6831) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -46660,22 +44590,17 @@ M=M+1 // &esp++
 // (-6833) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6835) label IF_END1
 (Output.IF_END1) // label IF_END1
@@ -46697,22 +44622,17 @@ M=M+1 // &esp++
 // (-6842) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -46847,22 +44767,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-6854) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6856) push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\Square\Output.vm)
@@ -46879,22 +44794,17 @@ M=M+1 // &esp++
 // (-6858) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6860) label WHILE_EXP0
 (Output.WHILE_EXP0) // label WHILE_EXP0
@@ -47051,22 +44961,17 @@ M=M+1 // &esp++
 // (-6891) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6893) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -47112,22 +45017,17 @@ M=M+1 // &esp++
 // (-6901) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6903) goto IF_END0
 @Output.IF_END0 // goto IF_END0
@@ -47175,22 +45075,17 @@ M=M+1 // &esp++
 // (-6914) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6916) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -47228,22 +45123,17 @@ M=M+1 // &esp++
 // (-6922) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6924) label IF_END0
 (Output.IF_END0) // label IF_END0
@@ -47323,22 +45213,17 @@ M=M+1 // &esp++
 // (-6939) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6941) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -47379,42 +45264,32 @@ M=M+1 // &esp++
 // (-6947) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6949) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6951) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -47431,22 +45306,17 @@ M=M+1 // &esp++
 // (-6953) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6955) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -47484,22 +45354,17 @@ M=M+1 // &esp++
 // (-6961) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6963) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -47537,22 +45402,17 @@ M=M+1 // &esp++
 // (-6969) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-6971) goto WHILE_EXP0
 @Output.WHILE_EXP0 // goto WHILE_EXP0
@@ -47575,22 +45435,17 @@ M=M+1 // &esp++
 // (-6980) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -47967,22 +45822,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7039) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7041) label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
@@ -48114,22 +45964,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7059) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7061) push constant 32
 @32 // push constant 32 (constant)
@@ -48312,22 +46157,17 @@ M=M+1 // &esp++
 // (-7086) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7088) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -48504,22 +46344,17 @@ M=M+1 // &esp++
 // (-7112) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7114) push constant 32
 @32 // push constant 32 (constant)
@@ -48636,22 +46471,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7127) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7129) push constant 0
 @0 // push constant 0 (constant)
@@ -48667,22 +46497,17 @@ M=M+1 // &esp++
 // (-7133) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -48946,22 +46771,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7162) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7164) goto IF_END0
 @Output.IF_END0 // goto IF_END0
@@ -49190,22 +47010,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7193) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7195) goto IF_END1
 @Output.IF_END1 // goto IF_END1
@@ -49332,22 +47147,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7213) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7215) push static 2
 @19 // push static 2 (&asm_segment) // static + src offset (..\projects\09\Square\Output.vm)
@@ -49431,22 +47241,17 @@ M=M+1 // &esp++
 // (-7232) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7234) push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\Square\Output.vm)
@@ -49484,22 +47289,17 @@ M=M+1 // &esp++
 // (-7240) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7242) label IF_FALSE2
 (Output.IF_FALSE2) // label IF_FALSE2
@@ -49657,22 +47457,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7266) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7268) goto IF_END3
 @Output.IF_END3 // goto IF_END3
@@ -49704,22 +47499,17 @@ M=M+1 // &esp++
 // (-7277) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7279) label IF_END3
 (Output.IF_END3) // label IF_END3
@@ -49744,22 +47534,17 @@ M=M+1 // &esp++
 // (-7292) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -49885,22 +47670,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7302) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7304) label WHILE_EXP0
 (Output.WHILE_EXP0) // label WHILE_EXP0
@@ -50144,22 +47924,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7330) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7332) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -50197,22 +47972,17 @@ M=M+1 // &esp++
 // (-7338) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7340) goto WHILE_EXP0
 @Output.WHILE_EXP0 // goto WHILE_EXP0
@@ -50235,22 +48005,17 @@ M=M+1 // &esp++
 // (-7349) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -50424,22 +48189,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7369) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7371) push static 3
 @19 // push static 3 (&asm_segment) // static + src offset (..\projects\09\Square\Output.vm)
@@ -50541,22 +48301,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7380) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7382) push constant 0
 @0 // push constant 0 (constant)
@@ -50572,22 +48327,17 @@ M=M+1 // &esp++
 // (-7386) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -50691,22 +48441,17 @@ M=M+1 // &esp++
 // (-7401) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7403) push constant 0
 @0 // push constant 0 (constant)
@@ -50720,22 +48465,17 @@ M=M+1 // &esp++
 // (-7405) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7407) push constant 0
 @0 // push constant 0 (constant)
@@ -50757,22 +48497,17 @@ M=M+1 // &esp++
 // (-7411) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7413) push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\Square\Output.vm)
@@ -50860,22 +48595,17 @@ M=M+1 // &esp++
 // (-7431) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7433) label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
@@ -50894,22 +48624,17 @@ M=M+1 // &esp++
 // (-7440) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -51101,22 +48826,17 @@ M=M+1 // &esp++
 // (-7476) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7478) push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\Square\Output.vm)
@@ -51154,22 +48874,17 @@ M=M+1 // &esp++
 // (-7484) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7486) goto IF_END1
 @Output.IF_END1 // goto IF_END1
@@ -51190,22 +48905,17 @@ M=M+1 // &esp++
 // (-7493) pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7495) push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\Square\Output.vm)
@@ -51293,22 +49003,17 @@ M=M+1 // &esp++
 // (-7513) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7515) label IF_FALSE2
 (Output.IF_FALSE2) // label IF_FALSE2
@@ -51349,22 +49054,17 @@ M=M+1 // &esp++
 // (-7524) pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7526) label IF_END1
 (Output.IF_END1) // label IF_END1
@@ -51381,22 +49081,17 @@ M=M+1 // &esp++
 // (-7531) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7533) goto IF_END0
 @Output.IF_END0 // goto IF_END0
@@ -51425,22 +49120,17 @@ M=M+1 // &esp++
 // (-7542) pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\09\Square\Output.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7544) label IF_END0
 (Output.IF_END0) // label IF_END0
@@ -51560,22 +49250,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7560) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7562) push constant 0
 @0 // push constant 0 (constant)
@@ -51591,22 +49276,17 @@ M=M+1 // &esp++
 // (-7566) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -51662,22 +49342,17 @@ M=M+1 // &esp++
 // (-7573) pop static 1
 @26 // pop static 1 // static + src segment offset (..\projects\09\Square\Screen.vm)
 D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7575) push constant 0
 @0 // push constant 0 (constant)
@@ -51699,22 +49374,17 @@ M=M+1 // &esp++
 // (-7579) pop static 2
 @26 // pop static 2 // static + src segment offset (..\projects\09\Square\Screen.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7581) push constant 17
 @17 // push constant 17 (constant)
@@ -51795,22 +49465,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7586) pop static 0
 @26 // pop static 0 // static + src segment offset (..\projects\09\Square\Screen.vm)
 D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7588) push constant 0
 @0 // push constant 0 (constant)
@@ -51857,42 +49522,32 @@ M=M+1 // &esp++
 // (-7596) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7598) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7600) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -51909,22 +49564,17 @@ M=M+1 // &esp++
 // (-7602) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7604) label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
@@ -52040,22 +49690,17 @@ M=M+1 // &esp++
 // (-7626) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7628) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -52153,22 +49798,17 @@ M=M+1 // &esp++
 // (-7644) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7646) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -52242,22 +49882,17 @@ M=M+1 // &esp++
 // (-7658) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7660) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -52286,42 +49921,32 @@ M=M+1 // &esp++
 // (-7664) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7666) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7668) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -52338,22 +49963,17 @@ M=M+1 // &esp++
 // (-7670) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7672) goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
@@ -52376,22 +49996,17 @@ M=M+1 // &esp++
 // (-7681) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -52561,42 +50176,32 @@ M=M+1 // &esp++
 // (-7710) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7712) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7714) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -52613,22 +50218,17 @@ M=M+1 // &esp++
 // (-7716) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7718) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -52666,22 +50266,17 @@ M=M+1 // &esp++
 // (-7724) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7726) goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
@@ -52704,22 +50299,17 @@ M=M+1 // &esp++
 // (-7735) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -52876,22 +50466,17 @@ M=M+1 // &esp++
 // (-7761) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7763) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -52932,42 +50517,32 @@ M=M+1 // &esp++
 // (-7769) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7771) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7773) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -52984,22 +50559,17 @@ M=M+1 // &esp++
 // (-7775) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7777) goto IF_END0
 @Screen.IF_END0 // goto IF_END0
@@ -53083,22 +50653,17 @@ M=M+1 // &esp++
 // (-7794) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7796) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -53147,42 +50712,32 @@ M=M+1 // &esp++
 // (-7804) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7806) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7808) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -53199,22 +50754,17 @@ M=M+1 // &esp++
 // (-7810) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7812) label IF_END0
 (Screen.IF_END0) // label IF_END0
@@ -53233,22 +50783,17 @@ M=M+1 // &esp++
 // (-7819) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -53307,22 +50852,17 @@ M=M+1 // &esp++
 // (-7826) pop static 2
 @26 // pop static 2 // static + src segment offset (..\projects\09\Square\Screen.vm)
 D=A // d = &(static+offset)
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7828) push constant 0
 @0 // push constant 0 (constant)
@@ -53338,22 +50878,17 @@ M=M+1 // &esp++
 // (-7832) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -53730,22 +51265,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7891) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7893) label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
@@ -53877,22 +51407,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7911) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7913) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -54054,22 +51579,17 @@ M=M+1 // &esp++
 // (-7934) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7936) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -54231,22 +51751,17 @@ M=M+1 // &esp++
 // (-7957) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7959) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -54299,22 +51814,17 @@ M=M+1 // &esp++
 // (-7967) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7969) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -54398,22 +51908,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-7974) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7976) push constant 0
 @0 // push constant 0 (constant)
@@ -54429,22 +51934,17 @@ M=M+1 // &esp++
 // (-7980) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -54647,22 +52147,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8007) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8009) goto IF_END0
 @Screen.IF_END0 // goto IF_END0
@@ -54792,22 +52287,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8027) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8029) label IF_END0
 (Screen.IF_END0) // label IF_END0
@@ -54826,22 +52316,17 @@ M=M+1 // &esp++
 // (-8036) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -55218,22 +52703,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8095) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8097) label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
@@ -55344,22 +52824,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8109) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8111) push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -55467,22 +52942,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8120) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8122) push local 3
 @LCL // push local 3 (&asm_segment)
@@ -55538,22 +53008,17 @@ M=M+1 // &esp++
 // (-8131) pop local 6
 @LCL // pop local 6 (&asm_segment)
 D=M // d = *asm_segment
-@6 // retrieve &dst (segment+offset) and store at *esp
+@6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8133) push local 6
 @LCL // push local 6 (&asm_segment)
@@ -55766,22 +53231,17 @@ M=M+1 // &esp++
 // (-8172) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8174) push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -55798,22 +53258,17 @@ M=M+1 // &esp++
 // (-8176) pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8178) push local 4
 @LCL // push local 4 (&asm_segment)
@@ -55830,22 +53285,17 @@ M=M+1 // &esp++
 // (-8180) pop argument 2
 @ARG // pop argument 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8182) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -55862,22 +53312,17 @@ M=M+1 // &esp++
 // (-8184) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8186) push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -55894,22 +53339,17 @@ M=M+1 // &esp++
 // (-8188) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8190) push local 4
 @LCL // push local 4 (&asm_segment)
@@ -55926,22 +53366,17 @@ M=M+1 // &esp++
 // (-8192) pop argument 3
 @ARG // pop argument 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8194) label IF_FALSE1
 (Screen.IF_FALSE1) // label IF_FALSE1
@@ -55999,22 +53434,17 @@ M=M+1 // &esp++
 // (-8208) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8210) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -56031,22 +53461,17 @@ M=M+1 // &esp++
 // (-8212) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8214) push local 4
 @LCL // push local 4 (&asm_segment)
@@ -56063,22 +53488,17 @@ M=M+1 // &esp++
 // (-8216) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8218) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -56095,22 +53515,17 @@ M=M+1 // &esp++
 // (-8220) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8222) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -56127,22 +53542,17 @@ M=M+1 // &esp++
 // (-8224) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8226) push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -56159,22 +53569,17 @@ M=M+1 // &esp++
 // (-8228) pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
-@8 // retrieve &dst (segment+offset) and store at *esp
+@8 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8230) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -56230,22 +53635,17 @@ M=M+1 // &esp++
 // (-8239) pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
-@7 // retrieve &dst (segment+offset) and store at *esp
+@7 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8241) goto IF_END2
 @Screen.IF_END2 // goto IF_END2
@@ -56269,22 +53669,17 @@ M=M+1 // &esp++
 // (-8248) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8250) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -56301,22 +53696,17 @@ M=M+1 // &esp++
 // (-8252) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8254) push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -56333,22 +53723,17 @@ M=M+1 // &esp++
 // (-8256) pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
-@8 // retrieve &dst (segment+offset) and store at *esp
+@8 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8258) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -56404,22 +53789,17 @@ M=M+1 // &esp++
 // (-8267) pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
-@7 // retrieve &dst (segment+offset) and store at *esp
+@7 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8269) label IF_END2
 (Screen.IF_END2) // label IF_END2
@@ -56584,22 +53964,17 @@ M=M+1 // &esp++
 // (-8293) pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
-@5 // retrieve &dst (segment+offset) and store at *esp
+@5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8295) push constant 2
 @2 // push constant 2 (constant)
@@ -56737,22 +54112,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8312) pop local 9
 @LCL // pop local 9 (&asm_segment)
 D=M // d = *asm_segment
-@9 // retrieve &dst (segment+offset) and store at *esp
+@9 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8314) push constant 2
 @2 // push constant 2 (constant)
@@ -56914,22 +54284,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8335) pop local 10
 @LCL // pop local 10 (&asm_segment)
 D=M // d = *asm_segment
-@10 // retrieve &dst (segment+offset) and store at *esp
+@10 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8337) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -57037,22 +54402,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8346) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8348) label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
@@ -57248,22 +54608,17 @@ M=M+1 // &esp++
 // (-8386) pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
-@5 // retrieve &dst (segment+offset) and store at *esp
+@5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8388) goto IF_END3
 @Screen.IF_END3 // goto IF_END3
@@ -57311,22 +54666,17 @@ M=M+1 // &esp++
 // (-8399) pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
-@5 // retrieve &dst (segment+offset) and store at *esp
+@5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8401) push local 7
 @LCL // push local 7 (&asm_segment)
@@ -57402,22 +54752,17 @@ M=M+1 // &esp++
 // (-8416) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8418) goto IF_END4
 @Screen.IF_END4 // goto IF_END4
@@ -57462,22 +54807,17 @@ M=M+1 // &esp++
 // (-8429) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8431) label IF_END4
 (Screen.IF_END4) // label IF_END4
@@ -57521,22 +54861,17 @@ M=M+1 // &esp++
 // (-8443) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8445) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -57644,22 +54979,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8454) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8456) goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
@@ -57682,22 +55012,17 @@ M=M+1 // &esp++
 // (-8465) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -58200,22 +55525,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8546) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8548) label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
@@ -58347,22 +55667,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8566) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8568) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -58524,22 +55839,17 @@ M=M+1 // &esp++
 // (-8589) pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
-@7 // retrieve &dst (segment+offset) and store at *esp
+@7 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8591) push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -58668,22 +55978,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8606) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8608) push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -58845,22 +56150,17 @@ M=M+1 // &esp++
 // (-8629) pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
-@8 // retrieve &dst (segment+offset) and store at *esp
+@8 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8631) push local 7
 @LCL // push local 7 (&asm_segment)
@@ -58901,22 +56201,17 @@ M=M+1 // &esp++
 // (-8637) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8639) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -58962,22 +56257,17 @@ M=M+1 // &esp++
 // (-8647) pop local 6
 @LCL // pop local 6 (&asm_segment)
 D=M // d = *asm_segment
-@6 // retrieve &dst (segment+offset) and store at *esp
+@6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8649) push local 8
 @LCL // push local 8 (&asm_segment)
@@ -59039,22 +56329,17 @@ M=M+1 // &esp++
 // (-8659) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8661) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -59092,22 +56377,17 @@ M=M+1 // &esp++
 // (-8667) pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
-@5 // retrieve &dst (segment+offset) and store at *esp
+@5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8669) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -59269,22 +56549,17 @@ M=M+1 // &esp++
 // (-8690) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8692) push local 4
 @LCL // push local 4 (&asm_segment)
@@ -59325,22 +56600,17 @@ M=M+1 // &esp++
 // (-8698) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8700) label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
@@ -59470,22 +56740,17 @@ M=M+1 // &esp++
 // (-8724) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8726) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -59679,22 +56944,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8753) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8755) goto IF_END1
 @Screen.IF_END1 // goto IF_END1
@@ -59797,22 +57057,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8767) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8769) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -59850,22 +57105,17 @@ M=M+1 // &esp++
 // (-8775) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8777) label WHILE_EXP1
 (Screen.WHILE_EXP1) // label WHILE_EXP1
@@ -60047,22 +57297,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8802) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8804) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -60100,22 +57345,17 @@ M=M+1 // &esp++
 // (-8810) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8812) goto WHILE_EXP1
 @Screen.WHILE_EXP1 // goto WHILE_EXP1
@@ -60218,22 +57458,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8824) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8826) label IF_END1
 (Screen.IF_END1) // label IF_END1
@@ -60274,22 +57509,17 @@ M=M+1 // &esp++
 // (-8835) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8837) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -60351,22 +57581,17 @@ M=M+1 // &esp++
 // (-8847) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8849) goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
@@ -60389,22 +57614,17 @@ M=M+1 // &esp++
 // (-8858) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -60542,22 +57762,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8870) pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
-@7 // retrieve &dst (segment+offset) and store at *esp
+@7 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8872) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -60653,22 +57868,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8879) pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
-@8 // retrieve &dst (segment+offset) and store at *esp
+@8 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8881) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -61031,22 +58241,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8941) pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
-@7 // retrieve &dst (segment+offset) and store at *esp
+@7 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8943) push local 8
 @LCL // push local 8 (&asm_segment)
@@ -61139,22 +58344,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8950) pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
-@8 // retrieve &dst (segment+offset) and store at *esp
+@8 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8952) push local 7
 @LCL // push local 7 (&asm_segment)
@@ -61283,22 +58483,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-8967) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8969) push local 7
 @LCL // push local 7 (&asm_segment)
@@ -61460,22 +58655,17 @@ M=M+1 // &esp++
 // (-8990) pop local 9
 @LCL // pop local 9 (&asm_segment)
 D=M // d = *asm_segment
-@9 // retrieve &dst (segment+offset) and store at *esp
+@9 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-8992) push local 8
 @LCL // push local 8 (&asm_segment)
@@ -61604,22 +58794,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9007) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9009) push local 8
 @LCL // push local 8 (&asm_segment)
@@ -61781,22 +58966,17 @@ M=M+1 // &esp++
 // (-9030) pop local 10
 @LCL // pop local 10 (&asm_segment)
 D=M // d = *asm_segment
-@10 // retrieve &dst (segment+offset) and store at *esp
+@10 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9032) push local 9
 @LCL // push local 9 (&asm_segment)
@@ -61837,22 +59017,17 @@ M=M+1 // &esp++
 // (-9038) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9040) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -61898,22 +59073,17 @@ M=M+1 // &esp++
 // (-9048) pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
-@5 // retrieve &dst (segment+offset) and store at *esp
+@5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9050) push local 10
 @LCL // push local 10 (&asm_segment)
@@ -61975,22 +59145,17 @@ M=M+1 // &esp++
 // (-9060) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9062) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -62028,22 +59193,17 @@ M=M+1 // &esp++
 // (-9068) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9070) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -62205,22 +59365,17 @@ M=M+1 // &esp++
 // (-9091) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9093) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -62261,22 +59416,17 @@ M=M+1 // &esp++
 // (-9099) pop local 6
 @LCL // pop local 6 (&asm_segment)
 D=M // d = *asm_segment
-@6 // retrieve &dst (segment+offset) and store at *esp
+@6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9101) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -62317,22 +59467,17 @@ M=M+1 // &esp++
 // (-9107) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9109) push local 6
 @LCL // push local 6 (&asm_segment)
@@ -62526,22 +59671,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9136) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9138) goto IF_END1
 @Screen.IF_END1 // goto IF_END1
@@ -62644,22 +59784,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9150) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9152) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -62697,22 +59832,17 @@ M=M+1 // &esp++
 // (-9158) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9160) label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
@@ -62894,22 +60024,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9185) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9187) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -62947,22 +60072,17 @@ M=M+1 // &esp++
 // (-9193) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9195) goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
@@ -63065,22 +60185,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9207) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9209) label IF_END1
 (Screen.IF_END1) // label IF_END1
@@ -63102,22 +60217,17 @@ M=M+1 // &esp++
 // (-9219) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -63438,22 +60548,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9267) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9269) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -63732,22 +60837,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9312) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9314) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -64026,22 +61126,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9357) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9359) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -64320,22 +61415,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9402) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9404) push constant 0
 @0 // push constant 0 (constant)
@@ -64351,22 +61441,17 @@ M=M+1 // &esp++
 // (-9408) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -64743,22 +61828,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9467) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9469) label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
@@ -65192,22 +62272,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9542) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9544) label IF_FALSE1
 (Screen.IF_FALSE1) // label IF_FALSE1
@@ -65227,22 +62302,17 @@ M=M+1 // &esp++
 // (-9549) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9551) push constant 1
 @1 // push constant 1 (constant)
@@ -65280,22 +62350,17 @@ M=M+1 // &esp++
 // (-9557) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9559) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -65415,22 +62480,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9570) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9572) label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
@@ -65768,22 +62828,17 @@ M=M+1 // &esp++
 // (-9629) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9631) goto IF_END2
 @Screen.IF_END2 // goto IF_END2
@@ -65997,22 +63052,17 @@ M=M+1 // &esp++
 // (-9665) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9667) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -66050,22 +63100,17 @@ M=M+1 // &esp++
 // (-9673) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9675) label IF_END2
 (Screen.IF_END2) // label IF_END2
@@ -66106,22 +63151,17 @@ M=M+1 // &esp++
 // (-9684) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9686) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -66241,22 +63281,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9697) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9699) goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
@@ -66279,22 +63314,17 @@ M=M+1 // &esp++
 // (-9708) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -66435,22 +63465,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9722) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9724) push constant 0
 @0 // push constant 0 (constant)
@@ -66549,22 +63574,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9733) pop this 0
 @THIS // pop this 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9735) push constant 0
 @0 // push constant 0 (constant)
@@ -66578,22 +63598,17 @@ M=M+1 // &esp++
 // (-9737) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9739) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -66612,22 +63627,17 @@ M=M+1 // &esp++
 // (-9743) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -66686,22 +63696,17 @@ M=M+1 // &esp++
 // (-9750) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9752) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -66785,22 +63790,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9757) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9759) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -66902,22 +63902,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9768) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9770) push constant 0
 @0 // push constant 0 (constant)
@@ -66933,22 +63928,17 @@ M=M+1 // &esp++
 // (-9774) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -67007,22 +63997,17 @@ M=M+1 // &esp++
 // (-9781) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9783) push this 1
 @THIS // push this 1 (&asm_segment)
@@ -67180,22 +64165,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9804) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9806) label IF_FALSE0
 (SquareGame.IF_FALSE0) // label IF_FALSE0
@@ -67356,22 +64336,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9830) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9832) label IF_FALSE1
 (SquareGame.IF_FALSE1) // label IF_FALSE1
@@ -67532,22 +64507,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9856) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9858) label IF_FALSE2
 (SquareGame.IF_FALSE2) // label IF_FALSE2
@@ -67708,22 +64678,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9882) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9884) label IF_FALSE3
 (SquareGame.IF_FALSE3) // label IF_FALSE3
@@ -67816,22 +64781,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9894) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9896) push constant 0
 @0 // push constant 0 (constant)
@@ -67847,22 +64807,17 @@ M=M+1 // &esp++
 // (-9900) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -67921,22 +64876,17 @@ M=M+1 // &esp++
 // (-9907) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9909) push constant 0
 @0 // push constant 0 (constant)
@@ -67950,22 +64900,17 @@ M=M+1 // &esp++
 // (-9911) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9913) label WHILE_EXP0
 (SquareGame.WHILE_EXP0) // label WHILE_EXP0
@@ -68174,22 +65119,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9945) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9947) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -68273,22 +65213,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-9952) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9954) goto WHILE_EXP1
 @SquareGame.WHILE_EXP1 // goto WHILE_EXP1
@@ -68391,22 +65326,17 @@ M=M+1 // &esp++
 // (-9979) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-9981) label IF_FALSE0
 (SquareGame.IF_FALSE0) // label IF_FALSE0
@@ -68567,22 +65497,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10005) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10007) label IF_FALSE1
 (SquareGame.IF_FALSE1) // label IF_FALSE1
@@ -68743,22 +65668,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10031) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10033) label IF_FALSE2
 (SquareGame.IF_FALSE2) // label IF_FALSE2
@@ -68849,22 +65769,17 @@ M=M+1 // &esp++
 // (-10054) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10056) label IF_FALSE3
 (SquareGame.IF_FALSE3) // label IF_FALSE3
@@ -68955,22 +65870,17 @@ M=M+1 // &esp++
 // (-10077) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10079) label IF_FALSE4
 (SquareGame.IF_FALSE4) // label IF_FALSE4
@@ -69061,22 +65971,17 @@ M=M+1 // &esp++
 // (-10100) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10102) label IF_FALSE5
 (SquareGame.IF_FALSE5) // label IF_FALSE5
@@ -69167,22 +66072,17 @@ M=M+1 // &esp++
 // (-10123) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10125) label IF_FALSE6
 (SquareGame.IF_FALSE6) // label IF_FALSE6
@@ -69352,22 +66252,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10151) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10153) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -69451,22 +66346,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10158) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10160) goto WHILE_EXP2
 @SquareGame.WHILE_EXP2 // goto WHILE_EXP2
@@ -69496,22 +66386,17 @@ M=M+1 // &esp++
 // (-10174) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -69652,22 +66537,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10188) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10190) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -69822,22 +66702,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10211) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10213) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -69998,22 +66873,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10237) pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10239) label IF_FALSE1
 (String.IF_FALSE1) // label IF_FALSE1
@@ -70033,22 +66903,17 @@ M=M+1 // &esp++
 // (-10244) pop this 0
 @THIS // pop this 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10246) push constant 0
 @0 // push constant 0 (constant)
@@ -70062,22 +66927,17 @@ M=M+1 // &esp++
 // (-10248) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10250) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -70096,22 +66956,17 @@ M=M+1 // &esp++
 // (-10254) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -70170,22 +67025,17 @@ M=M+1 // &esp++
 // (-10261) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10263) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -70343,22 +67193,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10284) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10286) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -70463,22 +67308,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10298) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10300) push constant 0
 @0 // push constant 0 (constant)
@@ -70494,22 +67334,17 @@ M=M+1 // &esp++
 // (-10304) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -70568,22 +67403,17 @@ M=M+1 // &esp++
 // (-10311) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10313) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -70602,22 +67432,17 @@ M=M+1 // &esp++
 // (-10317) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -70676,22 +67501,17 @@ M=M+1 // &esp++
 // (-10324) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10326) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -70972,22 +67792,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10369) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10371) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -71031,22 +67846,17 @@ M=M+1 // &esp++
 // (-10380) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10382) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -71065,22 +67875,17 @@ M=M+1 // &esp++
 // (-10386) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -71139,22 +67944,17 @@ M=M+1 // &esp++
 // (-10393) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10395) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -71435,22 +68235,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10438) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10440) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -71506,42 +68301,32 @@ M=M+1 // &esp++
 // (-10451) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10453) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10455) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -71558,22 +68343,17 @@ M=M+1 // &esp++
 // (-10457) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10459) push constant 0
 @0 // push constant 0 (constant)
@@ -71589,22 +68369,17 @@ M=M+1 // &esp++
 // (-10463) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -71663,22 +68438,17 @@ M=M+1 // &esp++
 // (-10470) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10472) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -71836,22 +68606,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10493) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10495) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -71907,42 +68672,32 @@ M=M+1 // &esp++
 // (-10506) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10508) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10510) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -71959,22 +68714,17 @@ M=M+1 // &esp++
 // (-10512) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10514) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -72012,22 +68762,17 @@ M=M+1 // &esp++
 // (-10520) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10522) push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -72046,22 +68791,17 @@ M=M+1 // &esp++
 // (-10526) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -72120,22 +68860,17 @@ M=M+1 // &esp++
 // (-10533) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10535) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -72290,22 +69025,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10556) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10558) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -72346,22 +69076,17 @@ M=M+1 // &esp++
 // (-10567) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10569) push constant 0
 @0 // push constant 0 (constant)
@@ -72377,22 +69102,17 @@ M=M+1 // &esp++
 // (-10573) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -72451,22 +69171,17 @@ M=M+1 // &esp++
 // (-10580) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10582) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -72556,22 +69271,17 @@ M=M+1 // &esp++
 // (-10602) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -72636,22 +69346,17 @@ M=M+1 // &esp++
 // (-10611) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10613) push constant 0
 @0 // push constant 0 (constant)
@@ -72689,22 +69394,17 @@ M=M+1 // &esp++
 // (-10619) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10621) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -72800,22 +69500,17 @@ M=M+1 // &esp++
 // (-10641) pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
-@4 // retrieve &dst (segment+offset) and store at *esp
+@4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10643) push constant 1
 @1 // push constant 1 (constant)
@@ -72829,22 +69524,17 @@ M=M+1 // &esp++
 // (-10645) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10647) label IF_FALSE1
 (String.IF_FALSE1) // label IF_FALSE1
@@ -72993,22 +69683,17 @@ M=M+1 // &esp++
 // (-10676) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10678) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -73046,22 +69731,17 @@ M=M+1 // &esp++
 // (-10684) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10686) push local 2
 @LCL // push local 2 (&asm_segment)
@@ -73182,22 +69862,17 @@ M=M+1 // &esp++
 // (-10708) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10710) push local 3
 @LCL // push local 3 (&asm_segment)
@@ -73397,22 +70072,17 @@ M=M+1 // &esp++
 // (-10740) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10742) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -73450,22 +70120,17 @@ M=M+1 // &esp++
 // (-10748) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10750) label IF_FALSE2
 (String.IF_FALSE2) // label IF_FALSE2
@@ -73538,22 +70203,17 @@ M=M+1 // &esp++
 // (-10771) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10773) label IF_FALSE3
 (String.IF_FALSE3) // label IF_FALSE3
@@ -73575,22 +70235,17 @@ M=M+1 // &esp++
 // (-10780) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -73649,22 +70304,17 @@ M=M+1 // &esp++
 // (-10787) pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10789) push this 0
 @THIS // push this 0 (&asm_segment)
@@ -73819,22 +70469,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10810) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10812) label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -73918,22 +70563,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10820) pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10822) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -74029,22 +70669,17 @@ M=M+1 // &esp++
 // (-10842) pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at *esp
+@3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10844) push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -74069,22 +70704,17 @@ M=M+1 // &esp++
 // (-10848) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10850) label IF_FALSE1
 (String.IF_FALSE1) // label IF_FALSE1
@@ -74104,22 +70734,17 @@ M=M+1 // &esp++
 // (-10855) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10857) label WHILE_EXP0
 (String.WHILE_EXP0) // label WHILE_EXP0
@@ -74326,22 +70951,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-10888) pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10890) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -74560,42 +71180,32 @@ M=M+1 // &esp++
 // (-10921) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10923) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10925) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -74612,22 +71222,17 @@ M=M+1 // &esp++
 // (-10927) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10929) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -74665,22 +71270,17 @@ M=M+1 // &esp++
 // (-10935) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10937) push local 1
 @LCL // push local 1 (&asm_segment)
@@ -74697,22 +71297,17 @@ M=M+1 // &esp++
 // (-10939) pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10941) goto WHILE_EXP0
 @String.WHILE_EXP0 // goto WHILE_EXP0
@@ -74807,42 +71402,32 @@ M=M+1 // &esp++
 // (-10963) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10965) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10967) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -74859,22 +71444,17 @@ M=M+1 // &esp++
 // (-10969) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10971) push local 0
 @LCL // push local 0 (&asm_segment)
@@ -74912,22 +71492,17 @@ M=M+1 // &esp++
 // (-10977) pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-10979) label IF_FALSE2
 (String.IF_FALSE2) // label IF_FALSE2
@@ -75088,22 +71663,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-11003) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11005) label IF_FALSE3
 (String.IF_FALSE3) // label IF_FALSE3
@@ -75227,42 +71797,32 @@ M=M+1 // &esp++
 // (-11032) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11034) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11036) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -75279,22 +71839,17 @@ M=M+1 // &esp++
 // (-11038) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11040) push constant 1
 @1 // push constant 1 (constant)
@@ -75308,22 +71863,17 @@ M=M+1 // &esp++
 // (-11042) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11044) goto IF_END4
 @String.IF_END4 // goto IF_END4
@@ -75344,22 +71894,17 @@ M=M+1 // &esp++
 // (-11051) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11053) label WHILE_EXP1
 (String.WHILE_EXP1) // label WHILE_EXP1
@@ -75562,22 +72107,17 @@ M=M+1 // &esp++
 // (-11089) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11091) push that 0
 @THAT // push that 0 (&asm_segment)
@@ -75594,42 +72134,32 @@ M=M+1 // &esp++
 // (-11093) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11095) pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at *esp
+@1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11097) push temp 0
 @5 // push temp 0 (&asm_segment)
@@ -75646,22 +72176,17 @@ M=M+1 // &esp++
 // (-11099) pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11101) push this 2
 @THIS // push this 2 (&asm_segment)
@@ -75699,22 +72224,17 @@ M=M+1 // &esp++
 // (-11107) pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at *esp
+@2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11109) goto WHILE_EXP1
 @String.WHILE_EXP1 // goto WHILE_EXP1
@@ -75808,22 +72328,17 @@ M=D // &lcl[0] = &lcl[0]
 // (-11122) pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-11124) push constant 0
 @0 // push constant 0 (constant)
@@ -75839,22 +72354,17 @@ M=M+1 // &esp++
 // (-11128) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -75912,22 +72422,17 @@ M=M+1 // &esp++
 // (-11137) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -75985,22 +72490,17 @@ M=M+1 // &esp++
 // (-11146) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp
@@ -76058,22 +72558,17 @@ M=M+1 // &esp++
 // (-11155) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 @ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
 D=M+1 // d = *arg[1]
 @SP // &esp

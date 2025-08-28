@@ -11,22 +11,17 @@ M=M+1 // &esp++
 // (-5) pop local 0 // initializes sum = 0
 @LCL // pop local 0 // initializes sum = 0 (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-7) label LOOP_START
 (BasicLoop.LOOP_START) // label LOOP_START
@@ -70,22 +65,17 @@ M=M+1 // &esp++
 // (-16) pop local 0 // sum = sum + counter
 @LCL // pop local 0 // sum = sum + counter (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-18) push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -123,22 +113,17 @@ M=M+1 // &esp++
 // (-24) pop argument 0 // counter--
 @ARG // pop argument 0 // counter-- (&asm_segment)
 D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at *esp
+@0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = &dst
+@R13 // &r13
+M=D // r13 = &dst
 @SP // &esp // retrieve &src from top of the stack
 M=M-1 // &esp-- (&src)
 A=M // *src
 D=M // d = src
-@SP // &esp // restore esp and complete the pop
-M=M+1 // &esp++ (&dst)
-A=M // *esp (&dst)
-A=M // *dst
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
 M=D // dst = src (pop)
-@SP // &esp
-M=M-1 // &esp--
 
 // (-26) push argument 0
 @ARG // push argument 0 (&asm_segment)

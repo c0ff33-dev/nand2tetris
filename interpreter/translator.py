@@ -86,31 +86,25 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
         asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
         asm += "D=M // d = *asm_segment\n"
 
-    asm += "@%s // retrieve &dst (segment+offset) and store at *esp\n" % value
+    asm += "@%s // retrieve &dst (segment+offset) and store at R13\n" % value
     asm += "D=D+A // d = &dst (asm_segment+offset)\n"
-    asm += "@SP // &esp\n"
-    asm += "A=M // *esp\n"
-    asm += "M=D // esp = &dst\n"
+    asm += "@R13 // &r13\n"
+    asm += "M=D // r13 = &dst\n"
 
+    # implicitly free the top slot on the stack
     asm += "@SP // &esp // retrieve &src from top of the stack\n"
     asm += "M=M-1 // &esp-- (&src)\n"
     asm += "A=M // *src\n"
     asm += "D=M // d = src\n"
 
     # the extra level of indirection for local/argument/this/that is already handled above
-    asm += "@SP // &esp // restore esp and complete the pop\n"
-    asm += "M=M+1 // &esp++ (&dst)\n"
-    asm += "A=M // *esp (&dst)\n"
-    asm += "A=M // *dst\n"
+    asm += "@R13 // &r13 // retrieve &dst from r13 and complete the pop\n"
+    asm += "A=M // *r13 (*dst)\n"
     asm += "M=D // dst = src (pop)\n"
-
-    # free the slot on the stack
-    asm += "@SP // &esp\n"
-    asm += "M=M-1 // &esp--\n"
 
     return asm, comment_count
 
-
+# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
 def add(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack and push the result of their sum
@@ -508,7 +502,6 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     asm += "@SP // &esp\n"
     asm += "M=M+1 // &esp++\n"
 
-    # TODO: refactor comments (you are here)
     asm += "@THIS // &this // save THIS to the stack\n"
     asm += "D=M // d = *this\n"
     asm += "@SP // &esp\n"
