@@ -8,6 +8,7 @@ import os
 def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
     push a new value onto the stack (either constant or segment+offset)
+    also called from within _call()
     """
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
@@ -57,6 +58,7 @@ def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_
 def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
     pop a value from the stack into a segment+offset
+    also called from within _return()
     """
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
@@ -585,7 +587,7 @@ def function(asm, cmd, src, guids, comment_count, debug=False):
 
 def _return(asm, cmd, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
-    restore caller stack, pop result & jump to RIP
+    restore caller stack, pop result & jump to RP
     """
     comment_count -= 2
 
@@ -642,7 +644,7 @@ def _return(asm, cmd, static_dict, offset_list, vm_filepath, comment_count, debu
     asm += "@R13 // &r13 (old_lcl)\n"
     asm += "A=M-D // &old_lcl-5 (&lcl)\n"
     asm += "A=M // d = *lcl-5 (*lcl)\n"
-    asm += "0;JMP // return (jump to RIP)\n"
+    asm += "0;JMP // return (jump to RP)\n"
 
     return asm, comment_count
 
