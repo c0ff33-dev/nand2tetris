@@ -135,6 +135,9 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
                     # step to next instruction
                     step = True
                     return False
+                elif key.char == 'i':
+                    addr = input("peek: ")
+                    print(f"RAM[{addr}] = {hw['RAM'][int(addr)]}")
             except AttributeError:
                 pass
 
