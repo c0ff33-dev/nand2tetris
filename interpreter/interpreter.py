@@ -811,11 +811,11 @@ if __name__ == '__main__':
         jack_filepaths = []
         jack_filepath_lists = []
         jack_matches = {}
-        vm_dirpaths = []
+        vm_dirpaths = [r'..\projects\07\MemoryAccess\BasicTest']
         vm_asm_filepaths = []
-        binary_asm_filepaths = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.asm',]
+        binary_asm_filepaths = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.asm']
         hw_tst_files = []
-        cpu_tst_files = []
+        cpu_tst_files = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.tst']
         vm_tst_files = []
         breakpoints = []
 
