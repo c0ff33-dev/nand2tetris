@@ -202,7 +202,6 @@ def generate_guid(guids, debug=False):
     return guid, guids
 
 
-# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
 def lt(asm, cmd, guids, comment_count, debug=False):
     """
     pop 2 values from the stack and push -1 if val1 < val2 or 0 if not
@@ -223,7 +222,7 @@ def lt(asm, cmd, guids, comment_count, debug=False):
     asm += "@JLT_TRUE_%s\n" % guid
     asm += "D;JLT\n"
     comment_count -= 1
-    asm += "(JLT_FALSE_%s)\n" % guid
+    asm += "// JLT_FALSE_%s\n" % guid
     asm += "@0\n"
     asm += "D=A // d = false\n"
     asm += "@JLT_END_%s\n" % guid
@@ -268,7 +267,7 @@ def gt(asm, cmd, guids, comment_count, debug=False):
     asm += "@JGT_TRUE_%s\n" % guid
     asm += "D;JGT\n"
     comment_count -= 1
-    asm += "(JGT_FALSE_%s)\n" % guid
+    asm += "// JGT_FALSE_%s\n" % guid
     asm += "@0\n"
     asm += "D=A // d = false\n"
     asm += "@JGT_END_%s\n" % guid
@@ -292,6 +291,7 @@ def gt(asm, cmd, guids, comment_count, debug=False):
     return asm, guids, comment_count
 
 
+# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
 def _and(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack, push the AND result
