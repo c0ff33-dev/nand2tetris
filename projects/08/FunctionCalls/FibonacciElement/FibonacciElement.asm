@@ -122,7 +122,7 @@ A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @JLT_TRUE_2
 D;JLT
-(JLT_FALSE_2)
+// JLT_FALSE_2
 @0
 D=A // d = false
 @JLT_END_2

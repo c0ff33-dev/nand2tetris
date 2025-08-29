@@ -163,7 +163,7 @@ A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @JLT_TRUE_4
 D;JLT
-(JLT_FALSE_4)
+// JLT_FALSE_4
 @0
 D=A // d = false
 @JLT_END_4
@@ -208,7 +208,7 @@ A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @JLT_TRUE_5
 D;JLT
-(JLT_FALSE_5)
+// JLT_FALSE_5
 @0
 D=A // d = false
 @JLT_END_5
@@ -253,7 +253,7 @@ A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @JLT_TRUE_6
 D;JLT
-(JLT_FALSE_6)
+// JLT_FALSE_6
 @0
 D=A // d = false
 @JLT_END_6
@@ -298,7 +298,7 @@ A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @JGT_TRUE_7
 D;JGT
-(JGT_FALSE_7)
+// JGT_FALSE_7
 @0
 D=A // d = false
 @JGT_END_7
@@ -343,7 +343,7 @@ A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @JGT_TRUE_8
 D;JGT
-(JGT_FALSE_8)
+// JGT_FALSE_8
 @0
 D=A // d = false
 @JGT_END_8
@@ -388,7 +388,7 @@ A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @JGT_TRUE_9
 D;JGT
-(JGT_FALSE_9)
+// JGT_FALSE_9
 @0
 D=A // d = false
 @JGT_END_9
