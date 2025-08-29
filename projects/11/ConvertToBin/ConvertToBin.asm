@@ -2657,17 +2657,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_22
-D;JEQ
-(EQ_FALSE_22)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_22
+@0 // false
 D=A // d = false
 @EQ_END_22
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_22)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_22)
+(EQ_END_22) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -3106,17 +3106,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_25
-D;JEQ
-(EQ_FALSE_25)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_25
+@0 // false
 D=A // d = false
 @EQ_END_25
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_25)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_25)
+(EQ_END_25) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -4639,17 +4639,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_35
-D;JEQ
-(EQ_FALSE_35)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_35
+@0 // false
 D=A // d = false
 @EQ_END_35
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_35)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_35)
+(EQ_END_35) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -5846,17 +5846,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_47
-D;JEQ
-(EQ_FALSE_47)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_47
+@0 // false
 D=A // d = false
 @EQ_END_47
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_47)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_47)
+(EQ_END_47) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -5958,17 +5958,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_48
-D;JEQ
-(EQ_FALSE_48)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_48
+@0 // false
 D=A // d = false
 @EQ_END_48
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_48)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_48)
+(EQ_END_48) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -8494,17 +8494,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_66
-D;JEQ
-(EQ_FALSE_66)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_66
+@0 // false
 D=A // d = false
 @EQ_END_66
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_66)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_66)
+(EQ_END_66) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -8985,17 +8985,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_67
-D;JEQ
-(EQ_FALSE_67)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_67
+@0 // false
 D=A // d = false
 @EQ_END_67
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_67)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_67)
+(EQ_END_67) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -13207,17 +13207,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_90
-D;JEQ
-(EQ_FALSE_90)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_90
+@0 // false
 D=A // d = false
 @EQ_END_90
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_90)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_90)
+(EQ_END_90) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -13644,17 +13644,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_93
-D;JEQ
-(EQ_FALSE_93)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_93
+@0 // false
 D=A // d = false
 @EQ_END_93
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_93)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_93)
+(EQ_END_93) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -13800,17 +13800,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_95
-D;JEQ
-(EQ_FALSE_95)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_95
+@0 // false
 D=A // d = false
 @EQ_END_95
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_95)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_95)
+(EQ_END_95) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -14238,17 +14238,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_96
-D;JEQ
-(EQ_FALSE_96)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_96
+@0 // false
 D=A // d = false
 @EQ_END_96
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_96)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_96)
+(EQ_END_96) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -15234,17 +15234,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_100
-D;JEQ
-(EQ_FALSE_100)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_100
+@0 // false
 D=A // d = false
 @EQ_END_100
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_100)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_100)
+(EQ_END_100) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -16175,17 +16175,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_101
-D;JEQ
-(EQ_FALSE_101)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_101
+@0 // false
 D=A // d = false
 @EQ_END_101
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_101)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_101)
+(EQ_END_101) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -16769,17 +16769,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_102
-D;JEQ
-(EQ_FALSE_102)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_102
+@0 // false
 D=A // d = false
 @EQ_END_102
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_102)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_102)
+(EQ_END_102) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -39228,17 +39228,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_209
-D;JEQ
-(EQ_FALSE_209)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_209
+@0 // false
 D=A // d = false
 @EQ_END_209
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_209)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_209)
+(EQ_END_209) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -41512,17 +41512,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_222
-D;JEQ
-(EQ_FALSE_222)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_222
+@0 // false
 D=A // d = false
 @EQ_END_222
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_222)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_222)
+(EQ_END_222) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -41837,17 +41837,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_225
-D;JEQ
-(EQ_FALSE_225)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_225
+@0 // false
 D=A // d = false
 @EQ_END_225
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_225)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_225)
+(EQ_END_225) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -42076,17 +42076,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_228
-D;JEQ
-(EQ_FALSE_228)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_228
+@0 // false
 D=A // d = false
 @EQ_END_228
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_228)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_228)
+(EQ_END_228) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -42523,17 +42523,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_231
-D;JEQ
-(EQ_FALSE_231)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_231
+@0 // false
 D=A // d = false
 @EQ_END_231
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_231)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_231)
+(EQ_END_231) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -43728,17 +43728,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_239
-D;JEQ
-(EQ_FALSE_239)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_239
+@0 // false
 D=A // d = false
 @EQ_END_239
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_239)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_239)
+(EQ_END_239) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -44136,17 +44136,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_241
-D;JEQ
-(EQ_FALSE_241)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_241
+@0 // false
 D=A // d = false
 @EQ_END_241
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_241)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_241)
+(EQ_END_241) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -51971,17 +51971,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_289
-D;JEQ
-(EQ_FALSE_289)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_289
+@0 // false
 D=A // d = false
 @EQ_END_289
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_289)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_289)
+(EQ_END_289) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -54698,17 +54698,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_308
-D;JEQ
-(EQ_FALSE_308)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_308
+@0 // false
 D=A // d = false
 @EQ_END_308
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_308)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_308)
+(EQ_END_308) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -59774,17 +59774,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_344
-D;JEQ
-(EQ_FALSE_344)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_344
+@0 // false
 D=A // d = false
 @EQ_END_344
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_344)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_344)
+(EQ_END_344) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -60217,17 +60217,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_348
-D;JEQ
-(EQ_FALSE_348)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_348
+@0 // false
 D=A // d = false
 @EQ_END_348
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_348)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_348)
+(EQ_END_348) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -60600,17 +60600,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_350
-D;JEQ
-(EQ_FALSE_350)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_350
+@0 // false
 D=A // d = false
 @EQ_END_350
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_350)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_350)
+(EQ_END_350) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -61019,17 +61019,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_352
-D;JEQ
-(EQ_FALSE_352)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_352
+@0 // false
 D=A // d = false
 @EQ_END_352
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_352)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_352)
+(EQ_END_352) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -61330,17 +61330,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_354
-D;JEQ
-(EQ_FALSE_354)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_354
+@0 // false
 D=A // d = false
 @EQ_END_354
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_354)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_354)
+(EQ_END_354) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -61553,17 +61553,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_355
-D;JEQ
-(EQ_FALSE_355)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_355
+@0 // false
 D=A // d = false
 @EQ_END_355
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_355)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_355)
+(EQ_END_355) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -62463,17 +62463,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_360
-D;JEQ
-(EQ_FALSE_360)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_360
+@0 // false
 D=A // d = false
 @EQ_END_360
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_360)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_360)
+(EQ_END_360) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -63825,17 +63825,17 @@ M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
 @EQ_TRUE_369
-D;JEQ
-(EQ_FALSE_369)
-@0
+D;JEQ // jump if true
+// EQ_FALSE_369
+@0 // false
 D=A // d = false
 @EQ_END_369
-0;JMP
+0;JMP // unconditional jump
 (EQ_TRUE_369)
-@0
-D=A
+@0 // 0
+D=A // d = 0
 D=D-1 // d = -1 (true)
-(EQ_END_369)
+(EQ_END_369) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result

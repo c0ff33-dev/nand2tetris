@@ -104,7 +104,7 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
 
     return asm, comment_count
 
-# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
+
 def add(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack and push the result of their sum
@@ -166,22 +166,22 @@ def eq(asm, cmd, guids, comment_count, debug=False):
     asm += "D=M-D // d = val1 - val2\n"
 
     asm += "@EQ_TRUE_%s\n" % guid
-    asm += "D;JEQ\n"
+    asm += "D;JEQ // jump if true\n"
     comment_count -= 1
-    asm += "(EQ_FALSE_%s)\n" % guid
-    asm += "@0\n"
+    asm += "// EQ_FALSE_%s\n" % guid
+    asm += "@0 // false\n"
     asm += "D=A // d = false\n"
     asm += "@EQ_END_%s\n" % guid
-    asm += "0;JMP\n"
+    asm += "0;JMP // unconditional jump\n"
 
     comment_count -= 1
     asm += "(EQ_TRUE_%s)\n" % guid
-    asm += "@0\n"
-    asm += "D=A\n"
+    asm += "@0 // 0\n"
+    asm += "D=A // d = 0\n"
     asm += "D=D-1 // d = -1 (true)\n"
 
     comment_count -= 1
-    asm += "(EQ_END_%s)\n" % guid
+    asm += "(EQ_END_%s) // save eq result to stack\n" % guid
     asm += "@SP // &esp (&val1)\n"
     asm += "A=M // *esp (*val1)\n"
     asm += "M=D // esp = eq result\n"
@@ -202,6 +202,7 @@ def generate_guid(guids, debug=False):
     return guid, guids
 
 
+# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
 def lt(asm, cmd, guids, comment_count, debug=False):
     """
     pop 2 values from the stack and push -1 if val1 < val2 or 0 if not
