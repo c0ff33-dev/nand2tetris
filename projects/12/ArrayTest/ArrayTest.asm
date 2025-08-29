@@ -789,21 +789,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-85) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.WHILE_END0
 D;JNE // jump if not zero
 
@@ -921,8 +913,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_8)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_8)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -931,21 +922,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-110) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -1092,8 +1075,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_10)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_10)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -1110,21 +1092,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-141) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.WHILE_END0
 D;JNE // jump if not zero
 
@@ -1194,8 +1168,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_11)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_11)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -1212,21 +1185,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-161) if-goto WHILE_END1
-@0 // constant (0) // if-goto WHILE_END1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.WHILE_END1
 D;JNE // jump if not zero
 
@@ -4068,8 +4033,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_25)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_25)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -4086,21 +4050,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-526) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Array.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -4904,8 +4860,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_31)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_31) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -4952,8 +4907,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_32)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_32)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -4982,21 +4936,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-636) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.WHILE_END0
 D;JNE // jump if not zero
 
@@ -5130,8 +5076,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_34)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_34)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -5140,21 +5085,13 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // (-654) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -5942,21 +5879,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-740) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.WHILE_END0
 D;JNE // jump if not zero
 
@@ -6111,8 +6040,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_43)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_43) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -6156,21 +6084,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-768) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -6223,8 +6143,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_44)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_44) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -6233,21 +6152,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-784) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -7315,8 +7226,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_52)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_52)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -7333,21 +7243,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-926) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -7786,8 +7688,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_53)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_53)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -7796,21 +7697,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-1003) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -7969,8 +7862,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_54)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_54)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -8017,8 +7909,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_55)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_55)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -8077,8 +7968,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_56)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_56)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -8125,8 +8015,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_57)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_57)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -8403,8 +8292,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_60)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_60)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -8413,21 +8301,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-1095) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -8609,8 +8489,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_61)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_61)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -8627,21 +8506,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1139) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -8759,8 +8630,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_62)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_62) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -8777,21 +8647,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1164) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -9077,21 +8939,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-1221) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -9250,8 +9104,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_63)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_63) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -9260,21 +9113,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-1255) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -9418,8 +9263,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_65)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_65)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -9466,8 +9310,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_66)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_66)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -9526,8 +9369,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_67)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_67)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -9574,8 +9416,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_68)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_68)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -9927,8 +9768,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_71)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_71)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -9977,21 +9817,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1362) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -10202,8 +10034,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_72)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_72)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -10247,21 +10078,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1407) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -10680,8 +10503,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_73)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_73)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -10725,21 +10547,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1489) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -10861,8 +10675,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_74)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_74)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -10879,21 +10692,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1531) if-goto WHILE_END1
-@0 // constant (0) // if-goto WHILE_END1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END1
 D;JNE // jump if not zero
 
@@ -11032,8 +10837,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_75)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_75)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -11050,21 +10854,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1560) if-goto IF_TRUE3
-@0 // constant (0) // if-goto IF_TRUE3
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE3
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -11350,21 +11146,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-1617) if-goto IF_TRUE4
-@0 // constant (0) // if-goto IF_TRUE4
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE4
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -11523,8 +11311,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_76)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_76)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -11533,21 +11320,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-1651) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -11726,8 +11505,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_78)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_78)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -11744,21 +11522,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-1688) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -12057,8 +11827,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_80)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_80)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -12113,8 +11882,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_81)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_81)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -12143,21 +11911,13 @@ M=D&M // esp = val2 & val1
 M=M+1 // &esp++
 
 // (-1749) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -12366,8 +12126,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_82)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_82)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -12376,21 +12135,13 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // (-1794) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -12544,8 +12295,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_83)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_83)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -12554,21 +12304,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-1826) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -13304,8 +13046,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_84)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_84)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -13314,21 +13055,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-1945) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -13472,8 +13205,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_86)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_86) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -13482,21 +13214,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-1971) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -13600,8 +13324,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_87)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_87)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -13699,8 +13422,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_88)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_88)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -13729,21 +13451,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-2022) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.WHILE_END0
 D;JNE // jump if not zero
 
@@ -13909,8 +13623,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_89)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_89) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -13957,8 +13670,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_90)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_90)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -14065,8 +13777,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_91)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_91) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -14087,21 +13798,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-2083) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -14503,8 +14206,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_92)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_92) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -14513,21 +14215,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-2160) if-goto IF_TRUE3
-@0 // constant (0) // if-goto IF_TRUE3
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE3
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -14894,8 +14588,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_93)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_93)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -14904,21 +14597,13 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // (-2240) if-goto IF_TRUE4
-@0 // constant (0) // if-goto IF_TRUE4
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE4
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -15134,8 +14819,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_95)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_95)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -15144,21 +14828,13 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // (-2278) if-goto IF_TRUE5
-@0 // constant (0) // if-goto IF_TRUE5
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE5
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE5
 D;JNE // jump if not zero
 
@@ -15499,8 +15175,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_96)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_96) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -15509,21 +15184,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-2342) if-goto IF_TRUE6
-@0 // constant (0) // if-goto IF_TRUE6
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE6
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE6
 D;JNE // jump if not zero
 
@@ -16440,8 +16107,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_97)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_97) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -16450,21 +16116,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-2506) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -17034,8 +16692,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_98)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_98) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -17044,21 +16701,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-2611) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -38710,8 +38359,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_201)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_201)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -38728,21 +38376,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-5963) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
@@ -39086,8 +38726,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_203)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_203)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -39104,21 +38743,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-6018) if-goto WHILE_END1
-@0 // constant (0) // if-goto WHILE_END1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END1
 D;JNE // jump if not zero
 
@@ -39493,8 +39124,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_205)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_205) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -39503,21 +39133,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-6081) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -39724,8 +39346,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_206)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_206)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -39772,8 +39393,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_207)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_207)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -39794,21 +39414,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-6142) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -39859,21 +39471,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-6158) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -40293,8 +39897,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_209)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_209)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -40311,21 +39914,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-6233) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
@@ -40342,21 +39937,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-6237) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -40973,8 +40560,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_210)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_210)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -41021,8 +40607,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_211)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_211)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -41081,8 +40666,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_212)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_212)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -41141,8 +40725,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_213)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_213)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -41163,21 +40746,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-6386) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -41777,8 +41352,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_218)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_218) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -42102,8 +41676,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_221)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_221) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -42112,21 +41685,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-6509) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -42341,8 +41906,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_224)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_224) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -42351,21 +41915,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-6540) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -42625,21 +42181,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-6578) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -42788,8 +42336,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_227)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_227) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -42798,21 +42345,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-6613) if-goto IF_TRUE3
-@0 // constant (0) // if-goto IF_TRUE3
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE3
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -43172,8 +42711,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_230)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_230)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -43190,21 +42728,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-6677) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
@@ -43993,8 +43523,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_235)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_235) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -44003,21 +43532,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-6781) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -44136,21 +43657,13 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-6806) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -44200,8 +43713,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_236)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_236)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -44210,21 +43722,13 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // (-6822) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -44401,8 +43905,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_237)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_237) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -44411,21 +43914,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-6863) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -45063,8 +44558,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_240)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_240)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -45081,21 +44575,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-6977) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -45537,8 +45023,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_241)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_241)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -45555,21 +45040,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-7059) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -45811,21 +45288,13 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-7101) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -46416,8 +45885,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_242)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_242)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -46464,8 +45932,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_243)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_243)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -46524,8 +45991,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_244)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_244)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -46584,8 +46050,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_245)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_245)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -46606,21 +46071,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-7238) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -47446,21 +46903,13 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // (-7346) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -47854,8 +47303,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_253)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_253)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -47902,8 +47350,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_254)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_254)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -47962,8 +47409,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_255)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_255)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -48022,8 +47468,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_256)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_256)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -48044,21 +47489,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-7442) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -48441,8 +47878,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_260)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_260)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -48519,8 +47955,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_261)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_261)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -48602,8 +48037,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_262)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_262)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -48636,21 +48070,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-7522) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -48839,21 +48265,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-7558) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -49068,8 +48486,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_263)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_263)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -49222,8 +48639,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_264)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_264)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -49904,8 +49320,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_269)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_269)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -49922,21 +49337,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-7721) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -49979,8 +49386,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_270)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_270)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -49989,21 +49395,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-7732) if-goto IF_TRUE3
-@0 // constant (0) // if-goto IF_TRUE3
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE3
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -50136,21 +49534,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-7762) if-goto IF_TRUE4
-@0 // constant (0) // if-goto IF_TRUE4
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE4
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -50553,8 +49943,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_272)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_272)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -50604,8 +49993,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_273)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_273)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -50664,8 +50052,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_274)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_274)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -50724,8 +50111,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_275)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_275)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -50784,8 +50170,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_276)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_276)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -50844,8 +50229,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_277)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_277)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -50866,21 +50250,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-7893) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -52102,8 +51478,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_284)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_284)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -52128,21 +51503,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-8075) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -52236,8 +51603,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_285)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_285) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -52246,21 +51612,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-8094) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -52607,8 +51965,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_288)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_288)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -52625,21 +51982,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-8150) if-goto WHILE_END1
-@0 // constant (0) // if-goto WHILE_END1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END1
 D;JNE // jump if not zero
 
@@ -53372,8 +52721,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_293)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_293)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -53420,8 +52768,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_294)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_294)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -53480,8 +52827,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_295)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_295)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -53548,8 +52894,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_296)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_296)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -53570,21 +52915,13 @@ M=D&M // esp = val2 & val1
 M=M+1 // &esp++
 
 // (-8286) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -54963,8 +54300,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_304)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_304) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -54973,21 +54309,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-8477) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -55334,8 +54662,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_307)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_307)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -55352,21 +54679,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-8533) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -56979,8 +56298,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_314)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_314)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57027,8 +56345,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_315)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_315)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57087,8 +56404,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_316)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_316)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57147,8 +56463,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_317)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_317)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57169,21 +56484,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-8814) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -57351,8 +56658,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_319)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_319)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57423,8 +56729,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_320)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_320)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57507,8 +56812,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_321)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_321)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57591,8 +56895,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_322)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_322)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -57613,21 +56916,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-8889) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -57982,8 +57277,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_325)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_325)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -58000,21 +57294,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-8945) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -58057,8 +57343,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_326)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_326)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -58067,21 +57352,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-8956) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -58961,8 +58238,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_331)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_331)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -58971,21 +58247,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-9092) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -59129,8 +58397,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_333)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_333)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -59139,21 +58406,13 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // (-9118) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -59449,8 +58708,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_335)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_335)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -59459,21 +58717,13 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // (-9165) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -59925,8 +59175,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_338)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_338)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -59976,8 +59225,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_339)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_339)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -60039,8 +59287,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_340)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_340) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -60061,21 +59308,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-9250) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -60368,8 +59607,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_342)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_342)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -60419,8 +59657,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_343)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_343)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -60482,8 +59719,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_344)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_344) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -60504,21 +59740,13 @@ M=M|D // esp = val1 | val2
 M=M+1 // &esp++
 
 // (-9319) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -60865,8 +60093,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_346)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_346) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -60875,21 +60102,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-9374) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -61284,8 +60503,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_348)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_348) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -61294,21 +60512,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-9437) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -61595,8 +60805,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_350)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_350) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -61605,21 +60814,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-9484) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -61818,8 +61019,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_351)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_351) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -61828,21 +61028,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-9523) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -61957,8 +61149,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_352)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_352)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -61999,21 +61190,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-9561) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.WHILE_END0
 D;JNE // jump if not zero
 
@@ -62155,8 +61338,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_353)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_353)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -62203,8 +61385,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_354)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_354)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -62260,21 +61441,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-9605) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -62528,21 +61701,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-9653) if-goto IF_TRUE3
-@0 // constant (0) // if-goto IF_TRUE3
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE3
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -62728,8 +61893,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_356)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_356) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -62738,21 +61902,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-9691) if-goto IF_TRUE0
-@0 // constant (0) // if-goto IF_TRUE0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -62987,8 +62143,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_359)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_359)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -62997,21 +62152,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-9724) if-goto IF_TRUE1
-@0 // constant (0) // if-goto IF_TRUE1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -63161,8 +62308,7 @@ D=A // d = false
 0;JMP
 (JGT_TRUE_360)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JGT_END_360)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -63179,21 +62325,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-9764) if-goto WHILE_END0
-@0 // constant (0) // if-goto WHILE_END0
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.WHILE_END0
 D;JNE // jump if not zero
 
@@ -63702,21 +62840,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-9841) if-goto IF_TRUE2
-@0 // constant (0) // if-goto IF_TRUE2
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE2
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -63922,8 +63052,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_363)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_363)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -63932,21 +63061,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-9884) if-goto IF_TRUE3
-@0 // constant (0) // if-goto IF_TRUE3
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE3
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -64090,8 +63211,7 @@ D=A // d = false
 0;JMP // unconditional jump
 (EQ_TRUE_365)
 @0 // 0
-D=A // d = 0
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (EQ_END_365) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -64100,21 +63220,13 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // (-9910) if-goto IF_TRUE4
-@0 // constant (0) // if-goto IF_TRUE4
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE4
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -64324,8 +63436,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_366)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_366)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -64342,21 +63453,13 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // (-9960) if-goto WHILE_END1
-@0 // constant (0) // if-goto WHILE_END1
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto WHILE_END1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.WHILE_END1
 D;JNE // jump if not zero
 

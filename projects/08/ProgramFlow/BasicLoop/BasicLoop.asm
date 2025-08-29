@@ -138,21 +138,13 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // (-28) if-goto LOOP_START // If counter > 0, goto LOOP_START
-@0 // constant (0) // if-goto LOOP_START // If counter > 0, goto LOOP_START
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto LOOP_START // If counter > 0, goto LOOP_START
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @BasicLoop.LOOP_START
 D;JNE // jump if not zero
 

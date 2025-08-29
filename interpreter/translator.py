@@ -177,8 +177,7 @@ def eq(asm, cmd, guids, comment_count, debug=False):
     comment_count -= 1
     asm += "(EQ_TRUE_%s)\n" % guid
     asm += "@0 // 0\n"
-    asm += "D=A // d = 0\n"
-    asm += "D=D-1 // d = -1 (true)\n"
+    asm += "D=!A // d = -1 (true)\n"
 
     comment_count -= 1
     asm += "(EQ_END_%s) // save eq result to stack\n" % guid
@@ -231,8 +230,7 @@ def lt(asm, cmd, guids, comment_count, debug=False):
     comment_count -= 1
     asm += "(JLT_TRUE_%s)\n" % guid
     asm += "@0\n"
-    asm += "D=A\n"
-    asm += "D=D-1 // d = -1 (true)\n"
+    asm += "D=!A // d = -1 (true)\n"
 
     comment_count -= 1
     asm += "(JLT_END_%s)\n" % guid
@@ -276,8 +274,7 @@ def gt(asm, cmd, guids, comment_count, debug=False):
     comment_count -= 1
     asm += "(JGT_TRUE_%s)\n" % guid
     asm += "@0\n"
-    asm += "D=A\n"
-    asm += "D=D-1 // d = -1 (true)\n"
+    asm += "D=!A // d = -1 (true)\n"
 
     comment_count -= 1
     asm += "(JGT_END_%s)\n" % guid
@@ -291,7 +288,6 @@ def gt(asm, cmd, guids, comment_count, debug=False):
     return asm, guids, comment_count
 
 
-# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
 def _and(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack, push the AND result
@@ -356,7 +352,7 @@ def _not(asm, cmd, comment_count, debug=False):
 
 def neg(asm, cmd, comment_count, debug=False):
     """
-    pop 2 values from the stack, push the AND result
+    pop 2 values from the stack, push the MINUS result
     """
     comment_count -= 2
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
@@ -424,7 +420,7 @@ def goto(asm, cmd, src, comment_count, debug=False):
 
 def if_goto(asm, cmd, src, comment_count, debug=False):
     """
-    jump if true
+    pop a value off the stack and jump if true
     """
     comment_count -= 2
     asm_label = cmd.split(" ")[1]
@@ -432,29 +428,21 @@ def if_goto(asm, cmd, src, comment_count, debug=False):
 
     asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    asm += "@0 // constant (0) // %s\n" % cmd
-    asm += "D=A // d = 0 // push a zero onto the stack\n"
-    asm += "@SP // &esp\n"
-    asm += "A=M // *esp\n"
-    asm += "M=D // esp = 0\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
-
-    asm += "@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)\n"
-    asm += "M=M-1 // &esp-- (&val2)\n"
-    asm += "A=M // *val2\n"
-    asm += "D=M // d = val2\n"
-    asm += "@SP // &esp (&val2)\n"
-    asm += "M=M-1 // &esp-- (&val1)\n"
-    asm += "A=M // *esp (*val1)\n"
-    asm += "D=M-D // d = val1 - val2 // leave esp here (pop equivalent)\n"
+    asm += "// compare val (if-goto conditional) with 0\n"
+    asm += "@0 // %s\n" % cmd
+    asm += "D=A // d = 0\n"    
+    asm += "@SP // &esp // compare val to 0\n"
+    asm += "M=M-1 // &esp-- (&val)\n"
+    asm += "A=M // *esp (*val)\n"
+    asm += "D=M-D // d = val - 0 // leave esp here (pop equivalent)\n"
 
     asm += "@%s\n" % asm_label
-    asm += "D;JNE // jump if not zero\n"  # true = -1 on VM eval so hopefully this is alright
+    asm += "D;JNE // jump if not zero\n"
 
     return asm, comment_count
 
 
+# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
 def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
     save the caller stack frame and initialize the callee ARG/LCL segments

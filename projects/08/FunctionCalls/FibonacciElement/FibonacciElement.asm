@@ -129,8 +129,7 @@ D=A // d = false
 0;JMP
 (JLT_TRUE_2)
 @0
-D=A
-D=D-1 // d = -1 (true)
+D=!A // d = -1 (true)
 (JLT_END_2)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
@@ -139,21 +138,13 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // (-28) if-goto IF_TRUE
-@0 // constant (0) // if-goto IF_TRUE
-D=A // d = 0 // push a zero onto the stack
-@SP // &esp
-A=M // *esp
-M=D // esp = 0
-@SP // &esp
-M=M+1 // &esp++
-@SP // &esp // compare val1 (if-goto conditional) with val2 (zero)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2 // leave esp here (pop equivalent)
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @main.IF_TRUE
 D;JNE // jump if not zero
 
