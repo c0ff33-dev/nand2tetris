@@ -448,7 +448,7 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     save the caller stack frame and initialize the callee ARG/LCL segments
     """
     comment_count -= 3  # always injects a label first
-    prologue_size = 64  # the number of instructions required to realign EIP pointer
+    prologue_size = 64  # realign stack frame (base = number of instructions in this func, excl push/label())
 
     num_args = int(cmd.split(" ")[2])
     func_label = cmd.split(" ")[1]  # Module.funcName (entry point)
@@ -458,12 +458,12 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     # stack frame after call = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<SP>
 
     if num_args == 0:
+        # TODO: the init'd return value doesn't matter so this could be inlined to just inc esp by num_locals?
         asm, comment_count = push(asm, "push constant 9999 // call %s // if no args, create a space on the stack for "
                                        "the return" % func_label, "constant", "constant", 9999, static_dict,
                                        offset_list, vm_filepath, comment_count, debug=debug)
-        prologue_size += 7  # 7 instructions added by conditional push for return placeholder
+        prologue_size += 7  # 7 instructions per push()
         num_args = 1
-        # adjust comment for cleaner debug output
         asm += "@%s // push RP\n" % label_str # return point (RP)
     else:
         asm += "@%s // call %s // push RP\n" % (label_str, func_label)
@@ -512,9 +512,10 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     if current_function in local_dict:
         num_locals = local_dict[current_function]
         for i in range(0, num_locals):
+            # TODO: the init value doesn't matter so this could be inlined to just inc esp by num_locals?
             asm, comment_count = push(asm, "push constant 0 // local(%s) init" % i, "constant", "constant", 0,
                                       static_dict, offset_list, vm_filepath, comment_count, debug=debug)
-            prologue_size += 7  # TODO: is this really +7 for every local?
+            prologue_size += 7  # 7 instructions per push()
     else:
         num_locals = 0
 
