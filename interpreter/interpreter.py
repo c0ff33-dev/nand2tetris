@@ -187,11 +187,11 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
         # VM symbols
         "SP": 0,  # segmented by function (saved)
-        "LCL": 1,  # segmented by function (saved)
-        "ARG": 2,  # segmented by function (saved)
-        "THIS": 3,  # segmented by function (saved)
-        "THAT": 4,  # segmented by function (saved)
-        "TEMP": 5,  # 5-12 incl (volatile)
+        "LCL": 1,  # segmented by function (saved) -- locals are initialized to zero on call
+        "ARG": 2,  # segmented by function (saved) -- args are initialized as passed on call
+        "THIS": 3,  # pointer 0 // segmented by function (saved) -- undefined on call
+        "THAT": 4,  # pointer 1 // segmented by function (saved) -- undefined on call
+        "TEMP": 5,  # 5-12 incl (volatile) -- undefined on call
         "R13": 13,  # reserved for VM translator (volatile) -- variable
         "R14": 14,  # reserved for VM translator (volatile) -- unused
         "R15": 15,  # reserved for VM translator (volatile) -- microcode return address

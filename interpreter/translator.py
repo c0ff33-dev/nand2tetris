@@ -528,7 +528,7 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     if current_function in local_dict:
         num_locals = local_dict[current_function]
         for i in range(0, num_locals):
-            # TODO: the init value doesn't matter so this could be inlined to just inc esp by num_locals?
+            # local segment is expected to be initialized to 0 so can't just increment esp by num_locals
             asm, comment_count = push(asm, "push constant 0 // local(%s) init" % i, "constant", "constant", 0,
                                       static_dict, offset_list, vm_filepath, comment_count, debug=debug)
             prologue_size += 7  # 7 instructions per push()
@@ -864,14 +864,14 @@ def translate(vm_dir, vm_bootstrap_paths=(), debug=False):
             vm_dir_filelist.append(vm_filepath)
 
         # write asm_file
-        bootstrap = "@261 // bootstrap: initialize SP as 261\n"
-        bootstrap += "D=A\n"
-        bootstrap += "@0\n"
-        bootstrap += "M=D\n"
         asm_path = os.path.join(vm_dir, vm_dir.split('\\')[-1]+'.asm')
         with open(asm_path, 'w') as asm_file:
             if any(bootstrap_path in asm_path for bootstrap_path in vm_bootstrap_paths):
-                # test scripts do not conform to spec (256) >:|
+                # test scripts do not conform to spec (256)
+                bootstrap = "@261 // bootstrap: initialize SP as 261\n"
+                bootstrap += "D=A\n"
+                bootstrap += "@0\n"
+                bootstrap += "M=D\n"
                 asm_file.write(bootstrap+asm)
             else:
                 asm_file.write(asm)
@@ -929,7 +929,5 @@ if __name__ == "__main__":
 
     _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
 
-    debug_runs = [True, False]
-    for _debug in debug_runs:
-        for _vm_dir in _vm_dirpaths:
-            translate(_vm_dir, _vm_bootstrap_paths, debug=_debug)
+    for _vm_dir in _vm_dirpaths:
+        translate(_vm_dir, _vm_bootstrap_paths, debug=False)
