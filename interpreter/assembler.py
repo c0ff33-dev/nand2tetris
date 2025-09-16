@@ -186,6 +186,8 @@ def assemble(asm_filepath, debug=False):
                 binary_line += "000000"
             elif operation == "D|A" or operation == "A|D" or operation == "M|D" or operation == "D|M":
                 binary_line += "010101"
+            else:
+                raise RuntimeError("Assembler: %s: Unexpected command: %s" % (asm_filepath, instruction))
 
             # write dest bits
             if destination == "M":
