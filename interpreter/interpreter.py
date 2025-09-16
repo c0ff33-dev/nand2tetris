@@ -58,7 +58,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     if debug_cmd.startswith("@") or debug_cmd.startswith("A="):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] [bold yellow]%s[/bold yellow]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["M"]) +\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
         "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
@@ -70,7 +70,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     elif debug_cmd.startswith("D="):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] %s\n[red]D[/red] [bold yellow]%s[/bold yellow]\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["M"]) +\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
         "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
@@ -82,7 +82,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     elif debug_cmd.startswith("M="):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] %s\n[red]D[/red] %s\n[red]M[/red] [bold yellow]%s[/bold yellow]\n" %\
-            (hw["A"], hw["D"], hw["M"]) +\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
         "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
@@ -94,7 +94,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     elif debug_cmd.startswith("D;"):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] [bold cyan]%s[/bold cyan]\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["M"]) +\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
         "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
@@ -106,7 +106,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     elif debug_cmd.startswith("0;"):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["M"]) +\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
         "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
@@ -248,7 +248,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     call_tree = []
     stacksize = 0
     while cycle < hw["MAX"] and hw["PC"] < len(hw["ROM"]["raw"]):
-        assignment = False
         raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
         debug_cmd = hw["ROM"]["debug"][hw["PC"]][1]
         src_line = hw["ROM"]["raw"][hw["PC"]][0]
@@ -277,7 +276,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
             # process raw_cmd
             hw["A"] = address  # set A register to @address
-            hw["M"] = hw["RAM"][address]  # set M register to value of @address held in RAM
             hw["PC"] += 1  # advance to next instruction
 
         # register assignment X[YZ]=<eval>
@@ -298,30 +296,30 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
                                    (hw["PC"], raw_cmd, "---", debug_cmd))
 
             # deref the real register values for the eval
-            raw_eval_cmd = eval_cmd.replace("A", str(hw["A"])) \
-                .replace("D", str(hw["D"])).replace("M", str(hw["M"])) \
-                .replace("!", "~")  # python bitwise NOT is ~
+            raw_eval_cmd = eval_cmd \
+                .replace("A", str(hw["A"])) \
+                .replace("D", str(hw["D"])) \
+                .replace("M", str(hw["RAM"][hw["A"]])) \
+                .replace("!", "~")  # bitwise NOT
 
             # X=Y, where X=A,D,M and Y=0,1,-1,A,D,M
             # X=Y<OP>Z, where X=A,D,M and Y/Z=0,1,-1,A,D,M and OP=+,-,|,&
             if any(x in eval_cmd for x in ["+", "-", "0", "1", "|", "&", "!", "A", "D", "M"]):
-                assignment = True
                 eval_result = eval(raw_eval_cmd)
-                # for each destination assign the result
-                for register in dst:
-                    hw[register] = eval_result
-                    if register == "A":
-                        # after assignment to A update M with new RAM[A] value
-                        hw["M"] = hw["RAM"][hw["A"]]
-                    elif register == "M":
-                        # after assignment to M write to RAM[A] address
-                        hw["RAM"][hw["A"]] = hw["M"]
-                    elif register == "D":
-                        pass  # no implicit ops for D assignment
-                    else:
-                        raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" %
-                                           (hw["PC"], raw_cmd, "---", debug_cmd))
-
+                # dst permutatons: AMD, AM, AD, MD, A, D, M
+                # if multiple dst all are written to the same eval result simultaneously
+                # in practice because the interpreter runs procedurally writing M before A should suffice
+                if "M" in dst:
+                    hw["RAM"][hw["A"]] = eval_result
+                if "A" in dst:
+                    hw["A"] = eval_result
+                if "D" in dst:
+                    hw["D"] = eval_result
+                
+                if not any(x in dst for x in ["A", "D", "M"]):
+                    raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" % 
+                                       (hw["PC"], raw_cmd, "---", debug_cmd))
+                
                 hw["PC"] += 1  # advance to next instruction
             else:
                 raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" %
@@ -792,7 +790,6 @@ if __name__ == '__main__':
         
         # FIXME: IndexError: list index out of range
         # File "d:\dev\nand2tetris\interpreter\interpreter.py", line 156, in run
-        #     hw["M"] = hw["RAM"][address]  # set M register to value of @address held in RAM
 
         # r'..\projects\12\ArrayTest\ArrayTest.tst', 
         # r'..\projects\12\MathTest\MathTest.tst',
