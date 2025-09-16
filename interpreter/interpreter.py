@@ -192,9 +192,9 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "THIS": 3,  # segmented by function (saved)
         "THAT": 4,  # segmented by function (saved)
         "TEMP": 5,  # 5-12 incl (volatile)
-        "R13": 13,  # reserved for VM translator (volatile)
-        "R14": 14,  # reserved for VM translator (volatile)
-        "R15": 15,  # reserved for VM translator (volatile)
+        "R13": 13,  # reserved for VM translator (volatile) -- variable
+        "R14": 14,  # reserved for VM translator (volatile) -- unused
+        "R15": 15,  # reserved for VM translator (volatile) -- microcode return address
         "STATIC": 16,  # 16-255 incl (segmented by VM source file, max 240 values)
         "STACK": 256,  # 256-2047 incl (persistent)
 

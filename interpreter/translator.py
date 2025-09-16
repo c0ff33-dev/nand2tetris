@@ -5,6 +5,7 @@ import os
 
 # TODO: common asm blocks should only be emitted once & reused
 
+# 7-10 instructions per VM command
 def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
     push a new value onto the stack (either constant or segment+offset)
@@ -55,6 +56,7 @@ def push(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_
     return asm, comment_count
 
 
+# 13 instructions per VM command
 def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
     pop a value from the stack into a segment+offset
@@ -105,6 +107,7 @@ def pop(asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_f
     return asm, comment_count
 
 
+# 10 instructions per VM command
 def add(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack and push the result of their sum
@@ -127,6 +130,7 @@ def add(asm, cmd, comment_count, debug=False):
     return asm, comment_count
 
 
+# 10 instructions per VM command
 def sub(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack and push the result of their difference
@@ -148,6 +152,8 @@ def sub(asm, cmd, comment_count, debug=False):
 
     return asm, comment_count
 
+
+# ~21 instructions per VM command
 def eq(asm, cmd, guids, comment_count, debug=False):
     """
     pop 2 values from the stack and push -1 if they are the same or 0 if not
@@ -201,6 +207,7 @@ def generate_guid(guids, debug=False):
     return guid, guids
 
 
+# ~21 instructions per VM command
 def lt(asm, cmd, guids, comment_count, debug=False):
     """
     pop 2 values from the stack and push -1 if val1 < val2 or 0 if not
@@ -244,6 +251,7 @@ def lt(asm, cmd, guids, comment_count, debug=False):
     return asm, guids, comment_count
 
 
+# ~21 instructions per VM command
 def gt(asm, cmd, guids, comment_count, debug=False):
     """
     pop 2 values from the stack and push -1 if val1 > val2 or 0 if not
@@ -288,6 +296,7 @@ def gt(asm, cmd, guids, comment_count, debug=False):
     return asm, guids, comment_count
 
 
+# 10 instructions per VM command
 def _and(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack, push the AND result
@@ -310,6 +319,7 @@ def _and(asm, cmd, comment_count, debug=False):
     return asm, comment_count
 
 
+# 10 instructions per VM command
 def _or(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack, push the OR result
@@ -332,6 +342,7 @@ def _or(asm, cmd, comment_count, debug=False):
     return asm, comment_count
 
 
+# ~6 instructions per VM command
 def _not(asm, cmd, comment_count, debug=False):
     """
     pop a value from the stack, push the NOT result
@@ -350,6 +361,7 @@ def _not(asm, cmd, comment_count, debug=False):
     return asm, comment_count
 
 
+# ~6 instructions per VM command
 def neg(asm, cmd, comment_count, debug=False):
     """
     pop 2 values from the stack, push the MINUS result
@@ -368,6 +380,7 @@ def neg(asm, cmd, comment_count, debug=False):
     return asm, comment_count
 
 
+# ~0 instructions per VM command
 def label(asm, cmd, src, guids, comment_count, debug=False):
     """
     translate labels and adjust debug line count
@@ -402,6 +415,7 @@ def label(asm, cmd, src, guids, comment_count, debug=False):
     return asm, guids, comment_count, label_str
 
 
+# ~2 instructions per VM command
 def goto(asm, cmd, src, comment_count, debug=False):
     """
     unconditional jump
@@ -418,6 +432,7 @@ def goto(asm, cmd, src, comment_count, debug=False):
     return asm, comment_count
 
 
+# ~8 instructions per VM command
 def if_goto(asm, cmd, src, comment_count, debug=False):
     """
     pop a value off the stack and jump if true
@@ -443,6 +458,7 @@ def if_goto(asm, cmd, src, comment_count, debug=False):
 
 
 # TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
+# ~63 instructions per VM command + 7 per local + 7 per arg
 def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
     save the caller stack frame and initialize the callee ARG/LCL segments
@@ -556,6 +572,7 @@ def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath
     return asm, guids, comment_count
 
 
+# ~0 instructions per VM command
 def function(asm, cmd, src, guids, comment_count, debug=False):
     """
     define a function label (entry point)
@@ -568,6 +585,7 @@ def function(asm, cmd, src, guids, comment_count, debug=False):
     return asm, guids, comment_count
 
 
+# ~40 instructions per VM command + 13 for the pop
 def _return(asm, cmd, static_dict, offset_list, vm_filepath, comment_count, debug=False):
     """
     restore caller stack, pop result & jump to RP
