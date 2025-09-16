@@ -131,7 +131,7 @@ def assemble(asm_filepath, debug=False):
             dest = instruction[10:12]
             jump = instruction[13:15]
             '''
-            destination = None
+            destination = ""
             jump = None
             binary_line = "111"  # prefix first 3 bits for C command
 
@@ -192,15 +192,15 @@ def assemble(asm_filepath, debug=False):
                 binary_line += "001"
             elif destination == "D":
                 binary_line += "010"
-            elif destination == "MD":
+            elif destination == "MD" or destination == "DM":
                 binary_line += "011"
             elif destination == "A":
                 binary_line += "100"
-            elif destination == "AM":
+            elif destination == "AM" or destination == "MA":
                 binary_line += "101"
-            elif destination == "AD":
+            elif destination == "AD" or destination == "DA":
                 binary_line += "110"
-            elif destination == "AMD":
+            elif all(x in destination for x in "ADM"):
                 binary_line += "111"
             else:
                 binary_line += "000"  # no value stored (jump instructions)
