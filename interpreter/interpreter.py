@@ -7,11 +7,11 @@ import os
 
 import assembler
 import tester
-import translator
 import subprocess
 import tokenizer
 import analyzer
 import compiler
+from translator import Translator
 
 from pynput import keyboard
 from rich.console import Console
@@ -846,7 +846,8 @@ if __name__ == '__main__':
     
     # translate VM to ASM
     for vm_dir in vm_dirpaths:
-        vm_static_dicts[vm_dir] = translator.translate(vm_dir, vm_bootstrap_paths, debug=debug)
+        t = Translator(debug=debug)
+        vm_static_dicts[vm_dir] = t.translate(vm_dir, vm_bootstrap_paths)
     
     # assemble all ASM to HACK and binary match if available
     asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
