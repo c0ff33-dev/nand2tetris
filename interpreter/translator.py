@@ -340,8 +340,6 @@ class Translator:
         label = src.label
         function = src.func.label
         call = src.func.guid
-
-        anything injecting labels needs to dec commen_count
         """
         self.asm += '\n// %s\n' % (cmd)
         asm_label = cmd.split(" ")[1]

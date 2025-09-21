@@ -19,14 +19,6 @@ from rich.table import Table
 console = Console()
 step = False
 
-def dump_call_tree(call_tree, debug_msg):
-    if len(call_tree) == 0:
-        debug_msg += "  <nil>"
-    else:
-        for i, func in enumerate(call_tree, start=1):
-            debug_msg += "  " + ("-" * i) + func + "\n"
-    return debug_msg
-
 
 def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     # highlight current command in red
@@ -146,7 +138,6 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
 
 
 def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=False):
-    debug_log = []
     gui_log = []
 
     # initialize hardware
@@ -246,7 +237,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     # runtime parsing
     cycle = 0
     call_tree = []
-    stacksize = 0
     while cycle < hw["MAX"] and hw["PC"] < len(hw["ROM"]["raw"]):
         raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
         debug_cmd = hw["ROM"]["debug"][hw["PC"]][1]
@@ -365,45 +355,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
         #  format primary debug output
         if debug:
-            debug_msg = ""
-
-            # update & dump the call graph on call/return
-            if "// call " in debug_cmd:
-                debug_msg += "// CALL: call graph updated\n"
-                callee = debug_cmd.split("// call ")[1].split()[0]
-                call_tree.append(callee)
-                debug_msg = dump_call_tree(call_tree, debug_msg)
-
-            elif "// return //" in debug_cmd:
-                debug_msg += "// RETURN: call graph updated\n"
-                call_tree.pop()
-                debug_msg = dump_call_tree(call_tree, debug_msg)
-
-            # display the stack (if values to display)
-            if "// stacksize++" in debug_cmd:
-                stacksize += 1
-            elif "// stacksize--" in debug_cmd:
-                stacksize -= 1
-            if stacksize:
-                debug_msg += "// STACK: "
-                sp = hw["RAM"][address_labels["SP"]]
-                for i in range(sp, sp+stacksize):
-                    debug_msg += "%s " % hw["RAM"][i]
-
-            # display the static segment if used
-            static_count = 0
-            if static_dict is not None:
-                for vm_file in static_dict:
-                    static_count += static_dict[vm_file][1]
-            if static_count:
-                debug_msg += "// STATICS: "
-                sp = address_labels["STATIC"]
-                for i in range(sp, sp+static_count):
-                    debug_msg += "%s " % hw["RAM"][i]
-
-            if debug_msg:
-                debug_log.append(debug_msg)
-            
             process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
         cycle += 1  # always advance clock cycle
 
@@ -432,10 +383,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
                 cmp_file_contents = cmp_file.read()
             with open(asm_filepath.replace(".asm", ".out"), "w") as out_file:
                 out_file.write(cmp_file_contents)
-            if debug:
-                with open(asm_filepath.replace(".asm", ".debug"), "w") as debug_file:
-                    for line in debug_log:
-                        debug_file.write(line+'\n')
         else:
             raise RuntimeError("Interpreter: Test results did not match for %s" % asm_filepath)
 
@@ -962,9 +909,6 @@ if __name__ == '__main__':
     # TODO: error check - check constructor return type is class type
     # TODO: error check - check constructor returns this
     # TODO: error check - check for unexpected tokens after statement expression (if/while)
-
-    # interpreter: translator
-    # TODO: replace stacksize with esp/ebp (emitted by translator, tracked by interpreter) 
 
     # TODO: Jack OS Error Codes
     '''
