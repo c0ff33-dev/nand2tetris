@@ -60,12 +60,12 @@ class Translator:
             self.asm += "M=M+1 // &esp++\n"
 
     # 13 instructions per VM command
-    def pop(self, asm, cmd, vm_segment, asm_segment, value, static_dict, offset_list, vm_filepath):
+    def pop(self, cmd, vm_segment, asm_segment, value, vm_filepath):
         """
         pop a value from the stack into a segment+offset
         also called from within _return()
         """
-        asm += '\n// %s\n' % (cmd)
+        self.asm += '\n// %s\n' % (cmd)
 
         # pop a value from the stack and store it in segment+offset
         # (copy from src to dst and dec esp)
@@ -73,40 +73,38 @@ class Translator:
         # resolve segment base address
         if vm_segment == "temp":
             # fixed 8 word segment at RAM[5-12]
-            asm += "@5 // %s (&temp)\n" % cmd
-            asm += "D=A // d = &temp\n"
+            self.asm += "@5 // %s (&temp)\n" % cmd
+            self.asm += "D=A // d = &temp\n"
         elif vm_segment == "pointer":
             # fixed 2 word segment at RAM[3-4] (THIS/THAT)
-            asm += "@3 // %s (&pointer)\n" % cmd
-            asm += "D=A // d = &pointer\n"
+            self.asm += "@3 // %s (&pointer)\n" % cmd
+            self.asm += "D=A // d = &pointer\n"
         elif vm_segment == "static":
             # fixed 240 word segment at RAM[16-255] (namespace per file)
-            pos = static_dict[vm_filepath][0]
-            offset = 16 + (offset_list[pos])
-            asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)
-            asm += "D=A // d = &(static+offset)\n"
+            pos = self.static_dict[vm_filepath][0]
+            offset = 16 + (self.offset_list[pos])
+            self.asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)
+            self.asm += "D=A // d = &(static+offset)\n"
         else:
             # resolve the base address of the remaining segments (local, argument, this, that)
-            asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
-            asm += "D=M // d = *asm_segment\n"
+            self.asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
+            self.asm += "D=M // d = *asm_segment\n"
 
-        asm += "@%s // retrieve &dst (segment+offset) and store at R13\n" % value
-        asm += "D=D+A // d = &dst (asm_segment+offset)\n"
-        asm += "@R13 // &r13\n"
-        asm += "M=D // r13 = &dst\n"
+        self.asm += "@%s // retrieve &dst (segment+offset) and store at R13\n" % value
+        self.asm += "D=D+A // d = &dst (asm_segment+offset)\n"
+        self.asm += "@R13 // &r13\n"
+        self.asm += "M=D // r13 = &dst\n"
 
         # implicitly free the top slot on the stack
-        asm += "@SP // &esp // retrieve &src from top of the stack\n"
-        asm += "M=M-1 // &esp-- (&src)\n"
-        asm += "A=M // *src\n"
-        asm += "D=M // d = src\n"
+        self.asm += "@SP // &esp // retrieve &src from top of the stack\n"
+        self.asm += "M=M-1 // &esp-- (&src)\n"
+        self.asm += "A=M // *src\n"
+        self.asm += "D=M // d = src\n"
 
         # the extra level of indirection for local/argument/this/that is already handled above
-        asm += "@R13 // &r13 // retrieve &dst from r13 and complete the pop\n"
-        asm += "A=M // *r13 (*dst)\n"
-        asm += "M=D // dst = src (pop)\n"
-
-        return asm
+        self.asm += "@R13 // &r13 // retrieve &dst from r13 and complete the pop\n"
+        self.asm += "A=M // *r13 (*dst)\n"
+        self.asm += "M=D // dst = src (pop)\n"
 
     # 10 instructions per VM command
     def add(self, asm, cmd, comment_count, debug=False):
@@ -248,324 +246,323 @@ class Translator:
         return asm, guids, comment_count
 
 
-# ~21 instructions per VM command
-def gt(asm, cmd, guids, comment_count, debug=False):
-    """
-    pop 2 values from the stack and push -1 if val1 > val2 or 0 if not
-    """
-    guid, guids = generate_guid(guids, debug=debug)
+    # ~21 instructions per VM command
+    def gt(self, cmd, guids, comment_count, debug=False):
+        """
+        pop 2 values from the stack and push -1 if val1 > val2 or 0 if not
+        """
+        guid, guids = self.generate_guid(guids)
 
-    comment_count -= 2
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
+        comment_count -= 2
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    asm += "@SP // &esp // %s\n" % cmd
-    asm += "M=M-1 // &esp-- (&val2)\n"
-    asm += "A=M // *val2\n"
-    asm += "D=M // d = val2\n"
-    asm += "@SP // &esp (&val2)\n"
-    asm += "M=M-1 // &esp-- (&val1)\n"
-    asm += "A=M // *esp (*val1)\n"
-    asm += "D=M-D // d = val1 - val2\n"
+        self.asm += "@SP // &esp // %s\n" % cmd
+        self.asm += "M=M-1 // &esp-- (&val2)\n"
+        self.asm += "A=M // *val2\n"
+        self.asm += "D=M // d = val2\n"
+        self.asm += "@SP // &esp (&val2)\n"
+        self.asm += "M=M-1 // &esp-- (&val1)\n"
+        self.asm += "A=M // *esp (*val1)\n"
+        self.asm += "D=M-D // d = val1 - val2\n"
 
-    asm += "@JGT_TRUE_%s\n" % guid
-    asm += "D;JGT\n"
-    comment_count -= 1
-    asm += "// JGT_FALSE_%s\n" % guid
-    asm += "@0\n"
-    asm += "D=A // d = false\n"
-    asm += "@JGT_END_%s\n" % guid
-    asm += "0;JMP\n"
+        self.asm += "@JGT_TRUE_%s\n" % guid
+        self.asm += "D;JGT\n"
+        comment_count -= 1
+        self.asm += "// JGT_FALSE_%s\n" % guid
+        self.asm += "@0\n"
+        self.asm += "D=A // d = false\n"
+        self.asm += "@JGT_END_%s\n" % guid
+        self.asm += "0;JMP\n"
 
-    comment_count -= 1
-    asm += "(JGT_TRUE_%s)\n" % guid
-    asm += "@0\n"
-    asm += "D=!A // d = -1 (true)\n"
+        comment_count -= 1
+        self.asm += "(JGT_TRUE_%s)\n" % guid
+        self.asm += "@0\n"
+        self.asm += "D=!A // d = -1 (true)\n"
 
-    comment_count -= 1
-    asm += "(JGT_END_%s)\n" % guid
-    asm += "@SP // &esp (&val1)\n"
-    asm += "A=M // *esp (*val1)\n"
-    asm += "M=D // esp = gt result\n"
+        comment_count -= 1
+        self.asm += "(JGT_END_%s)\n" % guid
+        self.asm += "@SP // &esp (&val1)\n"
+        self.asm += "A=M // *esp (*val1)\n"
+        self.asm += "M=D // esp = gt result\n"
 
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    return asm, guids, comment_count
-
-
-# 10 instructions per VM command
-def _and(asm, cmd, comment_count, debug=False):
-    """
-    pop 2 values from the stack, push the AND result
-    """
-    comment_count -= 2
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
-
-    # eval two values, push result, dec esp
-    asm += "@SP // &esp // %s\n" % cmd
-    asm += "M=M-1 // &esp-- (&val2)\n" 
-    asm += "A=M // *esp (*val2)\n"
-    asm += "D=M // d = val2\n"
-    asm += "@SP // &esp (&val2)\n"
-    asm += "M=M-1 // &esp-- (&val1)\n"
-    asm += "A=M // *esp = val1\n"
-    asm += "M=D&M // esp = val2 & val1\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
-
-    return asm, comment_count
+        return guids, comment_count
 
 
-# 10 instructions per VM command
-def _or(asm, cmd, comment_count, debug=False):
-    """
-    pop 2 values from the stack, push the OR result
-    """
-    comment_count -= 2
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
+    # 10 instructions per VM command
+    def _and(self, cmd, comment_count, debug=False):
+        """
+        pop 2 values from the stack, push the AND result
+        """
+        comment_count -= 2
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    # eval two values, push result, dec esp
-    asm += "@SP // &esp // %s\n" % cmd
-    asm += "M=M-1 // &esp-- (&val2)\n"
-    asm += "A=M // *esp (*val2)\n"
-    asm += "D=M // d = val2\n"
-    asm += "@SP // &esp (&val2)\n"
-    asm += "M=M-1 // &esp-- (&val1)\n"
-    asm += "A=M // *esp (*val1)\n"
-    asm += "M=M|D // esp = val1 | val2\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+        # eval two values, push result, dec esp
+        self.asm += "@SP // &esp // %s\n" % cmd
+        self.asm += "M=M-1 // &esp-- (&val2)\n"
+        self.asm += "A=M // *esp (*val2)\n"
+        self.asm += "D=M // d = val2\n"
+        self.asm += "@SP // &esp (&val2)\n"
+        self.asm += "M=M-1 // &esp-- (&val1)\n"
+        self.asm += "A=M // *esp = val1\n"
+        self.asm += "M=D&M // esp = val2 & val1\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    return asm, comment_count
-
-
-# ~6 instructions per VM command
-def _not(asm, cmd, comment_count, debug=False):
-    """
-    pop a value from the stack, push the NOT result
-    """
-    comment_count -= 2
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
-
-    # eval one value, push result
-    asm += "@SP // &esp // %s\n" % cmd
-    asm += "M=M-1 // &esp-- (&val1)\n"
-    asm += "A=M // esp* (*val1)\n"
-    asm += "M=!M // esp = !val1\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
-
-    return asm, comment_count
+        return comment_count
 
 
-# ~6 instructions per VM command
-def neg(asm, cmd, comment_count, debug=False):
-    """
-    pop 2 values from the stack, push the MINUS result
-    """
-    comment_count -= 2
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
+    # 10 instructions per VM command
+    def _or(self, cmd, comment_count, debug=False):
+        """
+        pop 2 values from the stack, push the OR result
+        """
+        comment_count -= 2
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    # eval one value, push result
-    asm += "@SP // &esp // %s\n" % cmd
-    asm += "M=M-1 // &esp-- (&val1)\n"
-    asm += "A=M // *esp (*val1)\n"
-    asm += "M=-M // esp = -val1\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+        # eval two values, push result, dec esp
+        self.asm += "@SP // &esp // %s\n" % cmd
+        self.asm += "M=M-1 // &esp-- (&val2)\n"
+        self.asm += "A=M // *esp (*val2)\n"
+        self.asm += "D=M // d = val2\n"
+        self.asm += "@SP // &esp (&val2)\n"
+        self.asm += "M=M-1 // &esp-- (&val1)\n"
+        self.asm += "A=M // *esp (*val1)\n"
+        self.asm += "M=M|D // esp = val1 | val2\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    return asm, comment_count
-
-
-# ~0 instructions per VM command
-def label(asm, cmd, src, guids, comment_count, debug=False):
-    """
-    translate labels and adjust debug line count
-
-    label = src.label
-    function = src.func.label
-    call = src.func.guid
-
-    anything injecting labels needs to dec commen_count
-    """
-    if cmd.startswith('label'):
-        comment_count -= 2  # normally handled by the calling function
-
-    # normal label resolution
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
-    asm_label = cmd.split(" ")[1]
-
-    if cmd.startswith('function'):
-        asm += "(%s) // %s\n" % (asm_label, cmd)
-        label_str = asm_label
-    elif cmd.startswith('call'):
-        guid, guids = generate_guid(guids, debug=debug)
-        asm += "(%s.%s.%s) // %s\n" % (src, asm_label, guid, cmd)
-        label_str = "%s.%s.%s" % (src, asm_label, guid)
-    elif cmd.startswith('label'):
-        asm += "(%s.%s) // %s\n" % (src, asm_label, cmd)
-        label_str = "%s.%s" % (src, asm_label)
-        comment_count -= 1  # post-adjust for label
-    else:
-        raise RuntimeError("Translator: Unexpected command %s")
-
-    return asm, guids, comment_count, label_str
+        return comment_count
 
 
-# ~2 instructions per VM command
-def goto(asm, cmd, src, comment_count, debug=False):
-    """
-    unconditional jump
-    """
-    comment_count -= 2
+    # ~6 instructions per VM command
+    def _not(self, cmd, comment_count, debug=False):
+        """
+        pop a value from the stack, push the NOT result
+        """
+        comment_count -= 2
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    asm_label = cmd.split(" ")[1]
-    asm_label = "%s.%s" % (src, asm_label)
+        # eval one value, push result
+        self.asm += "@SP // &esp // %s\n" % cmd
+        self.asm += "M=M-1 // &esp-- (&val1)\n"
+        self.asm += "A=M // esp* (*val1)\n"
+        self.asm += "M=!M // esp = !val1\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
-    asm += "@%s // %s\n" % (asm_label, cmd)
-    asm += "0;JMP // unconditional jump\n"
-
-    return asm, comment_count
-
-
-# ~8 instructions per VM command
-def if_goto(asm, cmd, src, comment_count, debug=False):
-    """
-    pop a value off the stack and jump if true
-    """
-    comment_count -= 2
-    asm_label = cmd.split(" ")[1]
-    asm_label = "%s.%s" % (src, asm_label)
-
-    asm += '\n// (%s) %s\n' % (comment_count, cmd)
-
-    asm += "// compare val (if-goto conditional) with 0\n"
-    asm += "@0 // %s\n" % cmd
-    asm += "D=A // d = 0\n"    
-    asm += "@SP // &esp // compare val to 0\n"
-    asm += "M=M-1 // &esp-- (&val)\n"
-    asm += "A=M // *esp (*val)\n"
-    asm += "D=M-D // d = val - 0 // leave esp here (pop equivalent)\n"
-
-    asm += "@%s\n" % asm_label
-    asm += "D;JNE // jump if not zero\n"
-
-    return asm, comment_count
+        return comment_count
 
 
-# TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
-# ~63 instructions per VM command + 7 per local + 7 per arg
-def call(asm, cmd, src, guids, local_dict, static_dict, offset_list, vm_filepath, comment_count, debug=False):
-    """
-    save the caller stack frame and initialize the callee ARG/LCL segments
-    """
-    comment_count -= 3  # always injects a label first
-    prologue_size = 64  # realign stack frame (base = number of instructions in this func, excl push/label())
+    # ~6 instructions per VM command
+    def neg(self, cmd, comment_count, debug=False):
+        """
+        pop 2 values from the stack, push the MINUS result
+        """
+        comment_count -= 2
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
 
-    num_args = int(cmd.split(" ")[2])
-    func_label = cmd.split(" ")[1]  # Module.funcName (entry point)
-    asm, guids, comment_count, label_str = label(asm, cmd, src, guids, comment_count, debug=debug)
+        # eval one value, push result
+        self.asm += "@SP // &esp // %s\n" % cmd
+        self.asm += "M=M-1 // &esp-- (&val1)\n"
+        self.asm += "A=M // *esp (*val1)\n"
+        self.asm += "M=-M // esp = -val1\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    # stack frame before call = <args>...<SP>
-    # stack frame after call = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<SP>
+        return comment_count
 
-    if num_args == 0:
-        # TODO: the init'd return value doesn't matter so this could be inlined to just inc esp by num_locals?
-        self.push("push constant 9999 // call %s // if no args, create a space on the stack for "
-                  "the return" % func_label, "constant", "constant", 9999, vm_filepath)
-        prologue_size += 7  # 7 instructions per push()
-        num_args = 1
-        asm += "@%s // push RP\n" % label_str # return point (RP)
-    else:
-        asm += "@%s // call %s // push RP\n" % (label_str, func_label)
 
-    asm += "D=A // d = RP\n"
-    asm += "@SP // &esp\n"
-    asm += "A=M // *esp\n"
-    asm += "M=D // esp = RP\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+    # ~0 instructions per VM command
+    def label(self, cmd, src, guids, comment_count, debug=False):
+        """
+        translate labels and adjust debug line count
 
-    asm += "@LCL // &lcl[0] // save LCL to the stack\n"
-    asm += "D=M // d = *lcl[0]\n"
-    asm += "@SP // &esp\n"
-    asm += "A=M // *esp\n"
-    asm += "M=D // esp = lcl[0]\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+        label = src.label
+        function = src.func.label
+        call = src.func.guid
 
-    asm += "@ARG // &arg // save ARG to the stack\n"
-    asm += "D=M // d = *arg\n"
-    asm += "@SP // &esp\n"
-    asm += "A=M // *esp\n"
-    asm += "M=D // esp = arg\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+        anything injecting labels needs to dec commen_count
+        """
+        if cmd.startswith('label'):
+            comment_count -= 2  # normally handled by the calling function
 
-    asm += "@THIS // &this // save THIS to the stack\n"
-    asm += "D=M // d = *this\n"
-    asm += "@SP // &esp\n"
-    asm += "A=M // *esp\n"
-    asm += "M=D // esp = this\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+        # normal label resolution
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
+        asm_label = cmd.split(" ")[1]
 
-    asm += "@THAT // &that // save THAT to the stack\n"
-    asm += "D=M // d = *that\n"
-    asm += "@SP // &esp\n" 
-    asm += "A=M // *esp\n"
-    asm += "M=D // esp = that\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+1 // &esp++\n"
+        if cmd.startswith('function'):
+            self.asm += "(%s) // %s\n" % (asm_label, cmd)
+            label_str = asm_label
+        elif cmd.startswith('call'):
+            guid, guids = self.generate_guid(guids, debug=debug)
+            self.asm += "(%s.%s.%s) // %s\n" % (src, asm_label, guid, cmd)
+            label_str = "%s.%s.%s" % (src, asm_label, guid)
+        elif cmd.startswith('label'):
+            self.asm += "(%s.%s) // %s\n" % (src, asm_label, cmd)
+            label_str = "%s.%s" % (src, asm_label)
+            comment_count -= 1  # post-adjust for label
+        else:
+            raise RuntimeError("Translator: Unexpected command %s")
 
-    # num_locals can be computed in advance but push() writes to asm
-    current_function = cmd.split(" ")[1]
-    if current_function in local_dict:
-        num_locals = local_dict[current_function]
-        for i in range(0, num_locals):
-            # local segment is expected to be initialized to 0 so can't just increment esp by num_locals
-            asm, comment_count = self.push(asm, "push constant 0 // local(%s) init" % i, "constant", "constant", 0,
-                                      static_dict, offset_list, vm_filepath, comment_count, debug=debug)
+        return guids, comment_count, label_str
+
+
+    # ~2 instructions per VM command
+    def goto(self, cmd, src, comment_count, debug=False):
+        """
+        unconditional jump
+        """
+        comment_count -= 2
+
+        asm_label = cmd.split(" ")[1]
+        asm_label = "%s.%s" % (src, asm_label)
+
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
+        self.asm += "@%s // %s\n" % (asm_label, cmd)
+        self.asm += "0;JMP // unconditional jump\n"
+
+        return comment_count
+
+
+    # ~8 instructions per VM command
+    def if_goto(self, cmd, src, comment_count, debug=False):
+        """
+        pop a value off the stack and jump if true
+        """
+        comment_count -= 2
+        asm_label = cmd.split(" ")[1]
+        asm_label = "%s.%s" % (src, asm_label)
+
+        self.asm += '\n// (%s) %s\n' % (comment_count, cmd)
+
+        self.asm += "// compare val (if-goto conditional) with 0\n"
+        self.asm += "@0 // %s\n" % cmd
+        self.asm += "D=A // d = 0\n"
+        self.asm += "@SP // &esp // compare val to 0\n"
+        self.asm += "M=M-1 // &esp-- (&val)\n"
+        self.asm += "A=M // *esp (*val)\n"
+        self.asm += "D=M-D // d = val - 0 // leave esp here (pop equivalent)\n"
+
+        self.asm += "@%s\n" % asm_label
+        self.asm += "D;JNE // jump if not zero\n"
+
+        return comment_count
+
+
+    # TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
+    # ~63 instructions per VM command + 7 per local + 7 per arg
+    def call(self, cmd, src, guids, local_dict, comment_count, debug=False):
+        """
+        save the caller stack frame and initialize the callee ARG/LCL segments
+        """
+        comment_count -= 3  # always injects a label first
+        prologue_size = 64  # realign stack frame (base = number of instructions in this func, excl push/label())
+
+        num_args = int(cmd.split(" ")[2])
+        func_label = cmd.split(" ")[1]  # Module.funcName (entry point)
+        guids, comment_count, label_str = self.label(cmd, src, guids, comment_count, debug=debug)
+
+        # stack frame before call = <args>...<SP>
+        # stack frame after call = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<SP>
+
+        if num_args == 0:
+            # TODO: the init'd return value doesn't matter so this could be inlined to just inc esp by num_locals?
+            self.push("push constant 9999 // call %s // if no args, create a space on the stack for "
+                      "the return" % func_label, "constant", "constant", 9999, "")
             prologue_size += 7  # 7 instructions per push()
-    else:
-        num_locals = 0
+            num_args = 1
+            self.asm += "@%s // push RP\n" % label_str # return point (RP)
+        else:
+            self.asm += "@%s // call %s // push RP\n" % (label_str, func_label)
 
-    # TODO: can this be refactored to push the correct value above rather than double handling?
-    asm += "@%s // increment RP (SP-5+num_locals) by prologue_size\n" % (5+num_locals)
-    asm += "D=A // d = 5+num_locals\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M-D // &esp = &esp-(5+num_locals) (&rp)\n"
-    asm += "@%s // prologue_size\n" % prologue_size
-    asm += "D=A // d = prologue_size\n"
-    asm += "@SP // &esp (&rp)\n"
-    asm += "A=M // *esp (*rp)\n"
-    asm += "M=M+D // rp = rp+prologue_size\n"
-    asm += "@%s // 5+num_locals\n" % (5+num_locals)
-    asm += "D=A // d = 5+num_locals\n"
-    asm += "@SP // &esp\n"
-    asm += "M=M+D // *esp = *esp+(5+num_locals)\n"
+        self.asm += "D=A // d = RP\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "A=M // *esp\n"
+        self.asm += "M=D // esp = RP\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    asm += "@%s // (5+num_locals) // initialize ARG segment for callee\n" % (5+num_locals)
-    asm += "D=A // d = (5+num_locals)\n"
-    asm += "@SP // &esp\n"
-    asm += "D=M-D // d = *esp-(5+num_locals) (*RP) \n"
-    asm += "@%s // parse num_args from call <label> <num_args>\n" % num_args
-    asm += "D=D-A // d = rp-num_args (&arg1)\n"
-    asm += "@ARG // &arg\n"
-    asm += "M=D // *arg = &arg1\n"
+        self.asm += "@LCL // &lcl[0] // save LCL to the stack\n"
+        self.asm += "D=M // d = *lcl[0]\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "A=M // *esp\n"
+        self.asm += "M=D // esp = lcl[0]\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    asm += "@%s // (num_locals) // initialize callee LCL (same as SP if none) \n" % num_locals
-    asm += "D=A // d = num_locals\n"
-    asm += "@SP // (&esp currently at bottom of stack frame)\n"
-    asm += "D=M-D // d = *esp-num_locals (&lcl[0])\n"
-    asm += "@LCL // &lcl[0]\n"
-    asm += "M=D // &lcl[0] = &lcl[0]\n"
+        self.asm += "@ARG // &arg // save ARG to the stack\n"
+        self.asm += "D=M // d = *arg\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "A=M // *esp\n"
+        self.asm += "M=D // esp = arg\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    asm += "@%s // &func (parsed from call <label> <num_args>)\n" % func_label
-    asm += "0;JMP // *func // jump to function\n"
+        self.asm += "@THIS // &this // save THIS to the stack\n"
+        self.asm += "D=M // d = *this\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "A=M // *esp\n"
+        self.asm += "M=D // esp = this\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
 
-    return asm, guids, comment_count
+        self.asm += "@THAT // &that // save THAT to the stack\n"
+        self.asm += "D=M // d = *that\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "A=M // *esp\n"
+        self.asm += "M=D // esp = that\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+1 // &esp++\n"
+
+        # num_locals can be computed in advance but push() writes to asm
+        current_function = cmd.split(" ")[1]
+        if current_function in local_dict:
+            num_locals = local_dict[current_function]
+            for i in range(0, num_locals):
+                # local segment is expected to be initialized to 0 so can't just increment esp by num_locals
+                self.push("push constant 0 // local(%s) init" % i, "constant", "constant", 0, "")
+                prologue_size += 7  # 7 instructions per push()
+        else:
+            num_locals = 0
+
+        # TODO: can this be refactored to push the correct value above rather than double handling?
+        self.asm += "@%s // increment RP (SP-5+num_locals) by prologue_size\n" % (5+num_locals)
+        self.asm += "D=A // d = 5+num_locals\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M-D // &esp = &esp-(5+num_locals) (&rp)\n"
+        self.asm += "@%s // prologue_size\n" % prologue_size
+        self.asm += "D=A // d = prologue_size\n"
+        self.asm += "@SP // &esp (&rp)\n"
+        self.asm += "A=M // *esp (*rp)\n"
+        self.asm += "M=M+D // rp = rp+prologue_size\n"
+        self.asm += "@%s // 5+num_locals\n" % (5+num_locals)
+        self.asm += "D=A // d = 5+num_locals\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "M=M+D // *esp = *esp+(5+num_locals)\n"
+
+        self.asm += "@%s // (5+num_locals) // initialize ARG segment for callee\n" % (5+num_locals)
+        self.asm += "D=A // d = (5+num_locals)\n"
+        self.asm += "@SP // &esp\n"
+        self.asm += "D=M-D // d = *esp-(5+num_locals) (*RP) \n"
+        self.asm += "@%s // parse num_args from call <label> <num_args>\n" % num_args
+        self.asm += "D=D-A // d = rp-num_args (&arg1)\n"
+        self.asm += "@ARG // &arg\n"
+        self.asm += "M=D // *arg = &arg1\n"
+
+        self.asm += "@%s // (num_locals) // initialize callee LCL (same as SP if none) \n" % num_locals
+        self.asm += "D=A // d = num_locals\n"
+        self.asm += "@SP // (&esp currently at bottom of stack frame)\n"
+        self.asm += "D=M-D // d = *esp-num_locals (&lcl[0])\n"
+        self.asm += "@LCL // &lcl[0]\n"
+        self.asm += "M=D // &lcl[0] = &lcl[0]\n"
+
+        self.asm += "@%s // &func (parsed from call <label> <num_args>)\n" % func_label
+        self.asm += "0;JMP // *func // jump to function\n"
+
+        return guids, comment_count
 
 
 # ~0 instructions per VM command
