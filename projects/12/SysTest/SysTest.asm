@@ -1,11 +1,11 @@
 
-// (-3) function Sys.init 0
+// function Sys.init 0
 (Sys.init) // function Sys.init 0
 
-// (-7) call Memory.init 0
+// call Memory.init 0
 (sys.Memory.init.1) // call Memory.init 0 // function Sys.init 0
 
-// (-9) push constant 9999 // call Memory.init // if no args, create a space on the stack for the return
+// push constant 9999 // call Memory.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Memory.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -77,7 +77,7 @@ D=M-D // d = *esp-num_locals (&lcl[0])
 M=D // &lcl[0] = &lcl[0]
 @Memory.init // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
-// (-11) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -92,10 +92,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-14) call Math.init 0
+// call Math.init 0
 (sys.Math.init.2) // call Math.init 0
 
-// (-16) push constant 9999 // call Math.init // if no args, create a space on the stack for the return
+// push constant 9999 // call Math.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Math.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -139,7 +139,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-18) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -177,7 +177,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.init // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-20) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -192,10 +192,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-23) call Screen.init 0
+// call Screen.init 0
 (sys.Screen.init.3) // call Screen.init 0
 
-// (-25) push constant 9999 // call Screen.init // if no args, create a space on the stack for the return
+// push constant 9999 // call Screen.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Screen.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -239,7 +239,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-27) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -277,7 +277,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.init // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-29) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -292,10 +292,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-32) call Output.init 0
+// call Output.init 0
 (sys.Output.init.4) // call Output.init 0
 
-// (-34) push constant 9999 // call Output.init // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -368,7 +368,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.init // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-36) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -383,10 +383,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-39) call Keyboard.init 0
+// call Keyboard.init 0
 (sys.Keyboard.init.5) // call Keyboard.init 0
 
-// (-41) push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return
+// push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -459,7 +459,7 @@ M=D // &lcl[0] = &lcl[0]
 @Keyboard.init // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-43) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -474,10 +474,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-46) call Main.main 0
+// call Main.main 0
 (sys.Main.main.6) // call Main.main 0
 
-// (-48) push constant 9999 // call Main.main // if no args, create a space on the stack for the return
+// push constant 9999 // call Main.main // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Main.main // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -521,7 +521,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-50) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -559,7 +559,7 @@ M=D // &lcl[0] = &lcl[0]
 @Main.main // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-52) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -574,10 +574,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-55) call Sys.halt 0
+// call Sys.halt 0
 (sys.Sys.halt.7) // call Sys.halt 0
 
-// (-57) push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
+// push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -650,7 +650,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.halt // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-59) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -665,7 +665,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-61) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -674,9 +674,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-63) return
+// return
 
-// (-65) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -731,13 +731,13 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-67) function Sys.halt 0
+// function Sys.halt 0
 (Sys.halt) // function Sys.halt 0
 
-// (-70) label WHILE_EXP0
+// label WHILE_EXP0
 (sys.WHILE_EXP0) // label WHILE_EXP0
 
-// (-73) push constant 0
+// push constant 0
 @0 // push constant 0 // function Sys.halt 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -745,7 +745,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-75) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -753,7 +753,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-77) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -761,7 +761,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-79) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -772,14 +772,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.WHILE_END0
 D;JNE // jump if not zero
 
-// (-81) goto WHILE_EXP0
+// goto WHILE_EXP0
 @sys.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-83) label WHILE_END0
+// label WHILE_END0
 (sys.WHILE_END0) // label WHILE_END0
 
-// (-86) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -788,9 +788,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-88) return
+// return
 
-// (-90) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -845,10 +845,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-92) function Sys.wait 1
+// function Sys.wait 1
 (Sys.wait) // function Sys.wait 1
 
-// (-95) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Sys.wait 1 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -859,7 +859,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-97) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -868,7 +868,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-99) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -894,7 +894,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-104) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -905,14 +905,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-106) goto IF_FALSE0
+// goto IF_FALSE0
 @sys.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-108) label IF_TRUE0
+// label IF_TRUE0
 (sys.IF_TRUE0) // label IF_TRUE0
 
-// (-111) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -921,7 +921,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-114) call Sys.error 1
+// call Sys.error 1
 (sys.Sys.error.9) // call Sys.error 1
 @sys.Sys.error.9 // call Sys.error // push RP
 D=A // d = RP
@@ -988,7 +988,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-116) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1003,13 +1003,13 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-118) label IF_FALSE0
+// label IF_FALSE0
 (sys.IF_FALSE0) // label IF_FALSE0
 
-// (-121) label WHILE_EXP0
+// label WHILE_EXP0
 (sys.WHILE_EXP0) // label WHILE_EXP0
 
-// (-124) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -1021,7 +1021,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-126) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1030,7 +1030,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-128) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -1056,7 +1056,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-133) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -1064,7 +1064,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-135) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -1075,7 +1075,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.WHILE_END0
 D;JNE // jump if not zero
 
-// (-137) push constant 50
+// push constant 50
 @50 // push constant 50 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1084,7 +1084,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-139) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1099,10 +1099,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-141) label WHILE_EXP1
+// label WHILE_EXP1
 (sys.WHILE_EXP1) // label WHILE_EXP1
 
-// (-144) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -1114,7 +1114,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-146) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1123,7 +1123,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-148) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -1149,7 +1149,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-153) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -1157,7 +1157,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-155) if-goto WHILE_END1
+// if-goto WHILE_END1
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END1
 D=A // d = 0
@@ -1168,7 +1168,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @sys.WHILE_END1
 D;JNE // jump if not zero
 
-// (-157) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -1180,7 +1180,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-159) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1189,7 +1189,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-161) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -1201,7 +1201,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-163) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1216,14 +1216,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-165) goto WHILE_EXP1
+// goto WHILE_EXP1
 @sys.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
-// (-167) label WHILE_END1
+// label WHILE_END1
 (sys.WHILE_END1) // label WHILE_END1
 
-// (-170) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -1235,7 +1235,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-172) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1244,7 +1244,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-174) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -1256,7 +1256,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-176) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1271,14 +1271,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-178) goto WHILE_EXP0
+// goto WHILE_EXP0
 @sys.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-180) label WHILE_END0
+// label WHILE_END0
 (sys.WHILE_END0) // label WHILE_END0
 
-// (-183) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1287,9 +1287,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-185) return
+// return
 
-// (-187) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1344,10 +1344,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-189) function Sys.error 0
+// function Sys.error 0
 (Sys.error) // function Sys.error 0
 
-// (-192) push constant 69
+// push constant 69
 @69 // push constant 69 // function Sys.error 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1355,7 +1355,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-195) call Output.printChar 1
+// call Output.printChar 1
 (sys.Output.printChar.12) // call Output.printChar 1
 @sys.Output.printChar.12 // call Output.printChar // push RP
 D=A // d = RP
@@ -1422,7 +1422,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-197) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1437,7 +1437,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-199) push constant 82
+// push constant 82
 @82 // push constant 82 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1446,7 +1446,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-202) call Output.printChar 1
+// call Output.printChar 1
 (sys.Output.printChar.13) // call Output.printChar 1
 @sys.Output.printChar.13 // call Output.printChar // push RP
 D=A // d = RP
@@ -1513,7 +1513,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-204) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1528,7 +1528,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-206) push constant 82
+// push constant 82
 @82 // push constant 82 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1537,7 +1537,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-209) call Output.printChar 1
+// call Output.printChar 1
 (sys.Output.printChar.14) // call Output.printChar 1
 @sys.Output.printChar.14 // call Output.printChar // push RP
 D=A // d = RP
@@ -1604,7 +1604,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-211) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1619,7 +1619,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-213) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -1631,7 +1631,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-216) call Output.printInt 1
+// call Output.printInt 1
 (sys.Output.printInt.15) // call Output.printInt 1
 @sys.Output.printInt.15 // call Output.printInt // push RP
 D=A // d = RP
@@ -1698,7 +1698,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printInt // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-218) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1713,10 +1713,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-221) call Sys.halt 0
+// call Sys.halt 0
 (sys.Sys.halt.16) // call Sys.halt 0
 
-// (-223) push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
+// push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -1789,7 +1789,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.halt // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-225) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1804,7 +1804,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-227) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1813,9 +1813,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-229) return
+// return
 
-// (-231) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -1870,10 +1870,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-233) function Main.main 1
+// function Main.main 1
 (Main.main) // function Main.main 1
 
-// (-236) push constant 10
+// push constant 10
 @10 // push constant 10 // function Main.main 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1881,7 +1881,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-239) call String.new 1
+// call String.new 1
 (main.String.new.17) // call String.new 1
 @main.String.new.17 // call String.new // push RP
 D=A // d = RP
@@ -1948,7 +1948,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-241) push constant 87
+// push constant 87
 @87 // push constant 87 (constant)
 D=A // d = constant
 @SP // &esp
@@ -1957,7 +1957,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-244) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.18) // call String.appendChar 2
 @main.String.appendChar.18 // call String.appendChar // push RP
 D=A // d = RP
@@ -2024,7 +2024,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-246) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2033,7 +2033,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-249) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.19) // call String.appendChar 2
 @main.String.appendChar.19 // call String.appendChar // push RP
 D=A // d = RP
@@ -2100,7 +2100,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-251) push constant 105
+// push constant 105
 @105 // push constant 105 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2109,7 +2109,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-254) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.20) // call String.appendChar 2
 @main.String.appendChar.20 // call String.appendChar // push RP
 D=A // d = RP
@@ -2176,7 +2176,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-256) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2185,7 +2185,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-259) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.21) // call String.appendChar 2
 @main.String.appendChar.21 // call String.appendChar // push RP
 D=A // d = RP
@@ -2252,7 +2252,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-261) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2261,7 +2261,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-264) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.22) // call String.appendChar 2
 @main.String.appendChar.22 // call String.appendChar // push RP
 D=A // d = RP
@@ -2328,7 +2328,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-266) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2337,7 +2337,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-269) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.23) // call String.appendChar 2
 @main.String.appendChar.23 // call String.appendChar // push RP
 D=A // d = RP
@@ -2404,7 +2404,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-271) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2413,7 +2413,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-274) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.24) // call String.appendChar 2
 @main.String.appendChar.24 // call String.appendChar // push RP
 D=A // d = RP
@@ -2480,7 +2480,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-276) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2489,7 +2489,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-279) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.25) // call String.appendChar 2
 @main.String.appendChar.25 // call String.appendChar // push RP
 D=A // d = RP
@@ -2556,7 +2556,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-281) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2565,7 +2565,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-284) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.26) // call String.appendChar 2
 @main.String.appendChar.26 // call String.appendChar // push RP
 D=A // d = RP
@@ -2632,7 +2632,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-286) push constant 58
+// push constant 58
 @58 // push constant 58 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2641,7 +2641,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-289) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.27) // call String.appendChar 2
 @main.String.appendChar.27 // call String.appendChar // push RP
 D=A // d = RP
@@ -2708,7 +2708,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-292) call Output.printString 1
+// call Output.printString 1
 (main.Output.printString.28) // call Output.printString 1
 @main.Output.printString.28 // call Output.printString // push RP
 D=A // d = RP
@@ -2746,7 +2746,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-294) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -2755,7 +2755,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-296) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -2793,7 +2793,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printString // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-298) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -2808,10 +2808,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-301) call Output.println 0
+// call Output.println 0
 (main.Output.println.29) // call Output.println 0
 
-// (-303) push constant 9999 // call Output.println // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -2884,7 +2884,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.println // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-305) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -2899,7 +2899,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-307) push constant 64
+// push constant 64
 @64 // push constant 64 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2908,7 +2908,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-310) call String.new 1
+// call String.new 1
 (main.String.new.30) // call String.new 1
 @main.String.new.30 // call String.new // push RP
 D=A // d = RP
@@ -2975,7 +2975,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-312) push constant 80
+// push constant 80
 @80 // push constant 80 (constant)
 D=A // d = constant
 @SP // &esp
@@ -2984,7 +2984,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-315) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.31) // call String.appendChar 2
 @main.String.appendChar.31 // call String.appendChar // push RP
 D=A // d = RP
@@ -3051,7 +3051,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-317) push constant 114
+// push constant 114
 @114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3060,7 +3060,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-320) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.32) // call String.appendChar 2
 @main.String.appendChar.32 // call String.appendChar // push RP
 D=A // d = RP
@@ -3127,7 +3127,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-322) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3136,7 +3136,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-325) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.33) // call String.appendChar 2
 @main.String.appendChar.33 // call String.appendChar // push RP
 D=A // d = RP
@@ -3203,7 +3203,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-327) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3212,7 +3212,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-330) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.34) // call String.appendChar 2
 @main.String.appendChar.34 // call String.appendChar // push RP
 D=A // d = RP
@@ -3279,7 +3279,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-332) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3288,7 +3288,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-335) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.35) // call String.appendChar 2
 @main.String.appendChar.35 // call String.appendChar // push RP
 D=A // d = RP
@@ -3355,7 +3355,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-337) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3364,7 +3364,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-340) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.36) // call String.appendChar 2
 @main.String.appendChar.36 // call String.appendChar // push RP
 D=A // d = RP
@@ -3431,7 +3431,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-342) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3440,7 +3440,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-345) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.37) // call String.appendChar 2
 @main.String.appendChar.37 // call String.appendChar // push RP
 D=A // d = RP
@@ -3507,7 +3507,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-347) push constant 110
+// push constant 110
 @110 // push constant 110 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3516,7 +3516,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-350) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.38) // call String.appendChar 2
 @main.String.appendChar.38 // call String.appendChar // push RP
 D=A // d = RP
@@ -3583,7 +3583,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-352) push constant 121
+// push constant 121
 @121 // push constant 121 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3592,7 +3592,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-355) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.39) // call String.appendChar 2
 @main.String.appendChar.39 // call String.appendChar // push RP
 D=A // d = RP
@@ -3659,7 +3659,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-357) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3668,7 +3668,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-360) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.40) // call String.appendChar 2
 @main.String.appendChar.40 // call String.appendChar // push RP
 D=A // d = RP
@@ -3735,7 +3735,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-362) push constant 107
+// push constant 107
 @107 // push constant 107 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3744,7 +3744,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-365) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.41) // call String.appendChar 2
 @main.String.appendChar.41 // call String.appendChar // push RP
 D=A // d = RP
@@ -3811,7 +3811,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-367) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3820,7 +3820,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-370) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.42) // call String.appendChar 2
 @main.String.appendChar.42 // call String.appendChar // push RP
 D=A // d = RP
@@ -3887,7 +3887,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-372) push constant 121
+// push constant 121
 @121 // push constant 121 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3896,7 +3896,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-375) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.43) // call String.appendChar 2
 @main.String.appendChar.43 // call String.appendChar // push RP
 D=A // d = RP
@@ -3963,7 +3963,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-377) push constant 46
+// push constant 46
 @46 // push constant 46 (constant)
 D=A // d = constant
 @SP // &esp
@@ -3972,7 +3972,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-380) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.44) // call String.appendChar 2
 @main.String.appendChar.44 // call String.appendChar // push RP
 D=A // d = RP
@@ -4039,7 +4039,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-382) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4048,7 +4048,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-385) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.45) // call String.appendChar 2
 @main.String.appendChar.45 // call String.appendChar // push RP
 D=A // d = RP
@@ -4115,7 +4115,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-387) push constant 65
+// push constant 65
 @65 // push constant 65 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4124,7 +4124,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-390) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.46) // call String.appendChar 2
 @main.String.appendChar.46 // call String.appendChar // push RP
 D=A // d = RP
@@ -4191,7 +4191,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-392) push constant 102
+// push constant 102
 @102 // push constant 102 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4200,7 +4200,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-395) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.47) // call String.appendChar 2
 @main.String.appendChar.47 // call String.appendChar // push RP
 D=A // d = RP
@@ -4267,7 +4267,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-397) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4276,7 +4276,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-400) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.48) // call String.appendChar 2
 @main.String.appendChar.48 // call String.appendChar // push RP
 D=A // d = RP
@@ -4343,7 +4343,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-402) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4352,7 +4352,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-405) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.49) // call String.appendChar 2
 @main.String.appendChar.49 // call String.appendChar // push RP
 D=A // d = RP
@@ -4419,7 +4419,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-407) push constant 114
+// push constant 114
 @114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4428,7 +4428,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-410) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.50) // call String.appendChar 2
 @main.String.appendChar.50 // call String.appendChar // push RP
 D=A // d = RP
@@ -4495,7 +4495,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-412) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4504,7 +4504,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-415) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.51) // call String.appendChar 2
 @main.String.appendChar.51 // call String.appendChar // push RP
 D=A // d = RP
@@ -4571,7 +4571,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-417) push constant 50
+// push constant 50
 @50 // push constant 50 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4580,7 +4580,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-420) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.52) // call String.appendChar 2
 @main.String.appendChar.52 // call String.appendChar // push RP
 D=A // d = RP
@@ -4647,7 +4647,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-422) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4656,7 +4656,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-425) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.53) // call String.appendChar 2
 @main.String.appendChar.53 // call String.appendChar // push RP
 D=A // d = RP
@@ -4723,7 +4723,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-427) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4732,7 +4732,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-430) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.54) // call String.appendChar 2
 @main.String.appendChar.54 // call String.appendChar // push RP
 D=A // d = RP
@@ -4799,7 +4799,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-432) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4808,7 +4808,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-435) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.55) // call String.appendChar 2
 @main.String.appendChar.55 // call String.appendChar // push RP
 D=A // d = RP
@@ -4875,7 +4875,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-437) push constant 99
+// push constant 99
 @99 // push constant 99 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4884,7 +4884,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-440) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.56) // call String.appendChar 2
 @main.String.appendChar.56 // call String.appendChar // push RP
 D=A // d = RP
@@ -4951,7 +4951,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-442) push constant 111
+// push constant 111
 @111 // push constant 111 (constant)
 D=A // d = constant
 @SP // &esp
@@ -4960,7 +4960,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-445) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.57) // call String.appendChar 2
 @main.String.appendChar.57 // call String.appendChar // push RP
 D=A // d = RP
@@ -5027,7 +5027,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-447) push constant 110
+// push constant 110
 @110 // push constant 110 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5036,7 +5036,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-450) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.58) // call String.appendChar 2
 @main.String.appendChar.58 // call String.appendChar // push RP
 D=A // d = RP
@@ -5103,7 +5103,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-452) push constant 100
+// push constant 100
 @100 // push constant 100 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5112,7 +5112,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-455) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.59) // call String.appendChar 2
 @main.String.appendChar.59 // call String.appendChar // push RP
 D=A // d = RP
@@ -5179,7 +5179,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-457) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5188,7 +5188,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-460) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.60) // call String.appendChar 2
 @main.String.appendChar.60 // call String.appendChar // push RP
 D=A // d = RP
@@ -5255,7 +5255,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-462) push constant 44
+// push constant 44
 @44 // push constant 44 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5264,7 +5264,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-465) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.61) // call String.appendChar 2
 @main.String.appendChar.61 // call String.appendChar // push RP
 D=A // d = RP
@@ -5331,7 +5331,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-467) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5340,7 +5340,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-470) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.62) // call String.appendChar 2
 @main.String.appendChar.62 // call String.appendChar // push RP
 D=A // d = RP
@@ -5407,7 +5407,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-472) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5416,7 +5416,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-475) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.63) // call String.appendChar 2
 @main.String.appendChar.63 // call String.appendChar // push RP
 D=A // d = RP
@@ -5483,7 +5483,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-477) push constant 110
+// push constant 110
 @110 // push constant 110 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5492,7 +5492,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-480) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.64) // call String.appendChar 2
 @main.String.appendChar.64 // call String.appendChar // push RP
 D=A // d = RP
@@ -5559,7 +5559,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-482) push constant 111
+// push constant 111
 @111 // push constant 111 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5568,7 +5568,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-485) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.65) // call String.appendChar 2
 @main.String.appendChar.65 // call String.appendChar // push RP
 D=A // d = RP
@@ -5635,7 +5635,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-487) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5644,7 +5644,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-490) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.66) // call String.appendChar 2
 @main.String.appendChar.66 // call String.appendChar // push RP
 D=A // d = RP
@@ -5711,7 +5711,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-492) push constant 104
+// push constant 104
 @104 // push constant 104 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5720,7 +5720,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-495) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.67) // call String.appendChar 2
 @main.String.appendChar.67 // call String.appendChar // push RP
 D=A // d = RP
@@ -5787,7 +5787,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-497) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5796,7 +5796,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-500) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.68) // call String.appendChar 2
 @main.String.appendChar.68 // call String.appendChar // push RP
 D=A // d = RP
@@ -5863,7 +5863,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-502) push constant 114
+// push constant 114
 @114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5872,7 +5872,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-505) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.69) // call String.appendChar 2
 @main.String.appendChar.69 // call String.appendChar // push RP
 D=A // d = RP
@@ -5939,7 +5939,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-507) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -5948,7 +5948,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-510) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.70) // call String.appendChar 2
 @main.String.appendChar.70 // call String.appendChar // push RP
 D=A // d = RP
@@ -6015,7 +6015,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-512) push constant 109
+// push constant 109
 @109 // push constant 109 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6024,7 +6024,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-515) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.71) // call String.appendChar 2
 @main.String.appendChar.71 // call String.appendChar // push RP
 D=A // d = RP
@@ -6091,7 +6091,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-517) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6100,7 +6100,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-520) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.72) // call String.appendChar 2
 @main.String.appendChar.72 // call String.appendChar // push RP
 D=A // d = RP
@@ -6167,7 +6167,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-522) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6176,7 +6176,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-525) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.73) // call String.appendChar 2
 @main.String.appendChar.73 // call String.appendChar // push RP
 D=A // d = RP
@@ -6243,7 +6243,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-527) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6252,7 +6252,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-530) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.74) // call String.appendChar 2
 @main.String.appendChar.74 // call String.appendChar // push RP
 D=A // d = RP
@@ -6319,7 +6319,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-532) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6328,7 +6328,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-535) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.75) // call String.appendChar 2
 @main.String.appendChar.75 // call String.appendChar // push RP
 D=A // d = RP
@@ -6395,7 +6395,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-537) push constant 103
+// push constant 103
 @103 // push constant 103 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6404,7 +6404,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-540) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.76) // call String.appendChar 2
 @main.String.appendChar.76 // call String.appendChar // push RP
 D=A // d = RP
@@ -6471,7 +6471,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-542) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6480,7 +6480,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-545) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.77) // call String.appendChar 2
 @main.String.appendChar.77 // call String.appendChar // push RP
 D=A // d = RP
@@ -6547,7 +6547,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-547) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6556,7 +6556,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-550) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.78) // call String.appendChar 2
 @main.String.appendChar.78 // call String.appendChar // push RP
 D=A // d = RP
@@ -6623,7 +6623,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-552) push constant 119
+// push constant 119
 @119 // push constant 119 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6632,7 +6632,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-555) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.79) // call String.appendChar 2
 @main.String.appendChar.79 // call String.appendChar // push RP
 D=A // d = RP
@@ -6699,7 +6699,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-557) push constant 105
+// push constant 105
 @105 // push constant 105 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6708,7 +6708,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-560) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.80) // call String.appendChar 2
 @main.String.appendChar.80 // call String.appendChar // push RP
 D=A // d = RP
@@ -6775,7 +6775,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-562) push constant 108
+// push constant 108
 @108 // push constant 108 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6784,7 +6784,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-565) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.81) // call String.appendChar 2
 @main.String.appendChar.81 // call String.appendChar // push RP
 D=A // d = RP
@@ -6851,7 +6851,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-567) push constant 108
+// push constant 108
 @108 // push constant 108 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6860,7 +6860,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-570) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.82) // call String.appendChar 2
 @main.String.appendChar.82 // call String.appendChar // push RP
 D=A // d = RP
@@ -6927,7 +6927,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-572) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -6936,7 +6936,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-575) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.83) // call String.appendChar 2
 @main.String.appendChar.83 // call String.appendChar // push RP
 D=A // d = RP
@@ -7003,7 +7003,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-577) push constant 98
+// push constant 98
 @98 // push constant 98 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7012,7 +7012,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-580) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.84) // call String.appendChar 2
 @main.String.appendChar.84 // call String.appendChar // push RP
 D=A // d = RP
@@ -7079,7 +7079,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-582) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7088,7 +7088,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-585) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.85) // call String.appendChar 2
 @main.String.appendChar.85 // call String.appendChar // push RP
 D=A // d = RP
@@ -7155,7 +7155,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-587) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7164,7 +7164,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-590) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.86) // call String.appendChar 2
 @main.String.appendChar.86 // call String.appendChar // push RP
 D=A // d = RP
@@ -7231,7 +7231,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-592) push constant 112
+// push constant 112
 @112 // push constant 112 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7240,7 +7240,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-595) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.87) // call String.appendChar 2
 @main.String.appendChar.87 // call String.appendChar // push RP
 D=A // d = RP
@@ -7307,7 +7307,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-597) push constant 114
+// push constant 114
 @114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7316,7 +7316,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-600) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.88) // call String.appendChar 2
 @main.String.appendChar.88 // call String.appendChar // push RP
 D=A // d = RP
@@ -7383,7 +7383,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-602) push constant 105
+// push constant 105
 @105 // push constant 105 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7392,7 +7392,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-605) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.89) // call String.appendChar 2
 @main.String.appendChar.89 // call String.appendChar // push RP
 D=A // d = RP
@@ -7459,7 +7459,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-607) push constant 110
+// push constant 110
 @110 // push constant 110 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7468,7 +7468,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-610) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.90) // call String.appendChar 2
 @main.String.appendChar.90 // call String.appendChar // push RP
 D=A // d = RP
@@ -7535,7 +7535,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-612) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7544,7 +7544,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-615) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.91) // call String.appendChar 2
 @main.String.appendChar.91 // call String.appendChar // push RP
 D=A // d = RP
@@ -7611,7 +7611,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-617) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7620,7 +7620,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-620) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.92) // call String.appendChar 2
 @main.String.appendChar.92 // call String.appendChar // push RP
 D=A // d = RP
@@ -7687,7 +7687,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-622) push constant 100
+// push constant 100
 @100 // push constant 100 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7696,7 +7696,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-625) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.93) // call String.appendChar 2
 @main.String.appendChar.93 // call String.appendChar // push RP
 D=A // d = RP
@@ -7763,7 +7763,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-627) push constant 58
+// push constant 58
 @58 // push constant 58 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7772,7 +7772,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-630) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.94) // call String.appendChar 2
 @main.String.appendChar.94 // call String.appendChar // push RP
 D=A // d = RP
@@ -7839,7 +7839,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-633) call Output.printString 1
+// call Output.printString 1
 (main.Output.printString.95) // call Output.printString 1
 @main.Output.printString.95 // call Output.printString // push RP
 D=A // d = RP
@@ -7877,7 +7877,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-635) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -7886,7 +7886,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-637) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -7924,7 +7924,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printString // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-639) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -7939,10 +7939,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-641) label WHILE_EXP0
+// label WHILE_EXP0
 (main.WHILE_EXP0) // label WHILE_EXP0
 
-// (-644) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -7954,7 +7954,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-646) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -7963,7 +7963,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-648) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -7989,7 +7989,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-653) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -7997,7 +7997,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-655) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -8008,10 +8008,10 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @main.WHILE_END0
 D;JNE // jump if not zero
 
-// (-658) call Keyboard.keyPressed 0
+// call Keyboard.keyPressed 0
 (main.Keyboard.keyPressed.97) // call Keyboard.keyPressed 0
 
-// (-660) push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
+// push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -8084,7 +8084,7 @@ M=D // &lcl[0] = &lcl[0]
 @Keyboard.keyPressed // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-662) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -8099,17 +8099,17 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-664) goto WHILE_EXP0
+// goto WHILE_EXP0
 @main.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-666) label WHILE_END0
+// label WHILE_END0
 (main.WHILE_END0) // label WHILE_END0
 
-// (-669) label WHILE_EXP1
+// label WHILE_EXP1
 (main.WHILE_EXP1) // label WHILE_EXP1
 
-// (-672) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -8121,7 +8121,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-674) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8130,7 +8130,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-676) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -8156,7 +8156,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-681) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -8164,7 +8164,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-683) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -8172,7 +8172,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-685) if-goto WHILE_END1
+// if-goto WHILE_END1
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END1
 D=A // d = 0
@@ -8183,10 +8183,10 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @main.WHILE_END1
 D;JNE // jump if not zero
 
-// (-688) call Keyboard.keyPressed 0
+// call Keyboard.keyPressed 0
 (main.Keyboard.keyPressed.99) // call Keyboard.keyPressed 0
 
-// (-690) push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
+// push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -8259,7 +8259,7 @@ M=D // &lcl[0] = &lcl[0]
 @Keyboard.keyPressed // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-692) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -8274,14 +8274,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-694) goto WHILE_EXP1
+// goto WHILE_EXP1
 @main.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
-// (-696) label WHILE_END1
+// label WHILE_END1
 (main.WHILE_END1) // label WHILE_END1
 
-// (-699) push constant 2000
+// push constant 2000
 @2000 // push constant 2000 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8290,7 +8290,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-702) call Sys.wait 1
+// call Sys.wait 1
 (main.Sys.wait.100) // call Sys.wait 1
 @main.Sys.wait.100 // call Sys.wait // push RP
 D=A // d = RP
@@ -8328,7 +8328,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-704) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -8366,7 +8366,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.wait // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-706) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -8381,10 +8381,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-709) call Output.println 0
+// call Output.println 0
 (main.Output.println.101) // call Output.println 0
 
-// (-711) push constant 9999 // call Output.println // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -8457,7 +8457,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.println // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-713) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -8472,7 +8472,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-715) push constant 45
+// push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8481,7 +8481,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-718) call String.new 1
+// call String.new 1
 (main.String.new.102) // call String.new 1
 @main.String.new.102 // call String.new // push RP
 D=A // d = RP
@@ -8548,7 +8548,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-720) push constant 84
+// push constant 84
 @84 // push constant 84 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8557,7 +8557,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-723) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.103) // call String.appendChar 2
 @main.String.appendChar.103 // call String.appendChar // push RP
 D=A // d = RP
@@ -8624,7 +8624,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-725) push constant 105
+// push constant 105
 @105 // push constant 105 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8633,7 +8633,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-728) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.104) // call String.appendChar 2
 @main.String.appendChar.104 // call String.appendChar // push RP
 D=A // d = RP
@@ -8700,7 +8700,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-730) push constant 109
+// push constant 109
 @109 // push constant 109 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8709,7 +8709,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-733) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.105) // call String.appendChar 2
 @main.String.appendChar.105 // call String.appendChar // push RP
 D=A // d = RP
@@ -8776,7 +8776,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-735) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8785,7 +8785,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-738) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.106) // call String.appendChar 2
 @main.String.appendChar.106 // call String.appendChar // push RP
 D=A // d = RP
@@ -8852,7 +8852,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-740) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8861,7 +8861,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-743) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.107) // call String.appendChar 2
 @main.String.appendChar.107 // call String.appendChar // push RP
 D=A // d = RP
@@ -8928,7 +8928,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-745) push constant 105
+// push constant 105
 @105 // push constant 105 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8937,7 +8937,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-748) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.108) // call String.appendChar 2
 @main.String.appendChar.108 // call String.appendChar // push RP
 D=A // d = RP
@@ -9004,7 +9004,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-750) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9013,7 +9013,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-753) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.109) // call String.appendChar 2
 @main.String.appendChar.109 // call String.appendChar // push RP
 D=A // d = RP
@@ -9080,7 +9080,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-755) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9089,7 +9089,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-758) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.110) // call String.appendChar 2
 @main.String.appendChar.110 // call String.appendChar // push RP
 D=A // d = RP
@@ -9156,7 +9156,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-760) push constant 117
+// push constant 117
 @117 // push constant 117 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9165,7 +9165,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-763) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.111) // call String.appendChar 2
 @main.String.appendChar.111 // call String.appendChar // push RP
 D=A // d = RP
@@ -9232,7 +9232,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-765) push constant 112
+// push constant 112
 @112 // push constant 112 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9241,7 +9241,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-768) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.112) // call String.appendChar 2
 @main.String.appendChar.112 // call String.appendChar // push RP
 D=A // d = RP
@@ -9308,7 +9308,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-770) push constant 46
+// push constant 46
 @46 // push constant 46 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9317,7 +9317,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-773) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.113) // call String.appendChar 2
 @main.String.appendChar.113 // call String.appendChar // push RP
 D=A // d = RP
@@ -9384,7 +9384,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-775) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9393,7 +9393,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-778) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.114) // call String.appendChar 2
 @main.String.appendChar.114 // call String.appendChar // push RP
 D=A // d = RP
@@ -9460,7 +9460,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-780) push constant 77
+// push constant 77
 @77 // push constant 77 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9469,7 +9469,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-783) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.115) // call String.appendChar 2
 @main.String.appendChar.115 // call String.appendChar // push RP
 D=A // d = RP
@@ -9536,7 +9536,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-785) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9545,7 +9545,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-788) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.116) // call String.appendChar 2
 @main.String.appendChar.116 // call String.appendChar // push RP
 D=A // d = RP
@@ -9612,7 +9612,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-790) push constant 107
+// push constant 107
 @107 // push constant 107 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9621,7 +9621,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-793) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.117) // call String.appendChar 2
 @main.String.appendChar.117 // call String.appendChar // push RP
 D=A // d = RP
@@ -9688,7 +9688,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-795) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9697,7 +9697,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-798) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.118) // call String.appendChar 2
 @main.String.appendChar.118 // call String.appendChar // push RP
 D=A // d = RP
@@ -9764,7 +9764,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-800) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9773,7 +9773,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-803) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.119) // call String.appendChar 2
 @main.String.appendChar.119 // call String.appendChar // push RP
 D=A // d = RP
@@ -9840,7 +9840,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-805) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9849,7 +9849,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-808) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.120) // call String.appendChar 2
 @main.String.appendChar.120 // call String.appendChar // push RP
 D=A // d = RP
@@ -9916,7 +9916,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-810) push constant 117
+// push constant 117
 @117 // push constant 117 (constant)
 D=A // d = constant
 @SP // &esp
@@ -9925,7 +9925,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-813) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.121) // call String.appendChar 2
 @main.String.appendChar.121 // call String.appendChar // push RP
 D=A // d = RP
@@ -9992,7 +9992,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-815) push constant 114
+// push constant 114
 @114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10001,7 +10001,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-818) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.122) // call String.appendChar 2
 @main.String.appendChar.122 // call String.appendChar // push RP
 D=A // d = RP
@@ -10068,7 +10068,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-820) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10077,7 +10077,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-823) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.123) // call String.appendChar 2
 @main.String.appendChar.123 // call String.appendChar // push RP
 D=A // d = RP
@@ -10144,7 +10144,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-825) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10153,7 +10153,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-828) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.124) // call String.appendChar 2
 @main.String.appendChar.124 // call String.appendChar // push RP
 D=A // d = RP
@@ -10220,7 +10220,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-830) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10229,7 +10229,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-833) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.125) // call String.appendChar 2
 @main.String.appendChar.125 // call String.appendChar // push RP
 D=A // d = RP
@@ -10296,7 +10296,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-835) push constant 104
+// push constant 104
 @104 // push constant 104 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10305,7 +10305,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-838) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.126) // call String.appendChar 2
 @main.String.appendChar.126 // call String.appendChar // push RP
 D=A // d = RP
@@ -10372,7 +10372,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-840) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10381,7 +10381,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-843) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.127) // call String.appendChar 2
 @main.String.appendChar.127 // call String.appendChar // push RP
 D=A // d = RP
@@ -10448,7 +10448,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-845) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10457,7 +10457,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-848) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.128) // call String.appendChar 2
 @main.String.appendChar.128 // call String.appendChar // push RP
 D=A // d = RP
@@ -10524,7 +10524,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-850) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10533,7 +10533,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-853) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.129) // call String.appendChar 2
 @main.String.appendChar.129 // call String.appendChar // push RP
 D=A // d = RP
@@ -10600,7 +10600,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-855) push constant 50
+// push constant 50
 @50 // push constant 50 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10609,7 +10609,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-858) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.130) // call String.appendChar 2
 @main.String.appendChar.130 // call String.appendChar // push RP
 D=A // d = RP
@@ -10676,7 +10676,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-860) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10685,7 +10685,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-863) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.131) // call String.appendChar 2
 @main.String.appendChar.131 // call String.appendChar // push RP
 D=A // d = RP
@@ -10752,7 +10752,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-865) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10761,7 +10761,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-868) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.132) // call String.appendChar 2
 @main.String.appendChar.132 // call String.appendChar // push RP
 D=A // d = RP
@@ -10828,7 +10828,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-870) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10837,7 +10837,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-873) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.133) // call String.appendChar 2
 @main.String.appendChar.133 // call String.appendChar // push RP
 D=A // d = RP
@@ -10904,7 +10904,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-875) push constant 99
+// push constant 99
 @99 // push constant 99 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10913,7 +10913,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-878) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.134) // call String.appendChar 2
 @main.String.appendChar.134 // call String.appendChar // push RP
 D=A // d = RP
@@ -10980,7 +10980,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-880) push constant 111
+// push constant 111
 @111 // push constant 111 (constant)
 D=A // d = constant
 @SP // &esp
@@ -10989,7 +10989,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-883) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.135) // call String.appendChar 2
 @main.String.appendChar.135 // call String.appendChar // push RP
 D=A // d = RP
@@ -11056,7 +11056,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-885) push constant 110
+// push constant 110
 @110 // push constant 110 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11065,7 +11065,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-888) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.136) // call String.appendChar 2
 @main.String.appendChar.136 // call String.appendChar // push RP
 D=A // d = RP
@@ -11132,7 +11132,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-890) push constant 100
+// push constant 100
 @100 // push constant 100 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11141,7 +11141,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-893) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.137) // call String.appendChar 2
 @main.String.appendChar.137 // call String.appendChar // push RP
 D=A // d = RP
@@ -11208,7 +11208,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-895) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11217,7 +11217,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-898) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.138) // call String.appendChar 2
 @main.String.appendChar.138 // call String.appendChar // push RP
 D=A // d = RP
@@ -11284,7 +11284,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-900) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11293,7 +11293,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-903) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.139) // call String.appendChar 2
 @main.String.appendChar.139 // call String.appendChar // push RP
 D=A // d = RP
@@ -11360,7 +11360,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-905) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11369,7 +11369,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-908) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.140) // call String.appendChar 2
 @main.String.appendChar.140 // call String.appendChar // push RP
 D=A // d = RP
@@ -11436,7 +11436,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-910) push constant 108
+// push constant 108
 @108 // push constant 108 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11445,7 +11445,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-913) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.141) // call String.appendChar 2
 @main.String.appendChar.141 // call String.appendChar // push RP
 D=A // d = RP
@@ -11512,7 +11512,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-915) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11521,7 +11521,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-918) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.142) // call String.appendChar 2
 @main.String.appendChar.142 // call String.appendChar // push RP
 D=A // d = RP
@@ -11588,7 +11588,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-920) push constant 112
+// push constant 112
 @112 // push constant 112 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11597,7 +11597,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-923) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.143) // call String.appendChar 2
 @main.String.appendChar.143 // call String.appendChar // push RP
 D=A // d = RP
@@ -11664,7 +11664,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-925) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11673,7 +11673,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-928) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.144) // call String.appendChar 2
 @main.String.appendChar.144 // call String.appendChar // push RP
 D=A // d = RP
@@ -11740,7 +11740,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-930) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11749,7 +11749,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-933) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.145) // call String.appendChar 2
 @main.String.appendChar.145 // call String.appendChar // push RP
 D=A // d = RP
@@ -11816,7 +11816,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-935) push constant 100
+// push constant 100
 @100 // push constant 100 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11825,7 +11825,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-938) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.146) // call String.appendChar 2
 @main.String.appendChar.146 // call String.appendChar // push RP
 D=A // d = RP
@@ -11892,7 +11892,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-940) push constant 46
+// push constant 46
 @46 // push constant 46 (constant)
 D=A // d = constant
 @SP // &esp
@@ -11901,7 +11901,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-943) call String.appendChar 2
+// call String.appendChar 2
 (main.String.appendChar.147) // call String.appendChar 2
 @main.String.appendChar.147 // call String.appendChar // push RP
 D=A // d = RP
@@ -11968,7 +11968,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-946) call Output.printString 1
+// call Output.printString 1
 (main.Output.printString.148) // call Output.printString 1
 @main.Output.printString.148 // call Output.printString // push RP
 D=A // d = RP
@@ -12006,7 +12006,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-948) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -12015,7 +12015,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-950) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -12053,7 +12053,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printString // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-952) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12068,7 +12068,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-954) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12077,9 +12077,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-956) return
+// return
 
-// (-958) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12134,10 +12134,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-960) function Array.new 0
+// function Array.new 0
 (Array.new) // function Array.new 0
 
-// (-963) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Array.new 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -12148,7 +12148,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-965) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12157,7 +12157,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-967) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -12183,7 +12183,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-972) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -12191,7 +12191,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-974) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -12202,14 +12202,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Array.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-976) goto IF_FALSE0
+// goto IF_FALSE0
 @Array.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-978) label IF_TRUE0
+// label IF_TRUE0
 (Array.IF_TRUE0) // label IF_TRUE0
 
-// (-981) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12218,7 +12218,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-984) call Sys.error 1
+// call Sys.error 1
 (Array.Sys.error.150) // call Sys.error 1
 @Array.Sys.error.150 // call Sys.error // push RP
 D=A // d = RP
@@ -12285,7 +12285,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-986) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12300,10 +12300,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-988) label IF_FALSE0
+// label IF_FALSE0
 (Array.IF_FALSE0) // label IF_FALSE0
 
-// (-991) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -12315,7 +12315,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-994) call Memory.alloc 1
+// call Memory.alloc 1
 (Array.Memory.alloc.151) // call Memory.alloc 1
 @Array.Memory.alloc.151 // call Memory.alloc // push RP
 D=A // d = RP
@@ -12353,7 +12353,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-996) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -12362,7 +12362,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-998) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -12400,9 +12400,9 @@ M=D // &lcl[0] = &lcl[0]
 @Memory.alloc // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1000) return
+// return
 
-// (-1002) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12457,10 +12457,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1004) function Array.dispose 0
+// function Array.dispose 0
 (Array.dispose) // function Array.dispose 0
 
-// (-1007) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Array.dispose 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -12471,7 +12471,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-1009) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12486,7 +12486,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1011) push pointer 0
+// push pointer 0
 @3 // push pointer 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -12498,7 +12498,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1014) call Memory.deAlloc 1
+// call Memory.deAlloc 1
 (Array.Memory.deAlloc.152) // call Memory.deAlloc 1
 @Array.Memory.deAlloc.152 // call Memory.deAlloc // push RP
 D=A // d = RP
@@ -12536,7 +12536,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1016) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -12545,7 +12545,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1018) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -12583,7 +12583,7 @@ M=D // &lcl[0] = &lcl[0]
 @Memory.deAlloc // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1020) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12598,7 +12598,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1022) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12607,9 +12607,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1024) return
+// return
 
-// (-1026) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12664,10 +12664,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1028) function Keyboard.init 0
+// function Keyboard.init 0
 (Keyboard.init) // function Keyboard.init 0
 
-// (-1031) push constant 0
+// push constant 0
 @0 // push constant 0 // function Keyboard.init 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12675,9 +12675,9 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-1033) return
+// return
 
-// (-1035) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12732,10 +12732,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1037) function Keyboard.keyPressed 0
+// function Keyboard.keyPressed 0
 (Keyboard.keyPressed) // function Keyboard.keyPressed 0
 
-// (-1040) push constant 24576
+// push constant 24576
 @24576 // push constant 24576 // function Keyboard.keyPressed 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12743,7 +12743,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-1043) call Memory.peek 1
+// call Memory.peek 1
 (Keyboard.Memory.peek.153) // call Memory.peek 1
 @Keyboard.Memory.peek.153 // call Memory.peek // push RP
 D=A // d = RP
@@ -12810,9 +12810,9 @@ M=D // &lcl[0] = &lcl[0]
 @Memory.peek // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1045) return
+// return
 
-// (-1047) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12867,10 +12867,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1049) function Keyboard.readChar 2
+// function Keyboard.readChar 2
 (Keyboard.readChar) // function Keyboard.readChar 2
 
-// (-1052) push constant 0
+// push constant 0
 @0 // push constant 0 // function Keyboard.readChar 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12878,7 +12878,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-1055) call Output.printChar 1
+// call Output.printChar 1
 (Keyboard.Output.printChar.154) // call Output.printChar 1
 @Keyboard.Output.printChar.154 // call Output.printChar // push RP
 D=A // d = RP
@@ -12945,7 +12945,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1057) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -12960,10 +12960,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1059) label WHILE_EXP0
+// label WHILE_EXP0
 (Keyboard.WHILE_EXP0) // label WHILE_EXP0
 
-// (-1062) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -12975,7 +12975,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1064) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -12984,7 +12984,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1066) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -13010,7 +13010,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1071) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -13022,7 +13022,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1073) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -13031,7 +13031,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1075) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -13057,7 +13057,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1080) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -13069,7 +13069,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1082) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -13077,7 +13077,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1084) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -13088,10 +13088,10 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.WHILE_END0
 D;JNE // jump if not zero
 
-// (-1087) call Keyboard.keyPressed 0
+// call Keyboard.keyPressed 0
 (Keyboard.Keyboard.keyPressed.157) // call Keyboard.keyPressed 0
 
-// (-1089) push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
+// push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -13164,7 +13164,7 @@ M=D // &lcl[0] = &lcl[0]
 @Keyboard.keyPressed // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1091) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -13179,7 +13179,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1093) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -13191,7 +13191,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1095) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -13200,7 +13200,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1097) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -13226,7 +13226,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1102) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -13237,14 +13237,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-1104) goto IF_FALSE0
+// goto IF_FALSE0
 @Keyboard.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-1106) label IF_TRUE0
+// label IF_TRUE0
 (Keyboard.IF_TRUE0) // label IF_TRUE0
 
-// (-1109) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -13256,7 +13256,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1111) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -13271,20 +13271,20 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1113) label IF_FALSE0
+// label IF_FALSE0
 (Keyboard.IF_FALSE0) // label IF_FALSE0
 
-// (-1116) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Keyboard.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-1118) label WHILE_END0
+// label WHILE_END0
 (Keyboard.WHILE_END0) // label WHILE_END0
 
-// (-1122) call String.backSpace 0
+// call String.backSpace 0
 (Keyboard.String.backSpace.159) // call String.backSpace 0
 
-// (-1124) push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
+// push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -13357,7 +13357,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.backSpace // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1127) call Output.printChar 1
+// call Output.printChar 1
 (Keyboard.Output.printChar.160) // call Output.printChar 1
 @Keyboard.Output.printChar.160 // call Output.printChar // push RP
 D=A // d = RP
@@ -13424,7 +13424,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1129) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -13439,7 +13439,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1131) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -13451,7 +13451,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1134) call Output.printChar 1
+// call Output.printChar 1
 (Keyboard.Output.printChar.161) // call Output.printChar 1
 @Keyboard.Output.printChar.161 // call Output.printChar // push RP
 D=A // d = RP
@@ -13518,7 +13518,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1136) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -13533,7 +13533,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1138) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -13545,9 +13545,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1140) return
+// return
 
-// (-1142) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -13602,10 +13602,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1144) function Keyboard.readLine 5
+// function Keyboard.readLine 5
 (Keyboard.readLine) // function Keyboard.readLine 5
 
-// (-1147) push constant 80
+// push constant 80
 @80 // push constant 80 // function Keyboard.readLine 5 (constant)
 D=A // d = constant
 @SP // &esp
@@ -13613,7 +13613,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-1150) call String.new 1
+// call String.new 1
 (Keyboard.String.new.162) // call String.new 1
 @Keyboard.String.new.162 // call String.new // push RP
 D=A // d = RP
@@ -13680,7 +13680,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1152) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -13695,7 +13695,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1154) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -13707,7 +13707,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1157) call Output.printString 1
+// call Output.printString 1
 (Keyboard.Output.printString.163) // call Output.printString 1
 @Keyboard.Output.printString.163 // call Output.printString // push RP
 D=A // d = RP
@@ -13745,7 +13745,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1159) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -13754,7 +13754,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1161) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -13792,7 +13792,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printString // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1163) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -13807,10 +13807,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1166) call String.newLine 0
+// call String.newLine 0
 (Keyboard.String.newLine.164) // call String.newLine 0
 
-// (-1168) push constant 9999 // call String.newLine // if no args, create a space on the stack for the return
+// push constant 9999 // call String.newLine // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call String.newLine // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -13883,7 +13883,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.newLine // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1170) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -13898,10 +13898,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1173) call String.backSpace 0
+// call String.backSpace 0
 (Keyboard.String.backSpace.165) // call String.backSpace 0
 
-// (-1175) push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
+// push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -13974,7 +13974,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.backSpace // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1177) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -13989,10 +13989,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1179) label WHILE_EXP0
+// label WHILE_EXP0
 (Keyboard.WHILE_EXP0) // label WHILE_EXP0
 
-// (-1182) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -14004,7 +14004,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1184) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -14012,7 +14012,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1186) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -14020,7 +14020,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1188) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -14031,10 +14031,10 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.WHILE_END0
 D;JNE // jump if not zero
 
-// (-1191) call Keyboard.readChar 0
+// call Keyboard.readChar 0
 (Keyboard.Keyboard.readChar.166) // call Keyboard.readChar 0
 
-// (-1193) push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return
+// push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -14078,7 +14078,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1195) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14087,7 +14087,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1197) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14125,7 +14125,7 @@ M=D // &lcl[0] = &lcl[0]
 @Keyboard.readChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1199) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -14140,7 +14140,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1201) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -14152,7 +14152,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1203) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -14164,7 +14164,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1205) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -14190,7 +14190,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1210) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -14205,7 +14205,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1212) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -14217,7 +14217,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1214) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -14225,7 +14225,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1216) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -14236,14 +14236,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-1218) goto IF_FALSE0
+// goto IF_FALSE0
 @Keyboard.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-1220) label IF_TRUE0
+// label IF_TRUE0
 (Keyboard.IF_TRUE0) // label IF_TRUE0
 
-// (-1223) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -14255,7 +14255,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1225) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -14267,7 +14267,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1227) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -14293,7 +14293,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1232) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -14304,14 +14304,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Keyboard.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-1234) goto IF_FALSE1
+// goto IF_FALSE1
 @Keyboard.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-1236) label IF_TRUE1
+// label IF_TRUE1
 (Keyboard.IF_TRUE1) // label IF_TRUE1
 
-// (-1239) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -14323,7 +14323,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1242) call String.eraseLastChar 1
+// call String.eraseLastChar 1
 (Keyboard.String.eraseLastChar.169) // call String.eraseLastChar 1
 @Keyboard.String.eraseLastChar.169 // call String.eraseLastChar // push RP
 D=A // d = RP
@@ -14390,7 +14390,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.eraseLastChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1244) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -14405,14 +14405,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1246) goto IF_END1
+// goto IF_END1
 @Keyboard.IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
-// (-1248) label IF_FALSE1
+// label IF_FALSE1
 (Keyboard.IF_FALSE1) // label IF_FALSE1
 
-// (-1251) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -14424,7 +14424,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1253) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -14436,7 +14436,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1256) call String.appendChar 2
+// call String.appendChar 2
 (Keyboard.String.appendChar.170) // call String.appendChar 2
 @Keyboard.String.appendChar.170 // call String.appendChar // push RP
 D=A // d = RP
@@ -14503,7 +14503,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.appendChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1258) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -14518,20 +14518,20 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1260) label IF_END1
+// label IF_END1
 (Keyboard.IF_END1) // label IF_END1
 
-// (-1263) label IF_FALSE0
+// label IF_FALSE0
 (Keyboard.IF_FALSE0) // label IF_FALSE0
 
-// (-1266) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Keyboard.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-1268) label WHILE_END0
+// label WHILE_END0
 (Keyboard.WHILE_END0) // label WHILE_END0
 
-// (-1271) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -14543,9 +14543,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1273) return
+// return
 
-// (-1275) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -14600,10 +14600,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1277) function Keyboard.readInt 2
+// function Keyboard.readInt 2
 (Keyboard.readInt) // function Keyboard.readInt 2
 
-// (-1280) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Keyboard.readInt 2 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -14614,7 +14614,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-1283) call Keyboard.readLine 1
+// call Keyboard.readLine 1
 (Keyboard.Keyboard.readLine.171) // call Keyboard.readLine 1
 @Keyboard.Keyboard.readLine.171 // call Keyboard.readLine // push RP
 D=A // d = RP
@@ -14652,7 +14652,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1285) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14661,7 +14661,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1287) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14670,7 +14670,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1289) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14679,7 +14679,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1291) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14688,7 +14688,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1293) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14726,7 +14726,7 @@ M=D // &lcl[0] = &lcl[0]
 @Keyboard.readLine // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1295) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -14741,7 +14741,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1297) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -14753,7 +14753,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1300) call String.intValue 1
+// call String.intValue 1
 (Keyboard.String.intValue.172) // call String.intValue 1
 @Keyboard.String.intValue.172 // call String.intValue // push RP
 D=A // d = RP
@@ -14791,7 +14791,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1302) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14800,7 +14800,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1304) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14809,7 +14809,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1306) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14818,7 +14818,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1308) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14827,7 +14827,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1310) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -14865,7 +14865,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.intValue // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1312) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -14880,7 +14880,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1314) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -14892,7 +14892,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1317) call String.dispose 1
+// call String.dispose 1
 (Keyboard.String.dispose.173) // call String.dispose 1
 @Keyboard.String.dispose.173 // call String.dispose // push RP
 D=A // d = RP
@@ -14959,7 +14959,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.dispose // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1319) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -14974,7 +14974,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1321) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -14986,9 +14986,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1323) return
+// return
 
-// (-1325) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15043,10 +15043,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1327) function Math.init 1
+// function Math.init 1
 (Math.init) // function Math.init 1
 
-// (-1330) push constant 16
+// push constant 16
 @16 // push constant 16 // function Math.init 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15054,7 +15054,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-1333) call Array.new 1
+// call Array.new 1
 (Math.Array.new.174) // call Array.new 1
 @Math.Array.new.174 // call Array.new // push RP
 D=A // d = RP
@@ -15121,7 +15121,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1335) pop static 1
+// pop static 1
 @16 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -15136,7 +15136,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1337) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15145,7 +15145,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1340) call Array.new 1
+// call Array.new 1
 (Math.Array.new.175) // call Array.new 1
 @Math.Array.new.175 // call Array.new // push RP
 D=A // d = RP
@@ -15212,7 +15212,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1342) pop static 0
+// pop static 0
 @16 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15227,7 +15227,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1344) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15236,7 +15236,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1346) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -15248,7 +15248,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1348) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15260,7 +15260,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1350) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15269,7 +15269,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1352) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15284,7 +15284,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1354) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -15299,7 +15299,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1356) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -15311,7 +15311,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1358) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15326,10 +15326,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1360) label WHILE_EXP0
+// label WHILE_EXP0
 (Math.WHILE_EXP0) // label WHILE_EXP0
 
-// (-1363) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15341,7 +15341,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1365) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15350,7 +15350,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1367) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15376,7 +15376,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1372) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -15384,7 +15384,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1374) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -15395,7 +15395,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
-// (-1376) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15407,7 +15407,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1378) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15416,7 +15416,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1380) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15428,7 +15428,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1382) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15443,7 +15443,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1384) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15455,7 +15455,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1386) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -15467,7 +15467,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1388) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15479,7 +15479,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1390) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15491,7 +15491,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1392) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15500,7 +15500,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1394) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15512,7 +15512,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1396) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -15524,7 +15524,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1398) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15536,7 +15536,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1400) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -15551,7 +15551,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1402) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15563,7 +15563,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1404) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15575,7 +15575,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1406) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15584,7 +15584,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1408) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15596,7 +15596,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1410) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -15608,7 +15608,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1412) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15620,7 +15620,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1414) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -15635,7 +15635,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1416) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15647,7 +15647,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1418) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15659,7 +15659,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1420) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15674,7 +15674,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1422) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -15689,7 +15689,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1424) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -15701,7 +15701,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1426) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15716,14 +15716,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1428) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-1430) label WHILE_END0
+// label WHILE_END0
 (Math.WHILE_END0) // label WHILE_END0
 
-// (-1433) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15732,9 +15732,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1435) return
+// return
 
-// (-1437) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15789,10 +15789,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1439) function Math.abs 0
+// function Math.abs 0
 (Math.abs) // function Math.abs 0
 
-// (-1442) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Math.abs 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15803,7 +15803,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-1444) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15812,7 +15812,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1446) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -15838,7 +15838,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1451) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -15849,14 +15849,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-1453) goto IF_FALSE0
+// goto IF_FALSE0
 @Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-1455) label IF_TRUE0
+// label IF_TRUE0
 (Math.IF_TRUE0) // label IF_TRUE0
 
-// (-1458) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15868,7 +15868,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1460) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -15876,7 +15876,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1462) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15891,10 +15891,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1464) label IF_FALSE0
+// label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
 
-// (-1467) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15906,9 +15906,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1469) return
+// return
 
-// (-1471) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -15963,10 +15963,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1473) function Math.multiply 5
+// function Math.multiply 5
 (Math.multiply) // function Math.multiply 5
 
-// (-1476) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Math.multiply 5 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -15977,7 +15977,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-1478) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -15986,7 +15986,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1480) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16012,7 +16012,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1485) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16024,7 +16024,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1487) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -16033,7 +16033,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1489) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16059,7 +16059,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1494) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -16071,7 +16071,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1496) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16083,7 +16083,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1498) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -16092,7 +16092,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1500) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16118,7 +16118,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1505) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16130,7 +16130,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1507) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -16139,7 +16139,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1509) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16165,7 +16165,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1514) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -16177,7 +16177,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1516) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -16189,7 +16189,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1518) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -16204,7 +16204,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1520) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16216,7 +16216,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1523) call Math.abs 1
+// call Math.abs 1
 (Math.Math.abs.182) // call Math.abs 1
 @Math.Math.abs.182 // call Math.abs // push RP
 D=A // d = RP
@@ -16283,7 +16283,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.abs // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1525) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -16298,7 +16298,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1527) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16310,7 +16310,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1530) call Math.abs 1
+// call Math.abs 1
 (Math.Math.abs.183) // call Math.abs 1
 @Math.Math.abs.183 // call Math.abs // push RP
 D=A // d = RP
@@ -16377,7 +16377,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.abs // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1532) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -16392,7 +16392,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1534) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16404,7 +16404,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1536) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16416,7 +16416,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1538) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16442,7 +16442,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1543) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -16453,14 +16453,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-1545) goto IF_FALSE0
+// goto IF_FALSE0
 @Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-1547) label IF_TRUE0
+// label IF_TRUE0
 (Math.IF_TRUE0) // label IF_TRUE0
 
-// (-1550) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16472,7 +16472,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1552) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -16487,7 +16487,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1554) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16499,7 +16499,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1556) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -16514,7 +16514,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1558) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16526,7 +16526,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1560) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -16541,13 +16541,13 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1562) label IF_FALSE0
+// label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
 
-// (-1565) label WHILE_EXP0
+// label WHILE_EXP0
 (Math.WHILE_EXP0) // label WHILE_EXP0
 
-// (-1568) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -16559,7 +16559,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1570) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -16568,7 +16568,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1572) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16580,7 +16580,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1574) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16592,7 +16592,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1576) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -16601,7 +16601,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1578) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16613,7 +16613,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1580) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16639,7 +16639,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1585) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -16647,7 +16647,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1587) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -16658,7 +16658,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
-// (-1589) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -16670,7 +16670,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1591) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -16682,7 +16682,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1593) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16694,7 +16694,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1595) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -16709,7 +16709,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1597) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16721,7 +16721,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1599) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -16733,7 +16733,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1601) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -16745,7 +16745,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1603) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -16754,7 +16754,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1605) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16780,7 +16780,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1610) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -16788,7 +16788,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1612) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -16799,14 +16799,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-1614) goto IF_FALSE1
+// goto IF_FALSE1
 @Math.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-1616) label IF_TRUE1
+// label IF_TRUE1
 (Math.IF_TRUE1) // label IF_TRUE1
 
-// (-1619) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16818,7 +16818,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1621) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16830,7 +16830,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1623) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16842,7 +16842,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1625) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -16857,7 +16857,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1627) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -16869,7 +16869,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1629) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -16881,7 +16881,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1631) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -16893,7 +16893,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1633) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16905,7 +16905,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1635) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -16920,7 +16920,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1637) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16932,7 +16932,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1639) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16944,7 +16944,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1641) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -16959,10 +16959,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1643) label IF_FALSE1
+// label IF_FALSE1
 (Math.IF_FALSE1) // label IF_FALSE1
 
-// (-1646) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16974,7 +16974,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1648) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -16986,7 +16986,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1650) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -16998,7 +16998,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1652) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -17013,7 +17013,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1654) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -17025,7 +17025,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1656) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17034,7 +17034,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1658) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17046,7 +17046,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1660) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -17061,14 +17061,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1662) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-1664) label WHILE_END0
+// label WHILE_END0
 (Math.WHILE_END0) // label WHILE_END0
 
-// (-1667) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -17080,7 +17080,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1669) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -17091,14 +17091,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-1671) goto IF_FALSE2
+// goto IF_FALSE2
 @Math.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-1673) label IF_TRUE2
+// label IF_TRUE2
 (Math.IF_TRUE2) // label IF_TRUE2
 
-// (-1676) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -17110,7 +17110,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1678) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -17118,7 +17118,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1680) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -17133,10 +17133,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1682) label IF_FALSE2
+// label IF_FALSE2
 (Math.IF_FALSE2) // label IF_FALSE2
 
-// (-1685) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -17148,9 +17148,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1687) return
+// return
 
-// (-1689) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -17205,10 +17205,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-1691) function Math.divide 4
+// function Math.divide 4
 (Math.divide) // function Math.divide 4
 
-// (-1694) push argument 1
+// push argument 1
 @ARG // push argument 1 // function Math.divide 4 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -17219,7 +17219,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-1696) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17228,7 +17228,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1698) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17254,7 +17254,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1703) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -17265,14 +17265,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-1705) goto IF_FALSE0
+// goto IF_FALSE0
 @Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-1707) label IF_TRUE0
+// label IF_TRUE0
 (Math.IF_TRUE0) // label IF_TRUE0
 
-// (-1710) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17281,7 +17281,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1713) call Sys.error 1
+// call Sys.error 1
 (Math.Sys.error.188) // call Sys.error 1
 @Math.Sys.error.188 // call Sys.error // push RP
 D=A // d = RP
@@ -17348,7 +17348,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1715) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -17363,10 +17363,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1717) label IF_FALSE0
+// label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
 
-// (-1720) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -17378,7 +17378,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1722) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17387,7 +17387,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1724) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17413,7 +17413,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1729) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -17425,7 +17425,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1731) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17434,7 +17434,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1733) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17460,7 +17460,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1738) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -17472,7 +17472,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1740) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -17484,7 +17484,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1742) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17493,7 +17493,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1744) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17519,7 +17519,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1749) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -17531,7 +17531,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1751) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17540,7 +17540,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1753) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17566,7 +17566,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1758) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -17578,7 +17578,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1760) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -17590,7 +17590,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1762) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -17605,7 +17605,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1764) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17614,7 +17614,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1766) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -17626,7 +17626,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1768) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17638,7 +17638,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1770) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -17650,7 +17650,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1773) call Math.abs 1
+// call Math.abs 1
 (Math.Math.abs.193) // call Math.abs 1
 @Math.Math.abs.193 // call Math.abs // push RP
 D=A // d = RP
@@ -17717,7 +17717,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.abs // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1775) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -17732,7 +17732,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1777) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -17747,7 +17747,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1779) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -17759,7 +17759,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1781) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -17774,7 +17774,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1783) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -17786,7 +17786,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1786) call Math.abs 1
+// call Math.abs 1
 (Math.Math.abs.194) // call Math.abs 1
 @Math.Math.abs.194 // call Math.abs // push RP
 D=A // d = RP
@@ -17853,7 +17853,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.abs // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-1788) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -17868,10 +17868,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1790) label WHILE_EXP0
+// label WHILE_EXP0
 (Math.WHILE_EXP0) // label WHILE_EXP0
 
-// (-1793) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -17883,7 +17883,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1795) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17892,7 +17892,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1797) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -17918,7 +17918,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1802) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -17930,7 +17930,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1804) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -17938,7 +17938,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1806) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -17950,7 +17950,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1808) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -17958,7 +17958,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1810) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -17969,7 +17969,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
-// (-1812) push constant 32767
+// push constant 32767
 @32767 // push constant 32767 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17978,7 +17978,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1814) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -17990,7 +17990,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1816) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -18002,7 +18002,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1818) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18014,7 +18014,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1820) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -18029,7 +18029,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1822) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18041,7 +18041,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1824) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18050,7 +18050,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1826) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18062,7 +18062,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1828) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18074,7 +18074,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1830) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18086,7 +18086,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1832) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -18098,7 +18098,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1834) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18110,7 +18110,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1836) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -18125,7 +18125,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1838) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18137,7 +18137,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1840) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18146,7 +18146,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1842) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18158,7 +18158,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1844) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18184,7 +18184,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1849) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -18199,7 +18199,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1851) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -18211,7 +18211,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1853) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -18219,7 +18219,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1855) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -18230,14 +18230,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-1857) goto IF_FALSE1
+// goto IF_FALSE1
 @Math.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-1859) label IF_TRUE1
+// label IF_TRUE1
 (Math.IF_TRUE1) // label IF_TRUE1
 
-// (-1862) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18249,7 +18249,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1864) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18258,7 +18258,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1866) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18270,7 +18270,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1868) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -18282,7 +18282,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1870) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18294,7 +18294,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1872) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18306,7 +18306,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1874) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -18318,7 +18318,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1876) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18330,7 +18330,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1878) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -18345,7 +18345,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1880) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18357,7 +18357,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1882) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18369,7 +18369,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1884) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -18381,7 +18381,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1886) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18393,7 +18393,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1888) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -18408,7 +18408,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1890) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18420,7 +18420,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1892) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18432,7 +18432,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1894) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -18447,7 +18447,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1896) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -18462,7 +18462,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1898) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -18474,7 +18474,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1900) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -18489,7 +18489,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1902) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18501,7 +18501,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1904) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18510,7 +18510,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1906) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18522,7 +18522,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1908) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -18534,7 +18534,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1910) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18546,7 +18546,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1912) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -18561,7 +18561,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1914) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18573,7 +18573,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1916) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18582,7 +18582,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1918) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18594,7 +18594,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1920) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18606,7 +18606,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1922) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18615,7 +18615,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1924) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18627,7 +18627,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1926) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18653,7 +18653,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1931) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -18668,7 +18668,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1933) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -18680,7 +18680,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1935) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -18688,7 +18688,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1937) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -18699,14 +18699,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-1939) goto IF_FALSE2
+// goto IF_FALSE2
 @Math.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-1941) label IF_TRUE2
+// label IF_TRUE2
 (Math.IF_TRUE2) // label IF_TRUE2
 
-// (-1944) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18718,7 +18718,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1946) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18727,7 +18727,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1948) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18739,7 +18739,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1950) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -18754,23 +18754,23 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1952) label IF_FALSE2
+// label IF_FALSE2
 (Math.IF_FALSE2) // label IF_FALSE2
 
-// (-1955) label IF_FALSE1
+// label IF_FALSE1
 (Math.IF_FALSE1) // label IF_FALSE1
 
-// (-1958) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-1960) label WHILE_END0
+// label WHILE_END0
 (Math.WHILE_END0) // label WHILE_END0
 
-// (-1963) label WHILE_EXP1
+// label WHILE_EXP1
 (Math.WHILE_EXP1) // label WHILE_EXP1
 
-// (-1966) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18782,7 +18782,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1968) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18791,7 +18791,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1970) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -18799,7 +18799,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1972) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18825,7 +18825,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1977) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -18833,7 +18833,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1979) if-goto WHILE_END1
+// if-goto WHILE_END1
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END1
 D=A // d = 0
@@ -18844,7 +18844,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END1
 D;JNE // jump if not zero
 
-// (-1981) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18856,7 +18856,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1983) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -18868,7 +18868,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1985) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18880,7 +18880,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1987) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -18895,7 +18895,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-1989) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18907,7 +18907,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1991) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18916,7 +18916,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1993) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18928,7 +18928,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1995) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -18940,7 +18940,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1997) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -18949,7 +18949,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-1999) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18961,7 +18961,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2001) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -18987,7 +18987,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2006) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -18995,7 +18995,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2008) if-goto IF_TRUE3
+// if-goto IF_TRUE3
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE3
 D=A // d = 0
@@ -19006,14 +19006,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE3
 D;JNE // jump if not zero
 
-// (-2010) goto IF_FALSE3
+// goto IF_FALSE3
 @Math.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
-// (-2012) label IF_TRUE3
+// label IF_TRUE3
 (Math.IF_TRUE3) // label IF_TRUE3
 
-// (-2015) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -19025,7 +19025,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2017) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19037,7 +19037,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2019) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -19049,7 +19049,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2021) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19061,7 +19061,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2023) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -19076,7 +19076,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2025) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19088,7 +19088,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2027) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19100,7 +19100,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2029) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -19115,7 +19115,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2031) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19127,7 +19127,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2033) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19139,7 +19139,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2035) push static 1
+// push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -19151,7 +19151,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2037) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19163,7 +19163,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2039) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -19178,7 +19178,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2041) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19190,7 +19190,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2043) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19202,7 +19202,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2045) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -19217,10 +19217,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2047) label IF_FALSE3
+// label IF_FALSE3
 (Math.IF_FALSE3) // label IF_FALSE3
 
-// (-2050) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19232,7 +19232,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2052) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -19241,7 +19241,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2054) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19253,7 +19253,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2056) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -19268,14 +19268,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2058) goto WHILE_EXP1
+// goto WHILE_EXP1
 @Math.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
-// (-2060) label WHILE_END1
+// label WHILE_END1
 (Math.WHILE_END1) // label WHILE_END1
 
-// (-2063) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -19287,7 +19287,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2065) if-goto IF_TRUE4
+// if-goto IF_TRUE4
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE4
 D=A // d = 0
@@ -19298,14 +19298,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE4
 D;JNE // jump if not zero
 
-// (-2067) goto IF_FALSE4
+// goto IF_FALSE4
 @Math.IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
-// (-2069) label IF_TRUE4
+// label IF_TRUE4
 (Math.IF_TRUE4) // label IF_TRUE4
 
-// (-2072) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -19317,7 +19317,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2074) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -19325,7 +19325,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2076) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -19340,10 +19340,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2078) label IF_FALSE4
+// label IF_FALSE4
 (Math.IF_FALSE4) // label IF_FALSE4
 
-// (-2081) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -19355,9 +19355,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2083) return
+// return
 
-// (-2085) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -19412,10 +19412,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2087) function Math.sqrt 4
+// function Math.sqrt 4
 (Math.sqrt) // function Math.sqrt 4
 
-// (-2090) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Math.sqrt 4 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19426,7 +19426,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-2092) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -19435,7 +19435,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2094) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19461,7 +19461,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2099) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -19472,14 +19472,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-2101) goto IF_FALSE0
+// goto IF_FALSE0
 @Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-2103) label IF_TRUE0
+// label IF_TRUE0
 (Math.IF_TRUE0) // label IF_TRUE0
 
-// (-2106) push constant 4
+// push constant 4
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
@@ -19488,7 +19488,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2109) call Sys.error 1
+// call Sys.error 1
 (Math.Sys.error.201) // call Sys.error 1
 @Math.Sys.error.201 // call Sys.error // push RP
 D=A // d = RP
@@ -19555,7 +19555,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-2111) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -19570,10 +19570,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2113) label IF_FALSE0
+// label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
 
-// (-2116) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -19582,7 +19582,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2118) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -19597,10 +19597,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2120) label WHILE_EXP0
+// label WHILE_EXP0
 (Math.WHILE_EXP0) // label WHILE_EXP0
 
-// (-2123) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19612,7 +19612,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2125) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -19621,7 +19621,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2127) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -19629,7 +19629,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2129) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19655,7 +19655,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2134) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -19663,7 +19663,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2136) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -19674,7 +19674,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
-// (-2138) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -19686,7 +19686,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2140) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19698,7 +19698,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2142) push static 0
+// push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -19710,7 +19710,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2144) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19722,7 +19722,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2146) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -19737,7 +19737,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2148) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19749,7 +19749,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2150) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19761,7 +19761,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2152) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -19776,7 +19776,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2154) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -19788,7 +19788,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2156) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -19800,7 +19800,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2159) call Math.multiply 2
+// call Math.multiply 2
 (Math.Math.multiply.203) // call Math.multiply 2
 @Math.Math.multiply.203 // call Math.multiply // push RP
 D=A // d = RP
@@ -19838,7 +19838,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2161) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -19847,7 +19847,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2163) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -19856,7 +19856,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2165) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -19865,7 +19865,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2167) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -19874,7 +19874,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2169) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -19912,7 +19912,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-2171) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -19927,7 +19927,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2173) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -19939,7 +19939,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2175) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -19951,7 +19951,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2177) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -19977,7 +19977,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2182) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -19985,7 +19985,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2184) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -19997,7 +19997,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2186) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20006,7 +20006,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2188) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -20032,7 +20032,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2193) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -20040,7 +20040,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2195) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -20052,7 +20052,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2197) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -20063,14 +20063,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-2199) goto IF_FALSE1
+// goto IF_FALSE1
 @Math.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-2201) label IF_TRUE1
+// label IF_TRUE1
 (Math.IF_TRUE1) // label IF_TRUE1
 
-// (-2204) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -20082,7 +20082,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2206) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -20097,10 +20097,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2208) label IF_FALSE1
+// label IF_FALSE1
 (Math.IF_FALSE1) // label IF_FALSE1
 
-// (-2211) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20112,7 +20112,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2213) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20121,7 +20121,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2215) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -20133,7 +20133,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2217) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20148,14 +20148,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2219) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-2221) label WHILE_END0
+// label WHILE_END0
 (Math.WHILE_END0) // label WHILE_END0
 
-// (-2224) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -20167,9 +20167,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2226) return
+// return
 
-// (-2228) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20224,10 +20224,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2230) function Math.max 0
+// function Math.max 0
 (Math.max) // function Math.max 0
 
-// (-2233) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Math.max 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20238,7 +20238,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-2235) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -20250,7 +20250,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2237) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -20276,7 +20276,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2242) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -20287,14 +20287,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-2244) goto IF_FALSE0
+// goto IF_FALSE0
 @Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-2246) label IF_TRUE0
+// label IF_TRUE0
 (Math.IF_TRUE0) // label IF_TRUE0
 
-// (-2249) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20306,7 +20306,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2251) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -20321,10 +20321,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2253) label IF_FALSE0
+// label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
 
-// (-2256) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -20336,9 +20336,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2258) return
+// return
 
-// (-2260) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20393,10 +20393,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2262) function Math.min 0
+// function Math.min 0
 (Math.min) // function Math.min 0
 
-// (-2265) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Math.min 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20407,7 +20407,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-2267) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -20419,7 +20419,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2269) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -20445,7 +20445,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2274) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -20456,14 +20456,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-2276) goto IF_FALSE0
+// goto IF_FALSE0
 @Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-2278) label IF_TRUE0
+// label IF_TRUE0
 (Math.IF_TRUE0) // label IF_TRUE0
 
-// (-2281) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20475,7 +20475,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2283) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -20490,10 +20490,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2285) label IF_FALSE0
+// label IF_FALSE0
 (Math.IF_FALSE0) // label IF_FALSE0
 
-// (-2288) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -20505,9 +20505,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2290) return
+// return
 
-// (-2292) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20562,10 +20562,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2294) function Memory.init 0
+// function Memory.init 0
 (Memory.init) // function Memory.init 0
 
-// (-2297) push constant 0
+// push constant 0
 @0 // push constant 0 // function Memory.init 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20573,7 +20573,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-2299) pop static 0
+// pop static 0
 @18 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Memory.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20588,7 +20588,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2301) push constant 2048
+// push constant 2048
 @2048 // push constant 2048 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20597,7 +20597,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2303) push static 0
+// push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -20609,7 +20609,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2305) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -20621,7 +20621,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2307) push constant 14334
+// push constant 14334
 @14334 // push constant 14334 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20630,7 +20630,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2309) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20645,7 +20645,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2311) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -20660,7 +20660,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2313) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -20672,7 +20672,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2315) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20687,7 +20687,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2317) push constant 2049
+// push constant 2049
 @2049 // push constant 2049 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20696,7 +20696,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2319) push static 0
+// push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -20708,7 +20708,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2321) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -20720,7 +20720,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2323) push constant 2050
+// push constant 2050
 @2050 // push constant 2050 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20729,7 +20729,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2325) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20744,7 +20744,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2327) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -20759,7 +20759,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2329) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -20771,7 +20771,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2331) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20786,7 +20786,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2333) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -20795,9 +20795,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2335) return
+// return
 
-// (-2337) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20852,10 +20852,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2339) function Memory.peek 0
+// function Memory.peek 0
 (Memory.peek) // function Memory.peek 0
 
-// (-2342) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Memory.peek 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20866,7 +20866,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-2344) push static 0
+// push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -20878,7 +20878,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2346) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -20890,7 +20890,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2348) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -20905,7 +20905,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2350) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20917,9 +20917,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2352) return
+// return
 
-// (-2354) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -20974,10 +20974,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2356) function Memory.poke 0
+// function Memory.poke 0
 (Memory.poke) // function Memory.poke 0
 
-// (-2359) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Memory.poke 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -20988,7 +20988,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-2361) push static 0
+// push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -21000,7 +21000,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2363) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21012,7 +21012,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2365) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -21024,7 +21024,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2367) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -21039,7 +21039,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2369) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -21054,7 +21054,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2371) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -21066,7 +21066,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2373) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -21081,7 +21081,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2375) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21090,9 +21090,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2377) return
+// return
 
-// (-2379) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -21147,10 +21147,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2381) function Memory.alloc 2
+// function Memory.alloc 2
 (Memory.alloc) // function Memory.alloc 2
 
-// (-2384) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Memory.alloc 2 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21161,7 +21161,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-2386) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21170,7 +21170,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2388) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21196,7 +21196,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2393) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -21207,14 +21207,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-2395) goto IF_FALSE0
+// goto IF_FALSE0
 @Memory.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-2397) label IF_TRUE0
+// label IF_TRUE0
 (Memory.IF_TRUE0) // label IF_TRUE0
 
-// (-2400) push constant 5
+// push constant 5
 @5 // push constant 5 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21223,7 +21223,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2403) call Sys.error 1
+// call Sys.error 1
 (Memory.Sys.error.209) // call Sys.error 1
 @Memory.Sys.error.209 // call Sys.error // push RP
 D=A // d = RP
@@ -21290,7 +21290,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-2405) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -21305,10 +21305,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2407) label IF_FALSE0
+// label IF_FALSE0
 (Memory.IF_FALSE0) // label IF_FALSE0
 
-// (-2410) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21320,7 +21320,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2412) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21329,7 +21329,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2414) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21355,7 +21355,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2419) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -21366,14 +21366,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-2421) goto IF_FALSE1
+// goto IF_FALSE1
 @Memory.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-2423) label IF_TRUE1
+// label IF_TRUE1
 (Memory.IF_TRUE1) // label IF_TRUE1
 
-// (-2426) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21382,7 +21382,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2428) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -21397,10 +21397,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2430) label IF_FALSE1
+// label IF_FALSE1
 (Memory.IF_FALSE1) // label IF_FALSE1
 
-// (-2433) push constant 2048
+// push constant 2048
 @2048 // push constant 2048 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21409,7 +21409,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2435) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -21424,10 +21424,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2437) label WHILE_EXP0
+// label WHILE_EXP0
 (Memory.WHILE_EXP0) // label WHILE_EXP0
 
-// (-2440) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21439,7 +21439,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2442) push constant 16383
+// push constant 16383
 @16383 // push constant 16383 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21448,7 +21448,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2444) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21474,7 +21474,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2449) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21483,7 +21483,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2451) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21495,7 +21495,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2453) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21507,7 +21507,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2455) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -21522,7 +21522,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2457) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21534,7 +21534,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2459) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21546,7 +21546,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2461) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21572,7 +21572,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2466) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -21584,7 +21584,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2468) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -21592,7 +21592,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2470) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -21603,7 +21603,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.WHILE_END0
 D;JNE // jump if not zero
 
-// (-2472) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21612,7 +21612,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2474) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21624,7 +21624,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2476) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21636,7 +21636,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2478) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -21651,7 +21651,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2480) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21663,7 +21663,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2482) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -21678,7 +21678,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2484) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21687,7 +21687,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2486) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21699,7 +21699,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2488) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21711,7 +21711,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2490) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -21726,7 +21726,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2492) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21738,7 +21738,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2494) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21747,7 +21747,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2496) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21773,7 +21773,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2501) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -21785,7 +21785,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2503) push constant 16382
+// push constant 16382
 @16382 // push constant 16382 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21794,7 +21794,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2505) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21820,7 +21820,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2510) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -21832,7 +21832,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2512) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21841,7 +21841,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2514) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -21853,7 +21853,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2516) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21865,7 +21865,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2518) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -21880,7 +21880,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2520) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -21892,7 +21892,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2522) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -21901,7 +21901,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2524) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -21927,7 +21927,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2529) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -21939,7 +21939,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2531) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -21950,14 +21950,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-2533) goto IF_FALSE2
+// goto IF_FALSE2
 @Memory.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-2535) label IF_TRUE2
+// label IF_TRUE2
 (Memory.IF_TRUE2) // label IF_TRUE2
 
-// (-2538) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -21969,7 +21969,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2540) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -21984,14 +21984,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2542) goto IF_END2
+// goto IF_END2
 @Memory.IF_END2 // goto IF_END2
 0;JMP // unconditional jump
 
-// (-2544) label IF_FALSE2
+// label IF_FALSE2
 (Memory.IF_FALSE2) // label IF_FALSE2
 
-// (-2547) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22000,7 +22000,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2549) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22012,7 +22012,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2551) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22024,7 +22024,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2553) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22033,7 +22033,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2555) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22045,7 +22045,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2557) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22057,7 +22057,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2559) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22072,7 +22072,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2561) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22084,7 +22084,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2563) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22096,7 +22096,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2565) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22108,7 +22108,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2567) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22117,7 +22117,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2569) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -22129,7 +22129,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2571) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22141,7 +22141,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2573) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22156,7 +22156,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2575) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22168,7 +22168,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2577) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22180,7 +22180,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2579) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -22195,7 +22195,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2581) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22210,7 +22210,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2583) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -22222,7 +22222,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2585) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -22237,7 +22237,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2587) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22246,7 +22246,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2589) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -22258,7 +22258,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2591) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22270,7 +22270,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2593) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22285,7 +22285,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2595) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22297,7 +22297,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2597) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -22309,7 +22309,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2599) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22318,7 +22318,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2601) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22330,7 +22330,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2603) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22356,7 +22356,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2608) if-goto IF_TRUE3
+// if-goto IF_TRUE3
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE3
 D=A // d = 0
@@ -22367,14 +22367,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE3
 D;JNE // jump if not zero
 
-// (-2610) goto IF_FALSE3
+// goto IF_FALSE3
 @Memory.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
-// (-2612) label IF_TRUE3
+// label IF_TRUE3
 (Memory.IF_TRUE3) // label IF_TRUE3
 
-// (-2615) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22383,7 +22383,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2617) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22395,7 +22395,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2619) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22407,7 +22407,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2621) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22419,7 +22419,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2623) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22428,7 +22428,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2625) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22440,7 +22440,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2627) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -22455,7 +22455,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2629) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22470,7 +22470,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2631) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -22482,7 +22482,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2633) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -22497,14 +22497,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2635) goto IF_END3
+// goto IF_END3
 @Memory.IF_END3 // goto IF_END3
 0;JMP // unconditional jump
 
-// (-2637) label IF_FALSE3
+// label IF_FALSE3
 (Memory.IF_FALSE3) // label IF_FALSE3
 
-// (-2640) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22513,7 +22513,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2642) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22525,7 +22525,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2644) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22537,7 +22537,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2646) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22546,7 +22546,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2648) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -22558,7 +22558,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2650) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22570,7 +22570,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2652) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22585,7 +22585,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2654) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22597,7 +22597,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2656) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -22612,7 +22612,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2658) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22627,7 +22627,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2660) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -22639,7 +22639,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2662) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -22654,20 +22654,20 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2664) label IF_END3
+// label IF_END3
 (Memory.IF_END3) // label IF_END3
 
-// (-2667) label IF_END2
+// label IF_END2
 (Memory.IF_END2) // label IF_END2
 
-// (-2670) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Memory.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-2672) label WHILE_END0
+// label WHILE_END0
 (Memory.WHILE_END0) // label WHILE_END0
 
-// (-2675) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22679,7 +22679,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2677) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22691,7 +22691,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2679) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22703,7 +22703,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2681) push constant 16379
+// push constant 16379
 @16379 // push constant 16379 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22712,7 +22712,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2683) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22738,7 +22738,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2688) if-goto IF_TRUE4
+// if-goto IF_TRUE4
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE4
 D=A // d = 0
@@ -22749,14 +22749,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE4
 D;JNE // jump if not zero
 
-// (-2690) goto IF_FALSE4
+// goto IF_FALSE4
 @Memory.IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
-// (-2692) label IF_TRUE4
+// label IF_TRUE4
 (Memory.IF_TRUE4) // label IF_TRUE4
 
-// (-2695) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22765,7 +22765,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2698) call Sys.error 1
+// call Sys.error 1
 (Memory.Sys.error.218) // call Sys.error 1
 @Memory.Sys.error.218 // call Sys.error // push RP
 D=A // d = RP
@@ -22832,7 +22832,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-2700) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -22847,10 +22847,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2702) label IF_FALSE4
+// label IF_FALSE4
 (Memory.IF_FALSE4) // label IF_FALSE4
 
-// (-2705) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22859,7 +22859,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2707) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22871,7 +22871,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2709) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22883,7 +22883,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2711) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -22898,7 +22898,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2713) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22910,7 +22910,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2715) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22922,7 +22922,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2717) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -22931,7 +22931,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2719) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22943,7 +22943,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2721) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -22969,7 +22969,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2726) if-goto IF_TRUE5
+// if-goto IF_TRUE5
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE5
 D=A // d = 0
@@ -22980,14 +22980,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE5
 D;JNE // jump if not zero
 
-// (-2728) goto IF_FALSE5
+// goto IF_FALSE5
 @Memory.IF_FALSE5 // goto IF_FALSE5
 0;JMP // unconditional jump
 
-// (-2730) label IF_TRUE5
+// label IF_TRUE5
 (Memory.IF_TRUE5) // label IF_TRUE5
 
-// (-2733) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -22999,7 +22999,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2735) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23008,7 +23008,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2737) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23020,7 +23020,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2739) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23032,7 +23032,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2741) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23044,7 +23044,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2743) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23053,7 +23053,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2745) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23065,7 +23065,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2747) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23077,7 +23077,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2749) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23092,7 +23092,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2751) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23104,7 +23104,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2753) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23116,7 +23116,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2755) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23128,7 +23128,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2757) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23137,7 +23137,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2759) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23149,7 +23149,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2761) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23164,7 +23164,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2763) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23179,7 +23179,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2765) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -23191,7 +23191,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2767) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23206,7 +23206,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2769) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23215,7 +23215,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2771) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23227,7 +23227,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2773) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23239,7 +23239,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2775) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23254,7 +23254,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2777) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23266,7 +23266,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2779) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23278,7 +23278,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2781) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23287,7 +23287,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2783) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23299,7 +23299,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2785) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23325,7 +23325,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2790) if-goto IF_TRUE6
+// if-goto IF_TRUE6
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE6
 D=A // d = 0
@@ -23336,14 +23336,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE6
 D;JNE // jump if not zero
 
-// (-2792) goto IF_FALSE6
+// goto IF_FALSE6
 @Memory.IF_FALSE6 // goto IF_FALSE6
 0;JMP // unconditional jump
 
-// (-2794) label IF_TRUE6
+// label IF_TRUE6
 (Memory.IF_TRUE6) // label IF_TRUE6
 
-// (-2797) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23355,7 +23355,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2799) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23364,7 +23364,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2801) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23376,7 +23376,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2803) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23388,7 +23388,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2805) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23400,7 +23400,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2807) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23412,7 +23412,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2809) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23424,7 +23424,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2811) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23436,7 +23436,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2813) push constant 4
+// push constant 4
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23445,7 +23445,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2815) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23457,7 +23457,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2817) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23472,7 +23472,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2819) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23487,7 +23487,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2821) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -23499,7 +23499,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2823) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23514,14 +23514,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2825) goto IF_END6
+// goto IF_END6
 @Memory.IF_END6 // goto IF_END6
 0;JMP // unconditional jump
 
-// (-2827) label IF_FALSE6
+// label IF_FALSE6
 (Memory.IF_FALSE6) // label IF_FALSE6
 
-// (-2830) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23533,7 +23533,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2832) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23542,7 +23542,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2834) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23554,7 +23554,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2836) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23566,7 +23566,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2838) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23578,7 +23578,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2840) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23587,7 +23587,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2842) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23599,7 +23599,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2844) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23611,7 +23611,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2846) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23626,7 +23626,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2848) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23638,7 +23638,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2850) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23653,7 +23653,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2852) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23668,7 +23668,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2854) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -23680,7 +23680,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2856) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23695,10 +23695,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2858) label IF_END6
+// label IF_END6
 (Memory.IF_END6) // label IF_END6
 
-// (-2861) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23707,7 +23707,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2863) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23719,7 +23719,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2865) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23731,7 +23731,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2867) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23743,7 +23743,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2869) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23755,7 +23755,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2871) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23767,7 +23767,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2873) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23776,7 +23776,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2875) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23788,7 +23788,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2877) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23803,7 +23803,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2879) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23818,7 +23818,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2881) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -23830,7 +23830,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2883) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23845,10 +23845,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2885) label IF_FALSE5
+// label IF_FALSE5
 (Memory.IF_FALSE5) // label IF_FALSE5
 
-// (-2888) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23857,7 +23857,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2890) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23869,7 +23869,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2892) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23881,7 +23881,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2894) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23890,7 +23890,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2896) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23905,7 +23905,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2898) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -23920,7 +23920,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2900) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -23932,7 +23932,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2902) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23947,7 +23947,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2904) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -23959,7 +23959,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2906) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -23968,7 +23968,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2908) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -23980,9 +23980,9 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2910) return
+// return
 
-// (-2912) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24037,10 +24037,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-2914) function Memory.deAlloc 2
+// function Memory.deAlloc 2
 (Memory.deAlloc) // function Memory.deAlloc 2
 
-// (-2917) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Memory.deAlloc 2 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24051,7 +24051,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-2919) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24060,7 +24060,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2921) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24072,7 +24072,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2923) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24087,7 +24087,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2925) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24096,7 +24096,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2927) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24108,7 +24108,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2929) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24120,7 +24120,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2931) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24135,7 +24135,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2933) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24147,7 +24147,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2935) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24162,7 +24162,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2937) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24171,7 +24171,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2939) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -24183,7 +24183,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2941) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24195,7 +24195,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2943) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24210,7 +24210,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2945) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24222,7 +24222,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2947) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24231,7 +24231,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2949) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24257,7 +24257,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2954) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -24268,14 +24268,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-2956) goto IF_FALSE0
+// goto IF_FALSE0
 @Memory.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-2958) label IF_TRUE0
+// label IF_TRUE0
 (Memory.IF_TRUE0) // label IF_TRUE0
 
-// (-2961) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24284,7 +24284,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2963) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24296,7 +24296,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2965) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24308,7 +24308,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2967) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24317,7 +24317,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2969) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24329,7 +24329,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2971) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24341,7 +24341,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2973) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24356,7 +24356,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2975) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24368,7 +24368,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2977) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24380,7 +24380,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2979) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24392,7 +24392,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2981) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24401,7 +24401,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2983) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24413,7 +24413,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2985) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24428,7 +24428,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2987) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24443,7 +24443,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2989) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -24455,7 +24455,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-2991) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24470,14 +24470,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-2993) goto IF_END0
+// goto IF_END0
 @Memory.IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
-// (-2995) label IF_FALSE0
+// label IF_FALSE0
 (Memory.IF_FALSE0) // label IF_FALSE0
 
-// (-2998) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24486,7 +24486,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3000) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24498,7 +24498,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3002) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24510,7 +24510,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3004) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24519,7 +24519,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3006) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24531,7 +24531,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3008) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24543,7 +24543,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3010) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24558,7 +24558,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3012) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24570,7 +24570,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3014) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24582,7 +24582,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3016) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24594,7 +24594,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3018) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24603,7 +24603,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3020) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -24615,7 +24615,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3022) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24627,7 +24627,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3024) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24642,7 +24642,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3026) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24654,7 +24654,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3028) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24666,7 +24666,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3030) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24681,7 +24681,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3032) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24696,7 +24696,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3034) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -24708,7 +24708,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3036) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24723,7 +24723,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3038) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24732,7 +24732,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3040) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -24744,7 +24744,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3042) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24756,7 +24756,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3044) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24771,7 +24771,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3046) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24783,7 +24783,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3048) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -24795,7 +24795,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3050) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24804,7 +24804,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3052) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24816,7 +24816,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3054) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24842,7 +24842,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3059) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -24853,14 +24853,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Memory.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-3061) goto IF_FALSE1
+// goto IF_FALSE1
 @Memory.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-3063) label IF_TRUE1
+// label IF_TRUE1
 (Memory.IF_TRUE1) // label IF_TRUE1
 
-// (-3066) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24869,7 +24869,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3068) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24881,7 +24881,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3070) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24893,7 +24893,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3072) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -24905,7 +24905,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3074) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24914,7 +24914,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3076) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -24926,7 +24926,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3078) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24941,7 +24941,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3080) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -24956,7 +24956,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3082) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -24968,7 +24968,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3084) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -24983,14 +24983,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3086) goto IF_END1
+// goto IF_END1
 @Memory.IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
-// (-3088) label IF_FALSE1
+// label IF_FALSE1
 (Memory.IF_FALSE1) // label IF_FALSE1
 
-// (-3091) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -24999,7 +24999,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3093) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -25011,7 +25011,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3095) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -25023,7 +25023,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3097) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25032,7 +25032,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3099) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -25044,7 +25044,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3101) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -25056,7 +25056,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3103) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -25071,7 +25071,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3105) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -25083,7 +25083,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3107) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25098,7 +25098,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3109) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -25113,7 +25113,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3111) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -25125,7 +25125,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3113) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25140,13 +25140,13 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3115) label IF_END1
+// label IF_END1
 (Memory.IF_END1) // label IF_END1
 
-// (-3118) label IF_END0
+// label IF_END0
 (Memory.IF_END0) // label IF_END0
 
-// (-3121) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25155,9 +25155,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3123) return
+// return
 
-// (-3125) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25212,10 +25212,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-3127) function Output.init 0
+// function Output.init 0
 (Output.init) // function Output.init 0
 
-// (-3130) push constant 16384
+// push constant 16384
 @16384 // push constant 16384 // function Output.init 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25223,7 +25223,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-3132) pop static 4
+// pop static 4
 @19 // pop static 4 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -25238,7 +25238,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3134) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25247,7 +25247,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3136) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -25255,7 +25255,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3138) pop static 2
+// pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -25270,7 +25270,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3140) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25279,7 +25279,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3142) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -25294,7 +25294,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3144) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25303,7 +25303,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3146) pop static 0
+// pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25318,7 +25318,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3148) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25327,7 +25327,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3151) call String.new 1
+// call String.new 1
 (Output.String.new.223) // call String.new 1
 @Output.String.new.223 // call String.new // push RP
 D=A // d = RP
@@ -25394,7 +25394,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3153) pop static 3
+// pop static 3
 @19 // pop static 3 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -25409,10 +25409,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3156) call Output.initMap 0
+// call Output.initMap 0
 (Output.Output.initMap.224) // call Output.initMap 0
 
-// (-3158) push constant 9999 // call Output.initMap // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.initMap // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.initMap // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -25485,7 +25485,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.initMap // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3160) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25500,10 +25500,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3163) call Output.createShiftedMap 0
+// call Output.createShiftedMap 0
 (Output.Output.createShiftedMap.225) // call Output.createShiftedMap 0
 
-// (-3165) push constant 9999 // call Output.createShiftedMap // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.createShiftedMap // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.createShiftedMap // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -25547,7 +25547,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3167) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -25556,7 +25556,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3169) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -25565,7 +25565,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3171) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -25574,7 +25574,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3173) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -25612,7 +25612,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.createShiftedMap // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3175) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25627,7 +25627,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3177) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25636,9 +25636,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3179) return
+// return
 
-// (-3181) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25693,10 +25693,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-3183) function Output.initMap 0
+// function Output.initMap 0
 (Output.initMap) // function Output.initMap 0
 
-// (-3186) push constant 127
+// push constant 127
 @127 // push constant 127 // function Output.initMap 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25704,7 +25704,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-3189) call Array.new 1
+// call Array.new 1
 (Output.Array.new.226) // call Array.new 1
 @Output.Array.new.226 // call Array.new // push RP
 D=A // d = RP
@@ -25771,7 +25771,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3191) pop static 5
+// pop static 5
 @19 // pop static 5 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @5 // retrieve &dst (segment+offset) and store at R13
@@ -25786,7 +25786,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3193) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25795,7 +25795,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3195) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25804,7 +25804,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3197) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25813,7 +25813,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3199) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25822,7 +25822,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3201) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25831,7 +25831,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3203) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25840,7 +25840,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3205) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25849,7 +25849,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3207) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25858,7 +25858,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3209) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25867,7 +25867,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3211) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25876,7 +25876,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3213) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25885,7 +25885,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3215) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25894,7 +25894,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3218) call Output.create 12
+// call Output.create 12
 (Output.Output.create.227) // call Output.create 12
 @Output.Output.create.227 // call Output.create // push RP
 D=A // d = RP
@@ -25932,7 +25932,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3220) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -25970,7 +25970,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3222) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -25985,7 +25985,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3224) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -25994,7 +25994,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3226) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26003,7 +26003,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3228) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26012,7 +26012,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3230) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26021,7 +26021,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3232) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26030,7 +26030,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3234) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26039,7 +26039,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3236) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26048,7 +26048,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3238) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26057,7 +26057,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3240) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26066,7 +26066,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3242) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26075,7 +26075,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3244) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26084,7 +26084,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3246) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26093,7 +26093,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3249) call Output.create 12
+// call Output.create 12
 (Output.Output.create.228) // call Output.create 12
 @Output.Output.create.228 // call Output.create // push RP
 D=A // d = RP
@@ -26131,7 +26131,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3251) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -26169,7 +26169,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3253) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -26184,7 +26184,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3255) push constant 33
+// push constant 33
 @33 // push constant 33 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26193,7 +26193,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3257) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26202,7 +26202,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3259) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26211,7 +26211,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3261) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26220,7 +26220,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3263) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26229,7 +26229,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3265) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26238,7 +26238,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3267) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26247,7 +26247,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3269) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26256,7 +26256,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3271) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26265,7 +26265,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3273) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26274,7 +26274,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3275) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26283,7 +26283,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3277) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26292,7 +26292,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3280) call Output.create 12
+// call Output.create 12
 (Output.Output.create.229) // call Output.create 12
 @Output.Output.create.229 // call Output.create // push RP
 D=A // d = RP
@@ -26330,7 +26330,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3282) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -26368,7 +26368,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3284) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -26383,7 +26383,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3286) push constant 34
+// push constant 34
 @34 // push constant 34 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26392,7 +26392,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3288) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26401,7 +26401,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3290) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26410,7 +26410,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3292) push constant 20
+// push constant 20
 @20 // push constant 20 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26419,7 +26419,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3294) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26428,7 +26428,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3296) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26437,7 +26437,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3298) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26446,7 +26446,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3300) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26455,7 +26455,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3302) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26464,7 +26464,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3304) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26473,7 +26473,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3306) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26482,7 +26482,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3308) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26491,7 +26491,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3311) call Output.create 12
+// call Output.create 12
 (Output.Output.create.230) // call Output.create 12
 @Output.Output.create.230 // call Output.create // push RP
 D=A // d = RP
@@ -26529,7 +26529,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3313) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -26567,7 +26567,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3315) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -26582,7 +26582,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3317) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26591,7 +26591,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3319) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26600,7 +26600,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3321) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26609,7 +26609,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3323) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26618,7 +26618,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3325) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26627,7 +26627,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3327) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26636,7 +26636,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3329) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26645,7 +26645,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3331) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26654,7 +26654,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3333) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26663,7 +26663,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3335) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26672,7 +26672,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3337) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26681,7 +26681,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3339) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26690,7 +26690,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3342) call Output.create 12
+// call Output.create 12
 (Output.Output.create.231) // call Output.create 12
 @Output.Output.create.231 // call Output.create // push RP
 D=A // d = RP
@@ -26728,7 +26728,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3344) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -26766,7 +26766,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3346) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -26781,7 +26781,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3348) push constant 36
+// push constant 36
 @36 // push constant 36 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26790,7 +26790,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3350) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26799,7 +26799,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3352) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26808,7 +26808,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3354) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26817,7 +26817,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3356) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26826,7 +26826,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3358) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26835,7 +26835,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3360) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26844,7 +26844,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3362) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26853,7 +26853,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3364) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26862,7 +26862,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3366) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26871,7 +26871,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3368) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26880,7 +26880,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3370) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26889,7 +26889,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3373) call Output.create 12
+// call Output.create 12
 (Output.Output.create.232) // call Output.create 12
 @Output.Output.create.232 // call Output.create // push RP
 D=A // d = RP
@@ -26927,7 +26927,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3375) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -26965,7 +26965,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3377) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -26980,7 +26980,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3379) push constant 37
+// push constant 37
 @37 // push constant 37 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26989,7 +26989,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3381) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -26998,7 +26998,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3383) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27007,7 +27007,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3385) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27016,7 +27016,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3387) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27025,7 +27025,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3389) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27034,7 +27034,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3391) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27043,7 +27043,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3393) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27052,7 +27052,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3395) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27061,7 +27061,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3397) push constant 49
+// push constant 49
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27070,7 +27070,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3399) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27079,7 +27079,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3401) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27088,7 +27088,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3404) call Output.create 12
+// call Output.create 12
 (Output.Output.create.233) // call Output.create 12
 @Output.Output.create.233 // call Output.create // push RP
 D=A // d = RP
@@ -27126,7 +27126,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3406) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -27164,7 +27164,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3408) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -27179,7 +27179,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3410) push constant 38
+// push constant 38
 @38 // push constant 38 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27188,7 +27188,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3412) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27197,7 +27197,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3414) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27206,7 +27206,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3416) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27215,7 +27215,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3418) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27224,7 +27224,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3420) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27233,7 +27233,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3422) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27242,7 +27242,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3424) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27251,7 +27251,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3426) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27260,7 +27260,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3428) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27269,7 +27269,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3430) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27278,7 +27278,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3432) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27287,7 +27287,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3435) call Output.create 12
+// call Output.create 12
 (Output.Output.create.234) // call Output.create 12
 @Output.Output.create.234 // call Output.create // push RP
 D=A // d = RP
@@ -27325,7 +27325,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3437) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -27363,7 +27363,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3439) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -27378,7 +27378,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3441) push constant 39
+// push constant 39
 @39 // push constant 39 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27387,7 +27387,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3443) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27396,7 +27396,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3445) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27405,7 +27405,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3447) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27414,7 +27414,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3449) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27423,7 +27423,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3451) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27432,7 +27432,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3453) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27441,7 +27441,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3455) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27450,7 +27450,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3457) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27459,7 +27459,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3459) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27468,7 +27468,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3461) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27477,7 +27477,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3463) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27486,7 +27486,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3466) call Output.create 12
+// call Output.create 12
 (Output.Output.create.235) // call Output.create 12
 @Output.Output.create.235 // call Output.create // push RP
 D=A // d = RP
@@ -27524,7 +27524,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3468) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -27562,7 +27562,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3470) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -27577,7 +27577,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3472) push constant 40
+// push constant 40
 @40 // push constant 40 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27586,7 +27586,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3474) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27595,7 +27595,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3476) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27604,7 +27604,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3478) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27613,7 +27613,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3480) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27622,7 +27622,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3482) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27631,7 +27631,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3484) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27640,7 +27640,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3486) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27649,7 +27649,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3488) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27658,7 +27658,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3490) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27667,7 +27667,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3492) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27676,7 +27676,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3494) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27685,7 +27685,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3497) call Output.create 12
+// call Output.create 12
 (Output.Output.create.236) // call Output.create 12
 @Output.Output.create.236 // call Output.create // push RP
 D=A // d = RP
@@ -27723,7 +27723,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3499) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -27761,7 +27761,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3501) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -27776,7 +27776,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3503) push constant 41
+// push constant 41
 @41 // push constant 41 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27785,7 +27785,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3505) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27794,7 +27794,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3507) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27803,7 +27803,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3509) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27812,7 +27812,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3511) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27821,7 +27821,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3513) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27830,7 +27830,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3515) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27839,7 +27839,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3517) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27848,7 +27848,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3519) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27857,7 +27857,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3521) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27866,7 +27866,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3523) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27875,7 +27875,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3525) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27884,7 +27884,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3528) call Output.create 12
+// call Output.create 12
 (Output.Output.create.237) // call Output.create 12
 @Output.Output.create.237 // call Output.create // push RP
 D=A // d = RP
@@ -27922,7 +27922,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3530) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -27960,7 +27960,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3532) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -27975,7 +27975,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3534) push constant 42
+// push constant 42
 @42 // push constant 42 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27984,7 +27984,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3536) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -27993,7 +27993,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3538) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28002,7 +28002,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3540) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28011,7 +28011,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3542) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28020,7 +28020,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3544) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28029,7 +28029,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3546) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28038,7 +28038,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3548) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28047,7 +28047,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3550) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28056,7 +28056,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3552) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28065,7 +28065,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3554) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28074,7 +28074,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3556) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28083,7 +28083,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3559) call Output.create 12
+// call Output.create 12
 (Output.Output.create.238) // call Output.create 12
 @Output.Output.create.238 // call Output.create // push RP
 D=A // d = RP
@@ -28121,7 +28121,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3561) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -28159,7 +28159,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3563) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -28174,7 +28174,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3565) push constant 43
+// push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28183,7 +28183,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3567) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28192,7 +28192,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3569) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28201,7 +28201,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3571) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28210,7 +28210,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3573) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28219,7 +28219,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3575) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28228,7 +28228,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3577) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28237,7 +28237,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3579) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28246,7 +28246,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3581) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28255,7 +28255,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3583) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28264,7 +28264,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3585) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28273,7 +28273,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3587) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28282,7 +28282,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3590) call Output.create 12
+// call Output.create 12
 (Output.Output.create.239) // call Output.create 12
 @Output.Output.create.239 // call Output.create // push RP
 D=A // d = RP
@@ -28320,7 +28320,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3592) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -28358,7 +28358,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3594) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -28373,7 +28373,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3596) push constant 44
+// push constant 44
 @44 // push constant 44 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28382,7 +28382,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3598) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28391,7 +28391,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3600) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28400,7 +28400,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3602) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28409,7 +28409,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3604) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28418,7 +28418,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3606) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28427,7 +28427,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3608) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28436,7 +28436,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3610) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28445,7 +28445,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3612) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28454,7 +28454,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3614) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28463,7 +28463,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3616) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28472,7 +28472,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3618) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28481,7 +28481,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3621) call Output.create 12
+// call Output.create 12
 (Output.Output.create.240) // call Output.create 12
 @Output.Output.create.240 // call Output.create // push RP
 D=A // d = RP
@@ -28519,7 +28519,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3623) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -28557,7 +28557,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3625) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -28572,7 +28572,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3627) push constant 45
+// push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28581,7 +28581,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3629) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28590,7 +28590,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3631) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28599,7 +28599,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3633) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28608,7 +28608,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3635) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28617,7 +28617,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3637) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28626,7 +28626,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3639) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28635,7 +28635,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3641) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28644,7 +28644,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3643) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28653,7 +28653,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3645) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28662,7 +28662,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3647) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28671,7 +28671,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3649) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28680,7 +28680,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3652) call Output.create 12
+// call Output.create 12
 (Output.Output.create.241) // call Output.create 12
 @Output.Output.create.241 // call Output.create // push RP
 D=A // d = RP
@@ -28718,7 +28718,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3654) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -28756,7 +28756,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3656) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -28771,7 +28771,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3658) push constant 46
+// push constant 46
 @46 // push constant 46 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28780,7 +28780,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3660) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28789,7 +28789,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3662) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28798,7 +28798,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3664) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28807,7 +28807,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3666) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28816,7 +28816,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3668) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28825,7 +28825,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3670) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28834,7 +28834,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3672) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28843,7 +28843,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3674) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28852,7 +28852,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3676) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28861,7 +28861,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3678) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28870,7 +28870,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3680) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28879,7 +28879,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3683) call Output.create 12
+// call Output.create 12
 (Output.Output.create.242) // call Output.create 12
 @Output.Output.create.242 // call Output.create // push RP
 D=A // d = RP
@@ -28917,7 +28917,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3685) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -28955,7 +28955,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3687) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -28970,7 +28970,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3689) push constant 47
+// push constant 47
 @47 // push constant 47 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28979,7 +28979,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3691) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28988,7 +28988,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3693) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -28997,7 +28997,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3695) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29006,7 +29006,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3697) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29015,7 +29015,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3699) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29024,7 +29024,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3701) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29033,7 +29033,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3703) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29042,7 +29042,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3705) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29051,7 +29051,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3707) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29060,7 +29060,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3709) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29069,7 +29069,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3711) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29078,7 +29078,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3714) call Output.create 12
+// call Output.create 12
 (Output.Output.create.243) // call Output.create 12
 @Output.Output.create.243 // call Output.create // push RP
 D=A // d = RP
@@ -29116,7 +29116,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3716) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -29154,7 +29154,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3718) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -29169,7 +29169,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3720) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29178,7 +29178,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3722) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29187,7 +29187,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3724) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29196,7 +29196,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3726) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29205,7 +29205,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3728) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29214,7 +29214,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3730) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29223,7 +29223,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3732) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29232,7 +29232,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3734) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29241,7 +29241,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3736) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29250,7 +29250,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3738) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29259,7 +29259,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3740) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29268,7 +29268,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3742) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29277,7 +29277,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3745) call Output.create 12
+// call Output.create 12
 (Output.Output.create.244) // call Output.create 12
 @Output.Output.create.244 // call Output.create // push RP
 D=A // d = RP
@@ -29315,7 +29315,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3747) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -29353,7 +29353,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3749) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -29368,7 +29368,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3751) push constant 49
+// push constant 49
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29377,7 +29377,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3753) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29386,7 +29386,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3755) push constant 14
+// push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29395,7 +29395,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3757) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29404,7 +29404,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3759) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29413,7 +29413,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3761) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29422,7 +29422,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3763) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29431,7 +29431,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3765) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29440,7 +29440,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3767) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29449,7 +29449,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3769) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29458,7 +29458,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3771) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29467,7 +29467,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3773) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29476,7 +29476,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3776) call Output.create 12
+// call Output.create 12
 (Output.Output.create.245) // call Output.create 12
 @Output.Output.create.245 // call Output.create // push RP
 D=A // d = RP
@@ -29514,7 +29514,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3778) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -29552,7 +29552,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3780) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -29567,7 +29567,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3782) push constant 50
+// push constant 50
 @50 // push constant 50 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29576,7 +29576,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3784) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29585,7 +29585,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3786) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29594,7 +29594,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3788) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29603,7 +29603,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3790) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29612,7 +29612,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3792) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29621,7 +29621,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3794) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29630,7 +29630,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3796) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29639,7 +29639,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3798) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29648,7 +29648,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3800) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29657,7 +29657,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3802) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29666,7 +29666,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3804) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29675,7 +29675,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3807) call Output.create 12
+// call Output.create 12
 (Output.Output.create.246) // call Output.create 12
 @Output.Output.create.246 // call Output.create // push RP
 D=A // d = RP
@@ -29713,7 +29713,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3809) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -29751,7 +29751,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3811) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -29766,7 +29766,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3813) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29775,7 +29775,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3815) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29784,7 +29784,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3817) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29793,7 +29793,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3819) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29802,7 +29802,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3821) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29811,7 +29811,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3823) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29820,7 +29820,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3825) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29829,7 +29829,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3827) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29838,7 +29838,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3829) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29847,7 +29847,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3831) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29856,7 +29856,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3833) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29865,7 +29865,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3835) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29874,7 +29874,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3838) call Output.create 12
+// call Output.create 12
 (Output.Output.create.247) // call Output.create 12
 @Output.Output.create.247 // call Output.create // push RP
 D=A // d = RP
@@ -29912,7 +29912,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3840) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -29950,7 +29950,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3842) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -29965,7 +29965,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3844) push constant 52
+// push constant 52
 @52 // push constant 52 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29974,7 +29974,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3846) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29983,7 +29983,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3848) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -29992,7 +29992,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3850) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30001,7 +30001,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3852) push constant 26
+// push constant 26
 @26 // push constant 26 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30010,7 +30010,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3854) push constant 25
+// push constant 25
 @25 // push constant 25 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30019,7 +30019,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3856) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30028,7 +30028,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3858) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30037,7 +30037,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3860) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30046,7 +30046,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3862) push constant 60
+// push constant 60
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30055,7 +30055,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3864) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30064,7 +30064,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3866) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30073,7 +30073,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3869) call Output.create 12
+// call Output.create 12
 (Output.Output.create.248) // call Output.create 12
 @Output.Output.create.248 // call Output.create // push RP
 D=A // d = RP
@@ -30111,7 +30111,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3871) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -30149,7 +30149,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3873) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -30164,7 +30164,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3875) push constant 53
+// push constant 53
 @53 // push constant 53 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30173,7 +30173,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3877) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30182,7 +30182,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3879) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30191,7 +30191,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3881) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30200,7 +30200,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3883) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30209,7 +30209,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3885) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30218,7 +30218,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3887) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30227,7 +30227,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3889) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30236,7 +30236,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3891) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30245,7 +30245,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3893) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30254,7 +30254,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3895) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30263,7 +30263,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3897) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30272,7 +30272,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3900) call Output.create 12
+// call Output.create 12
 (Output.Output.create.249) // call Output.create 12
 @Output.Output.create.249 // call Output.create // push RP
 D=A // d = RP
@@ -30310,7 +30310,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3902) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -30348,7 +30348,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3904) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -30363,7 +30363,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3906) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30372,7 +30372,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3908) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30381,7 +30381,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3910) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30390,7 +30390,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3912) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30399,7 +30399,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3914) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30408,7 +30408,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3916) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30417,7 +30417,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3918) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30426,7 +30426,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3920) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30435,7 +30435,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3922) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30444,7 +30444,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3924) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30453,7 +30453,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3926) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30462,7 +30462,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3928) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30471,7 +30471,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3931) call Output.create 12
+// call Output.create 12
 (Output.Output.create.250) // call Output.create 12
 @Output.Output.create.250 // call Output.create // push RP
 D=A // d = RP
@@ -30509,7 +30509,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3933) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -30547,7 +30547,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3935) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -30562,7 +30562,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3937) push constant 55
+// push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30571,7 +30571,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3939) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30580,7 +30580,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3941) push constant 49
+// push constant 49
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30589,7 +30589,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3943) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30598,7 +30598,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3945) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30607,7 +30607,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3947) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30616,7 +30616,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3949) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30625,7 +30625,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3951) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30634,7 +30634,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3953) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30643,7 +30643,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3955) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30652,7 +30652,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3957) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30661,7 +30661,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3959) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30670,7 +30670,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3962) call Output.create 12
+// call Output.create 12
 (Output.Output.create.251) // call Output.create 12
 @Output.Output.create.251 // call Output.create // push RP
 D=A // d = RP
@@ -30708,7 +30708,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3964) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -30746,7 +30746,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3966) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -30761,7 +30761,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3968) push constant 56
+// push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30770,7 +30770,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3970) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30779,7 +30779,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3972) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30788,7 +30788,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3974) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30797,7 +30797,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3976) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30806,7 +30806,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3978) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30815,7 +30815,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3980) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30824,7 +30824,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3982) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30833,7 +30833,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3984) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30842,7 +30842,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3986) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30851,7 +30851,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3988) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30860,7 +30860,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3990) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30869,7 +30869,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3993) call Output.create 12
+// call Output.create 12
 (Output.Output.create.252) // call Output.create 12
 @Output.Output.create.252 // call Output.create // push RP
 D=A // d = RP
@@ -30907,7 +30907,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-3995) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -30945,7 +30945,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-3997) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -30960,7 +30960,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-3999) push constant 57
+// push constant 57
 @57 // push constant 57 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30969,7 +30969,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4001) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30978,7 +30978,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4003) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30987,7 +30987,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4005) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -30996,7 +30996,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4007) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31005,7 +31005,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4009) push constant 62
+// push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31014,7 +31014,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4011) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31023,7 +31023,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4013) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31032,7 +31032,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4015) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31041,7 +31041,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4017) push constant 14
+// push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31050,7 +31050,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4019) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31059,7 +31059,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4021) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31068,7 +31068,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4024) call Output.create 12
+// call Output.create 12
 (Output.Output.create.253) // call Output.create 12
 @Output.Output.create.253 // call Output.create // push RP
 D=A // d = RP
@@ -31106,7 +31106,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4026) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -31144,7 +31144,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4028) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -31159,7 +31159,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4030) push constant 58
+// push constant 58
 @58 // push constant 58 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31168,7 +31168,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4032) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31177,7 +31177,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4034) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31186,7 +31186,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4036) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31195,7 +31195,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4038) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31204,7 +31204,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4040) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31213,7 +31213,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4042) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31222,7 +31222,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4044) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31231,7 +31231,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4046) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31240,7 +31240,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4048) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31249,7 +31249,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4050) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31258,7 +31258,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4052) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31267,7 +31267,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4055) call Output.create 12
+// call Output.create 12
 (Output.Output.create.254) // call Output.create 12
 @Output.Output.create.254 // call Output.create // push RP
 D=A // d = RP
@@ -31305,7 +31305,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4057) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -31343,7 +31343,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4059) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -31358,7 +31358,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4061) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31367,7 +31367,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4063) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31376,7 +31376,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4065) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31385,7 +31385,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4067) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31394,7 +31394,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4069) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31403,7 +31403,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4071) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31412,7 +31412,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4073) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31421,7 +31421,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4075) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31430,7 +31430,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4077) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31439,7 +31439,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4079) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31448,7 +31448,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4081) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31457,7 +31457,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4083) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31466,7 +31466,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4086) call Output.create 12
+// call Output.create 12
 (Output.Output.create.255) // call Output.create 12
 @Output.Output.create.255 // call Output.create // push RP
 D=A // d = RP
@@ -31504,7 +31504,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4088) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -31542,7 +31542,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4090) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -31557,7 +31557,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4092) push constant 60
+// push constant 60
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31566,7 +31566,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4094) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31575,7 +31575,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4096) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31584,7 +31584,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4098) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31593,7 +31593,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4100) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31602,7 +31602,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4102) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31611,7 +31611,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4104) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31620,7 +31620,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4106) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31629,7 +31629,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4108) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31638,7 +31638,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4110) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31647,7 +31647,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4112) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31656,7 +31656,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4114) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31665,7 +31665,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4117) call Output.create 12
+// call Output.create 12
 (Output.Output.create.256) // call Output.create 12
 @Output.Output.create.256 // call Output.create // push RP
 D=A // d = RP
@@ -31703,7 +31703,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4119) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -31741,7 +31741,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4121) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -31756,7 +31756,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4123) push constant 61
+// push constant 61
 @61 // push constant 61 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31765,7 +31765,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4125) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31774,7 +31774,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4127) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31783,7 +31783,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4129) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31792,7 +31792,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4131) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31801,7 +31801,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4133) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31810,7 +31810,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4135) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31819,7 +31819,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4137) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31828,7 +31828,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4139) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31837,7 +31837,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4141) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31846,7 +31846,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4143) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31855,7 +31855,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4145) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31864,7 +31864,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4148) call Output.create 12
+// call Output.create 12
 (Output.Output.create.257) // call Output.create 12
 @Output.Output.create.257 // call Output.create // push RP
 D=A // d = RP
@@ -31902,7 +31902,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4150) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -31940,7 +31940,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4152) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -31955,7 +31955,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4154) push constant 62
+// push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31964,7 +31964,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4156) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31973,7 +31973,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4158) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31982,7 +31982,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4160) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -31991,7 +31991,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4162) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32000,7 +32000,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4164) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32009,7 +32009,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4166) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32018,7 +32018,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4168) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32027,7 +32027,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4170) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32036,7 +32036,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4172) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32045,7 +32045,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4174) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32054,7 +32054,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4176) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32063,7 +32063,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4179) call Output.create 12
+// call Output.create 12
 (Output.Output.create.258) // call Output.create 12
 @Output.Output.create.258 // call Output.create // push RP
 D=A // d = RP
@@ -32101,7 +32101,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4181) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -32139,7 +32139,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4183) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -32154,7 +32154,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4185) push constant 64
+// push constant 64
 @64 // push constant 64 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32163,7 +32163,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4187) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32172,7 +32172,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4189) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32181,7 +32181,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4191) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32190,7 +32190,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4193) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32199,7 +32199,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4195) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32208,7 +32208,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4197) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32217,7 +32217,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4199) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32226,7 +32226,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4201) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32235,7 +32235,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4203) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32244,7 +32244,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4205) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32253,7 +32253,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4207) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32262,7 +32262,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4210) call Output.create 12
+// call Output.create 12
 (Output.Output.create.259) // call Output.create 12
 @Output.Output.create.259 // call Output.create // push RP
 D=A // d = RP
@@ -32300,7 +32300,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4212) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -32338,7 +32338,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4214) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -32353,7 +32353,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4216) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32362,7 +32362,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4218) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32371,7 +32371,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4220) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32380,7 +32380,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4222) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32389,7 +32389,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4224) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32398,7 +32398,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4226) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32407,7 +32407,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4228) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32416,7 +32416,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4230) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32425,7 +32425,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4232) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32434,7 +32434,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4234) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32443,7 +32443,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4236) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32452,7 +32452,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4238) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32461,7 +32461,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4241) call Output.create 12
+// call Output.create 12
 (Output.Output.create.260) // call Output.create 12
 @Output.Output.create.260 // call Output.create // push RP
 D=A // d = RP
@@ -32499,7 +32499,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4243) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -32537,7 +32537,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4245) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -32552,7 +32552,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4247) push constant 65
+// push constant 65
 @65 // push constant 65 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32561,7 +32561,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4249) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32570,7 +32570,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4251) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32579,7 +32579,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4253) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32588,7 +32588,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4255) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32597,7 +32597,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4257) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32606,7 +32606,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4259) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32615,7 +32615,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4261) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32624,7 +32624,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4263) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32633,7 +32633,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4265) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32642,7 +32642,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4267) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32651,7 +32651,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4269) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32660,7 +32660,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4272) call Output.create 12
+// call Output.create 12
 (Output.Output.create.261) // call Output.create 12
 @Output.Output.create.261 // call Output.create // push RP
 D=A // d = RP
@@ -32698,7 +32698,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4274) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -32736,7 +32736,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4276) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -32751,7 +32751,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4278) push constant 66
+// push constant 66
 @66 // push constant 66 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32760,7 +32760,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4280) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32769,7 +32769,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4282) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32778,7 +32778,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4284) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32787,7 +32787,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4286) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32796,7 +32796,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4288) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32805,7 +32805,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4290) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32814,7 +32814,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4292) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32823,7 +32823,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4294) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32832,7 +32832,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4296) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32841,7 +32841,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4298) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32850,7 +32850,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4300) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32859,7 +32859,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4303) call Output.create 12
+// call Output.create 12
 (Output.Output.create.262) // call Output.create 12
 @Output.Output.create.262 // call Output.create // push RP
 D=A // d = RP
@@ -32897,7 +32897,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4305) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -32935,7 +32935,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4307) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -32950,7 +32950,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4309) push constant 67
+// push constant 67
 @67 // push constant 67 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32959,7 +32959,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4311) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32968,7 +32968,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4313) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32977,7 +32977,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4315) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32986,7 +32986,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4317) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32995,7 +32995,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4319) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33004,7 +33004,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4321) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33013,7 +33013,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4323) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33022,7 +33022,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4325) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33031,7 +33031,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4327) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33040,7 +33040,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4329) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33049,7 +33049,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4331) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33058,7 +33058,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4334) call Output.create 12
+// call Output.create 12
 (Output.Output.create.263) // call Output.create 12
 @Output.Output.create.263 // call Output.create // push RP
 D=A // d = RP
@@ -33096,7 +33096,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4336) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -33134,7 +33134,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4338) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -33149,7 +33149,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4340) push constant 68
+// push constant 68
 @68 // push constant 68 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33158,7 +33158,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4342) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33167,7 +33167,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4344) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33176,7 +33176,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4346) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33185,7 +33185,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4348) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33194,7 +33194,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4350) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33203,7 +33203,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4352) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33212,7 +33212,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4354) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33221,7 +33221,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4356) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33230,7 +33230,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4358) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33239,7 +33239,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4360) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33248,7 +33248,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4362) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33257,7 +33257,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4365) call Output.create 12
+// call Output.create 12
 (Output.Output.create.264) // call Output.create 12
 @Output.Output.create.264 // call Output.create // push RP
 D=A // d = RP
@@ -33295,7 +33295,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4367) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -33333,7 +33333,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4369) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -33348,7 +33348,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4371) push constant 69
+// push constant 69
 @69 // push constant 69 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33357,7 +33357,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4373) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33366,7 +33366,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4375) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33375,7 +33375,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4377) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33384,7 +33384,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4379) push constant 11
+// push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33393,7 +33393,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4381) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33402,7 +33402,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4383) push constant 11
+// push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33411,7 +33411,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4385) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33420,7 +33420,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4387) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33429,7 +33429,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4389) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33438,7 +33438,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4391) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33447,7 +33447,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4393) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33456,7 +33456,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4396) call Output.create 12
+// call Output.create 12
 (Output.Output.create.265) // call Output.create 12
 @Output.Output.create.265 // call Output.create // push RP
 D=A // d = RP
@@ -33494,7 +33494,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4398) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -33532,7 +33532,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4400) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -33547,7 +33547,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4402) push constant 70
+// push constant 70
 @70 // push constant 70 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33556,7 +33556,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4404) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33565,7 +33565,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4406) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33574,7 +33574,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4408) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33583,7 +33583,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4410) push constant 11
+// push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33592,7 +33592,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4412) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33601,7 +33601,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4414) push constant 11
+// push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33610,7 +33610,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4416) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33619,7 +33619,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4418) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33628,7 +33628,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4420) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33637,7 +33637,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4422) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33646,7 +33646,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4424) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33655,7 +33655,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4427) call Output.create 12
+// call Output.create 12
 (Output.Output.create.266) // call Output.create 12
 @Output.Output.create.266 // call Output.create // push RP
 D=A // d = RP
@@ -33693,7 +33693,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4429) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -33731,7 +33731,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4431) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -33746,7 +33746,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4433) push constant 71
+// push constant 71
 @71 // push constant 71 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33755,7 +33755,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4435) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33764,7 +33764,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4437) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33773,7 +33773,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4439) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33782,7 +33782,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4441) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33791,7 +33791,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4443) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33800,7 +33800,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4445) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33809,7 +33809,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4447) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33818,7 +33818,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4449) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33827,7 +33827,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4451) push constant 44
+// push constant 44
 @44 // push constant 44 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33836,7 +33836,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4453) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33845,7 +33845,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4455) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33854,7 +33854,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4458) call Output.create 12
+// call Output.create 12
 (Output.Output.create.267) // call Output.create 12
 @Output.Output.create.267 // call Output.create // push RP
 D=A // d = RP
@@ -33892,7 +33892,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4460) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -33930,7 +33930,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4462) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -33945,7 +33945,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4464) push constant 72
+// push constant 72
 @72 // push constant 72 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33954,7 +33954,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4466) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33963,7 +33963,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4468) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33972,7 +33972,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4470) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33981,7 +33981,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4472) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33990,7 +33990,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4474) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -33999,7 +33999,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4476) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34008,7 +34008,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4478) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34017,7 +34017,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4480) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34026,7 +34026,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4482) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34035,7 +34035,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4484) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34044,7 +34044,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4486) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34053,7 +34053,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4489) call Output.create 12
+// call Output.create 12
 (Output.Output.create.268) // call Output.create 12
 @Output.Output.create.268 // call Output.create // push RP
 D=A // d = RP
@@ -34091,7 +34091,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4491) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -34129,7 +34129,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4493) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -34144,7 +34144,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4495) push constant 73
+// push constant 73
 @73 // push constant 73 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34153,7 +34153,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4497) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34162,7 +34162,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4499) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34171,7 +34171,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4501) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34180,7 +34180,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4503) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34189,7 +34189,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4505) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34198,7 +34198,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4507) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34207,7 +34207,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4509) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34216,7 +34216,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4511) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34225,7 +34225,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4513) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34234,7 +34234,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4515) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34243,7 +34243,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4517) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34252,7 +34252,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4520) call Output.create 12
+// call Output.create 12
 (Output.Output.create.269) // call Output.create 12
 @Output.Output.create.269 // call Output.create // push RP
 D=A // d = RP
@@ -34290,7 +34290,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4522) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -34328,7 +34328,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4524) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -34343,7 +34343,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4526) push constant 74
+// push constant 74
 @74 // push constant 74 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34352,7 +34352,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4528) push constant 60
+// push constant 60
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34361,7 +34361,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4530) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34370,7 +34370,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4532) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34379,7 +34379,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4534) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34388,7 +34388,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4536) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34397,7 +34397,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4538) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34406,7 +34406,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4540) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34415,7 +34415,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4542) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34424,7 +34424,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4544) push constant 14
+// push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34433,7 +34433,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4546) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34442,7 +34442,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4548) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34451,7 +34451,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4551) call Output.create 12
+// call Output.create 12
 (Output.Output.create.270) // call Output.create 12
 @Output.Output.create.270 // call Output.create // push RP
 D=A // d = RP
@@ -34489,7 +34489,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4553) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -34527,7 +34527,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4555) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -34542,7 +34542,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4557) push constant 75
+// push constant 75
 @75 // push constant 75 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34551,7 +34551,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4559) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34560,7 +34560,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4561) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34569,7 +34569,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4563) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34578,7 +34578,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4565) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34587,7 +34587,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4567) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34596,7 +34596,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4569) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34605,7 +34605,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4571) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34614,7 +34614,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4573) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34623,7 +34623,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4575) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34632,7 +34632,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4577) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34641,7 +34641,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4579) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34650,7 +34650,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4582) call Output.create 12
+// call Output.create 12
 (Output.Output.create.271) // call Output.create 12
 @Output.Output.create.271 // call Output.create // push RP
 D=A // d = RP
@@ -34688,7 +34688,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4584) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -34726,7 +34726,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4586) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -34741,7 +34741,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4588) push constant 76
+// push constant 76
 @76 // push constant 76 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34750,7 +34750,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4590) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34759,7 +34759,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4592) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34768,7 +34768,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4594) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34777,7 +34777,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4596) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34786,7 +34786,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4598) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34795,7 +34795,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4600) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34804,7 +34804,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4602) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34813,7 +34813,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4604) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34822,7 +34822,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4606) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34831,7 +34831,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4608) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34840,7 +34840,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4610) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34849,7 +34849,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4613) call Output.create 12
+// call Output.create 12
 (Output.Output.create.272) // call Output.create 12
 @Output.Output.create.272 // call Output.create // push RP
 D=A // d = RP
@@ -34887,7 +34887,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4615) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -34925,7 +34925,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4617) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -34940,7 +34940,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4619) push constant 77
+// push constant 77
 @77 // push constant 77 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34949,7 +34949,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4621) push constant 33
+// push constant 33
 @33 // push constant 33 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34958,7 +34958,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4623) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34967,7 +34967,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4625) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34976,7 +34976,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4627) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34985,7 +34985,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4629) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -34994,7 +34994,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4631) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35003,7 +35003,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4633) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35012,7 +35012,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4635) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35021,7 +35021,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4637) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35030,7 +35030,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4639) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35039,7 +35039,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4641) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35048,7 +35048,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4644) call Output.create 12
+// call Output.create 12
 (Output.Output.create.273) // call Output.create 12
 @Output.Output.create.273 // call Output.create // push RP
 D=A // d = RP
@@ -35086,7 +35086,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4646) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -35124,7 +35124,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4648) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -35139,7 +35139,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4650) push constant 78
+// push constant 78
 @78 // push constant 78 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35148,7 +35148,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4652) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35157,7 +35157,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4654) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35166,7 +35166,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4656) push constant 55
+// push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35175,7 +35175,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4658) push constant 55
+// push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35184,7 +35184,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4660) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35193,7 +35193,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4662) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35202,7 +35202,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4664) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35211,7 +35211,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4666) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35220,7 +35220,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4668) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35229,7 +35229,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4670) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35238,7 +35238,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4672) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35247,7 +35247,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4675) call Output.create 12
+// call Output.create 12
 (Output.Output.create.274) // call Output.create 12
 @Output.Output.create.274 // call Output.create // push RP
 D=A // d = RP
@@ -35285,7 +35285,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4677) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -35323,7 +35323,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4679) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -35338,7 +35338,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4681) push constant 79
+// push constant 79
 @79 // push constant 79 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35347,7 +35347,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4683) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35356,7 +35356,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4685) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35365,7 +35365,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4687) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35374,7 +35374,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4689) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35383,7 +35383,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4691) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35392,7 +35392,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4693) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35401,7 +35401,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4695) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35410,7 +35410,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4697) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35419,7 +35419,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4699) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35428,7 +35428,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4701) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35437,7 +35437,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4703) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35446,7 +35446,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4706) call Output.create 12
+// call Output.create 12
 (Output.Output.create.275) // call Output.create 12
 @Output.Output.create.275 // call Output.create // push RP
 D=A // d = RP
@@ -35484,7 +35484,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4708) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -35522,7 +35522,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4710) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -35537,7 +35537,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4712) push constant 80
+// push constant 80
 @80 // push constant 80 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35546,7 +35546,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4714) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35555,7 +35555,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4716) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35564,7 +35564,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4718) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35573,7 +35573,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4720) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35582,7 +35582,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4722) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35591,7 +35591,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4724) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35600,7 +35600,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4726) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35609,7 +35609,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4728) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35618,7 +35618,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4730) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35627,7 +35627,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4732) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35636,7 +35636,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4734) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35645,7 +35645,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4737) call Output.create 12
+// call Output.create 12
 (Output.Output.create.276) // call Output.create 12
 @Output.Output.create.276 // call Output.create // push RP
 D=A // d = RP
@@ -35683,7 +35683,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4739) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -35721,7 +35721,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4741) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -35736,7 +35736,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4743) push constant 81
+// push constant 81
 @81 // push constant 81 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35745,7 +35745,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4745) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35754,7 +35754,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4747) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35763,7 +35763,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4749) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35772,7 +35772,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4751) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35781,7 +35781,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4753) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35790,7 +35790,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4755) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35799,7 +35799,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4757) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35808,7 +35808,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4759) push constant 59
+// push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35817,7 +35817,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4761) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35826,7 +35826,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4763) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35835,7 +35835,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4765) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35844,7 +35844,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4768) call Output.create 12
+// call Output.create 12
 (Output.Output.create.277) // call Output.create 12
 @Output.Output.create.277 // call Output.create // push RP
 D=A // d = RP
@@ -35882,7 +35882,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4770) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -35920,7 +35920,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4772) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -35935,7 +35935,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4774) push constant 82
+// push constant 82
 @82 // push constant 82 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35944,7 +35944,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4776) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35953,7 +35953,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4778) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35962,7 +35962,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4780) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35971,7 +35971,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4782) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35980,7 +35980,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4784) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35989,7 +35989,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4786) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -35998,7 +35998,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4788) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36007,7 +36007,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4790) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36016,7 +36016,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4792) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36025,7 +36025,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4794) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36034,7 +36034,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4796) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36043,7 +36043,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4799) call Output.create 12
+// call Output.create 12
 (Output.Output.create.278) // call Output.create 12
 @Output.Output.create.278 // call Output.create // push RP
 D=A // d = RP
@@ -36081,7 +36081,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4801) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -36119,7 +36119,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4803) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -36134,7 +36134,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4805) push constant 83
+// push constant 83
 @83 // push constant 83 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36143,7 +36143,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4807) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36152,7 +36152,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4809) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36161,7 +36161,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4811) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36170,7 +36170,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4813) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36179,7 +36179,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4815) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36188,7 +36188,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4817) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36197,7 +36197,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4819) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36206,7 +36206,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4821) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36215,7 +36215,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4823) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36224,7 +36224,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4825) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36233,7 +36233,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4827) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36242,7 +36242,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4830) call Output.create 12
+// call Output.create 12
 (Output.Output.create.279) // call Output.create 12
 @Output.Output.create.279 // call Output.create // push RP
 D=A // d = RP
@@ -36280,7 +36280,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4832) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -36318,7 +36318,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4834) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -36333,7 +36333,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4836) push constant 84
+// push constant 84
 @84 // push constant 84 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36342,7 +36342,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4838) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36351,7 +36351,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4840) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36360,7 +36360,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4842) push constant 45
+// push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36369,7 +36369,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4844) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36378,7 +36378,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4846) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36387,7 +36387,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4848) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36396,7 +36396,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4850) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36405,7 +36405,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4852) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36414,7 +36414,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4854) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36423,7 +36423,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4856) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36432,7 +36432,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4858) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36441,7 +36441,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4861) call Output.create 12
+// call Output.create 12
 (Output.Output.create.280) // call Output.create 12
 @Output.Output.create.280 // call Output.create // push RP
 D=A // d = RP
@@ -36479,7 +36479,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4863) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -36517,7 +36517,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4865) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -36532,7 +36532,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4867) push constant 85
+// push constant 85
 @85 // push constant 85 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36541,7 +36541,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4869) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36550,7 +36550,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4871) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36559,7 +36559,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4873) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36568,7 +36568,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4875) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36577,7 +36577,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4877) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36586,7 +36586,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4879) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36595,7 +36595,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4881) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36604,7 +36604,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4883) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36613,7 +36613,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4885) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36622,7 +36622,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4887) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36631,7 +36631,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4889) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36640,7 +36640,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4892) call Output.create 12
+// call Output.create 12
 (Output.Output.create.281) // call Output.create 12
 @Output.Output.create.281 // call Output.create // push RP
 D=A // d = RP
@@ -36678,7 +36678,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4894) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -36716,7 +36716,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4896) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -36731,7 +36731,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4898) push constant 86
+// push constant 86
 @86 // push constant 86 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36740,7 +36740,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4900) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36749,7 +36749,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4902) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36758,7 +36758,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4904) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36767,7 +36767,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4906) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36776,7 +36776,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4908) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36785,7 +36785,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4910) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36794,7 +36794,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4912) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36803,7 +36803,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4914) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36812,7 +36812,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4916) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36821,7 +36821,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4918) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36830,7 +36830,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4920) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36839,7 +36839,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4923) call Output.create 12
+// call Output.create 12
 (Output.Output.create.282) // call Output.create 12
 @Output.Output.create.282 // call Output.create // push RP
 D=A // d = RP
@@ -36877,7 +36877,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4925) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -36915,7 +36915,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4927) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -36930,7 +36930,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4929) push constant 87
+// push constant 87
 @87 // push constant 87 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36939,7 +36939,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4931) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36948,7 +36948,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4933) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36957,7 +36957,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4935) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36966,7 +36966,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4937) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36975,7 +36975,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4939) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36984,7 +36984,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4941) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -36993,7 +36993,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4943) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37002,7 +37002,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4945) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37011,7 +37011,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4947) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37020,7 +37020,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4949) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37029,7 +37029,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4951) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37038,7 +37038,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4954) call Output.create 12
+// call Output.create 12
 (Output.Output.create.283) // call Output.create 12
 @Output.Output.create.283 // call Output.create // push RP
 D=A // d = RP
@@ -37076,7 +37076,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4956) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -37114,7 +37114,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4958) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -37129,7 +37129,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4960) push constant 88
+// push constant 88
 @88 // push constant 88 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37138,7 +37138,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4962) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37147,7 +37147,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4964) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37156,7 +37156,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4966) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37165,7 +37165,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4968) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37174,7 +37174,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4970) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37183,7 +37183,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4972) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37192,7 +37192,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4974) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37201,7 +37201,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4976) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37210,7 +37210,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4978) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37219,7 +37219,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4980) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37228,7 +37228,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4982) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37237,7 +37237,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4985) call Output.create 12
+// call Output.create 12
 (Output.Output.create.284) // call Output.create 12
 @Output.Output.create.284 // call Output.create // push RP
 D=A // d = RP
@@ -37275,7 +37275,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4987) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -37313,7 +37313,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-4989) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -37328,7 +37328,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-4991) push constant 89
+// push constant 89
 @89 // push constant 89 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37337,7 +37337,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4993) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37346,7 +37346,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4995) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37355,7 +37355,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4997) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37364,7 +37364,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-4999) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37373,7 +37373,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5001) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37382,7 +37382,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5003) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37391,7 +37391,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5005) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37400,7 +37400,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5007) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37409,7 +37409,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5009) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37418,7 +37418,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5011) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37427,7 +37427,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5013) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37436,7 +37436,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5016) call Output.create 12
+// call Output.create 12
 (Output.Output.create.285) // call Output.create 12
 @Output.Output.create.285 // call Output.create // push RP
 D=A // d = RP
@@ -37474,7 +37474,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5018) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -37512,7 +37512,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5020) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -37527,7 +37527,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5022) push constant 90
+// push constant 90
 @90 // push constant 90 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37536,7 +37536,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5024) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37545,7 +37545,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5026) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37554,7 +37554,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5028) push constant 49
+// push constant 49
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37563,7 +37563,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5030) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37572,7 +37572,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5032) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37581,7 +37581,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5034) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37590,7 +37590,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5036) push constant 35
+// push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37599,7 +37599,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5038) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37608,7 +37608,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5040) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37617,7 +37617,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5042) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37626,7 +37626,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5044) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37635,7 +37635,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5047) call Output.create 12
+// call Output.create 12
 (Output.Output.create.286) // call Output.create 12
 @Output.Output.create.286 // call Output.create // push RP
 D=A // d = RP
@@ -37673,7 +37673,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5049) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -37711,7 +37711,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5051) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -37726,7 +37726,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5053) push constant 91
+// push constant 91
 @91 // push constant 91 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37735,7 +37735,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5055) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37744,7 +37744,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5057) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37753,7 +37753,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5059) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37762,7 +37762,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5061) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37771,7 +37771,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5063) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37780,7 +37780,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5065) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37789,7 +37789,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5067) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37798,7 +37798,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5069) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37807,7 +37807,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5071) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37816,7 +37816,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5073) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37825,7 +37825,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5075) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37834,7 +37834,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5078) call Output.create 12
+// call Output.create 12
 (Output.Output.create.287) // call Output.create 12
 @Output.Output.create.287 // call Output.create // push RP
 D=A // d = RP
@@ -37872,7 +37872,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5080) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -37910,7 +37910,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5082) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -37925,7 +37925,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5084) push constant 92
+// push constant 92
 @92 // push constant 92 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37934,7 +37934,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5086) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37943,7 +37943,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5088) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37952,7 +37952,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5090) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37961,7 +37961,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5092) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37970,7 +37970,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5094) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37979,7 +37979,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5096) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37988,7 +37988,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5098) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -37997,7 +37997,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5100) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38006,7 +38006,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5102) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38015,7 +38015,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5104) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38024,7 +38024,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5106) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38033,7 +38033,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5109) call Output.create 12
+// call Output.create 12
 (Output.Output.create.288) // call Output.create 12
 @Output.Output.create.288 // call Output.create // push RP
 D=A // d = RP
@@ -38071,7 +38071,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5111) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -38109,7 +38109,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5113) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -38124,7 +38124,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5115) push constant 93
+// push constant 93
 @93 // push constant 93 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38133,7 +38133,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5117) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38142,7 +38142,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5119) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38151,7 +38151,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5121) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38160,7 +38160,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5123) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38169,7 +38169,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5125) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38178,7 +38178,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5127) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38187,7 +38187,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5129) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38196,7 +38196,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5131) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38205,7 +38205,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5133) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38214,7 +38214,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5135) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38223,7 +38223,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5137) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38232,7 +38232,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5140) call Output.create 12
+// call Output.create 12
 (Output.Output.create.289) // call Output.create 12
 @Output.Output.create.289 // call Output.create // push RP
 D=A // d = RP
@@ -38270,7 +38270,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5142) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -38308,7 +38308,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5144) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -38323,7 +38323,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5146) push constant 94
+// push constant 94
 @94 // push constant 94 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38332,7 +38332,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5148) push constant 8
+// push constant 8
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38341,7 +38341,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5150) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38350,7 +38350,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5152) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38359,7 +38359,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5154) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38368,7 +38368,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5156) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38377,7 +38377,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5158) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38386,7 +38386,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5160) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38395,7 +38395,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5162) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38404,7 +38404,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5164) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38413,7 +38413,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5166) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38422,7 +38422,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5168) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38431,7 +38431,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5171) call Output.create 12
+// call Output.create 12
 (Output.Output.create.290) // call Output.create 12
 @Output.Output.create.290 // call Output.create // push RP
 D=A // d = RP
@@ -38469,7 +38469,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5173) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -38507,7 +38507,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5175) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -38522,7 +38522,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5177) push constant 95
+// push constant 95
 @95 // push constant 95 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38531,7 +38531,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5179) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38540,7 +38540,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5181) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38549,7 +38549,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5183) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38558,7 +38558,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5185) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38567,7 +38567,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5187) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38576,7 +38576,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5189) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38585,7 +38585,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5191) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38594,7 +38594,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5193) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38603,7 +38603,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5195) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38612,7 +38612,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5197) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38621,7 +38621,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5199) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38630,7 +38630,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5202) call Output.create 12
+// call Output.create 12
 (Output.Output.create.291) // call Output.create 12
 @Output.Output.create.291 // call Output.create // push RP
 D=A // d = RP
@@ -38668,7 +38668,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5204) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -38706,7 +38706,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5206) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -38721,7 +38721,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5208) push constant 96
+// push constant 96
 @96 // push constant 96 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38730,7 +38730,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5210) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38739,7 +38739,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5212) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38748,7 +38748,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5214) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38757,7 +38757,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5216) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38766,7 +38766,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5218) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38775,7 +38775,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5220) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38784,7 +38784,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5222) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38793,7 +38793,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5224) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38802,7 +38802,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5226) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38811,7 +38811,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5228) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38820,7 +38820,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5230) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38829,7 +38829,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5233) call Output.create 12
+// call Output.create 12
 (Output.Output.create.292) // call Output.create 12
 @Output.Output.create.292 // call Output.create // push RP
 D=A // d = RP
@@ -38867,7 +38867,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5235) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -38905,7 +38905,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5237) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -38920,7 +38920,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5239) push constant 97
+// push constant 97
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38929,7 +38929,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5241) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38938,7 +38938,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5243) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38947,7 +38947,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5245) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38956,7 +38956,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5247) push constant 14
+// push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38965,7 +38965,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5249) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38974,7 +38974,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5251) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38983,7 +38983,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5253) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -38992,7 +38992,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5255) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39001,7 +39001,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5257) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39010,7 +39010,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5259) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39019,7 +39019,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5261) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39028,7 +39028,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5264) call Output.create 12
+// call Output.create 12
 (Output.Output.create.293) // call Output.create 12
 @Output.Output.create.293 // call Output.create // push RP
 D=A // d = RP
@@ -39066,7 +39066,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5266) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -39104,7 +39104,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5268) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -39119,7 +39119,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5270) push constant 98
+// push constant 98
 @98 // push constant 98 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39128,7 +39128,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5272) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39137,7 +39137,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5274) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39146,7 +39146,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5276) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39155,7 +39155,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5278) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39164,7 +39164,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5280) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39173,7 +39173,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5282) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39182,7 +39182,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5284) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39191,7 +39191,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5286) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39200,7 +39200,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5288) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39209,7 +39209,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5290) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39218,7 +39218,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5292) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39227,7 +39227,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5295) call Output.create 12
+// call Output.create 12
 (Output.Output.create.294) // call Output.create 12
 @Output.Output.create.294 // call Output.create // push RP
 D=A // d = RP
@@ -39265,7 +39265,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5297) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -39303,7 +39303,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5299) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -39318,7 +39318,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5301) push constant 99
+// push constant 99
 @99 // push constant 99 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39327,7 +39327,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5303) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39336,7 +39336,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5305) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39345,7 +39345,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5307) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39354,7 +39354,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5309) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39363,7 +39363,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5311) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39372,7 +39372,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5313) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39381,7 +39381,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5315) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39390,7 +39390,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5317) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39399,7 +39399,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5319) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39408,7 +39408,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5321) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39417,7 +39417,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5323) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39426,7 +39426,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5326) call Output.create 12
+// call Output.create 12
 (Output.Output.create.295) // call Output.create 12
 @Output.Output.create.295 // call Output.create // push RP
 D=A // d = RP
@@ -39464,7 +39464,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5328) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -39502,7 +39502,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5330) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -39517,7 +39517,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5332) push constant 100
+// push constant 100
 @100 // push constant 100 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39526,7 +39526,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5334) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39535,7 +39535,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5336) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39544,7 +39544,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5338) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39553,7 +39553,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5340) push constant 60
+// push constant 60
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39562,7 +39562,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5342) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39571,7 +39571,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5344) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39580,7 +39580,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5346) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39589,7 +39589,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5348) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39598,7 +39598,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5350) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39607,7 +39607,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5352) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39616,7 +39616,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5354) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39625,7 +39625,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5357) call Output.create 12
+// call Output.create 12
 (Output.Output.create.296) // call Output.create 12
 @Output.Output.create.296 // call Output.create // push RP
 D=A // d = RP
@@ -39663,7 +39663,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5359) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -39701,7 +39701,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5361) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -39716,7 +39716,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5363) push constant 101
+// push constant 101
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39725,7 +39725,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5365) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39734,7 +39734,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5367) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39743,7 +39743,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5369) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39752,7 +39752,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5371) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39761,7 +39761,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5373) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39770,7 +39770,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5375) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39779,7 +39779,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5377) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39788,7 +39788,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5379) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39797,7 +39797,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5381) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39806,7 +39806,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5383) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39815,7 +39815,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5385) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39824,7 +39824,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5388) call Output.create 12
+// call Output.create 12
 (Output.Output.create.297) // call Output.create 12
 @Output.Output.create.297 // call Output.create // push RP
 D=A // d = RP
@@ -39862,7 +39862,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5390) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -39900,7 +39900,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5392) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -39915,7 +39915,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5394) push constant 102
+// push constant 102
 @102 // push constant 102 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39924,7 +39924,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5396) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39933,7 +39933,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5398) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39942,7 +39942,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5400) push constant 38
+// push constant 38
 @38 // push constant 38 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39951,7 +39951,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5402) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39960,7 +39960,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5404) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39969,7 +39969,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5406) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39978,7 +39978,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5408) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39987,7 +39987,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5410) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -39996,7 +39996,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5412) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40005,7 +40005,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5414) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40014,7 +40014,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5416) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40023,7 +40023,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5419) call Output.create 12
+// call Output.create 12
 (Output.Output.create.298) // call Output.create 12
 @Output.Output.create.298 // call Output.create // push RP
 D=A // d = RP
@@ -40061,7 +40061,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5421) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -40099,7 +40099,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5423) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -40114,7 +40114,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5425) push constant 103
+// push constant 103
 @103 // push constant 103 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40123,7 +40123,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5427) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40132,7 +40132,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5429) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40141,7 +40141,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5431) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40150,7 +40150,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5433) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40159,7 +40159,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5435) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40168,7 +40168,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5437) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40177,7 +40177,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5439) push constant 62
+// push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40186,7 +40186,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5441) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40195,7 +40195,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5443) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40204,7 +40204,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5445) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40213,7 +40213,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5447) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40222,7 +40222,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5450) call Output.create 12
+// call Output.create 12
 (Output.Output.create.299) // call Output.create 12
 @Output.Output.create.299 // call Output.create // push RP
 D=A // d = RP
@@ -40260,7 +40260,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5452) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -40298,7 +40298,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5454) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -40313,7 +40313,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5456) push constant 104
+// push constant 104
 @104 // push constant 104 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40322,7 +40322,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5458) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40331,7 +40331,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5460) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40340,7 +40340,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5462) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40349,7 +40349,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5464) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40358,7 +40358,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5466) push constant 55
+// push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40367,7 +40367,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5468) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40376,7 +40376,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5470) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40385,7 +40385,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5472) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40394,7 +40394,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5474) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40403,7 +40403,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5476) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40412,7 +40412,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5478) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40421,7 +40421,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5481) call Output.create 12
+// call Output.create 12
 (Output.Output.create.300) // call Output.create 12
 @Output.Output.create.300 // call Output.create // push RP
 D=A // d = RP
@@ -40459,7 +40459,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5483) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -40497,7 +40497,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5485) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -40512,7 +40512,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5487) push constant 105
+// push constant 105
 @105 // push constant 105 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40521,7 +40521,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5489) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40530,7 +40530,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5491) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40539,7 +40539,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5493) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40548,7 +40548,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5495) push constant 14
+// push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40557,7 +40557,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5497) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40566,7 +40566,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5499) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40575,7 +40575,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5501) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40584,7 +40584,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5503) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40593,7 +40593,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5505) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40602,7 +40602,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5507) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40611,7 +40611,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5509) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40620,7 +40620,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5512) call Output.create 12
+// call Output.create 12
 (Output.Output.create.301) // call Output.create 12
 @Output.Output.create.301 // call Output.create // push RP
 D=A // d = RP
@@ -40658,7 +40658,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5514) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -40696,7 +40696,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5516) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -40711,7 +40711,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5518) push constant 106
+// push constant 106
 @106 // push constant 106 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40720,7 +40720,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5520) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40729,7 +40729,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5522) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40738,7 +40738,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5524) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40747,7 +40747,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5526) push constant 56
+// push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40756,7 +40756,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5528) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40765,7 +40765,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5530) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40774,7 +40774,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5532) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40783,7 +40783,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5534) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40792,7 +40792,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5536) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40801,7 +40801,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5538) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40810,7 +40810,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5540) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40819,7 +40819,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5543) call Output.create 12
+// call Output.create 12
 (Output.Output.create.302) // call Output.create 12
 @Output.Output.create.302 // call Output.create // push RP
 D=A // d = RP
@@ -40857,7 +40857,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5545) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -40895,7 +40895,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5547) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -40910,7 +40910,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5549) push constant 107
+// push constant 107
 @107 // push constant 107 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40919,7 +40919,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5551) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40928,7 +40928,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5553) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40937,7 +40937,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5555) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40946,7 +40946,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5557) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40955,7 +40955,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5559) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40964,7 +40964,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5561) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40973,7 +40973,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5563) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40982,7 +40982,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5565) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -40991,7 +40991,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5567) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41000,7 +41000,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5569) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41009,7 +41009,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5571) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41018,7 +41018,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5574) call Output.create 12
+// call Output.create 12
 (Output.Output.create.303) // call Output.create 12
 @Output.Output.create.303 // call Output.create // push RP
 D=A // d = RP
@@ -41056,7 +41056,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5576) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -41094,7 +41094,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5578) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -41109,7 +41109,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5580) push constant 108
+// push constant 108
 @108 // push constant 108 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41118,7 +41118,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5582) push constant 14
+// push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41127,7 +41127,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5584) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41136,7 +41136,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5586) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41145,7 +41145,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5588) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41154,7 +41154,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5590) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41163,7 +41163,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5592) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41172,7 +41172,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5594) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41181,7 +41181,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5596) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41190,7 +41190,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5598) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41199,7 +41199,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5600) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41208,7 +41208,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5602) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41217,7 +41217,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5605) call Output.create 12
+// call Output.create 12
 (Output.Output.create.304) // call Output.create 12
 @Output.Output.create.304 // call Output.create // push RP
 D=A // d = RP
@@ -41255,7 +41255,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5607) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -41293,7 +41293,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5609) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -41308,7 +41308,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5611) push constant 109
+// push constant 109
 @109 // push constant 109 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41317,7 +41317,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5613) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41326,7 +41326,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5615) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41335,7 +41335,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5617) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41344,7 +41344,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5619) push constant 29
+// push constant 29
 @29 // push constant 29 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41353,7 +41353,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5621) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41362,7 +41362,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5623) push constant 43
+// push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41371,7 +41371,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5625) push constant 43
+// push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41380,7 +41380,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5627) push constant 43
+// push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41389,7 +41389,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5629) push constant 43
+// push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41398,7 +41398,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5631) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41407,7 +41407,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5633) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41416,7 +41416,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5636) call Output.create 12
+// call Output.create 12
 (Output.Output.create.305) // call Output.create 12
 @Output.Output.create.305 // call Output.create // push RP
 D=A // d = RP
@@ -41454,7 +41454,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5638) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -41492,7 +41492,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5640) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -41507,7 +41507,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5642) push constant 110
+// push constant 110
 @110 // push constant 110 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41516,7 +41516,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5644) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41525,7 +41525,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5646) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41534,7 +41534,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5648) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41543,7 +41543,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5650) push constant 29
+// push constant 29
 @29 // push constant 29 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41552,7 +41552,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5652) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41561,7 +41561,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5654) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41570,7 +41570,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5656) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41579,7 +41579,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5658) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41588,7 +41588,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5660) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41597,7 +41597,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5662) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41606,7 +41606,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5664) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41615,7 +41615,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5667) call Output.create 12
+// call Output.create 12
 (Output.Output.create.306) // call Output.create 12
 @Output.Output.create.306 // call Output.create // push RP
 D=A // d = RP
@@ -41653,7 +41653,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5669) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -41691,7 +41691,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5671) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -41706,7 +41706,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5673) push constant 111
+// push constant 111
 @111 // push constant 111 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41715,7 +41715,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5675) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41724,7 +41724,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5677) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41733,7 +41733,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5679) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41742,7 +41742,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5681) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41751,7 +41751,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5683) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41760,7 +41760,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5685) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41769,7 +41769,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5687) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41778,7 +41778,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5689) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41787,7 +41787,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5691) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41796,7 +41796,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5693) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41805,7 +41805,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5695) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41814,7 +41814,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5698) call Output.create 12
+// call Output.create 12
 (Output.Output.create.307) // call Output.create 12
 @Output.Output.create.307 // call Output.create // push RP
 D=A // d = RP
@@ -41852,7 +41852,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5700) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -41890,7 +41890,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5702) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -41905,7 +41905,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5704) push constant 112
+// push constant 112
 @112 // push constant 112 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41914,7 +41914,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5706) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41923,7 +41923,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5708) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41932,7 +41932,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5710) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41941,7 +41941,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5712) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41950,7 +41950,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5714) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41959,7 +41959,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5716) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41968,7 +41968,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5718) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41977,7 +41977,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5720) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41986,7 +41986,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5722) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -41995,7 +41995,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5724) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42004,7 +42004,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5726) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42013,7 +42013,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5729) call Output.create 12
+// call Output.create 12
 (Output.Output.create.308) // call Output.create 12
 @Output.Output.create.308 // call Output.create // push RP
 D=A // d = RP
@@ -42051,7 +42051,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5731) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -42089,7 +42089,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5733) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -42104,7 +42104,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5735) push constant 113
+// push constant 113
 @113 // push constant 113 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42113,7 +42113,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5737) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42122,7 +42122,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5739) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42131,7 +42131,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5741) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42140,7 +42140,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5743) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42149,7 +42149,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5745) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42158,7 +42158,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5747) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42167,7 +42167,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5749) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42176,7 +42176,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5751) push constant 62
+// push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42185,7 +42185,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5753) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42194,7 +42194,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5755) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42203,7 +42203,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5757) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42212,7 +42212,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5760) call Output.create 12
+// call Output.create 12
 (Output.Output.create.309) // call Output.create 12
 @Output.Output.create.309 // call Output.create // push RP
 D=A // d = RP
@@ -42250,7 +42250,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5762) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -42288,7 +42288,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5764) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -42303,7 +42303,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5766) push constant 114
+// push constant 114
 @114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42312,7 +42312,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5768) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42321,7 +42321,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5770) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42330,7 +42330,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5772) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42339,7 +42339,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5774) push constant 29
+// push constant 29
 @29 // push constant 29 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42348,7 +42348,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5776) push constant 55
+// push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42357,7 +42357,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5778) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42366,7 +42366,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5780) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42375,7 +42375,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5782) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42384,7 +42384,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5784) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42393,7 +42393,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5786) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42402,7 +42402,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5788) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42411,7 +42411,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5791) call Output.create 12
+// call Output.create 12
 (Output.Output.create.310) // call Output.create 12
 @Output.Output.create.310 // call Output.create // push RP
 D=A // d = RP
@@ -42449,7 +42449,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5793) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -42487,7 +42487,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5795) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -42502,7 +42502,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5797) push constant 115
+// push constant 115
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42511,7 +42511,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5799) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42520,7 +42520,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5801) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42529,7 +42529,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5803) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42538,7 +42538,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5805) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42547,7 +42547,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5807) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42556,7 +42556,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5809) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42565,7 +42565,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5811) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42574,7 +42574,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5813) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42583,7 +42583,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5815) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42592,7 +42592,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5817) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42601,7 +42601,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5819) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42610,7 +42610,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5822) call Output.create 12
+// call Output.create 12
 (Output.Output.create.311) // call Output.create 12
 @Output.Output.create.311 // call Output.create // push RP
 D=A // d = RP
@@ -42648,7 +42648,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5824) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -42686,7 +42686,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5826) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -42701,7 +42701,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5828) push constant 116
+// push constant 116
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42710,7 +42710,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5830) push constant 4
+// push constant 4
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42719,7 +42719,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5832) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42728,7 +42728,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5834) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42737,7 +42737,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5836) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42746,7 +42746,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5838) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42755,7 +42755,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5840) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42764,7 +42764,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5842) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42773,7 +42773,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5844) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42782,7 +42782,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5846) push constant 28
+// push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42791,7 +42791,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5848) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42800,7 +42800,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5850) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42809,7 +42809,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5853) call Output.create 12
+// call Output.create 12
 (Output.Output.create.312) // call Output.create 12
 @Output.Output.create.312 // call Output.create // push RP
 D=A // d = RP
@@ -42847,7 +42847,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5855) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -42885,7 +42885,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5857) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -42900,7 +42900,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5859) push constant 117
+// push constant 117
 @117 // push constant 117 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42909,7 +42909,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5861) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42918,7 +42918,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5863) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42927,7 +42927,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5865) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42936,7 +42936,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5867) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42945,7 +42945,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5869) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42954,7 +42954,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5871) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42963,7 +42963,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5873) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42972,7 +42972,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5875) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42981,7 +42981,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5877) push constant 54
+// push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42990,7 +42990,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5879) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -42999,7 +42999,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5881) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43008,7 +43008,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5884) call Output.create 12
+// call Output.create 12
 (Output.Output.create.313) // call Output.create 12
 @Output.Output.create.313 // call Output.create // push RP
 D=A // d = RP
@@ -43046,7 +43046,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5886) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -43084,7 +43084,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5888) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -43099,7 +43099,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5890) push constant 118
+// push constant 118
 @118 // push constant 118 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43108,7 +43108,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5892) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43117,7 +43117,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5894) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43126,7 +43126,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5896) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43135,7 +43135,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5898) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43144,7 +43144,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5900) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43153,7 +43153,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5902) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43162,7 +43162,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5904) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43171,7 +43171,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5906) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43180,7 +43180,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5908) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43189,7 +43189,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5910) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43198,7 +43198,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5912) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43207,7 +43207,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5915) call Output.create 12
+// call Output.create 12
 (Output.Output.create.314) // call Output.create 12
 @Output.Output.create.314 // call Output.create // push RP
 D=A // d = RP
@@ -43245,7 +43245,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5917) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -43283,7 +43283,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5919) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -43298,7 +43298,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5921) push constant 119
+// push constant 119
 @119 // push constant 119 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43307,7 +43307,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5923) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43316,7 +43316,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5925) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43325,7 +43325,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5927) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43334,7 +43334,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5929) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43343,7 +43343,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5931) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43352,7 +43352,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5933) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43361,7 +43361,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5935) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43370,7 +43370,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5937) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43379,7 +43379,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5939) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43388,7 +43388,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5941) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43397,7 +43397,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5943) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43406,7 +43406,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5946) call Output.create 12
+// call Output.create 12
 (Output.Output.create.315) // call Output.create 12
 @Output.Output.create.315 // call Output.create // push RP
 D=A // d = RP
@@ -43444,7 +43444,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5948) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -43482,7 +43482,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5950) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -43497,7 +43497,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5952) push constant 120
+// push constant 120
 @120 // push constant 120 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43506,7 +43506,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5954) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43515,7 +43515,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5956) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43524,7 +43524,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5958) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43533,7 +43533,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5960) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43542,7 +43542,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5962) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43551,7 +43551,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5964) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43560,7 +43560,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5966) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43569,7 +43569,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5968) push constant 30
+// push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43578,7 +43578,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5970) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43587,7 +43587,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5972) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43596,7 +43596,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5974) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43605,7 +43605,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5977) call Output.create 12
+// call Output.create 12
 (Output.Output.create.316) // call Output.create 12
 @Output.Output.create.316 // call Output.create // push RP
 D=A // d = RP
@@ -43643,7 +43643,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5979) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -43681,7 +43681,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-5981) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -43696,7 +43696,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-5983) push constant 121
+// push constant 121
 @121 // push constant 121 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43705,7 +43705,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5985) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43714,7 +43714,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5987) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43723,7 +43723,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5989) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43732,7 +43732,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5991) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43741,7 +43741,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5993) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43750,7 +43750,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5995) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43759,7 +43759,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5997) push constant 62
+// push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43768,7 +43768,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5999) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43777,7 +43777,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6001) push constant 24
+// push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43786,7 +43786,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6003) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43795,7 +43795,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6005) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43804,7 +43804,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6008) call Output.create 12
+// call Output.create 12
 (Output.Output.create.317) // call Output.create 12
 @Output.Output.create.317 // call Output.create // push RP
 D=A // d = RP
@@ -43842,7 +43842,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6010) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -43880,7 +43880,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6012) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -43895,7 +43895,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6014) push constant 122
+// push constant 122
 @122 // push constant 122 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43904,7 +43904,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6016) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43913,7 +43913,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6018) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43922,7 +43922,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6020) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43931,7 +43931,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6022) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43940,7 +43940,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6024) push constant 27
+// push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43949,7 +43949,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6026) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43958,7 +43958,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6028) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43967,7 +43967,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6030) push constant 51
+// push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43976,7 +43976,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6032) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43985,7 +43985,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6034) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -43994,7 +43994,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6036) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44003,7 +44003,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6039) call Output.create 12
+// call Output.create 12
 (Output.Output.create.318) // call Output.create 12
 @Output.Output.create.318 // call Output.create // push RP
 D=A // d = RP
@@ -44041,7 +44041,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6041) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -44079,7 +44079,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6043) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -44094,7 +44094,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6045) push constant 123
+// push constant 123
 @123 // push constant 123 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44103,7 +44103,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6047) push constant 56
+// push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44112,7 +44112,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6049) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44121,7 +44121,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6051) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44130,7 +44130,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6053) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44139,7 +44139,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6055) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44148,7 +44148,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6057) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44157,7 +44157,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6059) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44166,7 +44166,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6061) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44175,7 +44175,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6063) push constant 56
+// push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44184,7 +44184,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6065) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44193,7 +44193,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6067) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44202,7 +44202,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6070) call Output.create 12
+// call Output.create 12
 (Output.Output.create.319) // call Output.create 12
 @Output.Output.create.319 // call Output.create // push RP
 D=A // d = RP
@@ -44240,7 +44240,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6072) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -44278,7 +44278,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6074) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -44293,7 +44293,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6076) push constant 124
+// push constant 124
 @124 // push constant 124 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44302,7 +44302,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6078) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44311,7 +44311,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6080) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44320,7 +44320,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6082) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44329,7 +44329,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6084) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44338,7 +44338,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6086) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44347,7 +44347,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6088) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44356,7 +44356,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6090) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44365,7 +44365,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6092) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44374,7 +44374,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6094) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44383,7 +44383,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6096) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44392,7 +44392,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6098) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44401,7 +44401,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6101) call Output.create 12
+// call Output.create 12
 (Output.Output.create.320) // call Output.create 12
 @Output.Output.create.320 // call Output.create // push RP
 D=A // d = RP
@@ -44439,7 +44439,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6103) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -44477,7 +44477,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6105) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -44492,7 +44492,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6107) push constant 125
+// push constant 125
 @125 // push constant 125 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44501,7 +44501,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6109) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44510,7 +44510,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6111) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44519,7 +44519,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6113) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44528,7 +44528,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6115) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44537,7 +44537,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6117) push constant 56
+// push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44546,7 +44546,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6119) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44555,7 +44555,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6121) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44564,7 +44564,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6123) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44573,7 +44573,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6125) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44582,7 +44582,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6127) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44591,7 +44591,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6129) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44600,7 +44600,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6132) call Output.create 12
+// call Output.create 12
 (Output.Output.create.321) // call Output.create 12
 @Output.Output.create.321 // call Output.create // push RP
 D=A // d = RP
@@ -44638,7 +44638,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6134) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -44676,7 +44676,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6136) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -44691,7 +44691,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6138) push constant 126
+// push constant 126
 @126 // push constant 126 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44700,7 +44700,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6140) push constant 38
+// push constant 38
 @38 // push constant 38 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44709,7 +44709,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6142) push constant 45
+// push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44718,7 +44718,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6144) push constant 25
+// push constant 25
 @25 // push constant 25 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44727,7 +44727,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6146) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44736,7 +44736,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6148) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44745,7 +44745,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6150) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44754,7 +44754,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6152) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44763,7 +44763,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6154) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44772,7 +44772,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6156) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44781,7 +44781,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6158) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44790,7 +44790,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6160) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44799,7 +44799,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6163) call Output.create 12
+// call Output.create 12
 (Output.Output.create.322) // call Output.create 12
 @Output.Output.create.322 // call Output.create // push RP
 D=A // d = RP
@@ -44837,7 +44837,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6165) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -44875,7 +44875,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.create // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6167) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -44890,7 +44890,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6169) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44899,9 +44899,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6171) return
+// return
 
-// (-6173) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -44956,10 +44956,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-6175) function Output.create 1
+// function Output.create 1
 (Output.create) // function Output.create 1
 
-// (-6178) push constant 11
+// push constant 11
 @11 // push constant 11 // function Output.create 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -44967,7 +44967,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-6181) call Array.new 1
+// call Array.new 1
 (Output.Array.new.323) // call Array.new 1
 @Output.Array.new.323 // call Array.new // push RP
 D=A // d = RP
@@ -45034,7 +45034,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6183) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45049,7 +45049,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6185) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45061,7 +45061,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6187) push static 5
+// push static 5
 @19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @5 // offset
@@ -45073,7 +45073,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6189) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45085,7 +45085,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6191) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45097,7 +45097,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6193) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45112,7 +45112,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6195) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45127,7 +45127,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6197) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45139,7 +45139,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6199) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45154,7 +45154,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6201) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45163,7 +45163,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6203) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45175,7 +45175,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6205) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45187,7 +45187,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6207) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -45199,7 +45199,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6209) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45214,7 +45214,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6211) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45229,7 +45229,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6213) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45241,7 +45241,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6215) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45256,7 +45256,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6217) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45265,7 +45265,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6219) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45277,7 +45277,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6221) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45289,7 +45289,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6223) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -45301,7 +45301,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6225) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45316,7 +45316,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6227) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45331,7 +45331,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6229) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45343,7 +45343,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6231) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45358,7 +45358,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6233) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45367,7 +45367,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6235) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45379,7 +45379,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6237) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45391,7 +45391,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6239) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -45403,7 +45403,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6241) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45418,7 +45418,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6243) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45433,7 +45433,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6245) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45445,7 +45445,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6247) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45460,7 +45460,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6249) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45469,7 +45469,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6251) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45481,7 +45481,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6253) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45493,7 +45493,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6255) push argument 4
+// push argument 4
 @ARG // push argument 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -45505,7 +45505,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6257) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45520,7 +45520,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6259) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45535,7 +45535,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6261) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45547,7 +45547,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6263) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45562,7 +45562,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6265) push constant 4
+// push constant 4
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45571,7 +45571,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6267) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45583,7 +45583,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6269) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45595,7 +45595,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6271) push argument 5
+// push argument 5
 @ARG // push argument 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -45607,7 +45607,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6273) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45622,7 +45622,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6275) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45637,7 +45637,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6277) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45649,7 +45649,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6279) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45664,7 +45664,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6281) push constant 5
+// push constant 5
 @5 // push constant 5 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45673,7 +45673,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6283) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45685,7 +45685,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6285) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45697,7 +45697,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6287) push argument 6
+// push argument 6
 @ARG // push argument 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -45709,7 +45709,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6289) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45724,7 +45724,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6291) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45739,7 +45739,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6293) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45751,7 +45751,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6295) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45766,7 +45766,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6297) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45775,7 +45775,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6299) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45787,7 +45787,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6301) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45799,7 +45799,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6303) push argument 7
+// push argument 7
 @ARG // push argument 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // offset
@@ -45811,7 +45811,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6305) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45826,7 +45826,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6307) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45841,7 +45841,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6309) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45853,7 +45853,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6311) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45868,7 +45868,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6313) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45877,7 +45877,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6315) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45889,7 +45889,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6317) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -45901,7 +45901,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6319) push argument 8
+// push argument 8
 @ARG // push argument 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // offset
@@ -45913,7 +45913,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6321) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45928,7 +45928,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6323) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -45943,7 +45943,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6325) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -45955,7 +45955,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6327) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -45970,7 +45970,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6329) push constant 8
+// push constant 8
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
@@ -45979,7 +45979,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6331) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -45991,7 +45991,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6333) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46003,7 +46003,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6335) push argument 9
+// push argument 9
 @ARG // push argument 9 (&asm_segment)
 D=M // d = *asm_segment
 @9 // offset
@@ -46015,7 +46015,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6337) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46030,7 +46030,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6339) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -46045,7 +46045,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6341) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -46057,7 +46057,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6343) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46072,7 +46072,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6345) push constant 9
+// push constant 9
 @9 // push constant 9 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46081,7 +46081,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6347) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -46093,7 +46093,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6349) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46105,7 +46105,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6351) push argument 10
+// push argument 10
 @ARG // push argument 10 (&asm_segment)
 D=M // d = *asm_segment
 @10 // offset
@@ -46117,7 +46117,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6353) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46132,7 +46132,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6355) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -46147,7 +46147,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6357) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -46159,7 +46159,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6359) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46174,7 +46174,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6361) push constant 10
+// push constant 10
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46183,7 +46183,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6363) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -46195,7 +46195,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6365) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46207,7 +46207,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6367) push argument 11
+// push argument 11
 @ARG // push argument 11 (&asm_segment)
 D=M // d = *asm_segment
 @11 // offset
@@ -46219,7 +46219,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6369) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46234,7 +46234,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6371) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -46249,7 +46249,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6373) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -46261,7 +46261,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6375) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46276,7 +46276,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6377) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46285,9 +46285,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6379) return
+// return
 
-// (-6381) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46342,10 +46342,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-6383) function Output.createShiftedMap 4
+// function Output.createShiftedMap 4
 (Output.createShiftedMap) // function Output.createShiftedMap 4
 
-// (-6386) push constant 127
+// push constant 127
 @127 // push constant 127 // function Output.createShiftedMap 4 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46353,7 +46353,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-6389) call Array.new 1
+// call Array.new 1
 (Output.Array.new.324) // call Array.new 1
 @Output.Array.new.324 // call Array.new // push RP
 D=A // d = RP
@@ -46420,7 +46420,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6391) pop static 6
+// pop static 6
 @19 // pop static 6 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @6 // retrieve &dst (segment+offset) and store at R13
@@ -46435,7 +46435,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6393) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46444,7 +46444,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6395) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -46459,10 +46459,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6397) label WHILE_EXP0
+// label WHILE_EXP0
 (Output.WHILE_EXP0) // label WHILE_EXP0
 
-// (-6400) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -46474,7 +46474,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6402) push constant 127
+// push constant 127
 @127 // push constant 127 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46483,7 +46483,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6404) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46509,7 +46509,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6409) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -46517,7 +46517,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6411) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -46528,7 +46528,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
-// (-6413) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -46540,7 +46540,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6415) push static 5
+// push static 5
 @19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @5 // offset
@@ -46552,7 +46552,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6417) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46564,7 +46564,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6419) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -46579,7 +46579,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6421) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -46591,7 +46591,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6423) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46606,7 +46606,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6425) push constant 11
+// push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46615,7 +46615,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6428) call Array.new 1
+// call Array.new 1
 (Output.Array.new.326) // call Array.new 1
 @Output.Array.new.326 // call Array.new // push RP
 D=A // d = RP
@@ -46682,7 +46682,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6430) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -46697,7 +46697,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6432) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -46709,7 +46709,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6434) push static 6
+// push static 6
 @19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @6 // offset
@@ -46721,7 +46721,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6436) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46733,7 +46733,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6438) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -46745,7 +46745,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6440) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46760,7 +46760,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6442) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -46775,7 +46775,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6444) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -46787,7 +46787,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6446) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -46802,7 +46802,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6448) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46811,7 +46811,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6450) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -46826,10 +46826,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6452) label WHILE_EXP1
+// label WHILE_EXP1
 (Output.WHILE_EXP1) // label WHILE_EXP1
 
-// (-6455) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -46841,7 +46841,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6457) push constant 11
+// push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
@@ -46850,7 +46850,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6459) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46876,7 +46876,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6464) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -46884,7 +46884,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6466) if-goto WHILE_END1
+// if-goto WHILE_END1
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END1
 D=A // d = 0
@@ -46895,7 +46895,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END1
 D;JNE // jump if not zero
 
-// (-6468) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -46907,7 +46907,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6470) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -46919,7 +46919,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6472) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46931,7 +46931,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6474) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -46943,7 +46943,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6476) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -46955,7 +46955,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6478) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -46967,7 +46967,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6480) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -46982,7 +46982,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6482) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -46994,7 +46994,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6484) push constant 256
+// push constant 256
 @256 // push constant 256 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47003,7 +47003,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6487) call Math.multiply 2
+// call Math.multiply 2
 (Output.Math.multiply.328) // call Math.multiply 2
 @Output.Math.multiply.328 // call Math.multiply // push RP
 D=A // d = RP
@@ -47041,7 +47041,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6489) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -47050,7 +47050,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6491) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -47059,7 +47059,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6493) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -47068,7 +47068,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6495) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -47077,7 +47077,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6497) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -47115,7 +47115,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6499) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47130,7 +47130,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6501) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -47145,7 +47145,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6503) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -47157,7 +47157,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6505) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47172,7 +47172,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6507) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -47184,7 +47184,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6509) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47193,7 +47193,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6511) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -47205,7 +47205,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6513) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -47220,14 +47220,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6515) goto WHILE_EXP1
+// goto WHILE_EXP1
 @Output.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
-// (-6517) label WHILE_END1
+// label WHILE_END1
 (Output.WHILE_END1) // label WHILE_END1
 
-// (-6520) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -47239,7 +47239,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6522) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47248,7 +47248,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6524) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -47274,7 +47274,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6529) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -47285,14 +47285,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-6531) goto IF_FALSE0
+// goto IF_FALSE0
 @Output.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-6533) label IF_TRUE0
+// label IF_TRUE0
 (Output.IF_TRUE0) // label IF_TRUE0
 
-// (-6536) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47301,7 +47301,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6538) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -47316,14 +47316,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6540) goto IF_END0
+// goto IF_END0
 @Output.IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
-// (-6542) label IF_FALSE0
+// label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
-// (-6545) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -47335,7 +47335,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6547) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47344,7 +47344,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6549) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -47356,7 +47356,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6551) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -47371,17 +47371,17 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6553) label IF_END0
+// label IF_END0
 (Output.IF_END0) // label IF_END0
 
-// (-6556) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Output.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-6558) label WHILE_END0
+// label WHILE_END0
 (Output.WHILE_END0) // label WHILE_END0
 
-// (-6561) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47390,9 +47390,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6563) return
+// return
 
-// (-6565) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47447,10 +47447,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-6567) function Output.getMap 1
+// function Output.getMap 1
 (Output.getMap) // function Output.getMap 1
 
-// (-6570) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Output.getMap 1 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47461,7 +47461,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-6572) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47470,7 +47470,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6574) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -47496,7 +47496,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6579) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47508,7 +47508,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6581) push constant 126
+// push constant 126
 @126 // push constant 126 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47517,7 +47517,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6583) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -47543,7 +47543,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6588) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -47555,7 +47555,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6590) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -47566,14 +47566,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-6592) goto IF_FALSE0
+// goto IF_FALSE0
 @Output.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-6594) label IF_TRUE0
+// label IF_TRUE0
 (Output.IF_TRUE0) // label IF_TRUE0
 
-// (-6597) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -47582,7 +47582,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6599) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47597,10 +47597,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6601) label IF_FALSE0
+// label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
-// (-6604) push static 2
+// push static 2
 @19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
@@ -47612,7 +47612,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6606) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -47623,14 +47623,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-6608) goto IF_FALSE1
+// goto IF_FALSE1
 @Output.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-6610) label IF_TRUE1
+// label IF_TRUE1
 (Output.IF_TRUE1) // label IF_TRUE1
 
-// (-6613) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47642,7 +47642,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6615) push static 5
+// push static 5
 @19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @5 // offset
@@ -47654,7 +47654,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6617) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -47666,7 +47666,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6619) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -47681,7 +47681,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6621) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47693,7 +47693,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6623) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47708,14 +47708,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6625) goto IF_END1
+// goto IF_END1
 @Output.IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
-// (-6627) label IF_FALSE1
+// label IF_FALSE1
 (Output.IF_FALSE1) // label IF_FALSE1
 
-// (-6630) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47727,7 +47727,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6632) push static 6
+// push static 6
 @19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @6 // offset
@@ -47739,7 +47739,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6634) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -47751,7 +47751,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6636) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -47766,7 +47766,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6638) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47778,7 +47778,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6640) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47793,10 +47793,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6642) label IF_END1
+// label IF_END1
 (Output.IF_END1) // label IF_END1
 
-// (-6645) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47808,9 +47808,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6647) return
+// return
 
-// (-6649) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47865,10 +47865,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-6651) function Output.drawChar 4
+// function Output.drawChar 4
 (Output.drawChar) // function Output.drawChar 4
 
-// (-6654) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Output.drawChar 4 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -47879,7 +47879,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-6657) call Output.getMap 1
+// call Output.getMap 1
 (Output.Output.getMap.332) // call Output.getMap 1
 @Output.Output.getMap.332 // call Output.getMap // push RP
 D=A // d = RP
@@ -47917,7 +47917,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6659) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -47955,7 +47955,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.getMap // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6661) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -47970,7 +47970,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6663) push static 1
+// push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -47982,7 +47982,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6665) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -47997,10 +47997,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6667) label WHILE_EXP0
+// label WHILE_EXP0
 (Output.WHILE_EXP0) // label WHILE_EXP0
 
-// (-6670) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -48012,7 +48012,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6672) push constant 11
+// push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48021,7 +48021,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6674) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48047,7 +48047,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6679) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -48055,7 +48055,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6681) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -48066,7 +48066,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
-// (-6683) push static 2
+// push static 2
 @19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
@@ -48078,7 +48078,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6685) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -48089,14 +48089,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-6687) goto IF_FALSE0
+// goto IF_FALSE0
 @Output.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-6689) label IF_TRUE0
+// label IF_TRUE0
 (Output.IF_TRUE0) // label IF_TRUE0
 
-// (-6692) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48108,7 +48108,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6694) push static 4
+// push static 4
 @19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @4 // offset
@@ -48120,7 +48120,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6696) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48132,7 +48132,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6698) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -48147,7 +48147,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6700) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48159,7 +48159,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6702) push constant 256
+// push constant 256
 @256 // push constant 256 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48168,7 +48168,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6704) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -48176,7 +48176,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6706) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -48188,7 +48188,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6708) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -48203,14 +48203,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6710) goto IF_END0
+// goto IF_END0
 @Output.IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
-// (-6712) label IF_FALSE0
+// label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
-// (-6715) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48222,7 +48222,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6717) push static 4
+// push static 4
 @19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @4 // offset
@@ -48234,7 +48234,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6719) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48246,7 +48246,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6721) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -48261,7 +48261,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6723) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48273,7 +48273,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6725) push constant 255
+// push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48282,7 +48282,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6727) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -48294,7 +48294,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6729) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -48309,10 +48309,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6731) label IF_END0
+// label IF_END0
 (Output.IF_END0) // label IF_END0
 
-// (-6734) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48324,7 +48324,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6736) push static 4
+// push static 4
 @19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @4 // offset
@@ -48336,7 +48336,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6738) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48348,7 +48348,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6740) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -48360,7 +48360,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6742) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -48372,7 +48372,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6744) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48384,7 +48384,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6746) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -48399,7 +48399,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6748) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48411,7 +48411,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6750) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -48423,7 +48423,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6752) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -48435,7 +48435,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6754) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -48450,7 +48450,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6756) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -48465,7 +48465,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6758) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -48477,7 +48477,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6760) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -48492,7 +48492,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6762) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48504,7 +48504,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6764) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48513,7 +48513,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6766) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48525,7 +48525,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6768) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -48540,7 +48540,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6770) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -48552,7 +48552,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6772) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48561,7 +48561,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6774) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48573,7 +48573,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6776) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -48588,14 +48588,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6778) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Output.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-6780) label WHILE_END0
+// label WHILE_END0
 (Output.WHILE_END0) // label WHILE_END0
 
-// (-6783) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48604,9 +48604,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6785) return
+// return
 
-// (-6787) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -48661,10 +48661,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-6789) function Output.moveCursor 0
+// function Output.moveCursor 0
 (Output.moveCursor) // function Output.moveCursor 0
 
-// (-6792) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Output.moveCursor 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48675,7 +48675,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-6794) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48684,7 +48684,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6796) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48710,7 +48710,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6801) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -48722,7 +48722,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6803) push constant 22
+// push constant 22
 @22 // push constant 22 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48731,7 +48731,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6805) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48757,7 +48757,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6810) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -48769,7 +48769,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6812) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -48781,7 +48781,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6814) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48790,7 +48790,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6816) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48816,7 +48816,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6821) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -48828,7 +48828,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6823) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -48840,7 +48840,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6825) push constant 63
+// push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48849,7 +48849,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6827) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -48875,7 +48875,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6832) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -48887,7 +48887,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6834) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -48898,14 +48898,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-6836) goto IF_FALSE0
+// goto IF_FALSE0
 @Output.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-6838) label IF_TRUE0
+// label IF_TRUE0
 (Output.IF_TRUE0) // label IF_TRUE0
 
-// (-6841) push constant 20
+// push constant 20
 @20 // push constant 20 (constant)
 D=A // d = constant
 @SP // &esp
@@ -48914,7 +48914,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6844) call Sys.error 1
+// call Sys.error 1
 (Output.Sys.error.338) // call Sys.error 1
 @Output.Sys.error.338 // call Sys.error // push RP
 D=A // d = RP
@@ -48981,7 +48981,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6846) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -48996,10 +48996,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6848) label IF_FALSE0
+// label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
-// (-6851) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -49011,7 +49011,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6853) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -49020,7 +49020,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6856) call Math.divide 2
+// call Math.divide 2
 (Output.Math.divide.339) // call Math.divide 2
 @Output.Math.divide.339 // call Math.divide // push RP
 D=A // d = RP
@@ -49058,7 +49058,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6858) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49067,7 +49067,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6860) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49076,7 +49076,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6862) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49085,7 +49085,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6864) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49123,7 +49123,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.divide // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6866) pop static 0
+// pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -49138,7 +49138,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6868) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -49147,7 +49147,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6870) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -49159,7 +49159,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6872) push constant 352
+// push constant 352
 @352 // push constant 352 (constant)
 D=A // d = constant
 @SP // &esp
@@ -49168,7 +49168,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6875) call Math.multiply 2
+// call Math.multiply 2
 (Output.Math.multiply.340) // call Math.multiply 2
 @Output.Math.multiply.340 // call Math.multiply // push RP
 D=A // d = RP
@@ -49206,7 +49206,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6877) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49215,7 +49215,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6879) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49224,7 +49224,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6881) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49233,7 +49233,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6883) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49242,7 +49242,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6885) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49280,7 +49280,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6887) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -49292,7 +49292,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6889) push static 0
+// push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -49304,7 +49304,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6891) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -49316,7 +49316,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6893) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -49331,7 +49331,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6895) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -49343,7 +49343,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6897) push static 0
+// push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -49355,7 +49355,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6899) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -49364,7 +49364,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6902) call Math.multiply 2
+// call Math.multiply 2
 (Output.Math.multiply.341) // call Math.multiply 2
 @Output.Math.multiply.341 // call Math.multiply // push RP
 D=A // d = RP
@@ -49402,7 +49402,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6904) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49411,7 +49411,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6906) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49420,7 +49420,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6908) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49429,7 +49429,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6910) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49438,7 +49438,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6912) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49476,7 +49476,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6914) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -49502,7 +49502,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6919) pop static 2
+// pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -49517,7 +49517,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6921) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -49526,7 +49526,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6924) call Output.drawChar 1
+// call Output.drawChar 1
 (Output.Output.drawChar.343) // call Output.drawChar 1
 @Output.Output.drawChar.343 // call Output.drawChar // push RP
 D=A // d = RP
@@ -49564,7 +49564,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6926) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49573,7 +49573,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6928) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49582,7 +49582,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6930) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49591,7 +49591,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6932) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -49629,7 +49629,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.drawChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6934) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -49644,7 +49644,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6936) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -49653,9 +49653,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6938) return
+// return
 
-// (-6940) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -49710,10 +49710,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-6942) function Output.printChar 0
+// function Output.printChar 0
 (Output.printChar) // function Output.printChar 0
 
-// (-6945) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Output.printChar 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -49724,10 +49724,10 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-6948) call String.newLine 0
+// call String.newLine 0
 (Output.String.newLine.344) // call String.newLine 0
 
-// (-6950) push constant 9999 // call String.newLine // if no args, create a space on the stack for the return
+// push constant 9999 // call String.newLine // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call String.newLine // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -49800,7 +49800,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.newLine // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6952) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -49826,7 +49826,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6957) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -49837,17 +49837,17 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-6959) goto IF_FALSE0
+// goto IF_FALSE0
 @Output.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-6961) label IF_TRUE0
+// label IF_TRUE0
 (Output.IF_TRUE0) // label IF_TRUE0
 
-// (-6965) call Output.println 0
+// call Output.println 0
 (Output.Output.println.346) // call Output.println 0
 
-// (-6967) push constant 9999 // call Output.println // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -49920,7 +49920,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.println // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6969) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -49935,14 +49935,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-6971) goto IF_END0
+// goto IF_END0
 @Output.IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
-// (-6973) label IF_FALSE0
+// label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
-// (-6976) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -49954,10 +49954,10 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6979) call String.backSpace 0
+// call String.backSpace 0
 (Output.String.backSpace.347) // call String.backSpace 0
 
-// (-6981) push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
+// push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -50030,7 +50030,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.backSpace // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-6983) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -50056,7 +50056,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-6988) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -50067,17 +50067,17 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-6990) goto IF_FALSE1
+// goto IF_FALSE1
 @Output.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-6992) label IF_TRUE1
+// label IF_TRUE1
 (Output.IF_TRUE1) // label IF_TRUE1
 
-// (-6996) call Output.backSpace 0
+// call Output.backSpace 0
 (Output.Output.backSpace.349) // call Output.backSpace 0
 
-// (-6998) push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -50150,7 +50150,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.backSpace // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7000) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -50165,14 +50165,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7002) goto IF_END1
+// goto IF_END1
 @Output.IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
-// (-7004) label IF_FALSE1
+// label IF_FALSE1
 (Output.IF_FALSE1) // label IF_FALSE1
 
-// (-7007) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -50184,7 +50184,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7010) call Output.drawChar 1
+// call Output.drawChar 1
 (Output.Output.drawChar.350) // call Output.drawChar 1
 @Output.Output.drawChar.350 // call Output.drawChar // push RP
 D=A // d = RP
@@ -50222,7 +50222,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7012) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -50231,7 +50231,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7014) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -50240,7 +50240,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7016) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -50249,7 +50249,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7018) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -50287,7 +50287,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.drawChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7020) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -50302,7 +50302,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7022) push static 2
+// push static 2
 @19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
@@ -50314,7 +50314,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7024) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -50322,7 +50322,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7026) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -50333,14 +50333,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-7028) goto IF_FALSE2
+// goto IF_FALSE2
 @Output.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-7030) label IF_TRUE2
+// label IF_TRUE2
 (Output.IF_TRUE2) // label IF_TRUE2
 
-// (-7033) push static 0
+// push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -50352,7 +50352,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7035) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -50361,7 +50361,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7037) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -50373,7 +50373,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7039) pop static 0
+// pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -50388,7 +50388,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7041) push static 1
+// push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -50400,7 +50400,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7043) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -50409,7 +50409,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7045) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -50421,7 +50421,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7047) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -50436,10 +50436,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7049) label IF_FALSE2
+// label IF_FALSE2
 (Output.IF_FALSE2) // label IF_FALSE2
 
-// (-7052) push static 0
+// push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -50451,7 +50451,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7054) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -50460,7 +50460,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7056) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -50486,7 +50486,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7061) if-goto IF_TRUE3
+// if-goto IF_TRUE3
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE3
 D=A // d = 0
@@ -50497,17 +50497,17 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE3
 D;JNE // jump if not zero
 
-// (-7063) goto IF_FALSE3
+// goto IF_FALSE3
 @Output.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
-// (-7065) label IF_TRUE3
+// label IF_TRUE3
 (Output.IF_TRUE3) // label IF_TRUE3
 
-// (-7069) call Output.println 0
+// call Output.println 0
 (Output.Output.println.352) // call Output.println 0
 
-// (-7071) push constant 9999 // call Output.println // if no args, create a space on the stack for the return
+// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
@@ -50580,7 +50580,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.println // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7073) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -50595,14 +50595,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7075) goto IF_END3
+// goto IF_END3
 @Output.IF_END3 // goto IF_END3
 0;JMP // unconditional jump
 
-// (-7077) label IF_FALSE3
+// label IF_FALSE3
 (Output.IF_FALSE3) // label IF_FALSE3
 
-// (-7080) push static 2
+// push static 2
 @19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
@@ -50614,7 +50614,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7082) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -50622,7 +50622,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7084) pop static 2
+// pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -50637,16 +50637,16 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7086) label IF_END3
+// label IF_END3
 (Output.IF_END3) // label IF_END3
 
-// (-7089) label IF_END1
+// label IF_END1
 (Output.IF_END1) // label IF_END1
 
-// (-7092) label IF_END0
+// label IF_END0
 (Output.IF_END0) // label IF_END0
 
-// (-7095) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -50655,9 +50655,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7097) return
+// return
 
-// (-7099) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -50712,10 +50712,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7101) function Output.printString 2
+// function Output.printString 2
 (Output.printString) // function Output.printString 2
 
-// (-7104) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Output.printString 2 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -50726,7 +50726,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7107) call String.length 1
+// call String.length 1
 (Output.String.length.353) // call String.length 1
 @Output.String.length.353 // call String.length // push RP
 D=A // d = RP
@@ -50793,7 +50793,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.length // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7109) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -50808,10 +50808,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7111) label WHILE_EXP0
+// label WHILE_EXP0
 (Output.WHILE_EXP0) // label WHILE_EXP0
 
-// (-7114) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -50823,7 +50823,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7116) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -50835,7 +50835,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7118) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -50861,7 +50861,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7123) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -50869,7 +50869,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7125) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -50880,7 +50880,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
-// (-7127) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -50892,7 +50892,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7129) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -50904,7 +50904,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7132) call String.charAt 2
+// call String.charAt 2
 (Output.String.charAt.355) // call String.charAt 2
 @Output.String.charAt.355 // call String.charAt // push RP
 D=A // d = RP
@@ -50971,7 +50971,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.charAt // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7135) call Output.printChar 1
+// call Output.printChar 1
 (Output.Output.printChar.356) // call Output.printChar 1
 @Output.Output.printChar.356 // call Output.printChar // push RP
 D=A // d = RP
@@ -51038,7 +51038,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7137) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51053,7 +51053,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7139) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -51065,7 +51065,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7141) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51074,7 +51074,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7143) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -51086,7 +51086,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7145) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51101,14 +51101,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7147) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Output.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-7149) label WHILE_END0
+// label WHILE_END0
 (Output.WHILE_END0) // label WHILE_END0
 
-// (-7152) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51117,9 +51117,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7154) return
+// return
 
-// (-7156) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51174,10 +51174,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7158) function Output.printInt 0
+// function Output.printInt 0
 (Output.printInt) // function Output.printInt 0
 
-// (-7161) push static 3
+// push static 3
 @19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @3 // offset
@@ -51188,7 +51188,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7163) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -51200,7 +51200,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7166) call String.setInt 2
+// call String.setInt 2
 (Output.String.setInt.357) // call String.setInt 2
 @Output.String.setInt.357 // call String.setInt // push RP
 D=A // d = RP
@@ -51238,7 +51238,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7168) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -51247,7 +51247,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7170) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -51256,7 +51256,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7172) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -51265,7 +51265,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7174) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -51303,7 +51303,7 @@ M=D // &lcl[0] = &lcl[0]
 @String.setInt // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7176) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51318,7 +51318,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7178) push static 3
+// push static 3
 @19 // push static 3 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @3 // offset
@@ -51330,7 +51330,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7181) call Output.printString 1
+// call Output.printString 1
 (Output.Output.printString.358) // call Output.printString 1
 @Output.Output.printString.358 // call Output.printString // push RP
 D=A // d = RP
@@ -51368,7 +51368,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7183) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -51377,7 +51377,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7185) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -51415,7 +51415,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.printString // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7187) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51430,7 +51430,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7189) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51439,9 +51439,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7191) return
+// return
 
-// (-7193) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51496,10 +51496,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7195) function Output.println 0
+// function Output.println 0
 (Output.println) // function Output.println 0
 
-// (-7198) push static 1
+// push static 1
 @19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -51510,7 +51510,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7200) push constant 352
+// push constant 352
 @352 // push constant 352 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51519,7 +51519,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7202) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -51531,7 +51531,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7204) push static 0
+// push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -51543,7 +51543,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7206) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -51555,7 +51555,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7208) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -51570,7 +51570,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7210) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51579,7 +51579,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7212) pop static 0
+// pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51594,7 +51594,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7214) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51603,7 +51603,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7216) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -51611,7 +51611,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7218) pop static 2
+// pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -51626,7 +51626,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7220) push static 1
+// push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -51638,7 +51638,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7222) push constant 8128
+// push constant 8128
 @8128 // push constant 8128 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51647,7 +51647,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7224) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -51673,7 +51673,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7229) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -51684,14 +51684,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-7231) goto IF_FALSE0
+// goto IF_FALSE0
 @Output.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-7233) label IF_TRUE0
+// label IF_TRUE0
 (Output.IF_TRUE0) // label IF_TRUE0
 
-// (-7236) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51700,7 +51700,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7238) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -51715,10 +51715,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7240) label IF_FALSE0
+// label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
-// (-7243) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51727,9 +51727,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7245) return
+// return
 
-// (-7247) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51784,10 +51784,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7249) function Output.backSpace 0
+// function Output.backSpace 0
 (Output.backSpace) // function Output.backSpace 0
 
-// (-7252) push static 2
+// push static 2
 @19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
@@ -51798,7 +51798,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7254) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -51809,14 +51809,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-7256) goto IF_FALSE0
+// goto IF_FALSE0
 @Output.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-7258) label IF_TRUE0
+// label IF_TRUE0
 (Output.IF_TRUE0) // label IF_TRUE0
 
-// (-7261) push static 0
+// push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -51828,7 +51828,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7263) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51837,7 +51837,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7265) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -51863,7 +51863,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7270) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -51874,14 +51874,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-7272) goto IF_FALSE1
+// goto IF_FALSE1
 @Output.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-7274) label IF_TRUE1
+// label IF_TRUE1
 (Output.IF_TRUE1) // label IF_TRUE1
 
-// (-7277) push static 0
+// push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -51893,7 +51893,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7279) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51902,7 +51902,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7281) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -51914,7 +51914,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7283) pop static 0
+// pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -51929,7 +51929,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7285) push static 1
+// push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -51941,7 +51941,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7287) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51950,7 +51950,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7289) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -51962,7 +51962,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7291) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -51977,14 +51977,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7293) goto IF_END1
+// goto IF_END1
 @Output.IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
-// (-7295) label IF_FALSE1
+// label IF_FALSE1
 (Output.IF_FALSE1) // label IF_FALSE1
 
-// (-7298) push constant 31
+// push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
@@ -51993,7 +51993,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7300) pop static 0
+// pop static 0
 @19 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -52008,7 +52008,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7302) push static 1
+// push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -52020,7 +52020,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7304) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52029,7 +52029,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7306) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52055,7 +52055,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7311) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -52066,14 +52066,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Output.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-7313) goto IF_FALSE2
+// goto IF_FALSE2
 @Output.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-7315) label IF_TRUE2
+// label IF_TRUE2
 (Output.IF_TRUE2) // label IF_TRUE2
 
-// (-7318) push constant 8128
+// push constant 8128
 @8128 // push constant 8128 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52082,7 +52082,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7320) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -52097,10 +52097,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7322) label IF_FALSE2
+// label IF_FALSE2
 (Output.IF_FALSE2) // label IF_FALSE2
 
-// (-7325) push static 1
+// push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -52112,7 +52112,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7327) push constant 321
+// push constant 321
 @321 // push constant 321 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52121,7 +52121,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7329) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52133,7 +52133,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7331) pop static 1
+// pop static 1
 @19 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -52148,10 +52148,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7333) label IF_END1
+// label IF_END1
 (Output.IF_END1) // label IF_END1
 
-// (-7336) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52160,7 +52160,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7338) pop static 2
+// pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -52175,14 +52175,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7340) goto IF_END0
+// goto IF_END0
 @Output.IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
-// (-7342) label IF_FALSE0
+// label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
-// (-7345) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52191,7 +52191,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7347) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -52199,7 +52199,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7349) pop static 2
+// pop static 2
 @19 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -52214,10 +52214,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7351) label IF_END0
+// label IF_END0
 (Output.IF_END0) // label IF_END0
 
-// (-7354) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52226,7 +52226,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7357) call Output.drawChar 1
+// call Output.drawChar 1
 (Output.Output.drawChar.362) // call Output.drawChar 1
 @Output.Output.drawChar.362 // call Output.drawChar // push RP
 D=A // d = RP
@@ -52264,7 +52264,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7359) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -52273,7 +52273,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7361) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -52282,7 +52282,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7363) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -52291,7 +52291,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7365) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -52329,7 +52329,7 @@ M=D // &lcl[0] = &lcl[0]
 @Output.drawChar // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7367) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -52344,7 +52344,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7369) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52353,9 +52353,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7371) return
+// return
 
-// (-7373) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -52410,10 +52410,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7375) function Screen.init 1
+// function Screen.init 1
 (Screen.init) // function Screen.init 1
 
-// (-7378) push constant 16384
+// push constant 16384
 @16384 // push constant 16384 // function Screen.init 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52421,7 +52421,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-7380) pop static 1
+// pop static 1
 @26 // pop static 1 // static + src segment offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -52436,7 +52436,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7382) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52445,7 +52445,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7384) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -52453,7 +52453,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7386) pop static 2
+// pop static 2
 @26 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -52468,7 +52468,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7388) push constant 17
+// push constant 17
 @17 // push constant 17 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52477,7 +52477,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7391) call Array.new 1
+// call Array.new 1
 (Screen.Array.new.363) // call Array.new 1
 @Screen.Array.new.363 // call Array.new // push RP
 D=A // d = RP
@@ -52544,7 +52544,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7393) pop static 0
+// pop static 0
 @26 // pop static 0 // static + src segment offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -52559,7 +52559,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7395) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52568,7 +52568,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7397) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -52580,7 +52580,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7399) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52592,7 +52592,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7401) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52601,7 +52601,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7403) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -52616,7 +52616,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7405) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -52631,7 +52631,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7407) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -52643,7 +52643,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7409) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -52658,10 +52658,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7411) label WHILE_EXP0
+// label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
 
-// (-7414) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -52673,7 +52673,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7416) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52682,7 +52682,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7418) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52708,7 +52708,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7423) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -52716,7 +52716,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7425) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -52727,7 +52727,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
-// (-7427) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -52739,7 +52739,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7429) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52748,7 +52748,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7431) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52760,7 +52760,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7433) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -52775,7 +52775,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7435) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -52787,7 +52787,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7437) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -52799,7 +52799,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7439) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52811,7 +52811,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7441) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -52823,7 +52823,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7443) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52832,7 +52832,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7445) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52844,7 +52844,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7447) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -52856,7 +52856,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7449) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52868,7 +52868,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7451) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -52883,7 +52883,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7453) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -52895,7 +52895,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7455) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -52907,7 +52907,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7457) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -52916,7 +52916,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7459) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52928,7 +52928,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7461) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -52940,7 +52940,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7463) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52952,7 +52952,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7465) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -52967,7 +52967,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7467) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -52979,7 +52979,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7469) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -52991,7 +52991,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7471) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53006,7 +53006,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7473) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -53021,7 +53021,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7475) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -53033,7 +53033,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7477) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53048,14 +53048,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7479) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-7481) label WHILE_END0
+// label WHILE_END0
 (Screen.WHILE_END0) // label WHILE_END0
 
-// (-7484) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -53064,9 +53064,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7486) return
+// return
 
-// (-7488) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53121,13 +53121,13 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7490) function Screen.clearScreen 1
+// function Screen.clearScreen 1
 (Screen.clearScreen) // function Screen.clearScreen 1
 
-// (-7493) label WHILE_EXP0
+// label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
 
-// (-7496) push local 0
+// push local 0
 @LCL // push local 0 // function Screen.clearScreen 1 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53138,7 +53138,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7498) push constant 8192
+// push constant 8192
 @8192 // push constant 8192 (constant)
 D=A // d = constant
 @SP // &esp
@@ -53147,7 +53147,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7500) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -53173,7 +53173,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7505) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -53181,7 +53181,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7507) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -53192,7 +53192,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
-// (-7509) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53204,7 +53204,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7511) push static 1
+// push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -53216,7 +53216,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7513) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -53228,7 +53228,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7515) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -53237,7 +53237,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7517) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53252,7 +53252,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7519) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -53267,7 +53267,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7521) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -53279,7 +53279,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7523) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53294,7 +53294,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7525) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53306,7 +53306,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7527) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -53315,7 +53315,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7529) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -53327,7 +53327,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7531) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53342,14 +53342,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7533) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-7535) label WHILE_END0
+// label WHILE_END0
 (Screen.WHILE_END0) // label WHILE_END0
 
-// (-7538) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -53358,9 +53358,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7540) return
+// return
 
-// (-7542) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53415,10 +53415,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7544) function Screen.updateLocation 0
+// function Screen.updateLocation 0
 (Screen.updateLocation) // function Screen.updateLocation 0
 
-// (-7547) push static 2
+// push static 2
 @26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @2 // offset
@@ -53429,7 +53429,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7549) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -53440,14 +53440,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-7551) goto IF_FALSE0
+// goto IF_FALSE0
 @Screen.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-7553) label IF_TRUE0
+// label IF_TRUE0
 (Screen.IF_TRUE0) // label IF_TRUE0
 
-// (-7556) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53459,7 +53459,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7558) push static 1
+// push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -53471,7 +53471,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7560) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -53483,7 +53483,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7562) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53495,7 +53495,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7564) push static 1
+// push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -53507,7 +53507,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7566) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -53519,7 +53519,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7568) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -53534,7 +53534,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7570) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53546,7 +53546,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7572) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -53558,7 +53558,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7574) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -53570,7 +53570,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7576) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53585,7 +53585,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7578) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -53600,7 +53600,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7580) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -53612,7 +53612,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7582) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53627,14 +53627,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7584) goto IF_END0
+// goto IF_END0
 @Screen.IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
-// (-7586) label IF_FALSE0
+// label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
 
-// (-7589) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53646,7 +53646,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7591) push static 1
+// push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -53658,7 +53658,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7593) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -53670,7 +53670,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7595) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53682,7 +53682,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7597) push static 1
+// push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
@@ -53694,7 +53694,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7599) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -53706,7 +53706,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7601) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -53721,7 +53721,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7603) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53733,7 +53733,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7605) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -53745,7 +53745,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7607) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -53753,7 +53753,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7609) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -53765,7 +53765,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7611) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53780,7 +53780,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7613) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -53795,7 +53795,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7615) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -53807,7 +53807,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7617) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53822,10 +53822,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7619) label IF_END0
+// label IF_END0
 (Screen.IF_END0) // label IF_END0
 
-// (-7622) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -53834,9 +53834,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7624) return
+// return
 
-// (-7626) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53891,10 +53891,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7628) function Screen.setColor 0
+// function Screen.setColor 0
 (Screen.setColor) // function Screen.setColor 0
 
-// (-7631) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Screen.setColor 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -53905,7 +53905,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7633) pop static 2
+// pop static 2
 @26 // pop static 2 // static + src segment offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -53920,7 +53920,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7635) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -53929,9 +53929,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7637) return
+// return
 
-// (-7639) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -53986,10 +53986,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7641) function Screen.drawPixel 3
+// function Screen.drawPixel 3
 (Screen.drawPixel) // function Screen.drawPixel 3
 
-// (-7644) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Screen.drawPixel 3 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -54000,7 +54000,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7646) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54009,7 +54009,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7648) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -54035,7 +54035,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7653) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -54047,7 +54047,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7655) push constant 511
+// push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54056,7 +54056,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7657) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -54082,7 +54082,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7662) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -54094,7 +54094,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7664) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -54106,7 +54106,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7666) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54115,7 +54115,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7668) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -54141,7 +54141,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7673) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -54153,7 +54153,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7675) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -54165,7 +54165,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7677) push constant 255
+// push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54174,7 +54174,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7679) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -54200,7 +54200,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7684) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -54212,7 +54212,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7686) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -54223,14 +54223,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-7688) goto IF_FALSE0
+// goto IF_FALSE0
 @Screen.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-7690) label IF_TRUE0
+// label IF_TRUE0
 (Screen.IF_TRUE0) // label IF_TRUE0
 
-// (-7693) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54239,7 +54239,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7696) call Sys.error 1
+// call Sys.error 1
 (Screen.Sys.error.370) // call Sys.error 1
 @Screen.Sys.error.370 // call Sys.error // push RP
 D=A // d = RP
@@ -54306,7 +54306,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7698) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -54321,10 +54321,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7700) label IF_FALSE0
+// label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
 
-// (-7703) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -54336,7 +54336,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7705) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54345,7 +54345,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7708) call Math.divide 2
+// call Math.divide 2
 (Screen.Math.divide.371) // call Math.divide 2
 @Screen.Math.divide.371 // call Math.divide // push RP
 D=A // d = RP
@@ -54383,7 +54383,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7710) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54392,7 +54392,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7712) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54401,7 +54401,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7714) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54410,7 +54410,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7716) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54448,7 +54448,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.divide // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7718) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -54463,7 +54463,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7720) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -54475,7 +54475,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7722) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -54487,7 +54487,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7724) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54496,7 +54496,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7727) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.372) // call Math.multiply 2
 @Screen.Math.multiply.372 // call Math.multiply // push RP
 D=A // d = RP
@@ -54534,7 +54534,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7729) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54543,7 +54543,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7731) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54552,7 +54552,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7733) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54561,7 +54561,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7735) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54570,7 +54570,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7737) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54608,7 +54608,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7739) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -54620,7 +54620,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7741) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -54635,7 +54635,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7743) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -54647,7 +54647,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7745) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54656,7 +54656,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7748) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.373) // call Math.multiply 2
 @Screen.Math.multiply.373 // call Math.multiply // push RP
 D=A // d = RP
@@ -54694,7 +54694,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7750) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54703,7 +54703,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7752) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54712,7 +54712,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7754) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54721,7 +54721,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7756) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54730,7 +54730,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7758) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -54768,7 +54768,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7760) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -54780,7 +54780,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7762) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -54792,7 +54792,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7764) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -54807,7 +54807,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7766) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -54819,7 +54819,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7768) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -54831,7 +54831,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7770) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -54843,7 +54843,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7772) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -54855,7 +54855,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7774) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -54870,7 +54870,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7776) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -54882,7 +54882,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7779) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.374) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.374 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -54949,7 +54949,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7781) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -54964,7 +54964,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7783) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -54973,9 +54973,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7785) return
+// return
 
-// (-7787) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -55030,10 +55030,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7789) function Screen.drawConditional 0
+// function Screen.drawConditional 0
 (Screen.drawConditional) // function Screen.drawConditional 0
 
-// (-7792) push argument 2
+// push argument 2
 @ARG // push argument 2 // function Screen.drawConditional 0 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -55044,7 +55044,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7794) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -55055,14 +55055,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-7796) goto IF_FALSE0
+// goto IF_FALSE0
 @Screen.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-7798) label IF_TRUE0
+// label IF_TRUE0
 (Screen.IF_TRUE0) // label IF_TRUE0
 
-// (-7801) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -55074,7 +55074,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7803) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -55086,7 +55086,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7806) call Screen.drawPixel 2
+// call Screen.drawPixel 2
 (Screen.Screen.drawPixel.375) // call Screen.drawPixel 2
 @Screen.Screen.drawPixel.375 // call Screen.drawPixel // push RP
 D=A // d = RP
@@ -55124,7 +55124,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7808) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -55133,7 +55133,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7810) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -55142,7 +55142,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7812) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -55180,7 +55180,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawPixel // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7814) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -55195,14 +55195,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7816) goto IF_END0
+// goto IF_END0
 @Screen.IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
-// (-7818) label IF_FALSE0
+// label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
 
-// (-7821) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -55214,7 +55214,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7823) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -55226,7 +55226,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7826) call Screen.drawPixel 2
+// call Screen.drawPixel 2
 (Screen.Screen.drawPixel.376) // call Screen.drawPixel 2
 @Screen.Screen.drawPixel.376 // call Screen.drawPixel // push RP
 D=A // d = RP
@@ -55264,7 +55264,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7828) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -55273,7 +55273,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7830) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -55282,7 +55282,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7832) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -55320,7 +55320,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawPixel // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7834) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -55335,10 +55335,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7836) label IF_END0
+// label IF_END0
 (Screen.IF_END0) // label IF_END0
 
-// (-7839) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -55347,9 +55347,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7841) return
+// return
 
-// (-7843) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -55404,10 +55404,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-7845) function Screen.drawLine 11
+// function Screen.drawLine 11
 (Screen.drawLine) // function Screen.drawLine 11
 
-// (-7848) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Screen.drawLine 11 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -55418,7 +55418,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-7850) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -55427,7 +55427,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7852) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -55453,7 +55453,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7857) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -55465,7 +55465,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7859) push constant 511
+// push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
@@ -55474,7 +55474,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7861) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -55500,7 +55500,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7866) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -55512,7 +55512,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7868) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -55524,7 +55524,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7870) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -55533,7 +55533,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7872) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -55559,7 +55559,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7877) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -55571,7 +55571,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7879) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -55583,7 +55583,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7881) push constant 255
+// push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
@@ -55592,7 +55592,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7883) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -55618,7 +55618,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7888) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -55630,7 +55630,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7890) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -55641,14 +55641,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-7892) goto IF_FALSE0
+// goto IF_FALSE0
 @Screen.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-7894) label IF_TRUE0
+// label IF_TRUE0
 (Screen.IF_TRUE0) // label IF_TRUE0
 
-// (-7897) push constant 8
+// push constant 8
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
@@ -55657,7 +55657,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7900) call Sys.error 1
+// call Sys.error 1
 (Screen.Sys.error.381) // call Sys.error 1
 @Screen.Sys.error.381 // call Sys.error // push RP
 D=A // d = RP
@@ -55724,7 +55724,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7902) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -55739,10 +55739,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7904) label IF_FALSE0
+// label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
 
-// (-7907) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -55754,7 +55754,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7909) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -55766,7 +55766,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7911) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -55778,7 +55778,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7914) call Math.abs 1
+// call Math.abs 1
 (Screen.Math.abs.382) // call Math.abs 1
 @Screen.Math.abs.382 // call Math.abs // push RP
 D=A // d = RP
@@ -55845,7 +55845,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.abs // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7916) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -55860,7 +55860,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7918) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -55872,7 +55872,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7920) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -55884,7 +55884,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7922) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -55896,7 +55896,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7925) call Math.abs 1
+// call Math.abs 1
 (Screen.Math.abs.383) // call Math.abs 1
 @Screen.Math.abs.383 // call Math.abs // push RP
 D=A // d = RP
@@ -55963,7 +55963,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.abs // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-7927) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -55978,7 +55978,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7929) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -55990,7 +55990,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7931) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -56002,7 +56002,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7933) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -56028,7 +56028,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7938) pop local 6
+// pop local 6
 @LCL // pop local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // retrieve &dst (segment+offset) and store at R13
@@ -56043,7 +56043,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7940) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -56055,7 +56055,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7942) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -56067,7 +56067,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7944) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -56079,7 +56079,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7946) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -56105,7 +56105,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7951) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -56117,7 +56117,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7953) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -56129,7 +56129,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7955) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -56137,7 +56137,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7957) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -56149,7 +56149,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7959) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -56161,7 +56161,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7961) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -56187,7 +56187,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7966) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -56199,7 +56199,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7968) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -56211,7 +56211,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7970) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -56222,14 +56222,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-7972) goto IF_FALSE1
+// goto IF_FALSE1
 @Screen.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-7974) label IF_TRUE1
+// label IF_TRUE1
 (Screen.IF_TRUE1) // label IF_TRUE1
 
-// (-7977) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -56241,7 +56241,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7979) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -56256,7 +56256,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7981) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -56268,7 +56268,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7983) pop argument 0
+// pop argument 0
 @ARG // pop argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -56283,7 +56283,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7985) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -56295,7 +56295,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7987) pop argument 2
+// pop argument 2
 @ARG // pop argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -56310,7 +56310,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7989) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -56322,7 +56322,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7991) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -56337,7 +56337,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7993) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -56349,7 +56349,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7995) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -56364,7 +56364,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7997) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -56376,7 +56376,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7999) pop argument 3
+// pop argument 3
 @ARG // pop argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -56391,10 +56391,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8001) label IF_FALSE1
+// label IF_FALSE1
 (Screen.IF_FALSE1) // label IF_FALSE1
 
-// (-8004) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -56406,7 +56406,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8006) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -56417,14 +56417,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-8008) goto IF_FALSE2
+// goto IF_FALSE2
 @Screen.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-8010) label IF_TRUE2
+// label IF_TRUE2
 (Screen.IF_TRUE2) // label IF_TRUE2
 
-// (-8013) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -56436,7 +56436,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8015) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -56451,7 +56451,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8017) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -56463,7 +56463,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8019) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -56478,7 +56478,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8021) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -56490,7 +56490,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8023) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -56505,7 +56505,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8025) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -56517,7 +56517,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8027) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -56532,7 +56532,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8029) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -56544,7 +56544,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8031) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -56559,7 +56559,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8033) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -56571,7 +56571,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8035) pop local 8
+// pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // retrieve &dst (segment+offset) and store at R13
@@ -56586,7 +56586,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8037) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -56598,7 +56598,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8039) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -56610,7 +56610,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8041) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -56636,7 +56636,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8046) pop local 7
+// pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // retrieve &dst (segment+offset) and store at R13
@@ -56651,14 +56651,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8048) goto IF_END2
+// goto IF_END2
 @Screen.IF_END2 // goto IF_END2
 0;JMP // unconditional jump
 
-// (-8050) label IF_FALSE2
+// label IF_FALSE2
 (Screen.IF_FALSE2) // label IF_FALSE2
 
-// (-8053) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -56670,7 +56670,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8055) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -56685,7 +56685,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8057) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -56697,7 +56697,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8059) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -56712,7 +56712,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8061) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -56724,7 +56724,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8063) pop local 8
+// pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // retrieve &dst (segment+offset) and store at R13
@@ -56739,7 +56739,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8065) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -56751,7 +56751,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8067) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -56763,7 +56763,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8069) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -56789,7 +56789,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8074) pop local 7
+// pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // retrieve &dst (segment+offset) and store at R13
@@ -56804,10 +56804,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8076) label IF_END2
+// label IF_END2
 (Screen.IF_END2) // label IF_END2
 
-// (-8079) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -56816,7 +56816,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8081) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -56828,7 +56828,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8084) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.389) // call Math.multiply 2
 @Screen.Math.multiply.389 // call Math.multiply // push RP
 D=A // d = RP
@@ -56866,7 +56866,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8086) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -56875,7 +56875,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8088) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -56884,7 +56884,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8090) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -56893,7 +56893,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8092) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -56902,7 +56902,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8094) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -56940,7 +56940,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8096) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -56952,7 +56952,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8098) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -56964,7 +56964,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8100) pop local 5
+// pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // retrieve &dst (segment+offset) and store at R13
@@ -56979,7 +56979,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8102) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -56988,7 +56988,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8104) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -57000,7 +57000,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8107) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.390) // call Math.multiply 2
 @Screen.Math.multiply.390 // call Math.multiply // push RP
 D=A // d = RP
@@ -57038,7 +57038,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8109) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57047,7 +57047,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8111) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57056,7 +57056,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8113) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57065,7 +57065,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8115) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57074,7 +57074,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8117) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57112,7 +57112,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8119) pop local 9
+// pop local 9
 @LCL // pop local 9 (&asm_segment)
 D=M // d = *asm_segment
 @9 // retrieve &dst (segment+offset) and store at R13
@@ -57127,7 +57127,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8121) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -57136,7 +57136,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8123) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -57148,7 +57148,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8125) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -57160,7 +57160,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8127) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57172,7 +57172,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8130) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.391) // call Math.multiply 2
 @Screen.Math.multiply.391 // call Math.multiply // push RP
 D=A // d = RP
@@ -57210,7 +57210,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8132) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57219,7 +57219,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8134) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57228,7 +57228,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8136) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57237,7 +57237,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8138) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57246,7 +57246,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8140) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -57284,7 +57284,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8142) pop local 10
+// pop local 10
 @LCL // pop local 10 (&asm_segment)
 D=M // d = *asm_segment
 @10 // retrieve &dst (segment+offset) and store at R13
@@ -57299,7 +57299,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8144) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -57311,7 +57311,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8146) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -57323,7 +57323,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8148) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -57335,7 +57335,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8151) call Screen.drawConditional 3
+// call Screen.drawConditional 3
 (Screen.Screen.drawConditional.392) // call Screen.drawConditional 3
 @Screen.Screen.drawConditional.392 // call Screen.drawConditional // push RP
 D=A // d = RP
@@ -57402,7 +57402,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawConditional // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8153) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -57417,10 +57417,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8155) label WHILE_EXP0
+// label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
 
-// (-8158) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -57432,7 +57432,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8160) push local 8
+// push local 8
 @LCL // push local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // offset
@@ -57444,7 +57444,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8162) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57470,7 +57470,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8167) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -57478,7 +57478,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8169) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -57489,7 +57489,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
-// (-8171) push local 5
+// push local 5
 @LCL // push local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -57501,7 +57501,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8173) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -57510,7 +57510,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8175) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57536,7 +57536,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8180) if-goto IF_TRUE3
+// if-goto IF_TRUE3
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE3
 D=A // d = 0
@@ -57547,14 +57547,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE3
 D;JNE // jump if not zero
 
-// (-8182) goto IF_FALSE3
+// goto IF_FALSE3
 @Screen.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
-// (-8184) label IF_TRUE3
+// label IF_TRUE3
 (Screen.IF_TRUE3) // label IF_TRUE3
 
-// (-8187) push local 5
+// push local 5
 @LCL // push local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -57566,7 +57566,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8189) push local 9
+// push local 9
 @LCL // push local 9 (&asm_segment)
 D=M // d = *asm_segment
 @9 // offset
@@ -57578,7 +57578,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8191) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57590,7 +57590,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8193) pop local 5
+// pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // retrieve &dst (segment+offset) and store at R13
@@ -57605,14 +57605,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8195) goto IF_END3
+// goto IF_END3
 @Screen.IF_END3 // goto IF_END3
 0;JMP // unconditional jump
 
-// (-8197) label IF_FALSE3
+// label IF_FALSE3
 (Screen.IF_FALSE3) // label IF_FALSE3
 
-// (-8200) push local 5
+// push local 5
 @LCL // push local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -57624,7 +57624,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8202) push local 10
+// push local 10
 @LCL // push local 10 (&asm_segment)
 D=M // d = *asm_segment
 @10 // offset
@@ -57636,7 +57636,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8204) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57648,7 +57648,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8206) pop local 5
+// pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // retrieve &dst (segment+offset) and store at R13
@@ -57663,7 +57663,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8208) push local 7
+// push local 7
 @LCL // push local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // offset
@@ -57675,7 +57675,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8210) if-goto IF_TRUE4
+// if-goto IF_TRUE4
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE4
 D=A // d = 0
@@ -57686,14 +57686,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE4
 D;JNE // jump if not zero
 
-// (-8212) goto IF_FALSE4
+// goto IF_FALSE4
 @Screen.IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
-// (-8214) label IF_TRUE4
+// label IF_TRUE4
 (Screen.IF_TRUE4) // label IF_TRUE4
 
-// (-8217) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -57705,7 +57705,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8219) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -57714,7 +57714,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8221) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57726,7 +57726,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8223) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -57741,14 +57741,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8225) goto IF_END4
+// goto IF_END4
 @Screen.IF_END4 // goto IF_END4
 0;JMP // unconditional jump
 
-// (-8227) label IF_FALSE4
+// label IF_FALSE4
 (Screen.IF_FALSE4) // label IF_FALSE4
 
-// (-8230) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -57760,7 +57760,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8232) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -57769,7 +57769,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8234) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57781,7 +57781,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8236) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -57796,13 +57796,13 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8238) label IF_END4
+// label IF_END4
 (Screen.IF_END4) // label IF_END4
 
-// (-8241) label IF_END3
+// label IF_END3
 (Screen.IF_END3) // label IF_END3
 
-// (-8244) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -57814,7 +57814,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8246) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -57823,7 +57823,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8248) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -57835,7 +57835,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8250) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -57850,7 +57850,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8252) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -57862,7 +57862,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8254) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -57874,7 +57874,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8256) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -57886,7 +57886,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8259) call Screen.drawConditional 3
+// call Screen.drawConditional 3
 (Screen.Screen.drawConditional.395) // call Screen.drawConditional 3
 @Screen.Screen.drawConditional.395 // call Screen.drawConditional // push RP
 D=A // d = RP
@@ -57953,7 +57953,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawConditional // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8261) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -57968,14 +57968,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8263) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-8265) label WHILE_END0
+// label WHILE_END0
 (Screen.WHILE_END0) // label WHILE_END0
 
-// (-8268) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -57984,9 +57984,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8270) return
+// return
 
-// (-8272) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -58041,10 +58041,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-8274) function Screen.drawRectangle 9
+// function Screen.drawRectangle 9
 (Screen.drawRectangle) // function Screen.drawRectangle 9
 
-// (-8277) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Screen.drawRectangle 9 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -58055,7 +58055,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-8279) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -58067,7 +58067,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8281) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -58093,7 +58093,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8286) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -58105,7 +58105,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8288) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -58117,7 +58117,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8290) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -58143,7 +58143,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8295) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -58155,7 +58155,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8297) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -58167,7 +58167,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8299) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58176,7 +58176,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8301) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -58202,7 +58202,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8306) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -58214,7 +58214,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8308) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -58226,7 +58226,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8310) push constant 511
+// push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58235,7 +58235,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8312) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -58261,7 +58261,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8317) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -58273,7 +58273,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8319) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -58285,7 +58285,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8321) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58294,7 +58294,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8323) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -58320,7 +58320,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8328) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -58332,7 +58332,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8330) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -58344,7 +58344,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8332) push constant 255
+// push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58353,7 +58353,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8334) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -58379,7 +58379,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8339) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -58391,7 +58391,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8341) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -58402,14 +58402,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-8343) goto IF_FALSE0
+// goto IF_FALSE0
 @Screen.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-8345) label IF_TRUE0
+// label IF_TRUE0
 (Screen.IF_TRUE0) // label IF_TRUE0
 
-// (-8348) push constant 9
+// push constant 9
 @9 // push constant 9 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58418,7 +58418,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8351) call Sys.error 1
+// call Sys.error 1
 (Screen.Sys.error.402) // call Sys.error 1
 @Screen.Sys.error.402 // call Sys.error // push RP
 D=A // d = RP
@@ -58485,7 +58485,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8353) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -58500,10 +58500,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8355) label IF_FALSE0
+// label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
 
-// (-8358) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -58515,7 +58515,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8360) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58524,7 +58524,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8363) call Math.divide 2
+// call Math.divide 2
 (Screen.Math.divide.403) // call Math.divide 2
 @Screen.Math.divide.403 // call Math.divide // push RP
 D=A // d = RP
@@ -58562,7 +58562,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8365) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58571,7 +58571,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8367) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58580,7 +58580,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8369) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58589,7 +58589,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8371) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58627,7 +58627,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.divide // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8373) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -58642,7 +58642,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8375) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -58654,7 +58654,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8377) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -58666,7 +58666,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8379) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58675,7 +58675,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8382) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.404) // call Math.multiply 2
 @Screen.Math.multiply.404 // call Math.multiply // push RP
 D=A // d = RP
@@ -58713,7 +58713,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8384) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58722,7 +58722,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8386) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58731,7 +58731,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8388) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58740,7 +58740,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8390) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58749,7 +58749,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8392) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58787,7 +58787,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8394) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -58799,7 +58799,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8396) pop local 7
+// pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // retrieve &dst (segment+offset) and store at R13
@@ -58814,7 +58814,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8398) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -58826,7 +58826,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8400) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58835,7 +58835,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8403) call Math.divide 2
+// call Math.divide 2
 (Screen.Math.divide.405) // call Math.divide 2
 @Screen.Math.divide.405 // call Math.divide // push RP
 D=A // d = RP
@@ -58873,7 +58873,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8405) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58882,7 +58882,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8407) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58891,7 +58891,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8409) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58900,7 +58900,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8411) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -58938,7 +58938,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.divide // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8413) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -58953,7 +58953,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8415) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -58965,7 +58965,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8417) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -58977,7 +58977,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8419) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -58986,7 +58986,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8422) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.406) // call Math.multiply 2
 @Screen.Math.multiply.406 // call Math.multiply // push RP
 D=A // d = RP
@@ -59024,7 +59024,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8424) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59033,7 +59033,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8426) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59042,7 +59042,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8428) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59051,7 +59051,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8430) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59060,7 +59060,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8432) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59098,7 +59098,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8434) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59110,7 +59110,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8436) pop local 8
+// pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // retrieve &dst (segment+offset) and store at R13
@@ -59125,7 +59125,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8438) push local 7
+// push local 7
 @LCL // push local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // offset
@@ -59137,7 +59137,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8440) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -59149,7 +59149,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8442) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59161,7 +59161,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8444) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -59176,7 +59176,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8446) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -59188,7 +59188,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8448) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -59197,7 +59197,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8450) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59209,7 +59209,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8452) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -59217,7 +59217,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8454) pop local 6
+// pop local 6
 @LCL // pop local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // retrieve &dst (segment+offset) and store at R13
@@ -59232,7 +59232,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8456) push local 8
+// push local 8
 @LCL // push local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // offset
@@ -59244,7 +59244,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8458) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -59253,7 +59253,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8460) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59265,7 +59265,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8462) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -59277,7 +59277,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8464) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59289,7 +59289,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8466) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -59304,7 +59304,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8468) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -59316,7 +59316,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8470) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -59325,7 +59325,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8472) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59337,7 +59337,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8474) pop local 5
+// pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // retrieve &dst (segment+offset) and store at R13
@@ -59352,7 +59352,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8476) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -59364,7 +59364,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8478) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -59373,7 +59373,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8481) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.407) // call Math.multiply 2
 @Screen.Math.multiply.407 // call Math.multiply // push RP
 D=A // d = RP
@@ -59411,7 +59411,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8483) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59420,7 +59420,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8485) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59429,7 +59429,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8487) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59438,7 +59438,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8489) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59447,7 +59447,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8491) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -59485,7 +59485,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8493) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -59497,7 +59497,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8495) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59509,7 +59509,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8497) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -59524,7 +59524,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8499) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -59536,7 +59536,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8501) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -59548,7 +59548,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8503) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59560,7 +59560,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8505) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -59575,10 +59575,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8507) label WHILE_EXP0
+// label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
 
-// (-8510) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -59590,7 +59590,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8512) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -59602,7 +59602,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8514) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59628,7 +59628,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8519) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -59636,7 +59636,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8521) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -59644,7 +59644,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8523) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -59655,7 +59655,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
-// (-8525) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -59667,7 +59667,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8527) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -59679,7 +59679,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8529) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59691,7 +59691,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8531) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -59706,7 +59706,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8533) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -59718,7 +59718,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8535) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -59727,7 +59727,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8537) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -59753,7 +59753,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8542) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -59764,14 +59764,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-8544) goto IF_FALSE1
+// goto IF_FALSE1
 @Screen.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-8546) label IF_TRUE1
+// label IF_TRUE1
 (Screen.IF_TRUE1) // label IF_TRUE1
 
-// (-8549) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -59783,7 +59783,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8551) push local 5
+// push local 5
 @LCL // push local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -59795,7 +59795,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8553) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -59807,7 +59807,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8555) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -59819,7 +59819,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8558) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.410) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.410 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -59886,7 +59886,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8560) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -59901,14 +59901,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8562) goto IF_END1
+// goto IF_END1
 @Screen.IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
-// (-8564) label IF_FALSE1
+// label IF_FALSE1
 (Screen.IF_FALSE1) // label IF_FALSE1
 
-// (-8567) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -59920,7 +59920,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8569) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -59932,7 +59932,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8572) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.411) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.411 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -59999,7 +59999,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8574) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -60014,7 +60014,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8576) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -60026,7 +60026,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8578) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60035,7 +60035,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8580) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60047,7 +60047,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8582) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -60062,10 +60062,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8584) label WHILE_EXP1
+// label WHILE_EXP1
 (Screen.WHILE_EXP1) // label WHILE_EXP1
 
-// (-8587) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -60077,7 +60077,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8589) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -60089,7 +60089,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8591) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60115,7 +60115,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8596) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -60123,7 +60123,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8598) if-goto WHILE_END1
+// if-goto WHILE_END1
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END1
 D=A // d = 0
@@ -60134,7 +60134,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END1
 D;JNE // jump if not zero
 
-// (-8600) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -60146,7 +60146,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8602) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60155,7 +60155,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8604) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -60163,7 +60163,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8607) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.413) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.413 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -60230,7 +60230,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8609) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -60245,7 +60245,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8611) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -60257,7 +60257,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8613) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60266,7 +60266,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8615) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60278,7 +60278,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8617) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -60293,14 +60293,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8619) goto WHILE_EXP1
+// goto WHILE_EXP1
 @Screen.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
-// (-8621) label WHILE_END1
+// label WHILE_END1
 (Screen.WHILE_END1) // label WHILE_END1
 
-// (-8624) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -60312,7 +60312,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8626) push local 5
+// push local 5
 @LCL // push local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -60324,7 +60324,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8629) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.414) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.414 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -60391,7 +60391,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8631) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -60406,10 +60406,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8633) label IF_END1
+// label IF_END1
 (Screen.IF_END1) // label IF_END1
 
-// (-8636) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -60421,7 +60421,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8638) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60430,7 +60430,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8640) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60442,7 +60442,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8642) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -60457,7 +60457,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8644) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -60469,7 +60469,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8646) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60478,7 +60478,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8648) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60490,7 +60490,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8650) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -60502,7 +60502,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8652) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60514,7 +60514,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8654) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -60529,14 +60529,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8656) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-8658) label WHILE_END0
+// label WHILE_END0
 (Screen.WHILE_END0) // label WHILE_END0
 
-// (-8661) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60545,9 +60545,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8663) return
+// return
 
-// (-8665) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -60602,10 +60602,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-8667) function Screen.drawHorizontal 11
+// function Screen.drawHorizontal 11
 (Screen.drawHorizontal) // function Screen.drawHorizontal 11
 
-// (-8670) push argument 1
+// push argument 1
 @ARG // push argument 1 // function Screen.drawHorizontal 11 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -60616,7 +60616,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-8672) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -60628,7 +60628,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8675) call Math.min 2
+// call Math.min 2
 (Screen.Math.min.415) // call Math.min 2
 @Screen.Math.min.415 // call Math.min // push RP
 D=A // d = RP
@@ -60695,7 +60695,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.min // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8677) pop local 7
+// pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // retrieve &dst (segment+offset) and store at R13
@@ -60710,7 +60710,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8679) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -60722,7 +60722,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8681) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -60734,7 +60734,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8684) call Math.max 2
+// call Math.max 2
 (Screen.Math.max.416) // call Math.max 2
 @Screen.Math.max.416 // call Math.max // push RP
 D=A // d = RP
@@ -60801,7 +60801,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.max // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8686) pop local 8
+// pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // retrieve &dst (segment+offset) and store at R13
@@ -60816,7 +60816,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8688) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -60828,7 +60828,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8690) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60837,7 +60837,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8692) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -60845,7 +60845,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8694) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60871,7 +60871,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8699) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -60883,7 +60883,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8701) push constant 256
+// push constant 256
 @256 // push constant 256 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60892,7 +60892,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8703) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60918,7 +60918,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8708) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -60930,7 +60930,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8710) push local 7
+// push local 7
 @LCL // push local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // offset
@@ -60942,7 +60942,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8712) push constant 512
+// push constant 512
 @512 // push constant 512 (constant)
 D=A // d = constant
 @SP // &esp
@@ -60951,7 +60951,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8714) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -60977,7 +60977,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8719) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -60989,7 +60989,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8721) push local 8
+// push local 8
 @LCL // push local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // offset
@@ -61001,7 +61001,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8723) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61010,7 +61010,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8725) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -61018,7 +61018,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8727) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -61044,7 +61044,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8732) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -61056,7 +61056,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8734) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -61067,14 +61067,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-8736) goto IF_FALSE0
+// goto IF_FALSE0
 @Screen.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-8738) label IF_TRUE0
+// label IF_TRUE0
 (Screen.IF_TRUE0) // label IF_TRUE0
 
-// (-8741) push local 7
+// push local 7
 @LCL // push local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // offset
@@ -61086,7 +61086,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8743) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61095,7 +61095,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8746) call Math.max 2
+// call Math.max 2
 (Screen.Math.max.421) // call Math.max 2
 @Screen.Math.max.421 // call Math.max // push RP
 D=A // d = RP
@@ -61162,7 +61162,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.max // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8748) pop local 7
+// pop local 7
 @LCL // pop local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // retrieve &dst (segment+offset) and store at R13
@@ -61177,7 +61177,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8750) push local 8
+// push local 8
 @LCL // push local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // offset
@@ -61189,7 +61189,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8752) push constant 511
+// push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61198,7 +61198,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8755) call Math.min 2
+// call Math.min 2
 (Screen.Math.min.422) // call Math.min 2
 @Screen.Math.min.422 // call Math.min // push RP
 D=A // d = RP
@@ -61265,7 +61265,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.min // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8757) pop local 8
+// pop local 8
 @LCL // pop local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // retrieve &dst (segment+offset) and store at R13
@@ -61280,7 +61280,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8759) push local 7
+// push local 7
 @LCL // push local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // offset
@@ -61292,7 +61292,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8761) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61301,7 +61301,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8764) call Math.divide 2
+// call Math.divide 2
 (Screen.Math.divide.423) // call Math.divide 2
 @Screen.Math.divide.423 // call Math.divide // push RP
 D=A // d = RP
@@ -61339,7 +61339,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8766) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61348,7 +61348,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8768) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61357,7 +61357,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8770) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61366,7 +61366,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8772) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61404,7 +61404,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.divide // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8774) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -61419,7 +61419,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8776) push local 7
+// push local 7
 @LCL // push local 7 (&asm_segment)
 D=M // d = *asm_segment
 @7 // offset
@@ -61431,7 +61431,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8778) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -61443,7 +61443,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8780) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61452,7 +61452,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8783) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.424) // call Math.multiply 2
 @Screen.Math.multiply.424 // call Math.multiply // push RP
 D=A // d = RP
@@ -61490,7 +61490,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8785) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61499,7 +61499,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8787) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61508,7 +61508,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8789) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61517,7 +61517,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8791) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61526,7 +61526,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8793) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61564,7 +61564,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8795) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -61576,7 +61576,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8797) pop local 9
+// pop local 9
 @LCL // pop local 9 (&asm_segment)
 D=M // d = *asm_segment
 @9 // retrieve &dst (segment+offset) and store at R13
@@ -61591,7 +61591,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8799) push local 8
+// push local 8
 @LCL // push local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // offset
@@ -61603,7 +61603,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8801) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61612,7 +61612,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8804) call Math.divide 2
+// call Math.divide 2
 (Screen.Math.divide.425) // call Math.divide 2
 @Screen.Math.divide.425 // call Math.divide // push RP
 D=A // d = RP
@@ -61650,7 +61650,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8806) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61659,7 +61659,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8808) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61668,7 +61668,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8810) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61677,7 +61677,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8812) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61715,7 +61715,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.divide // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8814) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -61730,7 +61730,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8816) push local 8
+// push local 8
 @LCL // push local 8 (&asm_segment)
 D=M // d = *asm_segment
 @8 // offset
@@ -61742,7 +61742,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8818) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -61754,7 +61754,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8820) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61763,7 +61763,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8823) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.426) // call Math.multiply 2
 @Screen.Math.multiply.426 // call Math.multiply // push RP
 D=A // d = RP
@@ -61801,7 +61801,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8825) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61810,7 +61810,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8827) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61819,7 +61819,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8829) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61828,7 +61828,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8831) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61837,7 +61837,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8833) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -61875,7 +61875,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8835) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -61887,7 +61887,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8837) pop local 10
+// pop local 10
 @LCL // pop local 10 (&asm_segment)
 D=M // d = *asm_segment
 @10 // retrieve &dst (segment+offset) and store at R13
@@ -61902,7 +61902,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8839) push local 9
+// push local 9
 @LCL // push local 9 (&asm_segment)
 D=M // d = *asm_segment
 @9 // offset
@@ -61914,7 +61914,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8841) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -61926,7 +61926,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8843) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -61938,7 +61938,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8845) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -61953,7 +61953,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8847) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -61965,7 +61965,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8849) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -61974,7 +61974,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8851) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -61986,7 +61986,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8853) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -61994,7 +61994,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8855) pop local 5
+// pop local 5
 @LCL // pop local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // retrieve &dst (segment+offset) and store at R13
@@ -62009,7 +62009,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8857) push local 10
+// push local 10
 @LCL // push local 10 (&asm_segment)
 D=M // d = *asm_segment
 @10 // offset
@@ -62021,7 +62021,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8859) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -62030,7 +62030,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8861) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62042,7 +62042,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8863) push static 0
+// push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\SysTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
@@ -62054,7 +62054,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8865) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62066,7 +62066,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8867) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -62081,7 +62081,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8869) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62093,7 +62093,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8871) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -62102,7 +62102,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8873) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62114,7 +62114,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8875) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -62129,7 +62129,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8877) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62141,7 +62141,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8879) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -62150,7 +62150,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8882) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.427) // call Math.multiply 2
 @Screen.Math.multiply.427 // call Math.multiply // push RP
 D=A // d = RP
@@ -62188,7 +62188,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8884) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -62197,7 +62197,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8886) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -62206,7 +62206,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8888) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -62215,7 +62215,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8890) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -62224,7 +62224,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8892) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -62262,7 +62262,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8894) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -62274,7 +62274,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8896) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62286,7 +62286,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8898) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -62301,7 +62301,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8900) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -62313,7 +62313,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8902) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -62325,7 +62325,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8904) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62337,7 +62337,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8906) pop local 6
+// pop local 6
 @LCL // pop local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // retrieve &dst (segment+offset) and store at R13
@@ -62352,7 +62352,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8908) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62364,7 +62364,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8910) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -62376,7 +62376,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8912) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62388,7 +62388,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8914) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -62403,7 +62403,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8916) push local 6
+// push local 6
 @LCL // push local 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -62415,7 +62415,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8918) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -62424,7 +62424,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8920) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62450,7 +62450,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8925) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -62461,14 +62461,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-8927) goto IF_FALSE1
+// goto IF_FALSE1
 @Screen.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-8929) label IF_TRUE1
+// label IF_TRUE1
 (Screen.IF_TRUE1) // label IF_TRUE1
 
-// (-8932) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62480,7 +62480,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8934) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -62492,7 +62492,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8936) push local 5
+// push local 5
 @LCL // push local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -62504,7 +62504,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8938) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -62516,7 +62516,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8941) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.429) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.429 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -62583,7 +62583,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8943) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -62598,14 +62598,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8945) goto IF_END1
+// goto IF_END1
 @Screen.IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
-// (-8947) label IF_FALSE1
+// label IF_FALSE1
 (Screen.IF_FALSE1) // label IF_FALSE1
 
-// (-8950) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62617,7 +62617,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8952) push local 5
+// push local 5
 @LCL // push local 5 (&asm_segment)
 D=M // d = *asm_segment
 @5 // offset
@@ -62629,7 +62629,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8955) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.430) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.430 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -62696,7 +62696,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8957) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -62711,7 +62711,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8959) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62723,7 +62723,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8961) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -62732,7 +62732,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8963) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62744,7 +62744,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8965) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -62759,10 +62759,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8967) label WHILE_EXP0
+// label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
 
-// (-8970) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62774,7 +62774,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8972) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -62786,7 +62786,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8974) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62812,7 +62812,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8979) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -62820,7 +62820,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8981) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -62831,7 +62831,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
-// (-8983) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62843,7 +62843,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8985) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -62852,7 +62852,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8987) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -62860,7 +62860,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8990) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.432) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.432 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -62927,7 +62927,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-8992) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -62942,7 +62942,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-8994) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -62954,7 +62954,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8996) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -62963,7 +62963,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-8998) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62975,7 +62975,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9000) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -62990,14 +62990,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9002) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-9004) label WHILE_END0
+// label WHILE_END0
 (Screen.WHILE_END0) // label WHILE_END0
 
-// (-9007) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -63009,7 +63009,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9009) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -63021,7 +63021,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9012) call Screen.updateLocation 2
+// call Screen.updateLocation 2
 (Screen.Screen.updateLocation.433) // call Screen.updateLocation 2
 @Screen.Screen.updateLocation.433 // call Screen.updateLocation // push RP
 D=A // d = RP
@@ -63088,7 +63088,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9014) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -63103,13 +63103,13 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9016) label IF_END1
+// label IF_END1
 (Screen.IF_END1) // label IF_END1
 
-// (-9019) label IF_FALSE0
+// label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
 
-// (-9022) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -63118,9 +63118,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9024) return
+// return
 
-// (-9026) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -63175,10 +63175,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9028) function Screen.drawSymetric 0
+// function Screen.drawSymetric 0
 (Screen.drawSymetric) // function Screen.drawSymetric 0
 
-// (-9031) push argument 1
+// push argument 1
 @ARG // push argument 1 // function Screen.drawSymetric 0 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -63189,7 +63189,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9033) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -63201,7 +63201,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9035) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63213,7 +63213,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9037) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -63225,7 +63225,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9039) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -63237,7 +63237,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9041) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63249,7 +63249,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9043) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -63261,7 +63261,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9045) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -63273,7 +63273,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9047) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63285,7 +63285,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9050) call Screen.drawHorizontal 3
+// call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.434) // call Screen.drawHorizontal 3
 @Screen.Screen.drawHorizontal.434 // call Screen.drawHorizontal // push RP
 D=A // d = RP
@@ -63323,7 +63323,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9052) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63332,7 +63332,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9054) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63341,7 +63341,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9056) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63350,7 +63350,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9058) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63359,7 +63359,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9060) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63368,7 +63368,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9062) push constant 0 // local(5) init
+// push constant 0 // local(5) init
 @0 // push constant 0 // local(5) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63377,7 +63377,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9064) push constant 0 // local(6) init
+// push constant 0 // local(6) init
 @0 // push constant 0 // local(6) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63386,7 +63386,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9066) push constant 0 // local(7) init
+// push constant 0 // local(7) init
 @0 // push constant 0 // local(7) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63395,7 +63395,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9068) push constant 0 // local(8) init
+// push constant 0 // local(8) init
 @0 // push constant 0 // local(8) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63404,7 +63404,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9070) push constant 0 // local(9) init
+// push constant 0 // local(9) init
 @0 // push constant 0 // local(9) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63413,7 +63413,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9072) push constant 0 // local(10) init
+// push constant 0 // local(10) init
 @0 // push constant 0 // local(10) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63451,7 +63451,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9074) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -63466,7 +63466,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9076) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -63478,7 +63478,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9078) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -63490,7 +63490,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9080) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63502,7 +63502,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9082) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -63514,7 +63514,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9084) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -63526,7 +63526,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9086) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63538,7 +63538,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9088) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -63550,7 +63550,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9090) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -63562,7 +63562,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9092) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63574,7 +63574,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9095) call Screen.drawHorizontal 3
+// call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.435) // call Screen.drawHorizontal 3
 @Screen.Screen.drawHorizontal.435 // call Screen.drawHorizontal // push RP
 D=A // d = RP
@@ -63612,7 +63612,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9097) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63621,7 +63621,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9099) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63630,7 +63630,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9101) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63639,7 +63639,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9103) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63648,7 +63648,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9105) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63657,7 +63657,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9107) push constant 0 // local(5) init
+// push constant 0 // local(5) init
 @0 // push constant 0 // local(5) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63666,7 +63666,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9109) push constant 0 // local(6) init
+// push constant 0 // local(6) init
 @0 // push constant 0 // local(6) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63675,7 +63675,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9111) push constant 0 // local(7) init
+// push constant 0 // local(7) init
 @0 // push constant 0 // local(7) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63684,7 +63684,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9113) push constant 0 // local(8) init
+// push constant 0 // local(8) init
 @0 // push constant 0 // local(8) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63693,7 +63693,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9115) push constant 0 // local(9) init
+// push constant 0 // local(9) init
 @0 // push constant 0 // local(9) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63702,7 +63702,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9117) push constant 0 // local(10) init
+// push constant 0 // local(10) init
 @0 // push constant 0 // local(10) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63740,7 +63740,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9119) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -63755,7 +63755,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9121) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -63767,7 +63767,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9123) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -63779,7 +63779,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9125) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63791,7 +63791,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9127) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -63803,7 +63803,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9129) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -63815,7 +63815,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9131) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63827,7 +63827,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9133) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -63839,7 +63839,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9135) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -63851,7 +63851,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9137) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -63863,7 +63863,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9140) call Screen.drawHorizontal 3
+// call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.436) // call Screen.drawHorizontal 3
 @Screen.Screen.drawHorizontal.436 // call Screen.drawHorizontal // push RP
 D=A // d = RP
@@ -63901,7 +63901,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9142) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63910,7 +63910,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9144) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63919,7 +63919,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9146) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63928,7 +63928,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9148) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63937,7 +63937,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9150) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63946,7 +63946,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9152) push constant 0 // local(5) init
+// push constant 0 // local(5) init
 @0 // push constant 0 // local(5) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63955,7 +63955,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9154) push constant 0 // local(6) init
+// push constant 0 // local(6) init
 @0 // push constant 0 // local(6) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63964,7 +63964,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9156) push constant 0 // local(7) init
+// push constant 0 // local(7) init
 @0 // push constant 0 // local(7) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63973,7 +63973,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9158) push constant 0 // local(8) init
+// push constant 0 // local(8) init
 @0 // push constant 0 // local(8) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63982,7 +63982,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9160) push constant 0 // local(9) init
+// push constant 0 // local(9) init
 @0 // push constant 0 // local(9) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -63991,7 +63991,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9162) push constant 0 // local(10) init
+// push constant 0 // local(10) init
 @0 // push constant 0 // local(10) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64029,7 +64029,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9164) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -64044,7 +64044,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9166) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -64056,7 +64056,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9168) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -64068,7 +64068,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9170) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64080,7 +64080,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9172) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -64092,7 +64092,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9174) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -64104,7 +64104,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9176) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64116,7 +64116,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9178) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -64128,7 +64128,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9180) push argument 3
+// push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -64140,7 +64140,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9182) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64152,7 +64152,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9185) call Screen.drawHorizontal 3
+// call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.437) // call Screen.drawHorizontal 3
 @Screen.Screen.drawHorizontal.437 // call Screen.drawHorizontal // push RP
 D=A // d = RP
@@ -64190,7 +64190,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9187) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64199,7 +64199,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9189) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64208,7 +64208,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9191) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64217,7 +64217,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9193) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64226,7 +64226,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9195) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64235,7 +64235,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9197) push constant 0 // local(5) init
+// push constant 0 // local(5) init
 @0 // push constant 0 // local(5) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64244,7 +64244,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9199) push constant 0 // local(6) init
+// push constant 0 // local(6) init
 @0 // push constant 0 // local(6) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64253,7 +64253,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9201) push constant 0 // local(7) init
+// push constant 0 // local(7) init
 @0 // push constant 0 // local(7) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64262,7 +64262,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9203) push constant 0 // local(8) init
+// push constant 0 // local(8) init
 @0 // push constant 0 // local(8) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64271,7 +64271,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9205) push constant 0 // local(9) init
+// push constant 0 // local(9) init
 @0 // push constant 0 // local(9) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64280,7 +64280,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9207) push constant 0 // local(10) init
+// push constant 0 // local(10) init
 @0 // push constant 0 // local(10) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -64318,7 +64318,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9209) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -64333,7 +64333,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9211) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64342,9 +64342,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9213) return
+// return
 
-// (-9215) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -64399,10 +64399,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9217) function Screen.drawCircle 3
+// function Screen.drawCircle 3
 (Screen.drawCircle) // function Screen.drawCircle 3
 
-// (-9220) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Screen.drawCircle 3 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -64413,7 +64413,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9222) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64422,7 +64422,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9224) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64448,7 +64448,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9229) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -64460,7 +64460,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9231) push constant 511
+// push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64469,7 +64469,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9233) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64495,7 +64495,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9238) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -64507,7 +64507,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9240) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -64519,7 +64519,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9242) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64528,7 +64528,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9244) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64554,7 +64554,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9249) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -64566,7 +64566,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9251) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -64578,7 +64578,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9253) push constant 255
+// push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64587,7 +64587,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9255) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64613,7 +64613,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9260) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -64625,7 +64625,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9262) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -64636,14 +64636,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9264) goto IF_FALSE0
+// goto IF_FALSE0
 @Screen.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9266) label IF_TRUE0
+// label IF_TRUE0
 (Screen.IF_TRUE0) // label IF_TRUE0
 
-// (-9269) push constant 12
+// push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64652,7 +64652,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9272) call Sys.error 1
+// call Sys.error 1
 (Screen.Sys.error.442) // call Sys.error 1
 @Screen.Sys.error.442 // call Sys.error // push RP
 D=A // d = RP
@@ -64719,7 +64719,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9274) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -64734,10 +64734,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9276) label IF_FALSE0
+// label IF_FALSE0
 (Screen.IF_FALSE0) // label IF_FALSE0
 
-// (-9279) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -64749,7 +64749,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9281) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -64761,7 +64761,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9283) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64773,7 +64773,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9285) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64782,7 +64782,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9287) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64808,7 +64808,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9292) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -64820,7 +64820,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9294) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -64832,7 +64832,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9296) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64844,7 +64844,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9298) push constant 511
+// push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64853,7 +64853,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9300) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64879,7 +64879,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9305) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -64891,7 +64891,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9307) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -64903,7 +64903,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9309) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -64915,7 +64915,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9311) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64927,7 +64927,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9313) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -64936,7 +64936,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9315) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -64962,7 +64962,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9320) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -64974,7 +64974,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9322) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -64986,7 +64986,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9324) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -64998,7 +64998,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9326) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65010,7 +65010,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9328) push constant 255
+// push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65019,7 +65019,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9330) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65045,7 +65045,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9335) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -65057,7 +65057,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9337) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -65068,14 +65068,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-9339) goto IF_FALSE1
+// goto IF_FALSE1
 @Screen.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-9341) label IF_TRUE1
+// label IF_TRUE1
 (Screen.IF_TRUE1) // label IF_TRUE1
 
-// (-9344) push constant 13
+// push constant 13
 @13 // push constant 13 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65084,7 +65084,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9347) call Sys.error 1
+// call Sys.error 1
 (Screen.Sys.error.447) // call Sys.error 1
 @Screen.Sys.error.447 // call Sys.error // push RP
 D=A // d = RP
@@ -65151,7 +65151,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9349) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -65166,10 +65166,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9351) label IF_FALSE1
+// label IF_FALSE1
 (Screen.IF_FALSE1) // label IF_FALSE1
 
-// (-9354) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -65181,7 +65181,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9356) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -65196,7 +65196,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9358) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65205,7 +65205,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9360) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -65217,7 +65217,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9362) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65229,7 +65229,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9364) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -65244,7 +65244,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9366) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -65256,7 +65256,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9368) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -65268,7 +65268,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9370) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -65280,7 +65280,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9372) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -65292,7 +65292,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9375) call Screen.drawSymetric 4
+// call Screen.drawSymetric 4
 (Screen.Screen.drawSymetric.448) // call Screen.drawSymetric 4
 @Screen.Screen.drawSymetric.448 // call Screen.drawSymetric // push RP
 D=A // d = RP
@@ -65359,7 +65359,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawSymetric // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9377) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -65374,10 +65374,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9379) label WHILE_EXP0
+// label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
 
-// (-9382) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -65389,7 +65389,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9384) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -65401,7 +65401,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9386) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65427,7 +65427,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9391) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -65435,7 +65435,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9393) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -65446,7 +65446,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
-// (-9395) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -65458,7 +65458,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9397) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65467,7 +65467,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9399) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65493,7 +65493,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9404) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -65504,14 +65504,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @Screen.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-9406) goto IF_FALSE2
+// goto IF_FALSE2
 @Screen.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-9408) label IF_TRUE2
+// label IF_TRUE2
 (Screen.IF_TRUE2) // label IF_TRUE2
 
-// (-9411) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -65523,7 +65523,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9413) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65532,7 +65532,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9415) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -65544,7 +65544,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9418) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.451) // call Math.multiply 2
 @Screen.Math.multiply.451 // call Math.multiply // push RP
 D=A // d = RP
@@ -65582,7 +65582,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9420) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65591,7 +65591,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9422) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65600,7 +65600,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9424) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65609,7 +65609,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9426) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65618,7 +65618,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9428) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65656,7 +65656,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9430) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65668,7 +65668,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9432) push constant 3
+// push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65677,7 +65677,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9434) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65689,7 +65689,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9436) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -65704,14 +65704,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9438) goto IF_END2
+// goto IF_END2
 @Screen.IF_END2 // goto IF_END2
 0;JMP // unconditional jump
 
-// (-9440) label IF_FALSE2
+// label IF_FALSE2
 (Screen.IF_FALSE2) // label IF_FALSE2
 
-// (-9443) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -65723,7 +65723,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9445) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65732,7 +65732,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9447) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -65744,7 +65744,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9449) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -65756,7 +65756,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9451) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65768,7 +65768,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9454) call Math.multiply 2
+// call Math.multiply 2
 (Screen.Math.multiply.452) // call Math.multiply 2
 @Screen.Math.multiply.452 // call Math.multiply // push RP
 D=A // d = RP
@@ -65806,7 +65806,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9456) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65815,7 +65815,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9458) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65824,7 +65824,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9460) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65833,7 +65833,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9462) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65842,7 +65842,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9464) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -65880,7 +65880,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9466) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65892,7 +65892,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9468) push constant 5
+// push constant 5
 @5 // push constant 5 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65901,7 +65901,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9470) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65913,7 +65913,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9472) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -65928,7 +65928,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9474) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -65940,7 +65940,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9476) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -65949,7 +65949,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9478) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -65961,7 +65961,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9480) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -65976,10 +65976,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9482) label IF_END2
+// label IF_END2
 (Screen.IF_END2) // label IF_END2
 
-// (-9485) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -65991,7 +65991,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9487) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66000,7 +66000,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9489) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -66012,7 +66012,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9491) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66027,7 +66027,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9493) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66039,7 +66039,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9495) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -66051,7 +66051,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9497) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66063,7 +66063,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9499) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -66075,7 +66075,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9502) call Screen.drawSymetric 4
+// call Screen.drawSymetric 4
 (Screen.Screen.drawSymetric.453) // call Screen.drawSymetric 4
 @Screen.Screen.drawSymetric.453 // call Screen.drawSymetric // push RP
 D=A // d = RP
@@ -66142,7 +66142,7 @@ M=D // &lcl[0] = &lcl[0]
 @Screen.drawSymetric // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9504) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66157,14 +66157,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9506) goto WHILE_EXP0
+// goto WHILE_EXP0
 @Screen.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-9508) label WHILE_END0
+// label WHILE_END0
 (Screen.WHILE_END0) // label WHILE_END0
 
-// (-9511) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66173,9 +66173,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9513) return
+// return
 
-// (-9515) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66230,10 +66230,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9517) function String.new 0
+// function String.new 0
 (String.new) // function String.new 0
 
-// (-9520) push constant 3
+// push constant 3
 @3 // push constant 3 // function String.new 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66241,7 +66241,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-9523) call Memory.alloc 1
+// call Memory.alloc 1
 (String.Memory.alloc.454) // call Memory.alloc 1
 @String.Memory.alloc.454 // call Memory.alloc // push RP
 D=A // d = RP
@@ -66279,7 +66279,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9525) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -66288,7 +66288,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9527) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -66326,7 +66326,7 @@ M=D // &lcl[0] = &lcl[0]
 @Memory.alloc // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9529) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66341,7 +66341,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9531) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66353,7 +66353,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9533) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66362,7 +66362,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9535) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -66388,7 +66388,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9540) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -66399,14 +66399,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9542) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9544) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-9547) push constant 14
+// push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66415,7 +66415,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9550) call Sys.error 1
+// call Sys.error 1
 (String.Sys.error.456) // call Sys.error 1
 @String.Sys.error.456 // call Sys.error // push RP
 D=A // d = RP
@@ -66482,7 +66482,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9552) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66497,10 +66497,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9554) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-9557) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66512,7 +66512,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9559) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66521,7 +66521,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9561) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -66547,7 +66547,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9566) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -66558,14 +66558,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-9568) goto IF_FALSE1
+// goto IF_FALSE1
 @String.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-9570) label IF_TRUE1
+// label IF_TRUE1
 (String.IF_TRUE1) // label IF_TRUE1
 
-// (-9573) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66577,7 +66577,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9576) call Array.new 1
+// call Array.new 1
 (String.Array.new.458) // call Array.new 1
 @String.Array.new.458 // call Array.new // push RP
 D=A // d = RP
@@ -66644,7 +66644,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9578) pop this 1
+// pop this 1
 @THIS // pop this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -66659,10 +66659,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9580) label IF_FALSE1
+// label IF_FALSE1
 (String.IF_FALSE1) // label IF_FALSE1
 
-// (-9583) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66674,7 +66674,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9585) pop this 0
+// pop this 0
 @THIS // pop this 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66689,7 +66689,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9587) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66698,7 +66698,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9589) pop this 2
+// pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -66713,7 +66713,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9591) push pointer 0
+// push pointer 0
 @3 // push pointer 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -66725,9 +66725,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9593) return
+// return
 
-// (-9595) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66782,10 +66782,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9597) function String.dispose 0
+// function String.dispose 0
 (String.dispose) // function String.dispose 0
 
-// (-9600) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.dispose 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66796,7 +66796,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9602) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66811,7 +66811,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9604) push this 0
+// push this 0
 @THIS // push this 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -66823,7 +66823,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9606) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -66832,7 +66832,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9608) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -66858,7 +66858,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9613) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -66869,14 +66869,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9615) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9617) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-9620) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -66888,7 +66888,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9623) call Array.dispose 1
+// call Array.dispose 1
 (String.Array.dispose.460) // call Array.dispose 1
 @String.Array.dispose.460 // call Array.dispose // push RP
 D=A // d = RP
@@ -66955,7 +66955,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.dispose // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9625) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -66970,10 +66970,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9627) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-9630) push pointer 0
+// push pointer 0
 @3 // push pointer 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -66985,7 +66985,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9633) call Memory.deAlloc 1
+// call Memory.deAlloc 1
 (String.Memory.deAlloc.461) // call Memory.deAlloc 1
 @String.Memory.deAlloc.461 // call Memory.deAlloc // push RP
 D=A // d = RP
@@ -67023,7 +67023,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9635) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -67032,7 +67032,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9637) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -67070,7 +67070,7 @@ M=D // &lcl[0] = &lcl[0]
 @Memory.deAlloc // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9639) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67085,7 +67085,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9641) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -67094,9 +67094,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9643) return
+// return
 
-// (-9645) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67151,10 +67151,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9647) function String.length 0
+// function String.length 0
 (String.length) // function String.length 0
 
-// (-9650) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.length 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -67165,7 +67165,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9652) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67180,7 +67180,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9654) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -67192,9 +67192,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9656) return
+// return
 
-// (-9658) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67249,10 +67249,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9660) function String.charAt 0
+// function String.charAt 0
 (String.charAt) // function String.charAt 0
 
-// (-9663) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.charAt 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -67263,7 +67263,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9665) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67278,7 +67278,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9667) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67290,7 +67290,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9669) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -67299,7 +67299,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9671) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -67325,7 +67325,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9676) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67337,7 +67337,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9678) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -67349,7 +67349,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9680) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -67375,7 +67375,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9685) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -67387,7 +67387,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9687) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67399,7 +67399,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9689) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -67411,7 +67411,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9691) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -67437,7 +67437,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9696) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -67449,7 +67449,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9698) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -67460,14 +67460,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9700) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9702) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-9705) push constant 15
+// push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
@@ -67476,7 +67476,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9708) call Sys.error 1
+// call Sys.error 1
 (String.Sys.error.465) // call Sys.error 1
 @String.Sys.error.465 // call Sys.error // push RP
 D=A // d = RP
@@ -67543,7 +67543,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9710) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67558,10 +67558,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9712) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-9715) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67573,7 +67573,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9717) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67585,7 +67585,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9719) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -67597,7 +67597,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9721) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -67612,7 +67612,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9723) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -67624,9 +67624,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9725) return
+// return
 
-// (-9727) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67681,10 +67681,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9729) function String.setCharAt 0
+// function String.setCharAt 0
 (String.setCharAt) // function String.setCharAt 0
 
-// (-9732) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.setCharAt 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -67695,7 +67695,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9734) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67710,7 +67710,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9736) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67722,7 +67722,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9738) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -67731,7 +67731,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9740) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -67757,7 +67757,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9745) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67769,7 +67769,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9747) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -67781,7 +67781,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9749) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -67807,7 +67807,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9754) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -67819,7 +67819,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9756) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -67831,7 +67831,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9758) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -67843,7 +67843,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9760) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -67869,7 +67869,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9765) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -67881,7 +67881,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9767) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -67892,14 +67892,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9769) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9771) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-9774) push constant 16
+// push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
@@ -67908,7 +67908,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9777) call Sys.error 1
+// call Sys.error 1
 (String.Sys.error.469) // call Sys.error 1
 @String.Sys.error.469 // call Sys.error // push RP
 D=A // d = RP
@@ -67975,7 +67975,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9779) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -67990,10 +67990,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9781) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-9784) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -68005,7 +68005,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9786) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -68017,7 +68017,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9788) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -68029,7 +68029,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9790) push argument 2
+// push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -68041,7 +68041,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9792) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68056,7 +68056,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9794) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -68071,7 +68071,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9796) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -68083,7 +68083,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9798) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68098,7 +68098,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9800) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68107,9 +68107,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9802) return
+// return
 
-// (-9804) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68164,10 +68164,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9806) function String.appendChar 0
+// function String.appendChar 0
 (String.appendChar) // function String.appendChar 0
 
-// (-9809) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.appendChar 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -68178,7 +68178,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9811) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68193,7 +68193,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9813) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -68205,7 +68205,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9815) push this 0
+// push this 0
 @THIS // push this 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -68217,7 +68217,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9817) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -68243,7 +68243,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9822) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -68254,14 +68254,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9824) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9826) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-9829) push constant 17
+// push constant 17
 @17 // push constant 17 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68270,7 +68270,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9832) call Sys.error 1
+// call Sys.error 1
 (String.Sys.error.471) // call Sys.error 1
 @String.Sys.error.471 // call Sys.error // push RP
 D=A // d = RP
@@ -68337,7 +68337,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9834) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68352,10 +68352,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9836) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-9839) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -68367,7 +68367,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9841) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -68379,7 +68379,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9843) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -68391,7 +68391,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9845) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -68403,7 +68403,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9847) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68418,7 +68418,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9849) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -68433,7 +68433,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9851) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -68445,7 +68445,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9853) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68460,7 +68460,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9855) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -68472,7 +68472,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9857) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68481,7 +68481,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9859) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -68493,7 +68493,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9861) pop this 2
+// pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -68508,7 +68508,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9863) push pointer 0
+// push pointer 0
 @3 // push pointer 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -68520,9 +68520,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9865) return
+// return
 
-// (-9867) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68577,10 +68577,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9869) function String.eraseLastChar 0
+// function String.eraseLastChar 0
 (String.eraseLastChar) // function String.eraseLastChar 0
 
-// (-9872) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.eraseLastChar 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -68591,7 +68591,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9874) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68606,7 +68606,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9876) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -68618,7 +68618,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9878) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68627,7 +68627,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9880) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -68653,7 +68653,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9885) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -68664,14 +68664,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9887) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9889) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-9892) push constant 18
+// push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68680,7 +68680,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9895) call Sys.error 1
+// call Sys.error 1
 (String.Sys.error.473) // call Sys.error 1
 @String.Sys.error.473 // call Sys.error // push RP
 D=A // d = RP
@@ -68747,7 +68747,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-9897) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68762,10 +68762,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9899) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-9902) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -68777,7 +68777,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9904) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68786,7 +68786,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9906) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -68798,7 +68798,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9908) pop this 2
+// pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -68813,7 +68813,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9910) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68822,9 +68822,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9912) return
+// return
 
-// (-9914) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68879,10 +68879,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9916) function String.intValue 5
+// function String.intValue 5
 (String.intValue) // function String.intValue 5
 
-// (-9919) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.intValue 5 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -68893,7 +68893,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-9921) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -68908,7 +68908,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9923) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -68920,7 +68920,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9925) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68929,7 +68929,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9927) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -68955,7 +68955,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9932) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -68966,14 +68966,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-9934) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-9936) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-9939) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -68982,9 +68982,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9941) return
+// return
 
-// (-9943) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -69039,10 +69039,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-9945) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-9948) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69051,7 +69051,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9950) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -69059,7 +69059,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9952) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -69074,7 +69074,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9954) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69083,7 +69083,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9956) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -69095,7 +69095,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9958) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69107,7 +69107,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9960) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -69122,7 +69122,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9962) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -69134,7 +69134,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9964) push constant 45
+// push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69143,7 +69143,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9966) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69169,7 +69169,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9971) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -69180,14 +69180,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-9973) goto IF_FALSE1
+// goto IF_FALSE1
 @String.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-9975) label IF_TRUE1
+// label IF_TRUE1
 (String.IF_TRUE1) // label IF_TRUE1
 
-// (-9978) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69196,7 +69196,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9980) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -69204,7 +69204,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9982) pop local 4
+// pop local 4
 @LCL // pop local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // retrieve &dst (segment+offset) and store at R13
@@ -69219,7 +69219,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9984) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69228,7 +69228,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9986) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -69243,13 +69243,13 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-9988) label IF_FALSE1
+// label IF_FALSE1
 (String.IF_FALSE1) // label IF_FALSE1
 
-// (-9991) label WHILE_EXP0
+// label WHILE_EXP0
 (String.WHILE_EXP0) // label WHILE_EXP0
 
-// (-9994) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -69261,7 +69261,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9996) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -69273,7 +69273,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9998) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69299,7 +69299,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10003) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -69311,7 +69311,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10005) and
+// and
 @SP // &esp // and
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -69323,7 +69323,7 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10007) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -69331,7 +69331,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10009) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -69342,7 +69342,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.WHILE_END0
 D;JNE // jump if not zero
 
-// (-10011) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -69354,7 +69354,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10013) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -69366,7 +69366,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10015) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69378,7 +69378,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10017) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -69393,7 +69393,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10019) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -69405,7 +69405,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10021) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69414,7 +69414,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10023) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69426,7 +69426,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10025) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -69441,7 +69441,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10027) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -69453,7 +69453,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10029) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69462,7 +69462,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10031) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69488,7 +69488,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10036) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -69500,7 +69500,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10038) push constant 9
+// push constant 9
 @9 // push constant 9 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69509,7 +69509,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10040) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69535,7 +69535,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10045) or
+// or
 @SP // &esp // or
 M=M-1 // &esp-- (&val2)
 A=M // *esp (*val2)
@@ -69547,7 +69547,7 @@ M=M|D // esp = val1 | val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10047) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -69555,7 +69555,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10049) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -69570,7 +69570,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10051) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -69582,7 +69582,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10053) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -69593,14 +69593,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-10055) goto IF_FALSE2
+// goto IF_FALSE2
 @String.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-10057) label IF_TRUE2
+// label IF_TRUE2
 (String.IF_TRUE2) // label IF_TRUE2
 
-// (-10060) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -69612,7 +69612,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10062) push constant 10
+// push constant 10
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69621,7 +69621,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10065) call Math.multiply 2
+// call Math.multiply 2
 (String.Math.multiply.479) // call Math.multiply 2
 @String.Math.multiply.479 // call Math.multiply // push RP
 D=A // d = RP
@@ -69659,7 +69659,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10067) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -69668,7 +69668,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10069) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -69677,7 +69677,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10071) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -69686,7 +69686,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10073) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -69695,7 +69695,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10075) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -69733,7 +69733,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-10077) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -69745,7 +69745,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10079) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69757,7 +69757,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10081) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -69772,7 +69772,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10083) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -69784,7 +69784,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10085) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -69793,7 +69793,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10087) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -69805,7 +69805,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10089) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -69820,17 +69820,17 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10091) label IF_FALSE2
+// label IF_FALSE2
 (String.IF_FALSE2) // label IF_FALSE2
 
-// (-10094) goto WHILE_EXP0
+// goto WHILE_EXP0
 @String.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-10096) label WHILE_END0
+// label WHILE_END0
 (String.WHILE_END0) // label WHILE_END0
 
-// (-10099) push local 4
+// push local 4
 @LCL // push local 4 (&asm_segment)
 D=M // d = *asm_segment
 @4 // offset
@@ -69842,7 +69842,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10101) if-goto IF_TRUE3
+// if-goto IF_TRUE3
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE3
 D=A // d = 0
@@ -69853,14 +69853,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE3
 D;JNE // jump if not zero
 
-// (-10103) goto IF_FALSE3
+// goto IF_FALSE3
 @String.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
-// (-10105) label IF_TRUE3
+// label IF_TRUE3
 (String.IF_TRUE3) // label IF_TRUE3
 
-// (-10108) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -69872,7 +69872,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10110) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -69880,7 +69880,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10112) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -69895,10 +69895,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10114) label IF_FALSE3
+// label IF_FALSE3
 (String.IF_FALSE3) // label IF_FALSE3
 
-// (-10117) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -69910,9 +69910,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10119) return
+// return
 
-// (-10121) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -69967,10 +69967,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-10123) function String.setInt 4
+// function String.setInt 4
 (String.setInt) // function String.setInt 4
 
-// (-10126) push argument 0
+// push argument 0
 @ARG // push argument 0 // function String.setInt 4 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -69981,7 +69981,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-10128) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -69996,7 +69996,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10130) push this 0
+// push this 0
 @THIS // push this 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -70008,7 +70008,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10132) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70017,7 +70017,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10134) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -70043,7 +70043,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10139) if-goto IF_TRUE0
+// if-goto IF_TRUE0
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE0
 D=A // d = 0
@@ -70054,14 +70054,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
-// (-10141) goto IF_FALSE0
+// goto IF_FALSE0
 @String.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
-// (-10143) label IF_TRUE0
+// label IF_TRUE0
 (String.IF_TRUE0) // label IF_TRUE0
 
-// (-10146) push constant 19
+// push constant 19
 @19 // push constant 19 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70070,7 +70070,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10149) call Sys.error 1
+// call Sys.error 1
 (String.Sys.error.481) // call Sys.error 1
 @String.Sys.error.481 // call Sys.error // push RP
 D=A // d = RP
@@ -70137,7 +70137,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-10151) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -70152,10 +70152,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10153) label IF_FALSE0
+// label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
 
-// (-10156) push constant 6
+// push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70164,7 +70164,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10159) call Array.new 1
+// call Array.new 1
 (String.Array.new.482) // call Array.new 1
 @String.Array.new.482 // call Array.new // push RP
 D=A // d = RP
@@ -70231,7 +70231,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.new // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-10161) pop local 2
+// pop local 2
 @LCL // pop local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -70246,7 +70246,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10163) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70258,7 +70258,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10165) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70267,7 +70267,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10167) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -70293,7 +70293,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10172) if-goto IF_TRUE1
+// if-goto IF_TRUE1
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE1
 D=A // d = 0
@@ -70304,14 +70304,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
-// (-10174) goto IF_FALSE1
+// goto IF_FALSE1
 @String.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
-// (-10176) label IF_TRUE1
+// label IF_TRUE1
 (String.IF_TRUE1) // label IF_TRUE1
 
-// (-10179) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70320,7 +70320,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10181) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -70328,7 +70328,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10183) pop local 3
+// pop local 3
 @LCL // pop local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // retrieve &dst (segment+offset) and store at R13
@@ -70343,7 +70343,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10185) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70355,7 +70355,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10187) neg
+// neg
 @SP // &esp // neg
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
@@ -70363,7 +70363,7 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10189) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -70378,10 +70378,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10191) label IF_FALSE1
+// label IF_FALSE1
 (String.IF_FALSE1) // label IF_FALSE1
 
-// (-10194) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70393,7 +70393,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10196) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -70408,10 +70408,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10198) label WHILE_EXP0
+// label WHILE_EXP0
 (String.WHILE_EXP0) // label WHILE_EXP0
 
-// (-10201) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70423,7 +70423,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10203) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70432,7 +70432,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10205) gt
+// gt
 @SP // &esp // gt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -70458,7 +70458,7 @@ M=D // esp = gt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10210) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -70466,7 +70466,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10212) if-goto WHILE_END0
+// if-goto WHILE_END0
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END0
 D=A // d = 0
@@ -70477,7 +70477,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.WHILE_END0
 D;JNE // jump if not zero
 
-// (-10214) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70489,7 +70489,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10216) push constant 10
+// push constant 10
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70498,7 +70498,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10219) call Math.divide 2
+// call Math.divide 2
 (String.Math.divide.485) // call Math.divide 2
 @String.Math.divide.485 // call Math.divide // push RP
 D=A // d = RP
@@ -70536,7 +70536,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10221) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70545,7 +70545,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10223) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70554,7 +70554,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10225) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70563,7 +70563,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10227) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70601,7 +70601,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.divide // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-10229) pop local 1
+// pop local 1
 @LCL // pop local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -70616,7 +70616,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10231) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -70628,7 +70628,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10233) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -70640,7 +70640,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10235) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -70652,7 +70652,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10237) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70661,7 +70661,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10239) push argument 1
+// push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70673,7 +70673,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10241) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70685,7 +70685,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10243) push constant 10
+// push constant 10
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70694,7 +70694,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10246) call Math.multiply 2
+// call Math.multiply 2
 (String.Math.multiply.486) // call Math.multiply 2
 @String.Math.multiply.486 // call Math.multiply // push RP
 D=A // d = RP
@@ -70732,7 +70732,7 @@ M=D // esp = that
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10248) push constant 0 // local(0) init
+// push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70741,7 +70741,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10250) push constant 0 // local(1) init
+// push constant 0 // local(1) init
 @0 // push constant 0 // local(1) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70750,7 +70750,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10252) push constant 0 // local(2) init
+// push constant 0 // local(2) init
 @0 // push constant 0 // local(2) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70759,7 +70759,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10254) push constant 0 // local(3) init
+// push constant 0 // local(3) init
 @0 // push constant 0 // local(3) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70768,7 +70768,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10256) push constant 0 // local(4) init
+// push constant 0 // local(4) init
 @0 // push constant 0 // local(4) init (constant)
 D=A // d = constant
 @SP // &esp
@@ -70806,7 +70806,7 @@ M=D // &lcl[0] = &lcl[0]
 @Math.multiply // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-10258) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -70818,7 +70818,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10260) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -70830,7 +70830,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10262) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -70845,7 +70845,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10264) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -70860,7 +70860,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10266) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -70872,7 +70872,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10268) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -70887,7 +70887,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10270) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -70899,7 +70899,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10272) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -70908,7 +70908,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10274) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -70920,7 +70920,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10276) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -70935,7 +70935,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10278) push local 1
+// push local 1
 @LCL // push local 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -70947,7 +70947,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10280) pop argument 1
+// pop argument 1
 @ARG // pop argument 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -70962,14 +70962,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10282) goto WHILE_EXP0
+// goto WHILE_EXP0
 @String.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
-// (-10284) label WHILE_END0
+// label WHILE_END0
 (String.WHILE_END0) // label WHILE_END0
 
-// (-10287) push local 3
+// push local 3
 @LCL // push local 3 (&asm_segment)
 D=M // d = *asm_segment
 @3 // offset
@@ -70981,7 +70981,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10289) if-goto IF_TRUE2
+// if-goto IF_TRUE2
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE2
 D=A // d = 0
@@ -70992,14 +70992,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE2
 D;JNE // jump if not zero
 
-// (-10291) goto IF_FALSE2
+// goto IF_FALSE2
 @String.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
-// (-10293) label IF_TRUE2
+// label IF_TRUE2
 (String.IF_TRUE2) // label IF_TRUE2
 
-// (-10296) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71011,7 +71011,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10298) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -71023,7 +71023,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10300) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71035,7 +71035,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10302) push constant 45
+// push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71044,7 +71044,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10304) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71059,7 +71059,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10306) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -71074,7 +71074,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10308) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -71086,7 +71086,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10310) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71101,7 +71101,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10312) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71113,7 +71113,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10314) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71122,7 +71122,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10316) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71134,7 +71134,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10318) pop local 0
+// pop local 0
 @LCL // pop local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71149,10 +71149,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10320) label IF_FALSE2
+// label IF_FALSE2
 (String.IF_FALSE2) // label IF_FALSE2
 
-// (-10323) push this 0
+// push this 0
 @THIS // push this 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71164,7 +71164,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10325) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71176,7 +71176,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10327) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71202,7 +71202,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10332) if-goto IF_TRUE3
+// if-goto IF_TRUE3
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE3
 D=A // d = 0
@@ -71213,14 +71213,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE3
 D;JNE // jump if not zero
 
-// (-10334) goto IF_FALSE3
+// goto IF_FALSE3
 @String.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
-// (-10336) label IF_TRUE3
+// label IF_TRUE3
 (String.IF_TRUE3) // label IF_TRUE3
 
-// (-10339) push constant 19
+// push constant 19
 @19 // push constant 19 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71229,7 +71229,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10342) call Sys.error 1
+// call Sys.error 1
 (String.Sys.error.488) // call Sys.error 1
 @String.Sys.error.488 // call Sys.error // push RP
 D=A // d = RP
@@ -71296,7 +71296,7 @@ M=D // &lcl[0] = &lcl[0]
 @Sys.error // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-10344) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71311,10 +71311,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10346) label IF_FALSE3
+// label IF_FALSE3
 (String.IF_FALSE3) // label IF_FALSE3
 
-// (-10349) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71326,7 +71326,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10351) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71335,7 +71335,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10353) eq
+// eq
 @SP // eq // &esp 
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71361,7 +71361,7 @@ M=D // esp = eq result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10358) if-goto IF_TRUE4
+// if-goto IF_TRUE4
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE4
 D=A // d = 0
@@ -71372,14 +71372,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.IF_TRUE4
 D;JNE // jump if not zero
 
-// (-10360) goto IF_FALSE4
+// goto IF_FALSE4
 @String.IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
-// (-10362) label IF_TRUE4
+// label IF_TRUE4
 (String.IF_TRUE4) // label IF_TRUE4
 
-// (-10365) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71388,7 +71388,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10367) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -71400,7 +71400,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10369) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71412,7 +71412,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10371) push constant 48
+// push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71421,7 +71421,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10373) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71436,7 +71436,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10375) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -71451,7 +71451,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10377) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -71463,7 +71463,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10379) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71478,7 +71478,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10381) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71487,7 +71487,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10383) pop this 2
+// pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -71502,14 +71502,14 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10385) goto IF_END4
+// goto IF_END4
 @String.IF_END4 // goto IF_END4
 0;JMP // unconditional jump
 
-// (-10387) label IF_FALSE4
+// label IF_FALSE4
 (String.IF_FALSE4) // label IF_FALSE4
 
-// (-10390) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71518,7 +71518,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10392) pop this 2
+// pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -71533,10 +71533,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10394) label WHILE_EXP1
+// label WHILE_EXP1
 (String.WHILE_EXP1) // label WHILE_EXP1
 
-// (-10397) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -71548,7 +71548,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10399) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71560,7 +71560,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10401) lt
+// lt
 @SP // &esp // lt
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71586,7 +71586,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10406) not
+// not
 @SP // &esp // not
 M=M-1 // &esp-- (&val1)
 A=M // esp* (*val1)
@@ -71594,7 +71594,7 @@ M=!M // esp = !val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10408) if-goto WHILE_END1
+// if-goto WHILE_END1
 // compare val (if-goto conditional) with 0
 @0 // if-goto WHILE_END1
 D=A // d = 0
@@ -71605,7 +71605,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @String.WHILE_END1
 D;JNE // jump if not zero
 
-// (-10410) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -71617,7 +71617,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10412) push this 1
+// push this 1
 @THIS // push this 1 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
@@ -71629,7 +71629,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10414) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71641,7 +71641,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10416) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71653,7 +71653,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10418) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -71665,7 +71665,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10420) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71674,7 +71674,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10422) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71686,7 +71686,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10424) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71698,7 +71698,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10426) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -71710,7 +71710,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10428) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71722,7 +71722,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10430) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -71737,7 +71737,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10432) push that 0
+// push that 0
 @THAT // push that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -71749,7 +71749,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10434) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71764,7 +71764,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10436) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -71779,7 +71779,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10438) push temp 0
+// push temp 0
 @5 // push temp 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -71791,7 +71791,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10440) pop that 0
+// pop that 0
 @THAT // pop that 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71806,7 +71806,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10442) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -71818,7 +71818,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10444) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71827,7 +71827,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10446) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -71839,7 +71839,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10448) pop this 2
+// pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -71854,17 +71854,17 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10450) goto WHILE_EXP1
+// goto WHILE_EXP1
 @String.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
-// (-10452) label WHILE_END1
+// label WHILE_END1
 (String.WHILE_END1) // label WHILE_END1
 
-// (-10455) label IF_END4
+// label IF_END4
 (String.IF_END4) // label IF_END4
 
-// (-10458) push local 2
+// push local 2
 @LCL // push local 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -71876,7 +71876,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10461) call Array.dispose 1
+// call Array.dispose 1
 (String.Array.dispose.491) // call Array.dispose 1
 @String.Array.dispose.491 // call Array.dispose // push RP
 D=A // d = RP
@@ -71943,7 +71943,7 @@ M=D // &lcl[0] = &lcl[0]
 @Array.dispose // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-10463) pop temp 0
+// pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -71958,7 +71958,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-10465) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -71967,9 +71967,9 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-10467) return
+// return
 
-// (-10469) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -72024,10 +72024,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-10471) function String.newLine 0
+// function String.newLine 0
 (String.newLine) // function String.newLine 0
 
-// (-10474) push constant 128
+// push constant 128
 @128 // push constant 128 // function String.newLine 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -72035,9 +72035,9 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-10476) return
+// return
 
-// (-10478) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -72092,10 +72092,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-10480) function String.backSpace 0
+// function String.backSpace 0
 (String.backSpace) // function String.backSpace 0
 
-// (-10483) push constant 129
+// push constant 129
 @129 // push constant 129 // function String.backSpace 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -72103,9 +72103,9 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-10485) return
+// return
 
-// (-10487) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -72160,10 +72160,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-10489) function String.doubleQuote 0
+// function String.doubleQuote 0
 (String.doubleQuote) // function String.doubleQuote 0
 
-// (-10492) push constant 34
+// push constant 34
 @34 // push constant 34 // function String.doubleQuote 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -72171,9 +72171,9 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-10494) return
+// return
 
-// (-10496) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13

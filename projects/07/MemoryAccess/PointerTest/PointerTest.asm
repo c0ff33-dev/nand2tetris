@@ -1,5 +1,5 @@
 
-// (-3) push constant 3030
+// push constant 3030
 @3030 // push constant 3030 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8,7 +8,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5) pop pointer 0
+// pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23,7 +23,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7) push constant 3040
+// push constant 3040
 @3040 // push constant 3040 (constant)
 D=A // d = constant
 @SP // &esp
@@ -32,7 +32,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-9) pop pointer 1
+// pop pointer 1
 @3 // pop pointer 1 (&pointer)
 D=A // d = &pointer
 @1 // retrieve &dst (segment+offset) and store at R13
@@ -47,7 +47,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-11) push constant 32
+// push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
@@ -56,7 +56,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-13) pop this 2
+// pop this 2
 @THIS // pop this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // retrieve &dst (segment+offset) and store at R13
@@ -71,7 +71,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-15) push constant 46
+// push constant 46
 @46 // push constant 46 (constant)
 D=A // d = constant
 @SP // &esp
@@ -80,7 +80,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-17) pop that 6
+// pop that 6
 @THAT // pop that 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // retrieve &dst (segment+offset) and store at R13
@@ -95,7 +95,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-19) push pointer 0
+// push pointer 0
 @3 // push pointer 0 (&asm_segment)
 D=A // d = &asm_segment
 @0 // offset
@@ -107,7 +107,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-21) push pointer 1
+// push pointer 1
 @3 // push pointer 1 (&asm_segment)
 D=A // d = &asm_segment
 @1 // offset
@@ -119,7 +119,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-23) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -131,7 +131,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-25) push this 2
+// push this 2
 @THIS // push this 2 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
@@ -143,7 +143,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-27) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -155,7 +155,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-29) push that 6
+// push that 6
 @THAT // push that 6 (&asm_segment)
 D=M // d = *asm_segment
 @6 // offset
@@ -167,7 +167,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-31) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2

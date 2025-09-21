@@ -1,5 +1,5 @@
 
-// (-3) push constant 7
+// push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8,7 +8,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5) push constant 8
+// push constant 8
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
@@ -17,7 +17,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-7) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2

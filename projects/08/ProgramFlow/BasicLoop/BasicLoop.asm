@@ -1,5 +1,5 @@
 
-// (-3) push constant 0
+// push constant 0
 @0 // push constant 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -8,7 +8,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-5) pop local 0 // initializes sum = 0
+// pop local 0 // initializes sum = 0
 @LCL // pop local 0 // initializes sum = 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -23,10 +23,10 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-7) label LOOP_START
+// label LOOP_START
 (BasicLoop.LOOP_START) // label LOOP_START
 
-// (-10) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -38,7 +38,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-12) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -50,7 +50,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-14) add
+// add
 @SP // &esp // add
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -62,7 +62,7 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-16) pop local 0 // sum = sum + counter
+// pop local 0 // sum = sum + counter
 @LCL // pop local 0 // sum = sum + counter (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -77,7 +77,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-18) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -89,7 +89,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-20) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -98,7 +98,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-22) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -110,7 +110,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-24) pop argument 0 // counter--
+// pop argument 0 // counter--
 @ARG // pop argument 0 // counter-- (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -125,7 +125,7 @@ D=M // d = src
 A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
-// (-26) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -137,7 +137,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-28) if-goto LOOP_START // If counter > 0, goto LOOP_START
+// if-goto LOOP_START // If counter > 0, goto LOOP_START
 // compare val (if-goto conditional) with 0
 @0 // if-goto LOOP_START // If counter > 0, goto LOOP_START
 D=A // d = 0
@@ -148,7 +148,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @BasicLoop.LOOP_START
 D;JNE // jump if not zero
 
-// (-30) push local 0
+// push local 0
 @LCL // push local 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset

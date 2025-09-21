@@ -3,10 +3,10 @@ D=A
 @0
 M=D
 
-// (-3) function Sys.init 0
+// function Sys.init 0
 (Sys.init) // function Sys.init 0
 
-// (-6) push constant 4
+// push constant 4
 @4 // push constant 4 // function Sys.init 0 (constant)
 D=A // d = constant
 @SP // &esp
@@ -14,7 +14,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-// (-9) call Main.fibonacci 1 // computes the 4th fibonacci element
+// call Main.fibonacci 1 // computes the 4th fibonacci element
 (sys.Main.fibonacci.1) // call Main.fibonacci 1 // computes the 4th fibonacci element
 @sys.Main.fibonacci.1 // call Main.fibonacci // push RP
 D=A // d = RP
@@ -81,17 +81,17 @@ M=D // &lcl[0] = &lcl[0]
 @Main.fibonacci // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-11) label WHILE
+// label WHILE
 (sys.WHILE) // label WHILE
 
-// (-14) goto WHILE // loops infinitely
+// goto WHILE // loops infinitely
 @sys.WHILE // goto WHILE // loops infinitely
 0;JMP // unconditional jump
 
-// (-16) function Main.fibonacci 0
+// function Main.fibonacci 0
 (Main.fibonacci) // function Main.fibonacci 0
 
-// (-19) push argument 0
+// push argument 0
 @ARG // push argument 0 // function Main.fibonacci 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -102,7 +102,7 @@ A=M // *esp
 M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
-// (-21) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -111,7 +111,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-23) lt // checks if n<2
+// lt // checks if n<2
 @SP // &esp // lt // checks if n<2
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -137,7 +137,7 @@ M=D // esp = lt result
 @SP // &esp
 M=M+1 // &esp++
 
-// (-28) if-goto IF_TRUE
+// if-goto IF_TRUE
 // compare val (if-goto conditional) with 0
 @0 // if-goto IF_TRUE
 D=A // d = 0
@@ -148,14 +148,14 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 @main.IF_TRUE
 D;JNE // jump if not zero
 
-// (-30) goto IF_FALSE
+// goto IF_FALSE
 @main.IF_FALSE // goto IF_FALSE
 0;JMP // unconditional jump
 
-// (-32) label IF_TRUE // if n<2, return n
+// label IF_TRUE // if n<2, return n
 (main.IF_TRUE) // label IF_TRUE // if n<2, return n
 
-// (-35) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -167,9 +167,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-37) return
+// return
 
-// (-39) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
@@ -224,10 +224,10 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// (-41) label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
+// label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
 (main.IF_FALSE) // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
 
-// (-44) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -239,7 +239,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-46) push constant 2
+// push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
@@ -248,7 +248,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-48) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -260,7 +260,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-51) call Main.fibonacci 1 // computes fib(n-2)
+// call Main.fibonacci 1 // computes fib(n-2)
 (main.Main.fibonacci.3) // call Main.fibonacci 1 // computes fib(n-2)
 @main.Main.fibonacci.3 // call Main.fibonacci // push RP
 D=A // d = RP
@@ -327,7 +327,7 @@ M=D // &lcl[0] = &lcl[0]
 @Main.fibonacci // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-53) push argument 0
+// push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
@@ -339,7 +339,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// (-55) push constant 1
+// push constant 1
 @1 // push constant 1 (constant)
 D=A // d = constant
 @SP // &esp
@@ -348,7 +348,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 
-// (-57) sub
+// sub
 @SP // &esp // sub
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -360,7 +360,7 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// (-60) call Main.fibonacci 1 // computes fib(n-1)
+// call Main.fibonacci 1 // computes fib(n-1)
 (main.Main.fibonacci.4) // call Main.fibonacci 1 // computes fib(n-1)
 @main.Main.fibonacci.4 // call Main.fibonacci // push RP
 D=A // d = RP
@@ -427,7 +427,7 @@ M=D // &lcl[0] = &lcl[0]
 @Main.fibonacci // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function
 
-// (-62) add // returns fib(n-1) + fib(n-2)
+// add // returns fib(n-1) + fib(n-2)
 @SP // &esp // add // returns fib(n-1) + fib(n-2)
 M=M-1 // &esp-- (&val2)
 A=M // *val2
@@ -439,9 +439,9 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// (-64) return
+// return
 
-// (-66) pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
 @ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
 D=M // d = *asm_segment
 @0 // retrieve &dst (segment+offset) and store at R13
