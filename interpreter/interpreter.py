@@ -963,8 +963,7 @@ if __name__ == '__main__':
     # TODO: error check - check for unexpected tokens after statement expression (if/while)
 
     # interpreter: translator
-    # TODO: replace stacksize with esp/ebp (emitted by translator, tracked by interpreter)
-    # TODO: remove comment_count
+    # TODO: replace stacksize with esp/ebp (emitted by translator, tracked by interpreter) 
 
     # TODO: Jack OS Error Codes
     '''
