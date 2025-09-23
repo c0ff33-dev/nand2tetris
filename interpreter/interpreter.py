@@ -141,15 +141,15 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     gui_log = []
 
     # initialize hardware
-    ram = [0] * 32768
+    ram = [0] * 24577  # only ~24k words are addressable in the HACK ABI despite 15 bits being available for addressing
     hw = {
         "RAM": ram,
         "ROM": {},
         "A": 0,
         "D": 0,
         "M": 0,
-        "PC": 0,
-        "MAX": 1000,
+        "PC": 0,  # 15 bit program counter = 32768 max instructions
+        "MAX": 1000,  # this might need to be higher for complex programs
     }
 
     # load test params
@@ -193,8 +193,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "HEAP": 2048,  # 2048-16383 incl (persistent)
         "IO": 16384,  # 16384-24576 incl (persistent)
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
-        "KBD": 24576,
-        "UNUSED": 24577,  # 24577-32767 incl
+        "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
     }
 
     with open(asm_filepath, "r") as asm_file:
