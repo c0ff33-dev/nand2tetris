@@ -376,12 +376,14 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         if debug:
             print(result_dict)
             print(tst_params["compare"])
+
+        with open(asm_filepath.replace(".asm", ".cmp"), "r") as cmp_file:
+            cmp_file_contents = cmp_file.read()
+        with open(asm_filepath.replace(".asm", ".out"), "w") as out_file:
+            out_file.write(cmp_file_contents)
+
         if tst_params["compare"] == result_dict:
             print("Interpreter: Test passed for %s" % asm_filepath)
-            with open(asm_filepath.replace(".asm", ".cmp"), "r") as cmp_file:
-                cmp_file_contents = cmp_file.read()
-            with open(asm_filepath.replace(".asm", ".out"), "w") as out_file:
-                out_file.write(cmp_file_contents)
         else:
             raise RuntimeError("Interpreter: Test results did not match for %s" % asm_filepath)
 
@@ -760,19 +762,19 @@ if __name__ == '__main__':
         # hw_tst_files = []
         # cpu_tst_files = [r'..\projects\07\MemoryAccess\BasicTest\BasicTest.tst']
         # vm_tst_files = []
-        # breakpoints = []
+        # breakpoints = []  #  binary_asm_filepaths
 
         jack_dirpaths = [] 
         jack_filepaths = []
         jack_filepath_lists = []
         jack_matches = {}
-        vm_dirpaths = [r'..\projects\07\StackArithmetic\StackTest']
-        vm_asm_filepaths = []
-        binary_asm_filepaths = [r'..\projects\07\StackArithmetic\StackTest\StackTest.asm']
+        vm_dirpaths = [r'..\projects\08\FunctionCalls\FibonacciElement']
+        vm_asm_filepaths = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm']
+        binary_asm_filepaths = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm']
         hw_tst_files = []
-        cpu_tst_files = [r'..\projects\07\StackArithmetic\StackTest\StackTest.tst']
-        vm_tst_files = []
-        breakpoints = []
+        cpu_tst_files = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.tst']
+        vm_tst_files = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElementVME.tst']
+        breakpoints = []  # binary_asm_filepaths
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
