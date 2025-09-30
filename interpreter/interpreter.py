@@ -51,7 +51,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] [bold yellow]%s[/bold yellow]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
             (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
             (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
@@ -63,7 +63,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] %s\n[red]D[/red] [bold yellow]%s[/bold yellow]\n[red]M[/red] %s\n" %\
             (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
             (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
@@ -75,7 +75,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] %s\n[red]D[/red] %s\n[red]M[/red] [bold yellow]%s[/bold yellow]\n" %\
             (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
             (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
@@ -87,7 +87,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] [bold cyan]%s[/bold cyan]\n[red]M[/red] %s\n" %\
             (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
             (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
@@ -99,7 +99,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         row_reg = title("Registers", 0) +\
         "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
             (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
             (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
         "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
             (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
@@ -746,12 +746,24 @@ if __name__ == '__main__':
     ]
 
     # init
-    debug = False
+    debug = True
     vm_static_dicts = {} 
     breakpoints = []
 
     # DEBUG: overrides
-    if debug:      
+    if debug:
+        jack_dirpaths = [] 
+        jack_filepaths = []
+        jack_filepath_lists = []
+        jack_matches = {}
+        vm_dirpaths = []
+        vm_asm_filepaths = []
+        binary_asm_filepaths = [r'D:\dev\nand2tetris-fpga\04_Machine_Language\mult.asm']
+        hw_tst_files = []
+        cpu_tst_files = []
+        vm_tst_files = []
+        breakpoints = [30]  #  binary_asm_filepaths
+
         # jack_dirpaths = [] 
         # jack_filepaths = []
         # jack_filepath_lists = []
@@ -764,17 +776,17 @@ if __name__ == '__main__':
         # vm_tst_files = []
         # breakpoints = []  #  binary_asm_filepaths
 
-        jack_dirpaths = [] 
-        jack_filepaths = []
-        jack_filepath_lists = []
-        jack_matches = {}
-        vm_dirpaths = [r'..\projects\08\FunctionCalls\FibonacciElement']
-        vm_asm_filepaths = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm']
-        binary_asm_filepaths = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm']
-        hw_tst_files = []
-        cpu_tst_files = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.tst']
-        vm_tst_files = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElementVME.tst']
-        breakpoints = []  # binary_asm_filepaths
+        # jack_dirpaths = [] 
+        # jack_filepaths = []
+        # jack_filepath_lists = []
+        # jack_matches = {}
+        # vm_dirpaths = [r'..\projects\08\FunctionCalls\FibonacciElement']
+        # vm_asm_filepaths = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm']
+        # binary_asm_filepaths = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm']
+        # hw_tst_files = []
+        # cpu_tst_files = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.tst']
+        # vm_tst_files = [r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElementVME.tst']
+        # breakpoints = []  # binary_asm_filepaths
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
