@@ -194,6 +194,9 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "IO": 16384,  # 16384-24576 incl (persistent)
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
         "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
+
+        # FPGA symbols
+        "UART_TX": 4098
     }
 
     with open(asm_filepath, "r") as asm_file:
@@ -299,7 +302,9 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
                 # if multiple dst all are written to the same eval result simultaneously
                 # in practice because the interpreter runs procedurally writing M before A should suffice
                 if "M" in dst:
-                    hw["RAM"][hw["A"]] = eval_result
+                    # TODO: update behaviour for this and other IO ports
+                    if hw["A"] != 4098: # UART_TX
+                        hw["RAM"][hw["A"]] = eval_result
                 if "A" in dst:
                     hw["A"] = eval_result
                 if "D" in dst:
@@ -758,11 +763,11 @@ if __name__ == '__main__':
         jack_matches = {}
         vm_dirpaths = []
         vm_asm_filepaths = []
-        binary_asm_filepaths = [r'D:\dev\nand2tetris-fpga\04_Machine_Language\mult.asm']
+        binary_asm_filepaths = [r'D:\dev\nand2tetris-fpga\06_IO_Devices\01_UartTX\hello.asm']
         hw_tst_files = []
         cpu_tst_files = []
         vm_tst_files = []
-        breakpoints = [30]  #  binary_asm_filepaths
+        breakpoints = [5]  #  binary_asm_filepaths
 
         # jack_dirpaths = [] 
         # jack_filepaths = []
