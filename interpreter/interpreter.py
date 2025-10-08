@@ -767,7 +767,7 @@ if __name__ == '__main__':
         hw_tst_files = []
         cpu_tst_files = []
         vm_tst_files = []
-        breakpoints = [5]  #  binary_asm_filepaths
+        breakpoints = [10]  #  binary_asm_filepaths
 
         # jack_dirpaths = [] 
         # jack_filepaths = []
