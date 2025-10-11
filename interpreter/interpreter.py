@@ -111,7 +111,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         raise RuntimeError(debug_cmd)
 
     table.add_row(row_code + row_stack, row_reg)
-    if src_line in breakpoints or step:
+    if src_line in breakpoints or step or breakpoints == [-1]:
         console.print(table)
 
         def on_press(key):
@@ -132,7 +132,8 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
                     print(f"RAM[{addr}] = {hw['RAM'][int(addr)]}")
             except AttributeError:
                 pass
-
+        
+        # TODO: linux: only works on xorg not wayland
         with keyboard.Listener(on_press=on_press, suppress=True) as listener:
             listener.join()
 
@@ -141,7 +142,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     gui_log = []
 
     # initialize hardware
-    ram = [0] * 24577  # only ~24k words are addressable in the HACK ABI despite 15 bits being available for addressing
+    ram = [0] * 57344  # original spec: 24577 (~24k) words, fgpa spec: 57344 (56k) words
     hw = {
         "RAM": ram,
         "ROM": {},
@@ -305,13 +306,15 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
                     # TODO: update behaviour for this and other IO ports
                     if hw["A"] != 4098: # UART_TX
                         hw["RAM"][hw["A"]] = eval_result
+                    if hw["A"] != 4100: # SPI
+                        hw["RAM"][hw["A"]] = eval_result
                 if "A" in dst:
                     hw["A"] = eval_result
                 if "D" in dst:
                     hw["D"] = eval_result
                 
                 if not any(x in dst for x in ["A", "D", "M"]):
-                    raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" % 
+                    raise RuntimeError("Interpreter: Unexpected dst in command: %s %s %s %s" % 
                                        (hw["PC"], raw_cmd, "---", debug_cmd))
                 
                 hw["PC"] += 1  # advance to next instruction
@@ -763,11 +766,11 @@ if __name__ == '__main__':
         jack_matches = {}
         vm_dirpaths = []
         vm_asm_filepaths = []
-        binary_asm_filepaths = [r'D:\dev\nand2tetris-fpga\06_IO_Devices\01_UartTX\hello.asm']
+        binary_asm_filepaths = [r'/home/the_admin/src/nand2tetris-fpga/06_IO_Devices/03_SPI/cat.asm']
         hw_tst_files = []
         cpu_tst_files = []
         vm_tst_files = []
-        breakpoints = [10]  #  binary_asm_filepaths
+        breakpoints = [-1]  # binary_asm_filepaths
 
         # jack_dirpaths = [] 
         # jack_filepaths = []
