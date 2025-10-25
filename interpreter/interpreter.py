@@ -405,6 +405,7 @@ if __name__ == '__main__':
     Project 9-11: JACK > T_XML (CST) > XML (AST) > VM (tokenizer > analyzer > compiler) // VM > ASM > HACK as above
                   Only Project 10 has CST/AST solution XML files
     '''
+    # TODO: Use symlinks for libraries and purge dupes from git history
 
     # compile jack programs (JackCompiler, translator)
     # projects 1-11 accounted for, not included in compiler (jack_filepaths)
@@ -429,7 +430,7 @@ if __name__ == '__main__':
         r"..\projects\12\ArrayTest",
         r"..\projects\12\KeyboardTest",
         r"..\projects\12\StringTest",
-        r"..\projects\12\MemoryTest",
+        r"..\projects\12\MemoryTest", # wip?
     ]
 
     # tokenizer/analyzer
