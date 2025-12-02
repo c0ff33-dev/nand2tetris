@@ -430,7 +430,7 @@ if __name__ == '__main__':
         r"..\projects\12\ArrayTest",
         r"..\projects\12\KeyboardTest",
         r"..\projects\12\StringTest",
-        r"..\projects\12\MemoryTest", # wip?
+        r"..\projects\12\MemoryTest", # TODO: wip?
     ]
 
     # tokenizer/analyzer
