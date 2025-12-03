@@ -697,7 +697,7 @@ def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False):
     """
     if stop_at and exp_buffer:
         if stop_at not in exp_buffer:
-            raise RuntimeError("stop_value '%s' was not found in exp_buffer")
+            raise RuntimeError(f"stop_value '{stop_at}' was not found in exp_buffer: {exp_buffer}")
 
         while exp_buffer[-1] != stop_at:
             pcode = store_pcode(pcode, exp_buffer.pop())
