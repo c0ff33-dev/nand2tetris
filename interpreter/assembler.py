@@ -276,7 +276,7 @@ if __name__ == '__main__':
     _asm_filepaths = [
         # projects 1-11 accounted for, included in interpreter + python_hdl (HACK)
         r"../projects/04/fill/Fill.asm",
-        r"../projects/04/mult/mult.asm",
+        r"../projects/04/mult/Mult.asm",
         r"../projects/06/add/Add.asm",
         r"../projects/06/max/Max.asm",
         r"../projects/06/max/MaxL.asm",
