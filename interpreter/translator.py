@@ -796,7 +796,7 @@ class Translator:
                 vm_dir_filelist.append(vm_filepath)
 
             # write asm_file
-            asm_path = os.path.join(vm_dir, vm_dir.split('\\')[-1]+'.asm')
+            asm_path = os.path.join(vm_dir, vm_dir.split('/')[-1]+'.asm')
             with open(asm_path, 'w') as asm_file:
                 if any(bootstrap_path in asm_path for bootstrap_path in vm_bootstrap_paths):
                     # test scripts do not conform to spec (256)
