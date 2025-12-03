@@ -72,6 +72,8 @@ class Memory {
                 let blockPtr[0] = (blockPtr[1] - blockPtr) + nextBlock[0];
 
                 // if nextBlock is end of list (**(nextPtr+1) == &blockData)
+                // FIXME: if (nextBlock[1] = (nextBlock + 2)) { // compiler error (mine): 135
+                // FIXME: there are other / similar if(<array>) expression issues
                 if (nextBlock[1] = (nextBlock + 2)) {
                     // currentBlock updated to reference closest data block (terminate list)
                     // *nextPtr = &blockData+2
