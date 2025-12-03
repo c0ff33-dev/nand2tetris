@@ -663,13 +663,15 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
 
         # compile as regular var (local)
         elif identifier in class_dict[class_name][func_name]['args']:
-            if array:
-                # if var is array compile to buffer
-                exp_buffer = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local',
-                                         exp_buffer=exp_buffer, array=array)
-            else:
-                # otherwise if var found compile directly (not buffer)
-                pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local')
+            # TODO: cleanup if this is the way
+            # if array:
+            #     # if var is array compile to buffer
+            #     exp_buffer = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local',
+            #                              exp_buffer=exp_buffer, array=array)
+            #     print(exp_buffer)
+            # else:
+            # otherwise if var found compile directly (not buffer)
+            pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local')
 
         # compile as regular var (member)
         elif identifier in class_dict[class_name]['args']:
