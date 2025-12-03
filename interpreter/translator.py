@@ -750,8 +750,8 @@ class Translator:
         # spec dictates that Sys.init() is first function to run on boot which then calls Main.main()
         # so functionally anything after sys.vm doesn't matter other than changing compilation order
         vm_filelist = [
-            os.path.join(vm_dir, 'sys.vm'),
-            os.path.join(vm_dir, 'main.vm'),
+            os.path.join(vm_dir, 'Sys.vm'),
+            os.path.join(vm_dir, 'Main.vm'),
             os.path.join(vm_dir, vm_dir.split('/')[-1]+'.vm'),
             os.path.join(vm_dir, 'Class1.vm'),
             os.path.join(vm_dir, 'Class2.vm'),

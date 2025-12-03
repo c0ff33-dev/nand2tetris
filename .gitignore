@@ -1,4 +1,4 @@
 .idea
 .venv
+tools/bin/*.dat
 **/__pycache__/
-tools\bin\*.dat

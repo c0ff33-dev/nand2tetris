@@ -3,7 +3,7 @@
 (Sys.init) // function Sys.init 0
 
 // call Memory.init 0
-(sys.Memory.init.1) // call Memory.init 0 // function Sys.init 0
+(Sys.Memory.init.1) // call Memory.init 0 // function Sys.init 0
 
 // push constant 9999 // call Memory.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Memory.init // if no args, create a space on the stack for the return (constant)
@@ -13,7 +13,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Memory.init.1 // push RP
+@Sys.Memory.init.1 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -106,7 +106,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Math.init 0
-(sys.Math.init.3) // call Math.init 0
+(Sys.Math.init.3) // call Math.init 0
 
 // push constant 9999 // call Math.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Math.init // if no args, create a space on the stack for the return (constant)
@@ -116,7 +116,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Math.init.3 // push RP
+@Sys.Math.init.3 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -184,7 +184,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Screen.init 0
-(sys.Screen.init.5) // call Screen.init 0
+(Sys.Screen.init.5) // call Screen.init 0
 
 // push constant 9999 // call Screen.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Screen.init // if no args, create a space on the stack for the return (constant)
@@ -194,7 +194,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Screen.init.5 // push RP
+@Sys.Screen.init.5 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -262,7 +262,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.init 0
-(sys.Output.init.7) // call Output.init 0
+(Sys.Output.init.7) // call Output.init 0
 
 // push constant 9999 // call Output.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.init // if no args, create a space on the stack for the return (constant)
@@ -272,7 +272,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Output.init.7 // push RP
+@Sys.Output.init.7 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -331,7 +331,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Keyboard.init 0
-(sys.Keyboard.init.9) // call Keyboard.init 0
+(Sys.Keyboard.init.9) // call Keyboard.init 0
 
 // push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return (constant)
@@ -341,7 +341,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Keyboard.init.9 // push RP
+@Sys.Keyboard.init.9 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -400,7 +400,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Main.main 0
-(sys.Main.main.11) // call Main.main 0
+(Sys.Main.main.11) // call Main.main 0
 
 // push constant 9999 // call Main.main // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Main.main // if no args, create a space on the stack for the return (constant)
@@ -410,7 +410,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Main.main.11 // push RP
+@Sys.Main.main.11 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -478,7 +478,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Sys.halt 0
-(sys.Sys.halt.13) // call Sys.halt 0
+(Sys.Sys.halt.13) // call Sys.halt 0
 
 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
@@ -488,7 +488,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Sys.halt.13 // push RP
+@Sys.Sys.halt.13 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -616,7 +616,7 @@ A=M // d = *lcl-5 (*lcl)
 (Sys.halt) // function Sys.halt 0
 
 // label WHILE_EXP0
-(sys.WHILE_EXP0) // label WHILE_EXP0
+(Sys.WHILE_EXP0) // label WHILE_EXP0
 
 // push constant 0
 @0 // push constant 0 // function Sys.halt 0 (constant)
@@ -650,15 +650,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.WHILE_END0
+@Sys.WHILE_END0
 D;JNE // jump if not zero
 
 // goto WHILE_EXP0
-@sys.WHILE_EXP0 // goto WHILE_EXP0
+@Sys.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(sys.WHILE_END0) // label WHILE_END0
+(Sys.WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -783,15 +783,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.IF_TRUE0
+@Sys.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@sys.IF_FALSE0 // goto IF_FALSE0
+@Sys.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(sys.IF_TRUE0) // label IF_TRUE0
+(Sys.IF_TRUE0) // label IF_TRUE0
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -803,8 +803,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(sys.Sys.error.16) // call Sys.error 1
-@sys.Sys.error.16 // call Sys.error // push RP
+(Sys.Sys.error.16) // call Sys.error 1
+@Sys.Sys.error.16 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -863,10 +863,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(sys.IF_FALSE0) // label IF_FALSE0
+(Sys.IF_FALSE0) // label IF_FALSE0
 
 // label WHILE_EXP0
-(sys.WHILE_EXP0) // label WHILE_EXP0
+(Sys.WHILE_EXP0) // label WHILE_EXP0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -931,7 +931,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.WHILE_END0
+@Sys.WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 50
@@ -959,7 +959,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP1
-(sys.WHILE_EXP1) // label WHILE_EXP1
+(Sys.WHILE_EXP1) // label WHILE_EXP1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -1024,7 +1024,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.WHILE_END1
+@Sys.WHILE_END1
 D;JNE // jump if not zero
 
 // push local 0
@@ -1076,11 +1076,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@sys.WHILE_EXP1 // goto WHILE_EXP1
+@Sys.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(sys.WHILE_END1) // label WHILE_END1
+(Sys.WHILE_END1) // label WHILE_END1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -1131,11 +1131,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@sys.WHILE_EXP0 // goto WHILE_EXP0
+@Sys.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(sys.WHILE_END0) // label WHILE_END0
+(Sys.WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -1215,8 +1215,8 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // call Output.printChar 1
-(sys.Output.printChar.20) // call Output.printChar 1
-@sys.Output.printChar.20 // call Output.printChar // push RP
+(Sys.Output.printChar.20) // call Output.printChar 1
+@Sys.Output.printChar.20 // call Output.printChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1284,8 +1284,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Output.printChar 1
-(sys.Output.printChar.22) // call Output.printChar 1
-@sys.Output.printChar.22 // call Output.printChar // push RP
+(Sys.Output.printChar.22) // call Output.printChar 1
+@Sys.Output.printChar.22 // call Output.printChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1353,8 +1353,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Output.printChar 1
-(sys.Output.printChar.24) // call Output.printChar 1
-@sys.Output.printChar.24 // call Output.printChar // push RP
+(Sys.Output.printChar.24) // call Output.printChar 1
+@Sys.Output.printChar.24 // call Output.printChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1425,8 +1425,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Output.printInt 1
-(sys.Output.printInt.26) // call Output.printInt 1
-@sys.Output.printInt.26 // call Output.printInt // push RP
+(Sys.Output.printInt.26) // call Output.printInt 1
+@Sys.Output.printInt.26 // call Output.printInt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1485,7 +1485,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Sys.halt 0
-(sys.Sys.halt.28) // call Sys.halt 0
+(Sys.Sys.halt.28) // call Sys.halt 0
 
 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
@@ -1495,7 +1495,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Sys.halt.28 // push RP
+@Sys.Sys.halt.28 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1640,8 +1640,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call List.new 2
-(main.List.new.30) // call List.new 2
-@main.List.new.30 // call List.new // push RP
+(Main.List.new.30) // call List.new 2
+@Main.List.new.30 // call List.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1730,8 +1730,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call List.new 2
-(main.List.new.32) // call List.new 2
-@main.List.new.32 // call List.new // push RP
+(Main.List.new.32) // call List.new 2
+@Main.List.new.32 // call List.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1775,8 +1775,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call List.new 2
-(main.List.new.34) // call List.new 2
-@main.List.new.34 // call List.new // push RP
+(Main.List.new.34) // call List.new 2
+@Main.List.new.34 // call List.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1847,8 +1847,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call List.print 1
-(main.List.print.36) // call List.print 1
-@main.List.print.36 // call List.print // push RP
+(Main.List.print.36) // call List.print 1
+@Main.List.print.36 // call List.print // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1928,8 +1928,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call List.dispose 1
-(main.List.dispose.38) // call List.dispose 1
-@main.List.dispose.38 // call List.dispose // push RP
+(Main.List.dispose.38) // call List.dispose 1
+@Main.List.dispose.38 // call List.dispose // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5806,7 +5806,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (..\projects\09\List\Math.vm)
+@16 // pop static 1 // static + src segment offset (../projects/09/List/Math.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -5875,7 +5875,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@16 // pop static 0 // static + src segment offset (..\projects\09\List\Math.vm)
+@16 // pop static 0 // static + src segment offset (../projects/09/List/Math.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -5899,7 +5899,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -6118,7 +6118,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -6175,7 +6175,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -6259,7 +6259,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -7289,7 +7289,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -7500,7 +7500,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -8211,7 +8211,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -8543,7 +8543,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -8639,7 +8639,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -8823,7 +8823,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -8859,7 +8859,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -8922,7 +8922,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -9075,7 +9075,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -9409,7 +9409,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -9590,7 +9590,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -9692,7 +9692,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10229,7 +10229,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -11082,7 +11082,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 0
-@18 // pop static 0 // static + src segment offset (..\projects\09\List\Memory.vm)
+@18 // pop static 0 // static + src segment offset (../projects/09/List/Memory.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -11106,7 +11106,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -11205,7 +11205,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -11375,7 +11375,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -11497,7 +11497,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -15688,7 +15688,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 4
-@19 // pop static 4 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 4 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -15720,7 +15720,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -15744,7 +15744,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -15768,7 +15768,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -15837,7 +15837,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 3
-@19 // pop static 3 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 3 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -16148,7 +16148,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 5
-@19 // pop static 5 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 5 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -33304,7 +33304,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -34641,7 +34641,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 6
-@19 // pop static 6 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 6 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -34761,7 +34761,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -34908,7 +34908,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -35777,7 +35777,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE0) // label IF_FALSE0
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -35819,7 +35819,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -35904,7 +35904,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -36125,7 +36125,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -36221,7 +36221,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 D;JNE // jump if not zero
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -36263,7 +36263,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -36377,7 +36377,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -36479,7 +36479,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -37234,7 +37234,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -37381,7 +37381,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -37405,7 +37405,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -37432,7 +37432,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -37569,7 +37569,7 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38237,7 +38237,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -38275,7 +38275,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE2) // label IF_TRUE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -38308,7 +38308,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38323,7 +38323,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -38356,7 +38356,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38374,7 +38374,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -38515,7 +38515,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE3) // label IF_FALSE3
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -38535,7 +38535,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39024,7 +39024,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.printInt) // function Output.printInt 0
 
 // push static 3
-@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -39143,7 +39143,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 3
-@19 // push static 3 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 3 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -39302,7 +39302,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.println) // function Output.println 0
 
 // push static 1
-@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -39334,7 +39334,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -39358,7 +39358,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39382,7 +39382,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39414,7 +39414,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39429,7 +39429,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -39503,7 +39503,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39590,7 +39590,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.backSpace) // function Output.backSpace 0
 
 // push static 2
-@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -39619,7 +39619,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE0) // label IF_TRUE0
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -39684,7 +39684,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE1) // label IF_TRUE1
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -39717,7 +39717,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39732,7 +39732,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -39765,7 +39765,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39796,7 +39796,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39811,7 +39811,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -39885,7 +39885,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39903,7 +39903,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -39936,7 +39936,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39963,7 +39963,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40002,7 +40002,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\09\List\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40202,7 +40202,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 1
-@26 // pop static 1 // static + src segment offset (..\projects\09\List\Screen.vm)
+@26 // pop static 1 // static + src segment offset (../projects/09/List/Screen.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40234,7 +40234,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@26 // pop static 2 // static + src segment offset (..\projects\09\List\Screen.vm)
+@26 // pop static 2 // static + src segment offset (../projects/09/List/Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40303,7 +40303,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@26 // pop static 0 // static + src segment offset (..\projects\09\List\Screen.vm)
+@26 // pop static 0 // static + src segment offset (../projects/09/List/Screen.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40327,7 +40327,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -40546,7 +40546,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -40603,7 +40603,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -40687,7 +40687,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -40963,7 +40963,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41177,7 +41177,7 @@ A=M // d = *lcl-5 (*lcl)
 (Screen.updateLocation) // function Screen.updateLocation 0
 
 // push static 2
-@26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -41218,7 +41218,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41254,7 +41254,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41405,7 +41405,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41441,7 +41441,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41664,7 +41664,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // pop static 2
-@26 // pop static 2 // static + src segment offset (..\projects\09\List\Screen.vm)
+@26 // pop static 2 // static + src segment offset (../projects/09/List/Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -42502,7 +42502,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -46456,7 +46456,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -46584,7 +46584,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -48947,7 +48947,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -49075,7 +49075,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\09\List\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)

@@ -24,8 +24,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Class1.set 2
-(sys.Class1.set.1) // call Class1.set 2
-@sys.Class1.set.1 // call Class1.set // push RP
+(Sys.Class1.set.1) // call Class1.set 2
+@Sys.Class1.set.1 // call Class1.set // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -137,8 +137,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Class2.set 2
-(sys.Class2.set.3) // call Class2.set 2
-@sys.Class2.set.3 // call Class2.set // push RP
+(Sys.Class2.set.3) // call Class2.set 2
+@Sys.Class2.set.3 // call Class2.set // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -197,7 +197,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Class1.get 0
-(sys.Class1.get.5) // call Class1.get 0
+(Sys.Class1.get.5) // call Class1.get 0
 
 // push constant 9999 // call Class1.get // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Class1.get // if no args, create a space on the stack for the return (constant)
@@ -207,7 +207,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Class1.get.5 // push RP
+@Sys.Class1.get.5 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -251,7 +251,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Class2.get 0
-(sys.Class2.get.7) // call Class2.get 0
+(Sys.Class2.get.7) // call Class2.get 0
 
 // push constant 9999 // call Class2.get // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Class2.get // if no args, create a space on the stack for the return (constant)
@@ -261,7 +261,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Class2.get.7 // push RP
+@Sys.Class2.get.7 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -305,10 +305,10 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // label WHILE
-(sys.WHILE) // label WHILE
+(Sys.WHILE) // label WHILE
 
 // goto WHILE
-@sys.WHILE // goto WHILE
+@Sys.WHILE // goto WHILE
 0;JMP // unconditional jump
 
 // function Class1.set 0
@@ -326,7 +326,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // pop static 0
-@16 // pop static 0 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
+@16 // pop static 0 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -353,7 +353,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
+@16 // pop static 1 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -437,7 +437,7 @@ A=M // d = *lcl-5 (*lcl)
 (Class1.get) // function Class1.get 0
 
 // push static 0
-@16 // push static 0 // function Class1.get 0 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
+@16 // push static 0 // function Class1.get 0 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -448,7 +448,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -543,7 +543,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // pop static 0
-@18 // pop static 0 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
+@18 // pop static 0 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -570,7 +570,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // pop static 1
-@18 // pop static 1 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
+@18 // pop static 1 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -654,7 +654,7 @@ A=M // d = *lcl-5 (*lcl)
 (Class2.get) // function Class2.get 0
 
 // push static 0
-@18 // push static 0 // function Class2.get 0 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
+@18 // push static 0 // function Class2.get 0 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -665,7 +665,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 1
-@18 // push static 1 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
+@18 // push static 1 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)

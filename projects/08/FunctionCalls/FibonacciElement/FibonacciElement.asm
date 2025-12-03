@@ -15,8 +15,8 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // call Main.fibonacci 1 // computes the 4th fibonacci element
-(sys.Main.fibonacci.1) // call Main.fibonacci 1 // computes the 4th fibonacci element
-@sys.Main.fibonacci.1 // call Main.fibonacci // push RP
+(Sys.Main.fibonacci.1) // call Main.fibonacci 1 // computes the 4th fibonacci element
+@Sys.Main.fibonacci.1 // call Main.fibonacci // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -95,10 +95,10 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // label WHILE
-(sys.WHILE) // label WHILE
+(Sys.WHILE) // label WHILE
 
 // goto WHILE // loops infinitely
-@sys.WHILE // goto WHILE // loops infinitely
+@Sys.WHILE // goto WHILE // loops infinitely
 0;JMP // unconditional jump
 
 // function Main.fibonacci 0
@@ -158,15 +158,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.IF_TRUE
+@Main.IF_TRUE
 D;JNE // jump if not zero
 
 // goto IF_FALSE
-@main.IF_FALSE // goto IF_FALSE
+@Main.IF_FALSE // goto IF_FALSE
 0;JMP // unconditional jump
 
 // label IF_TRUE // if n<2, return n
-(main.IF_TRUE) // label IF_TRUE // if n<2, return n
+(Main.IF_TRUE) // label IF_TRUE // if n<2, return n
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -238,7 +238,7 @@ A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
 // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
-(main.IF_FALSE) // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
+(Main.IF_FALSE) // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -274,8 +274,8 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Main.fibonacci 1 // computes fib(n-2)
-(main.Main.fibonacci.4) // call Main.fibonacci 1 // computes fib(n-2)
-@main.Main.fibonacci.4 // call Main.fibonacci // push RP
+(Main.Main.fibonacci.4) // call Main.fibonacci 1 // computes fib(n-2)
+@Main.Main.fibonacci.4 // call Main.fibonacci // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -352,8 +352,8 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Main.fibonacci 1 // computes fib(n-1)
-(main.Main.fibonacci.6) // call Main.fibonacci 1 // computes fib(n-1)
-@main.Main.fibonacci.6 // call Main.fibonacci // push RP
+(Main.Main.fibonacci.6) // call Main.fibonacci 1 // computes fib(n-1)
+@Main.Main.fibonacci.6 // call Main.fibonacci // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP

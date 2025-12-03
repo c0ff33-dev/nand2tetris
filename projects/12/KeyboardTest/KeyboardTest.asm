@@ -3,7 +3,7 @@
 (Sys.init) // function Sys.init 0
 
 // call Memory.init 0
-(sys.Memory.init.1) // call Memory.init 0 // function Sys.init 0
+(Sys.Memory.init.1) // call Memory.init 0 // function Sys.init 0
 
 // push constant 9999 // call Memory.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Memory.init // if no args, create a space on the stack for the return (constant)
@@ -13,7 +13,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Memory.init.1 // push RP
+@Sys.Memory.init.1 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -106,7 +106,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Math.init 0
-(sys.Math.init.3) // call Math.init 0
+(Sys.Math.init.3) // call Math.init 0
 
 // push constant 9999 // call Math.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Math.init // if no args, create a space on the stack for the return (constant)
@@ -116,7 +116,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Math.init.3 // push RP
+@Sys.Math.init.3 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -184,7 +184,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Screen.init 0
-(sys.Screen.init.5) // call Screen.init 0
+(Sys.Screen.init.5) // call Screen.init 0
 
 // push constant 9999 // call Screen.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Screen.init // if no args, create a space on the stack for the return (constant)
@@ -194,7 +194,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Screen.init.5 // push RP
+@Sys.Screen.init.5 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -262,7 +262,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.init 0
-(sys.Output.init.7) // call Output.init 0
+(Sys.Output.init.7) // call Output.init 0
 
 // push constant 9999 // call Output.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.init // if no args, create a space on the stack for the return (constant)
@@ -272,7 +272,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Output.init.7 // push RP
+@Sys.Output.init.7 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -331,7 +331,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Keyboard.init 0
-(sys.Keyboard.init.9) // call Keyboard.init 0
+(Sys.Keyboard.init.9) // call Keyboard.init 0
 
 // push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return (constant)
@@ -341,7 +341,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Keyboard.init.9 // push RP
+@Sys.Keyboard.init.9 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -400,7 +400,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Main.main 0
-(sys.Main.main.11) // call Main.main 0
+(Sys.Main.main.11) // call Main.main 0
 
 // push constant 9999 // call Main.main // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Main.main // if no args, create a space on the stack for the return (constant)
@@ -410,7 +410,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Main.main.11 // push RP
+@Sys.Main.main.11 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -514,7 +514,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Sys.halt 0
-(sys.Sys.halt.13) // call Sys.halt 0
+(Sys.Sys.halt.13) // call Sys.halt 0
 
 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
@@ -524,7 +524,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Sys.halt.13 // push RP
+@Sys.Sys.halt.13 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -652,7 +652,7 @@ A=M // d = *lcl-5 (*lcl)
 (Sys.halt) // function Sys.halt 0
 
 // label WHILE_EXP0
-(sys.WHILE_EXP0) // label WHILE_EXP0
+(Sys.WHILE_EXP0) // label WHILE_EXP0
 
 // push constant 0
 @0 // push constant 0 // function Sys.halt 0 (constant)
@@ -686,15 +686,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.WHILE_END0
+@Sys.WHILE_END0
 D;JNE // jump if not zero
 
 // goto WHILE_EXP0
-@sys.WHILE_EXP0 // goto WHILE_EXP0
+@Sys.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(sys.WHILE_END0) // label WHILE_END0
+(Sys.WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -819,15 +819,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.IF_TRUE0
+@Sys.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@sys.IF_FALSE0 // goto IF_FALSE0
+@Sys.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(sys.IF_TRUE0) // label IF_TRUE0
+(Sys.IF_TRUE0) // label IF_TRUE0
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -839,8 +839,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(sys.Sys.error.16) // call Sys.error 1
-@sys.Sys.error.16 // call Sys.error // push RP
+(Sys.Sys.error.16) // call Sys.error 1
+@Sys.Sys.error.16 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -899,10 +899,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(sys.IF_FALSE0) // label IF_FALSE0
+(Sys.IF_FALSE0) // label IF_FALSE0
 
 // label WHILE_EXP0
-(sys.WHILE_EXP0) // label WHILE_EXP0
+(Sys.WHILE_EXP0) // label WHILE_EXP0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -967,7 +967,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.WHILE_END0
+@Sys.WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 50
@@ -995,7 +995,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP1
-(sys.WHILE_EXP1) // label WHILE_EXP1
+(Sys.WHILE_EXP1) // label WHILE_EXP1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -1060,7 +1060,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@sys.WHILE_END1
+@Sys.WHILE_END1
 D;JNE // jump if not zero
 
 // push local 0
@@ -1112,11 +1112,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@sys.WHILE_EXP1 // goto WHILE_EXP1
+@Sys.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(sys.WHILE_END1) // label WHILE_END1
+(Sys.WHILE_END1) // label WHILE_END1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -1167,11 +1167,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@sys.WHILE_EXP0 // goto WHILE_EXP0
+@Sys.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(sys.WHILE_END0) // label WHILE_END0
+(Sys.WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -1251,8 +1251,8 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // call Output.printChar 1
-(sys.Output.printChar.20) // call Output.printChar 1
-@sys.Output.printChar.20 // call Output.printChar // push RP
+(Sys.Output.printChar.20) // call Output.printChar 1
+@Sys.Output.printChar.20 // call Output.printChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1320,8 +1320,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Output.printChar 1
-(sys.Output.printChar.22) // call Output.printChar 1
-@sys.Output.printChar.22 // call Output.printChar // push RP
+(Sys.Output.printChar.22) // call Output.printChar 1
+@Sys.Output.printChar.22 // call Output.printChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1389,8 +1389,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Output.printChar 1
-(sys.Output.printChar.24) // call Output.printChar 1
-@sys.Output.printChar.24 // call Output.printChar // push RP
+(Sys.Output.printChar.24) // call Output.printChar 1
+@Sys.Output.printChar.24 // call Output.printChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1461,8 +1461,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Output.printInt 1
-(sys.Output.printInt.26) // call Output.printInt 1
-@sys.Output.printInt.26 // call Output.printInt // push RP
+(Sys.Output.printInt.26) // call Output.printInt 1
+@Sys.Output.printInt.26 // call Output.printInt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1521,7 +1521,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Sys.halt 0
-(sys.Sys.halt.28) // call Sys.halt 0
+(Sys.Sys.halt.28) // call Sys.halt 0
 
 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
@@ -1531,7 +1531,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Sys.halt.28 // push RP
+@Sys.Sys.halt.28 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1691,8 +1691,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.30) // call String.new 1
-@main.String.new.30 // call String.new // push RP
+(Main.String.new.30) // call String.new 1
+@Main.String.new.30 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1745,8 +1745,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.32) // call String.appendChar 2
-@main.String.appendChar.32 // call String.appendChar // push RP
+(Main.String.appendChar.32) // call String.appendChar 2
+@Main.String.appendChar.32 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1799,8 +1799,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.34) // call String.appendChar 2
-@main.String.appendChar.34 // call String.appendChar // push RP
+(Main.String.appendChar.34) // call String.appendChar 2
+@Main.String.appendChar.34 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1853,8 +1853,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.36) // call String.appendChar 2
-@main.String.appendChar.36 // call String.appendChar // push RP
+(Main.String.appendChar.36) // call String.appendChar 2
+@Main.String.appendChar.36 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1907,8 +1907,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.38) // call String.appendChar 2
-@main.String.appendChar.38 // call String.appendChar // push RP
+(Main.String.appendChar.38) // call String.appendChar 2
+@Main.String.appendChar.38 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1961,8 +1961,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.40) // call String.appendChar 2
-@main.String.appendChar.40 // call String.appendChar // push RP
+(Main.String.appendChar.40) // call String.appendChar 2
+@Main.String.appendChar.40 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2015,8 +2015,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.42) // call String.appendChar 2
-@main.String.appendChar.42 // call String.appendChar // push RP
+(Main.String.appendChar.42) // call String.appendChar 2
+@Main.String.appendChar.42 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2069,8 +2069,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.44) // call String.appendChar 2
-@main.String.appendChar.44 // call String.appendChar // push RP
+(Main.String.appendChar.44) // call String.appendChar 2
+@Main.String.appendChar.44 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2123,8 +2123,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.46) // call String.appendChar 2
-@main.String.appendChar.46 // call String.appendChar // push RP
+(Main.String.appendChar.46) // call String.appendChar 2
+@Main.String.appendChar.46 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2177,8 +2177,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.48) // call String.appendChar 2
-@main.String.appendChar.48 // call String.appendChar // push RP
+(Main.String.appendChar.48) // call String.appendChar 2
+@Main.String.appendChar.48 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2231,8 +2231,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.50) // call String.appendChar 2
-@main.String.appendChar.50 // call String.appendChar // push RP
+(Main.String.appendChar.50) // call String.appendChar 2
+@Main.String.appendChar.50 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2285,8 +2285,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.52) // call String.appendChar 2
-@main.String.appendChar.52 // call String.appendChar // push RP
+(Main.String.appendChar.52) // call String.appendChar 2
+@Main.String.appendChar.52 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2339,8 +2339,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.54) // call String.appendChar 2
-@main.String.appendChar.54 // call String.appendChar // push RP
+(Main.String.appendChar.54) // call String.appendChar 2
+@Main.String.appendChar.54 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2393,8 +2393,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.56) // call String.appendChar 2
-@main.String.appendChar.56 // call String.appendChar // push RP
+(Main.String.appendChar.56) // call String.appendChar 2
+@Main.String.appendChar.56 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2447,8 +2447,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.58) // call String.appendChar 2
-@main.String.appendChar.58 // call String.appendChar // push RP
+(Main.String.appendChar.58) // call String.appendChar 2
+@Main.String.appendChar.58 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2501,8 +2501,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.60) // call String.appendChar 2
-@main.String.appendChar.60 // call String.appendChar // push RP
+(Main.String.appendChar.60) // call String.appendChar 2
+@Main.String.appendChar.60 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2555,8 +2555,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.62) // call String.appendChar 2
-@main.String.appendChar.62 // call String.appendChar // push RP
+(Main.String.appendChar.62) // call String.appendChar 2
+@Main.String.appendChar.62 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2600,8 +2600,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.64) // call Output.printString 1
-@main.Output.printString.64 // call Output.printString // push RP
+(Main.Output.printString.64) // call Output.printString 1
+@Main.Output.printString.64 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2678,7 +2678,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.66) // call Output.println 0
+(Main.Output.println.66) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -2688,7 +2688,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.66 // push RP
+@Main.Output.println.66 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2747,7 +2747,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(main.WHILE_EXP0) // label WHILE_EXP0
+(Main.WHILE_EXP0) // label WHILE_EXP0
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -2785,7 +2785,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.WHILE_END0
+@Main.WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 32
@@ -2798,8 +2798,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.68) // call String.new 1
-@main.String.new.68 // call String.new // push RP
+(Main.String.new.68) // call String.new 1
+@Main.String.new.68 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2852,8 +2852,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.70) // call String.appendChar 2
-@main.String.appendChar.70 // call String.appendChar // push RP
+(Main.String.appendChar.70) // call String.appendChar 2
+@Main.String.appendChar.70 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2906,8 +2906,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.72) // call String.appendChar 2
-@main.String.appendChar.72 // call String.appendChar // push RP
+(Main.String.appendChar.72) // call String.appendChar 2
+@Main.String.appendChar.72 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2960,8 +2960,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.74) // call String.appendChar 2
-@main.String.appendChar.74 // call String.appendChar // push RP
+(Main.String.appendChar.74) // call String.appendChar 2
+@Main.String.appendChar.74 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3014,8 +3014,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.76) // call String.appendChar 2
-@main.String.appendChar.76 // call String.appendChar // push RP
+(Main.String.appendChar.76) // call String.appendChar 2
+@Main.String.appendChar.76 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3068,8 +3068,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.78) // call String.appendChar 2
-@main.String.appendChar.78 // call String.appendChar // push RP
+(Main.String.appendChar.78) // call String.appendChar 2
+@Main.String.appendChar.78 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3122,8 +3122,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.80) // call String.appendChar 2
-@main.String.appendChar.80 // call String.appendChar // push RP
+(Main.String.appendChar.80) // call String.appendChar 2
+@Main.String.appendChar.80 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3176,8 +3176,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.82) // call String.appendChar 2
-@main.String.appendChar.82 // call String.appendChar // push RP
+(Main.String.appendChar.82) // call String.appendChar 2
+@Main.String.appendChar.82 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3230,8 +3230,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.84) // call String.appendChar 2
-@main.String.appendChar.84 // call String.appendChar // push RP
+(Main.String.appendChar.84) // call String.appendChar 2
+@Main.String.appendChar.84 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3284,8 +3284,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.86) // call String.appendChar 2
-@main.String.appendChar.86 // call String.appendChar // push RP
+(Main.String.appendChar.86) // call String.appendChar 2
+@Main.String.appendChar.86 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3338,8 +3338,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.88) // call String.appendChar 2
-@main.String.appendChar.88 // call String.appendChar // push RP
+(Main.String.appendChar.88) // call String.appendChar 2
+@Main.String.appendChar.88 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3392,8 +3392,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.90) // call String.appendChar 2
-@main.String.appendChar.90 // call String.appendChar // push RP
+(Main.String.appendChar.90) // call String.appendChar 2
+@Main.String.appendChar.90 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3446,8 +3446,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.92) // call String.appendChar 2
-@main.String.appendChar.92 // call String.appendChar // push RP
+(Main.String.appendChar.92) // call String.appendChar 2
+@Main.String.appendChar.92 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3500,8 +3500,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.94) // call String.appendChar 2
-@main.String.appendChar.94 // call String.appendChar // push RP
+(Main.String.appendChar.94) // call String.appendChar 2
+@Main.String.appendChar.94 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3554,8 +3554,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.96) // call String.appendChar 2
-@main.String.appendChar.96 // call String.appendChar // push RP
+(Main.String.appendChar.96) // call String.appendChar 2
+@Main.String.appendChar.96 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3608,8 +3608,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.98) // call String.appendChar 2
-@main.String.appendChar.98 // call String.appendChar // push RP
+(Main.String.appendChar.98) // call String.appendChar 2
+@Main.String.appendChar.98 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3662,8 +3662,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.100) // call String.appendChar 2
-@main.String.appendChar.100 // call String.appendChar // push RP
+(Main.String.appendChar.100) // call String.appendChar 2
+@Main.String.appendChar.100 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3716,8 +3716,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.102) // call String.appendChar 2
-@main.String.appendChar.102 // call String.appendChar // push RP
+(Main.String.appendChar.102) // call String.appendChar 2
+@Main.String.appendChar.102 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3770,8 +3770,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.104) // call String.appendChar 2
-@main.String.appendChar.104 // call String.appendChar // push RP
+(Main.String.appendChar.104) // call String.appendChar 2
+@Main.String.appendChar.104 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3824,8 +3824,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.106) // call String.appendChar 2
-@main.String.appendChar.106 // call String.appendChar // push RP
+(Main.String.appendChar.106) // call String.appendChar 2
+@Main.String.appendChar.106 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3878,8 +3878,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.108) // call String.appendChar 2
-@main.String.appendChar.108 // call String.appendChar // push RP
+(Main.String.appendChar.108) // call String.appendChar 2
+@Main.String.appendChar.108 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3932,8 +3932,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.110) // call String.appendChar 2
-@main.String.appendChar.110 // call String.appendChar // push RP
+(Main.String.appendChar.110) // call String.appendChar 2
+@Main.String.appendChar.110 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3986,8 +3986,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.112) // call String.appendChar 2
-@main.String.appendChar.112 // call String.appendChar // push RP
+(Main.String.appendChar.112) // call String.appendChar 2
+@Main.String.appendChar.112 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4040,8 +4040,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.114) // call String.appendChar 2
-@main.String.appendChar.114 // call String.appendChar // push RP
+(Main.String.appendChar.114) // call String.appendChar 2
+@Main.String.appendChar.114 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4094,8 +4094,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.116) // call String.appendChar 2
-@main.String.appendChar.116 // call String.appendChar // push RP
+(Main.String.appendChar.116) // call String.appendChar 2
+@Main.String.appendChar.116 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4148,8 +4148,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.118) // call String.appendChar 2
-@main.String.appendChar.118 // call String.appendChar // push RP
+(Main.String.appendChar.118) // call String.appendChar 2
+@Main.String.appendChar.118 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4202,8 +4202,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.120) // call String.appendChar 2
-@main.String.appendChar.120 // call String.appendChar // push RP
+(Main.String.appendChar.120) // call String.appendChar 2
+@Main.String.appendChar.120 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4256,8 +4256,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.122) // call String.appendChar 2
-@main.String.appendChar.122 // call String.appendChar // push RP
+(Main.String.appendChar.122) // call String.appendChar 2
+@Main.String.appendChar.122 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4310,8 +4310,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.124) // call String.appendChar 2
-@main.String.appendChar.124 // call String.appendChar // push RP
+(Main.String.appendChar.124) // call String.appendChar 2
+@Main.String.appendChar.124 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4364,8 +4364,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.126) // call String.appendChar 2
-@main.String.appendChar.126 // call String.appendChar // push RP
+(Main.String.appendChar.126) // call String.appendChar 2
+@Main.String.appendChar.126 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4418,8 +4418,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.128) // call String.appendChar 2
-@main.String.appendChar.128 // call String.appendChar // push RP
+(Main.String.appendChar.128) // call String.appendChar 2
+@Main.String.appendChar.128 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4472,8 +4472,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.130) // call String.appendChar 2
-@main.String.appendChar.130 // call String.appendChar // push RP
+(Main.String.appendChar.130) // call String.appendChar 2
+@Main.String.appendChar.130 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4526,8 +4526,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.132) // call String.appendChar 2
-@main.String.appendChar.132 // call String.appendChar // push RP
+(Main.String.appendChar.132) // call String.appendChar 2
+@Main.String.appendChar.132 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4571,8 +4571,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.134) // call Output.printString 1
-@main.Output.printString.134 // call Output.printString // push RP
+(Main.Output.printString.134) // call Output.printString 1
+@Main.Output.printString.134 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4649,7 +4649,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP1
-(main.WHILE_EXP1) // label WHILE_EXP1
+(Main.WHILE_EXP1) // label WHILE_EXP1
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -4714,11 +4714,11 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.WHILE_END1
+@Main.WHILE_END1
 D;JNE // jump if not zero
 
 // call Keyboard.keyPressed 0
-(main.Keyboard.keyPressed.137) // call Keyboard.keyPressed 0
+(Main.Keyboard.keyPressed.137) // call Keyboard.keyPressed 0
 
 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return (constant)
@@ -4728,7 +4728,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Keyboard.keyPressed.137 // push RP
+@Main.Keyboard.keyPressed.137 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4787,11 +4787,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@main.WHILE_EXP1 // goto WHILE_EXP1
+@Main.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(main.WHILE_END1) // label WHILE_END1
+(Main.WHILE_END1) // label WHILE_END1
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -4821,7 +4821,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP2
-(main.WHILE_EXP2) // label WHILE_EXP2
+(Main.WHILE_EXP2) // label WHILE_EXP2
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -4894,11 +4894,11 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.WHILE_END2
+@Main.WHILE_END2
 D;JNE // jump if not zero
 
 // call Keyboard.keyPressed 0
-(main.Keyboard.keyPressed.140) // call Keyboard.keyPressed 0
+(Main.Keyboard.keyPressed.140) // call Keyboard.keyPressed 0
 
 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return (constant)
@@ -4908,7 +4908,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Keyboard.keyPressed.140 // push RP
+@Main.Keyboard.keyPressed.140 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4967,14 +4967,14 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP2
-@main.WHILE_EXP2 // goto WHILE_EXP2
+@Main.WHILE_EXP2 // goto WHILE_EXP2
 0;JMP // unconditional jump
 
 // label WHILE_END2
-(main.WHILE_END2) // label WHILE_END2
+(Main.WHILE_END2) // label WHILE_END2
 
 // call Output.println 0
-(main.Output.println.142) // call Output.println 0
+(Main.Output.println.142) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -4984,7 +4984,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.142 // push RP
+@Main.Output.println.142 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5097,15 +5097,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.IF_TRUE0
+@Main.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@main.IF_FALSE0 // goto IF_FALSE0
+@Main.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(main.IF_TRUE0) // label IF_TRUE0
+(Main.IF_TRUE0) // label IF_TRUE0
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -5117,8 +5117,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.145) // call String.new 1
-@main.String.new.145 // call String.new // push RP
+(Main.String.new.145) // call String.new 1
+@Main.String.new.145 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5171,8 +5171,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.147) // call String.appendChar 2
-@main.String.appendChar.147 // call String.appendChar // push RP
+(Main.String.appendChar.147) // call String.appendChar 2
+@Main.String.appendChar.147 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5225,8 +5225,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.149) // call String.appendChar 2
-@main.String.appendChar.149 // call String.appendChar // push RP
+(Main.String.appendChar.149) // call String.appendChar 2
+@Main.String.appendChar.149 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5270,8 +5270,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.151) // call Output.printString 1
-@main.Output.printString.151 // call Output.printString // push RP
+(Main.Output.printString.151) // call Output.printString 1
+@Main.Output.printString.151 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5348,7 +5348,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.153) // call Output.println 0
+(Main.Output.println.153) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -5358,7 +5358,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.153 // push RP
+@Main.Output.println.153 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5449,14 +5449,14 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(main.IF_FALSE0) // label IF_FALSE0
+(Main.IF_FALSE0) // label IF_FALSE0
 
 // goto WHILE_EXP0
-@main.WHILE_EXP0 // goto WHILE_EXP0
+@Main.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(main.WHILE_END0) // label WHILE_END0
+(Main.WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -5492,8 +5492,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.155) // call String.new 1
-@main.String.new.155 // call String.new // push RP
+(Main.String.new.155) // call String.new 1
+@Main.String.new.155 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5546,8 +5546,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.157) // call String.appendChar 2
-@main.String.appendChar.157 // call String.appendChar // push RP
+(Main.String.appendChar.157) // call String.appendChar 2
+@Main.String.appendChar.157 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5600,8 +5600,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.159) // call String.appendChar 2
-@main.String.appendChar.159 // call String.appendChar // push RP
+(Main.String.appendChar.159) // call String.appendChar 2
+@Main.String.appendChar.159 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5654,8 +5654,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.161) // call String.appendChar 2
-@main.String.appendChar.161 // call String.appendChar // push RP
+(Main.String.appendChar.161) // call String.appendChar 2
+@Main.String.appendChar.161 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5708,8 +5708,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.163) // call String.appendChar 2
-@main.String.appendChar.163 // call String.appendChar // push RP
+(Main.String.appendChar.163) // call String.appendChar 2
+@Main.String.appendChar.163 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5762,8 +5762,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.165) // call String.appendChar 2
-@main.String.appendChar.165 // call String.appendChar // push RP
+(Main.String.appendChar.165) // call String.appendChar 2
+@Main.String.appendChar.165 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5816,8 +5816,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.167) // call String.appendChar 2
-@main.String.appendChar.167 // call String.appendChar // push RP
+(Main.String.appendChar.167) // call String.appendChar 2
+@Main.String.appendChar.167 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5870,8 +5870,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.169) // call String.appendChar 2
-@main.String.appendChar.169 // call String.appendChar // push RP
+(Main.String.appendChar.169) // call String.appendChar 2
+@Main.String.appendChar.169 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5924,8 +5924,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.171) // call String.appendChar 2
-@main.String.appendChar.171 // call String.appendChar // push RP
+(Main.String.appendChar.171) // call String.appendChar 2
+@Main.String.appendChar.171 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5978,8 +5978,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.173) // call String.appendChar 2
-@main.String.appendChar.173 // call String.appendChar // push RP
+(Main.String.appendChar.173) // call String.appendChar 2
+@Main.String.appendChar.173 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6032,8 +6032,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.175) // call String.appendChar 2
-@main.String.appendChar.175 // call String.appendChar // push RP
+(Main.String.appendChar.175) // call String.appendChar 2
+@Main.String.appendChar.175 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6086,8 +6086,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.177) // call String.appendChar 2
-@main.String.appendChar.177 // call String.appendChar // push RP
+(Main.String.appendChar.177) // call String.appendChar 2
+@Main.String.appendChar.177 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6140,8 +6140,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.179) // call String.appendChar 2
-@main.String.appendChar.179 // call String.appendChar // push RP
+(Main.String.appendChar.179) // call String.appendChar 2
+@Main.String.appendChar.179 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6194,8 +6194,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.181) // call String.appendChar 2
-@main.String.appendChar.181 // call String.appendChar // push RP
+(Main.String.appendChar.181) // call String.appendChar 2
+@Main.String.appendChar.181 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6248,8 +6248,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.183) // call String.appendChar 2
-@main.String.appendChar.183 // call String.appendChar // push RP
+(Main.String.appendChar.183) // call String.appendChar 2
+@Main.String.appendChar.183 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6293,8 +6293,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.185) // call Output.printString 1
-@main.Output.printString.185 // call Output.printString // push RP
+(Main.Output.printString.185) // call Output.printString 1
+@Main.Output.printString.185 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6371,7 +6371,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.187) // call Output.println 0
+(Main.Output.println.187) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -6381,7 +6381,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.187 // push RP
+@Main.Output.println.187 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6449,8 +6449,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.189) // call String.new 1
-@main.String.new.189 // call String.new // push RP
+(Main.String.new.189) // call String.new 1
+@Main.String.new.189 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6503,8 +6503,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.191) // call String.appendChar 2
-@main.String.appendChar.191 // call String.appendChar // push RP
+(Main.String.appendChar.191) // call String.appendChar 2
+@Main.String.appendChar.191 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6557,8 +6557,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.193) // call String.appendChar 2
-@main.String.appendChar.193 // call String.appendChar // push RP
+(Main.String.appendChar.193) // call String.appendChar 2
+@Main.String.appendChar.193 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6611,8 +6611,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.195) // call String.appendChar 2
-@main.String.appendChar.195 // call String.appendChar // push RP
+(Main.String.appendChar.195) // call String.appendChar 2
+@Main.String.appendChar.195 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6665,8 +6665,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.197) // call String.appendChar 2
-@main.String.appendChar.197 // call String.appendChar // push RP
+(Main.String.appendChar.197) // call String.appendChar 2
+@Main.String.appendChar.197 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6719,8 +6719,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.199) // call String.appendChar 2
-@main.String.appendChar.199 // call String.appendChar // push RP
+(Main.String.appendChar.199) // call String.appendChar 2
+@Main.String.appendChar.199 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6773,8 +6773,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.201) // call String.appendChar 2
-@main.String.appendChar.201 // call String.appendChar // push RP
+(Main.String.appendChar.201) // call String.appendChar 2
+@Main.String.appendChar.201 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6827,8 +6827,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.203) // call String.appendChar 2
-@main.String.appendChar.203 // call String.appendChar // push RP
+(Main.String.appendChar.203) // call String.appendChar 2
+@Main.String.appendChar.203 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6881,8 +6881,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.205) // call String.appendChar 2
-@main.String.appendChar.205 // call String.appendChar // push RP
+(Main.String.appendChar.205) // call String.appendChar 2
+@Main.String.appendChar.205 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6935,8 +6935,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.207) // call String.appendChar 2
-@main.String.appendChar.207 // call String.appendChar // push RP
+(Main.String.appendChar.207) // call String.appendChar 2
+@Main.String.appendChar.207 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -6989,8 +6989,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.209) // call String.appendChar 2
-@main.String.appendChar.209 // call String.appendChar // push RP
+(Main.String.appendChar.209) // call String.appendChar 2
+@Main.String.appendChar.209 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7043,8 +7043,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.211) // call String.appendChar 2
-@main.String.appendChar.211 // call String.appendChar // push RP
+(Main.String.appendChar.211) // call String.appendChar 2
+@Main.String.appendChar.211 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7097,8 +7097,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.213) // call String.appendChar 2
-@main.String.appendChar.213 // call String.appendChar // push RP
+(Main.String.appendChar.213) // call String.appendChar 2
+@Main.String.appendChar.213 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7151,8 +7151,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.215) // call String.appendChar 2
-@main.String.appendChar.215 // call String.appendChar // push RP
+(Main.String.appendChar.215) // call String.appendChar 2
+@Main.String.appendChar.215 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7205,8 +7205,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.217) // call String.appendChar 2
-@main.String.appendChar.217 // call String.appendChar // push RP
+(Main.String.appendChar.217) // call String.appendChar 2
+@Main.String.appendChar.217 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7259,8 +7259,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.219) // call String.appendChar 2
-@main.String.appendChar.219 // call String.appendChar // push RP
+(Main.String.appendChar.219) // call String.appendChar 2
+@Main.String.appendChar.219 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7313,8 +7313,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.221) // call String.appendChar 2
-@main.String.appendChar.221 // call String.appendChar // push RP
+(Main.String.appendChar.221) // call String.appendChar 2
+@Main.String.appendChar.221 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7367,8 +7367,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.223) // call String.appendChar 2
-@main.String.appendChar.223 // call String.appendChar // push RP
+(Main.String.appendChar.223) // call String.appendChar 2
+@Main.String.appendChar.223 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7421,8 +7421,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.225) // call String.appendChar 2
-@main.String.appendChar.225 // call String.appendChar // push RP
+(Main.String.appendChar.225) // call String.appendChar 2
+@Main.String.appendChar.225 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7475,8 +7475,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.227) // call String.appendChar 2
-@main.String.appendChar.227 // call String.appendChar // push RP
+(Main.String.appendChar.227) // call String.appendChar 2
+@Main.String.appendChar.227 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7529,8 +7529,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.229) // call String.appendChar 2
-@main.String.appendChar.229 // call String.appendChar // push RP
+(Main.String.appendChar.229) // call String.appendChar 2
+@Main.String.appendChar.229 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7583,8 +7583,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.231) // call String.appendChar 2
-@main.String.appendChar.231 // call String.appendChar // push RP
+(Main.String.appendChar.231) // call String.appendChar 2
+@Main.String.appendChar.231 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7637,8 +7637,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.233) // call String.appendChar 2
-@main.String.appendChar.233 // call String.appendChar // push RP
+(Main.String.appendChar.233) // call String.appendChar 2
+@Main.String.appendChar.233 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7691,8 +7691,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.235) // call String.appendChar 2
-@main.String.appendChar.235 // call String.appendChar // push RP
+(Main.String.appendChar.235) // call String.appendChar 2
+@Main.String.appendChar.235 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7745,8 +7745,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.237) // call String.appendChar 2
-@main.String.appendChar.237 // call String.appendChar // push RP
+(Main.String.appendChar.237) // call String.appendChar 2
+@Main.String.appendChar.237 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7799,8 +7799,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.239) // call String.appendChar 2
-@main.String.appendChar.239 // call String.appendChar // push RP
+(Main.String.appendChar.239) // call String.appendChar 2
+@Main.String.appendChar.239 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7853,8 +7853,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.241) // call String.appendChar 2
-@main.String.appendChar.241 // call String.appendChar // push RP
+(Main.String.appendChar.241) // call String.appendChar 2
+@Main.String.appendChar.241 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7907,8 +7907,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.243) // call String.appendChar 2
-@main.String.appendChar.243 // call String.appendChar // push RP
+(Main.String.appendChar.243) // call String.appendChar 2
+@Main.String.appendChar.243 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7961,8 +7961,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.245) // call String.appendChar 2
-@main.String.appendChar.245 // call String.appendChar // push RP
+(Main.String.appendChar.245) // call String.appendChar 2
+@Main.String.appendChar.245 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8015,8 +8015,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.247) // call String.appendChar 2
-@main.String.appendChar.247 // call String.appendChar // push RP
+(Main.String.appendChar.247) // call String.appendChar 2
+@Main.String.appendChar.247 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8069,8 +8069,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.249) // call String.appendChar 2
-@main.String.appendChar.249 // call String.appendChar // push RP
+(Main.String.appendChar.249) // call String.appendChar 2
+@Main.String.appendChar.249 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8123,8 +8123,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.251) // call String.appendChar 2
-@main.String.appendChar.251 // call String.appendChar // push RP
+(Main.String.appendChar.251) // call String.appendChar 2
+@Main.String.appendChar.251 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8177,8 +8177,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.253) // call String.appendChar 2
-@main.String.appendChar.253 // call String.appendChar // push RP
+(Main.String.appendChar.253) // call String.appendChar 2
+@Main.String.appendChar.253 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8231,8 +8231,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.255) // call String.appendChar 2
-@main.String.appendChar.255 // call String.appendChar // push RP
+(Main.String.appendChar.255) // call String.appendChar 2
+@Main.String.appendChar.255 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8285,8 +8285,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.257) // call String.appendChar 2
-@main.String.appendChar.257 // call String.appendChar // push RP
+(Main.String.appendChar.257) // call String.appendChar 2
+@Main.String.appendChar.257 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8339,8 +8339,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.259) // call String.appendChar 2
-@main.String.appendChar.259 // call String.appendChar // push RP
+(Main.String.appendChar.259) // call String.appendChar 2
+@Main.String.appendChar.259 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8393,8 +8393,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.261) // call String.appendChar 2
-@main.String.appendChar.261 // call String.appendChar // push RP
+(Main.String.appendChar.261) // call String.appendChar 2
+@Main.String.appendChar.261 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8447,8 +8447,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.263) // call String.appendChar 2
-@main.String.appendChar.263 // call String.appendChar // push RP
+(Main.String.appendChar.263) // call String.appendChar 2
+@Main.String.appendChar.263 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8501,8 +8501,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.265) // call String.appendChar 2
-@main.String.appendChar.265 // call String.appendChar // push RP
+(Main.String.appendChar.265) // call String.appendChar 2
+@Main.String.appendChar.265 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8555,8 +8555,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.267) // call String.appendChar 2
-@main.String.appendChar.267 // call String.appendChar // push RP
+(Main.String.appendChar.267) // call String.appendChar 2
+@Main.String.appendChar.267 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8609,8 +8609,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.269) // call String.appendChar 2
-@main.String.appendChar.269 // call String.appendChar // push RP
+(Main.String.appendChar.269) // call String.appendChar 2
+@Main.String.appendChar.269 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8663,8 +8663,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.271) // call String.appendChar 2
-@main.String.appendChar.271 // call String.appendChar // push RP
+(Main.String.appendChar.271) // call String.appendChar 2
+@Main.String.appendChar.271 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8717,8 +8717,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.273) // call String.appendChar 2
-@main.String.appendChar.273 // call String.appendChar // push RP
+(Main.String.appendChar.273) // call String.appendChar 2
+@Main.String.appendChar.273 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8771,8 +8771,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.275) // call String.appendChar 2
-@main.String.appendChar.275 // call String.appendChar // push RP
+(Main.String.appendChar.275) // call String.appendChar 2
+@Main.String.appendChar.275 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8825,8 +8825,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.277) // call String.appendChar 2
-@main.String.appendChar.277 // call String.appendChar // push RP
+(Main.String.appendChar.277) // call String.appendChar 2
+@Main.String.appendChar.277 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8879,8 +8879,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.279) // call String.appendChar 2
-@main.String.appendChar.279 // call String.appendChar // push RP
+(Main.String.appendChar.279) // call String.appendChar 2
+@Main.String.appendChar.279 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8933,8 +8933,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.281) // call String.appendChar 2
-@main.String.appendChar.281 // call String.appendChar // push RP
+(Main.String.appendChar.281) // call String.appendChar 2
+@Main.String.appendChar.281 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -8987,8 +8987,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.283) // call String.appendChar 2
-@main.String.appendChar.283 // call String.appendChar // push RP
+(Main.String.appendChar.283) // call String.appendChar 2
+@Main.String.appendChar.283 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9041,8 +9041,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.285) // call String.appendChar 2
-@main.String.appendChar.285 // call String.appendChar // push RP
+(Main.String.appendChar.285) // call String.appendChar 2
+@Main.String.appendChar.285 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9095,8 +9095,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.287) // call String.appendChar 2
-@main.String.appendChar.287 // call String.appendChar // push RP
+(Main.String.appendChar.287) // call String.appendChar 2
+@Main.String.appendChar.287 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9149,8 +9149,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.289) // call String.appendChar 2
-@main.String.appendChar.289 // call String.appendChar // push RP
+(Main.String.appendChar.289) // call String.appendChar 2
+@Main.String.appendChar.289 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9203,8 +9203,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.291) // call String.appendChar 2
-@main.String.appendChar.291 // call String.appendChar // push RP
+(Main.String.appendChar.291) // call String.appendChar 2
+@Main.String.appendChar.291 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9257,8 +9257,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.293) // call String.appendChar 2
-@main.String.appendChar.293 // call String.appendChar // push RP
+(Main.String.appendChar.293) // call String.appendChar 2
+@Main.String.appendChar.293 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9311,8 +9311,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.295) // call String.appendChar 2
-@main.String.appendChar.295 // call String.appendChar // push RP
+(Main.String.appendChar.295) // call String.appendChar 2
+@Main.String.appendChar.295 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9365,8 +9365,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.297) // call String.appendChar 2
-@main.String.appendChar.297 // call String.appendChar // push RP
+(Main.String.appendChar.297) // call String.appendChar 2
+@Main.String.appendChar.297 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9419,8 +9419,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.299) // call String.appendChar 2
-@main.String.appendChar.299 // call String.appendChar // push RP
+(Main.String.appendChar.299) // call String.appendChar 2
+@Main.String.appendChar.299 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9473,8 +9473,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.301) // call String.appendChar 2
-@main.String.appendChar.301 // call String.appendChar // push RP
+(Main.String.appendChar.301) // call String.appendChar 2
+@Main.String.appendChar.301 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9527,8 +9527,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.303) // call String.appendChar 2
-@main.String.appendChar.303 // call String.appendChar // push RP
+(Main.String.appendChar.303) // call String.appendChar 2
+@Main.String.appendChar.303 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9581,8 +9581,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.305) // call String.appendChar 2
-@main.String.appendChar.305 // call String.appendChar // push RP
+(Main.String.appendChar.305) // call String.appendChar 2
+@Main.String.appendChar.305 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9635,8 +9635,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.307) // call String.appendChar 2
-@main.String.appendChar.307 // call String.appendChar // push RP
+(Main.String.appendChar.307) // call String.appendChar 2
+@Main.String.appendChar.307 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9680,8 +9680,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.309) // call Output.printString 1
-@main.Output.printString.309 // call Output.printString // push RP
+(Main.Output.printString.309) // call Output.printString 1
+@Main.Output.printString.309 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9758,7 +9758,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.311) // call Output.println 0
+(Main.Output.println.311) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -9768,7 +9768,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.311 // push RP
+@Main.Output.println.311 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9827,7 +9827,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP3
-(main.WHILE_EXP3) // label WHILE_EXP3
+(Main.WHILE_EXP3) // label WHILE_EXP3
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -9865,7 +9865,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.WHILE_END3
+@Main.WHILE_END3
 D;JNE // jump if not zero
 
 // push constant 29
@@ -9878,8 +9878,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.313) // call String.new 1
-@main.String.new.313 // call String.new // push RP
+(Main.String.new.313) // call String.new 1
+@Main.String.new.313 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9932,8 +9932,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.315) // call String.appendChar 2
-@main.String.appendChar.315 // call String.appendChar // push RP
+(Main.String.appendChar.315) // call String.appendChar 2
+@Main.String.appendChar.315 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -9986,8 +9986,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.317) // call String.appendChar 2
-@main.String.appendChar.317 // call String.appendChar // push RP
+(Main.String.appendChar.317) // call String.appendChar 2
+@Main.String.appendChar.317 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10040,8 +10040,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.319) // call String.appendChar 2
-@main.String.appendChar.319 // call String.appendChar // push RP
+(Main.String.appendChar.319) // call String.appendChar 2
+@Main.String.appendChar.319 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10094,8 +10094,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.321) // call String.appendChar 2
-@main.String.appendChar.321 // call String.appendChar // push RP
+(Main.String.appendChar.321) // call String.appendChar 2
+@Main.String.appendChar.321 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10148,8 +10148,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.323) // call String.appendChar 2
-@main.String.appendChar.323 // call String.appendChar // push RP
+(Main.String.appendChar.323) // call String.appendChar 2
+@Main.String.appendChar.323 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10202,8 +10202,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.325) // call String.appendChar 2
-@main.String.appendChar.325 // call String.appendChar // push RP
+(Main.String.appendChar.325) // call String.appendChar 2
+@Main.String.appendChar.325 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10256,8 +10256,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.327) // call String.appendChar 2
-@main.String.appendChar.327 // call String.appendChar // push RP
+(Main.String.appendChar.327) // call String.appendChar 2
+@Main.String.appendChar.327 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10310,8 +10310,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.329) // call String.appendChar 2
-@main.String.appendChar.329 // call String.appendChar // push RP
+(Main.String.appendChar.329) // call String.appendChar 2
+@Main.String.appendChar.329 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10364,8 +10364,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.331) // call String.appendChar 2
-@main.String.appendChar.331 // call String.appendChar // push RP
+(Main.String.appendChar.331) // call String.appendChar 2
+@Main.String.appendChar.331 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10418,8 +10418,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.333) // call String.appendChar 2
-@main.String.appendChar.333 // call String.appendChar // push RP
+(Main.String.appendChar.333) // call String.appendChar 2
+@Main.String.appendChar.333 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10472,8 +10472,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.335) // call String.appendChar 2
-@main.String.appendChar.335 // call String.appendChar // push RP
+(Main.String.appendChar.335) // call String.appendChar 2
+@Main.String.appendChar.335 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10526,8 +10526,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.337) // call String.appendChar 2
-@main.String.appendChar.337 // call String.appendChar // push RP
+(Main.String.appendChar.337) // call String.appendChar 2
+@Main.String.appendChar.337 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10580,8 +10580,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.339) // call String.appendChar 2
-@main.String.appendChar.339 // call String.appendChar // push RP
+(Main.String.appendChar.339) // call String.appendChar 2
+@Main.String.appendChar.339 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10634,8 +10634,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.341) // call String.appendChar 2
-@main.String.appendChar.341 // call String.appendChar // push RP
+(Main.String.appendChar.341) // call String.appendChar 2
+@Main.String.appendChar.341 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10688,8 +10688,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.343) // call String.appendChar 2
-@main.String.appendChar.343 // call String.appendChar // push RP
+(Main.String.appendChar.343) // call String.appendChar 2
+@Main.String.appendChar.343 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10742,8 +10742,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.345) // call String.appendChar 2
-@main.String.appendChar.345 // call String.appendChar // push RP
+(Main.String.appendChar.345) // call String.appendChar 2
+@Main.String.appendChar.345 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10796,8 +10796,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.347) // call String.appendChar 2
-@main.String.appendChar.347 // call String.appendChar // push RP
+(Main.String.appendChar.347) // call String.appendChar 2
+@Main.String.appendChar.347 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10850,8 +10850,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.349) // call String.appendChar 2
-@main.String.appendChar.349 // call String.appendChar // push RP
+(Main.String.appendChar.349) // call String.appendChar 2
+@Main.String.appendChar.349 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10904,8 +10904,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.351) // call String.appendChar 2
-@main.String.appendChar.351 // call String.appendChar // push RP
+(Main.String.appendChar.351) // call String.appendChar 2
+@Main.String.appendChar.351 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -10958,8 +10958,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.353) // call String.appendChar 2
-@main.String.appendChar.353 // call String.appendChar // push RP
+(Main.String.appendChar.353) // call String.appendChar 2
+@Main.String.appendChar.353 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11012,8 +11012,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.355) // call String.appendChar 2
-@main.String.appendChar.355 // call String.appendChar // push RP
+(Main.String.appendChar.355) // call String.appendChar 2
+@Main.String.appendChar.355 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11066,8 +11066,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.357) // call String.appendChar 2
-@main.String.appendChar.357 // call String.appendChar // push RP
+(Main.String.appendChar.357) // call String.appendChar 2
+@Main.String.appendChar.357 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11120,8 +11120,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.359) // call String.appendChar 2
-@main.String.appendChar.359 // call String.appendChar // push RP
+(Main.String.appendChar.359) // call String.appendChar 2
+@Main.String.appendChar.359 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11174,8 +11174,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.361) // call String.appendChar 2
-@main.String.appendChar.361 // call String.appendChar // push RP
+(Main.String.appendChar.361) // call String.appendChar 2
+@Main.String.appendChar.361 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11228,8 +11228,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.363) // call String.appendChar 2
-@main.String.appendChar.363 // call String.appendChar // push RP
+(Main.String.appendChar.363) // call String.appendChar 2
+@Main.String.appendChar.363 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11282,8 +11282,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.365) // call String.appendChar 2
-@main.String.appendChar.365 // call String.appendChar // push RP
+(Main.String.appendChar.365) // call String.appendChar 2
+@Main.String.appendChar.365 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11336,8 +11336,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.367) // call String.appendChar 2
-@main.String.appendChar.367 // call String.appendChar // push RP
+(Main.String.appendChar.367) // call String.appendChar 2
+@Main.String.appendChar.367 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11390,8 +11390,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.369) // call String.appendChar 2
-@main.String.appendChar.369 // call String.appendChar // push RP
+(Main.String.appendChar.369) // call String.appendChar 2
+@Main.String.appendChar.369 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11444,8 +11444,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.371) // call String.appendChar 2
-@main.String.appendChar.371 // call String.appendChar // push RP
+(Main.String.appendChar.371) // call String.appendChar 2
+@Main.String.appendChar.371 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11489,8 +11489,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.373) // call Output.printString 1
-@main.Output.printString.373 // call Output.printString // push RP
+(Main.Output.printString.373) // call Output.printString 1
+@Main.Output.printString.373 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11567,7 +11567,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Keyboard.readChar 0
-(main.Keyboard.readChar.375) // call Keyboard.readChar 0
+(Main.Keyboard.readChar.375) // call Keyboard.readChar 0
 
 // push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return (constant)
@@ -11577,7 +11577,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Keyboard.readChar.375 // push RP
+@Main.Keyboard.readChar.375 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11654,7 +11654,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.377) // call Output.println 0
+(Main.Output.println.377) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -11664,7 +11664,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.377 // push RP
+@Main.Output.println.377 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11777,15 +11777,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.IF_TRUE1
+@Main.IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@main.IF_FALSE1 // goto IF_FALSE1
+@Main.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(main.IF_TRUE1) // label IF_TRUE1
+(Main.IF_TRUE1) // label IF_TRUE1
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -11797,8 +11797,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.380) // call String.new 1
-@main.String.new.380 // call String.new // push RP
+(Main.String.new.380) // call String.new 1
+@Main.String.new.380 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11851,8 +11851,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.382) // call String.appendChar 2
-@main.String.appendChar.382 // call String.appendChar // push RP
+(Main.String.appendChar.382) // call String.appendChar 2
+@Main.String.appendChar.382 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11905,8 +11905,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.384) // call String.appendChar 2
-@main.String.appendChar.384 // call String.appendChar // push RP
+(Main.String.appendChar.384) // call String.appendChar 2
+@Main.String.appendChar.384 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -11950,8 +11950,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.386) // call Output.printString 1
-@main.Output.printString.386 // call Output.printString // push RP
+(Main.Output.printString.386) // call Output.printString 1
+@Main.Output.printString.386 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12028,7 +12028,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.388) // call Output.println 0
+(Main.Output.println.388) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -12038,7 +12038,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.388 // push RP
+@Main.Output.println.388 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12129,14 +12129,14 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(main.IF_FALSE1) // label IF_FALSE1
+(Main.IF_FALSE1) // label IF_FALSE1
 
 // goto WHILE_EXP3
-@main.WHILE_EXP3 // goto WHILE_EXP3
+@Main.WHILE_EXP3 // goto WHILE_EXP3
 0;JMP // unconditional jump
 
 // label WHILE_END3
-(main.WHILE_END3) // label WHILE_END3
+(Main.WHILE_END3) // label WHILE_END3
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -12172,8 +12172,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.390) // call String.new 1
-@main.String.new.390 // call String.new // push RP
+(Main.String.new.390) // call String.new 1
+@Main.String.new.390 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12226,8 +12226,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.392) // call String.appendChar 2
-@main.String.appendChar.392 // call String.appendChar // push RP
+(Main.String.appendChar.392) // call String.appendChar 2
+@Main.String.appendChar.392 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12280,8 +12280,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.394) // call String.appendChar 2
-@main.String.appendChar.394 // call String.appendChar // push RP
+(Main.String.appendChar.394) // call String.appendChar 2
+@Main.String.appendChar.394 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12334,8 +12334,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.396) // call String.appendChar 2
-@main.String.appendChar.396 // call String.appendChar // push RP
+(Main.String.appendChar.396) // call String.appendChar 2
+@Main.String.appendChar.396 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12388,8 +12388,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.398) // call String.appendChar 2
-@main.String.appendChar.398 // call String.appendChar // push RP
+(Main.String.appendChar.398) // call String.appendChar 2
+@Main.String.appendChar.398 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12442,8 +12442,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.400) // call String.appendChar 2
-@main.String.appendChar.400 // call String.appendChar // push RP
+(Main.String.appendChar.400) // call String.appendChar 2
+@Main.String.appendChar.400 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12496,8 +12496,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.402) // call String.appendChar 2
-@main.String.appendChar.402 // call String.appendChar // push RP
+(Main.String.appendChar.402) // call String.appendChar 2
+@Main.String.appendChar.402 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12550,8 +12550,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.404) // call String.appendChar 2
-@main.String.appendChar.404 // call String.appendChar // push RP
+(Main.String.appendChar.404) // call String.appendChar 2
+@Main.String.appendChar.404 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12604,8 +12604,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.406) // call String.appendChar 2
-@main.String.appendChar.406 // call String.appendChar // push RP
+(Main.String.appendChar.406) // call String.appendChar 2
+@Main.String.appendChar.406 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12658,8 +12658,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.408) // call String.appendChar 2
-@main.String.appendChar.408 // call String.appendChar // push RP
+(Main.String.appendChar.408) // call String.appendChar 2
+@Main.String.appendChar.408 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12712,8 +12712,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.410) // call String.appendChar 2
-@main.String.appendChar.410 // call String.appendChar // push RP
+(Main.String.appendChar.410) // call String.appendChar 2
+@Main.String.appendChar.410 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12766,8 +12766,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.412) // call String.appendChar 2
-@main.String.appendChar.412 // call String.appendChar // push RP
+(Main.String.appendChar.412) // call String.appendChar 2
+@Main.String.appendChar.412 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12820,8 +12820,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.414) // call String.appendChar 2
-@main.String.appendChar.414 // call String.appendChar // push RP
+(Main.String.appendChar.414) // call String.appendChar 2
+@Main.String.appendChar.414 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12874,8 +12874,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.416) // call String.appendChar 2
-@main.String.appendChar.416 // call String.appendChar // push RP
+(Main.String.appendChar.416) // call String.appendChar 2
+@Main.String.appendChar.416 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12928,8 +12928,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.418) // call String.appendChar 2
-@main.String.appendChar.418 // call String.appendChar // push RP
+(Main.String.appendChar.418) // call String.appendChar 2
+@Main.String.appendChar.418 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -12973,8 +12973,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.420) // call Output.printString 1
-@main.Output.printString.420 // call Output.printString // push RP
+(Main.Output.printString.420) // call Output.printString 1
+@Main.Output.printString.420 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13051,7 +13051,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.422) // call Output.println 0
+(Main.Output.println.422) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -13061,7 +13061,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.422 // push RP
+@Main.Output.println.422 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13129,8 +13129,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.424) // call String.new 1
-@main.String.new.424 // call String.new // push RP
+(Main.String.new.424) // call String.new 1
+@Main.String.new.424 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13183,8 +13183,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.426) // call String.appendChar 2
-@main.String.appendChar.426 // call String.appendChar // push RP
+(Main.String.appendChar.426) // call String.appendChar 2
+@Main.String.appendChar.426 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13237,8 +13237,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.428) // call String.appendChar 2
-@main.String.appendChar.428 // call String.appendChar // push RP
+(Main.String.appendChar.428) // call String.appendChar 2
+@Main.String.appendChar.428 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13291,8 +13291,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.430) // call String.appendChar 2
-@main.String.appendChar.430 // call String.appendChar // push RP
+(Main.String.appendChar.430) // call String.appendChar 2
+@Main.String.appendChar.430 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13345,8 +13345,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.432) // call String.appendChar 2
-@main.String.appendChar.432 // call String.appendChar // push RP
+(Main.String.appendChar.432) // call String.appendChar 2
+@Main.String.appendChar.432 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13399,8 +13399,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.434) // call String.appendChar 2
-@main.String.appendChar.434 // call String.appendChar // push RP
+(Main.String.appendChar.434) // call String.appendChar 2
+@Main.String.appendChar.434 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13453,8 +13453,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.436) // call String.appendChar 2
-@main.String.appendChar.436 // call String.appendChar // push RP
+(Main.String.appendChar.436) // call String.appendChar 2
+@Main.String.appendChar.436 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13507,8 +13507,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.438) // call String.appendChar 2
-@main.String.appendChar.438 // call String.appendChar // push RP
+(Main.String.appendChar.438) // call String.appendChar 2
+@Main.String.appendChar.438 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13561,8 +13561,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.440) // call String.appendChar 2
-@main.String.appendChar.440 // call String.appendChar // push RP
+(Main.String.appendChar.440) // call String.appendChar 2
+@Main.String.appendChar.440 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13615,8 +13615,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.442) // call String.appendChar 2
-@main.String.appendChar.442 // call String.appendChar // push RP
+(Main.String.appendChar.442) // call String.appendChar 2
+@Main.String.appendChar.442 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13669,8 +13669,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.444) // call String.appendChar 2
-@main.String.appendChar.444 // call String.appendChar // push RP
+(Main.String.appendChar.444) // call String.appendChar 2
+@Main.String.appendChar.444 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13723,8 +13723,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.446) // call String.appendChar 2
-@main.String.appendChar.446 // call String.appendChar // push RP
+(Main.String.appendChar.446) // call String.appendChar 2
+@Main.String.appendChar.446 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13777,8 +13777,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.448) // call String.appendChar 2
-@main.String.appendChar.448 // call String.appendChar // push RP
+(Main.String.appendChar.448) // call String.appendChar 2
+@Main.String.appendChar.448 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13831,8 +13831,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.450) // call String.appendChar 2
-@main.String.appendChar.450 // call String.appendChar // push RP
+(Main.String.appendChar.450) // call String.appendChar 2
+@Main.String.appendChar.450 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13885,8 +13885,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.452) // call String.appendChar 2
-@main.String.appendChar.452 // call String.appendChar // push RP
+(Main.String.appendChar.452) // call String.appendChar 2
+@Main.String.appendChar.452 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13939,8 +13939,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.454) // call String.appendChar 2
-@main.String.appendChar.454 // call String.appendChar // push RP
+(Main.String.appendChar.454) // call String.appendChar 2
+@Main.String.appendChar.454 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -13993,8 +13993,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.456) // call String.appendChar 2
-@main.String.appendChar.456 // call String.appendChar // push RP
+(Main.String.appendChar.456) // call String.appendChar 2
+@Main.String.appendChar.456 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14047,8 +14047,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.458) // call String.appendChar 2
-@main.String.appendChar.458 // call String.appendChar // push RP
+(Main.String.appendChar.458) // call String.appendChar 2
+@Main.String.appendChar.458 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14101,8 +14101,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.460) // call String.appendChar 2
-@main.String.appendChar.460 // call String.appendChar // push RP
+(Main.String.appendChar.460) // call String.appendChar 2
+@Main.String.appendChar.460 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14155,8 +14155,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.462) // call String.appendChar 2
-@main.String.appendChar.462 // call String.appendChar // push RP
+(Main.String.appendChar.462) // call String.appendChar 2
+@Main.String.appendChar.462 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14209,8 +14209,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.464) // call String.appendChar 2
-@main.String.appendChar.464 // call String.appendChar // push RP
+(Main.String.appendChar.464) // call String.appendChar 2
+@Main.String.appendChar.464 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14263,8 +14263,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.466) // call String.appendChar 2
-@main.String.appendChar.466 // call String.appendChar // push RP
+(Main.String.appendChar.466) // call String.appendChar 2
+@Main.String.appendChar.466 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14317,8 +14317,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.468) // call String.appendChar 2
-@main.String.appendChar.468 // call String.appendChar // push RP
+(Main.String.appendChar.468) // call String.appendChar 2
+@Main.String.appendChar.468 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14371,8 +14371,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.470) // call String.appendChar 2
-@main.String.appendChar.470 // call String.appendChar // push RP
+(Main.String.appendChar.470) // call String.appendChar 2
+@Main.String.appendChar.470 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14425,8 +14425,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.472) // call String.appendChar 2
-@main.String.appendChar.472 // call String.appendChar // push RP
+(Main.String.appendChar.472) // call String.appendChar 2
+@Main.String.appendChar.472 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14479,8 +14479,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.474) // call String.appendChar 2
-@main.String.appendChar.474 // call String.appendChar // push RP
+(Main.String.appendChar.474) // call String.appendChar 2
+@Main.String.appendChar.474 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14533,8 +14533,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.476) // call String.appendChar 2
-@main.String.appendChar.476 // call String.appendChar // push RP
+(Main.String.appendChar.476) // call String.appendChar 2
+@Main.String.appendChar.476 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14587,8 +14587,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.478) // call String.appendChar 2
-@main.String.appendChar.478 // call String.appendChar // push RP
+(Main.String.appendChar.478) // call String.appendChar 2
+@Main.String.appendChar.478 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14641,8 +14641,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.480) // call String.appendChar 2
-@main.String.appendChar.480 // call String.appendChar // push RP
+(Main.String.appendChar.480) // call String.appendChar 2
+@Main.String.appendChar.480 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14695,8 +14695,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.482) // call String.appendChar 2
-@main.String.appendChar.482 // call String.appendChar // push RP
+(Main.String.appendChar.482) // call String.appendChar 2
+@Main.String.appendChar.482 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14749,8 +14749,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.484) // call String.appendChar 2
-@main.String.appendChar.484 // call String.appendChar // push RP
+(Main.String.appendChar.484) // call String.appendChar 2
+@Main.String.appendChar.484 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14803,8 +14803,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.486) // call String.appendChar 2
-@main.String.appendChar.486 // call String.appendChar // push RP
+(Main.String.appendChar.486) // call String.appendChar 2
+@Main.String.appendChar.486 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14857,8 +14857,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.488) // call String.appendChar 2
-@main.String.appendChar.488 // call String.appendChar // push RP
+(Main.String.appendChar.488) // call String.appendChar 2
+@Main.String.appendChar.488 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14911,8 +14911,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.490) // call String.appendChar 2
-@main.String.appendChar.490 // call String.appendChar // push RP
+(Main.String.appendChar.490) // call String.appendChar 2
+@Main.String.appendChar.490 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -14965,8 +14965,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.492) // call String.appendChar 2
-@main.String.appendChar.492 // call String.appendChar // push RP
+(Main.String.appendChar.492) // call String.appendChar 2
+@Main.String.appendChar.492 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15019,8 +15019,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.494) // call String.appendChar 2
-@main.String.appendChar.494 // call String.appendChar // push RP
+(Main.String.appendChar.494) // call String.appendChar 2
+@Main.String.appendChar.494 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15073,8 +15073,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.496) // call String.appendChar 2
-@main.String.appendChar.496 // call String.appendChar // push RP
+(Main.String.appendChar.496) // call String.appendChar 2
+@Main.String.appendChar.496 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15127,8 +15127,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.498) // call String.appendChar 2
-@main.String.appendChar.498 // call String.appendChar // push RP
+(Main.String.appendChar.498) // call String.appendChar 2
+@Main.String.appendChar.498 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15181,8 +15181,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.500) // call String.appendChar 2
-@main.String.appendChar.500 // call String.appendChar // push RP
+(Main.String.appendChar.500) // call String.appendChar 2
+@Main.String.appendChar.500 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15226,8 +15226,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.502) // call Output.printString 1
-@main.Output.printString.502 // call Output.printString // push RP
+(Main.Output.printString.502) // call Output.printString 1
+@Main.Output.printString.502 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15304,7 +15304,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.504) // call Output.println 0
+(Main.Output.println.504) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -15314,7 +15314,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.504 // push RP
+@Main.Output.println.504 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15373,7 +15373,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP4
-(main.WHILE_EXP4) // label WHILE_EXP4
+(Main.WHILE_EXP4) // label WHILE_EXP4
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -15411,7 +15411,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.WHILE_END4
+@Main.WHILE_END4
 D;JNE // jump if not zero
 
 // push constant 36
@@ -15424,8 +15424,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.506) // call String.new 1
-@main.String.new.506 // call String.new // push RP
+(Main.String.new.506) // call String.new 1
+@Main.String.new.506 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15478,8 +15478,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.508) // call String.appendChar 2
-@main.String.appendChar.508 // call String.appendChar // push RP
+(Main.String.appendChar.508) // call String.appendChar 2
+@Main.String.appendChar.508 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15532,8 +15532,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.510) // call String.appendChar 2
-@main.String.appendChar.510 // call String.appendChar // push RP
+(Main.String.appendChar.510) // call String.appendChar 2
+@Main.String.appendChar.510 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15586,8 +15586,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.512) // call String.appendChar 2
-@main.String.appendChar.512 // call String.appendChar // push RP
+(Main.String.appendChar.512) // call String.appendChar 2
+@Main.String.appendChar.512 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15640,8 +15640,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.514) // call String.appendChar 2
-@main.String.appendChar.514 // call String.appendChar // push RP
+(Main.String.appendChar.514) // call String.appendChar 2
+@Main.String.appendChar.514 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15694,8 +15694,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.516) // call String.appendChar 2
-@main.String.appendChar.516 // call String.appendChar // push RP
+(Main.String.appendChar.516) // call String.appendChar 2
+@Main.String.appendChar.516 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15748,8 +15748,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.518) // call String.appendChar 2
-@main.String.appendChar.518 // call String.appendChar // push RP
+(Main.String.appendChar.518) // call String.appendChar 2
+@Main.String.appendChar.518 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15802,8 +15802,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.520) // call String.appendChar 2
-@main.String.appendChar.520 // call String.appendChar // push RP
+(Main.String.appendChar.520) // call String.appendChar 2
+@Main.String.appendChar.520 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15856,8 +15856,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.522) // call String.appendChar 2
-@main.String.appendChar.522 // call String.appendChar // push RP
+(Main.String.appendChar.522) // call String.appendChar 2
+@Main.String.appendChar.522 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15910,8 +15910,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.524) // call String.appendChar 2
-@main.String.appendChar.524 // call String.appendChar // push RP
+(Main.String.appendChar.524) // call String.appendChar 2
+@Main.String.appendChar.524 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -15964,8 +15964,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.526) // call String.appendChar 2
-@main.String.appendChar.526 // call String.appendChar // push RP
+(Main.String.appendChar.526) // call String.appendChar 2
+@Main.String.appendChar.526 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16018,8 +16018,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.528) // call String.appendChar 2
-@main.String.appendChar.528 // call String.appendChar // push RP
+(Main.String.appendChar.528) // call String.appendChar 2
+@Main.String.appendChar.528 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16072,8 +16072,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.530) // call String.appendChar 2
-@main.String.appendChar.530 // call String.appendChar // push RP
+(Main.String.appendChar.530) // call String.appendChar 2
+@Main.String.appendChar.530 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16126,8 +16126,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.532) // call String.appendChar 2
-@main.String.appendChar.532 // call String.appendChar // push RP
+(Main.String.appendChar.532) // call String.appendChar 2
+@Main.String.appendChar.532 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16180,8 +16180,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.534) // call String.appendChar 2
-@main.String.appendChar.534 // call String.appendChar // push RP
+(Main.String.appendChar.534) // call String.appendChar 2
+@Main.String.appendChar.534 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16234,8 +16234,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.536) // call String.appendChar 2
-@main.String.appendChar.536 // call String.appendChar // push RP
+(Main.String.appendChar.536) // call String.appendChar 2
+@Main.String.appendChar.536 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16288,8 +16288,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.538) // call String.appendChar 2
-@main.String.appendChar.538 // call String.appendChar // push RP
+(Main.String.appendChar.538) // call String.appendChar 2
+@Main.String.appendChar.538 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16342,8 +16342,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.540) // call String.appendChar 2
-@main.String.appendChar.540 // call String.appendChar // push RP
+(Main.String.appendChar.540) // call String.appendChar 2
+@Main.String.appendChar.540 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16396,8 +16396,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.542) // call String.appendChar 2
-@main.String.appendChar.542 // call String.appendChar // push RP
+(Main.String.appendChar.542) // call String.appendChar 2
+@Main.String.appendChar.542 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16450,8 +16450,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.544) // call String.appendChar 2
-@main.String.appendChar.544 // call String.appendChar // push RP
+(Main.String.appendChar.544) // call String.appendChar 2
+@Main.String.appendChar.544 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16504,8 +16504,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.546) // call String.appendChar 2
-@main.String.appendChar.546 // call String.appendChar // push RP
+(Main.String.appendChar.546) // call String.appendChar 2
+@Main.String.appendChar.546 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16558,8 +16558,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.548) // call String.appendChar 2
-@main.String.appendChar.548 // call String.appendChar // push RP
+(Main.String.appendChar.548) // call String.appendChar 2
+@Main.String.appendChar.548 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16612,8 +16612,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.550) // call String.appendChar 2
-@main.String.appendChar.550 // call String.appendChar // push RP
+(Main.String.appendChar.550) // call String.appendChar 2
+@Main.String.appendChar.550 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16666,8 +16666,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.552) // call String.appendChar 2
-@main.String.appendChar.552 // call String.appendChar // push RP
+(Main.String.appendChar.552) // call String.appendChar 2
+@Main.String.appendChar.552 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16720,8 +16720,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.554) // call String.appendChar 2
-@main.String.appendChar.554 // call String.appendChar // push RP
+(Main.String.appendChar.554) // call String.appendChar 2
+@Main.String.appendChar.554 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16774,8 +16774,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.556) // call String.appendChar 2
-@main.String.appendChar.556 // call String.appendChar // push RP
+(Main.String.appendChar.556) // call String.appendChar 2
+@Main.String.appendChar.556 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16828,8 +16828,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.558) // call String.appendChar 2
-@main.String.appendChar.558 // call String.appendChar // push RP
+(Main.String.appendChar.558) // call String.appendChar 2
+@Main.String.appendChar.558 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16882,8 +16882,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.560) // call String.appendChar 2
-@main.String.appendChar.560 // call String.appendChar // push RP
+(Main.String.appendChar.560) // call String.appendChar 2
+@Main.String.appendChar.560 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16936,8 +16936,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.562) // call String.appendChar 2
-@main.String.appendChar.562 // call String.appendChar // push RP
+(Main.String.appendChar.562) // call String.appendChar 2
+@Main.String.appendChar.562 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -16990,8 +16990,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.564) // call String.appendChar 2
-@main.String.appendChar.564 // call String.appendChar // push RP
+(Main.String.appendChar.564) // call String.appendChar 2
+@Main.String.appendChar.564 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17044,8 +17044,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.566) // call String.appendChar 2
-@main.String.appendChar.566 // call String.appendChar // push RP
+(Main.String.appendChar.566) // call String.appendChar 2
+@Main.String.appendChar.566 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17098,8 +17098,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.568) // call String.appendChar 2
-@main.String.appendChar.568 // call String.appendChar // push RP
+(Main.String.appendChar.568) // call String.appendChar 2
+@Main.String.appendChar.568 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17152,8 +17152,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.570) // call String.appendChar 2
-@main.String.appendChar.570 // call String.appendChar // push RP
+(Main.String.appendChar.570) // call String.appendChar 2
+@Main.String.appendChar.570 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17206,8 +17206,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.572) // call String.appendChar 2
-@main.String.appendChar.572 // call String.appendChar // push RP
+(Main.String.appendChar.572) // call String.appendChar 2
+@Main.String.appendChar.572 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17260,8 +17260,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.574) // call String.appendChar 2
-@main.String.appendChar.574 // call String.appendChar // push RP
+(Main.String.appendChar.574) // call String.appendChar 2
+@Main.String.appendChar.574 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17314,8 +17314,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.576) // call String.appendChar 2
-@main.String.appendChar.576 // call String.appendChar // push RP
+(Main.String.appendChar.576) // call String.appendChar 2
+@Main.String.appendChar.576 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17368,8 +17368,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.578) // call String.appendChar 2
-@main.String.appendChar.578 // call String.appendChar // push RP
+(Main.String.appendChar.578) // call String.appendChar 2
+@Main.String.appendChar.578 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17413,8 +17413,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Keyboard.readLine 1
-(main.Keyboard.readLine.580) // call Keyboard.readLine 1
-@main.Keyboard.readLine.580 // call Keyboard.readLine // push RP
+(Main.Keyboard.readLine.580) // call Keyboard.readLine 1
+@Main.Keyboard.readLine.580 // call Keyboard.readLine // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17530,8 +17530,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call String.length 1
-(main.String.length.582) // call String.length 1
-@main.String.length.582 // call String.length // push RP
+(Main.String.length.582) // call String.length 1
+@Main.String.length.582 // call String.length // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17617,15 +17617,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.IF_TRUE2
+@Main.IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@main.IF_FALSE2 // goto IF_FALSE2
+@Main.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(main.IF_TRUE2) // label IF_TRUE2
+(Main.IF_TRUE2) // label IF_TRUE2
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -17649,8 +17649,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.charAt 2
-(main.String.charAt.585) // call String.charAt 2
-@main.String.charAt.585 // call String.charAt // push RP
+(Main.String.charAt.585) // call String.charAt 2
+@Main.String.charAt.585 // call String.charAt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17750,8 +17750,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.charAt 2
-(main.String.charAt.588) // call String.charAt 2
-@main.String.charAt.588 // call String.charAt // push RP
+(Main.String.charAt.588) // call String.charAt 2
+@Main.String.charAt.588 // call String.charAt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17863,8 +17863,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.charAt 2
-(main.String.charAt.591) // call String.charAt 2
-@main.String.charAt.591 // call String.charAt // push RP
+(Main.String.charAt.591) // call String.charAt 2
+@Main.String.charAt.591 // call String.charAt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -17976,8 +17976,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.charAt 2
-(main.String.charAt.594) // call String.charAt 2
-@main.String.charAt.594 // call String.charAt // push RP
+(Main.String.charAt.594) // call String.charAt 2
+@Main.String.charAt.594 // call String.charAt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18075,15 +18075,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.IF_TRUE3
+@Main.IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@main.IF_FALSE3 // goto IF_FALSE3
+@Main.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(main.IF_TRUE3) // label IF_TRUE3
+(Main.IF_TRUE3) // label IF_TRUE3
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -18095,8 +18095,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.597) // call String.new 1
-@main.String.new.597 // call String.new // push RP
+(Main.String.new.597) // call String.new 1
+@Main.String.new.597 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18149,8 +18149,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.599) // call String.appendChar 2
-@main.String.appendChar.599 // call String.appendChar // push RP
+(Main.String.appendChar.599) // call String.appendChar 2
+@Main.String.appendChar.599 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18203,8 +18203,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.601) // call String.appendChar 2
-@main.String.appendChar.601 // call String.appendChar // push RP
+(Main.String.appendChar.601) // call String.appendChar 2
+@Main.String.appendChar.601 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18248,8 +18248,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.603) // call Output.printString 1
-@main.Output.printString.603 // call Output.printString // push RP
+(Main.Output.printString.603) // call Output.printString 1
+@Main.Output.printString.603 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18326,7 +18326,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.605) // call Output.println 0
+(Main.Output.println.605) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -18336,7 +18336,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.605 // push RP
+@Main.Output.println.605 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18427,17 +18427,17 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE3
-(main.IF_FALSE3) // label IF_FALSE3
+(Main.IF_FALSE3) // label IF_FALSE3
 
 // label IF_FALSE2
-(main.IF_FALSE2) // label IF_FALSE2
+(Main.IF_FALSE2) // label IF_FALSE2
 
 // goto WHILE_EXP4
-@main.WHILE_EXP4 // goto WHILE_EXP4
+@Main.WHILE_EXP4 // goto WHILE_EXP4
 0;JMP // unconditional jump
 
 // label WHILE_END4
-(main.WHILE_END4) // label WHILE_END4
+(Main.WHILE_END4) // label WHILE_END4
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -18473,8 +18473,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.607) // call String.new 1
-@main.String.new.607 // call String.new // push RP
+(Main.String.new.607) // call String.new 1
+@Main.String.new.607 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18527,8 +18527,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.609) // call String.appendChar 2
-@main.String.appendChar.609 // call String.appendChar // push RP
+(Main.String.appendChar.609) // call String.appendChar 2
+@Main.String.appendChar.609 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18581,8 +18581,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.611) // call String.appendChar 2
-@main.String.appendChar.611 // call String.appendChar // push RP
+(Main.String.appendChar.611) // call String.appendChar 2
+@Main.String.appendChar.611 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18635,8 +18635,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.613) // call String.appendChar 2
-@main.String.appendChar.613 // call String.appendChar // push RP
+(Main.String.appendChar.613) // call String.appendChar 2
+@Main.String.appendChar.613 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18689,8 +18689,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.615) // call String.appendChar 2
-@main.String.appendChar.615 // call String.appendChar // push RP
+(Main.String.appendChar.615) // call String.appendChar 2
+@Main.String.appendChar.615 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18743,8 +18743,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.617) // call String.appendChar 2
-@main.String.appendChar.617 // call String.appendChar // push RP
+(Main.String.appendChar.617) // call String.appendChar 2
+@Main.String.appendChar.617 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18797,8 +18797,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.619) // call String.appendChar 2
-@main.String.appendChar.619 // call String.appendChar // push RP
+(Main.String.appendChar.619) // call String.appendChar 2
+@Main.String.appendChar.619 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18851,8 +18851,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.621) // call String.appendChar 2
-@main.String.appendChar.621 // call String.appendChar // push RP
+(Main.String.appendChar.621) // call String.appendChar 2
+@Main.String.appendChar.621 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18905,8 +18905,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.623) // call String.appendChar 2
-@main.String.appendChar.623 // call String.appendChar // push RP
+(Main.String.appendChar.623) // call String.appendChar 2
+@Main.String.appendChar.623 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -18959,8 +18959,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.625) // call String.appendChar 2
-@main.String.appendChar.625 // call String.appendChar // push RP
+(Main.String.appendChar.625) // call String.appendChar 2
+@Main.String.appendChar.625 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19013,8 +19013,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.627) // call String.appendChar 2
-@main.String.appendChar.627 // call String.appendChar // push RP
+(Main.String.appendChar.627) // call String.appendChar 2
+@Main.String.appendChar.627 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19067,8 +19067,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.629) // call String.appendChar 2
-@main.String.appendChar.629 // call String.appendChar // push RP
+(Main.String.appendChar.629) // call String.appendChar 2
+@Main.String.appendChar.629 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19121,8 +19121,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.631) // call String.appendChar 2
-@main.String.appendChar.631 // call String.appendChar // push RP
+(Main.String.appendChar.631) // call String.appendChar 2
+@Main.String.appendChar.631 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19175,8 +19175,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.633) // call String.appendChar 2
-@main.String.appendChar.633 // call String.appendChar // push RP
+(Main.String.appendChar.633) // call String.appendChar 2
+@Main.String.appendChar.633 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19220,8 +19220,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.635) // call Output.printString 1
-@main.Output.printString.635 // call Output.printString // push RP
+(Main.Output.printString.635) // call Output.printString 1
+@Main.Output.printString.635 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19298,7 +19298,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.637) // call Output.println 0
+(Main.Output.println.637) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -19308,7 +19308,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.637 // push RP
+@Main.Output.println.637 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19376,8 +19376,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.639) // call String.new 1
-@main.String.new.639 // call String.new // push RP
+(Main.String.new.639) // call String.new 1
+@Main.String.new.639 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19430,8 +19430,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.641) // call String.appendChar 2
-@main.String.appendChar.641 // call String.appendChar // push RP
+(Main.String.appendChar.641) // call String.appendChar 2
+@Main.String.appendChar.641 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19484,8 +19484,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.643) // call String.appendChar 2
-@main.String.appendChar.643 // call String.appendChar // push RP
+(Main.String.appendChar.643) // call String.appendChar 2
+@Main.String.appendChar.643 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19538,8 +19538,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.645) // call String.appendChar 2
-@main.String.appendChar.645 // call String.appendChar // push RP
+(Main.String.appendChar.645) // call String.appendChar 2
+@Main.String.appendChar.645 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19592,8 +19592,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.647) // call String.appendChar 2
-@main.String.appendChar.647 // call String.appendChar // push RP
+(Main.String.appendChar.647) // call String.appendChar 2
+@Main.String.appendChar.647 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19646,8 +19646,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.649) // call String.appendChar 2
-@main.String.appendChar.649 // call String.appendChar // push RP
+(Main.String.appendChar.649) // call String.appendChar 2
+@Main.String.appendChar.649 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19700,8 +19700,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.651) // call String.appendChar 2
-@main.String.appendChar.651 // call String.appendChar // push RP
+(Main.String.appendChar.651) // call String.appendChar 2
+@Main.String.appendChar.651 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19754,8 +19754,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.653) // call String.appendChar 2
-@main.String.appendChar.653 // call String.appendChar // push RP
+(Main.String.appendChar.653) // call String.appendChar 2
+@Main.String.appendChar.653 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19808,8 +19808,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.655) // call String.appendChar 2
-@main.String.appendChar.655 // call String.appendChar // push RP
+(Main.String.appendChar.655) // call String.appendChar 2
+@Main.String.appendChar.655 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19862,8 +19862,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.657) // call String.appendChar 2
-@main.String.appendChar.657 // call String.appendChar // push RP
+(Main.String.appendChar.657) // call String.appendChar 2
+@Main.String.appendChar.657 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19916,8 +19916,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.659) // call String.appendChar 2
-@main.String.appendChar.659 // call String.appendChar // push RP
+(Main.String.appendChar.659) // call String.appendChar 2
+@Main.String.appendChar.659 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -19970,8 +19970,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.661) // call String.appendChar 2
-@main.String.appendChar.661 // call String.appendChar // push RP
+(Main.String.appendChar.661) // call String.appendChar 2
+@Main.String.appendChar.661 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20024,8 +20024,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.663) // call String.appendChar 2
-@main.String.appendChar.663 // call String.appendChar // push RP
+(Main.String.appendChar.663) // call String.appendChar 2
+@Main.String.appendChar.663 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20078,8 +20078,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.665) // call String.appendChar 2
-@main.String.appendChar.665 // call String.appendChar // push RP
+(Main.String.appendChar.665) // call String.appendChar 2
+@Main.String.appendChar.665 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20132,8 +20132,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.667) // call String.appendChar 2
-@main.String.appendChar.667 // call String.appendChar // push RP
+(Main.String.appendChar.667) // call String.appendChar 2
+@Main.String.appendChar.667 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20186,8 +20186,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.669) // call String.appendChar 2
-@main.String.appendChar.669 // call String.appendChar // push RP
+(Main.String.appendChar.669) // call String.appendChar 2
+@Main.String.appendChar.669 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20240,8 +20240,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.671) // call String.appendChar 2
-@main.String.appendChar.671 // call String.appendChar // push RP
+(Main.String.appendChar.671) // call String.appendChar 2
+@Main.String.appendChar.671 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20294,8 +20294,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.673) // call String.appendChar 2
-@main.String.appendChar.673 // call String.appendChar // push RP
+(Main.String.appendChar.673) // call String.appendChar 2
+@Main.String.appendChar.673 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20348,8 +20348,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.675) // call String.appendChar 2
-@main.String.appendChar.675 // call String.appendChar // push RP
+(Main.String.appendChar.675) // call String.appendChar 2
+@Main.String.appendChar.675 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20402,8 +20402,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.677) // call String.appendChar 2
-@main.String.appendChar.677 // call String.appendChar // push RP
+(Main.String.appendChar.677) // call String.appendChar 2
+@Main.String.appendChar.677 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20456,8 +20456,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.679) // call String.appendChar 2
-@main.String.appendChar.679 // call String.appendChar // push RP
+(Main.String.appendChar.679) // call String.appendChar 2
+@Main.String.appendChar.679 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20510,8 +20510,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.681) // call String.appendChar 2
-@main.String.appendChar.681 // call String.appendChar // push RP
+(Main.String.appendChar.681) // call String.appendChar 2
+@Main.String.appendChar.681 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20564,8 +20564,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.683) // call String.appendChar 2
-@main.String.appendChar.683 // call String.appendChar // push RP
+(Main.String.appendChar.683) // call String.appendChar 2
+@Main.String.appendChar.683 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20618,8 +20618,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.685) // call String.appendChar 2
-@main.String.appendChar.685 // call String.appendChar // push RP
+(Main.String.appendChar.685) // call String.appendChar 2
+@Main.String.appendChar.685 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20672,8 +20672,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.687) // call String.appendChar 2
-@main.String.appendChar.687 // call String.appendChar // push RP
+(Main.String.appendChar.687) // call String.appendChar 2
+@Main.String.appendChar.687 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20726,8 +20726,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.689) // call String.appendChar 2
-@main.String.appendChar.689 // call String.appendChar // push RP
+(Main.String.appendChar.689) // call String.appendChar 2
+@Main.String.appendChar.689 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20780,8 +20780,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.691) // call String.appendChar 2
-@main.String.appendChar.691 // call String.appendChar // push RP
+(Main.String.appendChar.691) // call String.appendChar 2
+@Main.String.appendChar.691 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20834,8 +20834,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.693) // call String.appendChar 2
-@main.String.appendChar.693 // call String.appendChar // push RP
+(Main.String.appendChar.693) // call String.appendChar 2
+@Main.String.appendChar.693 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20888,8 +20888,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.695) // call String.appendChar 2
-@main.String.appendChar.695 // call String.appendChar // push RP
+(Main.String.appendChar.695) // call String.appendChar 2
+@Main.String.appendChar.695 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20942,8 +20942,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.697) // call String.appendChar 2
-@main.String.appendChar.697 // call String.appendChar // push RP
+(Main.String.appendChar.697) // call String.appendChar 2
+@Main.String.appendChar.697 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -20996,8 +20996,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.699) // call String.appendChar 2
-@main.String.appendChar.699 // call String.appendChar // push RP
+(Main.String.appendChar.699) // call String.appendChar 2
+@Main.String.appendChar.699 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21050,8 +21050,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.701) // call String.appendChar 2
-@main.String.appendChar.701 // call String.appendChar // push RP
+(Main.String.appendChar.701) // call String.appendChar 2
+@Main.String.appendChar.701 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21104,8 +21104,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.703) // call String.appendChar 2
-@main.String.appendChar.703 // call String.appendChar // push RP
+(Main.String.appendChar.703) // call String.appendChar 2
+@Main.String.appendChar.703 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21158,8 +21158,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.705) // call String.appendChar 2
-@main.String.appendChar.705 // call String.appendChar // push RP
+(Main.String.appendChar.705) // call String.appendChar 2
+@Main.String.appendChar.705 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21212,8 +21212,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.707) // call String.appendChar 2
-@main.String.appendChar.707 // call String.appendChar // push RP
+(Main.String.appendChar.707) // call String.appendChar 2
+@Main.String.appendChar.707 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21266,8 +21266,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.709) // call String.appendChar 2
-@main.String.appendChar.709 // call String.appendChar // push RP
+(Main.String.appendChar.709) // call String.appendChar 2
+@Main.String.appendChar.709 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21320,8 +21320,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.711) // call String.appendChar 2
-@main.String.appendChar.711 // call String.appendChar // push RP
+(Main.String.appendChar.711) // call String.appendChar 2
+@Main.String.appendChar.711 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21374,8 +21374,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.713) // call String.appendChar 2
-@main.String.appendChar.713 // call String.appendChar // push RP
+(Main.String.appendChar.713) // call String.appendChar 2
+@Main.String.appendChar.713 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21428,8 +21428,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.715) // call String.appendChar 2
-@main.String.appendChar.715 // call String.appendChar // push RP
+(Main.String.appendChar.715) // call String.appendChar 2
+@Main.String.appendChar.715 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21473,8 +21473,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.717) // call Output.printString 1
-@main.Output.printString.717 // call Output.printString // push RP
+(Main.Output.printString.717) // call Output.printString 1
+@Main.Output.printString.717 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21551,7 +21551,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.719) // call Output.println 0
+(Main.Output.println.719) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -21561,7 +21561,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.719 // push RP
+@Main.Output.println.719 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21620,7 +21620,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP5
-(main.WHILE_EXP5) // label WHILE_EXP5
+(Main.WHILE_EXP5) // label WHILE_EXP5
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -21658,7 +21658,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.WHILE_END5
+@Main.WHILE_END5
 D;JNE // jump if not zero
 
 // push constant 38
@@ -21671,8 +21671,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.721) // call String.new 1
-@main.String.new.721 // call String.new // push RP
+(Main.String.new.721) // call String.new 1
+@Main.String.new.721 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21725,8 +21725,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.723) // call String.appendChar 2
-@main.String.appendChar.723 // call String.appendChar // push RP
+(Main.String.appendChar.723) // call String.appendChar 2
+@Main.String.appendChar.723 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21779,8 +21779,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.725) // call String.appendChar 2
-@main.String.appendChar.725 // call String.appendChar // push RP
+(Main.String.appendChar.725) // call String.appendChar 2
+@Main.String.appendChar.725 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21833,8 +21833,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.727) // call String.appendChar 2
-@main.String.appendChar.727 // call String.appendChar // push RP
+(Main.String.appendChar.727) // call String.appendChar 2
+@Main.String.appendChar.727 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21887,8 +21887,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.729) // call String.appendChar 2
-@main.String.appendChar.729 // call String.appendChar // push RP
+(Main.String.appendChar.729) // call String.appendChar 2
+@Main.String.appendChar.729 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21941,8 +21941,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.731) // call String.appendChar 2
-@main.String.appendChar.731 // call String.appendChar // push RP
+(Main.String.appendChar.731) // call String.appendChar 2
+@Main.String.appendChar.731 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -21995,8 +21995,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.733) // call String.appendChar 2
-@main.String.appendChar.733 // call String.appendChar // push RP
+(Main.String.appendChar.733) // call String.appendChar 2
+@Main.String.appendChar.733 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22049,8 +22049,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.735) // call String.appendChar 2
-@main.String.appendChar.735 // call String.appendChar // push RP
+(Main.String.appendChar.735) // call String.appendChar 2
+@Main.String.appendChar.735 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22103,8 +22103,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.737) // call String.appendChar 2
-@main.String.appendChar.737 // call String.appendChar // push RP
+(Main.String.appendChar.737) // call String.appendChar 2
+@Main.String.appendChar.737 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22157,8 +22157,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.739) // call String.appendChar 2
-@main.String.appendChar.739 // call String.appendChar // push RP
+(Main.String.appendChar.739) // call String.appendChar 2
+@Main.String.appendChar.739 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22211,8 +22211,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.741) // call String.appendChar 2
-@main.String.appendChar.741 // call String.appendChar // push RP
+(Main.String.appendChar.741) // call String.appendChar 2
+@Main.String.appendChar.741 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22265,8 +22265,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.743) // call String.appendChar 2
-@main.String.appendChar.743 // call String.appendChar // push RP
+(Main.String.appendChar.743) // call String.appendChar 2
+@Main.String.appendChar.743 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22319,8 +22319,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.745) // call String.appendChar 2
-@main.String.appendChar.745 // call String.appendChar // push RP
+(Main.String.appendChar.745) // call String.appendChar 2
+@Main.String.appendChar.745 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22373,8 +22373,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.747) // call String.appendChar 2
-@main.String.appendChar.747 // call String.appendChar // push RP
+(Main.String.appendChar.747) // call String.appendChar 2
+@Main.String.appendChar.747 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22427,8 +22427,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.749) // call String.appendChar 2
-@main.String.appendChar.749 // call String.appendChar // push RP
+(Main.String.appendChar.749) // call String.appendChar 2
+@Main.String.appendChar.749 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22481,8 +22481,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.751) // call String.appendChar 2
-@main.String.appendChar.751 // call String.appendChar // push RP
+(Main.String.appendChar.751) // call String.appendChar 2
+@Main.String.appendChar.751 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22535,8 +22535,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.753) // call String.appendChar 2
-@main.String.appendChar.753 // call String.appendChar // push RP
+(Main.String.appendChar.753) // call String.appendChar 2
+@Main.String.appendChar.753 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22589,8 +22589,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.755) // call String.appendChar 2
-@main.String.appendChar.755 // call String.appendChar // push RP
+(Main.String.appendChar.755) // call String.appendChar 2
+@Main.String.appendChar.755 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22643,8 +22643,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.757) // call String.appendChar 2
-@main.String.appendChar.757 // call String.appendChar // push RP
+(Main.String.appendChar.757) // call String.appendChar 2
+@Main.String.appendChar.757 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22697,8 +22697,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.759) // call String.appendChar 2
-@main.String.appendChar.759 // call String.appendChar // push RP
+(Main.String.appendChar.759) // call String.appendChar 2
+@Main.String.appendChar.759 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22751,8 +22751,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.761) // call String.appendChar 2
-@main.String.appendChar.761 // call String.appendChar // push RP
+(Main.String.appendChar.761) // call String.appendChar 2
+@Main.String.appendChar.761 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22805,8 +22805,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.763) // call String.appendChar 2
-@main.String.appendChar.763 // call String.appendChar // push RP
+(Main.String.appendChar.763) // call String.appendChar 2
+@Main.String.appendChar.763 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22859,8 +22859,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.765) // call String.appendChar 2
-@main.String.appendChar.765 // call String.appendChar // push RP
+(Main.String.appendChar.765) // call String.appendChar 2
+@Main.String.appendChar.765 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22913,8 +22913,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.767) // call String.appendChar 2
-@main.String.appendChar.767 // call String.appendChar // push RP
+(Main.String.appendChar.767) // call String.appendChar 2
+@Main.String.appendChar.767 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -22967,8 +22967,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.769) // call String.appendChar 2
-@main.String.appendChar.769 // call String.appendChar // push RP
+(Main.String.appendChar.769) // call String.appendChar 2
+@Main.String.appendChar.769 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23021,8 +23021,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.771) // call String.appendChar 2
-@main.String.appendChar.771 // call String.appendChar // push RP
+(Main.String.appendChar.771) // call String.appendChar 2
+@Main.String.appendChar.771 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23075,8 +23075,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.773) // call String.appendChar 2
-@main.String.appendChar.773 // call String.appendChar // push RP
+(Main.String.appendChar.773) // call String.appendChar 2
+@Main.String.appendChar.773 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23129,8 +23129,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.775) // call String.appendChar 2
-@main.String.appendChar.775 // call String.appendChar // push RP
+(Main.String.appendChar.775) // call String.appendChar 2
+@Main.String.appendChar.775 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23183,8 +23183,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.777) // call String.appendChar 2
-@main.String.appendChar.777 // call String.appendChar // push RP
+(Main.String.appendChar.777) // call String.appendChar 2
+@Main.String.appendChar.777 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23237,8 +23237,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.779) // call String.appendChar 2
-@main.String.appendChar.779 // call String.appendChar // push RP
+(Main.String.appendChar.779) // call String.appendChar 2
+@Main.String.appendChar.779 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23291,8 +23291,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.781) // call String.appendChar 2
-@main.String.appendChar.781 // call String.appendChar // push RP
+(Main.String.appendChar.781) // call String.appendChar 2
+@Main.String.appendChar.781 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23345,8 +23345,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.783) // call String.appendChar 2
-@main.String.appendChar.783 // call String.appendChar // push RP
+(Main.String.appendChar.783) // call String.appendChar 2
+@Main.String.appendChar.783 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23399,8 +23399,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.785) // call String.appendChar 2
-@main.String.appendChar.785 // call String.appendChar // push RP
+(Main.String.appendChar.785) // call String.appendChar 2
+@Main.String.appendChar.785 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23453,8 +23453,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.787) // call String.appendChar 2
-@main.String.appendChar.787 // call String.appendChar // push RP
+(Main.String.appendChar.787) // call String.appendChar 2
+@Main.String.appendChar.787 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23507,8 +23507,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.789) // call String.appendChar 2
-@main.String.appendChar.789 // call String.appendChar // push RP
+(Main.String.appendChar.789) // call String.appendChar 2
+@Main.String.appendChar.789 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23561,8 +23561,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.791) // call String.appendChar 2
-@main.String.appendChar.791 // call String.appendChar // push RP
+(Main.String.appendChar.791) // call String.appendChar 2
+@Main.String.appendChar.791 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23615,8 +23615,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.793) // call String.appendChar 2
-@main.String.appendChar.793 // call String.appendChar // push RP
+(Main.String.appendChar.793) // call String.appendChar 2
+@Main.String.appendChar.793 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23669,8 +23669,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.795) // call String.appendChar 2
-@main.String.appendChar.795 // call String.appendChar // push RP
+(Main.String.appendChar.795) // call String.appendChar 2
+@Main.String.appendChar.795 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23723,8 +23723,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.797) // call String.appendChar 2
-@main.String.appendChar.797 // call String.appendChar // push RP
+(Main.String.appendChar.797) // call String.appendChar 2
+@Main.String.appendChar.797 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23768,8 +23768,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Keyboard.readInt 1
-(main.Keyboard.readInt.799) // call Keyboard.readInt 1
-@main.Keyboard.readInt.799 // call Keyboard.readInt // push RP
+(Main.Keyboard.readInt.799) // call Keyboard.readInt 1
+@Main.Keyboard.readInt.799 // call Keyboard.readInt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23908,15 +23908,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@main.IF_TRUE4
+@Main.IF_TRUE4
 D;JNE // jump if not zero
 
 // goto IF_FALSE4
-@main.IF_FALSE4 // goto IF_FALSE4
+@Main.IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
 // label IF_TRUE4
-(main.IF_TRUE4) // label IF_TRUE4
+(Main.IF_TRUE4) // label IF_TRUE4
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -23928,8 +23928,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.802) // call String.new 1
-@main.String.new.802 // call String.new // push RP
+(Main.String.new.802) // call String.new 1
+@Main.String.new.802 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -23982,8 +23982,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.804) // call String.appendChar 2
-@main.String.appendChar.804 // call String.appendChar // push RP
+(Main.String.appendChar.804) // call String.appendChar 2
+@Main.String.appendChar.804 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24036,8 +24036,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.806) // call String.appendChar 2
-@main.String.appendChar.806 // call String.appendChar // push RP
+(Main.String.appendChar.806) // call String.appendChar 2
+@Main.String.appendChar.806 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24081,8 +24081,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.808) // call Output.printString 1
-@main.Output.printString.808 // call Output.printString // push RP
+(Main.Output.printString.808) // call Output.printString 1
+@Main.Output.printString.808 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24159,7 +24159,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(main.Output.println.810) // call Output.println 0
+(Main.Output.println.810) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -24169,7 +24169,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.810 // push RP
+@Main.Output.println.810 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24260,17 +24260,17 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE4
-(main.IF_FALSE4) // label IF_FALSE4
+(Main.IF_FALSE4) // label IF_FALSE4
 
 // goto WHILE_EXP5
-@main.WHILE_EXP5 // goto WHILE_EXP5
+@Main.WHILE_EXP5 // goto WHILE_EXP5
 0;JMP // unconditional jump
 
 // label WHILE_END5
-(main.WHILE_END5) // label WHILE_END5
+(Main.WHILE_END5) // label WHILE_END5
 
 // call Output.println 0
-(main.Output.println.812) // call Output.println 0
+(Main.Output.println.812) // call Output.println 0
 
 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
@@ -24280,7 +24280,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@main.Output.println.812 // push RP
+@Main.Output.println.812 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24348,8 +24348,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.new 1
-(main.String.new.814) // call String.new 1
-@main.String.new.814 // call String.new // push RP
+(Main.String.new.814) // call String.new 1
+@Main.String.new.814 // call String.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24402,8 +24402,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.816) // call String.appendChar 2
-@main.String.appendChar.816 // call String.appendChar // push RP
+(Main.String.appendChar.816) // call String.appendChar 2
+@Main.String.appendChar.816 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24456,8 +24456,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.818) // call String.appendChar 2
-@main.String.appendChar.818 // call String.appendChar // push RP
+(Main.String.appendChar.818) // call String.appendChar 2
+@Main.String.appendChar.818 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24510,8 +24510,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.820) // call String.appendChar 2
-@main.String.appendChar.820 // call String.appendChar // push RP
+(Main.String.appendChar.820) // call String.appendChar 2
+@Main.String.appendChar.820 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24564,8 +24564,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.822) // call String.appendChar 2
-@main.String.appendChar.822 // call String.appendChar // push RP
+(Main.String.appendChar.822) // call String.appendChar 2
+@Main.String.appendChar.822 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24618,8 +24618,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.824) // call String.appendChar 2
-@main.String.appendChar.824 // call String.appendChar // push RP
+(Main.String.appendChar.824) // call String.appendChar 2
+@Main.String.appendChar.824 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24672,8 +24672,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.826) // call String.appendChar 2
-@main.String.appendChar.826 // call String.appendChar // push RP
+(Main.String.appendChar.826) // call String.appendChar 2
+@Main.String.appendChar.826 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24726,8 +24726,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.828) // call String.appendChar 2
-@main.String.appendChar.828 // call String.appendChar // push RP
+(Main.String.appendChar.828) // call String.appendChar 2
+@Main.String.appendChar.828 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24780,8 +24780,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.830) // call String.appendChar 2
-@main.String.appendChar.830 // call String.appendChar // push RP
+(Main.String.appendChar.830) // call String.appendChar 2
+@Main.String.appendChar.830 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24834,8 +24834,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.832) // call String.appendChar 2
-@main.String.appendChar.832 // call String.appendChar // push RP
+(Main.String.appendChar.832) // call String.appendChar 2
+@Main.String.appendChar.832 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24888,8 +24888,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.834) // call String.appendChar 2
-@main.String.appendChar.834 // call String.appendChar // push RP
+(Main.String.appendChar.834) // call String.appendChar 2
+@Main.String.appendChar.834 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24942,8 +24942,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.836) // call String.appendChar 2
-@main.String.appendChar.836 // call String.appendChar // push RP
+(Main.String.appendChar.836) // call String.appendChar 2
+@Main.String.appendChar.836 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -24996,8 +24996,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.838) // call String.appendChar 2
-@main.String.appendChar.838 // call String.appendChar // push RP
+(Main.String.appendChar.838) // call String.appendChar 2
+@Main.String.appendChar.838 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25050,8 +25050,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.840) // call String.appendChar 2
-@main.String.appendChar.840 // call String.appendChar // push RP
+(Main.String.appendChar.840) // call String.appendChar 2
+@Main.String.appendChar.840 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25104,8 +25104,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.842) // call String.appendChar 2
-@main.String.appendChar.842 // call String.appendChar // push RP
+(Main.String.appendChar.842) // call String.appendChar 2
+@Main.String.appendChar.842 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25158,8 +25158,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.844) // call String.appendChar 2
-@main.String.appendChar.844 // call String.appendChar // push RP
+(Main.String.appendChar.844) // call String.appendChar 2
+@Main.String.appendChar.844 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25212,8 +25212,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.846) // call String.appendChar 2
-@main.String.appendChar.846 // call String.appendChar // push RP
+(Main.String.appendChar.846) // call String.appendChar 2
+@Main.String.appendChar.846 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25266,8 +25266,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.848) // call String.appendChar 2
-@main.String.appendChar.848 // call String.appendChar // push RP
+(Main.String.appendChar.848) // call String.appendChar 2
+@Main.String.appendChar.848 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25320,8 +25320,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.850) // call String.appendChar 2
-@main.String.appendChar.850 // call String.appendChar // push RP
+(Main.String.appendChar.850) // call String.appendChar 2
+@Main.String.appendChar.850 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25374,8 +25374,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.852) // call String.appendChar 2
-@main.String.appendChar.852 // call String.appendChar // push RP
+(Main.String.appendChar.852) // call String.appendChar 2
+@Main.String.appendChar.852 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25428,8 +25428,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.854) // call String.appendChar 2
-@main.String.appendChar.854 // call String.appendChar // push RP
+(Main.String.appendChar.854) // call String.appendChar 2
+@Main.String.appendChar.854 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25482,8 +25482,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.856) // call String.appendChar 2
-@main.String.appendChar.856 // call String.appendChar // push RP
+(Main.String.appendChar.856) // call String.appendChar 2
+@Main.String.appendChar.856 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25536,8 +25536,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.858) // call String.appendChar 2
-@main.String.appendChar.858 // call String.appendChar // push RP
+(Main.String.appendChar.858) // call String.appendChar 2
+@Main.String.appendChar.858 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25590,8 +25590,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.860) // call String.appendChar 2
-@main.String.appendChar.860 // call String.appendChar // push RP
+(Main.String.appendChar.860) // call String.appendChar 2
+@Main.String.appendChar.860 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25644,8 +25644,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.862) // call String.appendChar 2
-@main.String.appendChar.862 // call String.appendChar // push RP
+(Main.String.appendChar.862) // call String.appendChar 2
+@Main.String.appendChar.862 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25698,8 +25698,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.864) // call String.appendChar 2
-@main.String.appendChar.864 // call String.appendChar // push RP
+(Main.String.appendChar.864) // call String.appendChar 2
+@Main.String.appendChar.864 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25752,8 +25752,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.866) // call String.appendChar 2
-@main.String.appendChar.866 // call String.appendChar // push RP
+(Main.String.appendChar.866) // call String.appendChar 2
+@Main.String.appendChar.866 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25806,8 +25806,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call String.appendChar 2
-(main.String.appendChar.868) // call String.appendChar 2
-@main.String.appendChar.868 // call String.appendChar // push RP
+(Main.String.appendChar.868) // call String.appendChar 2
+@Main.String.appendChar.868 // call String.appendChar // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -25851,8 +25851,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // call Output.printString 1
-(main.Output.printString.870) // call Output.printString 1
-@main.Output.printString.870 // call Output.printString // push RP
+(Main.Output.printString.870) // call Output.printString 1
+@Main.Output.printString.870 // call Output.printString // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -28542,7 +28542,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -28611,7 +28611,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@16 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -28635,7 +28635,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -28854,7 +28854,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -28911,7 +28911,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -28995,7 +28995,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -30025,7 +30025,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -30236,7 +30236,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -30947,7 +30947,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31279,7 +31279,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31375,7 +31375,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31559,7 +31559,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31595,7 +31595,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31658,7 +31658,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31811,7 +31811,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -32145,7 +32145,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -32326,7 +32326,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -32428,7 +32428,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -32965,7 +32965,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -33818,7 +33818,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 0
-@18 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Memory.vm)
+@18 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Memory.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -33842,7 +33842,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -33941,7 +33941,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -34111,7 +34111,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -34233,7 +34233,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -38424,7 +38424,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 4
-@19 // pop static 4 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 4 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38456,7 +38456,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38480,7 +38480,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38504,7 +38504,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38573,7 +38573,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 3
-@19 // pop static 3 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 3 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38884,7 +38884,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 5
-@19 // pop static 5 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 5 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -56040,7 +56040,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -57377,7 +57377,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 6
-@19 // pop static 6 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 6 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -57497,7 +57497,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -57644,7 +57644,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -58513,7 +58513,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE0) // label IF_FALSE0
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -58555,7 +58555,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -58640,7 +58640,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -58861,7 +58861,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -58957,7 +58957,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 D;JNE // jump if not zero
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -58999,7 +58999,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -59113,7 +59113,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -59215,7 +59215,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -59970,7 +59970,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -60117,7 +60117,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -60141,7 +60141,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -60168,7 +60168,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -60305,7 +60305,7 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -60973,7 +60973,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -61011,7 +61011,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE2) // label IF_TRUE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -61044,7 +61044,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -61059,7 +61059,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -61092,7 +61092,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -61110,7 +61110,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -61251,7 +61251,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE3) // label IF_FALSE3
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -61271,7 +61271,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -61760,7 +61760,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.printInt) // function Output.printInt 0
 
 // push static 3
-@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -61879,7 +61879,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 3
-@19 // push static 3 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 3 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -62038,7 +62038,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.println) // function Output.println 0
 
 // push static 1
-@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62070,7 +62070,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -62094,7 +62094,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62118,7 +62118,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62150,7 +62150,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62165,7 +62165,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62239,7 +62239,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62326,7 +62326,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.backSpace) // function Output.backSpace 0
 
 // push static 2
-@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -62355,7 +62355,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE0) // label IF_TRUE0
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -62420,7 +62420,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE1) // label IF_TRUE1
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -62453,7 +62453,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62468,7 +62468,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62501,7 +62501,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62532,7 +62532,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62547,7 +62547,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62621,7 +62621,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62639,7 +62639,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62672,7 +62672,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62699,7 +62699,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62738,7 +62738,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62938,7 +62938,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 1
-@26 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62970,7 +62970,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@26 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -63039,7 +63039,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@26 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -63063,7 +63063,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63282,7 +63282,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63339,7 +63339,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63423,7 +63423,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63699,7 +63699,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -63913,7 +63913,7 @@ A=M // d = *lcl-5 (*lcl)
 (Screen.updateLocation) // function Screen.updateLocation 0
 
 // push static 2
-@26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -63954,7 +63954,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -63990,7 +63990,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -64141,7 +64141,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -64177,7 +64177,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -64400,7 +64400,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // pop static 2
-@26 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -65238,7 +65238,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -69192,7 +69192,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -69320,7 +69320,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -71683,7 +71683,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -71811,7 +71811,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)

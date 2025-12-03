@@ -54,7 +54,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Sys.main 0
-(sys.Sys.main.1) // call Sys.main 0
+(Sys.Sys.main.1) // call Sys.main 0
 
 // push constant 9999 // call Sys.main // if no args, create a space on the stack for the return
 @9999 // push constant 9999 // call Sys.main // if no args, create a space on the stack for the return (constant)
@@ -64,7 +64,7 @@ A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
-@sys.Sys.main.1 // push RP
+@Sys.Sys.main.1 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -203,10 +203,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label LOOP
-(sys.LOOP) // label LOOP
+(Sys.LOOP) // label LOOP
 
 // goto LOOP
-@sys.LOOP // goto LOOP
+@Sys.LOOP // goto LOOP
 0;JMP // unconditional jump
 
 // function Sys.main 5
@@ -341,8 +341,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.add12 1
-(sys.Sys.add12.3) // call Sys.add12 1
-@sys.Sys.add12.3 // call Sys.add12 // push RP
+(Sys.Sys.add12.3) // call Sys.add12 1
+@Sys.Sys.add12.3 // call Sys.add12 // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
