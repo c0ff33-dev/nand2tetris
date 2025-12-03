@@ -15,7 +15,7 @@ class Memory {
     function void init() {
         let static0 = 0; // manually assign pointer value as zero
         // 2048 = first heap, 16383 = last heap
-        let static0[2048] = 14334; // blockSize (size+2)
+        let static0[2048] = 14334; // blockSize (init=1 max size free block)
         let static0[2049] = 2050; // *nextPtr = &blockData
         // static0[2050] = 0; // &blockData
         return;
@@ -72,12 +72,10 @@ class Memory {
                 let blockPtr[0] = (blockPtr[1] - blockPtr) + nextBlock[0];
 
                 // if nextBlock is end of list (**(nextPtr+1) == &blockData)
-                // FIXME: if (nextBlock[1] = (nextBlock + 2)) { // compiler error (mine): 135
-                // FIXME: there are other / similar if(<array>) expression issues
                 if (nextBlock[1] = (nextBlock + 2)) {
                     // currentBlock updated to reference closest data block (terminate list)
                     // *nextPtr = &blockData+2
-                    let blockPtr[1] = blockPtr + 2;
+                    let blockPtr[1] = (blockPtr + 2);
                 }
 
                 //
