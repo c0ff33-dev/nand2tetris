@@ -410,69 +410,69 @@ if __name__ == '__main__':
     # compile jack programs (JackCompiler)
     # projects 1-11 accounted for, not included in compiler (jack_filepaths)
     jack_dirpaths = [
-        # r"../projects/09/Average",
-        # r"../projects/09/Fraction",
-        # r"../projects/09/HelloWorld",
-        # r"../projects/09/List",
-        # r"../projects/09/Square",
-        # r"../projects/10/ArrayTest",
-        # # r"../projects/10/ExpressionLessSquare",  # nonsense code that shouldn't compile or run
-        # r"../projects/10/Square",
-        # r"../projects/11/Average",
-        # r"../projects/11/ComplexArrays",
-        # r"../projects/11/ConvertToBin",
-        # r"../projects/11/Pong",
-        # r"../projects/11/Seven",
-        # r"../projects/11/Square",
+        r"../projects/09/Average",
+        r"../projects/09/Fraction",
+        r"../projects/09/HelloWorld",
+        r"../projects/09/List",
+        r"../projects/09/Square",
+        r"../projects/10/ArrayTest",
+        # r"../projects/10/ExpressionLessSquare",  # nonsense code that shouldn't compile or run
+        r"../projects/10/Square",
+        r"../projects/11/Average",
+        r"../projects/11/ComplexArrays",
+        r"../projects/11/ConvertToBin",
+        r"../projects/11/Pong",
+        r"../projects/11/Seven",
+        r"../projects/11/Square",
 
         # # TODO: Project 12
-        # r"../projects/12/SysTest",
-        # r"../projects/12/ArrayTest",
-        # r"../projects/12/KeyboardTest",
-        # r"../projects/12/StringTest",
+        r"../projects/12/SysTest",
+        r"../projects/12/ArrayTest",
+        r"../projects/12/KeyboardTest",
+        r"../projects/12/StringTest",
         r"../projects/12/MemoryTest", # TODO: wip (source matched)
     ]
 
     # tokenizer/analyzer
     # projects 1-11 accounted for, included in tokenizer/analyzer/compiler
     jack_filepaths = [
-        # r"../projects/09/Average/Main.jack",
-        # r"../projects/09/Fraction/Main.jack",
-        # r"../projects/09/Fraction/Fraction.jack",
-        # r"../projects/09/HelloWorld/Main.jack",
-        # r"../projects/09/List/Main.jack",
-        # r"../projects/09/List/List.jack",
-        # r"../projects/09/Square/Main.jack",
-        # r"../projects/09/Square/Square.jack",
-        # r"../projects/09/Square/SquareGame.jack",
-        # r"../projects/10/ArrayTest/Main.jack",
-        # # r"../projects/10/ExpressionLessSquare/Main.jack",  # nonsense code that shouldn't compile or run
-        # # r"../projects/10/ExpressionLessSquare/Square.jack",
-        # # r"../projects/10/ExpressionLessSquare/SquareGame.jack",
-        # r"../projects/10/Square/Main.jack",
-        # r"../projects/10/Square/Square.jack",
-        # r"../projects/10/Square/SquareGame.jack",
-        # r"../projects/11/Average/Main.jack",
-        # r"../projects/11/ComplexArrays/Main.jack",
-        # r"../projects/11/ConvertToBin/Main.jack",
-        # r"../projects/11/Pong/Ball.jack",
-        # r"../projects/11/Pong/Bat.jack",
-        # r"../projects/11/Pong/Main.jack",
-        # r"../projects/11/Pong/PongGame.jack",
-        # r"../projects/11/Seven/Main.jack",
-        # r"../projects/11/Square/Main.jack",
-        # r"../projects/11/Square/Square.jack",
-        # r"../projects/11/Square/SquareGame.jack",
+        r"../projects/09/Average/Main.jack",
+        r"../projects/09/Fraction/Main.jack",
+        r"../projects/09/Fraction/Fraction.jack",
+        r"../projects/09/HelloWorld/Main.jack",
+        r"../projects/09/List/Main.jack",
+        r"../projects/09/List/List.jack",
+        r"../projects/09/Square/Main.jack",
+        r"../projects/09/Square/Square.jack",
+        r"../projects/09/Square/SquareGame.jack",
+        r"../projects/10/ArrayTest/Main.jack",
+        # r"../projects/10/ExpressionLessSquare/Main.jack",  # nonsense code that shouldn't compile or run
+        # r"../projects/10/ExpressionLessSquare/Square.jack",
+        # r"../projects/10/ExpressionLessSquare/SquareGame.jack",
+        r"../projects/10/Square/Main.jack",
+        r"../projects/10/Square/Square.jack",
+        r"../projects/10/Square/SquareGame.jack",
+        r"../projects/11/Average/Main.jack",
+        r"../projects/11/ComplexArrays/Main.jack",
+        r"../projects/11/ConvertToBin/Main.jack",
+        r"../projects/11/Pong/Ball.jack",
+        r"../projects/11/Pong/Bat.jack",
+        r"../projects/11/Pong/Main.jack",
+        r"../projects/11/Pong/PongGame.jack",
+        r"../projects/11/Seven/Main.jack",
+        r"../projects/11/Square/Main.jack",
+        r"../projects/11/Square/Square.jack",
+        r"../projects/11/Square/SquareGame.jack",
 
         # # TODO: Project 12
-        # r"../projects/12/SysTest/Main.jack",
-        # r"../projects/12/SysTest/Sys.jack",
-        # r"../projects/12/ArrayTest/Main.jack",
-        # r"../projects/12/ArrayTest/Array.jack",
-        # r"../projects/12/KeyboardTest/Main.jack",
-        # r"../projects/12/KeyboardTest/Keyboard.jack",
-        # r"../projects/12/StringTest/Main.jack",
-        # r"../projects/12/StringTest/String.jack",
+        r"../projects/12/SysTest/Main.jack",
+        r"../projects/12/SysTest/Sys.jack",
+        r"../projects/12/ArrayTest/Main.jack",
+        r"../projects/12/ArrayTest/Array.jack",
+        r"../projects/12/KeyboardTest/Main.jack",
+        r"../projects/12/KeyboardTest/Keyboard.jack",
+        r"../projects/12/StringTest/Main.jack",
+        r"../projects/12/StringTest/String.jack",
         r"../projects/12/MemoryTest/Main.jack",
         r"../projects/12/MemoryTest/Memory.jack",
     ]
@@ -480,43 +480,43 @@ if __name__ == '__main__':
     # compiler
     jack_filepath_lists = [  
         # projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
-        # [r"../projects/09/Average/Main.jack"],
-        # [r"../projects/09/Fraction/Main.jack",
-        #  r"../projects/09/Fraction/Fraction.jack"],
-        # [r"../projects/09/HelloWorld/Main.jack"],
-        # [r"../projects/09/List/Main.jack",
-        #  r"../projects/09/List/List.jack"],
-        # [r"../projects/09/Square/Main.jack",
-        #  r"../projects/09/Square/Square.jack",
-        #  r"../projects/09/Square/SquareGame.jack"],
-        # [r"../projects/10/ArrayTest/Main.jack"],
-        # # [r"../projects/10/ExpressionLessSquare/Main.jack",  # nonsense code that shouldn't compile or run
-        # #  r"../projects/10/ExpressionLessSquare/Square.jack",
-        # #  r"../projects/10/ExpressionLessSquare/SquareGame.jack"],
-        # [r"../projects/10/Square/Main.jack",
-        #  r"../projects/10/Square/Square.jack",
-        #  r"../projects/10/Square/SquareGame.jack"],
-        # [r"../projects/11/Average/Main.jack"],
-        # [r"../projects/11/ComplexArrays/Main.jack"],
-        # [r"../projects/11/ConvertToBin/Main.jack"],
-        # [r"../projects/11/Pong/Ball.jack",
-        #  r"../projects/11/Pong/Bat.jack",
-        #  r"../projects/11/Pong/Main.jack",
-        #  r"../projects/11/Pong/PongGame.jack"],
-        # [r"../projects/11/Seven/Main.jack"],
-        # [r"../projects/11/Square/Main.jack",
-        #  r"../projects/11/Square/Square.jack",
-        #  r"../projects/11/Square/SquareGame.jack"],
+        [r"../projects/09/Average/Main.jack"],
+        [r"../projects/09/Fraction/Main.jack",
+         r"../projects/09/Fraction/Fraction.jack"],
+        [r"../projects/09/HelloWorld/Main.jack"],
+        [r"../projects/09/List/Main.jack",
+         r"../projects/09/List/List.jack"],
+        [r"../projects/09/Square/Main.jack",
+         r"../projects/09/Square/Square.jack",
+         r"../projects/09/Square/SquareGame.jack"],
+        [r"../projects/10/ArrayTest/Main.jack"],
+        # [r"../projects/10/ExpressionLessSquare/Main.jack",  # nonsense code that shouldn't compile or run
+        #  r"../projects/10/ExpressionLessSquare/Square.jack",
+        #  r"../projects/10/ExpressionLessSquare/SquareGame.jack"],
+        [r"../projects/10/Square/Main.jack",
+         r"../projects/10/Square/Square.jack",
+         r"../projects/10/Square/SquareGame.jack"],
+        [r"../projects/11/Average/Main.jack"],
+        [r"../projects/11/ComplexArrays/Main.jack"],
+        [r"../projects/11/ConvertToBin/Main.jack"],
+        [r"../projects/11/Pong/Ball.jack",
+         r"../projects/11/Pong/Bat.jack",
+         r"../projects/11/Pong/Main.jack",
+         r"../projects/11/Pong/PongGame.jack"],
+        [r"../projects/11/Seven/Main.jack"],
+        [r"../projects/11/Square/Main.jack",
+         r"../projects/11/Square/Square.jack",
+         r"../projects/11/Square/SquareGame.jack"],
 
         # # TODO: Project 12
-        # [r"../projects/12/SysTest/Main.jack",
-        #  r"../projects/12/SysTest/Sys.jack"],
-        # [r"../projects/12/ArrayTest/Main.jack",
-        #  r"../projects/12/ArrayTest/Array.jack"],
-        # [r"../projects/12/KeyboardTest/Main.jack",
-        #  r"../projects/12/KeyboardTest/Keyboard.jack"],
-        # [r"../projects/12/StringTest/Main.jack",
-        #  r"../projects/12/StringTest/String.jack"],
+        [r"../projects/12/SysTest/Main.jack",
+         r"../projects/12/SysTest/Sys.jack"],
+        [r"../projects/12/ArrayTest/Main.jack",
+         r"../projects/12/ArrayTest/Array.jack"],
+        [r"../projects/12/KeyboardTest/Main.jack",
+         r"../projects/12/KeyboardTest/Keyboard.jack"],
+        [r"../projects/12/StringTest/Main.jack",
+         r"../projects/12/StringTest/String.jack"],
         [r"../projects/12/MemoryTest/Main.jack",
          r"../projects/12/MemoryTest/Memory.jack"],
     ]
@@ -524,33 +524,33 @@ if __name__ == '__main__':
     # enforce matching of compiler against course compiler
     # projects 1-11 accounted for
     jack_matches = {  
-        # all
+        # FIXME: regression with latest compiler changes
         # r"../projects/09/Average/Main.vm": 149,
-        # r"../projects/11/Seven/Main.vm": 10,
-        # r"../projects/11/ConvertToBin/Main.vm": 109,
-        # r"../projects/09/Fraction/Main.vm": 18,
-        # r"../projects/09/Fraction/Fraction.vm": 116,
-        # r"../projects/09/HelloWorld/Main.vm": 33,
-        # r"../projects/09/List/Main.vm": 19,
-        # r"../projects/09/List/List.vm": 65,
-        # r"../projects/09/Square/Main.vm": 11,
-        # r"../projects/09/Square/Square.vm": 304,
-        # r"../projects/09/Square/SquareGame.vm": 179,
+        r"../projects/09/Fraction/Main.vm": 18,
+        r"../projects/09/Fraction/Fraction.vm": 116,
+        r"../projects/09/HelloWorld/Main.vm": 33,
+        r"../projects/09/List/Main.vm": 19,
+        r"../projects/09/List/List.vm": 65,
+        r"../projects/09/Square/Main.vm": 11,
+        r"../projects/09/Square/Square.vm": 304,
+        r"../projects/09/Square/SquareGame.vm": 179,
         # r"../projects/10/ArrayTest/Main.vm": 183,
-        # r"../projects/11/Pong/Bat.vm": 207,
-        # r"../projects/11/Pong/Ball.vm": 444,
-        # r"../projects/11/Pong/Main.vm": 13,
-        # r"../projects/11/Pong/PongGame.vm": 318,
         # r"../projects/11/ComplexArrays/Main.vm": 702,
+        r"../projects/11/ConvertToBin/Main.vm": 109,
+        r"../projects/11/Pong/Bat.vm": 207,
+        r"../projects/11/Pong/Ball.vm": 444,
+        r"../projects/11/Pong/Main.vm": 13,
+        r"../projects/11/Pong/PongGame.vm": 318,
+        r"../projects/11/Seven/Main.vm": 10,
 
-        # # TODO: Project 12
-        # r"../projects/12/SysTest/Main.vm": 281,
-        # r"../projects/12/SysTest/Sys.vm": 83,
+        # TODO: Project 12
+        r"../projects/12/SysTest/Main.vm": 281,
+        r"../projects/12/SysTest/Sys.vm": 83,
         # r"../projects/12/ArrayTest/Main.vm": 131,
-        # r"../projects/12/ArrayTest/Array.vm": 23,
-        # r"../projects/12/KeyboardTest/Main.vm": 949,
-        # r"../projects/12/KeyboardTest/Keyboard.vm": 102,
-        # r"../projects/12/StringTest/Main.vm": 919,
+        r"../projects/12/ArrayTest/Array.vm": 23,
+        r"../projects/12/KeyboardTest/Main.vm": 949,
+        r"../projects/12/KeyboardTest/Keyboard.vm": 102,
+        r"../projects/12/StringTest/Main.vm": 919,
         # r"../projects/12/StringTest/String.vm": 393,
 
         # TODO: not strictly matched (operand order on add only)
@@ -561,37 +561,37 @@ if __name__ == '__main__':
     # VM programs (translator only, interpreted below)
     # projects 1-11 accounted for, included in translator
     vm_dirpaths = [
-        # r'../projects/07/MemoryAccess/BasicTest',
-        # r'../projects/07/MemoryAccess/PointerTest',
-        # r'../projects/07/MemoryAccess/StaticTest',
-        # r'../projects/07/StackArithmetic/SimpleAdd',
-        # r'../projects/07/StackArithmetic/StackTest',
-        # r'../projects/08/ProgramFlow/BasicLoop',
-        # r'../projects/08/ProgramFlow/FibonacciSeries',
-        # # r'../projects/08/FunctionCalls/FibonacciElement',  # requires non-spec bootstrap (vm_bootstrap_paths)
-        # # r'../projects/08/FunctionCalls/NestedCall',  # requires non-spec bootstrap (vm_bootstrap_paths)
-        # r'../projects/08/FunctionCalls/SimpleFunction',
-        # # r'../projects/08/FunctionCalls/StaticsTest'  # requires non-spec bootstrap (vm_bootstrap_paths)
-        # r"../projects/09/Average",
-        # r"../projects/09/Fraction",
-        # r"../projects/09/HelloWorld",
-        # r"../projects/09/List",
-        # r"../projects/09/Square",
-        # r"../projects/10/ArrayTest",
-        # # r"../projects/10/ExpressionLessSquare",  # nonsense code that shouldn't compile or run
-        # r"../projects/10/Square",
-        # r"../projects/11/Average",
-        # r"../projects/11/ComplexArrays",
-        # r"../projects/11/ConvertToBin",
-        # r"../projects/11/Pong",
-        # r"../projects/11/Seven",
-        # r"../projects/11/Square",
+        r'../projects/07/MemoryAccess/BasicTest',
+        r'../projects/07/MemoryAccess/PointerTest',
+        r'../projects/07/MemoryAccess/StaticTest',
+        r'../projects/07/StackArithmetic/SimpleAdd',
+        r'../projects/07/StackArithmetic/StackTest',
+        r'../projects/08/ProgramFlow/BasicLoop',
+        r'../projects/08/ProgramFlow/FibonacciSeries',
+        # r'../projects/08/FunctionCalls/FibonacciElement',  # requires non-spec bootstrap (vm_bootstrap_paths)
+        # r'../projects/08/FunctionCalls/NestedCall',  # requires non-spec bootstrap (vm_bootstrap_paths)
+        r'../projects/08/FunctionCalls/SimpleFunction',
+        # r'../projects/08/FunctionCalls/StaticsTest'  # requires non-spec bootstrap (vm_bootstrap_paths)
+        r"../projects/09/Average",
+        r"../projects/09/Fraction",
+        r"../projects/09/HelloWorld",
+        r"../projects/09/List",
+        r"../projects/09/Square",
+        r"../projects/10/ArrayTest",
+        # r"../projects/10/ExpressionLessSquare",  # nonsense code that shouldn't compile or run
+        r"../projects/10/Square",
+        r"../projects/11/Average",
+        r"../projects/11/ComplexArrays",
+        r"../projects/11/ConvertToBin",
+        r"../projects/11/Pong",
+        r"../projects/11/Seven",
+        r"../projects/11/Square",
 
-        # # TODO: Project 12
-        # r"../projects/12/SysTest",
-        # r"../projects/12/ArrayTest",
-        # r"../projects/12/KeyboardTest",
-        # r"../projects/12/StringTest",
+        # TODO: Project 12
+        r"../projects/12/SysTest",
+        r"../projects/12/ArrayTest",
+        r"../projects/12/KeyboardTest",
+        r"../projects/12/StringTest",
         r"../projects/12/MemoryTest"
     ]
 
@@ -600,9 +600,9 @@ if __name__ == '__main__':
     # that require non-spec bootstrap to pass tests (translator only, interpreted/tested below)
     # (bootstrap is injected into ASM which is loaded by tester + CPUEmulator)
     vm_bootstrap_paths = [
-        # r'../projects/08/FunctionCalls/FibonacciElement',
-        # r'../projects/08/FunctionCalls/NestedCall',
-        # r'../projects/08/FunctionCalls/StaticsTest'
+        r'../projects/08/FunctionCalls/FibonacciElement',
+        r'../projects/08/FunctionCalls/NestedCall',
+        r'../projects/08/FunctionCalls/StaticsTest'
     ]
 
     vm_dirpaths = vm_dirpaths + vm_bootstrap_paths
@@ -611,6 +611,34 @@ if __name__ == '__main__':
     # projects 1-11 accounted for, included in assembler/python_hdl
     # (assembler/tester/interpreter)
     vm_asm_filepaths = [
+        r"../projects/07/MemoryAccess/BasicTest/BasicTest.asm",
+        r"../projects/07/MemoryAccess/PointerTest/PointerTest.asm",
+        r"../projects/07/MemoryAccess/StaticTest/StaticTest.asm",
+        r"../projects/07/StackArithmetic/SimpleAdd/SimpleAdd.asm",
+        r"../projects/07/StackArithmetic/StackTest/StackTest.asm",
+        r"../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.asm",
+        r"../projects/08/FunctionCalls/NestedCall/NestedCall.asm",
+        # r"../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.asm", # non-spec issues break interpreter
+        r"../projects/08/FunctionCalls/StaticsTest/StaticsTest.asm",
+        r"../projects/08/ProgramFlow/BasicLoop/BasicLoop.asm",
+        r"../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.asm",
+    ]
+
+    # assembler/interpreter
+    # projects 1-11 accounted for, included in assembler/python_hdl
+    # (tested against HACK solutions for project 6)
+    binary_asm_filepaths = [
+        r"../projects/04/fill/Fill.asm",
+        r"../projects/04/mult/Mult.asm",
+        r"../projects/06/add/Add.asm",
+        r"../projects/06/max/Max.asm",
+        r"../projects/06/max/MaxL.asm",
+        r"../projects/06/pong/Pong.asm",
+        r"../projects/06/pong/PongL.asm",
+        r"../projects/06/rect/Rect.asm",
+        r"../projects/06/rect/RectL.asm",
+
+        # exercised during vm_asm_filepaths
         # r"../projects/07/MemoryAccess/BasicTest/BasicTest.asm",
         # r"../projects/07/MemoryAccess/PointerTest/PointerTest.asm",
         # r"../projects/07/MemoryAccess/StaticTest/StaticTest.asm",
@@ -618,137 +646,109 @@ if __name__ == '__main__':
         # r"../projects/07/StackArithmetic/StackTest/StackTest.asm",
         # r"../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.asm",
         # r"../projects/08/FunctionCalls/NestedCall/NestedCall.asm",
-        # # r"../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.asm", # non-spec issues break interpreter
+        # r"../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.asm",
         # r"../projects/08/FunctionCalls/StaticsTest/StaticsTest.asm",
         # r"../projects/08/ProgramFlow/BasicLoop/BasicLoop.asm",
         # r"../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.asm",
-    ]
 
-    # assembler/interpreter
-    # projects 1-11 accounted for, included in assembler/python_hdl
-    # (tested against HACK solutions for project 6)
-    binary_asm_filepaths = [
-        # r"../projects/04/fill/Fill.asm",
-        # r"../projects/04/mult/mult.asm",
-        # r"../projects/06/add/Add.asm",
-        # r"../projects/06/max/Max.asm",
-        # r"../projects/06/max/MaxL.asm",
-        # r"../projects/06/pong/Pong.asm",
-        # r"../projects/06/pong/PongL.asm",
-        # r"../projects/06/rect/Rect.asm",
-        # r"../projects/06/rect/RectL.asm",
+        # exceeds ROM limit of 32k instructions
+        r'../projects/09/Average/Average.asm',
+        r'../projects/09/Fraction/Fraction.asm',
+        r'../projects/09/HelloWorld/HelloWorld.asm',
+        r'../projects/09/List/List.asm',
+        r'../projects/09/Square/Square.asm',
+        r'../projects/10/ArrayTest/ArrayTest.asm',
+        # r'../projects/10/Square/Square.asm',  # 17 bit addresses (different Main.jack to 9/11)
+        r'../projects/11/Average/Average.asm',
+        # r'../projects/11/ComplexArrays/ComplexArrays.asm',  # 17 bit addresses
+        r'../projects/11/ConvertToBin/ConvertToBin.asm',
+        # r'../projects/11/Pong/Pong.asm',  # 17 bit addresses
+        r'../projects/11/Seven/Seven.asm',
+        r'../projects/11/Square/Square.asm',
 
-        # # exercised during vm_asm_filepaths
-        # # r"../projects/07/MemoryAccess/BasicTest/BasicTest.asm",
-        # # r"../projects/07/MemoryAccess/PointerTest/PointerTest.asm",
-        # # r"../projects/07/MemoryAccess/StaticTest/StaticTest.asm",
-        # # r"../projects/07/StackArithmetic/SimpleAdd/SimpleAdd.asm",
-        # # r"../projects/07/StackArithmetic/StackTest/StackTest.asm",
-        # # r"../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.asm",
-        # # r"../projects/08/FunctionCalls/NestedCall/NestedCall.asm",
-        # # r"../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.asm",
-        # # r"../projects/08/FunctionCalls/StaticsTest/StaticsTest.asm",
-        # # r"../projects/08/ProgramFlow/BasicLoop/BasicLoop.asm",
-        # # r"../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.asm",
-
-        # # exceeds ROM limit of 32k instructions
-        # r'../projects/09/Average/Average.asm',
-        # r'../projects/09/Fraction/Fraction.asm',
-        # r'../projects/09/HelloWorld/HelloWorld.asm',
-        # r'../projects/09/List/List.asm',
-        # r'../projects/09/Square/Square.asm',
-        # r'../projects/10/ArrayTest/ArrayTest.asm',
-        # # r'../projects/10/Square/Square.asm',  # 17 bit addresses (different Main.jack to 9/11)
-        # r'../projects/11/Average/Average.asm',
-        # # r'../projects/11/ComplexArrays/ComplexArrays.asm',  # 17 bit addresses
-        # r'../projects/11/ConvertToBin/ConvertToBin.asm',
-        # # r'../projects/11/Pong/Pong.asm',  # 17 bit addresses
-        # r'../projects/11/Seven/Seven.asm',
-        # r'../projects/11/Square/Square.asm',
-
-        # # TODO: Project 12
-        # r"../projects/12/SysTest/SysTest.asm",
-        # r"../projects/12/ArrayTest/ArrayTest.asm",
-        # # r"../projects/12/KeyboardTest/KeyboardTest.asm",  # 17 bit addresses + access violation
-        # # r"../projects/12/StringTest/StringTest.asm",  # 17 bit addresses + access violation
+        # TODO: Project 12
+        r"../projects/12/SysTest/SysTest.asm",
+        r"../projects/12/ArrayTest/ArrayTest.asm",
+        # r"../projects/12/KeyboardTest/KeyboardTest.asm",  # 17 bit addresses + access violation
+        # r"../projects/12/StringTest/StringTest.asm",  # 17 bit addresses + access violation
         r"../projects/12/MemoryTest/MemoryTest.asm",
         r"../projects/12/MemoryTest/MemoryTest.asm"
     ]
 
     # HDL tests (HardwareSimulator): project 1-12 accounted for, not included in tester/python_hdl!
     hw_tst_files = [
-        # r'../projects/01/And.tst',
-        # r'../projects/01/And16.tst',
-        # r'../projects/01/DMux.tst',
-        # r'../projects/01/DMux4Way.tst',
-        # r'../projects/01/DMux8Way.tst',
-        # r'../projects/01/Mux.tst',
-        # r'../projects/01/Mux16.tst',
-        # r'../projects/01/Mux4Way16.tst',
-        # r'../projects/01/Mux8Way16.tst',
-        # r'../projects/01/Not.tst',
-        # r'../projects/01/Not16.tst',
-        # r'../projects/01/Or.tst',
-        # r'../projects/01/Or16.tst',
-        # r'../projects/01/Or8Way.tst',
-        # r'../projects/01/Xor.tst',
-        # r'../projects/02/Add16.tst',
-        # r'../projects/02/ALU-nostat.tst',
-        # r'../projects/02/ALU.tst',
-        # r'../projects/02/FullAdder.tst',
-        # r'../projects/02/HalfAdder.tst',
-        # r'../projects/02/Inc16.tst',
-        # r'../projects/03/a/Bit.tst',
-        # r'../projects/03/a/PC.tst',
-        # r'../projects/03/a/RAM64.tst',
-        # r'../projects/03/a/RAM8.tst',
-        # r'../projects/03/a/Register.tst',
-        # r'../projects/03/b/RAM16K.tst',
-        # r'../projects/03/b/RAM4K.tst',
-        # r'../projects/03/b/RAM512.tst',
-        # r'../projects/05/ComputerAdd-external.tst',
-        # r'../projects/05/ComputerAdd.tst',
-        # r'../projects/05/ComputerMax-external.tst',
-        # r'../projects/05/ComputerMax.tst',
-        # r'../projects/05/ComputerRect-external.tst',
-        # r'../projects/05/ComputerRect.tst',
-        # r'../projects/05/CPU-external.tst',
-        # r'../projects/05/CPU.tst',
-        # # r'../projects/05/Memory.tst',  # interactive test (passed manually)
+        r'../projects/01/And.tst',
+        r'../projects/01/And16.tst',
+        r'../projects/01/DMux.tst',
+        r'../projects/01/DMux4Way.tst',
+        r'../projects/01/DMux8Way.tst',
+        r'../projects/01/Mux.tst',
+        r'../projects/01/Mux16.tst',
+        r'../projects/01/Mux4Way16.tst',
+        r'../projects/01/Mux8Way16.tst',
+        r'../projects/01/Not.tst',
+        r'../projects/01/Not16.tst',
+        r'../projects/01/Or.tst',
+        r'../projects/01/Or16.tst',
+        r'../projects/01/Or8Way.tst',
+        r'../projects/01/Xor.tst',
+        r'../projects/02/Add16.tst',
+        r'../projects/02/ALU-nostat.tst',
+        r'../projects/02/ALU.tst',
+        r'../projects/02/FullAdder.tst',
+        r'../projects/02/HalfAdder.tst',
+        r'../projects/02/Inc16.tst',
+        r'../projects/03/a/Bit.tst',
+        r'../projects/03/a/PC.tst',
+        r'../projects/03/a/RAM64.tst',
+        r'../projects/03/a/RAM8.tst',
+        r'../projects/03/a/Register.tst',
+        r'../projects/03/b/RAM16K.tst',
+        r'../projects/03/b/RAM4K.tst',
+        r'../projects/03/b/RAM512.tst',
+        r'../projects/05/ComputerAdd-external.tst',
+        r'../projects/05/ComputerAdd.tst',
+        r'../projects/05/ComputerMax-external.tst',
+        r'../projects/05/ComputerMax.tst',
+        r'../projects/05/ComputerRect-external.tst',
+        r'../projects/05/ComputerRect.tst',
+        r'../projects/05/CPU-external.tst',
+        r'../projects/05/CPU.tst',
+        # r'../projects/05/Memory.tst',  # interactive test (passed manually)
     ]
     
     # ASM tests (CPUEmulator): # project 1-12 accounted for & included in tester!
     cpu_tst_files = [
-        # # r'../projects/04/fill/Fill.tst',  # interactive test (passed manually)
-        # r'../projects/04/fill/FillAutomatic.tst',
-        # r'../projects/04/mult/Mult.tst',
-        # r'../projects/07/MemoryAccess/BasicTest/BasicTest.tst',
-        # r'../projects/07/MemoryAccess/PointerTest/PointerTest.tst',
-        # r'../projects/07/MemoryAccess/StaticTest/StaticTest.tst',
-        # r'../projects/07/StackArithmetic/SimpleAdd/SimpleAdd.tst',
-        # r'../projects/07/StackArithmetic/StackTest/StackTest.tst',
-        # r'../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.tst',
-        # r'../projects/08/FunctionCalls/NestedCall/NestedCall.tst',
-        # r'../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.tst',
-        # r'../projects/08/FunctionCalls/StaticsTest/StaticsTest.tst',
-        # r'../projects/08/ProgramFlow/BasicLoop/BasicLoop.tst',
-        # r'../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.tst',
+        # r'../projects/04/fill/Fill.tst',  # interactive test (passed manually)
+        r'../projects/04/fill/FillAutomatic.tst',
+        r'../projects/04/mult/Mult.tst',
+        r'../projects/07/MemoryAccess/BasicTest/BasicTest.tst',
+        r'../projects/07/MemoryAccess/PointerTest/PointerTest.tst',
+        r'../projects/07/MemoryAccess/StaticTest/StaticTest.tst',
+        r'../projects/07/StackArithmetic/SimpleAdd/SimpleAdd.tst',
+        r'../projects/07/StackArithmetic/StackTest/StackTest.tst',
+        r'../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.tst',
+        r'../projects/08/FunctionCalls/NestedCall/NestedCall.tst',
+        r'../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.tst',
+        r'../projects/08/FunctionCalls/StaticsTest/StaticsTest.tst',
+        r'../projects/08/ProgramFlow/BasicLoop/BasicLoop.tst',
+        r'../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.tst',
     ]
 
     # VM tests (VMEmulator): 
     # project 1-12 accounted for, not included in tester
     vm_tst_files = [
-        # r'../projects/07/MemoryAccess/BasicTest/BasicTestVME.tst',
-        # r'../projects/07/MemoryAccess/PointerTest/PointerTestVME.tst',
-        # r'../projects/07/MemoryAccess/StaticTest/StaticTestVME.tst',
-        # r'../projects/07/StackArithmetic/SimpleAdd/SimpleAddVME.tst',
-        # r'../projects/07/StackArithmetic/StackTest/StackTestVME.tst',
-        # r'../projects/08/FunctionCalls/FibonacciElement/FibonacciElementVME.tst',
-        # r'../projects/08/FunctionCalls/NestedCall/NestedCallVME.tst',
-        # r'../projects/08/FunctionCalls/SimpleFunction/SimpleFunctionVME.tst',
-        # r'../projects/08/FunctionCalls/StaticsTest/StaticsTestVME.tst',
-        # r'../projects/08/ProgramFlow/BasicLoop/BasicLoopVME.tst',
-        # r'../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeriesVME.tst',
+        r'../projects/07/MemoryAccess/BasicTest/BasicTestVME.tst',
+        r'../projects/07/MemoryAccess/PointerTest/PointerTestVME.tst',
+        r'../projects/07/MemoryAccess/StaticTest/StaticTestVME.tst',
+        r'../projects/07/StackArithmetic/SimpleAdd/SimpleAddVME.tst',
+        r'../projects/07/StackArithmetic/StackTest/StackTestVME.tst',
+        r'../projects/08/FunctionCalls/FibonacciElement/FibonacciElementVME.tst',
+        r'../projects/08/FunctionCalls/NestedCall/NestedCallVME.tst',
+        r'../projects/08/FunctionCalls/SimpleFunction/SimpleFunctionVME.tst',
+        r'../projects/08/FunctionCalls/StaticsTest/StaticsTestVME.tst',
+        r'../projects/08/ProgramFlow/BasicLoop/BasicLoopVME.tst',
+        r'../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeriesVME.tst',
 
         # TODO: Project 12
         # interactively tested / no test files
@@ -809,7 +809,7 @@ if __name__ == '__main__':
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
         result = subprocess.run([r"../tools/JackCompiler.sh", jack_dir], capture_output=True, text=True)
-        if result.stderr:
+        if result.stderr or result.returncode:
             raise RuntimeError(result.stderr)
         else:
             print("Course Compiler: %s" % result.stdout.strip())
