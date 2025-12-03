@@ -607,7 +607,10 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
             # process everything up to & including the last expression opening from buffer
             pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// [", pop_incl=True)
             pcode = store_pcode(pcode, "// %s" % symbol)
-            pcode = store_pcode(pcode, exp_buffer.pop())  # pop the array var as well
+
+            # pop the array var as well (if present)
+            if "(*array var)" in exp_buffer[-1]:
+                pcode = store_pcode(pcode, exp_buffer.pop())
 
         elif symbol == ",":
             # process everything up to but not including the last expression opening from buffer
