@@ -3,8 +3,6 @@
 // by Nisan and Schocken, MIT Press.
 // File name: projects/12/StringTest/Main.jack
 
-// TODO: this test set could be improved
-
 /** Test program for the OS String class. */
 class Main {
 
