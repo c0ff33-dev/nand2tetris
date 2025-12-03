@@ -315,7 +315,8 @@ if __name__ == '__main__':
         r"..\projects\12\SysTest\SysTest.asm",
         r"..\projects\12\ArrayTest\ArrayTest.asm",
         r"..\projects\12\KeyboardTest\KeyboardTest.asm",  # 17 bit addresses
-        r"..\projects\12\StringTest\StringTest.asm",  # 17 bit addresses
+        r"..\projects\12\MemoryTest\MemoryTest.asm",
+        r"..\projects\12\MemoryTest\MemoryTest.asm",
     ]
 
     # debug_runs = [True, False]
