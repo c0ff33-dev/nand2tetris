@@ -473,6 +473,8 @@ if __name__ == '__main__':
         r"..\projects\12\KeyboardTest\Keyboard.jack",
         r"..\projects\12\StringTest\Main.jack",
         r"..\projects\12\StringTest\String.jack",
+        r"..\projects\12\MemoryTest\Main.jack",
+        r"..\projects\12\MemoryTest\Memory.jack",
     ]
 
     # compiler
@@ -515,6 +517,8 @@ if __name__ == '__main__':
          r"..\projects\12\KeyboardTest\Keyboard.jack"],
         [r"..\projects\12\StringTest\Main.jack",
          r"..\projects\12\StringTest\String.jack"],
+        [r"..\projects\12\MemoryTest\Main.jack",
+         r"..\projects\12\MemoryTest\Memory.jack"],
     ]
 
     # enforce matching of compiler against course compiler
@@ -548,6 +552,8 @@ if __name__ == '__main__':
         r"..\projects\12\KeyboardTest\Keyboard.vm": 102,
         r"..\projects\12\StringTest\Main.vm": 919,
         r"..\projects\12\StringTest\String.vm": 393,
+        # r"..\projects\12\MemoryTest\Main.vm": xxx,
+        # r"..\projects\12\MemoryTest\Memory.vm": xxx,
     }
 
     # VM programs (translator only, interpreted below)
@@ -584,6 +590,7 @@ if __name__ == '__main__':
         r"..\projects\12\ArrayTest",
         r"..\projects\12\KeyboardTest",
         r"..\projects\12\StringTest",
+        r"..\projects\12\MemoryTest"
     ]
 
     # VM programs
@@ -662,6 +669,8 @@ if __name__ == '__main__':
         r"..\projects\12\ArrayTest\ArrayTest.asm",
         # r"..\projects\12\KeyboardTest\KeyboardTest.asm",  # 17 bit addresses + access violation
         # r"..\projects\12\StringTest\StringTest.asm",  # 17 bit addresses + access violation
+        r"..\projects\12\MemoryTest\MemoryTest.asm",
+        r"..\projects\12\MemoryTest\MemoryTest.asm"
     ]
 
     # HDL tests (HardwareSimulator): project 1-12 accounted for, not included in tester/python_hdl!
@@ -755,7 +764,7 @@ if __name__ == '__main__':
     ]
 
     # init
-    debug = True
+    debug = False
     vm_static_dicts = {} 
     breakpoints = []
 
@@ -799,7 +808,7 @@ if __name__ == '__main__':
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
-        result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)
+        result = subprocess.run([r"../tools/JackCompiler.sh", jack_dir], capture_output=True, text=True)
         if result.stderr:
             raise RuntimeError(result.stderr)
         else:
@@ -850,7 +859,7 @@ if __name__ == '__main__':
         run(asm_filepath, static_dict=_static_dict, tst_params=tst_params, debug=debug)
     
     # run hdl tests (HardwareSimulator)
-    cmd = r'..\tools\HardwareSimulator.bat'
+    cmd = r'../tools/HardwareSimulator.sh'
     for test in hw_tst_files:
         print(r"Running: %s %s" % (cmd, test))
         result = subprocess.run([cmd, test], capture_output=True, text=True)
@@ -872,7 +881,7 @@ if __name__ == '__main__':
                 line += 1
     
     # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
-    cmd = r'..\tools\CPUEmulator.bat'
+    cmd = r'../tools/CPUEmulator.sh'
     for test in cpu_tst_files:
         print(r"Running: %s %s" % (cmd, test))
         result = subprocess.run([cmd, test], capture_output=True, text=True)
@@ -890,7 +899,7 @@ if __name__ == '__main__':
                 line += 1
     
     # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
-    cmd = r'..\tools\VMEmulator.bat'
+    cmd = r'../tools/VMEmulator.sh'
     for test in vm_tst_files:
         print(r"Running: %s %s" % (cmd, test))
         result = subprocess.run([cmd, test], capture_output=True, text=True)

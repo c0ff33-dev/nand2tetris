@@ -1321,6 +1321,8 @@ if __name__ == '__main__':
          r"..\projects\12\KeyboardTest\Keyboard.jack"],
         [r"..\projects\12\StringTest\Main.jack",
          r"..\projects\12\StringTest\String.jack"],
+        [r"..\projects\12\MemoryTest\Main.jack",
+         r"..\projects\12\MemoryTest\Memory.jack"],
     ]
 
     # matched to course compiler
