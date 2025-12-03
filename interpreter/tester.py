@@ -148,9 +148,9 @@ if __name__ == '__main__':
         # project 1-12 accounted for & included in interpreter!
 
         # week 5 and below use different multi row format (tested with HardwareSimulator/CPUEmulator)
-        # r'../projects/04/fill/fill.tst',  # interactive test (passed manually)
-        # r'../projects/04/fill/fillAutomatic.tst',
-        # r'../projects/04/mult/mult.tst',
+        # r'../projects/04/fill/Fill.tst',  # interactive test (passed manually)
+        # r'../projects/04/fill/FillAutomatic.tst',
+        # r'../projects/04/mult/Mult.tst',
 
         r'../projects/07/MemoryAccess/BasicTest/BasicTest.tst',
         r'../projects/07/MemoryAccess/PointerTest/PointerTest.tst',

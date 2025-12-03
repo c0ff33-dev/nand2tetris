@@ -690,7 +690,7 @@ if __name__ == '__main__':
         r'../projects/01/Or16.tst',
         r'../projects/01/Or8Way.tst',
         r'../projects/01/Xor.tst',
-        r'../projects/02/add16.tst',
+        r'../projects/02/Add16.tst',
         r'../projects/02/ALU-nostat.tst',
         r'../projects/02/ALU.tst',
         r'../projects/02/FullAdder.tst',
@@ -717,9 +717,9 @@ if __name__ == '__main__':
     
     # ASM tests (CPUEmulator): # project 1-12 accounted for & included in tester!
     cpu_tst_files = [
-        # r'../projects/04/fill/fill.tst',  # interactive test (passed manually)
-        r'../projects/04/fill/fillAutomatic.tst',
-        r'../projects/04/mult/mult.tst',
+        # r'../projects/04/fill/Fill.tst',  # interactive test (passed manually)
+        r'../projects/04/fill/FillAutomatic.tst',
+        r'../projects/04/mult/Mult.tst',
         r'../projects/07/MemoryAccess/BasicTest/BasicTest.tst',
         r'../projects/07/MemoryAccess/PointerTest/PointerTest.tst',
         r'../projects/07/MemoryAccess/StaticTest/StaticTest.tst',
