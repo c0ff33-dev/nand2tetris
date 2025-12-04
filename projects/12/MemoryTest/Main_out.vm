@@ -24,8 +24,8 @@ pop pointer 1
 push temp 0
 pop that 0
 push constant 8002
-push local 2
 push constant 2
+push local 2
 add
 pop pointer 1
 push that 0
@@ -39,8 +39,8 @@ pop local 3
 push constant 1
 push local 3
 add
-push local 2
 push constant 2
+push local 2
 add
 pop pointer 1
 push that 0
@@ -60,8 +60,8 @@ push constant 1
 pop local 1
 label IF_FALSE0
 push constant 8003
-push local 3
 push constant 1
+push local 3
 add
 pop pointer 1
 push that 0
@@ -77,13 +77,13 @@ pop local 4
 push constant 499
 push local 4
 add
-push local 2
 push constant 2
+push local 2
 add
 pop pointer 1
 push that 0
-push local 3
 push constant 1
+push local 3
 add
 pop pointer 1
 push that 0
@@ -113,8 +113,8 @@ add
 pop local 1
 label IF_FALSE2
 push constant 8004
-push local 4
 push constant 499
+push local 4
 add
 pop pointer 1
 push that 0
@@ -136,8 +136,8 @@ pop local 3
 push constant 0
 push local 3
 add
-push local 4
 push constant 499
+push local 4
 add
 pop pointer 1
 push that 0
@@ -157,8 +157,8 @@ push constant 1
 pop local 1
 label IF_FALSE3
 push constant 8005
-push local 3
 push constant 0
+push local 3
 add
 pop pointer 1
 push that 0

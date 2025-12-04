@@ -36,7 +36,7 @@ class Memory {
      *  a reference to its base address. */
     function int alloc(int size) {
         var Array blockPtr;
-        var int nextBlock;
+        var Array nextBlock;
 
         if (size < 0) {
             do Sys.error(5); // Allocated memory size must be positive
@@ -125,7 +125,7 @@ class Memory {
      *  it available for future allocations (appended to end of freeList) */
     function void deAlloc(Array o) {
         var Array blockPtr;
-        var int nextPtr;
+        var Array nextPtr;
 
         let blockPtr = o - 2; // move backwards from &allocBlockData to start of *allocBlock header
         let nextPtr = blockPtr[1]; // *nextPtr

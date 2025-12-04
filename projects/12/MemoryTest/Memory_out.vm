@@ -63,8 +63,8 @@ label WHILE_EXP0
 push local 0
 push constant 16383
 lt
-push local 0
 push constant 0
+push local 0
 add
 pop pointer 1
 push that 0
@@ -73,14 +73,14 @@ lt
 and
 not
 if-goto WHILE_END0
-push local 0
 push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
 pop local 1
-push local 0
 push constant 0
+push local 0
 add
 pop pointer 1
 push that 0
@@ -90,8 +90,8 @@ push local 1
 push constant 16382
 gt
 or
-push local 1
 push constant 0
+push local 1
 add
 pop pointer 1
 push that 0
@@ -108,15 +108,15 @@ label IF_FALSE2
 push constant 0
 push local 0
 add
-push local 0
 push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
 push local 0
 sub
-push local 1
 push constant 0
+push local 1
 add
 pop pointer 1
 push that 0
@@ -125,8 +125,8 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 1
 push constant 1
+push local 1
 add
 pop pointer 1
 push that 0
@@ -152,8 +152,8 @@ label IF_FALSE3
 push constant 1
 push local 0
 add
-push local 1
 push constant 1
+push local 1
 add
 pop pointer 1
 push that 0
@@ -177,8 +177,8 @@ push constant 6
 call Sys.error 1
 pop temp 0
 label IF_FALSE4
-push local 0
 push constant 0
+push local 0
 add
 pop pointer 1
 push that 0
@@ -194,8 +194,8 @@ push constant 2
 add
 push local 0
 add
-push local 0
 push constant 0
+push local 0
 add
 pop pointer 1
 push that 0
@@ -207,8 +207,8 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 0
 push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
@@ -240,8 +240,8 @@ push constant 3
 add
 push local 0
 add
-push local 0
 push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
@@ -280,14 +280,14 @@ push argument 0
 push constant 2
 sub
 pop local 0
-push local 0
 push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
 pop local 1
-push local 1
 push constant 0
+push local 1
 add
 pop pointer 1
 push that 0
@@ -299,8 +299,8 @@ label IF_TRUE0
 push constant 0
 push local 0
 add
-push local 0
 push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
@@ -317,15 +317,15 @@ label IF_FALSE0
 push constant 0
 push local 0
 add
-push local 0
 push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
 push local 0
 sub
-push local 1
 push constant 0
+push local 1
 add
 pop pointer 1
 push that 0
@@ -334,8 +334,8 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 1
 push constant 1
+push local 1
 add
 pop pointer 1
 push that 0
@@ -361,8 +361,8 @@ label IF_FALSE1
 push constant 1
 push local 0
 add
-push local 1
 push constant 1
+push local 1
 add
 pop pointer 1
 push that 0

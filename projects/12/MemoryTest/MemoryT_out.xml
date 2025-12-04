@@ -86,7 +86,7 @@
 <identifier> blockPtr </identifier>
 <symbol> ; </symbol>
 <keyword> var </keyword>
-<keyword> int </keyword>
+<identifier> Array </identifier>
 <identifier> nextBlock </identifier>
 <symbol> ; </symbol>
 <keyword> if </keyword>
@@ -383,7 +383,7 @@
 <identifier> blockPtr </identifier>
 <symbol> ; </symbol>
 <keyword> var </keyword>
-<keyword> int </keyword>
+<identifier> Array </identifier>
 <identifier> nextPtr </identifier>
 <symbol> ; </symbol>
 <keyword> let </keyword>

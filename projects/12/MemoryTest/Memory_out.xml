@@ -168,7 +168,7 @@
       </varDec>
       <varDec>
         <keyword> var </keyword>
-        <keyword> int </keyword>
+        <identifier> Array </identifier>
         <identifier> nextBlock </identifier>
         <symbol> ; </symbol>
       </varDec>
@@ -827,7 +827,7 @@
       </varDec>
       <varDec>
         <keyword> var </keyword>
-        <keyword> int </keyword>
+        <identifier> Array </identifier>
         <identifier> nextPtr </identifier>
         <symbol> ; </symbol>
       </varDec>
