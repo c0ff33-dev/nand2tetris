@@ -4,6 +4,7 @@ Python bindings & test framework for Nand2Tetris HACK Assembly language
 import warnings
 import traceback
 import os
+import sys
 
 import assembler
 import tester
@@ -752,11 +753,11 @@ if __name__ == '__main__':
         # r'../projects/12/KeyboardTest
         # r'../projects/12/StringTest
         
-        # r'../projects/12/ArrayTest/ArrayTest.tst', # FIXME: why all zero?
-        # r'../projects/12/MemoryTest/MemoryTest.tst', # FIXME: why all zero?
-        
-        # r'../projects/12/MathTest/MathTest.tst', # TODO: NYI
+        r'../projects/12/ArrayTest/ArrayTest.tst', # FIXME: why all zero?
+        r'../projects/12/MemoryTest/MemoryTest.tst', # FIXME: why all zero?
         # r'../projects/12/MemoryTest/MemoryDiag/MemoryDiag.tst' # TODO: NYI
+
+        # r'../projects/12/MathTest/MathTest.tst', # TODO: NYI
     ]
 
     # init
@@ -804,7 +805,10 @@ if __name__ == '__main__':
 
     # compile Jack to VM (course compiler)
     for jack_dir in jack_dirpaths:
-        result = subprocess.run([r"../tools/JackCompiler.sh", jack_dir], capture_output=True, text=True)
+        if sys.platform.startswith("win"):
+            result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)
+        else:
+            result = subprocess.run([r"../tools/JackCompiler.sh", jack_dir], capture_output=True, text=True)
         if result.stderr or result.returncode:
             raise RuntimeError(result.stderr)
         else:
@@ -855,7 +859,10 @@ if __name__ == '__main__':
         run(asm_filepath, static_dict=_static_dict, tst_params=tst_params, debug=debug)
     
     # run hdl tests (HardwareSimulator)
-    cmd = r'../tools/HardwareSimulator.sh'
+    if sys.platform.startswith("win"):
+        cmd = r'..\tools\HardwareSimulator.bat'
+    else:
+        cmd = r'../tools/HardwareSimulator.sh'
     for test in hw_tst_files:
         print(r"Running: %s %s" % (cmd, test))
         result = subprocess.run([cmd, test], capture_output=True, text=True)
@@ -877,7 +884,10 @@ if __name__ == '__main__':
                 line += 1
     
     # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
-    cmd = r'../tools/CPUEmulator.sh'
+    if sys.platform.startswith("win"):
+        cmd = r'..\tools\CPUEmulator.bat'
+    else:
+        cmd = r'../tools/CPUEmulator.sh'
     for test in cpu_tst_files:
         print(r"Running: %s %s" % (cmd, test))
         result = subprocess.run([cmd, test], capture_output=True, text=True)
@@ -895,7 +905,10 @@ if __name__ == '__main__':
                 line += 1
     
     # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
-    cmd = r'../tools/VMEmulator.sh'
+    if sys.platform.startswith("win"):
+        cmd = r'..\tools\VMEmulator.bat'
+    else:
+        cmd = r'../tools/VMEmulator.sh'
     for test in vm_tst_files:
         print(r"Running: %s %s" % (cmd, test))
         result = subprocess.run([cmd, test], capture_output=True, text=True)
