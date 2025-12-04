@@ -933,21 +933,9 @@ if __name__ == '__main__':
             os.rename(main_base, main_backup)
             os.rename(main_out, main_base)
         try:
-            # TODO: is checking stdout sufficient here? seems overkill
             result = subprocess.run([cmd, test], capture_output=True, text=True)
-            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+            if result.stdout != 'End of script - Comparison ended successfully\n':
                 raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        
-            line = 0
-            out_file = test.replace("VME", "").replace(".tst", ".out")
-            cmp_file = test.replace("VME", "").replace(".tst", ".cmp")
-            with open(out_file) as out:
-                with open(cmp_file) as cmp:
-                    for index, (solution, current) in enumerate(zip(cmp, out)):
-                        # don't assert wildcard rules / VMEmulator should catch this regardless
-                        if solution != current and not "*********" in solution:
-                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-                    line += 1
         except: 
             raise
         finally:
