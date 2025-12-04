@@ -859,7 +859,7 @@ def main(filepath, file_list):
                 lhs_array = None  # None signifies lhs_array was true but now compiled/consumed
 
         # if stand-alone var array buffered in a non-assignment statement process it now
-        # TODO: this is probably a bit fragile
+        # TODO: this is probably a bit fragile (but is still necessary)
         if statement != 'let' and elem.text != '[' and exp_buffer and exp_buffer[-1].endswith("(*array var)"):
             pcode = store_pcode(pcode, exp_buffer.pop())
 
@@ -1191,7 +1191,7 @@ def main(filepath, file_list):
                     pcode = store_pcode(pcode, exp_buffer.pop())
                     
                     # if this would then create double op pop first op
-                    if exp_buffer[-1] in op_words:
+                    if exp_buffer and exp_buffer[-1] in op_words:
                         pcode = store_pcode(pcode, exp_buffer.pop())
                     exp_buffer.append(op_map[symbol])
                 else:
@@ -1280,7 +1280,7 @@ def _compile(jack_filepaths, strict_matches):
             with open(wip) as cur_file:
                 for index, (solution, current) in enumerate(zip(org_file, cur_file)):
                     if solution != current:
-                        print(f"Mismatch at {index}: expected '{solution}' / got '{current}'")
+                        print(f"Mismatch at {index}")
                         break
                 index += 1
                 if strict_matches[match] and index < strict_matches[match]:
