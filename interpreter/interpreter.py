@@ -14,6 +14,7 @@ import analyzer
 import compiler
 from translator import Translator
 
+from pathlib import Path
 from pynput import keyboard
 from rich.console import Console
 from rich.table import Table
@@ -753,8 +754,8 @@ if __name__ == '__main__':
         # r'../projects/12/KeyboardTest
         # r'../projects/12/StringTest
         
-        r'../projects/12/ArrayTest/ArrayTest.tst', # FIXME: why all zero?
-        r'../projects/12/MemoryTest/MemoryTest.tst', # FIXME: why all zero?
+        r'../projects/12/ArrayTest/ArrayTest.tst',
+        r'../projects/12/MemoryTest/MemoryTest.tst',
         # r'../projects/12/MemoryTest/MemoryDiag/MemoryDiag.tst' # TODO: NYI
 
         # r'../projects/12/MathTest/MathTest.tst', # TODO: NYI
@@ -911,19 +912,44 @@ if __name__ == '__main__':
         cmd = r'../tools/VMEmulator.sh'
     for test in vm_tst_files:
         print(r"Running: %s %s" % (cmd, test))
-        result = subprocess.run([cmd, test], capture_output=True, text=True)
-        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-    
-        line = 0
-        out_file = test.replace("VME", "").replace(".tst", ".out")
-        cmp_file = test.replace("VME", "").replace(".tst", ".cmp")
-        with open(out_file) as out:
-            with open(cmp_file) as cmp:
-                for index, (solution, current) in enumerate(zip(cmp, out)):
-                    if solution != current:
-                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-                line += 1
+
+        # VMEmulator will conflict if multiple VM implementations
+        # so temporarily rename the course compiler version(s)
+        if test.startswith("../projects/12"):
+            vm_base = test.replace("Test.tst", ".vm")
+            vm_out = vm_base.replace(".vm", "_out.vm")
+            vm_backup = vm_base.replace(".vm", ".bak")
+            os.rename(vm_base, vm_backup)
+            os.rename(vm_out, vm_base)
+
+            main_base = str(Path(test).with_name("Main.vm"))
+            main_out = main_base.replace("Main.vm", "Main_out.vm")
+            main_backup = main_base.replace(".vm", ".bak")
+            os.rename(main_base, main_backup)
+            os.rename(main_out, main_base)
+        try:
+            result = subprocess.run([cmd, test], capture_output=True, text=True)
+            if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+        
+            line = 0
+            out_file = test.replace("VME", "").replace(".tst", ".out")
+            cmp_file = test.replace("VME", "").replace(".tst", ".cmp")
+            with open(out_file) as out:
+                with open(cmp_file) as cmp:
+                    for index, (solution, current) in enumerate(zip(cmp, out)):
+                        if solution != current:
+                            raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                    line += 1
+        except: 
+            raise
+        finally:
+            # in either case restore restore the file names
+            if test.startswith("../projects/12"):
+                os.rename(vm_base, vm_out)
+                os.rename(vm_backup, vm_base)
+                os.rename(main_base, main_out)
+                os.rename(main_backup, main_base)
 
     # project
     # TODO: comment remaining sys.errors
