@@ -481,7 +481,7 @@ def compile_while(pcode, while_count):
 
 def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, exp_buffer=None, array=False):
     """
-    emit pcode when while encountered
+    emit pcode when var encountered
     """
     if var_scope not in ('local', 'member'):
         raise RuntimeError("Unexpected scope '%s'" % var_scope)
@@ -663,15 +663,13 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
 
         # compile as regular var (local)
         elif identifier in class_dict[class_name][func_name]['args']:
-            # TODO: cleanup if this is the way
-            # if array:
-            #     # if var is array compile to buffer
-            #     exp_buffer = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local',
-            #                              exp_buffer=exp_buffer, array=array)
-            #     print(exp_buffer)
-            # else:
-            # otherwise if var found compile directly (not buffer)
-            pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local')
+            if array:
+                # if var is array compile to buffer
+                exp_buffer = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local',
+                                         exp_buffer=exp_buffer, array=array)
+            else:
+                # otherwise if var found compile directly (not buffer)
+                pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local')
 
         # compile as regular var (member)
         elif identifier in class_dict[class_name]['args']:
@@ -708,7 +706,7 @@ def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False):
             pcode = store_pcode(pcode, exp_buffer.pop())
 
         if pop_incl:
-            exp_buffer.pop()  # already printed
+            exp_buffer.pop()  # already emitted by caller
     else:
         while exp_buffer:
             store_pcode(pcode, exp_buffer.pop())
@@ -1188,9 +1186,16 @@ def main(filepath, file_list):
                     # i.e. process a & b & c as ((a & b) & c)
                     pcode = store_pcode(pcode, exp_buffer.pop())
                     exp_buffer.append(op_map[symbol])
+                elif exp_buffer and exp_buffer[-1].endswith("(*array var)"):
+                    # if operating on naked array var pop that first
+                    pcode = store_pcode(pcode, exp_buffer.pop())
+                    
+                    # if this would then create double op pop first op
+                    if exp_buffer[-1] in op_words:
+                        pcode = store_pcode(pcode, exp_buffer.pop())
+                    exp_buffer.append(op_map[symbol])
                 else:
                     exp_buffer.append(op_map[symbol])
-
             else:
                 raise RuntimeError("unexpected symbol '%s'" % elem.text)
 
@@ -1275,6 +1280,7 @@ def _compile(jack_filepaths, strict_matches):
             with open(wip) as cur_file:
                 for index, (solution, current) in enumerate(zip(org_file, cur_file)):
                     if solution != current:
+                        print(f"Mismatch at {index}: expected '{solution}' / got '{current}'")
                         break
                 index += 1
                 if strict_matches[match] and index < strict_matches[match]:
@@ -1326,16 +1332,13 @@ if __name__ == '__main__':
          r"../projects/12/KeyboardTest/Keyboard.jack"],
         [r"../projects/12/StringTest/Main.jack",
          r"../projects/12/StringTest/String.jack"],
-        # [r"../projects/12/MemoryTest/Main.jack",
-        #  r"../projects/12/MemoryTest/Memory.jack"],
+        [r"../projects/12/MemoryTest/Main.jack",
+         r"../projects/12/MemoryTest/Memory.jack"],
     ]
 
     # matched to course compiler
     strict_matches = {
-        # all
         r"../projects/09/Average/Main.vm": 149,
-        r"../projects/11/Seven/Main.vm": 10,
-        r"../projects/11/ConvertToBin/Main.vm": 109,
         r"../projects/09/Fraction/Main.vm": 18,
         r"../projects/09/Fraction/Fraction.vm": 116,
         r"../projects/09/HelloWorld/Main.vm": 33,
@@ -1345,11 +1348,13 @@ if __name__ == '__main__':
         r"../projects/09/Square/Square.vm": 304,
         r"../projects/09/Square/SquareGame.vm": 179,
         r"../projects/10/ArrayTest/Main.vm": 183,
+        r"../projects/11/ComplexArrays/Main.vm": 702,
+        r"../projects/11/ConvertToBin/Main.vm": 109,
         r"../projects/11/Pong/Bat.vm": 207,
         r"../projects/11/Pong/Ball.vm": 444,
         r"../projects/11/Pong/Main.vm": 13,
         r"../projects/11/Pong/PongGame.vm": 318,
-        r"../projects/11/ComplexArrays/Main.vm": 702,
+        r"../projects/11/Seven/Main.vm": 10,
 
         # TODO: Project 12
         r"../projects/12/SysTest/Main.vm": 281,
@@ -1360,8 +1365,8 @@ if __name__ == '__main__':
         r"../projects/12/KeyboardTest/Keyboard.vm": 102,
         r"../projects/12/StringTest/Main.vm": 919,
         r"../projects/12/StringTest/String.vm": 393,
-        # r"../projects/12/MemoryTest/Main.vm": xxx,
-        # r"../projects/12/MemoryTest/Memory.vm": xxx,
+        r"../projects/12/MemoryTest/Main.vm": 176,
+        r"../projects/12/MemoryTest/Memory.vm": 376,
     }
 
     debug = True  # default True if run from main, otherwise False if called externally

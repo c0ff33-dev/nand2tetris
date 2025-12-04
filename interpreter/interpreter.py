@@ -425,12 +425,12 @@ if __name__ == '__main__':
         r"../projects/11/Seven",
         r"../projects/11/Square",
 
-        # # TODO: Project 12
+        # TODO: Project 12
         r"../projects/12/SysTest",
         r"../projects/12/ArrayTest",
         r"../projects/12/KeyboardTest",
         r"../projects/12/StringTest",
-        r"../projects/12/MemoryTest", # TODO: wip (source matched)
+        r"../projects/12/MemoryTest", # TODO: wip (both compilers source matched)
     ]
 
     # tokenizer/analyzer
@@ -464,7 +464,7 @@ if __name__ == '__main__':
         r"../projects/11/Square/Square.jack",
         r"../projects/11/Square/SquareGame.jack",
 
-        # # TODO: Project 12
+        # TODO: Project 12
         r"../projects/12/SysTest/Main.jack",
         r"../projects/12/SysTest/Sys.jack",
         r"../projects/12/ArrayTest/Main.jack",
@@ -508,7 +508,7 @@ if __name__ == '__main__':
          r"../projects/11/Square/Square.jack",
          r"../projects/11/Square/SquareGame.jack"],
 
-        # # TODO: Project 12
+        # TODO: Project 12
         [r"../projects/12/SysTest/Main.jack",
          r"../projects/12/SysTest/Sys.jack"],
         [r"../projects/12/ArrayTest/Main.jack",
@@ -524,8 +524,7 @@ if __name__ == '__main__':
     # enforce matching of compiler against course compiler
     # projects 1-11 accounted for
     jack_matches = {  
-        # FIXME: regression with latest compiler changes
-        # r"../projects/09/Average/Main.vm": 149,
+        r"../projects/09/Average/Main.vm": 149,
         r"../projects/09/Fraction/Main.vm": 18,
         r"../projects/09/Fraction/Fraction.vm": 116,
         r"../projects/09/HelloWorld/Main.vm": 33,
@@ -534,8 +533,8 @@ if __name__ == '__main__':
         r"../projects/09/Square/Main.vm": 11,
         r"../projects/09/Square/Square.vm": 304,
         r"../projects/09/Square/SquareGame.vm": 179,
-        # r"../projects/10/ArrayTest/Main.vm": 183,
-        # r"../projects/11/ComplexArrays/Main.vm": 702,
+        r"../projects/10/ArrayTest/Main.vm": 183,
+        r"../projects/11/ComplexArrays/Main.vm": 702,
         r"../projects/11/ConvertToBin/Main.vm": 109,
         r"../projects/11/Pong/Bat.vm": 207,
         r"../projects/11/Pong/Ball.vm": 444,
@@ -546,16 +545,14 @@ if __name__ == '__main__':
         # TODO: Project 12
         r"../projects/12/SysTest/Main.vm": 281,
         r"../projects/12/SysTest/Sys.vm": 83,
-        # r"../projects/12/ArrayTest/Main.vm": 131,
+        r"../projects/12/ArrayTest/Main.vm": 131,
         r"../projects/12/ArrayTest/Array.vm": 23,
         r"../projects/12/KeyboardTest/Main.vm": 949,
         r"../projects/12/KeyboardTest/Keyboard.vm": 102,
         r"../projects/12/StringTest/Main.vm": 919,
-        # r"../projects/12/StringTest/String.vm": 393,
-
-        # TODO: not strictly matched (operand order on add only)
-        # r"../projects/12/MemoryTest/Main.vm": 177,
-        # r"../projects/12/MemoryTest/Memory.vm": 377,
+        r"../projects/12/StringTest/String.vm": 393,
+        r"../projects/12/MemoryTest/Main.vm": 176,
+        r"../projects/12/MemoryTest/Memory.vm": 376,
     }
 
     # VM programs (translator only, interpreted below)
@@ -671,7 +668,6 @@ if __name__ == '__main__':
         r"../projects/12/ArrayTest/ArrayTest.asm",
         # r"../projects/12/KeyboardTest/KeyboardTest.asm",  # 17 bit addresses + access violation
         # r"../projects/12/StringTest/StringTest.asm",  # 17 bit addresses + access violation
-        r"../projects/12/MemoryTest/MemoryTest.asm",
         r"../projects/12/MemoryTest/MemoryTest.asm"
     ]
 
