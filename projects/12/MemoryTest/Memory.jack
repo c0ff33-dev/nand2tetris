@@ -3,6 +3,9 @@
 // by Nisan and Schocken, MIT Press.
 // File name: projects/12/Memory.jack
 
+// Algorithm is discussed in more detail here:
+// http://nand2tetris-questions-and-answers-forum.52.s1.nabble.com/New-Heap-Management-algorithm-Coursera-version-td4032026.html 
+
 /**
  * This library provides two services: direct access to the computer's main
  * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM

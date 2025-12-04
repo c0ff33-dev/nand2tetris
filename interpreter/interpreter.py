@@ -432,7 +432,8 @@ if __name__ == '__main__':
         r"../projects/12/ArrayTest",
         r"../projects/12/KeyboardTest",
         r"../projects/12/StringTest",
-        r"../projects/12/MemoryTest", # TODO: wip (both compilers source matched)
+        r"../projects/12/MemoryTest",
+        r'../projects/12/MemoryTest/MemoryDiag'
     ]
 
     # tokenizer/analyzer
@@ -477,6 +478,7 @@ if __name__ == '__main__':
         r"../projects/12/StringTest/String.jack",
         r"../projects/12/MemoryTest/Main.jack",
         r"../projects/12/MemoryTest/Memory.jack",
+        r'../projects/12/MemoryTest/MemoryDiag/Main.jack'
     ]
 
     # compiler
@@ -521,6 +523,7 @@ if __name__ == '__main__':
          r"../projects/12/StringTest/String.jack"],
         [r"../projects/12/MemoryTest/Main.jack",
          r"../projects/12/MemoryTest/Memory.jack"],
+        [r'../projects/12/MemoryTest/MemoryDiag/Main.jack']
     ]
 
     # enforce matching of compiler against course compiler
@@ -555,6 +558,7 @@ if __name__ == '__main__':
         r"../projects/12/StringTest/String.vm": 393,
         r"../projects/12/MemoryTest/Main.vm": 176,
         r"../projects/12/MemoryTest/Memory.vm": 376,
+        r'../projects/12/MemoryTest/MemoryDiag/Main.vm': 465,
     }
 
     # VM programs (translator only, interpreted below)
@@ -591,7 +595,8 @@ if __name__ == '__main__':
         r"../projects/12/ArrayTest",
         r"../projects/12/KeyboardTest",
         r"../projects/12/StringTest",
-        r"../projects/12/MemoryTest"
+        r"../projects/12/MemoryTest",
+        r'../projects/12/MemoryTest/MemoryDiag'
     ]
 
     # VM programs
@@ -670,7 +675,8 @@ if __name__ == '__main__':
         r"../projects/12/ArrayTest/ArrayTest.asm",
         # r"../projects/12/KeyboardTest/KeyboardTest.asm",  # 17 bit addresses + access violation
         # r"../projects/12/StringTest/StringTest.asm",  # 17 bit addresses + access violation
-        r"../projects/12/MemoryTest/MemoryTest.asm"
+        r"../projects/12/MemoryTest/MemoryTest.asm",
+        r'../projects/12/MemoryTest/MemoryDiag/MemoryDiag.asm'
     ]
 
     # HDL tests (HardwareSimulator): project 1-12 accounted for, not included in tester/python_hdl!
@@ -756,9 +762,8 @@ if __name__ == '__main__':
         
         r'../projects/12/ArrayTest/ArrayTest.tst',
         r'../projects/12/MemoryTest/MemoryTest.tst',
-        # r'../projects/12/MemoryTest/MemoryDiag/MemoryDiag.tst' # TODO: NYI
-
-        # r'../projects/12/MathTest/MathTest.tst', # TODO: NYI
+        r'../projects/12/MemoryTest/MemoryDiag/MemoryDiag.tst',
+        # r'../projects/12/MathTest/MathTest.tst' # TODO: NYI
     ]
 
     # init
@@ -928,6 +933,7 @@ if __name__ == '__main__':
             os.rename(main_base, main_backup)
             os.rename(main_out, main_base)
         try:
+            # TODO: is checking stdout sufficient here? seems overkill
             result = subprocess.run([cmd, test], capture_output=True, text=True)
             if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
                 raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
@@ -938,7 +944,8 @@ if __name__ == '__main__':
             with open(out_file) as out:
                 with open(cmp_file) as cmp:
                     for index, (solution, current) in enumerate(zip(cmp, out)):
-                        if solution != current:
+                        # don't assert wildcard rules / VMEmulator should catch this regardless
+                        if solution != current and not "*********" in solution:
                             raise RuntimeError("%s mismatch after line %s" % (out_file, index))
                     line += 1
         except: 
