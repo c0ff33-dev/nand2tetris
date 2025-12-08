@@ -79,10 +79,8 @@ class Memory {
                     // currentBlock updated to reference closest data block (terminate list)
                     // *nextPtr = &blockData+2
                     let blockPtr[1] = (blockPtr + 2);
-                }
-
-                //
-                else { // else currentBlock inherits nextBlock flink
+                } else { 
+                    // else currentBlock inherits nextBlock flink
                     // *nextPtr = *nextBlockPtr
                     let blockPtr[1] = nextBlock[1];
                 }
@@ -108,7 +106,8 @@ class Memory {
                 let blockPtr[size + 3] = blockPtr + size + 4;
             }
 
-            else { // freeBlock inherits allocBlock flink
+            else { 
+                // freeBlock inherits allocBlock flink
                 // *freeNextPtr = *allocNextPtr
                 let blockPtr[size + 3] = blockPtr[1];
             }

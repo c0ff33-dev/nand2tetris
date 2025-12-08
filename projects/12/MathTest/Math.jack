@@ -42,7 +42,11 @@ class Math {
     function int multiply(int x, int y) {
         // Russian Peasant Multiplication
         var int sum, tmp, power, i, neg;
+
+        // test if one product is negative
         let neg = (((x < 0) & (y > 0)) | ((x > 0) & (y < 0)));
+        
+        // ensure larger absolute product is in x
         let x = Math.abs(x);
         let y = Math.abs(y);
         if (x < y) {
@@ -51,8 +55,13 @@ class Math {
             let y = tmp;
         }
 
+        // add x to sum for each power of 2 in y
+        // double x each iteration
         while ((power-1)<(y-1)) {
-            if (~(power2[i] & y=0)) {
+            // if current power of 2 is in y, add x to sum
+            // i.e. if any bits match in the bitwise comparison
+            // ~(...)=0 ensures the resulting expression is boolean
+            if (~((power2[i] & y) = 0)) {
                 let sum = sum + x;
                 let power = power + power2[i];
             }

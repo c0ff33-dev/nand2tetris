@@ -228,12 +228,14 @@
 <symbol> ( </symbol>
 <symbol> ~ </symbol>
 <symbol> ( </symbol>
+<symbol> ( </symbol>
 <identifier> power2 </identifier>
 <symbol> [ </symbol>
 <identifier> i </identifier>
 <symbol> ] </symbol>
 <symbol> &amp; </symbol>
 <identifier> y </identifier>
+<symbol> ) </symbol>
 <symbol> = </symbol>
 <integerConstant> 0 </integerConstant>
 <symbol> ) </symbol>

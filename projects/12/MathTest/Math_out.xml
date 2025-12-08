@@ -484,18 +484,24 @@
                     <expressionList>
                       <expression>
                         <term>
-                          <identifier> power2 </identifier>
-                          <symbol> [ </symbol>
+                          <symbol> ( </symbol>
                           <expression>
                             <term>
-                              <identifier> i </identifier>
+                              <identifier> power2 </identifier>
+                              <symbol> [ </symbol>
+                              <expression>
+                                <term>
+                                  <identifier> i </identifier>
+                                </term>
+                              </expression>
+                              <symbol> ] </symbol>
+                            </term>
+                            <symbol> &amp; </symbol>
+                            <term>
+                              <identifier> y </identifier>
                             </term>
                           </expression>
-                          <symbol> ] </symbol>
-                        </term>
-                        <symbol> &amp; </symbol>
-                        <term>
-                          <identifier> y </identifier>
+                          <symbol> ) </symbol>
                         </term>
                         <symbol> = </symbol>
                         <term>
