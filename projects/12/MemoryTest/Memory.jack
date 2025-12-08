@@ -12,26 +12,26 @@
  * consists of 32,768 words, each holding a 16-bit binary number.
  */ 
 class Memory {
-    static Array static0;
+    static Array ram;
 
     /** Initializes the class. */
     function void init() {
-        let static0 = 0; // manually assign pointer value as zero
+        let ram = 0; // manually assign pointer value as zero
         // 2048 = first heap, 16383 = last heap
-        let static0[2048] = 14334; // blockSize (init=1 max size free block)
-        let static0[2049] = 2050; // *nextPtr = &blockData
-        // static0[2050] = 0; // &blockData
+        let ram[2048] = 14334; // blockSize (init=1 max size free block)
+        let ram[2049] = 2050; // *nextPtr = &blockData
+        // ram[2050] = 0; // &blockData
         return;
     }
 
     /** Returns the RAM value at the given address. */
     function int peek(int address) {
-        return static0[address];
+        return ram[address];
     }
 
     /** Sets the RAM value at the given address to the given value. */
     function void poke(int address, int value) {
-        let static0[address] = value;
+        let ram[address] = value;
         return;
     }
 
