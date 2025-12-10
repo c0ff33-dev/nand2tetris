@@ -8,7 +8,7 @@
  * Note: Jack compilers implement multiplication and division using OS method calls.
  */
 class Math {
-    static int powArr, magArr;
+    static Array powArr, magArr;
 
     /** Initializes the library. */
     function void init() {
@@ -127,16 +127,35 @@ class Math {
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
-        return 0;
+        var int i, sum, sqr, result;
+        if (x < 0) {
+            do Sys.error(4); // x can't be negative
+        }
+        let i = 7;
+        while (i > -1) {
+            let sum = result + powArr[i];
+            let sqr = sum * sum;
+            if (~(sqr > x) & (~(sqr < 0))) {
+                let result = sum;
+            }
+            let i = i - 1;
+        }
+        return result;
     }
 
     /** Returns the greater number. */
     function int max(int a, int b) {
-        return 0;
+        if (a > b) {
+            let b = a;
+        }
+        return b;
     }
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
-        return 0;
+        if (a < b) {
+            let b = a;
+        }
+        return b;
     }
 }
