@@ -616,6 +616,8 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
             # process everything up to but not including the last expression opening from buffer
             pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// (")  # i.e. expression was not bracketed
 
+        # else: symbols will be processed into exp_buffer during normal compilation (elem.tag / op_map)
+
     elif identifier:
         # identify array var
         array = False
@@ -1293,81 +1295,87 @@ def _compile(jack_filepaths, strict_matches):
 
 
 if __name__ == '__main__':
-    jack_filepaths = [
+    jack_filepath_lists = [
         # projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
-        [r"../projects/09/Average/Main.jack"],
-        [r"../projects/09/Fraction/Main.jack",
-         r"../projects/09/Fraction/Fraction.jack"],
-        [r"../projects/09/HelloWorld/Main.jack"],
-        [r"../projects/09/List/Main.jack",
-         r"../projects/09/List/List.jack"],
-        [r"../projects/09/Square/Main.jack",
-         r"../projects/09/Square/Square.jack",
-         r"../projects/09/Square/SquareGame.jack"],
-        [r"../projects/10/ArrayTest/Main.jack"],
-        # [r"../projects/10/ExpressionLessSquare/Main.jack",  # nonsense code that shouldn't compile or run
-        #  r"../projects/10/ExpressionLessSquare/Square.jack",
-        #  r"../projects/10/ExpressionLessSquare/SquareGame.jack"],
-        [r"../projects/10/Square/Main.jack",
-         r"../projects/10/Square/Square.jack",
-         r"../projects/10/Square/SquareGame.jack"],
-        [r"../projects/11/Average/Main.jack"],
-        [r"../projects/11/ComplexArrays/Main.jack"],
-        [r"../projects/11/ConvertToBin/Main.jack"],
-        [r"../projects/11/Pong/Ball.jack",
-         r"../projects/11/Pong/Bat.jack",
-         r"../projects/11/Pong/Main.jack",
-         r"../projects/11/Pong/PongGame.jack"],
-        [r"../projects/11/Seven/Main.jack"],
-        [r"../projects/11/Square/Main.jack",
-         r"../projects/11/Square/Square.jack",
-         r"../projects/11/Square/SquareGame.jack"],
+        [os.path.join("..", "projects", "09", "Average", "Main.jack")],
+        [os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
+         os.path.join("..", "projects", "09", "Fraction", "Fraction.jack")],
+        [os.path.join("..", "projects", "09", "HelloWorld", "Main.jack")],
+        [os.path.join("..", "projects", "09", "List", "Main.jack"),
+         os.path.join("..", "projects", "09", "List", "List.jack")],
+        [os.path.join("..", "projects", "09", "Square", "Main.jack"),
+         os.path.join("..", "projects", "09", "Square", "Square.jack"),
+         os.path.join("..", "projects", "09", "Square", "SquareGame.jack")],
+        [os.path.join("..", "projects", "10", "ArrayTest", "Main.jack")],
+        # [os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  # nonsense code that shouldn't compile or run
+        #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
+        #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack")],
+        [os.path.join("..", "projects", "10", "Square", "Main.jack"),
+         os.path.join("..", "projects", "10", "Square", "Square.jack"),
+         os.path.join("..", "projects", "10", "Square", "SquareGame.jack")],
+        [os.path.join("..", "projects", "11", "Average", "Main.jack")],
+        [os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack")],
+        [os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack")],
+        [os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
+         os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
+         os.path.join("..", "projects", "11", "Pong", "Main.jack"),
+         os.path.join("..", "projects", "11", "Pong", "PongGame.jack")],
+        [os.path.join("..", "projects", "11", "Seven", "Main.jack")],
+        [os.path.join("..", "projects", "11", "Square", "Main.jack"),
+         os.path.join("..", "projects", "11", "Square", "Square.jack"),
+         os.path.join("..", "projects", "11", "Square", "SquareGame.jack")],
 
         # TODO: Project 12
-        [r"../projects/12/SysTest/Main.jack",
-         r"../projects/12/SysTest/Sys.jack"],
-        [r"../projects/12/ArrayTest/Main.jack",
-         r"../projects/12/ArrayTest/Array.jack"],
-        [r"../projects/12/KeyboardTest/Main.jack",
-         r"../projects/12/KeyboardTest/Keyboard.jack"],
-        [r"../projects/12/StringTest/Main.jack",
-         r"../projects/12/StringTest/String.jack"],
-        [r"../projects/12/MemoryTest/Main.jack",
-         r"../projects/12/MemoryTest/Memory.jack"],
+        [os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "SysTest", "Sys.jack")],
+        [os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "ArrayTest", "Array.jack")],
+        [os.path.join("..", "projects", "12", "KeyboardTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.jack")],
+        [os.path.join("..", "projects", "12", "StringTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "StringTest", "String.jack")],
+        [os.path.join("..", "projects", "12", "MemoryTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "MemoryTest", "Memory.jack")],
+        [os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack")],
+        [os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "MathTest", "Math.jack")],
     ]
 
     # matched to course compiler
-    strict_matches = {
-        r"../projects/09/Average/Main.vm": 149,
-        r"../projects/09/Fraction/Main.vm": 18,
-        r"../projects/09/Fraction/Fraction.vm": 116,
-        r"../projects/09/HelloWorld/Main.vm": 33,
-        r"../projects/09/List/Main.vm": 19,
-        r"../projects/09/List/List.vm": 65,
-        r"../projects/09/Square/Main.vm": 11,
-        r"../projects/09/Square/Square.vm": 304,
-        r"../projects/09/Square/SquareGame.vm": 179,
-        r"../projects/10/ArrayTest/Main.vm": 183,
-        r"../projects/11/ComplexArrays/Main.vm": 702,
-        r"../projects/11/ConvertToBin/Main.vm": 109,
-        r"../projects/11/Pong/Bat.vm": 207,
-        r"../projects/11/Pong/Ball.vm": 444,
-        r"../projects/11/Pong/Main.vm": 13,
-        r"../projects/11/Pong/PongGame.vm": 318,
-        r"../projects/11/Seven/Main.vm": 10,
+    jack_matches = {
+        os.path.join("..", "projects", "09", "Average", "Main.vm"): 149,
+        os.path.join("..", "projects", "09", "Fraction", "Main.vm"): 18,
+        os.path.join("..", "projects", "09", "Fraction", "Fraction.vm"): 116,
+        os.path.join("..", "projects", "09", "HelloWorld", "Main.vm"): 33,
+        os.path.join("..", "projects", "09", "List", "Main.vm"): 19,
+        os.path.join("..", "projects", "09", "List", "List.vm"): 65,
+        os.path.join("..", "projects", "09", "Square", "Main.vm"): 11,
+        os.path.join("..", "projects", "09", "Square", "Square.vm"): 304,
+        os.path.join("..", "projects", "09", "Square", "SquareGame.vm"): 179,
+        os.path.join("..", "projects", "10", "ArrayTest", "Main.vm"): 183,
+        os.path.join("..", "projects", "11", "ComplexArrays", "Main.vm"): 702,
+        os.path.join("..", "projects", "11", "ConvertToBin", "Main.vm"): 109,
+        os.path.join("..", "projects", "11", "Pong", "Bat.vm"): 207,
+        os.path.join("..", "projects", "11", "Pong", "Ball.vm"): 444,
+        os.path.join("..", "projects", "11", "Pong", "Main.vm"): 13,
+        os.path.join("..", "projects", "11", "Pong", "PongGame.vm"): 318,
+        os.path.join("..", "projects", "11", "Seven", "Main.vm"): 10,
 
         # TODO: Project 12
-        r"../projects/12/SysTest/Main.vm": 281,
-        r"../projects/12/SysTest/Sys.vm": 83,
-        r"../projects/12/ArrayTest/Main.vm": 131,
-        r"../projects/12/ArrayTest/Array.vm": 23,
-        r"../projects/12/KeyboardTest/Main.vm": 949,
-        r"../projects/12/KeyboardTest/Keyboard.vm": 102,
-        r"../projects/12/StringTest/Main.vm": 919,
-        r"../projects/12/StringTest/String.vm": 393,
-        r"../projects/12/MemoryTest/Main.vm": 176,
-        r"../projects/12/MemoryTest/Memory.vm": 376,
+        os.path.join("..", "projects", "12", "SysTest", "Main.vm"): 281,
+        os.path.join("..", "projects", "12", "SysTest", "Sys.vm"): 83,
+        os.path.join("..", "projects", "12", "ArrayTest", "Main.vm"): 131,
+        os.path.join("..", "projects", "12", "ArrayTest", "Array.vm"): 23,
+        os.path.join("..", "projects", "12", "KeyboardTest", "Main.vm"): 949,
+        os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.vm"): 102,
+        os.path.join("..", "projects", "12", "StringTest", "Main.vm"): 919,
+        os.path.join("..", "projects", "12", "StringTest", "String.vm"): 393,
+        os.path.join("..", "projects", "12", "MemoryTest", "Main.vm"): 176,
+        os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 376,
+        os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"): 465,
+        # os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
+        # os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,
     }
 
     debug = True  # default True if run from main, otherwise False if called externally
-    _compile(jack_filepaths, strict_matches)
+    _compile(jack_filepath_lists, jack_matches)

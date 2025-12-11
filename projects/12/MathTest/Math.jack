@@ -135,7 +135,8 @@ class Math {
         while (i > -1) {
             let sum = result + powArr[i];
             let sqr = sum * sum;
-            if (~(sqr > x) & (~(sqr < 0))) {
+            // FIXME: concurrent symbols (~,&,~) pops the & prematurely
+            if (~(sqr > x) & ~(sqr < 0)) {
                 let result = sum;
             }
             let i = i - 1;
