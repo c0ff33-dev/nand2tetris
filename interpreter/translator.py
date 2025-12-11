@@ -604,7 +604,7 @@ class Translator:
         """
         translate the vm commands into a single asm file
         """
-        src = vm_filepath.split('/')[-1].split('.vm')[0]
+        src = vm_filepath.split(os.path.sep)[-1].split('.vm')[0]
 
         with open(vm_filepath) as vm_file:
             vm_contents = vm_file.readlines()
@@ -752,7 +752,7 @@ class Translator:
         vm_filelist = [
             os.path.join(vm_dir, 'Sys.vm'),
             os.path.join(vm_dir, 'Main.vm'),
-            os.path.join(vm_dir, vm_dir.split('/')[-1]+'.vm'),
+            os.path.join(vm_dir, vm_dir.split(os.path.sep)[-1]+'.vm'),
             os.path.join(vm_dir, 'Class1.vm'),
             os.path.join(vm_dir, 'Class2.vm'),
             os.path.join(vm_dir, 'Array.vm'),
@@ -796,7 +796,7 @@ class Translator:
                 vm_dir_filelist.append(vm_filepath)
 
             # write asm_file
-            asm_path = os.path.join(vm_dir, vm_dir.split('/')[-1]+'.asm')
+            asm_path = os.path.join(vm_dir, vm_dir.split(os.path.sep)[-1]+'.asm')
             with open(asm_path, 'w') as asm_file:
                 if any(bootstrap_path in asm_path for bootstrap_path in vm_bootstrap_paths):
                     # test scripts do not conform to spec (256)

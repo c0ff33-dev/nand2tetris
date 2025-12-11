@@ -28542,7 +28542,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Math.vm)
+@16 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -28611,7 +28611,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@16 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Math.vm)
+@16 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -28635,7 +28635,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -28854,7 +28854,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -28911,7 +28911,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -28995,7 +28995,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -30025,7 +30025,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -30236,7 +30236,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -30947,7 +30947,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31279,7 +31279,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31375,7 +31375,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31559,7 +31559,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31595,7 +31595,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31658,7 +31658,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -31811,7 +31811,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -32145,7 +32145,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -32326,7 +32326,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -32428,7 +32428,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -32965,7 +32965,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -33818,7 +33818,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 0
-@18 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Memory.vm)
+@18 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Memory.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -33842,7 +33842,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -33941,7 +33941,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -34111,7 +34111,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -34233,7 +34233,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -38424,7 +38424,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 4
-@19 // pop static 4 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 4 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38456,7 +38456,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38480,7 +38480,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38504,7 +38504,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38573,7 +38573,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 3
-@19 // pop static 3 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 3 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38884,7 +38884,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 5
-@19 // pop static 5 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 5 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -56040,7 +56040,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -57377,7 +57377,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 6
-@19 // pop static 6 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 6 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -57497,7 +57497,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -57644,7 +57644,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -58513,7 +58513,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE0) // label IF_FALSE0
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -58555,7 +58555,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -58640,7 +58640,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -58861,7 +58861,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -58957,7 +58957,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 D;JNE // jump if not zero
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -58999,7 +58999,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -59113,7 +59113,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -59215,7 +59215,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -59970,7 +59970,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -60117,7 +60117,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -60141,7 +60141,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -60168,7 +60168,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -60305,7 +60305,7 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -60973,7 +60973,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -61011,7 +61011,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE2) // label IF_TRUE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -61044,7 +61044,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -61059,7 +61059,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -61092,7 +61092,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -61110,7 +61110,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -61251,7 +61251,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE3) // label IF_FALSE3
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -61271,7 +61271,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -61760,7 +61760,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.printInt) // function Output.printInt 0
 
 // push static 3
-@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -61879,7 +61879,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 3
-@19 // push static 3 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 3 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -62038,7 +62038,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.println) // function Output.println 0
 
 // push static 1
-@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62070,7 +62070,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -62094,7 +62094,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62118,7 +62118,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62150,7 +62150,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62165,7 +62165,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62239,7 +62239,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62326,7 +62326,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.backSpace) // function Output.backSpace 0
 
 // push static 2
-@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -62355,7 +62355,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE0) // label IF_TRUE0
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -62420,7 +62420,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE1) // label IF_TRUE1
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -62453,7 +62453,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62468,7 +62468,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62501,7 +62501,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62532,7 +62532,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62547,7 +62547,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62621,7 +62621,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62639,7 +62639,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -62672,7 +62672,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62699,7 +62699,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62738,7 +62738,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Output.vm)
+@19 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62938,7 +62938,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 1
-@26 // pop static 1 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // pop static 1 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -62970,7 +62970,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@26 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -63039,7 +63039,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@26 // pop static 0 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // pop static 0 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -63063,7 +63063,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63282,7 +63282,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63339,7 +63339,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63423,7 +63423,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -63699,7 +63699,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -63913,7 +63913,7 @@ A=M // d = *lcl-5 (*lcl)
 (Screen.updateLocation) // function Screen.updateLocation 0
 
 // push static 2
-@26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -63954,7 +63954,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -63990,7 +63990,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -64141,7 +64141,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -64177,7 +64177,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -64400,7 +64400,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // pop static 2
-@26 // pop static 2 // static + src segment offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // pop static 2 // static + src segment offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -65238,7 +65238,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -69192,7 +69192,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -69320,7 +69320,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -71683,7 +71683,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -71811,7 +71811,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/KeyboardTest/Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\KeyboardTest\Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)

@@ -5,7 +5,7 @@
   <classVarDec>
     <keyword> static </keyword>
     <identifier> Array </identifier>
-    <identifier> static0 </identifier>
+    <identifier> ram </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <subroutineDec>
@@ -20,7 +20,7 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> ram </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -31,7 +31,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> ram </identifier>
           <symbol> [ </symbol>
           <expression>
             <term>
@@ -49,7 +49,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> ram </identifier>
           <symbol> [ </symbol>
           <expression>
             <term>
@@ -90,7 +90,7 @@
           <keyword> return </keyword>
           <expression>
             <term>
-              <identifier> static0 </identifier>
+              <identifier> ram </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -124,7 +124,7 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> ram </identifier>
           <symbol> [ </symbol>
           <expression>
             <term>

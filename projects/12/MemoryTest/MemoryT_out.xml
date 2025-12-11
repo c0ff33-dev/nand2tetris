@@ -4,7 +4,7 @@
 <symbol> { </symbol>
 <keyword> static </keyword>
 <identifier> Array </identifier>
-<identifier> static0 </identifier>
+<identifier> ram </identifier>
 <symbol> ; </symbol>
 <keyword> function </keyword>
 <keyword> void </keyword>
@@ -13,12 +13,12 @@
 <symbol> ) </symbol>
 <symbol> { </symbol>
 <keyword> let </keyword>
-<identifier> static0 </identifier>
+<identifier> ram </identifier>
 <symbol> = </symbol>
 <integerConstant> 0 </integerConstant>
 <symbol> ; </symbol>
 <keyword> let </keyword>
-<identifier> static0 </identifier>
+<identifier> ram </identifier>
 <symbol> [ </symbol>
 <integerConstant> 2048 </integerConstant>
 <symbol> ] </symbol>
@@ -26,7 +26,7 @@
 <integerConstant> 14334 </integerConstant>
 <symbol> ; </symbol>
 <keyword> let </keyword>
-<identifier> static0 </identifier>
+<identifier> ram </identifier>
 <symbol> [ </symbol>
 <integerConstant> 2049 </integerConstant>
 <symbol> ] </symbol>
@@ -45,7 +45,7 @@
 <symbol> ) </symbol>
 <symbol> { </symbol>
 <keyword> return </keyword>
-<identifier> static0 </identifier>
+<identifier> ram </identifier>
 <symbol> [ </symbol>
 <identifier> address </identifier>
 <symbol> ] </symbol>
@@ -63,7 +63,7 @@
 <symbol> ) </symbol>
 <symbol> { </symbol>
 <keyword> let </keyword>
-<identifier> static0 </identifier>
+<identifier> ram </identifier>
 <symbol> [ </symbol>
 <identifier> address </identifier>
 <symbol> ] </symbol>

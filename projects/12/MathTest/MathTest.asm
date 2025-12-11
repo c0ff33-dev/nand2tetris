@@ -77,8 +77,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(MathTest\Main.Math.multiply.1) // call Math.multiply 2
-@MathTest\Main.Math.multiply.1 // call Math.multiply // push RP
+(Main.Math.multiply.1) // call Math.multiply 2
+@Main.Math.multiply.1 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -369,8 +369,8 @@ M=-M // esp = -val1
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(MathTest\Main.Math.multiply.3) // call Math.multiply 2
-@MathTest\Main.Math.multiply.3 // call Math.multiply // push RP
+(Main.Math.multiply.3) // call Math.multiply 2
+@Main.Math.multiply.3 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -618,8 +618,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(MathTest\Main.Math.multiply.5) // call Math.multiply 2
-@MathTest\Main.Math.multiply.5 // call Math.multiply // push RP
+(Main.Math.multiply.5) // call Math.multiply 2
+@Main.Math.multiply.5 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -867,8 +867,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(MathTest\Main.Math.multiply.7) // call Math.multiply 2
-@MathTest\Main.Math.multiply.7 // call Math.multiply // push RP
+(Main.Math.multiply.7) // call Math.multiply 2
+@Main.Math.multiply.7 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1116,8 +1116,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(MathTest\Main.Math.multiply.9) // call Math.multiply 2
-@MathTest\Main.Math.multiply.9 // call Math.multiply // push RP
+(Main.Math.multiply.9) // call Math.multiply 2
+@Main.Math.multiply.9 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1314,8 +1314,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(MathTest\Main.Math.divide.11) // call Math.divide 2
-@MathTest\Main.Math.divide.11 // call Math.divide // push RP
+(Main.Math.divide.11) // call Math.divide 2
+@Main.Math.divide.11 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1511,8 +1511,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(MathTest\Main.Math.divide.13) // call Math.divide 2
-@MathTest\Main.Math.divide.13 // call Math.divide // push RP
+(Main.Math.divide.13) // call Math.divide 2
+@Main.Math.divide.13 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1708,8 +1708,8 @@ M=-M // esp = -val1
 M=M+1 // &esp++
 
 // call Math.divide 2
-(MathTest\Main.Math.divide.15) // call Math.divide 2
-@MathTest\Main.Math.divide.15 // call Math.divide // push RP
+(Main.Math.divide.15) // call Math.divide 2
+@Main.Math.divide.15 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -1888,8 +1888,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.sqrt 1
-(MathTest\Main.Math.sqrt.17) // call Math.sqrt 1
-@MathTest\Main.Math.sqrt.17 // call Math.sqrt // push RP
+(Main.Math.sqrt.17) // call Math.sqrt 1
+@Main.Math.sqrt.17 // call Math.sqrt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2068,8 +2068,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.sqrt 1
-(MathTest\Main.Math.sqrt.19) // call Math.sqrt 1
-@MathTest\Main.Math.sqrt.19 // call Math.sqrt // push RP
+(Main.Math.sqrt.19) // call Math.sqrt 1
+@Main.Math.sqrt.19 // call Math.sqrt // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2257,8 +2257,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.min 2
-(MathTest\Main.Math.min.21) // call Math.min 2
-@MathTest\Main.Math.min.21 // call Math.min // push RP
+(Main.Math.min.21) // call Math.min 2
+@Main.Math.min.21 // call Math.min // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2418,8 +2418,8 @@ M=-M // esp = -val1
 M=M+1 // &esp++
 
 // call Math.max 2
-(MathTest\Main.Math.max.23) // call Math.max 2
-@MathTest\Main.Math.max.23 // call Math.max // push RP
+(Main.Math.max.23) // call Math.max 2
+@Main.Math.max.23 // call Math.max // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2562,8 +2562,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.abs 1
-(MathTest\Main.Math.abs.25) // call Math.abs 1
-@MathTest\Main.Math.abs.25 // call Math.abs // push RP
+(Main.Math.abs.25) // call Math.abs 1
+@Main.Math.abs.25 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2714,8 +2714,8 @@ M=-M // esp = -val1
 M=M+1 // &esp++
 
 // call Math.abs 1
-(MathTest\Main.Math.abs.27) // call Math.abs 1
-@MathTest\Main.Math.abs.27 // call Math.abs // push RP
+(Main.Math.abs.27) // call Math.abs 1
+@Main.Math.abs.27 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2893,8 +2893,8 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // call Array.new 1
-(MathTest\Math.Array.new.29) // call Array.new 1
-@MathTest\Math.Array.new.29 // call Array.new // push RP
+(Math.Array.new.29) // call Array.new 1
+@Math.Array.new.29 // call Array.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -2938,7 +2938,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (../projects/12/MathTest\Math.vm)
+@16 // pop static 1 // static + src segment offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -2962,8 +2962,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Array.new 1
-(MathTest\Math.Array.new.31) // call Array.new 1
-@MathTest\Math.Array.new.31 // call Array.new // push RP
+(Math.Array.new.31) // call Array.new 1
+@Math.Array.new.31 // call Array.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -3007,7 +3007,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@16 // pop static 0 // static + src segment offset (../projects/12/MathTest\Math.vm)
+@16 // pop static 0 // static + src segment offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -3031,7 +3031,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -3121,7 +3121,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(MathTest\Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -3186,7 +3186,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.WHILE_END0
+@Math.WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -3250,7 +3250,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -3307,7 +3307,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -3391,7 +3391,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -3511,11 +3511,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@MathTest\Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(MathTest\Math.WHILE_END0) // label WHILE_END0
+(Math.WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -3640,15 +3640,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE0
+@Math.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@MathTest\Math.IF_FALSE0 // goto IF_FALSE0
+@Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(MathTest\Math.IF_TRUE0) // label IF_TRUE0
+(Math.IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -3686,7 +3686,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(MathTest\Math.IF_FALSE0) // label IF_FALSE0
+(Math.IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -4011,8 +4011,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.abs 1
-(MathTest\Math.Math.abs.39) // call Math.abs 1
-@MathTest\Math.Math.abs.39 // call Math.abs // push RP
+(Math.Math.abs.39) // call Math.abs 1
+@Math.Math.abs.39 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4083,8 +4083,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.abs 1
-(MathTest\Math.Math.abs.41) // call Math.abs 1
-@MathTest\Math.Math.abs.41 // call Math.abs // push RP
+(Math.Math.abs.41) // call Math.abs 1
+@Math.Math.abs.41 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -4200,15 +4200,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE0
+@Math.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@MathTest\Math.IF_FALSE0 // goto IF_FALSE0
+@Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(MathTest\Math.IF_TRUE0) // label IF_TRUE0
+(Math.IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -4292,10 +4292,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(MathTest\Math.IF_FALSE0) // label IF_FALSE0
+(Math.IF_FALSE0) // label IF_FALSE0
 
 // label WHILE_EXP0
-(MathTest\Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.WHILE_EXP0) // label WHILE_EXP0
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -4405,7 +4405,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.WHILE_END0
+@Math.WHILE_END0
 D;JNE // jump if not zero
 
 // push local 3
@@ -4421,7 +4421,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -4546,15 +4546,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE1
+@Math.IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@MathTest\Math.IF_FALSE1 // goto IF_FALSE1
+@Math.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(MathTest\Math.IF_TRUE1) // label IF_TRUE1
+(Math.IF_TRUE1) // label IF_TRUE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -4632,7 +4632,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -4710,7 +4710,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(MathTest\Math.IF_FALSE1) // label IF_FALSE1
+(Math.IF_FALSE1) // label IF_FALSE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -4812,11 +4812,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@MathTest\Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(MathTest\Math.WHILE_END0) // label WHILE_END0
+(Math.WHILE_END0) // label WHILE_END0
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -4838,15 +4838,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE2
+@Math.IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@MathTest\Math.IF_FALSE2 // goto IF_FALSE2
+@Math.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(MathTest\Math.IF_TRUE2) // label IF_TRUE2
+(Math.IF_TRUE2) // label IF_TRUE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -4884,7 +4884,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(MathTest\Math.IF_FALSE2) // label IF_FALSE2
+(Math.IF_FALSE2) // label IF_FALSE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -5012,15 +5012,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE0
+@Math.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@MathTest\Math.IF_FALSE0 // goto IF_FALSE0
+@Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(MathTest\Math.IF_TRUE0) // label IF_TRUE0
+(Math.IF_TRUE0) // label IF_TRUE0
 
 // push constant 3
 @3 // push constant 3 (constant)
@@ -5032,8 +5032,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(MathTest\Math.Sys.error.47) // call Sys.error 1
-@MathTest\Math.Sys.error.47 // call Sys.error // push RP
+(Math.Sys.error.47) // call Sys.error 1
+@Math.Sys.error.47 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5092,7 +5092,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(MathTest\Math.IF_FALSE0) // label IF_FALSE0
+(Math.IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -5343,7 +5343,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -5379,8 +5379,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.abs 1
-(MathTest\Math.Math.abs.53) // call Math.abs 1
-@MathTest\Math.Math.abs.53 // call Math.abs // push RP
+(Math.Math.abs.53) // call Math.abs 1
+@Math.Math.abs.53 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5493,8 +5493,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.abs 1
-(MathTest\Math.Math.abs.55) // call Math.abs 1
-@MathTest\Math.Math.abs.55 // call Math.abs // push RP
+(Math.Math.abs.55) // call Math.abs 1
+@Math.Math.abs.55 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -5553,7 +5553,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(MathTest\Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -5650,7 +5650,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.WHILE_END0
+@Math.WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 32767
@@ -5675,7 +5675,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -5771,7 +5771,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -5911,15 +5911,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE1
+@Math.IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@MathTest\Math.IF_FALSE1 // goto IF_FALSE1
+@Math.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(MathTest\Math.IF_TRUE1) // label IF_TRUE1
+(Math.IF_TRUE1) // label IF_TRUE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -5955,7 +5955,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -5991,7 +5991,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -6054,7 +6054,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -6207,7 +6207,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -6380,15 +6380,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE2
+@Math.IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@MathTest\Math.IF_FALSE2 // goto IF_FALSE2
+@Math.IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(MathTest\Math.IF_TRUE2) // label IF_TRUE2
+(Math.IF_TRUE2) // label IF_TRUE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -6439,20 +6439,20 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(MathTest\Math.IF_FALSE2) // label IF_FALSE2
+(Math.IF_FALSE2) // label IF_FALSE2
 
 // label IF_FALSE1
-(MathTest\Math.IF_FALSE1) // label IF_FALSE1
+(Math.IF_FALSE1) // label IF_FALSE1
 
 // goto WHILE_EXP0
-@MathTest\Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(MathTest\Math.WHILE_END0) // label WHILE_END0
+(Math.WHILE_END0) // label WHILE_END0
 
 // label WHILE_EXP1
-(MathTest\Math.WHILE_EXP1) // label WHILE_EXP1
+(Math.WHILE_EXP1) // label WHILE_EXP1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -6525,7 +6525,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.WHILE_END1
+@Math.WHILE_END1
 D;JNE // jump if not zero
 
 // push local 0
@@ -6541,7 +6541,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -6687,15 +6687,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE3
+@Math.IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@MathTest\Math.IF_FALSE3 // goto IF_FALSE3
+@Math.IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(MathTest\Math.IF_TRUE3) // label IF_TRUE3
+(Math.IF_TRUE3) // label IF_TRUE3
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -6722,7 +6722,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -6824,7 +6824,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -6902,7 +6902,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE3
-(MathTest\Math.IF_FALSE3) // label IF_FALSE3
+(Math.IF_FALSE3) // label IF_FALSE3
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -6953,11 +6953,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@MathTest\Math.WHILE_EXP1 // goto WHILE_EXP1
+@Math.WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(MathTest\Math.WHILE_END1) // label WHILE_END1
+(Math.WHILE_END1) // label WHILE_END1
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -6979,15 +6979,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE4
+@Math.IF_TRUE4
 D;JNE // jump if not zero
 
 // goto IF_FALSE4
-@MathTest\Math.IF_FALSE4 // goto IF_FALSE4
+@Math.IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
 // label IF_TRUE4
-(MathTest\Math.IF_TRUE4) // label IF_TRUE4
+(Math.IF_TRUE4) // label IF_TRUE4
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -7025,7 +7025,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE4
-(MathTest\Math.IF_FALSE4) // label IF_FALSE4
+(Math.IF_FALSE4) // label IF_FALSE4
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -7153,15 +7153,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE0
+@Math.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@MathTest\Math.IF_FALSE0 // goto IF_FALSE0
+@Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(MathTest\Math.IF_TRUE0) // label IF_TRUE0
+(Math.IF_TRUE0) // label IF_TRUE0
 
 // push constant 4
 @4 // push constant 4 (constant)
@@ -7173,8 +7173,8 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(MathTest\Math.Sys.error.63) // call Sys.error 1
-@MathTest\Math.Sys.error.63 // call Sys.error // push RP
+(Math.Sys.error.63) // call Sys.error 1
+@Math.Sys.error.63 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7233,7 +7233,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(MathTest\Math.IF_FALSE0) // label IF_FALSE0
+(Math.IF_FALSE0) // label IF_FALSE0
 
 // push constant 7
 @7 // push constant 7 (constant)
@@ -7260,7 +7260,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(MathTest\Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -7333,7 +7333,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.WHILE_END0
+@Math.WHILE_END0
 D;JNE // jump if not zero
 
 // push local 3
@@ -7361,7 +7361,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/MathTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\MathTest\Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -7463,8 +7463,8 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(MathTest\Math.Math.multiply.66) // call Math.multiply 2
-@MathTest\Math.Math.multiply.66 // call Math.multiply // push RP
+(Math.Math.multiply.66) // call Math.multiply 2
+@Math.Math.multiply.66 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -7700,15 +7700,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE1
+@Math.IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@MathTest\Math.IF_FALSE1 // goto IF_FALSE1
+@Math.IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(MathTest\Math.IF_TRUE1) // label IF_TRUE1
+(Math.IF_TRUE1) // label IF_TRUE1
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -7738,7 +7738,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(MathTest\Math.IF_FALSE1) // label IF_FALSE1
+(Math.IF_FALSE1) // label IF_FALSE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -7789,11 +7789,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@MathTest\Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(MathTest\Math.WHILE_END0) // label WHILE_END0
+(Math.WHILE_END0) // label WHILE_END0
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -7924,15 +7924,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE0
+@Math.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@MathTest\Math.IF_FALSE0 // goto IF_FALSE0
+@Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(MathTest\Math.IF_TRUE0) // label IF_TRUE0
+(Math.IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -7962,7 +7962,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(MathTest\Math.IF_FALSE0) // label IF_FALSE0
+(Math.IF_FALSE0) // label IF_FALSE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -8093,15 +8093,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@MathTest\Math.IF_TRUE0
+@Math.IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@MathTest\Math.IF_FALSE0 // goto IF_FALSE0
+@Math.IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(MathTest\Math.IF_TRUE0) // label IF_TRUE0
+(Math.IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -8131,7 +8131,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(MathTest\Math.IF_FALSE0) // label IF_FALSE0
+(Math.IF_FALSE0) // label IF_FALSE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)

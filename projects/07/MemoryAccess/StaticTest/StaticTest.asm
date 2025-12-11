@@ -27,7 +27,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 8
-@16 // pop static 8 // static + src segment offset (../projects/07/MemoryAccess/StaticTest/StaticTest.vm)
+@16 // pop static 8 // static + src segment offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &(static+offset)
 @8 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -42,7 +42,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // pop static 3
-@16 // pop static 3 // static + src segment offset (../projects/07/MemoryAccess/StaticTest/StaticTest.vm)
+@16 // pop static 3 // static + src segment offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &(static+offset)
 @3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -57,7 +57,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (../projects/07/MemoryAccess/StaticTest/StaticTest.vm)
+@16 // pop static 1 // static + src segment offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -72,7 +72,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 3
-@16 // push static 3 (&asm_segment) // static + src offset (../projects/07/MemoryAccess/StaticTest/StaticTest.vm)
+@16 // push static 3 (&asm_segment) // static + src offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -84,7 +84,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/07/MemoryAccess/StaticTest/StaticTest.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -108,7 +108,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 8
-@16 // push static 8 (&asm_segment) // static + src offset (../projects/07/MemoryAccess/StaticTest/StaticTest.vm)
+@16 // push static 8 (&asm_segment) // static + src offset (..\projects\07\MemoryAccess\StaticTest\StaticTest.vm)
 D=A // d = &asm_segment
 @8 // offset
 A=D+A // &(asm_segment+offset)
