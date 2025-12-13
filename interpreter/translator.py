@@ -816,7 +816,7 @@ class Translator:
 
 if __name__ == "__main__":
     # regular VM programs
-    # projects 1-11 accounted for, included in interpreter
+    # projects 1-12 accounted for, included in interpreter
     _vm_dirpaths = [
         r'../projects/07/MemoryAccess/BasicTest',
         r'../projects/07/MemoryAccess/PointerTest',
