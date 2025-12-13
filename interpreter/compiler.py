@@ -1299,7 +1299,7 @@ def _compile(jack_filepaths, strict_matches):
 
 if __name__ == '__main__':
     jack_filepath_lists = [
-        # projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
+        # projects 1-12 accounted for, included in interpreter/tokenizer/analyzer
         [os.path.join("..", "projects", "09", "Average", "Main.jack")],
         [os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
          os.path.join("..", "projects", "09", "Fraction", "Fraction.jack")],
