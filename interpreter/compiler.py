@@ -1186,7 +1186,10 @@ def main(filepath, file_list):
                 elif exp_buffer and exp_buffer[-1] in op_words:
                     # if concurrent symbols are buffered pop the previous one first
                     # i.e. process a & b & c as ((a & b) & c)
-                    pcode = store_pcode(pcode, exp_buffer.pop())
+                    if symbol != "~":
+                        # '~' can be consecutive as it only affects one term 
+                        # i.e. process a & b & ~c as ((a & b) & (~c))
+                        pcode = store_pcode(pcode, exp_buffer.pop())
                     exp_buffer.append(op_map[symbol])
                 elif exp_buffer and exp_buffer[-1].endswith("(*array var)"):
                     # if operating on naked array var pop that first
@@ -1373,8 +1376,8 @@ if __name__ == '__main__':
         os.path.join("..", "projects", "12", "MemoryTest", "Main.vm"): 176,
         os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 376,
         os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"): 465,
-        # os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
-        # os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,
+        os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
+        os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,
     }
 
     debug = True  # default True if run from main, otherwise False if called externally

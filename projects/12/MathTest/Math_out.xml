@@ -1381,29 +1381,19 @@
                     <symbol> ) </symbol>
                   </term>
                   <symbol> &amp; </symbol>
+                </term>
+                <symbol> ~ </symbol>
+                <term>
                   <symbol> ( </symbol>
-                  <expressionList>
-                    <expression>
-                      <term>
-                        <symbol> ~ </symbol>
-                        <term>
-                          <symbol> ( </symbol>
-                          <expressionList>
-                            <expression>
-                              <term>
-                                <identifier> sqr </identifier>
-                              </term>
-                              <symbol> &lt; </symbol>
-                              <term>
-                                <integerConstant> 0 </integerConstant>
-                              </term>
-                            </expression>
-                          </expressionList>
-                          <symbol> ) </symbol>
-                        </term>
-                      </term>
-                    </expression>
-                  </expressionList>
+                  <expression>
+                    <term>
+                      <identifier> sqr </identifier>
+                    </term>
+                    <symbol> &lt; </symbol>
+                    <term>
+                      <integerConstant> 0 </integerConstant>
+                    </term>
+                  </expression>
                   <symbol> ) </symbol>
                 </term>
               </expression>

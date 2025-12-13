@@ -629,13 +629,11 @@
 <identifier> x </identifier>
 <symbol> ) </symbol>
 <symbol> &amp; </symbol>
-<symbol> ( </symbol>
 <symbol> ~ </symbol>
 <symbol> ( </symbol>
 <identifier> sqr </identifier>
 <symbol> &lt; </symbol>
 <integerConstant> 0 </integerConstant>
-<symbol> ) </symbol>
 <symbol> ) </symbol>
 <symbol> ) </symbol>
 <symbol> { </symbol>
