@@ -17,16 +17,25 @@
 class Output {
 
     // Character map for displaying characters
+    static int static0, static1;
+    static boolean static2;
+    static int static3, static4;
     static Array charMaps;
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
     function void init() {
+        let static4 = 16384; // SCREEN
+        let static2 = true;
+        let static1 = 32;
+        let static0 = 0;
+        let static3 = String.new(6);
+        do Output.initMap();
+        do Output.createShiftedMap();
         return;
     }
 
     // Initializes the character map array
     function void initMap() {
-        var int i;
         let charMaps = Array.new(127);
         
         // Black square, used for displaying non-printable characters.
@@ -160,6 +169,12 @@ class Output {
         let map[9] = j;
         let map[10] = k;
 
+        return;
+    }
+
+    // Internal API seen in reversed VM code only
+    function void createShiftedMap() {
+        var int local0, local1, local2, local3;
         return;
     }
     
