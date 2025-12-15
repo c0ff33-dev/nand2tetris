@@ -4,6 +4,28 @@
   <symbol> { </symbol>
   <classVarDec>
     <keyword> static </keyword>
+    <keyword> int </keyword>
+    <identifier> static0 </identifier>
+    <symbol> , </symbol>
+    <identifier> static1 </identifier>
+    <symbol> ; </symbol>
+  </classVarDec>
+  <classVarDec>
+    <keyword> static </keyword>
+    <keyword> boolean </keyword>
+    <identifier> static2 </identifier>
+    <symbol> ; </symbol>
+  </classVarDec>
+  <classVarDec>
+    <keyword> static </keyword>
+    <keyword> int </keyword>
+    <identifier> static3 </identifier>
+    <symbol> , </symbol>
+    <identifier> static4 </identifier>
+    <symbol> ; </symbol>
+  </classVarDec>
+  <classVarDec>
+    <keyword> static </keyword>
     <identifier> Array </identifier>
     <identifier> charMaps </identifier>
     <symbol> ; </symbol>
@@ -18,6 +40,96 @@
     <subroutineBody>
       <symbol> { </symbol>
       <statements>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> static4 </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <integerConstant> 16384 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> static2 </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <keyword> true </keyword>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> static1 </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <integerConstant> 32 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> static0 </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <integerConstant> 0 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> static3 </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> String </identifier>
+              <symbol> . </symbol>
+              <identifier> new </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <integerConstant> 6 </integerConstant>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <doStatement>
+          <keyword> do </keyword>
+          <identifier> Output </identifier>
+          <symbol> . </symbol>
+          <identifier> initMap </identifier>
+          <symbol> ( </symbol>
+          <expressionList>
+            <expression/>
+          </expressionList>
+          <symbol> ) </symbol>
+          <symbol> ; </symbol>
+        </doStatement>
+        <doStatement>
+          <keyword> do </keyword>
+          <identifier> Output </identifier>
+          <symbol> . </symbol>
+          <identifier> createShiftedMap </identifier>
+          <symbol> ( </symbol>
+          <expressionList>
+            <expression/>
+          </expressionList>
+          <symbol> ) </symbol>
+          <symbol> ; </symbol>
+        </doStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>
@@ -35,12 +147,6 @@
     <symbol> ) </symbol>
     <subroutineBody>
       <symbol> { </symbol>
-      <varDec>
-        <keyword> var </keyword>
-        <keyword> int </keyword>
-        <identifier> i </identifier>
-        <symbol> ; </symbol>
-      </varDec>
       <statements>
         <letStatement>
           <keyword> let </keyword>
@@ -8234,6 +8340,36 @@
           </expression>
           <symbol> ; </symbol>
         </letStatement>
+        <returnStatement>
+          <keyword> return </keyword>
+          <symbol> ; </symbol>
+        </returnStatement>
+      </statements>
+      <symbol> } </symbol>
+    </subroutineBody>
+  </subroutineDec>
+  <subroutineDec>
+    <keyword> function </keyword>
+    <keyword> void </keyword>
+    <identifier> createShiftedMap </identifier>
+    <symbol> ( </symbol>
+    <parameterList/>
+    <symbol> ) </symbol>
+    <subroutineBody>
+      <symbol> { </symbol>
+      <varDec>
+        <keyword> var </keyword>
+        <keyword> int </keyword>
+        <identifier> local0 </identifier>
+        <symbol> , </symbol>
+        <identifier> local1 </identifier>
+        <symbol> , </symbol>
+        <identifier> local2 </identifier>
+        <symbol> , </symbol>
+        <identifier> local3 </identifier>
+        <symbol> ; </symbol>
+      </varDec>
+      <statements>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>
