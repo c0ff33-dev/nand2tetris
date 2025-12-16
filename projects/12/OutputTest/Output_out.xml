@@ -5,7 +5,7 @@
   <classVarDec>
     <keyword> static </keyword>
     <keyword> int </keyword>
-    <identifier> wordIdx </identifier>
+    <identifier> colIdx </identifier>
     <symbol> , </symbol>
     <identifier> scrIdx </identifier>
     <symbol> ; </symbol>
@@ -19,7 +19,7 @@
   <classVarDec>
     <keyword> static </keyword>
     <identifier> String </identifier>
-    <identifier> static3 </identifier>
+    <identifier> strInt </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
@@ -81,7 +81,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> wordIdx </identifier>
+          <identifier> colIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -92,7 +92,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static3 </identifier>
+          <identifier> strInt </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -9073,7 +9073,7 @@
         </ifStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> wordIdx </identifier>
+          <identifier> colIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -9110,7 +9110,7 @@
             </term>
             <symbol> + </symbol>
             <term>
-              <identifier> wordIdx </identifier>
+              <identifier> colIdx </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -9131,7 +9131,7 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> wordIdx </identifier>
+                      <identifier> colIdx </identifier>
                     </term>
                     <symbol> * </symbol>
                     <term>
@@ -9293,11 +9293,11 @@
                   <statements>
                     <letStatement>
                       <keyword> let </keyword>
-                      <identifier> wordIdx </identifier>
+                      <identifier> colIdx </identifier>
                       <symbol> = </symbol>
                       <expression>
                         <term>
-                          <identifier> wordIdx </identifier>
+                          <identifier> colIdx </identifier>
                         </term>
                         <symbol> + </symbol>
                         <term>
@@ -9329,7 +9329,7 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> wordIdx </identifier>
+                      <identifier> colIdx </identifier>
                     </term>
                     <symbol> = </symbol>
                     <term>
@@ -9508,7 +9508,7 @@
       <statements>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> static3 </identifier>
+          <identifier> strInt </identifier>
           <symbol> . </symbol>
           <identifier> setInt </identifier>
           <symbol> ( </symbol>
@@ -9531,7 +9531,7 @@
           <expressionList>
             <expression>
               <term>
-                <identifier> static3 </identifier>
+                <identifier> strInt </identifier>
               </term>
             </expression>
           </expressionList>
@@ -9570,14 +9570,14 @@
             </term>
             <symbol> - </symbol>
             <term>
-              <identifier> wordIdx </identifier>
+              <identifier> colIdx </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> wordIdx </identifier>
+          <identifier> colIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -9592,11 +9592,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <symbol> ~ </symbol>
-              <term>
-                <integerConstant> 0 </integerConstant>
-              </term>
-              <symbol> ; </symbol>
+              <keyword> true </keyword>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -9648,6 +9644,171 @@
     <subroutineBody>
       <symbol> { </symbol>
       <statements>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> loByte </identifier>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <ifStatement>
+              <keyword> if </keyword>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> colIdx </identifier>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+              <symbol> { </symbol>
+              <statements>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> colIdx </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> colIdx </identifier>
+                    </term>
+                    <symbol> - </symbol>
+                    <term>
+                      <integerConstant> 1 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> scrIdx </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> scrIdx </identifier>
+                    </term>
+                    <symbol> - </symbol>
+                    <term>
+                      <integerConstant> 1 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+              </statements>
+              <symbol> } </symbol>
+              <keyword> else </keyword>
+              <symbol> { </symbol>
+              <statements>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> colIdx </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <integerConstant> 31 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+                <ifStatement>
+                  <keyword> if </keyword>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> scrIdx </identifier>
+                    </term>
+                    <symbol> = </symbol>
+                    <term>
+                      <integerConstant> 32 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                  <symbol> { </symbol>
+                  <statements>
+                    <letStatement>
+                      <keyword> let </keyword>
+                      <identifier> scrIdx </identifier>
+                      <symbol> = </symbol>
+                      <expression>
+                        <term>
+                          <integerConstant> 8128 </integerConstant>
+                        </term>
+                      </expression>
+                      <symbol> ; </symbol>
+                    </letStatement>
+                  </statements>
+                  <symbol> } </symbol>
+                </ifStatement>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> scrIdx </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> scrIdx </identifier>
+                    </term>
+                    <symbol> - </symbol>
+                    <term>
+                      <integerConstant> 321 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+              </statements>
+              <symbol> } </symbol>
+            </ifStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> loByte </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <keyword> false </keyword>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+          <keyword> else </keyword>
+          <symbol> { </symbol>
+          <statements>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> loByte </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <keyword> true </keyword>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
+        <doStatement>
+          <keyword> do </keyword>
+          <identifier> Output </identifier>
+          <symbol> . </symbol>
+          <identifier> drawChar </identifier>
+          <symbol> ( </symbol>
+          <expressionList>
+            <expression>
+              <term>
+                <integerConstant> 32 </integerConstant>
+              </term>
+            </expression>
+          </expressionList>
+          <symbol> ) </symbol>
+          <symbol> ; </symbol>
+        </doStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>

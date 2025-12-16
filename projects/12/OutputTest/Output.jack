@@ -15,9 +15,10 @@
  * as a small filled square, indicates where the next character will be displayed.
  */
 class Output {
+    // FIXME: some mismatches between compilers
 
     // Character map for displaying characters
-    static int wordIdx, scrIdx;
+    static int colIdx, scrIdx;
     static boolean loByte;
     static String strInt;
     static int screen;
@@ -28,7 +29,7 @@ class Output {
         let screen = 16384; // SCREEN index
         let loByte = true;
         let scrIdx = 32; // 512px row / 8px char = 64 char/32 words per row
-        let wordIdx = 0;
+        let colIdx = 0;
         let strInt = String.new(6); // max strInt = -16384
         do Output.initMap();
         do Output.createShiftedMap();
@@ -260,9 +261,9 @@ class Output {
             do Sys.error(20);
         }
 
-        let wordIdx = j / 2; // 2 char per word
-        let scrIdx = 32 + (i * 352) + wordIdx; // 352 = 11 rows/char x 32 words/row
-        let loByte = (j = (wordIdx * 2)); // odd or even
+        let colIdx = j / 2; // 2 char per word
+        let scrIdx = 32 + (i * 352) + colIdx; // 352 = 11 rows/char x 32 words/row
+        let loByte = (j = (colIdx * 2)); // odd or even
         do Output.drawChar(32); // space
         return;
     }
@@ -278,10 +279,10 @@ class Output {
             } else {
                 do Output.drawChar(c);
                 if (~loByte) {
-                    let wordIdx = wordIdx + 1;
+                    let colIdx = colIdx + 1;
                     let scrIdx = scrIdx + 1;
                 }
-                if (wordIdx = 32) {
+                if (colIdx = 32) {
                     do Output.println();
                 } else {
                     let loByte = ~loByte;
@@ -313,11 +314,12 @@ class Output {
 
     /** Advances the cursor to the beginning of the next line. */
     function void println() {
-        let scrIdx = scrIdx + 352 - wordIdx;
-        let wordIdx = 0;
-        let loByte = ~0;
+        let scrIdx = scrIdx + 352 - colIdx;
+        let colIdx = 0;
+        let loByte = true;
 
-        // return to start
+        // return to start: only 254/256 rows can be fully utilized
+        // for chars (8128/32=254)
         if (scrIdx = 8128) {
             let scrIdx = 32;
         }
@@ -326,6 +328,24 @@ class Output {
 
     /** Moves the cursor one column back. */
     function void backSpace() {
+        if (loByte) {
+            if (colIdx > 0) {
+                let colIdx = colIdx - 1;
+                let scrIdx = scrIdx - 1;
+            } else {
+                // if at start return to end line/screen
+                let colIdx = 31;
+                if (scrIdx = 32) {
+                    let scrIdx = 8128;
+                }
+                // 321 = 32 x (11-1) + 1
+                let scrIdx = scrIdx - 321;
+            }
+            let loByte = false;
+        } else {
+            let loByte = true;
+        }
+        do Output.drawChar(32); // space
         return;
     }
 }
