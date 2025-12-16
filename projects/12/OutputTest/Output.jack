@@ -17,7 +17,7 @@
 class Output {
 
     // Character map for displaying characters
-    static int static0, row;
+    static int wordIdx, row;
     static boolean loByte;
     static String static3;
     static int screen;
@@ -28,7 +28,7 @@ class Output {
         let screen = 16384; // SCREEN index
         let loByte = true;
         let row = 32; // 512px row / 8px char = 64 char/32 words per row
-        let static0 = 0;
+        let wordIdx = 0;
         let static3 = String.new(6);
         do Output.initMap();
         do Output.createShiftedMap();
@@ -255,6 +255,15 @@ class Output {
     /** Moves the cursor to the j-th column of the i-th row,
      *  and erases the character displayed there. */
     function void moveCursor(int i, int j) {
+        // check row/column doesn't exceed bounds
+        if ((i < 0) | (i > 22) | (j < 0) | (j > 63)) {
+            do Sys.error(20);
+        }
+
+        let wordIdx = j / 2; // 2 char per word
+        let row = 32 + (i * 352) + wordIdx; // 352 = 11 rows/char x 32 words/row
+        let loByte = (j = (wordIdx * 2)); // odd or even
+        do Output.drawChar(32); // space
         return;
     }
 
