@@ -17,7 +17,7 @@
 class Output {
 
     // Character map for displaying characters
-    static int wordIdx, row;
+    static int wordIdx, scrIdx;
     static boolean loByte;
     static String static3;
     static int screen;
@@ -27,7 +27,7 @@ class Output {
     function void init() {
         let screen = 16384; // SCREEN index
         let loByte = true;
-        let row = 32; // 512px row / 8px char = 64 char/32 words per row
+        let scrIdx = 32; // 512px row / 8px char = 64 char/32 words per row
         let wordIdx = 0;
         let static3 = String.new(6);
         do Output.initMap();
@@ -234,7 +234,7 @@ class Output {
         
         // pack the integers into two chars per word in memory
         let map = Output.getMap(c);
-        let j = row;
+        let j = scrIdx;
         while (i < 11) {
             if (loByte) {
                 let byte = screen[j] & -256; // mask lower byte
@@ -261,7 +261,7 @@ class Output {
         }
 
         let wordIdx = j / 2; // 2 char per word
-        let row = 32 + (i * 352) + wordIdx; // 352 = 11 rows/char x 32 words/row
+        let scrIdx = 32 + (i * 352) + wordIdx; // 352 = 11 rows/char x 32 words/row
         let loByte = (j = (wordIdx * 2)); // odd or even
         do Output.drawChar(32); // space
         return;
@@ -270,6 +270,24 @@ class Output {
     /** Displays the given character at the cursor location,
      *  and advances the cursor one column forward. */
     function void printChar(char c) {
+        if (c = String.newLine()) {
+            do Output.println();
+        } else {
+            if (c = String.backSpace()) {
+                do Output.backSpace();
+            } else {
+                do Output.drawChar(c);
+                if (~loByte) {
+                    let wordIdx = wordIdx + 1;
+                    let scrIdx = scrIdx + 1;
+                }
+                if (wordIdx = 32) {
+                    do Output.println();
+                } else {
+                    let loByte = ~loByte;
+                }
+            }
+        }
         return;
     }
 

@@ -5,9 +5,9 @@
   <classVarDec>
     <keyword> static </keyword>
     <keyword> int </keyword>
-    <identifier> static0 </identifier>
+    <identifier> wordIdx </identifier>
     <symbol> , </symbol>
-    <identifier> row </identifier>
+    <identifier> scrIdx </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
@@ -70,7 +70,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> row </identifier>
+          <identifier> scrIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -81,7 +81,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> wordIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -8816,7 +8816,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> row </identifier>
+              <identifier> scrIdx </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -9073,7 +9073,7 @@
         </ifStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> wordIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -9088,7 +9088,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> row </identifier>
+          <identifier> scrIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -9110,7 +9110,7 @@
             </term>
             <symbol> + </symbol>
             <term>
-              <identifier> static0 </identifier>
+              <identifier> wordIdx </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -9131,7 +9131,7 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> static0 </identifier>
+                      <identifier> wordIdx </identifier>
                     </term>
                     <symbol> * </symbol>
                     <term>
@@ -9183,6 +9183,203 @@
     <subroutineBody>
       <symbol> { </symbol>
       <statements>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> c </identifier>
+            </term>
+            <symbol> = </symbol>
+            <term>
+              <identifier> String </identifier>
+              <symbol> . </symbol>
+              <identifier> newLine </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression/>
+              </expressionList>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <doStatement>
+              <keyword> do </keyword>
+              <identifier> Output </identifier>
+              <symbol> . </symbol>
+              <identifier> println </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression/>
+              </expressionList>
+              <symbol> ) </symbol>
+              <symbol> ; </symbol>
+            </doStatement>
+          </statements>
+          <symbol> } </symbol>
+          <keyword> else </keyword>
+          <symbol> { </symbol>
+          <statements>
+            <ifStatement>
+              <keyword> if </keyword>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> c </identifier>
+                </term>
+                <symbol> = </symbol>
+                <term>
+                  <identifier> String </identifier>
+                  <symbol> . </symbol>
+                  <identifier> backSpace </identifier>
+                  <symbol> ( </symbol>
+                  <expressionList>
+                    <expression/>
+                  </expressionList>
+                  <symbol> ) </symbol>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+              <symbol> { </symbol>
+              <statements>
+                <doStatement>
+                  <keyword> do </keyword>
+                  <identifier> Output </identifier>
+                  <symbol> . </symbol>
+                  <identifier> backSpace </identifier>
+                  <symbol> ( </symbol>
+                  <expressionList>
+                    <expression/>
+                  </expressionList>
+                  <symbol> ) </symbol>
+                  <symbol> ; </symbol>
+                </doStatement>
+              </statements>
+              <symbol> } </symbol>
+              <keyword> else </keyword>
+              <symbol> { </symbol>
+              <statements>
+                <doStatement>
+                  <keyword> do </keyword>
+                  <identifier> Output </identifier>
+                  <symbol> . </symbol>
+                  <identifier> drawChar </identifier>
+                  <symbol> ( </symbol>
+                  <expressionList>
+                    <expression>
+                      <term>
+                        <identifier> c </identifier>
+                      </term>
+                    </expression>
+                  </expressionList>
+                  <symbol> ) </symbol>
+                  <symbol> ; </symbol>
+                </doStatement>
+                <ifStatement>
+                  <keyword> if </keyword>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <symbol> ~ </symbol>
+                      <term>
+                        <identifier> loByte </identifier>
+                      </term>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                  <symbol> { </symbol>
+                  <statements>
+                    <letStatement>
+                      <keyword> let </keyword>
+                      <identifier> wordIdx </identifier>
+                      <symbol> = </symbol>
+                      <expression>
+                        <term>
+                          <identifier> wordIdx </identifier>
+                        </term>
+                        <symbol> + </symbol>
+                        <term>
+                          <integerConstant> 1 </integerConstant>
+                        </term>
+                      </expression>
+                      <symbol> ; </symbol>
+                    </letStatement>
+                    <letStatement>
+                      <keyword> let </keyword>
+                      <identifier> scrIdx </identifier>
+                      <symbol> = </symbol>
+                      <expression>
+                        <term>
+                          <identifier> scrIdx </identifier>
+                        </term>
+                        <symbol> + </symbol>
+                        <term>
+                          <integerConstant> 1 </integerConstant>
+                        </term>
+                      </expression>
+                      <symbol> ; </symbol>
+                    </letStatement>
+                  </statements>
+                  <symbol> } </symbol>
+                </ifStatement>
+                <ifStatement>
+                  <keyword> if </keyword>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> wordIdx </identifier>
+                    </term>
+                    <symbol> = </symbol>
+                    <term>
+                      <integerConstant> 32 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                  <symbol> { </symbol>
+                  <statements>
+                    <doStatement>
+                      <keyword> do </keyword>
+                      <identifier> Output </identifier>
+                      <symbol> . </symbol>
+                      <identifier> println </identifier>
+                      <symbol> ( </symbol>
+                      <expressionList>
+                        <expression/>
+                      </expressionList>
+                      <symbol> ) </symbol>
+                      <symbol> ; </symbol>
+                    </doStatement>
+                  </statements>
+                  <symbol> } </symbol>
+                  <keyword> else </keyword>
+                  <symbol> { </symbol>
+                  <statements>
+                    <letStatement>
+                      <keyword> let </keyword>
+                      <identifier> loByte </identifier>
+                      <symbol> = </symbol>
+                      <expression>
+                        <term>
+                          <symbol> ~ </symbol>
+                          <term>
+                            <identifier> loByte </identifier>
+                          </term>
+                          <symbol> ; </symbol>
+                        </term>
+                      </expression>
+                      <symbol> ; </symbol>
+                    </letStatement>
+                  </statements>
+                  <symbol> } </symbol>
+                </ifStatement>
+              </statements>
+              <symbol> } </symbol>
+            </ifStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>
