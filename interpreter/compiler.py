@@ -62,7 +62,8 @@ sys_func = {
                "printInt": {"kind": "func", "type": "void", "args": ("int",), "len": 1},
                "println": {"kind": "func", "type": "void", "args": (), "len": 0},
                "backSpace": {"kind": "func", "type": "void", "args": (), "len": 0},
-               "createShiftedMap": {"kind": "func", "type": "void", "args": (), "len": 0}}, # internal api
+               "createShiftedMap": {"kind": "func", "type": "void", "args": (), "len": 0}, # internal api
+               "drawChar": {"kind": "func", "type": "void", "args": ("char",), "len": 1}}, # internal api
     "Screen": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
                "clearScreen": {"kind": "func", "type": "void", "args": (), "len": 0},
                "setColor": {"kind": "func", "type": "void", "args": ("boolean", ), "len": 1},

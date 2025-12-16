@@ -1643,6 +1643,49 @@ label WHILE_END0
 push constant 0
 return
 function Output.moveCursor 0
+push argument 0
+push constant 0
+lt
+push argument 0
+push constant 22
+gt
+or
+push argument 1
+push constant 0
+lt
+or
+push argument 1
+push constant 63
+gt
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 20
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+push constant 2
+call Math.divide 2
+pop static 0
+push constant 32
+push argument 0
+push constant 352
+call Math.multiply 2
+add
+push static 0
+add
+pop static 1
+push argument 1
+push static 0
+push constant 2
+call Math.multiply 2
+eq
+pop static 2
+push constant 32
+call Output.drawChar 1
+pop temp 0
 push constant 0
 return
 function Output.printChar 0
