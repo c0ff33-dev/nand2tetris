@@ -44165,14 +44165,224 @@ A=M // d = *lcl-5 (*lcl)
 // function Output.printInt 0
 (Output.printInt) // function Output.printInt 0
 
-// push constant 0
-@0 // push constant 0 // function Output.printInt 0 (constant)
+// push static 3
+@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+// push argument 0
+@ARG // push argument 0 (&asm_segment)
+D=M // d = *asm_segment
+@0 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// call String.setInt 2
+(Output.String.setInt.621) // call String.setInt 2
+@Output.String.setInt.621 // call String.setInt // push RP
+D=A // d = RP
+@R13
+M=D // r13 = RP
+@MICROCODE_CALL_MIDPOINT_622 // save to r14
+D=A // d = &midpoint
+@R14 // &r14
+M=D // r14 = &midpoint
+@R13 // &rp // restore RP
+D=M // d = *rp
+@MICROCODE_CALL
+0;JMP
+(MICROCODE_CALL_MIDPOINT_622)
+
+// push constant 0 // local(0) init
+@0 // push constant 0 // local(0) init (constant)
 D=A // d = constant
 @SP // &esp
 A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
+
+// push constant 0 // local(1) init
+@0 // push constant 0 // local(1) init (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
+// push constant 0 // local(2) init
+@0 // push constant 0 // local(2) init (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
+// push constant 0 // local(3) init
+@0 // push constant 0 // local(3) init (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+@9 // increment RP (SP-5+num_locals) by prologue_size
+D=A // d = 5+num_locals
+@SP // &esp
+M=M-D // &esp = &esp-(5+num_locals) (&rp)
+@69 // prologue_size
+D=A // d = prologue_size
+@SP // &esp (&rp)
+A=M // *esp (*rp)
+M=M+D // rp = rp+prologue_size
+@9 // 5+num_locals
+D=A // d = 5+num_locals
+@SP // &esp
+M=M+D // *esp = *esp+(5+num_locals)
+@9 // (5+num_locals) // initialize ARG segment for callee
+D=A // d = (5+num_locals)
+@SP // &esp
+D=M-D // d = *esp-(5+num_locals) (*RP) 
+@2 // parse num_args from call <label> <num_args>
+D=D-A // d = rp-num_args (&arg1)
+@ARG // &arg
+M=D // *arg = &arg1
+@4 // (num_locals) // initialize callee LCL (same as SP if none) 
+D=A // d = num_locals
+@SP // (&esp currently at bottom of stack frame)
+D=M-D // d = *esp-num_locals (&lcl[0])
+@LCL // &lcl[0]
+M=D // &lcl[0] = &lcl[0]
+@String.setInt // &func (parsed from call <label> <num_args>)
+0;JMP // *func // jump to function (call target)
+
+// pop temp 0
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
+@0 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// push static 3
+@19 // push static 3 (&asm_segment) // static + src offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// call Output.printString 1
+(Output.Output.printString.623) // call Output.printString 1
+@Output.Output.printString.623 // call Output.printString // push RP
+D=A // d = RP
+@R13
+M=D // r13 = RP
+@MICROCODE_CALL_MIDPOINT_624 // save to r14
+D=A // d = &midpoint
+@R14 // &r14
+M=D // r14 = &midpoint
+@R13 // &rp // restore RP
+D=M // d = *rp
+@MICROCODE_CALL
+0;JMP
+(MICROCODE_CALL_MIDPOINT_624)
+
+// push constant 0 // local(0) init
+@0 // push constant 0 // local(0) init (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
+// push constant 0 // local(1) init
+@0 // push constant 0 // local(1) init (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+@7 // increment RP (SP-5+num_locals) by prologue_size
+D=A // d = 5+num_locals
+@SP // &esp
+M=M-D // &esp = &esp-(5+num_locals) (&rp)
+@55 // prologue_size
+D=A // d = prologue_size
+@SP // &esp (&rp)
+A=M // *esp (*rp)
+M=M+D // rp = rp+prologue_size
+@7 // 5+num_locals
+D=A // d = 5+num_locals
+@SP // &esp
+M=M+D // *esp = *esp+(5+num_locals)
+@7 // (5+num_locals) // initialize ARG segment for callee
+D=A // d = (5+num_locals)
+@SP // &esp
+D=M-D // d = *esp-(5+num_locals) (*RP) 
+@1 // parse num_args from call <label> <num_args>
+D=D-A // d = rp-num_args (&arg1)
+@ARG // &arg
+M=D // *arg = &arg1
+@2 // (num_locals) // initialize callee LCL (same as SP if none) 
+D=A // d = num_locals
+@SP // (&esp currently at bottom of stack frame)
+D=M-D // d = *esp-num_locals (&lcl[0])
+@LCL // &lcl[0]
+M=D // &lcl[0] = &lcl[0]
+@Output.printString // &func (parsed from call <label> <num_args>)
+0;JMP // *func // jump to function (call target)
+
+// pop temp 0
+@5 // pop temp 0 (&temp)
+D=A // d = &temp
+@0 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// push constant 0
+@0 // push constant 0 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
 // return
 
 // pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
@@ -44233,14 +44443,234 @@ A=M // d = *lcl-5 (*lcl)
 // function Output.println 0
 (Output.println) // function Output.println 0
 
-// push constant 0
-@0 // push constant 0 // function Output.println 0 (constant)
+// push static 1
+@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &asm_segment
+@1 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+// push constant 352
+@352 // push constant 352 (constant)
 D=A // d = constant
 @SP // &esp
 A=M // *esp
 M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
+
+// add
+@SP // &esp // add
+M=M-1 // &esp-- (&val2)
+A=M // *val2
+D=M // d = val2
+@SP // &esp
+M=M-1 // &esp-- (&val1)
+A=M // *esp (*val1)
+M=D+M // esp = val2 + val1
+@SP // &esp
+M=M+1 // &esp++
+
+// push static 0
+@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &asm_segment
+@0 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// sub
+@SP // &esp // sub
+M=M-1 // &esp-- (&val2)
+A=M // *val2
+D=M // d = val2
+@SP // &esp (&val2)
+M=M-1 // &esp-- (&val1)
+A=M // *esp (*val1)
+M=M-D // esp = val1 - val2
+@SP // &esp
+M=M+1 // &esp++
+
+// pop static 1
+@19 // pop static 1 // static + src segment offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &(static+offset)
+@1 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// push constant 0
+@0 // push constant 0 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
+// pop static 0
+@19 // pop static 0 // static + src segment offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &(static+offset)
+@0 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// push constant 0
+@0 // push constant 0 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
+// not
+@SP // &esp // not
+M=M-1 // &esp-- (&val1)
+A=M // esp* (*val1)
+M=!M // esp = !val1
+@SP // &esp
+M=M+1 // &esp++
+
+// pop static 2
+@19 // pop static 2 // static + src segment offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &(static+offset)
+@2 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// push static 1
+@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &asm_segment
+@1 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// push constant 8128
+@8128 // push constant 8128 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
+// eq
+@SP // eq // &esp 
+M=M-1 // &esp-- (&val2)
+A=M // *val2
+D=M // d = val2
+@SP // &esp (&val2)
+M=M-1 // &esp-- (&val1)
+A=M // *esp (*val1)
+D=M-D // d = val1 - val2
+@EQ_TRUE_625
+D;JEQ // jump if true
+// EQ_FALSE_625
+@0 // false
+D=A // d = false
+@EQ_END_625
+0;JMP // unconditional jump
+(EQ_TRUE_625)
+@0 // 0
+D=!A // d = -1 (true)
+(EQ_END_625) // save eq result to stack
+@SP // &esp (&val1)
+A=M // *esp (*val1)
+M=D // esp = eq result
+@SP // &esp
+M=M+1 // &esp++
+
+// if-goto IF_TRUE0
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE0
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@Output.IF_TRUE0
+D;JNE // jump if not zero
+
+// goto IF_FALSE0
+@Output.IF_FALSE0 // goto IF_FALSE0
+0;JMP // unconditional jump
+
+// label IF_TRUE0
+(Output.IF_TRUE0) // label IF_TRUE0
+
+// push constant 32
+@32 // push constant 32 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
+// pop static 1
+@19 // pop static 1 // static + src segment offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &(static+offset)
+@1 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// label IF_FALSE0
+(Output.IF_FALSE0) // label IF_FALSE0
+
+// push constant 0
+@0 // push constant 0 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
+
 // return
 
 // pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
@@ -44434,12 +44864,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Array.new 1
-(Screen.Array.new.621) // call Array.new 1
-@Screen.Array.new.621 // call Array.new // push RP
+(Screen.Array.new.626) // call Array.new 1
+@Screen.Array.new.626 // call Array.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_622 // save to r14
+@MICROCODE_CALL_MIDPOINT_627 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -44447,7 +44877,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_622)
+(MICROCODE_CALL_MIDPOINT_627)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -44625,17 +45055,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_623
+@JLT_TRUE_628
 D;JLT
-// JLT_FALSE_623
+// JLT_FALSE_628
 @0
 D=A // d = false
-@JLT_END_623
+@JLT_END_628
 0;JMP
-(JLT_TRUE_623)
+(JLT_TRUE_628)
 @0
 D=!A // d = -1 (true)
-(JLT_END_623)
+(JLT_END_628)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -45090,17 +45520,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_624
+@JLT_TRUE_629
 D;JLT
-// JLT_FALSE_624
+// JLT_FALSE_629
 @0
 D=A // d = false
-@JLT_END_624
+@JLT_END_629
 0;JMP
-(JLT_TRUE_624)
+(JLT_TRUE_629)
 @0
 D=!A // d = -1 (true)
-(JLT_END_624)
+(JLT_END_629)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -45952,17 +46382,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_625
+@JLT_TRUE_630
 D;JLT
-// JLT_FALSE_625
+// JLT_FALSE_630
 @0
 D=A // d = false
-@JLT_END_625
+@JLT_END_630
 0;JMP
-(JLT_TRUE_625)
+(JLT_TRUE_630)
 @0
 D=!A // d = -1 (true)
-(JLT_END_625)
+(JLT_END_630)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -45999,17 +46429,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_626
+@JGT_TRUE_631
 D;JGT
-// JGT_FALSE_626
+// JGT_FALSE_631
 @0
 D=A // d = false
-@JGT_END_626
+@JGT_END_631
 0;JMP
-(JGT_TRUE_626)
+(JGT_TRUE_631)
 @0
 D=!A // d = -1 (true)
-(JGT_END_626)
+(JGT_END_631)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -46058,17 +46488,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_627
+@JLT_TRUE_632
 D;JLT
-// JLT_FALSE_627
+// JLT_FALSE_632
 @0
 D=A // d = false
-@JLT_END_627
+@JLT_END_632
 0;JMP
-(JLT_TRUE_627)
+(JLT_TRUE_632)
 @0
 D=!A // d = -1 (true)
-(JLT_END_627)
+(JLT_END_632)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -46117,17 +46547,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_628
+@JGT_TRUE_633
 D;JGT
-// JGT_FALSE_628
+// JGT_FALSE_633
 @0
 D=A // d = false
-@JGT_END_628
+@JGT_END_633
 0;JMP
-(JGT_TRUE_628)
+(JGT_TRUE_633)
 @0
 D=!A // d = -1 (true)
-(JGT_END_628)
+(JGT_END_633)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -46174,12 +46604,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(Screen.Sys.error.629) // call Sys.error 1
-@Screen.Sys.error.629 // call Sys.error // push RP
+(Screen.Sys.error.634) // call Sys.error 1
+@Screen.Sys.error.634 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_630 // save to r14
+@MICROCODE_CALL_MIDPOINT_635 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -46187,7 +46617,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_630)
+(MICROCODE_CALL_MIDPOINT_635)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -46258,12 +46688,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(Screen.Math.divide.631) // call Math.divide 2
-@Screen.Math.divide.631 // call Math.divide // push RP
+(Screen.Math.divide.636) // call Math.divide 2
+@Screen.Math.divide.636 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_632 // save to r14
+@MICROCODE_CALL_MIDPOINT_637 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -46271,7 +46701,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_632)
+(MICROCODE_CALL_MIDPOINT_637)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -46387,12 +46817,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.633) // call Math.multiply 2
-@Screen.Math.multiply.633 // call Math.multiply // push RP
+(Screen.Math.multiply.638) // call Math.multiply 2
+@Screen.Math.multiply.638 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_634 // save to r14
+@MICROCODE_CALL_MIDPOINT_639 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -46400,7 +46830,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_634)
+(MICROCODE_CALL_MIDPOINT_639)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -46525,12 +46955,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.635) // call Math.multiply 2
-@Screen.Math.multiply.635 // call Math.multiply // push RP
+(Screen.Math.multiply.640) // call Math.multiply 2
+@Screen.Math.multiply.640 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_636 // save to r14
+@MICROCODE_CALL_MIDPOINT_641 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -46538,7 +46968,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_636)
+(MICROCODE_CALL_MIDPOINT_641)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -46729,12 +47159,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.637) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.637 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.642) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.642 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_638 // save to r14
+@MICROCODE_CALL_MIDPOINT_643 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -46742,7 +47172,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_638)
+(MICROCODE_CALL_MIDPOINT_643)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -46911,12 +47341,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.drawPixel 2
-(Screen.Screen.drawPixel.639) // call Screen.drawPixel 2
-@Screen.Screen.drawPixel.639 // call Screen.drawPixel // push RP
+(Screen.Screen.drawPixel.644) // call Screen.drawPixel 2
+@Screen.Screen.drawPixel.644 // call Screen.drawPixel // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_640 // save to r14
+@MICROCODE_CALL_MIDPOINT_645 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -46924,7 +47354,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_640)
+(MICROCODE_CALL_MIDPOINT_645)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -47029,12 +47459,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.drawPixel 2
-(Screen.Screen.drawPixel.641) // call Screen.drawPixel 2
-@Screen.Screen.drawPixel.641 // call Screen.drawPixel // push RP
+(Screen.Screen.drawPixel.646) // call Screen.drawPixel 2
+@Screen.Screen.drawPixel.646 // call Screen.drawPixel // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_642 // save to r14
+@MICROCODE_CALL_MIDPOINT_647 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -47042,7 +47472,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_642)
+(MICROCODE_CALL_MIDPOINT_647)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -47216,17 +47646,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_643
+@JLT_TRUE_648
 D;JLT
-// JLT_FALSE_643
+// JLT_FALSE_648
 @0
 D=A // d = false
-@JLT_END_643
+@JLT_END_648
 0;JMP
-(JLT_TRUE_643)
+(JLT_TRUE_648)
 @0
 D=!A // d = -1 (true)
-(JLT_END_643)
+(JLT_END_648)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -47263,17 +47693,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_644
+@JGT_TRUE_649
 D;JGT
-// JGT_FALSE_644
+// JGT_FALSE_649
 @0
 D=A // d = false
-@JGT_END_644
+@JGT_END_649
 0;JMP
-(JGT_TRUE_644)
+(JGT_TRUE_649)
 @0
 D=!A // d = -1 (true)
-(JGT_END_644)
+(JGT_END_649)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -47322,17 +47752,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_645
+@JLT_TRUE_650
 D;JLT
-// JLT_FALSE_645
+// JLT_FALSE_650
 @0
 D=A // d = false
-@JLT_END_645
+@JLT_END_650
 0;JMP
-(JLT_TRUE_645)
+(JLT_TRUE_650)
 @0
 D=!A // d = -1 (true)
-(JLT_END_645)
+(JLT_END_650)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -47381,17 +47811,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_646
+@JGT_TRUE_651
 D;JGT
-// JGT_FALSE_646
+// JGT_FALSE_651
 @0
 D=A // d = false
-@JGT_END_646
+@JGT_END_651
 0;JMP
-(JGT_TRUE_646)
+(JGT_TRUE_651)
 @0
 D=!A // d = -1 (true)
-(JGT_END_646)
+(JGT_END_651)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -47438,12 +47868,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(Screen.Sys.error.647) // call Sys.error 1
-@Screen.Sys.error.647 // call Sys.error // push RP
+(Screen.Sys.error.652) // call Sys.error 1
+@Screen.Sys.error.652 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_648 // save to r14
+@MICROCODE_CALL_MIDPOINT_653 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -47451,7 +47881,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_648)
+(MICROCODE_CALL_MIDPOINT_653)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -47537,12 +47967,12 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Math.abs 1
-(Screen.Math.abs.649) // call Math.abs 1
-@Screen.Math.abs.649 // call Math.abs // push RP
+(Screen.Math.abs.654) // call Math.abs 1
+@Screen.Math.abs.654 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_650 // save to r14
+@MICROCODE_CALL_MIDPOINT_655 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -47550,7 +47980,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_650)
+(MICROCODE_CALL_MIDPOINT_655)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -47633,12 +48063,12 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Math.abs 1
-(Screen.Math.abs.651) // call Math.abs 1
-@Screen.Math.abs.651 // call Math.abs // push RP
+(Screen.Math.abs.656) // call Math.abs 1
+@Screen.Math.abs.656 // call Math.abs // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_652 // save to r14
+@MICROCODE_CALL_MIDPOINT_657 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -47646,7 +48076,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_652)
+(MICROCODE_CALL_MIDPOINT_657)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -47725,17 +48155,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_653
+@JLT_TRUE_658
 D;JLT
-// JLT_FALSE_653
+// JLT_FALSE_658
 @0
 D=A // d = false
-@JLT_END_653
+@JLT_END_658
 0;JMP
-(JLT_TRUE_653)
+(JLT_TRUE_658)
 @0
 D=!A // d = -1 (true)
-(JLT_END_653)
+(JLT_END_658)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -47802,17 +48232,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_654
+@JLT_TRUE_659
 D;JLT
-// JLT_FALSE_654
+// JLT_FALSE_659
 @0
 D=A // d = false
-@JLT_END_654
+@JLT_END_659
 0;JMP
-(JLT_TRUE_654)
+(JLT_TRUE_659)
 @0
 D=!A // d = -1 (true)
-(JLT_END_654)
+(JLT_END_659)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -47884,17 +48314,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_655
+@JLT_TRUE_660
 D;JLT
-// JLT_FALSE_655
+// JLT_FALSE_660
 @0
 D=A // d = false
-@JLT_END_655
+@JLT_END_660
 0;JMP
-(JLT_TRUE_655)
+(JLT_TRUE_660)
 @0
 D=!A // d = -1 (true)
-(JLT_END_655)
+(JLT_END_660)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -48333,17 +48763,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_656
+@JGT_TRUE_661
 D;JGT
-// JGT_FALSE_656
+// JGT_FALSE_661
 @0
 D=A // d = false
-@JGT_END_656
+@JGT_END_661
 0;JMP
-(JGT_TRUE_656)
+(JGT_TRUE_661)
 @0
 D=!A // d = -1 (true)
-(JGT_END_656)
+(JGT_END_661)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -48486,17 +48916,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_657
+@JGT_TRUE_662
 D;JGT
-// JGT_FALSE_657
+// JGT_FALSE_662
 @0
 D=A // d = false
-@JGT_END_657
+@JGT_END_662
 0;JMP
-(JGT_TRUE_657)
+(JGT_TRUE_662)
 @0
 D=!A // d = -1 (true)
-(JGT_END_657)
+(JGT_END_662)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -48543,12 +48973,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.658) // call Math.multiply 2
-@Screen.Math.multiply.658 // call Math.multiply // push RP
+(Screen.Math.multiply.663) // call Math.multiply 2
+@Screen.Math.multiply.663 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_659 // save to r14
+@MICROCODE_CALL_MIDPOINT_664 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -48556,7 +48986,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_659)
+(MICROCODE_CALL_MIDPOINT_664)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -48693,12 +49123,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.660) // call Math.multiply 2
-@Screen.Math.multiply.660 // call Math.multiply // push RP
+(Screen.Math.multiply.665) // call Math.multiply 2
+@Screen.Math.multiply.665 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_661 // save to r14
+@MICROCODE_CALL_MIDPOINT_666 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -48706,7 +49136,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_661)
+(MICROCODE_CALL_MIDPOINT_666)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -48843,12 +49273,12 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.662) // call Math.multiply 2
-@Screen.Math.multiply.662 // call Math.multiply // push RP
+(Screen.Math.multiply.667) // call Math.multiply 2
+@Screen.Math.multiply.667 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_663 // save to r14
+@MICROCODE_CALL_MIDPOINT_668 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -48856,7 +49286,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_663)
+(MICROCODE_CALL_MIDPOINT_668)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -48984,12 +49414,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.drawConditional 3
-(Screen.Screen.drawConditional.664) // call Screen.drawConditional 3
-@Screen.Screen.drawConditional.664 // call Screen.drawConditional // push RP
+(Screen.Screen.drawConditional.669) // call Screen.drawConditional 3
+@Screen.Screen.drawConditional.669 // call Screen.drawConditional // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_665 // save to r14
+@MICROCODE_CALL_MIDPOINT_670 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -48997,7 +49427,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_665)
+(MICROCODE_CALL_MIDPOINT_670)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -49079,17 +49509,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_666
+@JLT_TRUE_671
 D;JLT
-// JLT_FALSE_666
+// JLT_FALSE_671
 @0
 D=A // d = false
-@JLT_END_666
+@JLT_END_671
 0;JMP
-(JLT_TRUE_666)
+(JLT_TRUE_671)
 @0
 D=!A // d = -1 (true)
-(JLT_END_666)
+(JLT_END_671)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -49145,17 +49575,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_667
+@JLT_TRUE_672
 D;JLT
-// JLT_FALSE_667
+// JLT_FALSE_672
 @0
 D=A // d = false
-@JLT_END_667
+@JLT_END_672
 0;JMP
-(JLT_TRUE_667)
+(JLT_TRUE_672)
 @0
 D=!A // d = -1 (true)
-(JLT_END_667)
+(JLT_END_672)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -49513,12 +49943,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.drawConditional 3
-(Screen.Screen.drawConditional.668) // call Screen.drawConditional 3
-@Screen.Screen.drawConditional.668 // call Screen.drawConditional // push RP
+(Screen.Screen.drawConditional.673) // call Screen.drawConditional 3
+@Screen.Screen.drawConditional.673 // call Screen.drawConditional // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_669 // save to r14
+@MICROCODE_CALL_MIDPOINT_674 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -49526,7 +49956,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_669)
+(MICROCODE_CALL_MIDPOINT_674)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -49680,17 +50110,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_670
+@JGT_TRUE_675
 D;JGT
-// JGT_FALSE_670
+// JGT_FALSE_675
 @0
 D=A // d = false
-@JGT_END_670
+@JGT_END_675
 0;JMP
-(JGT_TRUE_670)
+(JGT_TRUE_675)
 @0
 D=!A // d = -1 (true)
-(JGT_END_670)
+(JGT_END_675)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -49730,17 +50160,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_671
+@JGT_TRUE_676
 D;JGT
-// JGT_FALSE_671
+// JGT_FALSE_676
 @0
 D=A // d = false
-@JGT_END_671
+@JGT_END_676
 0;JMP
-(JGT_TRUE_671)
+(JGT_TRUE_676)
 @0
 D=!A // d = -1 (true)
-(JGT_END_671)
+(JGT_END_676)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -49789,17 +50219,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_672
+@JLT_TRUE_677
 D;JLT
-// JLT_FALSE_672
+// JLT_FALSE_677
 @0
 D=A // d = false
-@JLT_END_672
+@JLT_END_677
 0;JMP
-(JLT_TRUE_672)
+(JLT_TRUE_677)
 @0
 D=!A // d = -1 (true)
-(JLT_END_672)
+(JLT_END_677)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -49848,17 +50278,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_673
+@JGT_TRUE_678
 D;JGT
-// JGT_FALSE_673
+// JGT_FALSE_678
 @0
 D=A // d = false
-@JGT_END_673
+@JGT_END_678
 0;JMP
-(JGT_TRUE_673)
+(JGT_TRUE_678)
 @0
 D=!A // d = -1 (true)
-(JGT_END_673)
+(JGT_END_678)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -49907,17 +50337,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_674
+@JLT_TRUE_679
 D;JLT
-// JLT_FALSE_674
+// JLT_FALSE_679
 @0
 D=A // d = false
-@JLT_END_674
+@JLT_END_679
 0;JMP
-(JLT_TRUE_674)
+(JLT_TRUE_679)
 @0
 D=!A // d = -1 (true)
-(JLT_END_674)
+(JLT_END_679)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -49966,17 +50396,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_675
+@JGT_TRUE_680
 D;JGT
-// JGT_FALSE_675
+// JGT_FALSE_680
 @0
 D=A // d = false
-@JGT_END_675
+@JGT_END_680
 0;JMP
-(JGT_TRUE_675)
+(JGT_TRUE_680)
 @0
 D=!A // d = -1 (true)
-(JGT_END_675)
+(JGT_END_680)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -50023,12 +50453,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(Screen.Sys.error.676) // call Sys.error 1
-@Screen.Sys.error.676 // call Sys.error // push RP
+(Screen.Sys.error.681) // call Sys.error 1
+@Screen.Sys.error.681 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_677 // save to r14
+@MICROCODE_CALL_MIDPOINT_682 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -50036,7 +50466,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_677)
+(MICROCODE_CALL_MIDPOINT_682)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -50107,12 +50537,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(Screen.Math.divide.678) // call Math.divide 2
-@Screen.Math.divide.678 // call Math.divide // push RP
+(Screen.Math.divide.683) // call Math.divide 2
+@Screen.Math.divide.683 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_679 // save to r14
+@MICROCODE_CALL_MIDPOINT_684 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -50120,7 +50550,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_679)
+(MICROCODE_CALL_MIDPOINT_684)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -50236,12 +50666,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.680) // call Math.multiply 2
-@Screen.Math.multiply.680 // call Math.multiply // push RP
+(Screen.Math.multiply.685) // call Math.multiply 2
+@Screen.Math.multiply.685 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_681 // save to r14
+@MICROCODE_CALL_MIDPOINT_686 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -50249,7 +50679,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_681)
+(MICROCODE_CALL_MIDPOINT_686)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -50374,12 +50804,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(Screen.Math.divide.682) // call Math.divide 2
-@Screen.Math.divide.682 // call Math.divide // push RP
+(Screen.Math.divide.687) // call Math.divide 2
+@Screen.Math.divide.687 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_683 // save to r14
+@MICROCODE_CALL_MIDPOINT_688 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -50387,7 +50817,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_683)
+(MICROCODE_CALL_MIDPOINT_688)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -50503,12 +50933,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.684) // call Math.multiply 2
-@Screen.Math.multiply.684 // call Math.multiply // push RP
+(Screen.Math.multiply.689) // call Math.multiply 2
+@Screen.Math.multiply.689 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_685 // save to r14
+@MICROCODE_CALL_MIDPOINT_690 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -50516,7 +50946,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_685)
+(MICROCODE_CALL_MIDPOINT_690)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -50868,12 +51298,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.686) // call Math.multiply 2
-@Screen.Math.multiply.686 // call Math.multiply // push RP
+(Screen.Math.multiply.691) // call Math.multiply 2
+@Screen.Math.multiply.691 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_687 // save to r14
+@MICROCODE_CALL_MIDPOINT_692 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -50881,7 +51311,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_687)
+(MICROCODE_CALL_MIDPOINT_692)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -51083,17 +51513,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_688
+@JGT_TRUE_693
 D;JGT
-// JGT_FALSE_688
+// JGT_FALSE_693
 @0
 D=A // d = false
-@JGT_END_688
+@JGT_END_693
 0;JMP
-(JGT_TRUE_688)
+(JGT_TRUE_693)
 @0
 D=!A // d = -1 (true)
-(JGT_END_688)
+(JGT_END_693)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -51208,17 +51638,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_689
+@EQ_TRUE_694
 D;JEQ // jump if true
-// EQ_FALSE_689
+// EQ_FALSE_694
 @0 // false
 D=A // d = false
-@EQ_END_689
+@EQ_END_694
 0;JMP // unconditional jump
-(EQ_TRUE_689)
+(EQ_TRUE_694)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_689) // save eq result to stack
+(EQ_END_694) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -51292,12 +51722,12 @@ M=D&M // esp = val2 & val1
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.690) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.690 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.695) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.695 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_691 // save to r14
+@MICROCODE_CALL_MIDPOINT_696 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -51305,7 +51735,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_691)
+(MICROCODE_CALL_MIDPOINT_696)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -51383,12 +51813,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.692) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.692 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.697) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.697 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_693 // save to r14
+@MICROCODE_CALL_MIDPOINT_698 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -51396,7 +51826,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_693)
+(MICROCODE_CALL_MIDPOINT_698)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -51526,17 +51956,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_694
+@JLT_TRUE_699
 D;JLT
-// JLT_FALSE_694
+// JLT_FALSE_699
 @0
 D=A // d = false
-@JLT_END_694
+@JLT_END_699
 0;JMP
-(JLT_TRUE_694)
+(JLT_TRUE_699)
 @0
 D=!A // d = -1 (true)
-(JLT_END_694)
+(JLT_END_699)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -51592,12 +52022,12 @@ M=-M // esp = -val1
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.695) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.695 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.700) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.700 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_696 // save to r14
+@MICROCODE_CALL_MIDPOINT_701 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -51605,7 +52035,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_696)
+(MICROCODE_CALL_MIDPOINT_701)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -51731,12 +52161,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.697) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.697 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.702) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.702 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_698 // save to r14
+@MICROCODE_CALL_MIDPOINT_703 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -51744,7 +52174,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_698)
+(MICROCODE_CALL_MIDPOINT_703)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -52013,12 +52443,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.min 2
-(Screen.Math.min.699) // call Math.min 2
-@Screen.Math.min.699 // call Math.min // push RP
+(Screen.Math.min.704) // call Math.min 2
+@Screen.Math.min.704 // call Math.min // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_700 // save to r14
+@MICROCODE_CALL_MIDPOINT_705 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -52026,7 +52456,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_700)
+(MICROCODE_CALL_MIDPOINT_705)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -52097,12 +52527,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.max 2
-(Screen.Math.max.701) // call Math.max 2
-@Screen.Math.max.701 // call Math.max // push RP
+(Screen.Math.max.706) // call Math.max 2
+@Screen.Math.max.706 // call Math.max // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_702 // save to r14
+@MICROCODE_CALL_MIDPOINT_707 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -52110,7 +52540,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_702)
+(MICROCODE_CALL_MIDPOINT_707)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -52194,17 +52624,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_703
+@JGT_TRUE_708
 D;JGT
-// JGT_FALSE_703
+// JGT_FALSE_708
 @0
 D=A // d = false
-@JGT_END_703
+@JGT_END_708
 0;JMP
-(JGT_TRUE_703)
+(JGT_TRUE_708)
 @0
 D=!A // d = -1 (true)
-(JGT_END_703)
+(JGT_END_708)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -52241,17 +52671,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_704
+@JLT_TRUE_709
 D;JLT
-// JLT_FALSE_704
+// JLT_FALSE_709
 @0
 D=A // d = false
-@JLT_END_704
+@JLT_END_709
 0;JMP
-(JLT_TRUE_704)
+(JLT_TRUE_709)
 @0
 D=!A // d = -1 (true)
-(JLT_END_704)
+(JLT_END_709)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -52300,17 +52730,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_705
+@JLT_TRUE_710
 D;JLT
-// JLT_FALSE_705
+// JLT_FALSE_710
 @0
 D=A // d = false
-@JLT_END_705
+@JLT_END_710
 0;JMP
-(JLT_TRUE_705)
+(JLT_TRUE_710)
 @0
 D=!A // d = -1 (true)
-(JLT_END_705)
+(JLT_END_710)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -52367,17 +52797,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_706
+@JGT_TRUE_711
 D;JGT
-// JGT_FALSE_706
+// JGT_FALSE_711
 @0
 D=A // d = false
-@JGT_END_706
+@JGT_END_711
 0;JMP
-(JGT_TRUE_706)
+(JGT_TRUE_711)
 @0
 D=!A // d = -1 (true)
-(JGT_END_706)
+(JGT_END_711)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -52436,12 +52866,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.max 2
-(Screen.Math.max.707) // call Math.max 2
-@Screen.Math.max.707 // call Math.max // push RP
+(Screen.Math.max.712) // call Math.max 2
+@Screen.Math.max.712 // call Math.max // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_708 // save to r14
+@MICROCODE_CALL_MIDPOINT_713 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -52449,7 +52879,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_708)
+(MICROCODE_CALL_MIDPOINT_713)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -52517,12 +52947,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.min 2
-(Screen.Math.min.709) // call Math.min 2
-@Screen.Math.min.709 // call Math.min // push RP
+(Screen.Math.min.714) // call Math.min 2
+@Screen.Math.min.714 // call Math.min // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_710 // save to r14
+@MICROCODE_CALL_MIDPOINT_715 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -52530,7 +52960,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_710)
+(MICROCODE_CALL_MIDPOINT_715)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -52598,12 +53028,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(Screen.Math.divide.711) // call Math.divide 2
-@Screen.Math.divide.711 // call Math.divide // push RP
+(Screen.Math.divide.716) // call Math.divide 2
+@Screen.Math.divide.716 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_712 // save to r14
+@MICROCODE_CALL_MIDPOINT_717 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -52611,7 +53041,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_712)
+(MICROCODE_CALL_MIDPOINT_717)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -52727,12 +53157,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.713) // call Math.multiply 2
-@Screen.Math.multiply.713 // call Math.multiply // push RP
+(Screen.Math.multiply.718) // call Math.multiply 2
+@Screen.Math.multiply.718 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_714 // save to r14
+@MICROCODE_CALL_MIDPOINT_719 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -52740,7 +53170,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_714)
+(MICROCODE_CALL_MIDPOINT_719)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -52865,12 +53295,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(Screen.Math.divide.715) // call Math.divide 2
-@Screen.Math.divide.715 // call Math.divide // push RP
+(Screen.Math.divide.720) // call Math.divide 2
+@Screen.Math.divide.720 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_716 // save to r14
+@MICROCODE_CALL_MIDPOINT_721 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -52878,7 +53308,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_716)
+(MICROCODE_CALL_MIDPOINT_721)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -52994,12 +53424,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.717) // call Math.multiply 2
-@Screen.Math.multiply.717 // call Math.multiply // push RP
+(Screen.Math.multiply.722) // call Math.multiply 2
+@Screen.Math.multiply.722 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_718 // save to r14
+@MICROCODE_CALL_MIDPOINT_723 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -53007,7 +53437,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_718)
+(MICROCODE_CALL_MIDPOINT_723)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -53359,12 +53789,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.719) // call Math.multiply 2
-@Screen.Math.multiply.719 // call Math.multiply // push RP
+(Screen.Math.multiply.724) // call Math.multiply 2
+@Screen.Math.multiply.724 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_720 // save to r14
+@MICROCODE_CALL_MIDPOINT_725 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -53372,7 +53802,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_720)
+(MICROCODE_CALL_MIDPOINT_725)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -53619,17 +54049,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_721
+@EQ_TRUE_726
 D;JEQ // jump if true
-// EQ_FALSE_721
+// EQ_FALSE_726
 @0 // false
 D=A // d = false
-@EQ_END_721
+@EQ_END_726
 0;JMP // unconditional jump
-(EQ_TRUE_721)
+(EQ_TRUE_726)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_721) // save eq result to stack
+(EQ_END_726) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -53703,12 +54133,12 @@ M=D&M // esp = val2 & val1
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.722) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.722 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.727) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.727 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_723 // save to r14
+@MICROCODE_CALL_MIDPOINT_728 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -53716,7 +54146,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_723)
+(MICROCODE_CALL_MIDPOINT_728)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -53794,12 +54224,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.724) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.724 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.729) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.729 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_725 // save to r14
+@MICROCODE_CALL_MIDPOINT_730 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -53807,7 +54237,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_725)
+(MICROCODE_CALL_MIDPOINT_730)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -53937,17 +54367,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_726
+@JLT_TRUE_731
 D;JLT
-// JLT_FALSE_726
+// JLT_FALSE_731
 @0
 D=A // d = false
-@JLT_END_726
+@JLT_END_731
 0;JMP
-(JLT_TRUE_726)
+(JLT_TRUE_731)
 @0
 D=!A // d = -1 (true)
-(JLT_END_726)
+(JLT_END_731)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -54003,12 +54433,12 @@ M=-M // esp = -val1
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.727) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.727 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.732) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.732 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_728 // save to r14
+@MICROCODE_CALL_MIDPOINT_733 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -54016,7 +54446,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_728)
+(MICROCODE_CALL_MIDPOINT_733)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -54142,12 +54572,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.729) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.729 // call Screen.updateLocation // push RP
+(Screen.Screen.updateLocation.734) // call Screen.updateLocation 2
+@Screen.Screen.updateLocation.734 // call Screen.updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_730 // save to r14
+@MICROCODE_CALL_MIDPOINT_735 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -54155,7 +54585,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_730)
+(MICROCODE_CALL_MIDPOINT_735)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -54384,12 +54814,12 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.731) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.731 // call Screen.drawHorizontal // push RP
+(Screen.Screen.drawHorizontal.736) // call Screen.drawHorizontal 3
+@Screen.Screen.drawHorizontal.736 // call Screen.drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_732 // save to r14
+@MICROCODE_CALL_MIDPOINT_737 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -54397,7 +54827,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_732)
+(MICROCODE_CALL_MIDPOINT_737)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -54651,12 +55081,12 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.733) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.733 // call Screen.drawHorizontal // push RP
+(Screen.Screen.drawHorizontal.738) // call Screen.drawHorizontal 3
+@Screen.Screen.drawHorizontal.738 // call Screen.drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_734 // save to r14
+@MICROCODE_CALL_MIDPOINT_739 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -54664,7 +55094,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_734)
+(MICROCODE_CALL_MIDPOINT_739)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -54918,12 +55348,12 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.735) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.735 // call Screen.drawHorizontal // push RP
+(Screen.Screen.drawHorizontal.740) // call Screen.drawHorizontal 3
+@Screen.Screen.drawHorizontal.740 // call Screen.drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_736 // save to r14
+@MICROCODE_CALL_MIDPOINT_741 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -54931,7 +55361,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_736)
+(MICROCODE_CALL_MIDPOINT_741)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -55185,12 +55615,12 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.737) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.737 // call Screen.drawHorizontal // push RP
+(Screen.Screen.drawHorizontal.742) // call Screen.drawHorizontal 3
+@Screen.Screen.drawHorizontal.742 // call Screen.drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_738 // save to r14
+@MICROCODE_CALL_MIDPOINT_743 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -55198,7 +55628,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_738)
+(MICROCODE_CALL_MIDPOINT_743)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -55441,17 +55871,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_739
+@JLT_TRUE_744
 D;JLT
-// JLT_FALSE_739
+// JLT_FALSE_744
 @0
 D=A // d = false
-@JLT_END_739
+@JLT_END_744
 0;JMP
-(JLT_TRUE_739)
+(JLT_TRUE_744)
 @0
 D=!A // d = -1 (true)
-(JLT_END_739)
+(JLT_END_744)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -55488,17 +55918,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_740
+@JGT_TRUE_745
 D;JGT
-// JGT_FALSE_740
+// JGT_FALSE_745
 @0
 D=A // d = false
-@JGT_END_740
+@JGT_END_745
 0;JMP
-(JGT_TRUE_740)
+(JGT_TRUE_745)
 @0
 D=!A // d = -1 (true)
-(JGT_END_740)
+(JGT_END_745)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -55547,17 +55977,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_741
+@JLT_TRUE_746
 D;JLT
-// JLT_FALSE_741
+// JLT_FALSE_746
 @0
 D=A // d = false
-@JLT_END_741
+@JLT_END_746
 0;JMP
-(JLT_TRUE_741)
+(JLT_TRUE_746)
 @0
 D=!A // d = -1 (true)
-(JLT_END_741)
+(JLT_END_746)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -55606,17 +56036,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_742
+@JGT_TRUE_747
 D;JGT
-// JGT_FALSE_742
+// JGT_FALSE_747
 @0
 D=A // d = false
-@JGT_END_742
+@JGT_END_747
 0;JMP
-(JGT_TRUE_742)
+(JGT_TRUE_747)
 @0
 D=!A // d = -1 (true)
-(JGT_END_742)
+(JGT_END_747)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -55663,12 +56093,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(Screen.Sys.error.743) // call Sys.error 1
-@Screen.Sys.error.743 // call Sys.error // push RP
+(Screen.Sys.error.748) // call Sys.error 1
+@Screen.Sys.error.748 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_744 // save to r14
+@MICROCODE_CALL_MIDPOINT_749 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -55676,7 +56106,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_744)
+(MICROCODE_CALL_MIDPOINT_749)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -55779,17 +56209,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_745
+@JLT_TRUE_750
 D;JLT
-// JLT_FALSE_745
+// JLT_FALSE_750
 @0
 D=A // d = false
-@JLT_END_745
+@JLT_END_750
 0;JMP
-(JLT_TRUE_745)
+(JLT_TRUE_750)
 @0
 D=!A // d = -1 (true)
-(JLT_END_745)
+(JLT_END_750)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -55850,17 +56280,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_746
+@JGT_TRUE_751
 D;JGT
-// JGT_FALSE_746
+// JGT_FALSE_751
 @0
 D=A // d = false
-@JGT_END_746
+@JGT_END_751
 0;JMP
-(JGT_TRUE_746)
+(JGT_TRUE_751)
 @0
 D=!A // d = -1 (true)
-(JGT_END_746)
+(JGT_END_751)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -55933,17 +56363,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_747
+@JLT_TRUE_752
 D;JLT
-// JLT_FALSE_747
+// JLT_FALSE_752
 @0
 D=A // d = false
-@JLT_END_747
+@JLT_END_752
 0;JMP
-(JLT_TRUE_747)
+(JLT_TRUE_752)
 @0
 D=!A // d = -1 (true)
-(JLT_END_747)
+(JLT_END_752)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -56016,17 +56446,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_748
+@JGT_TRUE_753
 D;JGT
-// JGT_FALSE_748
+// JGT_FALSE_753
 @0
 D=A // d = false
-@JGT_END_748
+@JGT_END_753
 0;JMP
-(JGT_TRUE_748)
+(JGT_TRUE_753)
 @0
 D=!A // d = -1 (true)
-(JGT_END_748)
+(JGT_END_753)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -56073,12 +56503,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(Screen.Sys.error.749) // call Sys.error 1
-@Screen.Sys.error.749 // call Sys.error // push RP
+(Screen.Sys.error.754) // call Sys.error 1
+@Screen.Sys.error.754 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_750 // save to r14
+@MICROCODE_CALL_MIDPOINT_755 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -56086,7 +56516,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_750)
+(MICROCODE_CALL_MIDPOINT_755)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -56259,12 +56689,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.drawSymetric 4
-(Screen.Screen.drawSymetric.751) // call Screen.drawSymetric 4
-@Screen.Screen.drawSymetric.751 // call Screen.drawSymetric // push RP
+(Screen.Screen.drawSymetric.756) // call Screen.drawSymetric 4
+@Screen.Screen.drawSymetric.756 // call Screen.drawSymetric // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_752 // save to r14
+@MICROCODE_CALL_MIDPOINT_757 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -56272,7 +56702,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_752)
+(MICROCODE_CALL_MIDPOINT_757)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -56354,17 +56784,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_753
+@JGT_TRUE_758
 D;JGT
-// JGT_FALSE_753
+// JGT_FALSE_758
 @0
 D=A // d = false
-@JGT_END_753
+@JGT_END_758
 0;JMP
-(JGT_TRUE_753)
+(JGT_TRUE_758)
 @0
 D=!A // d = -1 (true)
-(JGT_END_753)
+(JGT_END_758)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -56420,17 +56850,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_754
+@JLT_TRUE_759
 D;JLT
-// JLT_FALSE_754
+// JLT_FALSE_759
 @0
 D=A // d = false
-@JLT_END_754
+@JLT_END_759
 0;JMP
-(JLT_TRUE_754)
+(JLT_TRUE_759)
 @0
 D=!A // d = -1 (true)
-(JLT_END_754)
+(JLT_END_759)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -56489,12 +56919,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.755) // call Math.multiply 2
-@Screen.Math.multiply.755 // call Math.multiply // push RP
+(Screen.Math.multiply.760) // call Math.multiply 2
+@Screen.Math.multiply.760 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_756 // save to r14
+@MICROCODE_CALL_MIDPOINT_761 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -56502,7 +56932,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_756)
+(MICROCODE_CALL_MIDPOINT_761)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -56691,12 +57121,12 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(Screen.Math.multiply.757) // call Math.multiply 2
-@Screen.Math.multiply.757 // call Math.multiply // push RP
+(Screen.Math.multiply.762) // call Math.multiply 2
+@Screen.Math.multiply.762 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_758 // save to r14
+@MICROCODE_CALL_MIDPOINT_763 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -56704,7 +57134,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_758)
+(MICROCODE_CALL_MIDPOINT_763)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -56976,12 +57406,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Screen.drawSymetric 4
-(Screen.Screen.drawSymetric.759) // call Screen.drawSymetric 4
-@Screen.Screen.drawSymetric.759 // call Screen.drawSymetric // push RP
+(Screen.Screen.drawSymetric.764) // call Screen.drawSymetric 4
+@Screen.Screen.drawSymetric.764 // call Screen.drawSymetric // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_760 // save to r14
+@MICROCODE_CALL_MIDPOINT_765 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -56989,7 +57419,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_760)
+(MICROCODE_CALL_MIDPOINT_765)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -57120,12 +57550,12 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // call Memory.alloc 1
-(String.Memory.alloc.761) // call Memory.alloc 1
-@String.Memory.alloc.761 // call Memory.alloc // push RP
+(String.Memory.alloc.766) // call Memory.alloc 1
+@String.Memory.alloc.766 // call Memory.alloc // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_762 // save to r14
+@MICROCODE_CALL_MIDPOINT_767 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -57133,7 +57563,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_762)
+(MICROCODE_CALL_MIDPOINT_767)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -57227,17 +57657,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_763
+@JLT_TRUE_768
 D;JLT
-// JLT_FALSE_763
+// JLT_FALSE_768
 @0
 D=A // d = false
-@JLT_END_763
+@JLT_END_768
 0;JMP
-(JLT_TRUE_763)
+(JLT_TRUE_768)
 @0
 D=!A // d = -1 (true)
-(JLT_END_763)
+(JLT_END_768)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -57272,12 +57702,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(String.Sys.error.764) // call Sys.error 1
-@String.Sys.error.764 // call Sys.error // push RP
+(String.Sys.error.769) // call Sys.error 1
+@String.Sys.error.769 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_765 // save to r14
+@MICROCODE_CALL_MIDPOINT_770 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -57285,7 +57715,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_765)
+(MICROCODE_CALL_MIDPOINT_770)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -57364,17 +57794,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_766
+@JGT_TRUE_771
 D;JGT
-// JGT_FALSE_766
+// JGT_FALSE_771
 @0
 D=A // d = false
-@JGT_END_766
+@JGT_END_771
 0;JMP
-(JGT_TRUE_766)
+(JGT_TRUE_771)
 @0
 D=!A // d = -1 (true)
-(JGT_END_766)
+(JGT_END_771)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -57412,12 +57842,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Array.new 1
-(String.Array.new.767) // call Array.new 1
-@String.Array.new.767 // call Array.new // push RP
+(String.Array.new.772) // call Array.new 1
+@String.Array.new.772 // call Array.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_768 // save to r14
+@MICROCODE_CALL_MIDPOINT_773 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -57425,7 +57855,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_768)
+(MICROCODE_CALL_MIDPOINT_773)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -57653,17 +58083,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_769
+@JGT_TRUE_774
 D;JGT
-// JGT_FALSE_769
+// JGT_FALSE_774
 @0
 D=A // d = false
-@JGT_END_769
+@JGT_END_774
 0;JMP
-(JGT_TRUE_769)
+(JGT_TRUE_774)
 @0
 D=!A // d = -1 (true)
-(JGT_END_769)
+(JGT_END_774)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -57701,12 +58131,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Array.dispose 1
-(String.Array.dispose.770) // call Array.dispose 1
-@String.Array.dispose.770 // call Array.dispose // push RP
+(String.Array.dispose.775) // call Array.dispose 1
+@String.Array.dispose.775 // call Array.dispose // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_771 // save to r14
+@MICROCODE_CALL_MIDPOINT_776 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -57714,7 +58144,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_771)
+(MICROCODE_CALL_MIDPOINT_776)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -57776,12 +58206,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Memory.deAlloc 1
-(String.Memory.deAlloc.772) // call Memory.deAlloc 1
-@String.Memory.deAlloc.772 // call Memory.deAlloc // push RP
+(String.Memory.deAlloc.777) // call Memory.deAlloc 1
+@String.Memory.deAlloc.777 // call Memory.deAlloc // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_773 // save to r14
+@MICROCODE_CALL_MIDPOINT_778 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -57789,7 +58219,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_773)
+(MICROCODE_CALL_MIDPOINT_778)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -58076,17 +58506,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_774
+@JLT_TRUE_779
 D;JLT
-// JLT_FALSE_774
+// JLT_FALSE_779
 @0
 D=A // d = false
-@JLT_END_774
+@JLT_END_779
 0;JMP
-(JLT_TRUE_774)
+(JLT_TRUE_779)
 @0
 D=!A // d = -1 (true)
-(JLT_END_774)
+(JLT_END_779)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -58126,17 +58556,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_775
+@JGT_TRUE_780
 D;JGT
-// JGT_FALSE_775
+// JGT_FALSE_780
 @0
 D=A // d = false
-@JGT_END_775
+@JGT_END_780
 0;JMP
-(JGT_TRUE_775)
+(JGT_TRUE_780)
 @0
 D=!A // d = -1 (true)
-(JGT_END_775)
+(JGT_END_780)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -58188,17 +58618,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_776
+@EQ_TRUE_781
 D;JEQ // jump if true
-// EQ_FALSE_776
+// EQ_FALSE_781
 @0 // false
 D=A // d = false
-@EQ_END_776
+@EQ_END_781
 0;JMP // unconditional jump
-(EQ_TRUE_776)
+(EQ_TRUE_781)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_776) // save eq result to stack
+(EQ_END_781) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -58245,12 +58675,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(String.Sys.error.777) // call Sys.error 1
-@String.Sys.error.777 // call Sys.error // push RP
+(String.Sys.error.782) // call Sys.error 1
+@String.Sys.error.782 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_778 // save to r14
+@MICROCODE_CALL_MIDPOINT_783 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -58258,7 +58688,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_778)
+(MICROCODE_CALL_MIDPOINT_783)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -58486,17 +58916,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_779
+@JLT_TRUE_784
 D;JLT
-// JLT_FALSE_779
+// JLT_FALSE_784
 @0
 D=A // d = false
-@JLT_END_779
+@JLT_END_784
 0;JMP
-(JLT_TRUE_779)
+(JLT_TRUE_784)
 @0
 D=!A // d = -1 (true)
-(JLT_END_779)
+(JLT_END_784)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -58536,17 +58966,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_780
+@JGT_TRUE_785
 D;JGT
-// JGT_FALSE_780
+// JGT_FALSE_785
 @0
 D=A // d = false
-@JGT_END_780
+@JGT_END_785
 0;JMP
-(JGT_TRUE_780)
+(JGT_TRUE_785)
 @0
 D=!A // d = -1 (true)
-(JGT_END_780)
+(JGT_END_785)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -58598,17 +59028,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_781
+@EQ_TRUE_786
 D;JEQ // jump if true
-// EQ_FALSE_781
+// EQ_FALSE_786
 @0 // false
 D=A // d = false
-@EQ_END_781
+@EQ_END_786
 0;JMP // unconditional jump
-(EQ_TRUE_781)
+(EQ_TRUE_786)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_781) // save eq result to stack
+(EQ_END_786) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -58655,12 +59085,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(String.Sys.error.782) // call Sys.error 1
-@String.Sys.error.782 // call Sys.error // push RP
+(String.Sys.error.787) // call Sys.error 1
+@String.Sys.error.787 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_783 // save to r14
+@MICROCODE_CALL_MIDPOINT_788 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -58668,7 +59098,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_783)
+(MICROCODE_CALL_MIDPOINT_788)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -58950,17 +59380,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_784
+@EQ_TRUE_789
 D;JEQ // jump if true
-// EQ_FALSE_784
+// EQ_FALSE_789
 @0 // false
 D=A // d = false
-@EQ_END_784
+@EQ_END_789
 0;JMP // unconditional jump
-(EQ_TRUE_784)
+(EQ_TRUE_789)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_784) // save eq result to stack
+(EQ_END_789) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -58995,12 +59425,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(String.Sys.error.785) // call Sys.error 1
-@String.Sys.error.785 // call Sys.error // push RP
+(String.Sys.error.790) // call Sys.error 1
+@String.Sys.error.790 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_786 // save to r14
+@MICROCODE_CALL_MIDPOINT_791 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -59008,7 +59438,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_786)
+(MICROCODE_CALL_MIDPOINT_791)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -59338,17 +59768,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_787
+@EQ_TRUE_792
 D;JEQ // jump if true
-// EQ_FALSE_787
+// EQ_FALSE_792
 @0 // false
 D=A // d = false
-@EQ_END_787
+@EQ_END_792
 0;JMP // unconditional jump
-(EQ_TRUE_787)
+(EQ_TRUE_792)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_787) // save eq result to stack
+(EQ_END_792) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -59383,12 +59813,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(String.Sys.error.788) // call Sys.error 1
-@String.Sys.error.788 // call Sys.error // push RP
+(String.Sys.error.793) // call Sys.error 1
+@String.Sys.error.793 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_789 // save to r14
+@MICROCODE_CALL_MIDPOINT_794 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -59396,7 +59826,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_789)
+(MICROCODE_CALL_MIDPOINT_794)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -59618,17 +60048,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_790
+@EQ_TRUE_795
 D;JEQ // jump if true
-// EQ_FALSE_790
+// EQ_FALSE_795
 @0 // false
 D=A // d = false
-@EQ_END_790
+@EQ_END_795
 0;JMP // unconditional jump
-(EQ_TRUE_790)
+(EQ_TRUE_795)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_790) // save eq result to stack
+(EQ_END_795) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -59832,17 +60262,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_791
+@EQ_TRUE_796
 D;JEQ // jump if true
-// EQ_FALSE_791
+// EQ_FALSE_796
 @0 // false
 D=A // d = false
-@EQ_END_791
+@EQ_END_796
 0;JMP // unconditional jump
-(EQ_TRUE_791)
+(EQ_TRUE_796)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_791) // save eq result to stack
+(EQ_END_796) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -59962,17 +60392,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_792
+@JLT_TRUE_797
 D;JLT
-// JLT_FALSE_792
+// JLT_FALSE_797
 @0
 D=A // d = false
-@JLT_END_792
+@JLT_END_797
 0;JMP
-(JLT_TRUE_792)
+(JLT_TRUE_797)
 @0
 D=!A // d = -1 (true)
-(JLT_END_792)
+(JLT_END_797)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -60151,17 +60581,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_793
+@JLT_TRUE_798
 D;JLT
-// JLT_FALSE_793
+// JLT_FALSE_798
 @0
 D=A // d = false
-@JLT_END_793
+@JLT_END_798
 0;JMP
-(JLT_TRUE_793)
+(JLT_TRUE_798)
 @0
 D=!A // d = -1 (true)
-(JLT_END_793)
+(JLT_END_798)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -60198,17 +60628,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_794
+@JGT_TRUE_799
 D;JGT
-// JGT_FALSE_794
+// JGT_FALSE_799
 @0
 D=A // d = false
-@JGT_END_794
+@JGT_END_799
 0;JMP
-(JGT_TRUE_794)
+(JGT_TRUE_799)
 @0
 D=!A // d = -1 (true)
-(JGT_END_794)
+(JGT_END_799)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -60302,12 +60732,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(String.Math.multiply.795) // call Math.multiply 2
-@String.Math.multiply.795 // call Math.multiply // push RP
+(String.Math.multiply.800) // call Math.multiply 2
+@String.Math.multiply.800 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_796 // save to r14
+@MICROCODE_CALL_MIDPOINT_801 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -60315,7 +60745,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_796)
+(MICROCODE_CALL_MIDPOINT_801)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -60684,17 +61114,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_797
+@EQ_TRUE_802
 D;JEQ // jump if true
-// EQ_FALSE_797
+// EQ_FALSE_802
 @0 // false
 D=A // d = false
-@EQ_END_797
+@EQ_END_802
 0;JMP // unconditional jump
-(EQ_TRUE_797)
+(EQ_TRUE_802)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_797) // save eq result to stack
+(EQ_END_802) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -60729,12 +61159,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(String.Sys.error.798) // call Sys.error 1
-@String.Sys.error.798 // call Sys.error // push RP
+(String.Sys.error.803) // call Sys.error 1
+@String.Sys.error.803 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_799 // save to r14
+@MICROCODE_CALL_MIDPOINT_804 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -60742,7 +61172,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_799)
+(MICROCODE_CALL_MIDPOINT_804)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -60801,12 +61231,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Array.new 1
-(String.Array.new.800) // call Array.new 1
-@String.Array.new.800 // call Array.new // push RP
+(String.Array.new.805) // call Array.new 1
+@String.Array.new.805 // call Array.new // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_801 // save to r14
+@MICROCODE_CALL_MIDPOINT_806 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -60814,7 +61244,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_801)
+(MICROCODE_CALL_MIDPOINT_806)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -60890,17 +61320,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_802
+@JLT_TRUE_807
 D;JLT
-// JLT_FALSE_802
+// JLT_FALSE_807
 @0
 D=A // d = false
-@JLT_END_802
+@JLT_END_807
 0;JMP
-(JLT_TRUE_802)
+(JLT_TRUE_807)
 @0
 D=!A // d = -1 (true)
-(JLT_END_802)
+(JLT_END_807)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -61055,17 +61485,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JGT_TRUE_803
+@JGT_TRUE_808
 D;JGT
-// JGT_FALSE_803
+// JGT_FALSE_808
 @0
 D=A // d = false
-@JGT_END_803
+@JGT_END_808
 0;JMP
-(JGT_TRUE_803)
+(JGT_TRUE_808)
 @0
 D=!A // d = -1 (true)
-(JGT_END_803)
+(JGT_END_808)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = gt result
@@ -61113,12 +61543,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.divide 2
-(String.Math.divide.804) // call Math.divide 2
-@String.Math.divide.804 // call Math.divide // push RP
+(String.Math.divide.809) // call Math.divide 2
+@String.Math.divide.809 // call Math.divide // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_805 // save to r14
+@MICROCODE_CALL_MIDPOINT_810 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -61126,7 +61556,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_805)
+(MICROCODE_CALL_MIDPOINT_810)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -61287,12 +61717,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Math.multiply 2
-(String.Math.multiply.806) // call Math.multiply 2
-@String.Math.multiply.806 // call Math.multiply // push RP
+(String.Math.multiply.811) // call Math.multiply 2
+@String.Math.multiply.811 // call Math.multiply // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_807 // save to r14
+@MICROCODE_CALL_MIDPOINT_812 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -61300,7 +61730,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_807)
+(MICROCODE_CALL_MIDPOINT_812)
 
 // push constant 0 // local(0) init
 @0 // push constant 0 // local(0) init (constant)
@@ -61755,17 +62185,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_808
+@JLT_TRUE_813
 D;JLT
-// JLT_FALSE_808
+// JLT_FALSE_813
 @0
 D=A // d = false
-@JLT_END_808
+@JLT_END_813
 0;JMP
-(JLT_TRUE_808)
+(JLT_TRUE_813)
 @0
 D=!A // d = -1 (true)
-(JLT_END_808)
+(JLT_END_813)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -61800,12 +62230,12 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // call Sys.error 1
-(String.Sys.error.809) // call Sys.error 1
-@String.Sys.error.809 // call Sys.error // push RP
+(String.Sys.error.814) // call Sys.error 1
+@String.Sys.error.814 // call Sys.error // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_810 // save to r14
+@MICROCODE_CALL_MIDPOINT_815 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -61813,7 +62243,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_810)
+(MICROCODE_CALL_MIDPOINT_815)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
@@ -61892,17 +62322,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@EQ_TRUE_811
+@EQ_TRUE_816
 D;JEQ // jump if true
-// EQ_FALSE_811
+// EQ_FALSE_816
 @0 // false
 D=A // d = false
-@EQ_END_811
+@EQ_END_816
 0;JMP // unconditional jump
-(EQ_TRUE_811)
+(EQ_TRUE_816)
 @0 // 0
 D=!A // d = -1 (true)
-(EQ_END_811) // save eq result to stack
+(EQ_END_816) // save eq result to stack
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = eq result
@@ -62117,17 +62547,17 @@ D=M // d = val2
 M=M-1 // &esp-- (&val1)
 A=M // *esp (*val1)
 D=M-D // d = val1 - val2
-@JLT_TRUE_812
+@JLT_TRUE_817
 D;JLT
-// JLT_FALSE_812
+// JLT_FALSE_817
 @0
 D=A // d = false
-@JLT_END_812
+@JLT_END_817
 0;JMP
-(JLT_TRUE_812)
+(JLT_TRUE_817)
 @0
 D=!A // d = -1 (true)
-(JLT_END_812)
+(JLT_END_817)
 @SP // &esp (&val1)
 A=M // *esp (*val1)
 M=D // esp = lt result
@@ -62425,12 +62855,12 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // call Array.dispose 1
-(String.Array.dispose.813) // call Array.dispose 1
-@String.Array.dispose.813 // call Array.dispose // push RP
+(String.Array.dispose.818) // call Array.dispose 1
+@String.Array.dispose.818 // call Array.dispose // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_814 // save to r14
+@MICROCODE_CALL_MIDPOINT_819 // save to r14
 D=A // d = &midpoint
 @R14 // &r14
 M=D // r14 = &midpoint
@@ -62438,7 +62868,7 @@ M=D // r14 = &midpoint
 D=M // d = *rp
 @MICROCODE_CALL
 0;JMP
-(MICROCODE_CALL_MIDPOINT_814)
+(MICROCODE_CALL_MIDPOINT_819)
 @5 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
