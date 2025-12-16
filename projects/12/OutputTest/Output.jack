@@ -204,10 +204,25 @@ class Output {
     // If the given character is invalid or non-printable, returns the
     // character map of a black square.
     function Array getMap(char c) {
+        var Array map;
+
         if ((c < 32) | (c > 126)) {
             let c = 0;
         }
-        return charMaps[c];
+
+        // code from here on is additive to the archive version
+        if (static2) {
+            let map = charMaps[c];
+        } else {
+            let map = static6[c];
+        }
+        return map;
+    }
+
+    // Internal API seen in reversed VM code only
+    function void drawChar(char c) {
+        var int local0, local1, local2, local3;
+        return;
     }
 
     /** Moves the cursor to the j-th column of the i-th row,

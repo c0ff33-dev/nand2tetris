@@ -18,9 +18,13 @@
   </classVarDec>
   <classVarDec>
     <keyword> static </keyword>
-    <keyword> int </keyword>
+    <identifier> String </identifier>
     <identifier> static3 </identifier>
-    <symbol> , </symbol>
+    <symbol> ; </symbol>
+  </classVarDec>
+  <classVarDec>
+    <keyword> static </keyword>
+    <keyword> int </keyword>
     <identifier> static4 </identifier>
     <symbol> ; </symbol>
   </classVarDec>
@@ -8362,17 +8366,17 @@
       <varDec>
         <keyword> var </keyword>
         <identifier> Array </identifier>
-        <identifier> local0 </identifier>
+        <identifier> map </identifier>
         <symbol> , </symbol>
-        <identifier> local1 </identifier>
+        <identifier> shiftMap </identifier>
         <symbol> ; </symbol>
       </varDec>
       <varDec>
         <keyword> var </keyword>
         <keyword> int </keyword>
-        <identifier> local2 </identifier>
+        <identifier> i </identifier>
         <symbol> , </symbol>
-        <identifier> local3 </identifier>
+        <identifier> j </identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
@@ -8400,7 +8404,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> local2 </identifier>
+          <identifier> i </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -8414,7 +8418,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> local2 </identifier>
+              <identifier> i </identifier>
             </term>
             <symbol> &lt; </symbol>
             <term>
@@ -8426,7 +8430,7 @@
           <statements>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> local0 </identifier>
+              <identifier> map </identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
@@ -8434,7 +8438,7 @@
                   <symbol> [ </symbol>
                   <expression>
                     <term>
-                      <identifier> local2 </identifier>
+                      <identifier> i </identifier>
                     </term>
                   </expression>
                   <symbol> ] </symbol>
@@ -8444,7 +8448,7 @@
             </letStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> local1 </identifier>
+              <identifier> shiftMap </identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
@@ -8470,21 +8474,21 @@
               <symbol> [ </symbol>
               <expression>
                 <term>
-                  <identifier> local2 </identifier>
+                  <identifier> i </identifier>
                 </term>
               </expression>
               <symbol> ] </symbol>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> local1 </identifier>
+                  <identifier> shiftMap </identifier>
                 </term>
               </expression>
               <symbol> ; </symbol>
             </letStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> local3 </identifier>
+              <identifier> j </identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
@@ -8498,7 +8502,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> local3 </identifier>
+                  <identifier> j </identifier>
                 </term>
                 <symbol> &lt; </symbol>
                 <term>
@@ -8510,22 +8514,22 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> local1 </identifier>
+                  <identifier> shiftMap </identifier>
                   <symbol> [ </symbol>
                   <expression>
                     <term>
-                      <identifier> local3 </identifier>
+                      <identifier> j </identifier>
                     </term>
                   </expression>
                   <symbol> ] </symbol>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> local0 </identifier>
+                      <identifier> map </identifier>
                       <symbol> [ </symbol>
                       <expression>
                         <term>
-                          <identifier> local3 </identifier>
+                          <identifier> j </identifier>
                         </term>
                       </expression>
                       <symbol> ] </symbol>
@@ -8539,11 +8543,11 @@
                 </letStatement>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> local3 </identifier>
+                  <identifier> j </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> local3 </identifier>
+                      <identifier> j </identifier>
                     </term>
                     <symbol> + </symbol>
                     <term>
@@ -8560,7 +8564,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> local2 </identifier>
+                  <identifier> i </identifier>
                 </term>
                 <symbol> = </symbol>
                 <term>
@@ -8572,7 +8576,7 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> local2 </identifier>
+                  <identifier> i </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
@@ -8588,11 +8592,11 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> local2 </identifier>
+                  <identifier> i </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> local2 </identifier>
+                      <identifier> i </identifier>
                     </term>
                     <symbol> + </symbol>
                     <term>
@@ -8627,6 +8631,12 @@
     <symbol> ) </symbol>
     <subroutineBody>
       <symbol> { </symbol>
+      <varDec>
+        <keyword> var </keyword>
+        <identifier> Array </identifier>
+        <identifier> map </identifier>
+        <symbol> ; </symbol>
+      </varDec>
       <statements>
         <ifStatement>
           <keyword> if </keyword>
@@ -8677,20 +8687,101 @@
           </statements>
           <symbol> } </symbol>
         </ifStatement>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> static2 </identifier>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> map </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> charMaps </identifier>
+                  <symbol> [ </symbol>
+                  <expression>
+                    <term>
+                      <identifier> c </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ] </symbol>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+          <keyword> else </keyword>
+          <symbol> { </symbol>
+          <statements>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> map </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> static6 </identifier>
+                  <symbol> [ </symbol>
+                  <expression>
+                    <term>
+                      <identifier> c </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ] </symbol>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
         <returnStatement>
           <keyword> return </keyword>
           <expression>
             <term>
-              <identifier> charMaps </identifier>
-              <symbol> [ </symbol>
-              <expression>
-                <term>
-                  <identifier> c </identifier>
-                </term>
-              </expression>
-              <symbol> ] </symbol>
+              <identifier> map </identifier>
             </term>
           </expression>
+          <symbol> ; </symbol>
+        </returnStatement>
+      </statements>
+      <symbol> } </symbol>
+    </subroutineBody>
+  </subroutineDec>
+  <subroutineDec>
+    <keyword> function </keyword>
+    <keyword> void </keyword>
+    <identifier> drawChar </identifier>
+    <symbol> ( </symbol>
+    <parameterList>
+      <keyword> char </keyword>
+      <identifier> c </identifier>
+    </parameterList>
+    <symbol> ) </symbol>
+    <subroutineBody>
+      <symbol> { </symbol>
+      <varDec>
+        <keyword> var </keyword>
+        <keyword> int </keyword>
+        <identifier> local0 </identifier>
+        <symbol> , </symbol>
+        <identifier> local1 </identifier>
+        <symbol> , </symbol>
+        <identifier> local2 </identifier>
+        <symbol> , </symbol>
+        <identifier> local3 </identifier>
+        <symbol> ; </symbol>
+      </varDec>
+      <statements>
+        <returnStatement>
+          <keyword> return </keyword>
           <symbol> ; </symbol>
         </returnStatement>
       </statements>

@@ -40675,11 +40675,11 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// function Output.getMap 0
-(Output.getMap) // function Output.getMap 0
+// function Output.getMap 1
+(Output.getMap) // function Output.getMap 1
 
 // push argument 0
-@ARG // push argument 0 // function Output.getMap 0 (&asm_segment)
+@ARG // push argument 0 // function Output.getMap 1 (&asm_segment)
 D=M // d = *asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -40828,6 +40828,36 @@ M=D // dst = src (pop)
 // label IF_FALSE0
 (Output.IF_FALSE0) // label IF_FALSE0
 
+// push static 2
+@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &asm_segment
+@2 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// if-goto IF_TRUE1
+// compare val (if-goto conditional) with 0
+@0 // if-goto IF_TRUE1
+D=A // d = 0
+@SP // &esp // compare val to 0
+M=M-1 // &esp-- (&val)
+A=M // *esp (*val)
+D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@Output.IF_TRUE1
+D;JNE // jump if not zero
+
+// goto IF_FALSE1
+@Output.IF_FALSE1 // goto IF_FALSE1
+0;JMP // unconditional jump
+
+// label IF_TRUE1
+(Output.IF_TRUE1) // label IF_TRUE1
+
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
@@ -40891,6 +40921,189 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
+// pop local 0
+@LCL // pop local 0 (&asm_segment)
+D=M // d = *asm_segment
+@0 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// goto IF_END1
+@Output.IF_END1 // goto IF_END1
+0;JMP // unconditional jump
+
+// label IF_FALSE1
+(Output.IF_FALSE1) // label IF_FALSE1
+
+// push argument 0
+@ARG // push argument 0 (&asm_segment)
+D=M // d = *asm_segment
+@0 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// push static 6
+@19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\OutputTest\Output.vm)
+D=A // d = &asm_segment
+@6 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// add
+@SP // &esp // add
+M=M-1 // &esp-- (&val2)
+A=M // *val2
+D=M // d = val2
+@SP // &esp
+M=M-1 // &esp-- (&val1)
+A=M // *esp (*val1)
+M=D+M // esp = val2 + val1
+@SP // &esp
+M=M+1 // &esp++
+
+// pop pointer 1
+@3 // pop pointer 1 (&pointer)
+D=A // d = &pointer
+@1 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// push that 0
+@THAT // push that 0 (&asm_segment)
+D=M // d = *asm_segment
+@0 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// pop local 0
+@LCL // pop local 0 (&asm_segment)
+D=M // d = *asm_segment
+@0 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+
+// label IF_END1
+(Output.IF_END1) // label IF_END1
+
+// push local 0
+@LCL // push local 0 (&asm_segment)
+D=M // d = *asm_segment
+@0 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP // &esp
+A=M // *esp
+M=D // esp = *(asm_segment+offset)
+@SP // &esp
+M=M+1 // &esp++
+
+// return
+
+// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
+@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
+D=M // d = *asm_segment
+@0 // retrieve &dst (segment+offset) and store at R13
+D=D+A // d = &dst (asm_segment+offset)
+@R13 // &r13
+M=D // r13 = &dst
+@SP // &esp // retrieve &src from top of the stack
+M=M-1 // &esp-- (&src)
+A=M // *src
+D=M // d = src
+@R13 // &r13 // retrieve &dst from r13 and complete the pop
+A=M // *r13 (*dst)
+M=D // dst = src (pop)
+@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
+D=M+1 // d = *arg[1]
+@SP // &esp
+M=D // *esp = arg[1]
+@LCL // &lcl[0] // return: restore caller stack (THAT)
+A=M-1 // &that
+D=M // d = *that
+@THAT
+M=D // *that = *that
+@2 // return: restore caller stack (THIS)
+D=A // d=2
+@LCL // &lcl
+A=M-D // &this
+D=M // d = *this
+@THIS
+M=D // *this = *this
+@3 // return: restore caller stack (ARG)
+D=A // d=3
+@LCL // &lcl 
+A=M-D // &lcl-3 (&arg)
+D=M // d = *arg
+@ARG
+M=D // *arg = *arg
+@LCL // &lcl // before restoring LCL, save it to R13
+D=M // d = *lcl
+@R13 // &r13
+M=D // *r13 = lcl
+@4 // return: restore caller stack (LCL)
+D=A // d=4
+@LCL // &lcl
+A=M-D // &lcl-4
+D=M // d = *lcl-4
+@LCL
+M=D // *lcl = *lcl-4
+@5 // return: unconditional jump to LCL-5 (RP)
+D=A // d=5
+@R13 // &r13 (old_lcl)
+A=M-D // &old_lcl-5 (&lcl)
+A=M // d = *lcl-5 (*lcl)
+0;JMP // return (jump to RP)
+
+// function Output.drawChar 4
+(Output.drawChar) // function Output.drawChar 4
+
+// push constant 0
+@0 // push constant 0 // function Output.drawChar 4 (constant)
+D=A // d = constant
+@SP // &esp
+A=M // *esp
+M=D // esp = constant
+@SP // &esp
+M=M+1 // &esp++
 // return
 
 // pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
