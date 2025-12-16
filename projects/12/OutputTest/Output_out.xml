@@ -13,7 +13,7 @@
   <classVarDec>
     <keyword> static </keyword>
     <keyword> boolean </keyword>
-    <identifier> static2 </identifier>
+    <identifier> noShift </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
@@ -33,7 +33,7 @@
     <identifier> Array </identifier>
     <identifier> charMaps </identifier>
     <symbol> , </symbol>
-    <identifier> static6 </identifier>
+    <identifier> shiftedMap </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <subroutineDec>
@@ -59,7 +59,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static2 </identifier>
+          <identifier> noShift </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -8382,7 +8382,7 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static6 </identifier>
+          <identifier> shiftedMap </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -8470,7 +8470,7 @@
             </letStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> static6 </identifier>
+              <identifier> shiftedMap </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -8692,7 +8692,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> static2 </identifier>
+              <identifier> noShift </identifier>
             </term>
           </expression>
           <symbol> ) </symbol>
@@ -8727,7 +8727,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> static6 </identifier>
+                  <identifier> shiftedMap </identifier>
                   <symbol> [ </symbol>
                   <expression>
                     <term>
@@ -8770,16 +8770,201 @@
       <varDec>
         <keyword> var </keyword>
         <keyword> int </keyword>
-        <identifier> local0 </identifier>
+        <identifier> j </identifier>
         <symbol> , </symbol>
-        <identifier> local1 </identifier>
-        <symbol> , </symbol>
-        <identifier> local2 </identifier>
-        <symbol> , </symbol>
-        <identifier> local3 </identifier>
+        <identifier> i </identifier>
+        <symbol> ; </symbol>
+      </varDec>
+      <varDec>
+        <keyword> var </keyword>
+        <identifier> Array </identifier>
+        <identifier> map </identifier>
+        <symbol> ; </symbol>
+      </varDec>
+      <varDec>
+        <keyword> var </keyword>
+        <keyword> int </keyword>
+        <identifier> mask </identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> map </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> Output </identifier>
+              <symbol> . </symbol>
+              <identifier> getMap </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <identifier> c </identifier>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> j </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> static1 </identifier>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <whileStatement>
+          <keyword> while </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> i </identifier>
+            </term>
+            <symbol> &lt; </symbol>
+            <term>
+              <integerConstant> 11 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <ifStatement>
+              <keyword> if </keyword>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> noShift </identifier>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+              <symbol> { </symbol>
+              <statements>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> mask </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> static4 </identifier>
+                      <symbol> [ </symbol>
+                      <expression>
+                        <term>
+                          <identifier> j </identifier>
+                        </term>
+                      </expression>
+                      <symbol> ] </symbol>
+                    </term>
+                    <symbol> &amp; </symbol>
+                    <term>
+                      <symbol> - </symbol>
+                      <term>
+                        <integerConstant> 256 </integerConstant>
+                      </term>
+                      <symbol> ; </symbol>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+              </statements>
+              <symbol> } </symbol>
+              <keyword> else </keyword>
+              <symbol> { </symbol>
+              <statements>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> mask </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> static4 </identifier>
+                      <symbol> [ </symbol>
+                      <expression>
+                        <term>
+                          <identifier> j </identifier>
+                        </term>
+                      </expression>
+                      <symbol> ] </symbol>
+                    </term>
+                    <symbol> &amp; </symbol>
+                    <term>
+                      <integerConstant> 255 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+              </statements>
+              <symbol> } </symbol>
+            </ifStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> static4 </identifier>
+              <symbol> [ </symbol>
+              <expression>
+                <term>
+                  <identifier> j </identifier>
+                </term>
+              </expression>
+              <symbol> ] </symbol>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> map </identifier>
+                  <symbol> [ </symbol>
+                  <expression>
+                    <term>
+                      <identifier> i </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ] </symbol>
+                </term>
+                <symbol> | </symbol>
+                <term>
+                  <identifier> mask </identifier>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> j </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> j </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <integerConstant> 32 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> i </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> i </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <integerConstant> 1 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+        </whileStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>
