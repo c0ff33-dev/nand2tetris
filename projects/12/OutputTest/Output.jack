@@ -19,8 +19,9 @@ class Output {
     // Character map for displaying characters
     static int static0, static1;
     static boolean static2;
-    static int static3, static4;
-    static Array charMaps;
+    static String static3;
+    static int static4;
+    static Array charMaps, static6;
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
     function void init() {
@@ -174,7 +175,28 @@ class Output {
 
     // Internal API seen in reversed VM code only
     function void createShiftedMap() {
-        var int local0, local1, local2, local3;
+        var Array map, shiftMap;
+        var int i, j;
+
+        let static6 = Array.new(127);
+        let i = 0;
+        while (i < 127) {
+            let map = charMaps[i];
+            let shiftMap = Array.new(11);
+            let static6[i] = shiftMap;
+            let j = 0;
+            
+            while (j < 11) {
+                let shiftMap[j] = map[j] * 256;
+                let j = j + 1;
+            }
+
+            if (i = 0) {
+                let i = 32;
+            } else {
+                let i = i + 1;
+            }
+        }
         return;
     }
     
