@@ -7,13 +7,13 @@
     <keyword> int </keyword>
     <identifier> static0 </identifier>
     <symbol> , </symbol>
-    <identifier> static1 </identifier>
+    <identifier> row </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
     <keyword> static </keyword>
     <keyword> boolean </keyword>
-    <identifier> noShift </identifier>
+    <identifier> loByte </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
@@ -25,7 +25,7 @@
   <classVarDec>
     <keyword> static </keyword>
     <keyword> int </keyword>
-    <identifier> static4 </identifier>
+    <identifier> screen </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
@@ -48,7 +48,7 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static4 </identifier>
+          <identifier> screen </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -59,7 +59,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> noShift </identifier>
+          <identifier> loByte </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -70,7 +70,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static1 </identifier>
+          <identifier> row </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -8692,7 +8692,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> noShift </identifier>
+              <identifier> loByte </identifier>
             </term>
           </expression>
           <symbol> ) </symbol>
@@ -8784,7 +8784,7 @@
       <varDec>
         <keyword> var </keyword>
         <keyword> int </keyword>
-        <identifier> mask </identifier>
+        <identifier> byte </identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
@@ -8816,7 +8816,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> static1 </identifier>
+              <identifier> row </identifier>
             </term>
           </expression>
           <symbol> ; </symbol>
@@ -8841,7 +8841,7 @@
               <symbol> ( </symbol>
               <expression>
                 <term>
-                  <identifier> noShift </identifier>
+                  <identifier> loByte </identifier>
                 </term>
               </expression>
               <symbol> ) </symbol>
@@ -8849,11 +8849,11 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> mask </identifier>
+                  <identifier> byte </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> static4 </identifier>
+                      <identifier> screen </identifier>
                       <symbol> [ </symbol>
                       <expression>
                         <term>
@@ -8880,11 +8880,11 @@
               <statements>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> mask </identifier>
+                  <identifier> byte </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> static4 </identifier>
+                      <identifier> screen </identifier>
                       <symbol> [ </symbol>
                       <expression>
                         <term>
@@ -8905,7 +8905,7 @@
             </ifStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> static4 </identifier>
+              <identifier> screen </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -8927,7 +8927,7 @@
                 </term>
                 <symbol> | </symbol>
                 <term>
-                  <identifier> mask </identifier>
+                  <identifier> byte </identifier>
                 </term>
               </expression>
               <symbol> ; </symbol>
