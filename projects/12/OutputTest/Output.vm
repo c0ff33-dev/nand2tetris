@@ -1768,9 +1768,36 @@ label WHILE_END0
 push constant 0
 return
 function Output.printInt 0
+push static 3
+push argument 0
+call String.setInt 2
+pop temp 0
+push static 3
+call Output.printString 1
+pop temp 0
 push constant 0
 return
 function Output.println 0
+push static 1
+push constant 352
+add
+push static 0
+sub
+pop static 1
+push constant 0
+pop static 0
+push constant 0
+not
+pop static 2
+push static 1
+push constant 8128
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 32
+pop static 1
+label IF_FALSE0
 push constant 0
 return
 function Output.backSpace 0

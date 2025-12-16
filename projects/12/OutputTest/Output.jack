@@ -19,7 +19,7 @@ class Output {
     // Character map for displaying characters
     static int wordIdx, scrIdx;
     static boolean loByte;
-    static String static3;
+    static String strInt;
     static int screen;
     static Array charMaps, shiftedMap;
 
@@ -29,7 +29,7 @@ class Output {
         let loByte = true;
         let scrIdx = 32; // 512px row / 8px char = 64 char/32 words per row
         let wordIdx = 0;
-        let static3 = String.new(6);
+        let strInt = String.new(6); // max strInt = -16384
         do Output.initMap();
         do Output.createShiftedMap();
         return;
@@ -306,11 +306,21 @@ class Output {
     /** Displays the given integer starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printInt(int i) {
+        do strInt.setInt(i);
+        do Output.printString(strInt);
         return;
     }
 
     /** Advances the cursor to the beginning of the next line. */
     function void println() {
+        let scrIdx = scrIdx + 352 - wordIdx;
+        let wordIdx = 0;
+        let loByte = ~0;
+
+        // return to start
+        if (scrIdx = 8128) {
+            let scrIdx = 32;
+        }
         return;
     }
 
