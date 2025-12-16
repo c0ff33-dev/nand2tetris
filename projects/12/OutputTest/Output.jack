@@ -15,14 +15,11 @@
  * as a small filled square, indicates where the next character will be displayed.
  */
 class Output {
-    // FIXME: some mismatches between compilers
-
     // Character map for displaying characters
     static int colIdx, scrIdx;
     static boolean loByte;
     static String strInt;
-    static int screen;
-    static Array charMaps, shiftedMap;
+    static Array screen, charMaps, shiftedMap;
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
     function void init() {
