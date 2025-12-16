@@ -278,7 +278,7 @@
           <expressionList>
             <expression>
               <term>
-                <stringConstant> !#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~ </stringConstant>
+                <stringConstant> !#$%&amp;'()*+,-./:;&lt;=&gt;?@[]^_`{|}~ </stringConstant>
               </term>
             </expression>
           </expressionList>

@@ -17,11 +17,9 @@
 <identifier> strInt </identifier>
 <symbol> ; </symbol>
 <keyword> static </keyword>
-<keyword> int </keyword>
-<identifier> screen </identifier>
-<symbol> ; </symbol>
-<keyword> static </keyword>
 <identifier> Array </identifier>
+<identifier> screen </identifier>
+<symbol> , </symbol>
 <identifier> charMaps </identifier>
 <symbol> , </symbol>
 <identifier> shiftedMap </identifier>

@@ -141,7 +141,7 @@
 <symbol> . </symbol>
 <identifier> printString </identifier>
 <symbol> ( </symbol>
-<stringConstant> !#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~ </stringConstant>
+<stringConstant> !#$%&amp;'()*+,-./:;&lt;=&gt;?@[]^_`{|}~ </stringConstant>
 <symbol> ) </symbol>
 <symbol> ; </symbol>
 <keyword> do </keyword>

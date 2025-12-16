@@ -1596,8 +1596,8 @@ push static 2
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push static 4
 push local 0
+push static 4
 add
 pop pointer 1
 push that 0
@@ -1607,8 +1607,8 @@ and
 pop local 3
 goto IF_END0
 label IF_FALSE0
-push static 4
 push local 0
+push static 4
 add
 pop pointer 1
 push that 0
@@ -1617,6 +1617,7 @@ and
 pop local 3
 label IF_END0
 push local 0
+push static 4
 add
 push local 1
 push local 2
@@ -1625,7 +1626,10 @@ pop pointer 1
 push that 0
 push local 3
 or
-pop static 4
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push local 0
 push constant 32
 add
@@ -1742,7 +1746,7 @@ push constant 0
 return
 function Output.printString 2
 push argument 0
-call String.length 0
+call String.length 1
 pop local 1
 label WHILE_EXP0
 push local 0
@@ -1752,7 +1756,7 @@ not
 if-goto WHILE_END0
 push argument 0
 push local 0
-call String.charAt 1
+call String.charAt 2
 call Output.printChar 1
 pop temp 0
 push local 0
@@ -1766,7 +1770,7 @@ return
 function Output.printInt 0
 push static 3
 push argument 0
-call String.setInt 1
+call String.setInt 2
 pop temp 0
 push static 3
 call Output.printString 1
