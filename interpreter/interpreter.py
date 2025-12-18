@@ -433,10 +433,8 @@ if __name__ == '__main__':
         # os.path.join("..", "projects", "12", "MemoryTest"),
         # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag"),
         # os.path.join("..", "projects", "12", "MathTest"),
-
-        # TODO: Project 12
-        os.path.join("..", "projects", "12", "OutputTest"),
-        # os.path.join("..", "projects", "12", "ScreenTest"), # TODO: NYI
+        # os.path.join("..", "projects", "12", "OutputTest"),
+        os.path.join("..", "projects", "12", "ScreenTest"),
     ]
 
     # tokenizer/analyzer
@@ -482,12 +480,10 @@ if __name__ == '__main__':
         # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack"),
         # os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
         # os.path.join("..", "projects", "12", "MathTest", "Math.jack"),
-
-        # TODO: Project 12
-        os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
-        os.path.join("..", "projects", "12", "OutputTest", "Output.jack"),
-        # os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"), # TODO: NYI
-        # os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack"), # TODO: NYI
+        # os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "OutputTest", "Output.jack"),
+        os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"),
+        os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack"),
     ]
 
     # compiler
@@ -533,12 +529,10 @@ if __name__ == '__main__':
         # [os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack")],
         # [os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
         #  os.path.join("..", "projects", "12", "MathTest", "Math.jack")],
-
-        # TODO: Project 12
-        [os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
-         os.path.join("..", "projects", "12", "OutputTest", "Output.jack")],
-        # [os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"), # TODO: NYI
-        #  os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack")], # TODO: NYI
+        # [os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "OutputTest", "Output.jack")],    
+        [os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack")],
     ]
 
     # enforce matching of compiler against course compiler
@@ -574,10 +568,10 @@ if __name__ == '__main__':
         # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"): 465,
         # os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
         # os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,
+        # os.path.join("..", "projects", "12", "OutputTest", "Main.vm"): 254,
+        # os.path.join("..", "projects", "12", "OutputTest", "Output.vm"): 1852,
 
         # TODO: Project 12
-        # os.path.join("..", "projects", "12", "OutputTest", "Main.vm"): xxx, # TODO: NYI
-        # os.path.join("..", "projects", "12", "OutputTest", "Output.vm"): xxx, # TODO: NYI
         # os.path.join("..", "projects", "12", "ScreenTest", "Main.vm"): xxx, # TODO: NYI
         # os.path.join("..", "projects", "12", "ScreenTest", "Screen.vm"): xxx, # TODO: NYI
     }
@@ -617,10 +611,8 @@ if __name__ == '__main__':
         # os.path.join("..", "projects", "12", "MemoryTest"),
         # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag"),
         # os.path.join("..", "projects", "12", "MathTest"),
-
-        # TODO: Project 12
-        os.path.join("..", "projects", "12", "OutputTest"),
-        # os.path.join("..", "projects", "12", "ScreenTest"), # TODO: NYI
+        # os.path.join("..", "projects", "12", "OutputTest"),
+        os.path.join("..", "projects", "12", "ScreenTest"),
     ]
 
     # VM programs
@@ -701,10 +693,8 @@ if __name__ == '__main__':
         # os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"),
         # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.asm"),
         # os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"),
-
-        # TODO: Project 12
-        os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"),
-        # os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"), # TODO: NYI
+        # os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"),  
+        os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"),
     ]
 
     # HDL tests (HardwareSimulator): project 1-12 accounted for, not included in tester/python_hdl!
