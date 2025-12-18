@@ -84,11 +84,10 @@
 <symbol> ) </symbol>
 <symbol> { </symbol>
 <keyword> do </keyword>
-<identifier> Array </identifier>
+<identifier> strArray </identifier>
 <symbol> . </symbol>
 <identifier> dispose </identifier>
 <symbol> ( </symbol>
-<identifier> strArray </identifier>
 <symbol> ) </symbol>
 <symbol> ; </symbol>
 <symbol> } </symbol>
@@ -638,11 +637,10 @@
 <symbol> } </symbol>
 <symbol> } </symbol>
 <keyword> do </keyword>
-<identifier> Array </identifier>
+<identifier> arr </identifier>
 <symbol> . </symbol>
 <identifier> dispose </identifier>
 <symbol> ( </symbol>
-<identifier> arr </identifier>
 <symbol> ) </symbol>
 <symbol> ; </symbol>
 <keyword> return </keyword>

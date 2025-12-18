@@ -169,16 +169,12 @@
           <statements>
             <doStatement>
               <keyword> do </keyword>
-              <identifier> Array </identifier>
+              <identifier> strArray </identifier>
               <symbol> . </symbol>
               <identifier> dispose </identifier>
               <symbol> ( </symbol>
               <expressionList>
-                <expression>
-                  <term>
-                    <identifier> strArray </identifier>
-                  </term>
-                </expression>
+                <expression/>
               </expressionList>
               <symbol> ) </symbol>
               <symbol> ; </symbol>
@@ -1373,16 +1369,12 @@
         </ifStatement>
         <doStatement>
           <keyword> do </keyword>
-          <identifier> Array </identifier>
+          <identifier> arr </identifier>
           <symbol> . </symbol>
           <identifier> dispose </identifier>
           <symbol> ( </symbol>
           <expressionList>
-            <expression>
-              <term>
-                <identifier> arr </identifier>
-              </term>
-            </expression>
+            <expression/>
           </expressionList>
           <symbol> ) </symbol>
           <symbol> ; </symbol>
