@@ -10,9 +10,23 @@
  * the screen is indexed (0,0).
  */
 class Screen {
+    static Array static0;
+    static int static1;
+    static boolean static2;
 
     /** Initializes the Screen. */
     function void init() {
+        var int i;
+
+        let static1 = 16384; // SCREEN address
+        let static2 = true;
+        let static0 = Array.new(17);
+        let static0[0] = 1;
+        
+        while (i < 16) {
+            let i = i + 1;
+            let static0[i] = static0[i-1] + static0[i-1];
+        }
         return;
     }
 

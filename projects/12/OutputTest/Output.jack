@@ -23,7 +23,7 @@ class Output {
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
     function void init() {
-        let screen = 16384; // SCREEN index
+        let screen = 16384; // SCREEN address
         let loByte = true;
         let scrIdx = 32; // 512px row / 8px char = 64 char/32 words per row
         let colIdx = 0;
