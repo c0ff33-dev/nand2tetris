@@ -51,10 +51,59 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Screen.clearScreen 0
+function Screen.clearScreen 1
+label WHILE_EXP0
+push local 0
+push constant 8192
+lt
+not
+if-goto WHILE_END0
+push local 0
+add
+push constant 0
+pop static 1
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Screen.updateLocation 0
+push static 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+add
+push static 1
+push argument 0
+add
+pop pointer 1
+push that 0
+push argument 1
+or
+pop static 1
+goto IF_END0
+label IF_FALSE0
+push argument 0
+add
+push static 1
+push argument 0
+add
+pop pointer 1
+push that 0
+push argument 1
+not
+and
+pop static 1
+label IF_END0
 push constant 0
 return
 function Screen.setColor 0
+push argument 0
+pop static 2
 push constant 0
 return
 function Screen.drawPixel 0

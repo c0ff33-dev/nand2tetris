@@ -32,7 +32,7 @@
       <varDec>
         <keyword> var </keyword>
         <keyword> int </keyword>
-        <identifier> local0 </identifier>
+        <identifier> i </identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>
@@ -103,7 +103,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> local0 </identifier>
+              <identifier> i </identifier>
             </term>
             <symbol> &lt; </symbol>
             <term>
@@ -115,11 +115,11 @@
           <statements>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> local0 </identifier>
+              <identifier> i </identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> local0 </identifier>
+                  <identifier> i </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
@@ -134,7 +134,7 @@
               <symbol> [ </symbol>
               <expression>
                 <term>
-                  <identifier> local0 </identifier>
+                  <identifier> i </identifier>
                 </term>
               </expression>
               <symbol> ] </symbol>
@@ -145,7 +145,7 @@
                   <symbol> [ </symbol>
                   <expression>
                     <term>
-                      <identifier> local0 </identifier>
+                      <identifier> i </identifier>
                     </term>
                     <symbol> - </symbol>
                     <term>
@@ -160,7 +160,7 @@
                   <symbol> [ </symbol>
                   <expression>
                     <term>
-                      <identifier> local0 </identifier>
+                      <identifier> i </identifier>
                     </term>
                     <symbol> - </symbol>
                     <term>
@@ -192,7 +192,175 @@
     <symbol> ) </symbol>
     <subroutineBody>
       <symbol> { </symbol>
+      <varDec>
+        <keyword> var </keyword>
+        <keyword> int </keyword>
+        <identifier> local0 </identifier>
+        <symbol> ; </symbol>
+      </varDec>
       <statements>
+        <whileStatement>
+          <keyword> while </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> local0 </identifier>
+            </term>
+            <symbol> &lt; </symbol>
+            <term>
+              <integerConstant> 8192 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> static1 </identifier>
+              <symbol> [ </symbol>
+              <expression>
+                <term>
+                  <identifier> local0 </identifier>
+                </term>
+              </expression>
+              <symbol> ] </symbol>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> local0 </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> local0 </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <integerConstant> 1 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+        </whileStatement>
+        <returnStatement>
+          <keyword> return </keyword>
+          <symbol> ; </symbol>
+        </returnStatement>
+      </statements>
+      <symbol> } </symbol>
+    </subroutineBody>
+  </subroutineDec>
+  <subroutineDec>
+    <keyword> function </keyword>
+    <keyword> void </keyword>
+    <identifier> updateLocation </identifier>
+    <symbol> ( </symbol>
+    <parameterList>
+      <keyword> int </keyword>
+      <identifier> x </identifier>
+      <symbol> , </symbol>
+      <keyword> int </keyword>
+      <identifier> y </identifier>
+    </parameterList>
+    <symbol> ) </symbol>
+    <subroutineBody>
+      <symbol> { </symbol>
+      <statements>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> static2 </identifier>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> static1 </identifier>
+              <symbol> [ </symbol>
+              <expression>
+                <term>
+                  <identifier> x </identifier>
+                </term>
+              </expression>
+              <symbol> ] </symbol>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> static1 </identifier>
+                      <symbol> [ </symbol>
+                      <expression>
+                        <term>
+                          <identifier> x </identifier>
+                        </term>
+                      </expression>
+                      <symbol> ] </symbol>
+                    </term>
+                    <symbol> | </symbol>
+                    <term>
+                      <identifier> y </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+          <keyword> else </keyword>
+          <symbol> { </symbol>
+          <statements>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> static1 </identifier>
+              <symbol> [ </symbol>
+              <expression>
+                <term>
+                  <identifier> x </identifier>
+                </term>
+              </expression>
+              <symbol> ] </symbol>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> static1 </identifier>
+                  <symbol> [ </symbol>
+                  <expression>
+                    <term>
+                      <identifier> x </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ] </symbol>
+                </term>
+                <symbol> &amp; </symbol>
+                <term>
+                  <symbol> ~ </symbol>
+                  <term>
+                    <identifier> y </identifier>
+                  </term>
+                  <symbol> ; </symbol>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>
@@ -214,6 +382,17 @@
     <subroutineBody>
       <symbol> { </symbol>
       <statements>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> static2 </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> b </identifier>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>

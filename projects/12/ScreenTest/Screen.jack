@@ -11,14 +11,14 @@
  */
 class Screen {
     static Array static0;
-    static int static1;
-    static boolean static2;
+    static int static1; // SCREEN address
+    static boolean static2; // setColor
 
     /** Initializes the Screen. */
     function void init() {
         var int i;
 
-        let static1 = 16384; // SCREEN address
+        let static1 = 16384;
         let static2 = true;
         let static0 = Array.new(17);
         let static0[0] = 1;
@@ -32,12 +32,31 @@ class Screen {
 
     /** Erases the entire screen. */
     function void clearScreen() {
+        var int local0;
+        // 8192 = end of screen memory range
+        while (local0 < 8192) {
+            let static1[local0] = 0;
+            let local0 = local0 + 1;
+        }
+        return;
+    }
+
+    // Internal API seen in reversed VM code only
+    // TODO: need to update after seeing usage
+    function void updateLocation(int x, int y) {
+        if (static2) {
+            let static1[x] = (static1[x] | y); // join?
+        } else {
+            let static1[x] = static1[x] & ~y; // mask?
+
+        }
         return;
     }
 
     /** Sets the current color, to be used for all subsequent drawXXX commands.
      *  Black is represented by true, white by false. */
     function void setColor(boolean b) {
+        let static2 = b;
         return;
     }
 
