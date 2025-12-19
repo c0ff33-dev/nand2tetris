@@ -1,4 +1,54 @@
-function Screen.init 0
+function Screen.init 1
+push constant 16384
+pop static 1
+push constant 0
+not
+pop static 2
+push constant 17
+call Array.new 1
+pop static 0
+push constant 0
+push static 0
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label WHILE_EXP0
+push local 0
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push local 0
+push constant 1
+add
+pop local 0
+push local 0
+push static 0
+add
+push local 0
+push constant 1
+sub
+push static 0
+add
+pop pointer 1
+push that 0
+push local 0
+push constant 1
+sub
+push static 0
+add
+pop pointer 1
+push that 0
+add
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return
 function Screen.clearScreen 0
