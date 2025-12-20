@@ -5,19 +5,15 @@
   <classVarDec>
     <keyword> static </keyword>
     <identifier> Array </identifier>
-    <identifier> static0 </identifier>
-    <symbol> ; </symbol>
-  </classVarDec>
-  <classVarDec>
-    <keyword> static </keyword>
-    <keyword> int </keyword>
-    <identifier> static1 </identifier>
+    <identifier> powArr </identifier>
+    <symbol> , </symbol>
+    <identifier> scrArr </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <classVarDec>
     <keyword> static </keyword>
     <keyword> boolean </keyword>
-    <identifier> static2 </identifier>
+    <identifier> color </identifier>
     <symbol> ; </symbol>
   </classVarDec>
   <subroutineDec>
@@ -38,7 +34,7 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static1 </identifier>
+          <identifier> scrArr </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -49,7 +45,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static2 </identifier>
+          <identifier> color </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -60,7 +56,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> powArr </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -82,7 +78,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static0 </identifier>
+          <identifier> powArr </identifier>
           <symbol> [ </symbol>
           <expression>
             <term>
@@ -130,7 +126,7 @@
             </letStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> static0 </identifier>
+              <identifier> powArr </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -141,7 +137,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> static0 </identifier>
+                  <identifier> powArr </identifier>
                   <symbol> [ </symbol>
                   <expression>
                     <term>
@@ -156,7 +152,7 @@
                 </term>
                 <symbol> + </symbol>
                 <term>
-                  <identifier> static0 </identifier>
+                  <identifier> powArr </identifier>
                   <symbol> [ </symbol>
                   <expression>
                     <term>
@@ -216,7 +212,7 @@
           <statements>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> static1 </identifier>
+              <identifier> scrArr </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -279,7 +275,7 @@
           <symbol> ( </symbol>
           <expression>
             <term>
-              <identifier> static2 </identifier>
+              <identifier> color </identifier>
             </term>
           </expression>
           <symbol> ) </symbol>
@@ -287,7 +283,7 @@
           <statements>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> static1 </identifier>
+              <identifier> scrArr </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -301,7 +297,7 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> static1 </identifier>
+                      <identifier> scrArr </identifier>
                       <symbol> [ </symbol>
                       <expression>
                         <term>
@@ -327,7 +323,7 @@
           <statements>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> static1 </identifier>
+              <identifier> scrArr </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -338,7 +334,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> static1 </identifier>
+                  <identifier> scrArr </identifier>
                   <symbol> [ </symbol>
                   <expression>
                     <term>
@@ -384,7 +380,7 @@
       <statements>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> static2 </identifier>
+          <identifier> color </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -421,7 +417,7 @@
         <keyword> int </keyword>
         <identifier> word </identifier>
         <symbol> , </symbol>
-        <identifier> startBit </identifier>
+        <identifier> bit </identifier>
         <symbol> , </symbol>
         <identifier> offset </identifier>
         <symbol> ; </symbol>
@@ -526,7 +522,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> startBit </identifier>
+          <identifier> bit </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -589,11 +585,11 @@
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> static0 </identifier>
+                <identifier> powArr </identifier>
                 <symbol> [ </symbol>
                 <expression>
                   <term>
-                    <identifier> startBit </identifier>
+                    <identifier> bit </identifier>
                   </term>
                 </expression>
                 <symbol> ] </symbol>
@@ -1493,7 +1489,7 @@
       <varDec>
         <keyword> var </keyword>
         <keyword> int </keyword>
-        <identifier> screen </identifier>
+        <identifier> scrIdx </identifier>
         <symbol> , </symbol>
         <identifier> rowEnd </identifier>
         <symbol> , </symbol>
@@ -1715,7 +1711,7 @@
                 <expressionList>
                   <expression>
                     <term>
-                      <identifier> static0 </identifier>
+                      <identifier> powArr </identifier>
                       <symbol> [ </symbol>
                       <expression>
                         <term>
@@ -1743,7 +1739,7 @@
           <symbol> = </symbol>
           <expression>
             <term>
-              <identifier> static0 </identifier>
+              <identifier> powArr </identifier>
               <symbol> [ </symbol>
               <expression>
                 <term>
@@ -1765,7 +1761,7 @@
         </letStatement>
         <letStatement>
           <keyword> let </keyword>
-          <identifier> screen </identifier>
+          <identifier> scrIdx </identifier>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -1835,7 +1831,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> screen </identifier>
+                  <identifier> scrIdx </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
@@ -1868,7 +1864,7 @@
                   <expressionList>
                     <expression>
                       <term>
-                        <identifier> screen </identifier>
+                        <identifier> scrIdx </identifier>
                       </term>
                     </expression>
                     <symbol> , </symbol>
@@ -1905,7 +1901,7 @@
                   <expressionList>
                     <expression>
                       <term>
-                        <identifier> screen </identifier>
+                        <identifier> scrIdx </identifier>
                       </term>
                     </expression>
                     <symbol> , </symbol>
@@ -1920,11 +1916,11 @@
                 </doStatement>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> screen </identifier>
+                  <identifier> scrIdx </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> screen </identifier>
+                      <identifier> scrIdx </identifier>
                     </term>
                     <symbol> + </symbol>
                     <term>
@@ -1938,7 +1934,7 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> screen </identifier>
+                      <identifier> scrIdx </identifier>
                     </term>
                     <symbol> &lt; </symbol>
                     <term>
@@ -1957,7 +1953,7 @@
                       <expressionList>
                         <expression>
                           <term>
-                            <identifier> screen </identifier>
+                            <identifier> scrIdx </identifier>
                           </term>
                         </expression>
                         <symbol> , </symbol>
@@ -1973,11 +1969,11 @@
                     </doStatement>
                     <letStatement>
                       <keyword> let </keyword>
-                      <identifier> screen </identifier>
+                      <identifier> scrIdx </identifier>
                       <symbol> = </symbol>
                       <expression>
                         <term>
-                          <identifier> screen </identifier>
+                          <identifier> scrIdx </identifier>
                         </term>
                         <symbol> + </symbol>
                         <term>
@@ -2031,7 +2027,7 @@
             </letStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> screen </identifier>
+              <identifier> scrIdx </identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
@@ -2080,7 +2076,7 @@
       <varDec>
         <keyword> var </keyword>
         <keyword> int </keyword>
-        <identifier> screen </identifier>
+        <identifier> scrIdx </identifier>
         <symbol> , </symbol>
         <identifier> startWord </identifier>
         <symbol> , </symbol>
@@ -2377,7 +2373,7 @@
                     <expressionList>
                       <expression>
                         <term>
-                          <identifier> static0 </identifier>
+                          <identifier> powArr </identifier>
                           <symbol> [ </symbol>
                           <expression>
                             <term>
@@ -2405,7 +2401,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> static0 </identifier>
+                  <identifier> powArr </identifier>
                   <symbol> [ </symbol>
                   <expression>
                     <term>
@@ -2427,7 +2423,7 @@
             </letStatement>
             <letStatement>
               <keyword> let </keyword>
-              <identifier> screen </identifier>
+              <identifier> scrIdx </identifier>
               <symbol> = </symbol>
               <expression>
                 <term>
@@ -2471,7 +2467,7 @@
               <symbol> = </symbol>
               <expression>
                 <term>
-                  <identifier> screen </identifier>
+                  <identifier> scrIdx </identifier>
                 </term>
                 <symbol> + </symbol>
                 <term>
@@ -2504,7 +2500,7 @@
                   <expressionList>
                     <expression>
                       <term>
-                        <identifier> screen </identifier>
+                        <identifier> scrIdx </identifier>
                       </term>
                     </expression>
                     <symbol> , </symbol>
@@ -2541,7 +2537,7 @@
                   <expressionList>
                     <expression>
                       <term>
-                        <identifier> screen </identifier>
+                        <identifier> scrIdx </identifier>
                       </term>
                     </expression>
                     <symbol> , </symbol>
@@ -2556,11 +2552,11 @@
                 </doStatement>
                 <letStatement>
                   <keyword> let </keyword>
-                  <identifier> screen </identifier>
+                  <identifier> scrIdx </identifier>
                   <symbol> = </symbol>
                   <expression>
                     <term>
-                      <identifier> screen </identifier>
+                      <identifier> scrIdx </identifier>
                     </term>
                     <symbol> + </symbol>
                     <term>
@@ -2574,7 +2570,7 @@
                   <symbol> ( </symbol>
                   <expression>
                     <term>
-                      <identifier> screen </identifier>
+                      <identifier> scrIdx </identifier>
                     </term>
                     <symbol> &lt; </symbol>
                     <term>
@@ -2593,7 +2589,7 @@
                       <expressionList>
                         <expression>
                           <term>
-                            <identifier> screen </identifier>
+                            <identifier> scrIdx </identifier>
                           </term>
                         </expression>
                         <symbol> , </symbol>
@@ -2609,11 +2605,11 @@
                     </doStatement>
                     <letStatement>
                       <keyword> let </keyword>
-                      <identifier> screen </identifier>
+                      <identifier> scrIdx </identifier>
                       <symbol> = </symbol>
                       <expression>
                         <term>
-                          <identifier> screen </identifier>
+                          <identifier> scrIdx </identifier>
                         </term>
                         <symbol> + </symbol>
                         <term>
@@ -2668,16 +2664,16 @@
     <symbol> ( </symbol>
     <parameterList>
       <keyword> int </keyword>
-      <identifier> arg0 </identifier>
+      <identifier> x1 </identifier>
       <symbol> , </symbol>
       <keyword> int </keyword>
-      <identifier> arg1 </identifier>
+      <identifier> y1 </identifier>
       <symbol> , </symbol>
       <keyword> int </keyword>
-      <identifier> arg2 </identifier>
+      <identifier> x2 </identifier>
       <symbol> , </symbol>
       <keyword> int </keyword>
-      <identifier> arg3 </identifier>
+      <identifier> y2 </identifier>
     </parameterList>
     <symbol> ) </symbol>
     <subroutineBody>
@@ -2692,31 +2688,31 @@
           <expressionList>
             <expression>
               <term>
-                <identifier> arg1 </identifier>
+                <identifier> y1 </identifier>
               </term>
               <symbol> - </symbol>
               <term>
-                <identifier> arg3 </identifier>
+                <identifier> y2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> arg2 </identifier>
+                <identifier> x2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> - </symbol>
               <term>
-                <identifier> arg2 </identifier>
+                <identifier> x2 </identifier>
               </term>
             </expression>
           </expressionList>
@@ -2732,31 +2728,31 @@
           <expressionList>
             <expression>
               <term>
-                <identifier> arg1 </identifier>
+                <identifier> y1 </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> arg3 </identifier>
+                <identifier> y2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> arg2 </identifier>
+                <identifier> x2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> - </symbol>
               <term>
-                <identifier> arg2 </identifier>
+                <identifier> x2 </identifier>
               </term>
             </expression>
           </expressionList>
@@ -2772,31 +2768,31 @@
           <expressionList>
             <expression>
               <term>
-                <identifier> arg1 </identifier>
+                <identifier> y1 </identifier>
               </term>
               <symbol> - </symbol>
               <term>
-                <identifier> arg2 </identifier>
+                <identifier> x2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> - </symbol>
               <term>
-                <identifier> arg3 </identifier>
+                <identifier> y2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> arg3 </identifier>
+                <identifier> y2 </identifier>
               </term>
             </expression>
           </expressionList>
@@ -2812,31 +2808,31 @@
           <expressionList>
             <expression>
               <term>
-                <identifier> arg1 </identifier>
+                <identifier> y1 </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> arg2 </identifier>
+                <identifier> x2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> - </symbol>
               <term>
-                <identifier> arg3 </identifier>
+                <identifier> y2 </identifier>
               </term>
             </expression>
             <symbol> , </symbol>
             <expression>
               <term>
-                <identifier> arg0 </identifier>
+                <identifier> x1 </identifier>
               </term>
               <symbol> + </symbol>
               <term>
-                <identifier> arg3 </identifier>
+                <identifier> y2 </identifier>
               </term>
             </expression>
           </expressionList>
@@ -2869,7 +2865,454 @@
     <symbol> ) </symbol>
     <subroutineBody>
       <symbol> { </symbol>
+      <varDec>
+        <keyword> var </keyword>
+        <keyword> int </keyword>
+        <identifier> xOffset </identifier>
+        <symbol> , </symbol>
+        <identifier> yOffset </identifier>
+        <symbol> , </symbol>
+        <identifier> accumulator </identifier>
+        <symbol> ; </symbol>
+      </varDec>
       <statements>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> x </identifier>
+                </term>
+                <symbol> &lt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> x </identifier>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <integerConstant> 511 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> y </identifier>
+                </term>
+                <symbol> &lt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> y </identifier>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <integerConstant> 255 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <doStatement>
+              <keyword> do </keyword>
+              <identifier> Sys </identifier>
+              <symbol> . </symbol>
+              <identifier> error </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <integerConstant> 12 </integerConstant>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+              <symbol> ; </symbol>
+            </doStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> x </identifier>
+                    </term>
+                    <symbol> - </symbol>
+                    <term>
+                      <identifier> r </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                </term>
+                <symbol> &lt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> x </identifier>
+                    </term>
+                    <symbol> + </symbol>
+                    <term>
+                      <identifier> r </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <integerConstant> 511 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> y </identifier>
+                    </term>
+                    <symbol> - </symbol>
+                    <term>
+                      <identifier> r </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                </term>
+                <symbol> &lt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> y </identifier>
+                    </term>
+                    <symbol> + </symbol>
+                    <term>
+                      <identifier> r </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <integerConstant> 255 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <doStatement>
+              <keyword> do </keyword>
+              <identifier> Sys </identifier>
+              <symbol> . </symbol>
+              <identifier> error </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <integerConstant> 13 </integerConstant>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+              <symbol> ; </symbol>
+            </doStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> yOffset </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> r </identifier>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> accumulator </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <integerConstant> 1 </integerConstant>
+            </term>
+            <symbol> - </symbol>
+            <term>
+              <identifier> r </identifier>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <doStatement>
+          <keyword> do </keyword>
+          <identifier> Screen </identifier>
+          <symbol> . </symbol>
+          <identifier> drawSymetric </identifier>
+          <symbol> ( </symbol>
+          <expressionList>
+            <expression>
+              <term>
+                <identifier> x </identifier>
+              </term>
+            </expression>
+            <symbol> , </symbol>
+            <expression>
+              <term>
+                <identifier> y </identifier>
+              </term>
+            </expression>
+            <symbol> , </symbol>
+            <expression>
+              <term>
+                <identifier> xOffset </identifier>
+              </term>
+            </expression>
+            <symbol> , </symbol>
+            <expression>
+              <term>
+                <identifier> yOffset </identifier>
+              </term>
+            </expression>
+          </expressionList>
+          <symbol> ) </symbol>
+          <symbol> ; </symbol>
+        </doStatement>
+        <whileStatement>
+          <keyword> while </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> yOffset </identifier>
+            </term>
+            <symbol> &gt; </symbol>
+            <term>
+              <identifier> xOffset </identifier>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <ifStatement>
+              <keyword> if </keyword>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> accumulator </identifier>
+                </term>
+                <symbol> &lt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+              <symbol> { </symbol>
+              <statements>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> accumulator </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> accumulator </identifier>
+                    </term>
+                    <symbol> + </symbol>
+                    <term>
+                      <symbol> ( </symbol>
+                      <expression>
+                        <term>
+                          <integerConstant> 2 </integerConstant>
+                        </term>
+                        <symbol> * </symbol>
+                        <term>
+                          <identifier> xOffset </identifier>
+                        </term>
+                      </expression>
+                      <symbol> ) </symbol>
+                    </term>
+                    <symbol> + </symbol>
+                    <term>
+                      <integerConstant> 3 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+              </statements>
+              <symbol> } </symbol>
+              <keyword> else </keyword>
+              <symbol> { </symbol>
+              <statements>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> accumulator </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> accumulator </identifier>
+                    </term>
+                    <symbol> + </symbol>
+                    <term>
+                      <symbol> ( </symbol>
+                      <expression>
+                        <term>
+                          <integerConstant> 2 </integerConstant>
+                        </term>
+                        <symbol> * </symbol>
+                        <term>
+                          <symbol> ( </symbol>
+                          <expression>
+                            <term>
+                              <identifier> xOffset </identifier>
+                            </term>
+                            <symbol> - </symbol>
+                            <term>
+                              <identifier> yOffset </identifier>
+                            </term>
+                          </expression>
+                          <symbol> ) </symbol>
+                        </term>
+                      </expression>
+                      <symbol> ) </symbol>
+                    </term>
+                    <symbol> + </symbol>
+                    <term>
+                      <integerConstant> 5 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> yOffset </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> yOffset </identifier>
+                    </term>
+                    <symbol> - </symbol>
+                    <term>
+                      <integerConstant> 1 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+              </statements>
+              <symbol> } </symbol>
+            </ifStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> xOffset </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> xOffset </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <integerConstant> 1 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+            <doStatement>
+              <keyword> do </keyword>
+              <identifier> Screen </identifier>
+              <symbol> . </symbol>
+              <identifier> drawSymetric </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <identifier> x </identifier>
+                  </term>
+                </expression>
+                <symbol> , </symbol>
+                <expression>
+                  <term>
+                    <identifier> y </identifier>
+                  </term>
+                </expression>
+                <symbol> , </symbol>
+                <expression>
+                  <term>
+                    <identifier> xOffset </identifier>
+                  </term>
+                </expression>
+                <symbol> , </symbol>
+                <expression>
+                  <term>
+                    <identifier> yOffset </identifier>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+              <symbol> ; </symbol>
+            </doStatement>
+          </statements>
+          <symbol> } </symbol>
+        </whileStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>

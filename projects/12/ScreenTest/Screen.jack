@@ -10,23 +10,22 @@
  * the screen is indexed (0,0).
  */
 class Screen {
-    static Array static0; // power of 2 array
-    static int static1; // SCREEN address
-    static boolean static2; // setColor
+    static Array powArr, scrArr; // power of 2 array
+    static boolean color; // setColor
 
     /** Initializes the Screen. */
     function void init() {
         var int i;
 
-        let static1 = 16384;
-        let static2 = true;
-        let static0 = Array.new(17);
+        let scrArr = 16384;
+        let color = true;
+        let powArr = Array.new(17);
 
         // [1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,xxx]
-        let static0[0] = 1;
+        let powArr[0] = 1;
         while (i < 16) {
             let i = i + 1;
-            let static0[i] = static0[i-1] + static0[i-1];
+            let powArr[i] = powArr[i-1] + powArr[i-1];
         }
         return;
     }
@@ -36,7 +35,7 @@ class Screen {
         var int i;
         // 8192 = end of screen memory range
         while (i < 8192) {
-            let static1[i] = 0;
+            let scrArr[i] = 0;
             let i = i + 1;
         }
         return;
@@ -45,10 +44,10 @@ class Screen {
     // Internal API seen in reversed VM code only
     // set pixel by applying bitmask to screen addr (word)
     function void updateLocation(int addr, int mask) {
-        if (static2) {
-            let static1[addr] = (static1[addr] | mask); // draw
+        if (color) {
+            let scrArr[addr] = (scrArr[addr] | mask); // draw
         } else {
-            let static1[addr] = static1[addr] & ~mask; // erase
+            let scrArr[addr] = scrArr[addr] & ~mask; // erase
         }
         return;
     }
@@ -56,7 +55,7 @@ class Screen {
     /** Sets the current color, to be used for all subsequent drawXXX commands.
      *  Black is represented by true, white by false. */
     function void setColor(boolean b) {
-        let static2 = b;
+        let color = b;
         return;
     }
 
@@ -72,7 +71,7 @@ class Screen {
         let word = x / 16; // offset into the row in words
         let bit = x - (word * 16); // offset into the word (x % 16)
         let offset = (y * 32) + word; // word offset into the array (x rows)
-        do Screen.updateLocation(offset, static0[bit]);
+        do Screen.updateLocation(offset, powArr[bit]);
         return;
     }
 
@@ -154,7 +153,7 @@ class Screen {
     /** Draws a filled rectangle whose top left corner is (x1, y1)
      * and bottom right corner is (x2,y2), using the current color. */
     function void drawRectangle(int x1, int y1, int x2, int y2) {
-        var int screen, rowEnd, width, startWord, endWord, rightMask, leftMask, startBit, endBit;
+        var int scrIdx, rowEnd, width, startWord, endWord, rightMask, leftMask, startBit, endBit;
         if ((x1 > x2) | (y1 > y2) | (x1 < 0) | (x2 > 511) | (y1 < 0) | (y2 > 255)) {
             do Sys.error(9); // check bounds
         }
@@ -166,26 +165,26 @@ class Screen {
         let endBit = x2 - (endWord * 16);
 
         // create bitmasks for partial words
-        let leftMask = ~(static0[startBit] - 1);
-        let rightMask = static0[endBit + 1] - 1;
+        let leftMask = ~(powArr[startBit] - 1);
+        let rightMask = powArr[endBit + 1] - 1;
 
         // iterate over rows
-        let screen = (y1 * 32) + startWord;
+        let scrIdx = (y1 * 32) + startWord;
         let width = endWord - startWord;
         while (~(y1 > y2)) {
-            let rowEnd = screen + width;
+            let rowEnd = scrIdx + width;
             if (width = 0) {
                 // rectangle <= one word width 
-                do Screen.updateLocation(screen, (rightMask & leftMask));
+                do Screen.updateLocation(scrIdx, (rightMask & leftMask));
             } else {
                 // left edge (partial fill)
-                do Screen.updateLocation(screen, leftMask);
-                let screen = screen + 1;
+                do Screen.updateLocation(scrIdx, leftMask);
+                let scrIdx = scrIdx + 1;
 
                 // middle (fully filled)
-                while (screen < rowEnd) {
-                    do Screen.updateLocation(screen, -1);
-                    let screen = screen + 1;
+                while (scrIdx < rowEnd) {
+                    do Screen.updateLocation(scrIdx, -1);
+                    let scrIdx = scrIdx + 1;
                 }
 
                 // right edge (partial fill)
@@ -194,16 +193,16 @@ class Screen {
 
             // next row
             let y1 = y1 + 1;
-            let screen = rowEnd + 32 - width;
+            let scrIdx = rowEnd + 32 - width;
         }
         return;
     }
 
     // Internal API seen in reversed VM code only
     // draw a horizontal line only
-    // TODO: why does this even exist compared to drawRectangle() 
+    // TODO: this does not seem worth duplicating compared to drawRectangle() 
     function void drawHorizontal(int y, int x1, int x2) {
-        var int screen, startWord, endWord, endAddr, rightMask, leftMask, width, minX, maxX, startBit, endBit;
+        var int scrIdx, startWord, endWord, endAddr, rightMask, leftMask, width, minX, maxX, startBit, endBit;
 
         // ensure x1 <= x2
         let minX = Math.min(x1, x2);
@@ -222,24 +221,24 @@ class Screen {
             let endBit = maxX - (endWord * 16);
             
             // compute bitmasks & screen indices
-            let leftMask = ~(static0[startBit] - 1);
-            let rightMask = static0[endBit + 1] - 1;
-            let screen = (y * 32) + startWord;
+            let leftMask = ~(powArr[startBit] - 1);
+            let rightMask = powArr[endBit + 1] - 1;
+            let scrIdx = (y * 32) + startWord;
             let width = endWord - startWord;
-            let endAddr = screen + width;
+            let endAddr = scrIdx + width;
             
             if (width = 0) {
                 // line <= one word width 
-                do Screen.updateLocation(screen, (rightMask & leftMask));
+                do Screen.updateLocation(scrIdx, (rightMask & leftMask));
             } else {
                 // left edge (partial fill)
-                do Screen.updateLocation(screen, leftMask);
-                let screen = screen + 1;
+                do Screen.updateLocation(scrIdx, leftMask);
+                let scrIdx = scrIdx + 1;
 
                 // middle (fully filled)
-                while (screen < endAddr) {
-                    do Screen.updateLocation(screen, -1);
-                    let screen = screen + 1;
+                while (scrIdx < endAddr) {
+                    do Screen.updateLocation(scrIdx, -1);
+                    let scrIdx = scrIdx + 1;
                 }
 
                 // right edge (partial fill)
@@ -250,17 +249,41 @@ class Screen {
     }
 
     // Internal API seen in reversed VM code only
-    // TODO: again, why?
+    // efficiently mirror a circle octant to fill the remaining shape
     function void drawSymetric(int x1, int y1, int x2, int y2) {
-        do Screen.drawHorizontal(y1-y2, x1+x2, x1-x2);
-        do Screen.drawHorizontal(y1+y2, x1+x2, x1-x2);
-        do Screen.drawHorizontal(y1-x2, x1-y2, x1+y2);
-        do Screen.drawHorizontal(y1+x2, x1-y2, x1+y2);
+        do Screen.drawHorizontal(y1-y2, x1+x2, x1-x2); // bottom
+        do Screen.drawHorizontal(y1+y2, x1+x2, x1-x2); // top
+        do Screen.drawHorizontal(y1-x2, x1-y2, x1+y2); // middle-bottom
+        do Screen.drawHorizontal(y1+x2, x1-y2, x1+y2); // middle-top
         return;
     }
 
     /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
     function void drawCircle(int x, int y, int r) {
+        // Bresenham's Circle Drawing Algorithm
+        var int xOffset, yOffset, accumulator;
+        if ((x < 0) | (x > 511) | (y < 0) | (y > 255)) {
+            do Sys.error(12); // bounds check
+        }
+        if (((x-r) < 0) | ((x+r) > 511) | ((y-r) < 0) | ((y+r) > 255)) {
+            do Sys.error(13); // radius bounds check
+        }
+
+        // approximate the circle without using sqrt()
+        // calculates one octant then mirrors the rest using drawSymetric()
+        let yOffset = r;
+        let accumulator = 1 - r;
+        do Screen.drawSymetric(x, y, xOffset, yOffset);
+        while (yOffset > xOffset) {
+            if (accumulator < 0) {
+                let accumulator = accumulator + (2 * xOffset) + 3;
+            } else {
+                let accumulator = accumulator + (2 * (xOffset-yOffset)) + 5;
+                let yOffset = yOffset - 1;
+            }
+            let xOffset = xOffset + 1;
+            do Screen.drawSymetric(x, y, xOffset, yOffset);
+        }
         return;
     }
 }

@@ -492,9 +492,9 @@ class Translator:
         if current_function in self.local_dict:
             num_locals = self.local_dict[current_function]
             for i in range(0, num_locals):
-                # VM spec requires local segment to be init'd to 0...
-                # but JACK local variables are not guaranteed to be initialized so this seems irrelevant
-                # TODO: override/skip the test that requires local init & inc by num_locals instead
+                # VM spec requires local segment to be initialized to 0
+                # JACK spec does not require static/field/local to be initialized, only args
+                # the decompiled VM code however definitely assumes local init to 0
                 self.gen_push("push constant 0 // local(%s) init" % i, "constant", "constant", 0, "")
                 prologue_size += 7  # 7 instructions per push()
         else:
