@@ -61,7 +61,6 @@ class Screen {
     }
 
     /** Draws the (x,y) pixel, using the current color. */
-    // TODO: whats going on with the coords
     function void drawPixel(int x, int y) {
         var int word, bit, offset;
         if ((x < 0) | (x > 511) | (y < 0) | (y > 255)) {
@@ -74,6 +73,17 @@ class Screen {
         let bit = x - (word * 16); // offset into the word (x % 16)
         let offset = (y * 32) + word; // word offset into the array (x rows)
         do Screen.updateLocation(offset, static0[bit]);
+        return;
+    }
+
+    // Internal API seen in reversed VM code only
+    // optionally flip x/y coords
+    function void drawConditional(int x, int y, int flip) {
+        if (flip) {
+            do Screen.drawPixel(y, x);
+        } else {
+            do Screen.drawPixel(x, y);
+        }
         return;
     }
 
