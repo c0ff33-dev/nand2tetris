@@ -199,6 +199,66 @@ class Screen {
         return;
     }
 
+    // Internal API seen in reversed VM code only
+    // draw a horizontal line only
+    // TODO: why does this even exist compared to drawRectangle() 
+    function void drawHorizontal(int y, int x1, int x2) {
+        var int screen, startWord, endWord, endAddr, rightMask, leftMask, width, minX, maxX, startBit, endBit;
+
+        // ensure x1 <= x2
+        let minX = Math.min(x1, x2);
+        let maxX = Math.max(x1, x2);
+        
+        // check bounds
+        if ((y > -1) & (y < 256) & (minX < 512) & (maxX > -1)) {
+            // clamp to screen limits
+            let minX = Math.max(minX, 0);
+            let maxX = Math.min(maxX, 511);
+            
+            // word/bit indices
+            let startWord = minX / 16;
+            let startBit = minX - (startWord * 16);
+            let endWord = maxX / 16;
+            let endBit = maxX - (endWord * 16);
+            
+            // compute bitmasks & screen indices
+            let leftMask = ~(static0[startBit] - 1);
+            let rightMask = static0[endBit + 1] - 1;
+            let screen = (y * 32) + startWord;
+            let width = endWord - startWord;
+            let endAddr = screen + width;
+            
+            if (width = 0) {
+                // line <= one word width 
+                do Screen.updateLocation(screen, (rightMask & leftMask));
+            } else {
+                // left edge (partial fill)
+                do Screen.updateLocation(screen, leftMask);
+                let screen = screen + 1;
+
+                // middle (fully filled)
+                while (screen < endAddr) {
+                    do Screen.updateLocation(screen, -1);
+                    let screen = screen + 1;
+                }
+
+                // right edge (partial fill)
+                do Screen.updateLocation(endAddr, rightMask);
+            }
+        }
+        return;
+    }
+
+    // Internal API seen in reversed VM code only
+    // TODO: again, why?
+    function void drawSymetric(int x1, int y1, int x2, int y2) {
+        do Screen.drawHorizontal(y1-y2, x1+x2, x1-x2);
+        do Screen.drawHorizontal(y1+y2, x1+x2, x1-x2);
+        do Screen.drawHorizontal(y1-x2, x1-y2, x1+y2);
+        do Screen.drawHorizontal(y1+x2, x1-y2, x1+y2);
+        return;
+    }
+
     /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
     function void drawCircle(int x, int y, int r) {
         return;

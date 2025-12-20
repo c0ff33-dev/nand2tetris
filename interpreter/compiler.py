@@ -73,7 +73,10 @@ sys_func = {
                "drawRectangle": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4},
                "drawCircle": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3},
                "updateLocation": {"kind": "func", "type": "void", "args": ("int", "Array"), "len": 2}, # internal api
-               "drawConditional": {"kind": "func", "type": "void", "args": ("int", "int", "boolean"), "len": 3}}, # internal api
+               "drawConditional": {"kind": "func", "type": "void", "args": ("int", "int", "boolean"), "len": 3}, # internal api
+               "drawHorizontal": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3}, # internal api
+               "drawSymetric": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 0}, # internal api
+               },
     "Keyboard": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
                  "keyPressed": {"kind": "func", "type": "char", "args": (), "len": 0},
                  "readChar": {"kind": "func", "type": "char", "args": (), "len": 0},
