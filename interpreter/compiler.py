@@ -71,7 +71,8 @@ sys_func = {
                "drawPixel": {"kind": "func", "type": "void", "args": ("int", "int"), "len": 2},
                "drawLine": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4},
                "drawRectangle": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4},
-               "drawCircle": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3}},
+               "drawCircle": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3},
+               "updateLocation": {"kind": "func", "type": "void", "args": ("int", "Array"), "len": 2}}, # internal api
     "Keyboard": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
                  "keyPressed": {"kind": "func", "type": "char", "args": (), "len": 0},
                  "readChar": {"kind": "func", "type": "char", "args": (), "len": 0},
