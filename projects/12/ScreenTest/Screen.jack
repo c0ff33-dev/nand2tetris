@@ -78,7 +78,7 @@ class Screen {
 
     // Internal API seen in reversed VM code only
     // optionally flip x/y coords
-    function void drawConditional(int x, int y, int flip) {
+    function void drawConditional(int x, int y, boolean flip) {
         if (flip) {
             do Screen.drawPixel(y, x);
         } else {
@@ -89,6 +89,65 @@ class Screen {
 
     /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
     function void drawLine(int x1, int y1, int x2, int y2) {
+        // Bresenham’s line drawing algorithm
+        var int y, x, height, width, temp, accumulator;
+        var boolean flip, direction;
+        var int end, horDelta, diagDelta;
+        if ((x1 < 0) | (x2 > 511) | (y1 < 0) | (y2 > 255)) {
+            do Sys.error(8); // check bounds
+        }
+
+        let width = Math.abs(x2-x1);
+        let height = Math.abs(y2-y1);
+        let flip = (width < height); // flip if angle > 45 degrees
+        
+        // normalize direction so loop iterates either
+        // left-to-right or bottom-to-top (ascending)        
+        if ((flip & (y2 < y1)) | (~flip & (x2 < x1))) {
+            let temp = x1;
+            let x1 = x2;
+            let x2 = temp;
+            let temp = y1;
+            let y1 = y2;
+            let y2 = temp;
+        }
+        if (flip) {
+            let temp = width;
+            let width = height;
+            let height = temp;
+            let x = y1;
+            let y = x1;
+            let end = y2;
+            let direction = (x1 > x2);
+        } else {
+            let x = x1;
+            let y = y1;
+            let end = x2;
+            let direction = (y1 > y2);
+        }
+
+        // Bresenham error terms: track whether to change y (slope)
+        let accumulator = (2 * height) - width;
+        let horDelta = (2 * height);
+        let diagDelta = 2 * (height-width);
+        do Screen.drawConditional(x,y,flip);
+
+        while (x < end) {
+            if (accumulator < 0) {
+                // stay on current gradient
+                let accumulator = accumulator + horDelta;
+            } else {
+                // inc or dec gradient
+                let accumulator = accumulator + diagDelta;
+                if (direction) {
+                    let y = y - 1;
+                } else {
+                    let y = y + 1;
+                }
+            }
+            let x = x + 1;
+            do Screen.drawConditional(x,y,flip);
+        }
         return;
     }
 
