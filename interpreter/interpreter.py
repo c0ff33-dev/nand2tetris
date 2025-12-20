@@ -779,7 +779,9 @@ if __name__ == '__main__':
         # # interactively tested / no test files
         # # os.path.join("..", "projects", "12", "SysTest"),
         # # os.path.join("..", "projects", "12", "KeyboardTest"),
-        # # os.path.join("..", "projects", "12", "StringTest")
+        # # os.path.join("..", "projects", "12", "StringTest"),
+        # # os.path.join("..", "projects", "12", "OutputTest"),
+        # # os.path.join("..", "projects", "12", "ScreenTest"),
     ]
 
     # init
