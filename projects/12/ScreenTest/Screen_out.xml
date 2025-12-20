@@ -614,6 +614,96 @@
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
+    <identifier> drawConditional </identifier>
+    <symbol> ( </symbol>
+    <parameterList>
+      <keyword> int </keyword>
+      <identifier> x </identifier>
+      <symbol> , </symbol>
+      <keyword> int </keyword>
+      <identifier> y </identifier>
+      <symbol> , </symbol>
+      <keyword> int </keyword>
+      <identifier> flip </identifier>
+    </parameterList>
+    <symbol> ) </symbol>
+    <subroutineBody>
+      <symbol> { </symbol>
+      <statements>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <identifier> flip </identifier>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <doStatement>
+              <keyword> do </keyword>
+              <identifier> Screen </identifier>
+              <symbol> . </symbol>
+              <identifier> drawPixel </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <identifier> y </identifier>
+                  </term>
+                </expression>
+                <symbol> , </symbol>
+                <expression>
+                  <term>
+                    <identifier> x </identifier>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+              <symbol> ; </symbol>
+            </doStatement>
+          </statements>
+          <symbol> } </symbol>
+          <keyword> else </keyword>
+          <symbol> { </symbol>
+          <statements>
+            <doStatement>
+              <keyword> do </keyword>
+              <identifier> Screen </identifier>
+              <symbol> . </symbol>
+              <identifier> drawPixel </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <identifier> x </identifier>
+                  </term>
+                </expression>
+                <symbol> , </symbol>
+                <expression>
+                  <term>
+                    <identifier> y </identifier>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+              <symbol> ; </symbol>
+            </doStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
+        <returnStatement>
+          <keyword> return </keyword>
+          <symbol> ; </symbol>
+        </returnStatement>
+      </statements>
+      <symbol> } </symbol>
+    </subroutineBody>
+  </subroutineDec>
+  <subroutineDec>
+    <keyword> function </keyword>
+    <keyword> void </keyword>
     <identifier> drawLine </identifier>
     <symbol> ( </symbol>
     <parameterList>

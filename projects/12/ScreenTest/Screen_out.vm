@@ -155,6 +155,24 @@ call Screen.updateLocation 2
 pop temp 0
 push constant 0
 return
+function Screen.drawConditional 0
+push argument 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push argument 0
+call Screen.drawPixel 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push argument 0
+push argument 1
+call Screen.drawPixel 2
+pop temp 0
+label IF_END0
+push constant 0
+return
 function Screen.drawLine 0
 push constant 0
 return
