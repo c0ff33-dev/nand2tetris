@@ -154,6 +154,48 @@ class Screen {
     /** Draws a filled rectangle whose top left corner is (x1, y1)
      * and bottom right corner is (x2,y2), using the current color. */
     function void drawRectangle(int x1, int y1, int x2, int y2) {
+        var int screen, rowEnd, width, startWord, endWord, rightMask, leftMask, startBit, endBit;
+        if ((x1 > x2) | (y1 > y2) | (x1 < 0) | (x2 > 511) | (y1 < 0) | (y2 > 255)) {
+            do Sys.error(9); // check bounds
+        }
+
+        // create word/bit offsets
+        let startWord = x1 / 16;
+        let startBit = x1 - (startWord * 16);
+        let endWord = x2 / 16;
+        let endBit = x2 - (endWord * 16);
+
+        // create bitmasks for partial words
+        let leftMask = ~(static0[startBit] - 1);
+        let rightMask = static0[endBit + 1] - 1;
+
+        // iterate over rows
+        let screen = (y1 * 32) + startWord;
+        let width = endWord - startWord;
+        while (~(y1 > y2)) {
+            let rowEnd = screen + width;
+            if (width = 0) {
+                // rectangle <= one word width 
+                do Screen.updateLocation(screen, (rightMask & leftMask));
+            } else {
+                // left edge (partial fill)
+                do Screen.updateLocation(screen, leftMask);
+                let screen = screen + 1;
+
+                // middle (fully filled)
+                while (screen < rowEnd) {
+                    do Screen.updateLocation(screen, -1);
+                    let screen = screen + 1;
+                }
+
+                // right edge (partial fill)
+                do Screen.updateLocation(rowEnd, rightMask);
+            }
+
+            // next row
+            let y1 = y1 + 1;
+            let screen = rowEnd + 32 - width;
+        }
         return;
     }
 

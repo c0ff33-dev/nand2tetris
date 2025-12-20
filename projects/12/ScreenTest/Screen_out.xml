@@ -1490,7 +1490,567 @@
     <symbol> ) </symbol>
     <subroutineBody>
       <symbol> { </symbol>
+      <varDec>
+        <keyword> var </keyword>
+        <keyword> int </keyword>
+        <identifier> screen </identifier>
+        <symbol> , </symbol>
+        <identifier> rowEnd </identifier>
+        <symbol> , </symbol>
+        <identifier> width </identifier>
+        <symbol> , </symbol>
+        <identifier> startWord </identifier>
+        <symbol> , </symbol>
+        <identifier> endWord </identifier>
+        <symbol> , </symbol>
+        <identifier> rightMask </identifier>
+        <symbol> , </symbol>
+        <identifier> leftMask </identifier>
+        <symbol> , </symbol>
+        <identifier> startBit </identifier>
+        <symbol> , </symbol>
+        <identifier> endBit </identifier>
+        <symbol> ; </symbol>
+      </varDec>
       <statements>
+        <ifStatement>
+          <keyword> if </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> x1 </identifier>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <identifier> x2 </identifier>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> y1 </identifier>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <identifier> y2 </identifier>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> x1 </identifier>
+                </term>
+                <symbol> &lt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> x2 </identifier>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <integerConstant> 511 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> y1 </identifier>
+                </term>
+                <symbol> &lt; </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> | </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> y2 </identifier>
+                </term>
+                <symbol> &gt; </symbol>
+                <term>
+                  <integerConstant> 255 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <doStatement>
+              <keyword> do </keyword>
+              <identifier> Sys </identifier>
+              <symbol> . </symbol>
+              <identifier> error </identifier>
+              <symbol> ( </symbol>
+              <expressionList>
+                <expression>
+                  <term>
+                    <integerConstant> 9 </integerConstant>
+                  </term>
+                </expression>
+              </expressionList>
+              <symbol> ) </symbol>
+              <symbol> ; </symbol>
+            </doStatement>
+          </statements>
+          <symbol> } </symbol>
+        </ifStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> startWord </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> x1 </identifier>
+            </term>
+            <symbol> / </symbol>
+            <term>
+              <integerConstant> 16 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> startBit </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> x1 </identifier>
+            </term>
+            <symbol> - </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> startWord </identifier>
+                </term>
+                <symbol> * </symbol>
+                <term>
+                  <integerConstant> 16 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> endWord </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> x2 </identifier>
+            </term>
+            <symbol> / </symbol>
+            <term>
+              <integerConstant> 16 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> endBit </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> x2 </identifier>
+            </term>
+            <symbol> - </symbol>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> endWord </identifier>
+                </term>
+                <symbol> * </symbol>
+                <term>
+                  <integerConstant> 16 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> leftMask </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <symbol> ~ </symbol>
+              <term>
+                <symbol> ( </symbol>
+                <expressionList>
+                  <expression>
+                    <term>
+                      <identifier> static0 </identifier>
+                      <symbol> [ </symbol>
+                      <expression>
+                        <term>
+                          <identifier> startBit </identifier>
+                        </term>
+                      </expression>
+                      <symbol> ] </symbol>
+                    </term>
+                    <symbol> - </symbol>
+                    <term>
+                      <integerConstant> 1 </integerConstant>
+                    </term>
+                  </expression>
+                </expressionList>
+                <symbol> ) </symbol>
+              </term>
+              <symbol> ; </symbol>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> rightMask </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> static0 </identifier>
+              <symbol> [ </symbol>
+              <expression>
+                <term>
+                  <identifier> endBit </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <integerConstant> 1 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ] </symbol>
+            </term>
+            <symbol> - </symbol>
+            <term>
+              <integerConstant> 1 </integerConstant>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> screen </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> y1 </identifier>
+                </term>
+                <symbol> * </symbol>
+                <term>
+                  <integerConstant> 32 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+            </term>
+            <symbol> + </symbol>
+            <term>
+              <identifier> startWord </identifier>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <letStatement>
+          <keyword> let </keyword>
+          <identifier> width </identifier>
+          <symbol> = </symbol>
+          <expression>
+            <term>
+              <identifier> endWord </identifier>
+            </term>
+            <symbol> - </symbol>
+            <term>
+              <identifier> startWord </identifier>
+            </term>
+          </expression>
+          <symbol> ; </symbol>
+        </letStatement>
+        <whileStatement>
+          <keyword> while </keyword>
+          <symbol> ( </symbol>
+          <expression>
+            <term>
+              <symbol> ~ </symbol>
+              <term>
+                <symbol> ( </symbol>
+                <expressionList>
+                  <expression>
+                    <term>
+                      <identifier> y1 </identifier>
+                    </term>
+                    <symbol> &gt; </symbol>
+                    <term>
+                      <identifier> y2 </identifier>
+                    </term>
+                  </expression>
+                </expressionList>
+                <symbol> ) </symbol>
+              </term>
+            </term>
+          </expression>
+          <symbol> ) </symbol>
+          <symbol> { </symbol>
+          <statements>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> rowEnd </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> screen </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <identifier> width </identifier>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+            <ifStatement>
+              <keyword> if </keyword>
+              <symbol> ( </symbol>
+              <expression>
+                <term>
+                  <identifier> width </identifier>
+                </term>
+                <symbol> = </symbol>
+                <term>
+                  <integerConstant> 0 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ) </symbol>
+              <symbol> { </symbol>
+              <statements>
+                <doStatement>
+                  <keyword> do </keyword>
+                  <identifier> Screen </identifier>
+                  <symbol> . </symbol>
+                  <identifier> updateLocation </identifier>
+                  <symbol> ( </symbol>
+                  <expressionList>
+                    <expression>
+                      <term>
+                        <identifier> screen </identifier>
+                      </term>
+                    </expression>
+                    <symbol> , </symbol>
+                    <expression>
+                      <term>
+                        <symbol> ( </symbol>
+                        <expression>
+                          <term>
+                            <identifier> rightMask </identifier>
+                          </term>
+                          <symbol> &amp; </symbol>
+                          <term>
+                            <identifier> leftMask </identifier>
+                          </term>
+                        </expression>
+                        <symbol> ) </symbol>
+                      </term>
+                    </expression>
+                  </expressionList>
+                  <symbol> ) </symbol>
+                  <symbol> ; </symbol>
+                </doStatement>
+              </statements>
+              <symbol> } </symbol>
+              <keyword> else </keyword>
+              <symbol> { </symbol>
+              <statements>
+                <doStatement>
+                  <keyword> do </keyword>
+                  <identifier> Screen </identifier>
+                  <symbol> . </symbol>
+                  <identifier> updateLocation </identifier>
+                  <symbol> ( </symbol>
+                  <expressionList>
+                    <expression>
+                      <term>
+                        <identifier> screen </identifier>
+                      </term>
+                    </expression>
+                    <symbol> , </symbol>
+                    <expression>
+                      <term>
+                        <identifier> leftMask </identifier>
+                      </term>
+                    </expression>
+                  </expressionList>
+                  <symbol> ) </symbol>
+                  <symbol> ; </symbol>
+                </doStatement>
+                <letStatement>
+                  <keyword> let </keyword>
+                  <identifier> screen </identifier>
+                  <symbol> = </symbol>
+                  <expression>
+                    <term>
+                      <identifier> screen </identifier>
+                    </term>
+                    <symbol> + </symbol>
+                    <term>
+                      <integerConstant> 1 </integerConstant>
+                    </term>
+                  </expression>
+                  <symbol> ; </symbol>
+                </letStatement>
+                <whileStatement>
+                  <keyword> while </keyword>
+                  <symbol> ( </symbol>
+                  <expression>
+                    <term>
+                      <identifier> screen </identifier>
+                    </term>
+                    <symbol> &lt; </symbol>
+                    <term>
+                      <identifier> rowEnd </identifier>
+                    </term>
+                  </expression>
+                  <symbol> ) </symbol>
+                  <symbol> { </symbol>
+                  <statements>
+                    <doStatement>
+                      <keyword> do </keyword>
+                      <identifier> Screen </identifier>
+                      <symbol> . </symbol>
+                      <identifier> updateLocation </identifier>
+                      <symbol> ( </symbol>
+                      <expressionList>
+                        <expression>
+                          <term>
+                            <identifier> screen </identifier>
+                          </term>
+                        </expression>
+                        <symbol> , </symbol>
+                        <expression>
+                          <term>
+                            <symbol> - </symbol>
+                            <integerConstant> 1 </integerConstant>
+                          </term>
+                        </expression>
+                      </expressionList>
+                      <symbol> ) </symbol>
+                      <symbol> ; </symbol>
+                    </doStatement>
+                    <letStatement>
+                      <keyword> let </keyword>
+                      <identifier> screen </identifier>
+                      <symbol> = </symbol>
+                      <expression>
+                        <term>
+                          <identifier> screen </identifier>
+                        </term>
+                        <symbol> + </symbol>
+                        <term>
+                          <integerConstant> 1 </integerConstant>
+                        </term>
+                      </expression>
+                      <symbol> ; </symbol>
+                    </letStatement>
+                  </statements>
+                  <symbol> } </symbol>
+                </whileStatement>
+                <doStatement>
+                  <keyword> do </keyword>
+                  <identifier> Screen </identifier>
+                  <symbol> . </symbol>
+                  <identifier> updateLocation </identifier>
+                  <symbol> ( </symbol>
+                  <expressionList>
+                    <expression>
+                      <term>
+                        <identifier> rowEnd </identifier>
+                      </term>
+                    </expression>
+                    <symbol> , </symbol>
+                    <expression>
+                      <term>
+                        <identifier> rightMask </identifier>
+                      </term>
+                    </expression>
+                  </expressionList>
+                  <symbol> ) </symbol>
+                  <symbol> ; </symbol>
+                </doStatement>
+              </statements>
+              <symbol> } </symbol>
+            </ifStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> y1 </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> y1 </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <integerConstant> 1 </integerConstant>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+            <letStatement>
+              <keyword> let </keyword>
+              <identifier> screen </identifier>
+              <symbol> = </symbol>
+              <expression>
+                <term>
+                  <identifier> rowEnd </identifier>
+                </term>
+                <symbol> + </symbol>
+                <term>
+                  <integerConstant> 32 </integerConstant>
+                </term>
+                <symbol> - </symbol>
+                <term>
+                  <identifier> width </identifier>
+                </term>
+              </expression>
+              <symbol> ; </symbol>
+            </letStatement>
+          </statements>
+          <symbol> } </symbol>
+        </whileStatement>
         <returnStatement>
           <keyword> return </keyword>
           <symbol> ; </symbol>
