@@ -10,7 +10,7 @@
  * the screen is indexed (0,0).
  */
 class Screen {
-    static Array static0;
+    static Array static0; // power of 2 array
     static int static1; // SCREEN address
     static boolean static2; // setColor
 
@@ -21,8 +21,9 @@ class Screen {
         let static1 = 16384;
         let static2 = true;
         let static0 = Array.new(17);
+
+        // [1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,xxx]
         let static0[0] = 1;
-        
         while (i < 16) {
             let i = i + 1;
             let static0[i] = static0[i-1] + static0[i-1];
@@ -32,23 +33,22 @@ class Screen {
 
     /** Erases the entire screen. */
     function void clearScreen() {
-        var int local0;
+        var int i;
         // 8192 = end of screen memory range
-        while (local0 < 8192) {
-            let static1[local0] = 0;
-            let local0 = local0 + 1;
+        while (i < 8192) {
+            let static1[i] = 0;
+            let i = i + 1;
         }
         return;
     }
 
     // Internal API seen in reversed VM code only
-    // TODO: need to update after seeing usage
-    function void updateLocation(int x, int y) {
+    // set pixel by applying bitmask to screen addr (word)
+    function void updateLocation(int addr, int mask) {
         if (static2) {
-            let static1[x] = (static1[x] | y); // join?
+            let static1[addr] = (static1[addr] | mask); // draw
         } else {
-            let static1[x] = static1[x] & ~y; // mask?
-
+            let static1[addr] = static1[addr] & ~mask; // erase
         }
         return;
     }
@@ -61,7 +61,19 @@ class Screen {
     }
 
     /** Draws the (x,y) pixel, using the current color. */
+    // TODO: whats going on with the coords
     function void drawPixel(int x, int y) {
+        var int word, bit, offset;
+        if ((x < 0) | (x > 511) | (y < 0) | (y > 255)) {
+            do Sys.error(7);
+        }
+
+        // screen = 512x256 array
+        // 512 = 32 x 16 bit words
+        let word = x / 16; // offset into the row in words
+        let bit = x - (word * 16); // offset into the word (x % 16)
+        let offset = (y * 32) + word; // word offset into the array (x rows)
+        do Screen.updateLocation(offset, static0[bit]);
         return;
     }
 
