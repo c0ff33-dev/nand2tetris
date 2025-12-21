@@ -144,6 +144,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     gui_log = []
 
     # initialize hardware
+    # TODO: switch for original vs modified spec
     ram = [0] * 57344  # original spec: 24577 (~24k) words, fgpa spec: 57344 (56k) words
     hw = {
         "RAM": ram,
@@ -198,6 +199,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
         "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
 
+        # TODO: switch for original vs modified spec
         # FPGA symbols
         "UART_TX": 4098
     }
@@ -305,6 +307,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
                 # if multiple dst all are written to the same eval result simultaneously
                 # in practice because the interpreter runs procedurally writing M before A should suffice
                 if "M" in dst:
+                    # TODO: switch for original vs modified spec
                     # TODO: update behaviour for this and other IO ports
                     if hw["A"] != 4098: # UART_TX
                         hw["RAM"][hw["A"]] = eval_result

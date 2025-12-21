@@ -1,2 +1,2 @@
-- TODO: Purge archive/nand2tetris_2.6.zip, archive/nand2tetris-open-source-2.5.7.zip from history
+- TODO: Purge archive/nand2tetris_2.6.zip from history
 - Source: https://www.nand2tetris.org/software
