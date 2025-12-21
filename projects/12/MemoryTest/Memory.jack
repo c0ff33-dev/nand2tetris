@@ -3,32 +3,35 @@
 // by Nisan and Schocken, MIT Press.
 // File name: projects/12/Memory.jack
 
+// Algorithm is discussed in more detail here:
+// http://nand2tetris-questions-and-answers-forum.52.s1.nabble.com/New-Heap-Management-algorithm-Coursera-version-td4032026.html 
+
 /**
  * This library provides two services: direct access to the computer's main
  * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM
  * consists of 32,768 words, each holding a 16-bit binary number.
  */ 
 class Memory {
-    static Array static0;
+    static Array ram;
 
     /** Initializes the class. */
     function void init() {
-        let static0 = 0; // manually assign pointer value as zero
+        let ram = 0; // manually assign pointer value as zero
         // 2048 = first heap, 16383 = last heap
-        let static0[2048] = 14334; // blockSize (size+2)
-        let static0[2049] = 2050; // *nextPtr = &blockData
-        // static0[2050] = 0; // &blockData
+        let ram[2048] = 14334; // blockSize (init=1 max size free block)
+        let ram[2049] = 2050; // *nextPtr = &blockData
+        // ram[2050] = 0; // &blockData
         return;
     }
 
     /** Returns the RAM value at the given address. */
     function int peek(int address) {
-        return static0[address];
+        return ram[address];
     }
 
     /** Sets the RAM value at the given address to the given value. */
     function void poke(int address, int value) {
-        let static0[address] = value;
+        let ram[address] = value;
         return;
     }
 
@@ -36,7 +39,7 @@ class Memory {
      *  a reference to its base address. */
     function int alloc(int size) {
         var Array blockPtr;
-        var int nextBlock;
+        var Array nextBlock;
 
         if (size < 0) {
             do Sys.error(5); // Allocated memory size must be positive
@@ -75,11 +78,9 @@ class Memory {
                 if (nextBlock[1] = (nextBlock + 2)) {
                     // currentBlock updated to reference closest data block (terminate list)
                     // *nextPtr = &blockData+2
-                    let blockPtr[1] = blockPtr + 2;
-                }
-
-                //
-                else { // else currentBlock inherits nextBlock flink
+                    let blockPtr[1] = (blockPtr + 2);
+                } else { 
+                    // else currentBlock inherits nextBlock flink
                     // *nextPtr = *nextBlockPtr
                     let blockPtr[1] = nextBlock[1];
                 }
@@ -105,7 +106,8 @@ class Memory {
                 let blockPtr[size + 3] = blockPtr + size + 4;
             }
 
-            else { // freeBlock inherits allocBlock flink
+            else { 
+                // freeBlock inherits allocBlock flink
                 // *freeNextPtr = *allocNextPtr
                 let blockPtr[size + 3] = blockPtr[1];
             }
@@ -125,7 +127,7 @@ class Memory {
      *  it available for future allocations (appended to end of freeList) */
     function void deAlloc(Array o) {
         var Array blockPtr;
-        var int nextPtr;
+        var Array nextPtr;
 
         let blockPtr = o - 2; // move backwards from &allocBlockData to start of *allocBlock header
         let nextPtr = blockPtr[1]; // *nextPtr

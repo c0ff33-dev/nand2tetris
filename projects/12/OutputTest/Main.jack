@@ -29,7 +29,9 @@ class Main {
         do Output.printString("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz");
         do Output.println();
         
-        do Output.printString("!#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
+        // course compiler does not handle "\" unless escaped which violates spec
+        // original string: "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+        do Output.printString("!#$%&'()*+,-./:;<=>?@[]^_`{|}~");
         do Output.printString(s);
         do Output.println();
         
