@@ -131,7 +131,7 @@ def assemble(asm_filepath, debug=False):
             dest = instruction[10:12]
             jump = instruction[13:15]
             '''
-            destination = None
+            destination = ""
             jump = None
             binary_line = "111"  # prefix first 3 bits for C command
 
@@ -186,21 +186,23 @@ def assemble(asm_filepath, debug=False):
                 binary_line += "000000"
             elif operation == "D|A" or operation == "A|D" or operation == "M|D" or operation == "D|M":
                 binary_line += "010101"
+            else:
+                raise RuntimeError("Assembler: %s: Unexpected command: %s" % (asm_filepath, instruction))
 
             # write dest bits
             if destination == "M":
                 binary_line += "001"
             elif destination == "D":
                 binary_line += "010"
-            elif destination == "MD":
+            elif destination == "MD" or destination == "DM":
                 binary_line += "011"
             elif destination == "A":
                 binary_line += "100"
-            elif destination == "AM":
+            elif destination == "AM" or destination == "MA":
                 binary_line += "101"
-            elif destination == "AD":
+            elif destination == "AD" or destination == "DA":
                 binary_line += "110"
-            elif destination == "AMD":
+            elif all(x in destination for x in "ADM"):
                 binary_line += "111"
             else:
                 binary_line += "000"  # no value stored (jump instructions)
@@ -260,59 +262,62 @@ def assemble(asm_filepath, debug=False):
         # no solution file, just write the result
         with open(asm_filepath.replace(".asm", ".hack"), "w") as output_file:
             for (bin_line, in_line) in zip(binary_file, asm_content_stripped):
-                if debug:
-                    print('%s / %s' % (in_line, bin_line))
-                    print('map  : ' + 'ixx a cccccc ddd jjj')
-                    print('code : ' + bin_line[0:3] + " " + bin_line[3] + " " + bin_line[4:10] +
-                          " " + bin_line[10:13] + " " + bin_line[13:])
+                # DEBUG: cleanup
+                # if debug:
+                #     print('%s / %s' % (in_line, bin_line))
+                #     print('map  : ' + 'ixx a cccccc ddd jjj')
+                #     print('code : ' + bin_line[0:3] + " " + bin_line[3] + " " + bin_line[4:10] +
+                #           " " + bin_line[10:13] + " " + bin_line[13:])
                 output_file.write(bin_line + '\n')
         print('Assembler: %s Complete (no errors / no solution file)' % asm_filepath)
 
 
 if __name__ == '__main__':
     _asm_filepaths = [
-        # TODO: projects 1-11 accounted for, included in interpreter + python_hdl (HACK)
-        r"..\projects\04\fill\fill.asm",
-        r"..\projects\04\mult\mult.asm",
-        r"..\projects\06\add\add.asm",
-        r"..\projects\06\max\max.asm",
-        r"..\projects\06\max\maxL.asm",
-        r"..\projects\06\pong\pong.asm",
-        r"..\projects\06\pong\pongL.asm",
-        r"..\projects\06\rect\rect.asm",
-        r"..\projects\06\rect\rectL.asm",
-        r"..\projects\07\MemoryAccess\BasicTest\BasicTest.asm",
-        r"..\projects\07\MemoryAccess\PointerTest\PointerTest.asm",
-        r"..\projects\07\MemoryAccess\StaticTest\StaticTest.asm",
-        r"..\projects\07\StackArithmetic\SimpleAdd\SimpleAdd.asm",
-        r"..\projects\07\StackArithmetic\StackTest\StackTest.asm",
-        r"..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm",
-        r"..\projects\08\FunctionCalls\NestedCall\NestedCall.asm",
-        r"..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.asm",
-        r"..\projects\08\FunctionCalls\StaticsTest\StaticsTest.asm",
-        r"..\projects\08\ProgramFlow\BasicLoop\BasicLoop.asm",
-        r"..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeries.asm",
+        # projects 1-12 accounted for, included in interpreter + python_hdl (HACK)
+        r"../projects/04/fill/Fill.asm",
+        r"../projects/04/mult/Mult.asm",
+        r"../projects/06/add/Add.asm",
+        r"../projects/06/max/Max.asm",
+        r"../projects/06/max/MaxL.asm",
+        r"../projects/06/pong/Pong.asm",
+        r"../projects/06/pong/PongL.asm",
+        r"../projects/06/rect/Rect.asm",
+        r"../projects/06/rect/RectL.asm",
+        r"../projects/07/MemoryAccess/BasicTest/BasicTest.asm",
+        r"../projects/07/MemoryAccess/PointerTest/PointerTest.asm",
+        r"../projects/07/MemoryAccess/StaticTest/StaticTest.asm",
+        r"../projects/07/StackArithmetic/SimpleAdd/SimpleAdd.asm",
+        r"../projects/07/StackArithmetic/StackTest/StackTest.asm",
+        r"../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.asm",
+        r"../projects/08/FunctionCalls/NestedCall/NestedCall.asm",
+        r"../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.asm",
+        r"../projects/08/FunctionCalls/StaticsTest/StaticsTest.asm",
+        r"../projects/08/ProgramFlow/BasicLoop/BasicLoop.asm",
+        r"../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.asm",
 
         # exceeds ROM limit of 32k instructions
-        r'..\projects\09\Average\Average.asm',
-        r'..\projects\09\Fraction\Fraction.asm',
-        r'..\projects\09\HelloWorld\HelloWorld.asm',
-        r'..\projects\09\List\List.asm',
-        r'..\projects\09\Square\Square.asm',
-        r'..\projects\10\ArrayTest\ArrayTest.asm',
-        r'..\projects\10\Square\Square.asm',  # generates 17 bit addresses (different Main.jack to 9/11)
-        r'..\projects\11\Average\Average.asm',
-        r'..\projects\11\ComplexArrays\ComplexArrays.asm',  # 17 bit addresses
-        r'..\projects\11\ConvertToBin\ConvertToBin.asm',
-        r'..\projects\11\Pong\Pong.asm',  # 17 bit addresses
-        r'..\projects\11\Seven\Seven.asm',
-        r'..\projects\11\Square\Square.asm',
+        r'../projects/09/Average/Average.asm',
+        r'../projects/09/Fraction/Fraction.asm',
+        r'../projects/09/HelloWorld/HelloWorld.asm',
+        r'../projects/09/List/List.asm',
+        r'../projects/09/Square/Square.asm',
+        r'../projects/10/ArrayTest/ArrayTest.asm',
+        # r'../projects/10/Square/Square.asm',  # 17 bit addresses (different Main.jack to 9/11)
+        r'../projects/11/Average/Average.asm',
+        # r'../projects/11/ComplexArrays/ComplexArrays.asm',  # 17 bit addresses
+        r'../projects/11/ConvertToBin/ConvertToBin.asm',
+        # r'../projects/11/Pong/Pong.asm',  # 17 bit addresses
+        r'../projects/11/Seven/Seven.asm',
+        r'../projects/11/Square/Square.asm',
 
         # TODO: Project 12
-        r"..\projects\12\SysTest\SysTest.asm",
-        r"..\projects\12\ArrayTest\ArrayTest.asm",
-        r"..\projects\12\KeyboardTest\KeyboardTest.asm",  # 17 bit addresses
-        r"..\projects\12\StringTest\StringTest.asm",  # 17 bit addresses
+        r"../projects/12/SysTest/SysTest.asm",
+        r"../projects/12/ArrayTest/ArrayTest.asm",
+        # r"../projects/12/KeyboardTest/KeyboardTest.asm",  # 17 bit addresses + access violation
+        # r"../projects/12/StringTest/StringTest.asm",  # 17 bit addresses + access violation
+        # r"../projects/12/MemoryTest/MemoryTest.asm",
+        # r"../projects/12/MemoryTest/MemoryTest.asm"
     ]
 
     # debug_runs = [True, False]

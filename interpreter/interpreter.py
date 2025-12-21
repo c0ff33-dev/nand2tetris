@@ -3,43 +3,156 @@ Python bindings & test framework for Nand2Tetris HACK Assembly language
 """
 import warnings
 import traceback
+import os
+import sys
 
 import assembler
 import tester
-import translator
 import subprocess
 import tokenizer
 import analyzer
 import compiler
+from translator import Translator
 
+from pathlib import Path
+from pynput import keyboard
 from rich.console import Console
 from rich.table import Table
 console = Console()
+step = False
 
 
-def dump_call_tree(call_tree, debug_msg):
-    if len(call_tree) == 0:
-        debug_msg += "  <nil>"
+def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
+    # highlight current command in red
+    gui_log.append(f"[red]{src_line}: {debug_cmd}[/red]")
+    if len(gui_log) > 1:
+        gui_log[-2] = gui_log[-2].replace("[red]", "").replace("[/red]", "")
+    
+    # how many lines to show in code panel
+    if len(gui_log) > 17:
+        gui_log.pop(0)
+
+    table = Table(show_header=False)
+    table.add_column(justify="left")
+    table.add_column(justify="left")
+
+    def title(header, size):
+        multi = int((size - len(header)) / 2)
+        return "[bold magenta]%s[/bold magenta]" % ("[" + "-" * multi + header + "-" * multi + "]\n")
+
+    def code(gui_log):
+        _code = ""
+        for cmd in gui_log:
+            _code += (cmd + "\n")
+        return _code
+
+    row_code = title("Code", 80) + code(gui_log)
+    row_stack = title("Stack", 80) + "[TODO]"
+
+    if debug_cmd.startswith("@") or debug_cmd.startswith("A="):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] [bold yellow]%s[/bold yellow]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("D="):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] %s\n[red]D[/red] [bold yellow]%s[/bold yellow]\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("M="):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] %s\n[red]D[/red] %s\n[red]M[/red] [bold yellow]%s[/bold yellow]\n" %\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("D;"):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] [bold cyan]%s[/bold cyan]\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
+    elif debug_cmd.startswith("0;"):
+        row_reg = title("Registers", 0) +\
+        "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
+            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
+        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
+            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
+        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
+            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
+        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
+            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
+        "[red]R15[/red] %s" % (hw["RAM"][15])
+
     else:
-        for i, func in enumerate(call_tree, start=1):
-            debug_msg += "  " + ("-" * i) + func + "\n"
-    return debug_msg
+        raise RuntimeError(debug_cmd)
+
+    table.add_row(row_code + row_stack, row_reg)
+    if src_line in breakpoints or step or breakpoints == [-1]:
+        console.print(table)
+
+        def on_press(key):
+            global step
+            try:
+                if key.char == 'q': 
+                    os._exit(0) # quit
+                elif key.char == 'p':
+                    # continue
+                    step = False
+                    return False
+                elif key.char == 'n':
+                    # step to next instruction
+                    step = True
+                    return False
+                elif key.char == 'i':
+                    addr = input("peek: ")
+                    print(f"RAM[{addr}] = {hw['RAM'][int(addr)]}")
+            except AttributeError:
+                pass
+        
+        # TODO: linux: only works on xorg not wayland
+        with keyboard.Listener(on_press=on_press, suppress=True) as listener:
+            listener.join()
 
 
-def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
-    debug_log = []
+def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=False):
     gui_log = []
 
     # initialize hardware
-    ram = [0] * 32768
+    ram = [0] * 57344  # original spec: 24577 (~24k) words, fgpa spec: 57344 (56k) words
     hw = {
         "RAM": ram,
         "ROM": {},
         "A": 0,
         "D": 0,
         "M": 0,
-        "PC": 0,
-        "MAX": 1000,
+        "PC": 0,  # 15 bit program counter = 32768 max instructions
+        "MAX": 1000,  # this might need to be higher for complex programs
     }
 
     # load test params
@@ -64,27 +177,29 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
         "R10": 10,  # TEMP
         "R11": 11,  # TEMP
         "R12": 12,  # TEMP
-        "BASE": 15,  # R15 (statics assigned at BASE+X)
+        "BASE": 15,  # R15 (statics assigned at BASE+n, starting at 1 e.g. RAM[16])
 
         # VM symbols
         "SP": 0,  # segmented by function (saved)
-        "LCL": 1,  # segmented by function (saved)
-        "ARG": 2,  # segmented by function (saved)
-        "THIS": 3,  # segmented by function (saved)
-        "THAT": 4,  # segmented by function (saved)
-        "TEMP": 5,  # 5-12 incl (volatile)
-        "R13": 13,  # general purpose (volatile)
-        "R14": 14,  # general purpose (volatile)
-        "R15": 15,  # general purpose (volatile)
-        "STATIC": 16,  # 16-255 incl (segmented by VM source file)
+        "LCL": 1,  # segmented by function (saved) -- locals are initialized to zero on call
+        "ARG": 2,  # segmented by function (saved) -- args are initialized as passed on call
+        "THIS": 3,  # pointer 0 // segmented by function (saved) -- undefined on call
+        "THAT": 4,  # pointer 1 // segmented by function (saved) -- undefined on call
+        "TEMP": 5,  # 5-12 incl (volatile) -- undefined on call
+        "R13": 13,  # reserved for VM translator (volatile) -- variable
+        "R14": 14,  # reserved for VM translator (volatile) -- unused
+        "R15": 15,  # reserved for VM translator (volatile) -- microcode return address
+        "STATIC": 16,  # 16-255 incl (segmented by VM source file, max 240 values)
         "STACK": 256,  # 256-2047 incl (persistent)
 
-        # OO symbols
+        # JACK symbols
         "HEAP": 2048,  # 2048-16383 incl (persistent)
         "IO": 16384,  # 16384-24576 incl (persistent)
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
-        "KBD": 24576,
-        "UNUSED": 24577,  # 24577-32767 incl
+        "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
+
+        # FPGA symbols
+        "UART_TX": 4098
     }
 
     with open(asm_filepath, "r") as asm_file:
@@ -95,7 +210,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
     debug_asm = []
     raw_asm = []
     symbol = False
-    for debug_cmd in asm_content:  # some lines get parsed out so don't use enumerate here
+
+    for src_line, debug_cmd in enumerate(asm_content, start=1):
         debug_cmd = debug_cmd.strip()  # remove indentation / trailing whitespace
         if debug_cmd == "":
             continue  # empty line
@@ -118,19 +234,21 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
                 symbol = False
             line += 1
 
-        debug_asm.append(debug_cmd)  # preserve comments
-        raw_asm.append(raw_cmd)  # code only
+        debug_asm.append([src_line, debug_cmd])  # preserve comments
+        raw_asm.append([src_line, raw_cmd])  # code only
 
     hw["ROM"] = {"raw": raw_asm, "debug": debug_asm}
 
     # runtime parsing
     cycle = 0
     call_tree = []
-    stacksize = 0
     while cycle < hw["MAX"] and hw["PC"] < len(hw["ROM"]["raw"]):
-        assignment = False
-        raw_cmd = hw["ROM"]["raw"][hw["PC"]]
-        debug_cmd = hw["ROM"]["debug"][hw["PC"]]
+        raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
+        debug_cmd = hw["ROM"]["debug"][hw["PC"]][1]
+        src_line = hw["ROM"]["raw"][hw["PC"]][0]
+
+        if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
+            raise RuntimeError("Interpreter: Debug/Raw line number mismatch!")           
 
         if raw_cmd[0] == "(":
             raise RuntimeError("Interpreter: Symbols should already be parsed out!")
@@ -153,7 +271,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
 
             # process raw_cmd
             hw["A"] = address  # set A register to @address
-            hw["M"] = hw["RAM"][address]  # set M register to value of @address held in RAM
             hw["PC"] += 1  # advance to next instruction
 
         # register assignment X[YZ]=<eval>
@@ -174,30 +291,34 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
                                    (hw["PC"], raw_cmd, "---", debug_cmd))
 
             # deref the real register values for the eval
-            raw_eval_cmd = eval_cmd.replace("A", str(hw["A"])) \
-                .replace("D", str(hw["D"])).replace("M", str(hw["M"])) \
-                .replace("!", "~")  # python bitwise NOT is ~
+            raw_eval_cmd = eval_cmd \
+                .replace("A", str(hw["A"])) \
+                .replace("D", str(hw["D"])) \
+                .replace("M", str(hw["RAM"][hw["A"]])) \
+                .replace("!", "~")  # bitwise NOT
 
             # X=Y, where X=A,D,M and Y=0,1,-1,A,D,M
             # X=Y<OP>Z, where X=A,D,M and Y/Z=0,1,-1,A,D,M and OP=+,-,|,&
             if any(x in eval_cmd for x in ["+", "-", "0", "1", "|", "&", "!", "A", "D", "M"]):
-                assignment = True
                 eval_result = eval(raw_eval_cmd)
-                # for each destination assign the result
-                for register in dst:
-                    hw[register] = eval_result
-                    if register == "A":
-                        # after assignment to A update M with new RAM[A] value
-                        hw["M"] = hw["RAM"][hw["A"]]
-                    elif register == "M":
-                        # after assignment to M write to RAM[A] address
-                        hw["RAM"][hw["A"]] = hw["M"]
-                    elif register == "D":
-                        pass  # no implicit ops for D assignment
-                    else:
-                        raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" %
-                                           (hw["PC"], raw_cmd, "---", debug_cmd))
-
+                # dst permutatons: AMD, AM, AD, MD, A, D, M
+                # if multiple dst all are written to the same eval result simultaneously
+                # in practice because the interpreter runs procedurally writing M before A should suffice
+                if "M" in dst:
+                    # TODO: update behaviour for this and other IO ports
+                    if hw["A"] != 4098: # UART_TX
+                        hw["RAM"][hw["A"]] = eval_result
+                    if hw["A"] != 4100: # SPI
+                        hw["RAM"][hw["A"]] = eval_result
+                if "A" in dst:
+                    hw["A"] = eval_result
+                if "D" in dst:
+                    hw["D"] = eval_result
+                
+                if not any(x in dst for x in ["A", "D", "M"]):
+                    raise RuntimeError("Interpreter: Unexpected dst in command: %s %s %s %s" % 
+                                       (hw["PC"], raw_cmd, "---", debug_cmd))
+                
                 hw["PC"] += 1  # advance to next instruction
             else:
                 raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" %
@@ -243,154 +364,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
 
         #  format primary debug output
         if debug:
-            debug_msg = ""
-
-            # update & dump the call graph on call/return
-            if "// call " in debug_cmd:
-                debug_msg += "// CALL: call graph updated\n"
-                callee = debug_cmd.split("// call ")[1].split()[0]
-                call_tree.append(callee)
-                debug_msg = dump_call_tree(call_tree, debug_msg)
-
-            elif "// return //" in debug_cmd:
-                debug_msg += "// RETURN: call graph updated\n"
-                try:
-                    call_tree.pop()
-                except IndexError:
-                    # SimpleFunction does not contain a call so will always break the index on return
-                    if asm_filepath != r'..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.asm':
-                        raise
-
-                debug_msg = dump_call_tree(call_tree, debug_msg)
-
-            # display the stack (if values to display)
-            if "// stacksize++" in debug_cmd:
-                stacksize += 1
-            elif "// stacksize--" in debug_cmd:
-                stacksize -= 1
-            if stacksize:
-                debug_msg += "// STACK: "
-                sp = hw["RAM"][address_labels["SP"]]
-                for i in range(sp, sp+stacksize):
-                    debug_msg += "%s " % hw["RAM"][i]
-
-            # display the static segment if used
-            static_count = 0
-            if static_dict is not None:
-                for vm_file in static_dict:
-                    static_count += static_dict[vm_file][1]
-            if static_count:
-                debug_msg += "// STATICS: "
-                sp = address_labels["STATIC"]
-                for i in range(sp, sp+static_count):
-                    debug_msg += "%s " % hw["RAM"][i]
-
-            if debug_msg:
-                debug_log.append(debug_msg)
-
-            # TODO: debug gui -----------------------------------------------------------------------------
-
-            # queue
-            gui_log.append("[red]%s[/red]" % debug_cmd)
-            if len(gui_log) > 1:
-                gui_log[-2] = gui_log[-2].replace("[red]", "").replace("[/red]", "")
-            if len(gui_log) > 10:
-                gui_log.pop(0)
-
-            # # overwrite values (formatting debug)
-            # i = 0
-            # while i < 16:
-            #     hw["RAM"][i] = 32768
-            #     i += 1
-            # hw["A"] = 32768
-            # hw["D"] = 32768
-            # hw["M"] = 32768
-
-            table = Table(show_header=False)
-            table.add_column(justify="left")
-            table.add_column(justify="left")
-
-            def title(header, size):
-                multi = int((size - len(header)) / 2)
-                return "[bold magenta]%s[/bold magenta]" % ("[" + "-" * multi + header + "-" * multi + "]\n")
-
-            def code(gui_log):
-                _code = ""
-                for cmd in gui_log:
-                    _code += (cmd + "\n")
-                return _code
-
-            row_code = title("Code", 80) + code(gui_log)
-            row_stack = title("Stack", 80) + code(gui_log)
-
-            if debug_cmd.startswith("@") or debug_cmd.startswith("A="):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] [bold yellow]%s[/bold yellow]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("D="):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] %s\n[red]D[/red] [bold yellow]%s[/bold yellow]\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("M="):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] %s\n[red]D[/red] %s\n[red]M[/red] [bold yellow]%s[/bold yellow]\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("D;"):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] [bold cyan]%s[/bold cyan]\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            elif debug_cmd.startswith("0;"):
-                row_reg = title("Registers", 0) +\
-                  "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-                    (hw["A"], hw["D"], hw["M"]) +\
-                  "[red]SP[/red] %s\n[red]LCL[/red] %s\n[red]ARG[/red] %s\n[red]THIS[/red] %s\n[red]THAT[/red] %s\n" %\
-                    (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-                  "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-                    (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-                  "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-                    (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-                  "[red]R15[/red] %s" % (hw["RAM"][15])
-
-            else:
-                raise RuntimeError()
-
-            table.add_row(row_code + row_stack, row_reg)
-            console.print(table)
-
-            # TODO: debug gui -----------------------------------------------------------------------------
-
+            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
         cycle += 1  # always advance clock cycle
 
     # program end
@@ -400,10 +374,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
     elif cycle == hw["MAX"]:
         if debug:
             print("Cycle limit reached: %s" % asm_filepath)
-    else:
-        # PC will jump off into empty ROM at end of SimpleFunction test
-        if "SimpleFunction" not in asm_filepath:
-            raise RuntimeError("Interpreter: Unexpected exit")
     if len(call_tree) >= 1:
         raise RuntimeError("Interpreter: Elements still exist in call tree at program exit")
 
@@ -416,16 +386,14 @@ def run(asm_filepath, static_dict=None, tst_params=None, debug=False):
         if debug:
             print(result_dict)
             print(tst_params["compare"])
+
+        with open(asm_filepath.replace(".asm", ".cmp"), "r") as cmp_file:
+            cmp_file_contents = cmp_file.read()
+        with open(asm_filepath.replace(".asm", ".out"), "w") as out_file:
+            out_file.write(cmp_file_contents)
+
         if tst_params["compare"] == result_dict:
             print("Interpreter: Test passed for %s" % asm_filepath)
-            with open(asm_filepath.replace(".asm", ".cmp"), "r") as cmp_file:
-                cmp_file_contents = cmp_file.read()
-            with open(asm_filepath.replace(".asm", ".out"), "w") as out_file:
-                out_file.write(cmp_file_contents)
-            if debug:
-                with open(asm_filepath.replace(".asm", ".debug"), "w") as debug_file:
-                    for line in debug_log:
-                        debug_file.write(line+'\n')
         else:
             raise RuntimeError("Interpreter: Test results did not match for %s" % asm_filepath)
 
@@ -439,455 +407,565 @@ if __name__ == '__main__':
     Project 9-11: JACK > T_XML (CST) > XML (AST) > VM (tokenizer > analyzer > compiler) // VM > ASM > HACK as above
                   Only Project 10 has CST/AST solution XML files
     '''
+    # TODO: Use symlinks for libraries and purge dupes from git history
 
-    # compile jack programs (JackCompiler, translator) # TODO: projects 1-11 accounted for, not included in compiler
+    # compile jack programs (JackCompiler)
+    # projects 1-12 accounted for, not included in compiler (jack_filepaths)
     jack_dirpaths = [
-        r"..\projects\09\Average",
-        r"..\projects\09\Fraction",
-        r"..\projects\09\HelloWorld",
-        r"..\projects\09\List",
-        r"..\projects\09\Square",
-        r"..\projects\10\ArrayTest",
-        # r"..\projects\10\ExpressionLessSquare",  # nonsense code that shouldn't compile or run
-        r"..\projects\10\Square",
-        r"..\projects\11\Average",
-        r"..\projects\11\ComplexArrays",
-        r"..\projects\11\ConvertToBin",
-        r"..\projects\11\Pong",
-        r"..\projects\11\Seven",
-        r"..\projects\11\Square",
-
-        # TODO: Project 12
-        r"..\projects\12\SysTest",
-        r"..\projects\12\ArrayTest",
-        r"..\projects\12\KeyboardTest",
-        r"..\projects\12\StringTest",
-        r"..\projects\12\MemoryTest",
+        # os.path.join("..", "projects", "09", "Average"),
+        # os.path.join("..", "projects", "09", "Fraction"),
+        # os.path.join("..", "projects", "09", "HelloWorld"),
+        # os.path.join("..", "projects", "09", "List"),
+        # os.path.join("..", "projects", "09", "Square"),
+        # os.path.join("..", "projects", "10", "ArrayTest"),
+        # # os.path.join("..", "projects", "10", "ExpressionLessSquare"),  # nonsense code that shouldn't compile or run
+        # os.path.join("..", "projects", "10", "Square"),
+        # os.path.join("..", "projects", "11", "Average"),
+        # os.path.join("..", "projects", "11", "ComplexArrays"),
+        # os.path.join("..", "projects", "11", "ConvertToBin"),
+        # os.path.join("..", "projects", "11", "Pong"),
+        # os.path.join("..", "projects", "11", "Seven"),
+        # os.path.join("..", "projects", "11", "Square"),       
+        # os.path.join("..", "projects", "12", "SysTest"),
+        # os.path.join("..", "projects", "12", "ArrayTest"),
+        # os.path.join("..", "projects", "12", "KeyboardTest"),
+        # os.path.join("..", "projects", "12", "StringTest"),
+        # os.path.join("..", "projects", "12", "MemoryTest"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag"),
+        # os.path.join("..", "projects", "12", "MathTest"),
+        # os.path.join("..", "projects", "12", "OutputTest"),
+        os.path.join("..", "projects", "12", "ScreenTest"),
     ]
 
-    # tokenizer/analyzer # TODO: projects 1-11 accounted for, included in tokenizer/analyzer/compiler
+    # tokenizer/analyzer
+    # projects 1-12 accounted for, included in tokenizer/analyzer/compiler
     jack_filepaths = [
-        r"..\projects\09\Average\Main.jack",
-        r"..\projects\09\Fraction\Main.jack",
-        r"..\projects\09\Fraction\Fraction.jack",
-        r"..\projects\09\HelloWorld\Main.jack",
-        r"..\projects\09\List\Main.jack",
-        r"..\projects\09\List\List.jack",
-        r"..\projects\09\Square\Main.jack",
-        r"..\projects\09\Square\Square.jack",
-        r"..\projects\09\Square\SquareGame.jack",
-        r"..\projects\10\ArrayTest\Main.jack",
-        # r"..\projects\10\ExpressionLessSquare\Main.jack",  # nonsense code that shouldn't compile or run
-        # r"..\projects\10\ExpressionLessSquare\Square.jack",
-        # r"..\projects\10\ExpressionLessSquare\SquareGame.jack",
-        r"..\projects\10\Square\Main.jack",
-        r"..\projects\10\Square\Square.jack",
-        r"..\projects\10\Square\SquareGame.jack",
-        r"..\projects\11\Average\Main.jack",
-        r"..\projects\11\ComplexArrays\Main.jack",
-        r"..\projects\11\ConvertToBin\Main.jack",
-        r"..\projects\11\Pong\Ball.jack",
-        r"..\projects\11\Pong\Bat.jack",
-        r"..\projects\11\Pong\Main.jack",
-        r"..\projects\11\Pong\PongGame.jack",
-        r"..\projects\11\Seven\Main.jack",
-        r"..\projects\11\Square\Main.jack",
-        r"..\projects\11\Square\Square.jack",
-        r"..\projects\11\Square\SquareGame.jack",
-
-        # TODO: Project 12
-        r"..\projects\12\SysTest\Main.jack",
-        r"..\projects\12\SysTest\Sys.jack",
-        r"..\projects\12\ArrayTest\Main.jack",
-        r"..\projects\12\ArrayTest\Array.jack",
-        r"..\projects\12\KeyboardTest\Main.jack",
-        r"..\projects\12\KeyboardTest\Keyboard.jack",
-        r"..\projects\12\StringTest\Main.jack",
-        r"..\projects\12\StringTest\String.jack",
+        # os.path.join("..", "projects", "09", "Average", "Main.jack"),
+        # os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
+        # os.path.join("..", "projects", "09", "Fraction", "Fraction.jack"),
+        # os.path.join("..", "projects", "09", "HelloWorld", "Main.jack"),
+        # os.path.join("..", "projects", "09", "List", "Main.jack"),
+        # os.path.join("..", "projects", "09", "List", "List.jack"),
+        # os.path.join("..", "projects", "09", "Square", "Main.jack"),
+        # os.path.join("..", "projects", "09", "Square", "Square.jack"),
+        # os.path.join("..", "projects", "09", "Square", "SquareGame.jack"),
+        # os.path.join("..", "projects", "10", "ArrayTest", "Main.jack"),
+        # # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  # nonsense code that shouldn't compile or run
+        # # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
+        # # os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack"),
+        # os.path.join("..", "projects", "10", "Square", "Main.jack"),
+        # os.path.join("..", "projects", "10", "Square", "Square.jack"),
+        # os.path.join("..", "projects", "10", "Square", "SquareGame.jack"),
+        # os.path.join("..", "projects", "11", "Average", "Main.jack"),
+        # os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack"),
+        # os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack"),
+        # os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
+        # os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
+        # os.path.join("..", "projects", "11", "Pong", "Main.jack"),
+        # os.path.join("..", "projects", "11", "Pong", "PongGame.jack"),
+        # os.path.join("..", "projects", "11", "Seven", "Main.jack"),
+        # os.path.join("..", "projects", "11", "Square", "Main.jack"),
+        # os.path.join("..", "projects", "11", "Square", "Square.jack"),
+        # os.path.join("..", "projects", "11", "Square", "SquareGame.jack"),
+        # os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "SysTest", "Sys.jack"),
+        # os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "ArrayTest", "Array.jack"),
+        # os.path.join("..", "projects", "12", "KeyboardTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.jack"),
+        # os.path.join("..", "projects", "12", "StringTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "StringTest", "String.jack"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "Memory.jack"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack"),
+        # os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "MathTest", "Math.jack"),
+        # os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
+        # os.path.join("..", "projects", "12", "OutputTest", "Output.jack"),
+        os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"),
+        os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack"),
     ]
 
     # compiler
-    jack_filepath_lists = [  # TODO: projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
-        [r"..\projects\09\Average\Main.jack"],
-        [r"..\projects\09\Fraction\Main.jack",
-         r"..\projects\09\Fraction\Fraction.jack"],
-        [r"..\projects\09\HelloWorld\Main.jack"],
-        [r"..\projects\09\List\Main.jack",
-         r"..\projects\09\List\List.jack"],
-        [r"..\projects\09\Square\Main.jack",
-         r"..\projects\09\Square\Square.jack",
-         r"..\projects\09\Square\SquareGame.jack"],
-        [r"..\projects\10\ArrayTest\Main.jack"],
-        # [r"..\projects\10\ExpressionLessSquare\Main.jack",  # nonsense code that shouldn't compile or run
-        #  r"..\projects\10\ExpressionLessSquare\Square.jack",
-        #  r"..\projects\10\ExpressionLessSquare\SquareGame.jack"],
-        [r"..\projects\10\Square\Main.jack",
-         r"..\projects\10\Square\Square.jack",
-         r"..\projects\10\Square\SquareGame.jack"],
-        [r"..\projects\11\Average\Main.jack"],
-        [r"..\projects\11\ComplexArrays\Main.jack"],
-        [r"..\projects\11\ConvertToBin\Main.jack"],
-        [r"..\projects\11\Pong\Ball.jack",
-         r"..\projects\11\Pong\Bat.jack",
-         r"..\projects\11\Pong\Main.jack",
-         r"..\projects\11\Pong\PongGame.jack"],
-        [r"..\projects\11\Seven\Main.jack"],
-        [r"..\projects\11\Square\Main.jack",
-         r"..\projects\11\Square\Square.jack",
-         r"..\projects\11\Square\SquareGame.jack"],
-
-        # TODO: Project 12
-        [r"..\projects\12\SysTest\Main.jack",
-         r"..\projects\12\SysTest\Sys.jack"],
-        [r"..\projects\12\ArrayTest\Main.jack",
-         r"..\projects\12\ArrayTest\Array.jack"],
-        [r"..\projects\12\KeyboardTest\Main.jack",
-         r"..\projects\12\KeyboardTest\Keyboard.jack"],
-        [r"..\projects\12\StringTest\Main.jack",
-         r"..\projects\12\StringTest\String.jack"],
+    jack_filepath_lists = [  
+        # # projects 1-12 accounted for, included in interpreter/tokenizer/analyzer
+        # [os.path.join("..", "projects", "09", "Average", "Main.jack")],
+        # [os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
+        #  os.path.join("..", "projects", "09", "Fraction", "Fraction.jack")],
+        # [os.path.join("..", "projects", "09", "HelloWorld", "Main.jack")],
+        # [os.path.join("..", "projects", "09", "List", "Main.jack"),
+        #  os.path.join("..", "projects", "09", "List", "List.jack")],
+        # [os.path.join("..", "projects", "09", "Square", "Main.jack"),
+        #  os.path.join("..", "projects", "09", "Square", "Square.jack"),
+        #  os.path.join("..", "projects", "09", "Square", "SquareGame.jack")],
+        # [os.path.join("..", "projects", "10", "ArrayTest", "Main.jack")],
+        # # [os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  # nonsense code that shouldn't compile or run
+        # #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
+        # #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack")],
+        # [os.path.join("..", "projects", "10", "Square", "Main.jack"),
+        #  os.path.join("..", "projects", "10", "Square", "Square.jack"),
+        #  os.path.join("..", "projects", "10", "Square", "SquareGame.jack")],
+        # [os.path.join("..", "projects", "11", "Average", "Main.jack")],
+        # [os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack")],
+        # [os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack")],
+        # [os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
+        #  os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
+        #  os.path.join("..", "projects", "11", "Pong", "Main.jack"),
+        #  os.path.join("..", "projects", "11", "Pong", "PongGame.jack")],
+        # [os.path.join("..", "projects", "11", "Seven", "Main.jack")],
+        # [os.path.join("..", "projects", "11", "Square", "Main.jack"),
+        #  os.path.join("..", "projects", "11", "Square", "Square.jack"),
+        #  os.path.join("..", "projects", "11", "Square", "SquareGame.jack")],
+        # [os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "SysTest", "Sys.jack")],
+        # [os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "ArrayTest", "Array.jack")],
+        # [os.path.join("..", "projects", "12", "KeyboardTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.jack")],
+        # [os.path.join("..", "projects", "12", "StringTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "StringTest", "String.jack")],
+        # [os.path.join("..", "projects", "12", "MemoryTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "MemoryTest", "Memory.jack")],
+        # [os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack")],
+        # [os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "MathTest", "Math.jack")],
+        # [os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
+        #  os.path.join("..", "projects", "12", "OutputTest", "Output.jack")],    
+        [os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack")],
     ]
 
     # enforce matching of compiler against course compiler
-    jack_matches = {  # TODO: projects 1-11 accounted for
-        # all
-        r"..\projects\09\Average\Main.vm": 149,
-        r"..\projects\11\Seven\Main.vm": 10,
-        r"..\projects\11\ConvertToBin\Main.vm": 109,
-        r"..\projects\09\Fraction\Main.vm": 18,
-        r"..\projects\09\Fraction\Fraction.vm": 116,
-        r"..\projects\09\HelloWorld\Main.vm": 33,
-        r"..\projects\09\List\Main.vm": 19,
-        r"..\projects\09\List\List.vm": 65,
-        r"..\projects\09\Square\Main.vm": 11,
-        r"..\projects\09\Square\Square.vm": 304,
-        r"..\projects\09\Square\SquareGame.vm": 179,
-        r"..\projects\10\ArrayTest\Main.vm": 183,
-        r"..\projects\11\Pong\Bat.vm": 207,
-        r"..\projects\11\Pong\Ball.vm": 444,
-        r"..\projects\11\Pong\Main.vm": 13,
-        r"..\projects\11\Pong\PongGame.vm": 318,
-        r"..\projects\11\ComplexArrays\Main.vm": 702,
+    # projects 1-12 accounted for
+    jack_matches = {  
+        # os.path.join("..", "projects", "09", "Average", "Main.vm"): 149,
+        # os.path.join("..", "projects", "09", "Fraction", "Main.vm"): 18,
+        # os.path.join("..", "projects", "09", "Fraction", "Fraction.vm"): 116,
+        # os.path.join("..", "projects", "09", "HelloWorld", "Main.vm"): 33,
+        # os.path.join("..", "projects", "09", "List", "Main.vm"): 19,
+        # os.path.join("..", "projects", "09", "List", "List.vm"): 65,
+        # os.path.join("..", "projects", "09", "Square", "Main.vm"): 11,
+        # os.path.join("..", "projects", "09", "Square", "Square.vm"): 304,
+        # os.path.join("..", "projects", "09", "Square", "SquareGame.vm"): 179,
+        # os.path.join("..", "projects", "10", "ArrayTest", "Main.vm"): 183,
+        # os.path.join("..", "projects", "11", "ComplexArrays", "Main.vm"): 702,
+        # os.path.join("..", "projects", "11", "ConvertToBin", "Main.vm"): 109,
+        # os.path.join("..", "projects", "11", "Pong", "Bat.vm"): 207,
+        # os.path.join("..", "projects", "11", "Pong", "Ball.vm"): 444,
+        # os.path.join("..", "projects", "11", "Pong", "Main.vm"): 13,
+        # os.path.join("..", "projects", "11", "Pong", "PongGame.vm"): 318,
+        # os.path.join("..", "projects", "11", "Seven", "Main.vm"): 10,
+        # os.path.join("..", "projects", "12", "SysTest", "Main.vm"): 281,
+        # os.path.join("..", "projects", "12", "SysTest", "Sys.vm"): 83,
+        # os.path.join("..", "projects", "12", "ArrayTest", "Main.vm"): 131,
+        # os.path.join("..", "projects", "12", "ArrayTest", "Array.vm"): 23,
+        # os.path.join("..", "projects", "12", "KeyboardTest", "Main.vm"): 949,
+        # os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.vm"): 102,
+        # os.path.join("..", "projects", "12", "StringTest", "Main.vm"): 919,
+        # os.path.join("..", "projects", "12", "StringTest", "String.vm"): 393,
+        # os.path.join("..", "projects", "12", "MemoryTest", "Main.vm"): 176,
+        # os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 376,
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"): 465,
+        # os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
+        # os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,
+        # os.path.join("..", "projects", "12", "OutputTest", "Main.vm"): 254,
+        # os.path.join("..", "projects", "12", "OutputTest", "Output.vm"): 1852,
 
         # TODO: Project 12
-        r"..\projects\12\SysTest\Main.vm": 281,
-        r"..\projects\12\SysTest\Sys.vm": 83,
-        r"..\projects\12\ArrayTest\Main.vm": 131,
-        r"..\projects\12\ArrayTest\Array.vm": 23,
-        r"..\projects\12\KeyboardTest\Main.vm": 949,
-        r"..\projects\12\KeyboardTest\Keyboard.vm": 102,
-        r"..\projects\12\StringTest\Main.vm": 919,
-        r"..\projects\12\StringTest\String.vm": 393,
+        # os.path.join("..", "projects", "12", "ScreenTest", "Main.vm"): xxx, # TODO: NYI
+        # os.path.join("..", "projects", "12", "ScreenTest", "Screen.vm"): xxx, # TODO: NYI
     }
 
-    # VM programs (translator only, interpreted below) # TODO: projects 1-11 accounted for, included in translator
-    _vm_dirpaths = [
-        r'..\projects\07\MemoryAccess\BasicTest',
-        r'..\projects\07\MemoryAccess\PointerTest',
-        r'..\projects\07\MemoryAccess\StaticTest',
-        r'..\projects\07\StackArithmetic\SimpleAdd',
-        r'..\projects\07\StackArithmetic\StackTest',
-        r'..\projects\08\ProgramFlow\BasicLoop',
-        r'..\projects\08\ProgramFlow\FibonacciSeries',
-        # r'..\projects\08\FunctionCalls\FibonacciElement',  # bootstrap
-        # r'..\projects\08\FunctionCalls\NestedCall',  # bootstrap
-        r'..\projects\08\FunctionCalls\SimpleFunction',
-        # r'..\projects\08\FunctionCalls\StaticsTest'  # bootstrap
-        r"..\projects\09\Average",
-        r"..\projects\09\Fraction",
-        r"..\projects\09\HelloWorld",
-        r"..\projects\09\List",
-        r"..\projects\09\Square",
-        r"..\projects\10\ArrayTest",
-        # r"..\projects\10\ExpressionLessSquare",  # nonsense code that shouldn't compile or run
-        r"..\projects\10\Square",
-        r"..\projects\11\Average",
-        r"..\projects\11\ComplexArrays",
-        r"..\projects\11\ConvertToBin",
-        r"..\projects\11\Pong",
-        r"..\projects\11\Seven",
-        r"..\projects\11\Square",
-
-        # TODO: Project 12
-        r"..\projects\12\SysTest",
-        r"..\projects\12\ArrayTest",
-        r"..\projects\12\KeyboardTest",
-        r"..\projects\12\StringTest",
+    # VM programs (translator only, interpreted below)
+    # projects 1-12 accounted for, included in translator
+    vm_dirpaths = [
+        # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries"),
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+        # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction"),
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+        # os.path.join("..", "projects", "09", "Average"),
+        # os.path.join("..", "projects", "09", "Fraction"),
+        # os.path.join("..", "projects", "09", "HelloWorld"),
+        # os.path.join("..", "projects", "09", "List"),
+        # os.path.join("..", "projects", "09", "Square"),
+        # os.path.join("..", "projects", "10", "ArrayTest"),
+        # # os.path.join("..", "projects", "10", "ExpressionLessSquare"),  # nonsense code that shouldn't compile or run
+        # os.path.join("..", "projects", "10", "Square"),
+        # os.path.join("..", "projects", "11", "Average"),
+        # os.path.join("..", "projects", "11", "ComplexArrays"),
+        # os.path.join("..", "projects", "11", "ConvertToBin"),
+        # os.path.join("..", "projects", "11", "Pong"),
+        # os.path.join("..", "projects", "11", "Seven"),
+        # os.path.join("..", "projects", "11", "Square"),
+        # os.path.join("..", "projects", "12", "SysTest"),
+        # os.path.join("..", "projects", "12", "ArrayTest"),
+        # os.path.join("..", "projects", "12", "KeyboardTest"),
+        # os.path.join("..", "projects", "12", "StringTest"),
+        # os.path.join("..", "projects", "12", "MemoryTest"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag"),
+        # os.path.join("..", "projects", "12", "MathTest"),
+        # os.path.join("..", "projects", "12", "OutputTest"),
+        os.path.join("..", "projects", "12", "ScreenTest"),
     ]
 
-    # VM programs # TODO: projects 1-11 accounted for, included in translator
+    # VM programs
+    # projects 1-12 accounted for, included in translator
     # that require non-spec bootstrap to pass tests (translator only, interpreted/tested below)
     # (bootstrap is injected into ASM which is loaded by tester + CPUEmulator)
-    _vm_bootstrap_paths = [
-        r'..\projects\08\FunctionCalls\FibonacciElement',
-        r'..\projects\08\FunctionCalls\NestedCall',
-        r'..\projects\08\FunctionCalls\StaticsTest'
+    vm_bootstrap_paths = [
+        # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest")
     ]
 
-    _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
+    vm_dirpaths = vm_dirpaths + vm_bootstrap_paths
 
-    # VM test scripts # TODO: projects 1-11 accounted for, included in assembler/python_hdl
+    # VM test scripts
+    # projects 1-12 accounted for, included in assembler/python_hdl
     # (assembler/tester/interpreter)
     vm_asm_filepaths = [
-        r"..\projects\07\MemoryAccess\BasicTest\BasicTest.asm",
-        r"..\projects\07\MemoryAccess\PointerTest\PointerTest.asm",
-        r"..\projects\07\MemoryAccess\StaticTest\StaticTest.asm",
-        r"..\projects\07\StackArithmetic\SimpleAdd\SimpleAdd.asm",
-        r"..\projects\07\StackArithmetic\StackTest\StackTest.asm",
-        r"..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm",
-        r"..\projects\08\FunctionCalls\NestedCall\NestedCall.asm",
-        r"..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.asm",
-        r"..\projects\08\FunctionCalls\StaticsTest\StaticsTest.asm",
-        r"..\projects\08\ProgramFlow\BasicLoop\BasicLoop.asm",
-        r"..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeries.asm",
+        # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.asm"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.asm"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.asm"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.asm"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.asm"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.asm"),
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.asm"), # non-spec issues break interpreter
+        # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.asm"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.asm"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.asm"),
     ]
 
-    # assembler/interpreter # TODO: projects 1-11 accounted for, included in assembler/python_hdl
+    # assembler/interpreter
+    # projects 1-12 accounted for, included in assembler/python_hdl
     # (tested against HACK solutions for project 6)
     binary_asm_filepaths = [
-        r"..\projects\04\fill\fill.asm",
-        r"..\projects\04\mult\mult.asm",
-        r"..\projects\06\add\add.asm",
-        r"..\projects\06\max\max.asm",
-        r"..\projects\06\max\maxL.asm",
-        r"..\projects\06\pong\pong.asm",
-        r"..\projects\06\pong\pongL.asm",
-        r"..\projects\06\rect\rect.asm",
-        r"..\projects\06\rect\rectL.asm",
+        # os.path.join("..", "projects", "04", "fill", "Fill.asm"),
+        # os.path.join("..", "projects", "04", "mult", "Mult.asm"),
+        # os.path.join("..", "projects", "06", "add", "Add.asm"),
+        # os.path.join("..", "projects", "06", "max", "Max.asm"),
+        # os.path.join("..", "projects", "06", "max", "MaxL.asm"),
+        # os.path.join("..", "projects", "06", "pong", "Pong.asm"),
+        # os.path.join("..", "projects", "06", "pong", "PongL.asm"),
+        # os.path.join("..", "projects", "06", "rect", "Rect.asm"),
+        # os.path.join("..", "projects", "06", "rect", "RectL.asm"),
 
-        # exercised during vm_asm_filepaths
-        # r"..\projects\07\MemoryAccess\BasicTest\BasicTest.asm",
-        # r"..\projects\07\MemoryAccess\PointerTest\PointerTest.asm",
-        # r"..\projects\07\MemoryAccess\StaticTest\StaticTest.asm",
-        # r"..\projects\07\StackArithmetic\SimpleAdd\SimpleAdd.asm",
-        # r"..\projects\07\StackArithmetic\StackTest\StackTest.asm",
-        # r"..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.asm",
-        # r"..\projects\08\FunctionCalls\NestedCall\NestedCall.asm",
-        # r"..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.asm",
-        # r"..\projects\08\FunctionCalls\StaticsTest\StaticsTest.asm",
-        # r"..\projects\08\ProgramFlow\BasicLoop\BasicLoop.asm",
-        # r"..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeries.asm",
+        # # exercised during vm_asm_filepaths
+        # # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm"),
+        # # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.asm"),
+        # # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.asm"),
+        # # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.asm"),
+        # # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.asm"),
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.asm"),
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.asm"),
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.asm"),
+        # # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.asm"),
+        # # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.asm"),
+        # # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.asm"),
 
-        # exceeds ROM limit of 32k instructions
-        r'..\projects\09\Average\Average.asm',
-        r'..\projects\09\Fraction\Fraction.asm',
-        r'..\projects\09\HelloWorld\HelloWorld.asm',
-        r'..\projects\09\List\List.asm',
-        r'..\projects\09\Square\Square.asm',
-        r'..\projects\10\ArrayTest\ArrayTest.asm',
-        r'..\projects\10\Square\Square.asm',  # 17 bit addresses (different Main.jack to 9/11)
-        r'..\projects\11\Average\Average.asm',
-        r'..\projects\11\ComplexArrays\ComplexArrays.asm',  # 17 bit addresses
-        r'..\projects\11\ConvertToBin\ConvertToBin.asm',
-        r'..\projects\11\Pong\Pong.asm',  # 17 bit addresses
-        r'..\projects\11\Seven\Seven.asm',
-        r'..\projects\11\Square\Square.asm',
+        # # exceeds ROM limit of 32k instructions
+        # os.path.join("..", "projects", "09", "Average", "Average.asm"),
+        # os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"),
+        # os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"),
+        # os.path.join("..", "projects", "09", "List", "List.asm"),
+        # os.path.join("..", "projects", "09", "Square", "Square.asm"),
+        # os.path.join("..", "projects", "10", "ArrayTest", "ArrayTest.asm"),
+        # # os.path.join("..", "projects", "10", "Square", "Square.asm"),  # 17 bit addresses (different Main.jack to 9/11)
+        # os.path.join("..", "projects", "11", "Average", "Average.asm"),
+        # # os.path.join("..", "projects", "11", "ComplexArrays", "ComplexArrays.asm"),  # 17 bit addresses
+        # os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"),
+        # # os.path.join("..", "projects", "11", "Pong", "Pong.asm"),  # 17 bit addresses
+        # os.path.join("..", "projects", "11", "Seven", "Seven.asm"),
+        # os.path.join("..", "projects", "11", "Square", "Square.asm"),
 
-        # TODO: Project 12
-        r"..\projects\12\SysTest\SysTest.asm",
-        r"..\projects\12\ArrayTest\ArrayTest.asm",
-        r"..\projects\12\KeyboardTest\KeyboardTest.asm",  # 17 bit addresses + access violation
-        r"..\projects\12\StringTest\StringTest.asm",  # 17 bit addresses + access violation
+        # os.path.join("..", "projects", "12", "SysTest", "SysTest.asm"),
+        # os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"),
+        # # os.path.join("..", "projects", "12", "KeyboardTest", "KeyboardTest.asm"),  # 17 bit addresses + access violation
+        # # os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"),  # 17 bit addresses + access violation
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.asm"),
+        # os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"),
+        # os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"),  
+        os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"),
     ]
 
     # HDL tests (HardwareSimulator): project 1-12 accounted for, not included in tester/python_hdl!
     hw_tst_files = [
-        r'..\projects\01\And.tst',
-        r'..\projects\01\And16.tst',
-        r'..\projects\01\DMux.tst',
-        r'..\projects\01\DMux4Way.tst',
-        r'..\projects\01\DMux8Way.tst',
-        r'..\projects\01\Mux.tst',
-        r'..\projects\01\Mux16.tst',
-        r'..\projects\01\Mux4Way16.tst',
-        r'..\projects\01\Mux8Way16.tst',
-        r'..\projects\01\Not.tst',
-        r'..\projects\01\Not16.tst',
-        r'..\projects\01\Or.tst',
-        r'..\projects\01\Or16.tst',
-        r'..\projects\01\Or8Way.tst',
-        r'..\projects\01\Xor.tst',
-        r'..\projects\02\Add16.tst',
-        r'..\projects\02\ALU-nostat.tst',
-        r'..\projects\02\ALU.tst',
-        r'..\projects\02\FullAdder.tst',
-        r'..\projects\02\HalfAdder.tst',
-        r'..\projects\02\Inc16.tst',
-        r'..\projects\03\a\Bit.tst',
-        r'..\projects\03\a\PC.tst',
-        r'..\projects\03\a\RAM64.tst',
-        r'..\projects\03\a\RAM8.tst',
-        r'..\projects\03\a\Register.tst',
-        r'..\projects\03\b\RAM16K.tst',
-        r'..\projects\03\b\RAM4K.tst',
-        r'..\projects\03\b\RAM512.tst',
-        r'..\projects\05\ComputerAdd-external.tst',
-        r'..\projects\05\ComputerAdd.tst',
-        r'..\projects\05\ComputerMax-external.tst',
-        r'..\projects\05\ComputerMax.tst',
-        r'..\projects\05\ComputerRect-external.tst',
-        r'..\projects\05\ComputerRect.tst',
-        r'..\projects\05\CPU-external.tst',
-        r'..\projects\05\CPU.tst',
-        # r'..\projects\05\Memory.tst',  # interactive test (passed manually)
+        # os.path.join("..", "projects", "01", "And.tst"),
+        # os.path.join("..", "projects", "01", "And16.tst"),
+        # os.path.join("..", "projects", "01", "DMux.tst"),
+        # os.path.join("..", "projects", "01", "DMux4Way.tst"),
+        # os.path.join("..", "projects", "01", "DMux8Way.tst"),
+        # os.path.join("..", "projects", "01", "Mux.tst"),
+        # os.path.join("..", "projects", "01", "Mux16.tst"),
+        # os.path.join("..", "projects", "01", "Mux4Way16.tst"),
+        # os.path.join("..", "projects", "01", "Mux8Way16.tst"),
+        # os.path.join("..", "projects", "01", "Not.tst"),
+        # os.path.join("..", "projects", "01", "Not16.tst"),
+        # os.path.join("..", "projects", "01", "Or.tst"),
+        # os.path.join("..", "projects", "01", "Or16.tst"),
+        # os.path.join("..", "projects", "01", "Or8Way.tst"),
+        # os.path.join("..", "projects", "01", "Xor.tst"),
+        # os.path.join("..", "projects", "02", "Add16.tst"),
+        # os.path.join("..", "projects", "02", "ALU-nostat.tst"),
+        # os.path.join("..", "projects", "02", "ALU.tst"),
+        # os.path.join("..", "projects", "02", "FullAdder.tst"),
+        # os.path.join("..", "projects", "02", "HalfAdder.tst"),
+        # os.path.join("..", "projects", "02", "Inc16.tst"),
+        # os.path.join("..", "projects", "03", "a", "Bit.tst"),
+        # os.path.join("..", "projects", "03", "a", "PC.tst"),
+        # os.path.join("..", "projects", "03", "a", "RAM64.tst"),
+        # os.path.join("..", "projects", "03", "a", "RAM8.tst"),
+        # os.path.join("..", "projects", "03", "a", "Register.tst"),
+        # os.path.join("..", "projects", "03", "b", "RAM16K.tst"),
+        # os.path.join("..", "projects", "03", "b", "RAM4K.tst"),
+        # os.path.join("..", "projects", "03", "b", "RAM512.tst"),
+        # os.path.join("..", "projects", "05", "ComputerAdd-external.tst"),
+        # os.path.join("..", "projects", "05", "ComputerAdd.tst"),
+        # os.path.join("..", "projects", "05", "ComputerMax-external.tst"),
+        # os.path.join("..", "projects", "05", "ComputerMax.tst"),
+        # os.path.join("..", "projects", "05", "ComputerRect-external.tst"),
+        # os.path.join("..", "projects", "05", "ComputerRect.tst"),
+        # os.path.join("..", "projects", "05", "CPU-external.tst"),
+        # os.path.join("..", "projects", "05", "CPU.tst"),
+        # # os.path.join("..", "projects", "05"Memory.tst"),  # interactive test (passed manually)
     ]
     
     # ASM tests (CPUEmulator): # project 1-12 accounted for & included in tester!
     cpu_tst_files = [
-        # r'..\projects\04\fill\Fill.tst',  # interactive test (passed manually)
-        r'..\projects\04\fill\FillAutomatic.tst',
-        r'..\projects\04\mult\Mult.tst',
-        r'..\projects\07\MemoryAccess\BasicTest\BasicTest.tst',
-        r'..\projects\07\MemoryAccess\PointerTest\PointerTest.tst',
-        r'..\projects\07\MemoryAccess\StaticTest\StaticTest.tst',
-        r'..\projects\07\StackArithmetic\SimpleAdd\SimpleAdd.tst',
-        r'..\projects\07\StackArithmetic\StackTest\StackTest.tst',
-        r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElement.tst',
-        r'..\projects\08\FunctionCalls\NestedCall\NestedCall.tst',
-        r'..\projects\08\FunctionCalls\SimpleFunction\SimpleFunction.tst',
-        r'..\projects\08\FunctionCalls\StaticsTest\StaticsTest.tst',
-        r'..\projects\08\ProgramFlow\BasicLoop\BasicLoop.tst',
-        r'..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeries.tst',
+        # # os.path.join("..", "projects", "04", "fill", "Fill.tst"),  # interactive test (passed manually)
+        # os.path.join("..", "projects", "04", "fill", "FillAutomatic.tst"),
+        # os.path.join("..", "projects", "04", "mult", "Mult.tst"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.tst"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.tst"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.tst"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.tst"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.tst"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.tst"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.tst"),
     ]
 
-    # VM tests (VMEmulator): # TODO: project 1-12 accounted for, not included in tester
+    # VM tests (VMEmulator): 
+    # project 1-12 accounted for, not included in tester
     vm_tst_files = [
-        r'..\projects\07\MemoryAccess\BasicTest\BasicTestVME.tst',
-        r'..\projects\07\MemoryAccess\PointerTest\PointerTestVME.tst',
-        r'..\projects\07\MemoryAccess\StaticTest\StaticTestVME.tst',
-        r'..\projects\07\StackArithmetic\SimpleAdd\SimpleAddVME.tst',
-        r'..\projects\07\StackArithmetic\StackTest\StackTestVME.tst',
-        r'..\projects\08\FunctionCalls\FibonacciElement\FibonacciElementVME.tst',
-        r'..\projects\08\FunctionCalls\NestedCall\NestedCallVME.tst',
-        r'..\projects\08\FunctionCalls\SimpleFunction\SimpleFunctionVME.tst',
-        r'..\projects\08\FunctionCalls\StaticsTest\StaticsTestVME.tst',
-        r'..\projects\08\ProgramFlow\BasicLoop\BasicLoopVME.tst',
-        r'..\projects\08\ProgramFlow\FibonacciSeries\FibonacciSeriesVME.tst',
+        # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTestVME.tst"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTestVME.tst"),
+        # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTestVME.tst"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAddVME.tst"),
+        # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTestVME.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElementVME.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCallVME.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunctionVME.tst"),
+        # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTestVME.tst"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoopVME.tst"),
+        # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeriesVME.tst"),
+        # os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.tst"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.tst"),
+        # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.tst"),
+        # os.path.join("..", "projects", "12", "MathTest", "MathTest.tst"),
 
-        # TODO: Project 12
-        # interactively tested / no test files
-        # r'..\projects\12\SysTest
-        # r'..\projects\12\KeyboardTest
-        # r'..\projects\12\StringTest
-
-        r'..\projects\12\ArrayTest\ArrayTest.tst',
-
-        # r'..\projects\12\MathTest\MathTest.tst',
-        # r'..\projects\12\MemoryTest\MemoryTest.tst',
-        # r'..\projects\12\MemoryTest\MemoryDiag.tst'
+        # # interactively tested / no test files
+        # # os.path.join("..", "projects", "12", "SysTest"),
+        # # os.path.join("..", "projects", "12", "KeyboardTest"),
+        # # os.path.join("..", "projects", "12", "StringTest"),
+        # # os.path.join("..", "projects", "12", "OutputTest"),
+        # # os.path.join("..", "projects", "12", "ScreenTest"),
     ]
 
-    debug_runs = [True]
+    # init
+    debug = False
+    vm_static_dicts = {} 
+    breakpoints = []
 
-    vm_static_dicts = {}
-    for _debug in debug_runs:
-        # # compile Jack to VM (course compiler)
-        # for jack_dir in jack_dirpaths:
-        #     result = subprocess.run([r"..\tools\JackCompiler.bat", jack_dir], capture_output=True, text=True)
-        #     if result.stderr:
-        #         raise RuntimeError(result.stderr)
-        #     else:
-        #         print("Course Compiler: %s" % result.stdout.strip())
-        #
-        # # tokenize / analyze Jack (not required with course compiler)
-        # for _filepath in jack_filepaths:
-        #     tokenizer.main(_filepath, debug=_debug)
-        #     analyzer.main(_filepath, debug=_debug)
-        #
-        # # compile Jack to VM (match against course compiler)
-        # compiler._compile(jack_filepath_lists, jack_matches)
-        #
-        # # translate VM to ASM
-        # for _vm_dir in _vm_dirpaths:
-        #     vm_static_dicts[_vm_dir] = translator.translate(_vm_dir, _vm_bootstrap_paths, debug=_debug)
-        #
-        # # assemble all ASM to HACK and binary match if available
-        # _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
-        # for _asm_filepath in _asm_filepaths:
-        #     assembler.assemble(_asm_filepath, debug=_debug)
-        # warnings.simplefilter("default")  # reset warning filter
+    # DEBUG: overrides
+    if debug:
+        jack_dirpaths = [] 
+        jack_filepaths = []
+        jack_filepath_lists = []
+        jack_matches = {}
+        vm_dirpaths = []
+        vm_asm_filepaths = []
+        binary_asm_filepaths = [os.path.join("..", "..", "nand2tetris-fpga", "06_IO_Devices", "03_SPI", "cat.asm")]
+        hw_tst_files = []
+        cpu_tst_files = []
+        vm_tst_files = []
+        breakpoints = [] # -1 # binary_asm_filepaths
 
-        # load & execute modules without test scripts
-        for _asm_filepath in binary_asm_filepaths:
-            try:
-                run(_asm_filepath, debug=_debug)
-            except IndexError:
-                warnings.warn("Interpreter: Probable memory access violation captured during execution of %s"
-                              % _asm_filepath)
-                traceback.print_exc()
+        # jack_dirpaths = [] 
+        # jack_filepaths = []
+        # jack_filepath_lists = []
+        # jack_matches = {}
+        # vm_dirpaths = [os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest")]
+        # vm_asm_filepaths = []
+        # binary_asm_filepaths = [os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm")]
+        # hw_tst_files = []
+        # cpu_tst_files = [os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.tst")]
+        # vm_tst_files = []
+        # breakpoints = []  #  binary_asm_filepaths
 
-        # # load & execute modules with test scripts
-        # for _asm_filepath in vm_asm_filepaths:
-        #     _tst_filepath = _asm_filepath.replace(".asm", ".tst")
-        #     _cmp_filepath = _asm_filepath.replace(".asm", ".cmp")
-        #     _tst_params = tester.load_tst(_tst_filepath, debug=_debug)
-        #     _tst_params["compare"] = tester.load_cmp(_cmp_filepath, debug=_debug)
-        #
-        #     # retrieve static_dict from translator run
-        #     _static_dict = None
-        #     for _vm_dir in _vm_dirpaths:
-        #         if _vm_dir in _asm_filepath:
-        #             _static_dict = vm_static_dicts[_vm_dir]
-        #
-        #     # execute
-        #     run(_asm_filepath, static_dict=_static_dict, tst_params=_tst_params, debug=_debug)
-        #
-        # # run hdl tests (HardwareSimulator)
-        # cmd = r'..\tools\HardwareSimulator.bat'
-        # for test in hw_tst_files:
-        #     print(r"Running: %s %s" % (cmd, test))
-        #     result = subprocess.run([cmd, test], capture_output=True, text=True)
-        #     if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-        #         raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        #
-        #     # different style of TST file, but the test has passed
-        #     if test in (r'..\projects\05\CPU-external.tst', r'..\projects\05\CPU.tst'):
-        #         continue
-        #
-        #     line = 0
-        #     out_file = test.replace(".tst", ".out")
-        #     cmp_file = test.replace(".tst", ".cmp")
-        #     with open(out_file) as out:
-        #         with open(cmp_file) as cmp:
-        #             for index, (solution, current) in enumerate(zip(cmp, out)):
-        #                 if solution != current:
-        #                     raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-        #             line += 1
-        #
-        # # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
-        # cmd = r'..\tools\CPUEmulator.bat'
-        # for test in cpu_tst_files:
-        #     print(r"Running: %s %s" % (cmd, test))
-        #     result = subprocess.run([cmd, test], capture_output=True, text=True)
-        #     if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-        #         raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        #
-        #     line = 0
-        #     out_file = test.replace(".tst", ".out")
-        #     cmp_file = test.replace(".tst", ".cmp")
-        #     with open(out_file) as out:
-        #         with open(cmp_file) as cmp:
-        #             for index, (solution, current) in enumerate(zip(cmp, out)):
-        #                 if solution != current:
-        #                     raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-        #             line += 1
-        #
-        # # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
-        # cmd = r'..\tools\VMEmulator.bat'
-        # for test in vm_tst_files:
-        #     print(r"Running: %s %s" % (cmd, test))
-        #     result = subprocess.run([cmd, test], capture_output=True, text=True)
-        #     if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-        #         raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        #
-        #     line = 0
-        #     out_file = test.replace("VME.tst", ".out")
-        #     cmp_file = test.replace("VME.tst", ".cmp")
-        #     with open(out_file) as out:
-        #         with open(cmp_file) as cmp:
-        #             for index, (solution, current) in enumerate(zip(cmp, out)):
-        #                 if solution != current:
-        #                     raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-        #             line += 1
+        # jack_dirpaths = [] 
+        # jack_filepaths = []
+        # jack_filepath_lists = []
+        # jack_matches = {}
+        # vm_dirpaths = [os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement")]
+        # vm_asm_filepaths = [os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.asm")]
+        # binary_asm_filepaths = [os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.asm")]
+        # hw_tst_files = []
+        # cpu_tst_files = [os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.tst")]
+        # vm_tst_files = [os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElementVME.tst")]
+        # breakpoints = []  # binary_asm_filepaths
+
+    # compile Jack to VM (course compiler)
+    for jack_dir in jack_dirpaths:
+        result = subprocess.run([os.path.join("..", "tools", "JackCompiler.bat"), jack_dir], capture_output=True, text=True)
+        if result.stderr or result.returncode:
+            raise RuntimeError(result.stderr)
+        else:
+            print("Course Compiler: %s" % result.stdout.strip())
+    
+    # tokenize / analyze Jack (not required with course compiler)
+    for filepath in jack_filepaths:
+        tokenizer.main(filepath, debug=debug)
+        analyzer.main(filepath, debug=debug)
+    
+    # compile Jack to VM (match against course compiler)
+    compiler._compile(jack_filepath_lists, jack_matches)
+    
+    # translate VM to ASM
+    for vm_dir in vm_dirpaths:
+        t = Translator(debug=debug)
+        vm_static_dicts[vm_dir] = t.translate(vm_dir, vm_bootstrap_paths)
+    
+    # assemble all ASM to HACK and binary match if available
+    asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
+    for asm_filepath in asm_filepaths:
+        assembler.assemble(asm_filepath, debug=debug)
+    warnings.simplefilter("default")  # reset warning filter
+
+    # load & execute modules without test scripts
+    for asm_filepath in binary_asm_filepaths:
+        try:
+            run(asm_filepath, breakpoints=breakpoints, debug=debug)
+        except IndexError:
+            warnings.warn("Interpreter: Probable memory access violation captured during execution of %s"
+                            % asm_filepath)
+            traceback.print_exc()
+
+    # load & execute modules with test scripts
+    for asm_filepath in vm_asm_filepaths:
+        tst_filepath = asm_filepath.replace(".asm", ".tst")
+        cmp_filepath = asm_filepath.replace(".asm", ".cmp")
+        tst_params = tester.load_tst(tst_filepath, debug=debug)
+        tst_params["compare"] = tester.load_cmp(cmp_filepath, debug=debug)
+    
+        # retrieve static_dict from translator run
+        _static_dict = None
+        for vm_dir in vm_dirpaths:
+            if vm_dir in asm_filepath:
+                _static_dict = vm_static_dicts[vm_dir]
+    
+        # execute
+        run(asm_filepath, static_dict=_static_dict, tst_params=tst_params, debug=debug)
+    
+    # run hdl tests (HardwareSimulator)
+    if sys.platform.startswith("win"):
+        cmd = os.path.join("..", "tools", "HardwareSimulator.bat")
+    else:
+        cmd = os.path.join("..", "tools", "HardwareSimulator.sh")
+
+    for test in hw_tst_files:
+        print(r"Running: %s %s" % (cmd, test))
+        result = subprocess.run([cmd, test], capture_output=True, text=True)
+        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+    
+        # different style of TST file, but the test has passed
+        if test in (
+            os.path.join("..", "projects", "05", "CPU-external.tst"), 
+            os.path.join("..", "projects", "05", "CPU.tst")
+        ):
+            continue
+    
+        line = 0
+        out_file = test.replace(".tst", ".out")
+        cmp_file = test.replace(".tst", ".cmp")
+        with open(out_file) as out:
+            with open(cmp_file) as cmp:
+                for index, (solution, current) in enumerate(zip(cmp, out)):
+                    if solution != current:
+                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                line += 1
+    
+    # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
+    if sys.platform.startswith("win"):
+        cmd = os.path.join("..", "tools", "CPUEmulator.bat")
+    else:
+        cmd = os.path.join("..", "tools", "CPUEmulator.sh")
+
+    for test in cpu_tst_files:
+        print(r"Running: %s %s" % (cmd, test))
+        result = subprocess.run([cmd, test], capture_output=True, text=True)
+        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
+            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+    
+        line = 0
+        out_file = test.replace(".tst", ".out")
+        cmp_file = test.replace(".tst", ".cmp")
+        with open(out_file) as out:
+            with open(cmp_file) as cmp:
+                for index, (solution, current) in enumerate(zip(cmp, out)):
+                    if solution != current:
+                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                line += 1
+    
+    # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
+    if sys.platform.startswith("win"):
+        cmd = os.path.join("..", "tools", "VMEmulator.bat")
+    else:
+        cmd = os.path.join("..", "tools", "VMEmulator.sh")
+
+    for test in vm_tst_files:
+        print(r"Running: %s %s" % (cmd, test))
+
+        # VMEmulator will conflict if multiple VM implementations
+        # so temporarily rename the course compiler version(s)
+        if test.startswith(os.path.join("..", "projects", "12")):
+            vm_base = test.replace("Test.tst", ".vm")
+            vm_out = vm_base.replace(".vm", "_out.vm")
+            vm_backup = vm_base.replace(".vm", ".bak")
+            os.rename(vm_base, vm_backup)
+            os.rename(vm_out, vm_base)
+
+            main_base = str(Path(test).with_name("Main.vm"))
+            main_out = main_base.replace("Main.vm", "Main_out.vm")
+            main_backup = main_base.replace(".vm", ".bak")
+            os.rename(main_base, main_backup)
+            os.rename(main_out, main_base)
+        try:
+            result = subprocess.run([cmd, test], capture_output=True, text=True)
+            if result.stdout != 'End of script - Comparison ended successfully\n':
+                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
+        except: 
+            raise
+        finally:
+            # in either case restore restore the file names
+            if test.startswith(os.path.join("..", "projects", "12")):
+                os.rename(vm_base, vm_out)
+                os.rename(vm_backup, vm_base)
+                os.rename(main_base, main_out)
+                os.rename(main_backup, main_base)
 
     # project
     # TODO: comment remaining sys.errors
@@ -901,26 +979,18 @@ if __name__ == '__main__':
     # TODO: dynamically count lines in jack/strict matches
 
     # compiler
-    # TODO: int cannot exceed 32767
-    # TODO: non-void without return value / void with return value
-    # TODO: statement without keyword/statement type
-    # TODO: non-terminated statement
-    # TODO: // in string strips the string
-    # TODO: prevent using reserved keywords as identifiers
-    # TODO: prevent duplicate variable/subroutine declaration
-    # TODO: check num args match called function
-    # TODO: check subroutine returns
-    # TODO: check constructor return type is class type
-    # TODO: check constructor returns this
-    # TODO: check for unexpected tokens after statement expression (if/while)
-
-    # interpreter
-    # TODO: translator finish stack mapping: other stack manip(stacksize), functions(stackframes)
-    # TODO: maybe stacksize should be <start-sp>-esp function instead?
-    # TODO: maybe stack metadata could use address labels dict?
-    # TODO: experiment with ebp (stackframe pointer) implementation
-    # TODO: move remaining python comments to asm: associate all asm with function, check linebreaks
-    # TODO: doc strings
+    # FIXME: // in string strips the string
+    # TODO: error check - int cannot exceed 32767
+    # TODO: error check - non-void without return value / void with return value
+    # TODO: error check - statement without keyword/statement type
+    # TODO: error check - non-terminated statement
+    # TODO: error check - prevent using reserved keywords as identifiers
+    # TODO: error check - prevent duplicate variable/subroutine declaration
+    # TODO: error check - check num args match called function
+    # TODO: error check - check subroutine returns
+    # TODO: error check - check constructor return type is class type
+    # TODO: error check - check constructor returns this
+    # TODO: error check - check for unexpected tokens after statement expression (if/while)
 
     # TODO: Jack OS Error Codes
     '''

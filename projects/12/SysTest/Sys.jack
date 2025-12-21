@@ -22,9 +22,7 @@ class Sys {
 
     /** Halts the program execution. */
     function void halt() {
-        while (true) {
-            // pass
-        }
+        while (true) {} // pass
         return;
     }
 

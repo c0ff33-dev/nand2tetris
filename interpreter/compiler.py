@@ -38,34 +38,45 @@ sys_func = {
                "poke": {"kind": "func", "type": "void", "args": ("int", "int"), "len": 2},
                "alloc": {"kind": "func", "type": "Array", "args": ("int",), "len": 1},
                "deAlloc": {"kind": "func", "type": "void", "args": ("Array",), "len": 1}},
+    # TODO: methods should probably just be len+1 in compiler handling but hard coded for now
     "String": {"new": {"kind": "const", "type": "String", "args": ("int",), "len": 1},
-               "dispose": {"kind": "method", "type": "void", "args": (), "len": 1},
-               "length": {"kind": "method", "type": "int", "args": (), "len": 1},
-               "charAt": {"kind": "method", "type": "int", "args": ("int",), "len": 2},
-               "setCharAt": {"kind": "method", "type": "void", "args": ("int", "char"), "len": 3},
-               "appendChar": {"kind": "method", "type": "String", "args": ("char",), "len": 2},
-               "eraseLastChar": {"kind": "method", "type": "void", "args": (), "len": 1},
-               "intValue": {"kind": "method", "type": "int", "args": (), "len": 1},
-               "setInt": {"kind": "method", "type": "void", "args": ("int",), "len": 2},
+               "dispose": {"kind": "method", "type": "void", "args": (), "len": 0+1},
+               "length": {"kind": "method", "type": "int", "args": (), "len": 0+1},
+               "charAt": {"kind": "method", "type": "int", "args": ("int",), "len": 1+1},
+               "setCharAt": {"kind": "method", "type": "void", "args": ("int", "char"), "len": 2+1},
+               "appendChar": {"kind": "method", "type": "String", "args": ("char",), "len": 1+1},
+               "eraseLastChar": {"kind": "method", "type": "void", "args": (), "len": 0+1},
+               "intValue": {"kind": "method", "type": "int", "args": (), "len": 0+1},
+               "setInt": {"kind": "method", "type": "void", "args": ("int",), "len": 1+1},
                "backSpace": {"kind": "func", "type": "char", "args": (), "len": 0},
                "doubleQuote": {"kind": "func", "type": "char", "args": (), "len": 0},
                "newLine": {"kind": "func", "type": "char", "args": (), "len": 0}},
     "Array": {"new": {"kind": "const", "type": "Array", "args": ("int",), "len": 1},
-              "dispose": {"kind": "method", "type": "void", "args": (), "len": 1}},
+              "dispose": {"kind": "method", "type": "void", "args": (), "len": 0+1}},
     "Output": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
+               "initMap": {"kind": "func", "type": "void", "args": (), "len": 0},
+               "create": {"kind": "func", "type": "void", "args": ("int",)*12, "len": 12},
+               "getMap": {"kind": "func", "type": "Array", "args": ("char",), "len": 1},
                "moveCursor": {"kind": "func", "type": "void", "args": ("int", "int"), "len": 2},
                "printChar": {"kind": "func", "type": "void", "args": ("char",), "len": 1},
                "printString": {"kind": "func", "type": "void", "args": ("String",), "len": 1},
                "printInt": {"kind": "func", "type": "void", "args": ("int",), "len": 1},
                "println": {"kind": "func", "type": "void", "args": (), "len": 0},
-               "backSpace": {"kind": "func", "type": "void", "args": (), "len": 0}},
+               "backSpace": {"kind": "func", "type": "void", "args": (), "len": 0},
+               "createShiftedMap": {"kind": "func", "type": "void", "args": (), "len": 0}, # internal api
+               "drawChar": {"kind": "func", "type": "void", "args": ("char",), "len": 1}}, # internal api
     "Screen": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
                "clearScreen": {"kind": "func", "type": "void", "args": (), "len": 0},
                "setColor": {"kind": "func", "type": "void", "args": ("boolean", ), "len": 1},
                "drawPixel": {"kind": "func", "type": "void", "args": ("int", "int"), "len": 2},
-               "drawLine": {"kind": "func", "type": "void", "args": ("int", "int", "int", "int"), "len": 4},
-               "drawRectangle": {"kind": "func", "type": "void", "args": ("int", "int", "int", "int"), "len": 4},
-               "drawCirlce": {"kind": "func", "type": "void", "args": ("int", "int", "int"), "len": 3}},
+               "drawLine": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4},
+               "drawRectangle": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4},
+               "drawCircle": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3},
+               "updateLocation": {"kind": "func", "type": "void", "args": ("int", "Array"), "len": 2}, # internal api
+               "drawConditional": {"kind": "func", "type": "void", "args": ("int", "int", "boolean"), "len": 3}, # internal api
+               "drawHorizontal": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3}, # internal api
+               "drawSymetric": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4}, # internal api
+               },
     "Keyboard": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
                  "keyPressed": {"kind": "func", "type": "char", "args": (), "len": 0},
                  "readChar": {"kind": "func", "type": "char", "args": (), "len": 0},
@@ -113,7 +124,7 @@ def store_pcode(pcode, cmd):
     global debug
 
     if debug:
-        # TODO: for performance reasons this should not be persistent not called every time
+        # TODO: for performance reasons this should be persistent not called every time
         count = 0
         for p in pcode:
             if not p.startswith("//"):
@@ -481,7 +492,7 @@ def compile_while(pcode, while_count):
 
 def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, exp_buffer=None, array=False):
     """
-    emit pcode when while encountered
+    emit pcode when var encountered
     """
     if var_scope not in ('local', 'member'):
         raise RuntimeError("Unexpected scope '%s'" % var_scope)
@@ -607,11 +618,16 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
             # process everything up to & including the last expression opening from buffer
             pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// [", pop_incl=True)
             pcode = store_pcode(pcode, "// %s" % symbol)
-            pcode = store_pcode(pcode, exp_buffer.pop())  # pop the array var as well
+
+            # pop the array var as well (if present)
+            if "(*array var)" in exp_buffer[-1]:
+                pcode = store_pcode(pcode, exp_buffer.pop())
 
         elif symbol == ",":
             # process everything up to but not including the last expression opening from buffer
             pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// (")  # i.e. expression was not bracketed
+
+        # else: symbols will be processed into exp_buffer during normal compilation (elem.tag / op_map)
 
     elif identifier:
         # identify array var
@@ -697,13 +713,13 @@ def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False):
     """
     if stop_at and exp_buffer:
         if stop_at not in exp_buffer:
-            raise RuntimeError("stop_value '%s' was not found in exp_buffer")
+            raise RuntimeError(f"stop_value '{stop_at}' was not found in exp_buffer: {exp_buffer}")
 
         while exp_buffer[-1] != stop_at:
             pcode = store_pcode(pcode, exp_buffer.pop())
 
         if pop_incl:
-            exp_buffer.pop()  # already printed
+            exp_buffer.pop()  # already emitted by caller
     else:
         while exp_buffer:
             store_pcode(pcode, exp_buffer.pop())
@@ -716,7 +732,7 @@ def main(filepath, file_list):
         - parse the AST
         - prescan the AST for class/function declarations
         - tag metadata as tokens are parsed
-        -- tag scope is defined by tree depth, some need to be carried forward, others cleared on depth change
+          - tag scope is defined by tree depth, some need to be carried forward, others cleared on depth change
         - call compile functions once enough information is parsed
     """
     global debug
@@ -856,7 +872,7 @@ def main(filepath, file_list):
                 lhs_array = None  # None signifies lhs_array was true but now compiled/consumed
 
         # if stand-alone var array buffered in a non-assignment statement process it now
-        # TODO: this is probably a bit fragile
+        # TODO: this is probably a bit fragile (but is still necessary)
         if statement != 'let' and elem.text != '[' and exp_buffer and exp_buffer[-1].endswith("(*array var)"):
             pcode = store_pcode(pcode, exp_buffer.pop())
 
@@ -1181,11 +1197,21 @@ def main(filepath, file_list):
                 elif exp_buffer and exp_buffer[-1] in op_words:
                     # if concurrent symbols are buffered pop the previous one first
                     # i.e. process a & b & c as ((a & b) & c)
+                    if symbol != "~":
+                        # '~' can be consecutive as it only affects one term 
+                        # i.e. process a & b & ~c as ((a & b) & (~c))
+                        pcode = store_pcode(pcode, exp_buffer.pop())
+                    exp_buffer.append(op_map[symbol])
+                elif exp_buffer and exp_buffer[-1].endswith("(*array var)"):
+                    # if operating on naked array var pop that first
                     pcode = store_pcode(pcode, exp_buffer.pop())
+                    
+                    # if this would then create double op pop first op
+                    if exp_buffer and exp_buffer[-1] in op_words:
+                        pcode = store_pcode(pcode, exp_buffer.pop())
                     exp_buffer.append(op_map[symbol])
                 else:
                     exp_buffer.append(op_map[symbol])
-
             else:
                 raise RuntimeError("unexpected symbol '%s'" % elem.text)
 
@@ -1270,6 +1296,7 @@ def _compile(jack_filepaths, strict_matches):
             with open(wip) as cur_file:
                 for index, (solution, current) in enumerate(zip(org_file, cur_file)):
                     if solution != current:
+                        print(f"Mismatch at {index}")
                         break
                 index += 1
                 if strict_matches[match] and index < strict_matches[match]:
@@ -1282,77 +1309,87 @@ def _compile(jack_filepaths, strict_matches):
 
 
 if __name__ == '__main__':
-    jack_filepaths = [
-        # TODO: projects 1-11 accounted for, included in interpreter/tokenizer/analyzer
-        [r"..\projects\09\Average\Main.jack"],
-        [r"..\projects\09\Fraction\Main.jack",
-         r"..\projects\09\Fraction\Fraction.jack"],
-        [r"..\projects\09\HelloWorld\Main.jack"],
-        [r"..\projects\09\List\Main.jack",
-         r"..\projects\09\List\List.jack"],
-        [r"..\projects\09\Square\Main.jack",
-         r"..\projects\09\Square\Square.jack",
-         r"..\projects\09\Square\SquareGame.jack"],
-        [r"..\projects\10\ArrayTest\Main.jack"],
-        # [r"..\projects\10\ExpressionLessSquare\Main.jack",  # nonsense code that shouldn't compile or run
-        #  r"..\projects\10\ExpressionLessSquare\Square.jack",
-        #  r"..\projects\10\ExpressionLessSquare\SquareGame.jack"],
-        [r"..\projects\10\Square\Main.jack",
-         r"..\projects\10\Square\Square.jack",
-         r"..\projects\10\Square\SquareGame.jack"],
-        [r"..\projects\11\Average\Main.jack"],
-        [r"..\projects\11\ComplexArrays\Main.jack"],
-        [r"..\projects\11\ConvertToBin\Main.jack"],
-        [r"..\projects\11\Pong\Ball.jack",
-         r"..\projects\11\Pong\Bat.jack",
-         r"..\projects\11\Pong\Main.jack",
-         r"..\projects\11\Pong\PongGame.jack"],
-        [r"..\projects\11\Seven\Main.jack"],
-        [r"..\projects\11\Square\Main.jack",
-         r"..\projects\11\Square\Square.jack",
-         r"..\projects\11\Square\SquareGame.jack"],
+    jack_filepath_lists = [
+        # projects 1-12 accounted for, included in interpreter/tokenizer/analyzer
+        [os.path.join("..", "projects", "09", "Average", "Main.jack")],
+        [os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
+         os.path.join("..", "projects", "09", "Fraction", "Fraction.jack")],
+        [os.path.join("..", "projects", "09", "HelloWorld", "Main.jack")],
+        [os.path.join("..", "projects", "09", "List", "Main.jack"),
+         os.path.join("..", "projects", "09", "List", "List.jack")],
+        [os.path.join("..", "projects", "09", "Square", "Main.jack"),
+         os.path.join("..", "projects", "09", "Square", "Square.jack"),
+         os.path.join("..", "projects", "09", "Square", "SquareGame.jack")],
+        [os.path.join("..", "projects", "10", "ArrayTest", "Main.jack")],
+        # [os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  # nonsense code that shouldn't compile or run
+        #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
+        #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack")],
+        [os.path.join("..", "projects", "10", "Square", "Main.jack"),
+         os.path.join("..", "projects", "10", "Square", "Square.jack"),
+         os.path.join("..", "projects", "10", "Square", "SquareGame.jack")],
+        [os.path.join("..", "projects", "11", "Average", "Main.jack")],
+        [os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack")],
+        [os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack")],
+        [os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
+         os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
+         os.path.join("..", "projects", "11", "Pong", "Main.jack"),
+         os.path.join("..", "projects", "11", "Pong", "PongGame.jack")],
+        [os.path.join("..", "projects", "11", "Seven", "Main.jack")],
+        [os.path.join("..", "projects", "11", "Square", "Main.jack"),
+         os.path.join("..", "projects", "11", "Square", "Square.jack"),
+         os.path.join("..", "projects", "11", "Square", "SquareGame.jack")],
 
         # TODO: Project 12
-        [r"..\projects\12\SysTest\Main.jack",
-         r"..\projects\12\SysTest\Sys.jack"],
-        [r"..\projects\12\ArrayTest\Main.jack",
-         r"..\projects\12\ArrayTest\Array.jack"],
-        [r"..\projects\12\KeyboardTest\Main.jack",
-         r"..\projects\12\KeyboardTest\Keyboard.jack"],
-        [r"..\projects\12\StringTest\Main.jack",
-         r"..\projects\12\StringTest\String.jack"],
+        [os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "SysTest", "Sys.jack")],
+        [os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "ArrayTest", "Array.jack")],
+        [os.path.join("..", "projects", "12", "KeyboardTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.jack")],
+        [os.path.join("..", "projects", "12", "StringTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "StringTest", "String.jack")],
+        [os.path.join("..", "projects", "12", "MemoryTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "MemoryTest", "Memory.jack")],
+        [os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack")],
+        [os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
+         os.path.join("..", "projects", "12", "MathTest", "Math.jack")],
     ]
 
     # matched to course compiler
-    strict_matches = {
-        # all
-        r"..\projects\09\Average\Main.vm": 149,
-        r"..\projects\11\Seven\Main.vm": 10,
-        r"..\projects\11\ConvertToBin\Main.vm": 109,
-        r"..\projects\09\Fraction\Main.vm": 18,
-        r"..\projects\09\Fraction\Fraction.vm": 116,
-        r"..\projects\09\HelloWorld\Main.vm": 33,
-        r"..\projects\09\List\Main.vm": 19,
-        r"..\projects\09\List\List.vm": 65,
-        r"..\projects\09\Square\Main.vm": 11,
-        r"..\projects\09\Square\Square.vm": 304,
-        r"..\projects\09\Square\SquareGame.vm": 179,
-        r"..\projects\10\ArrayTest\Main.vm": 183,
-        r"..\projects\11\Pong\Bat.vm": 207,
-        r"..\projects\11\Pong\Ball.vm": 444,
-        r"..\projects\11\Pong\Main.vm": 13,
-        r"..\projects\11\Pong\PongGame.vm": 318,
-        r"..\projects\11\ComplexArrays\Main.vm": 702,
-        r"..\projects\12\SysTest\Main.vm": 281,
-        r"..\projects\12\SysTest\Sys.vm": 83,
-        r"..\projects\12\ArrayTest\Main.vm": 131,
-        r"..\projects\12\ArrayTest\Array.vm": 23,
-        r"..\projects\12\KeyboardTest\Main.vm": 949,
-        r"..\projects\12\KeyboardTest\Keyboard.vm": 102,
-        r"..\projects\12\StringTest\Main.vm": 919,
-        r"..\projects\12\StringTest\String.vm": 393,
+    jack_matches = {
+        os.path.join("..", "projects", "09", "Average", "Main.vm"): 149,
+        os.path.join("..", "projects", "09", "Fraction", "Main.vm"): 18,
+        os.path.join("..", "projects", "09", "Fraction", "Fraction.vm"): 116,
+        os.path.join("..", "projects", "09", "HelloWorld", "Main.vm"): 33,
+        os.path.join("..", "projects", "09", "List", "Main.vm"): 19,
+        os.path.join("..", "projects", "09", "List", "List.vm"): 65,
+        os.path.join("..", "projects", "09", "Square", "Main.vm"): 11,
+        os.path.join("..", "projects", "09", "Square", "Square.vm"): 304,
+        os.path.join("..", "projects", "09", "Square", "SquareGame.vm"): 179,
+        os.path.join("..", "projects", "10", "ArrayTest", "Main.vm"): 183,
+        os.path.join("..", "projects", "11", "ComplexArrays", "Main.vm"): 702,
+        os.path.join("..", "projects", "11", "ConvertToBin", "Main.vm"): 109,
+        os.path.join("..", "projects", "11", "Pong", "Bat.vm"): 207,
+        os.path.join("..", "projects", "11", "Pong", "Ball.vm"): 444,
+        os.path.join("..", "projects", "11", "Pong", "Main.vm"): 13,
+        os.path.join("..", "projects", "11", "Pong", "PongGame.vm"): 318,
+        os.path.join("..", "projects", "11", "Seven", "Main.vm"): 10,
 
+        # TODO: Project 12
+        os.path.join("..", "projects", "12", "SysTest", "Main.vm"): 281,
+        os.path.join("..", "projects", "12", "SysTest", "Sys.vm"): 83,
+        os.path.join("..", "projects", "12", "ArrayTest", "Main.vm"): 131,
+        os.path.join("..", "projects", "12", "ArrayTest", "Array.vm"): 23,
+        os.path.join("..", "projects", "12", "KeyboardTest", "Main.vm"): 949,
+        os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.vm"): 102,
+        os.path.join("..", "projects", "12", "StringTest", "Main.vm"): 919,
+        os.path.join("..", "projects", "12", "StringTest", "String.vm"): 393,
+        os.path.join("..", "projects", "12", "MemoryTest", "Main.vm"): 176,
+        os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 376,
+        os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"): 465,
+        os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
+        os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,
     }
 
     debug = True  # default True if run from main, otherwise False if called externally
-    _compile(jack_filepaths, strict_matches)
+    _compile(jack_filepath_lists, jack_matches)
