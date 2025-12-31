@@ -563,6 +563,7 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
 
 
 def compile_string(pcode, string):
+    # FUTURE: literal could be disposed after statement (not implemented in course compiler)
     pcode = store_pcode(pcode, "push constant %s // strlen" % len(string))
     pcode = store_pcode(pcode, "call String.new 1 // \"%s\"" % string)
     for c, char in enumerate(string):
