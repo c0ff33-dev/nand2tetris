@@ -186,7 +186,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "ARG": 2,  # segmented by function (saved) -- args are initialized as passed on call
         "THIS": 3,  # pointer 0 // segmented by function (saved) -- undefined on call
         "THAT": 4,  # pointer 1 // segmented by function (saved) -- undefined on call
-        "TEMP": 5,  # 5-12 incl (volatile) -- undefined on call
+        "TEMP": 5,  # 5-12 incl (volatile) -- undefined on call (temp 1-5 are currently unused in compiled VM code)
         "R13": 13,  # reserved for VM translator (volatile) -- variable
         "R14": 14,  # reserved for VM translator (volatile) -- unused
         "R15": 15,  # reserved for VM translator (volatile) -- microcode return address

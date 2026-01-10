@@ -486,6 +486,7 @@ def compile_while(pcode, while_count):
     """
     emit pcode when while encountered
     """
+    # FIXME: while_count not incremented properly, see ScreenTest.asm with ~6 Screen.WHILE_EXP0 labels
     pcode = store_pcode(pcode, "\nlabel WHILE_EXP%s // begin while expression" % while_count)
     return pcode, while_count
 
