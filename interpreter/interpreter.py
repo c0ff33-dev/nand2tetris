@@ -945,6 +945,7 @@ if __name__ == '__main__':
                 os.rename(main_backup, main_base)
 
     # project
+    # TODO: diff Jack files (nand2tetris-fpga)
     # TODO: comment remaining sys.errors
     # TODO: Project 12: Implement the OS libraries in Jack, compile/test (test programs included)
     # TODO: add integration for Project 12 translate/execute/assemble ASM > HACK (integration test)
