@@ -63,8 +63,8 @@ sys_func = {
                "printInt": {"kind": "func", "type": "void", "args": ("int",), "len": 1},
                "println": {"kind": "func", "type": "void", "args": (), "len": 0},
                "backSpace": {"kind": "func", "type": "void", "args": (), "len": 0},
-               "createShiftedMap": {"kind": "func", "type": "void", "args": (), "len": 0}, # internal api
-               "drawChar": {"kind": "func", "type": "void", "args": ("char",), "len": 1}}, # internal api
+               "_createShiftedMap": {"kind": "func", "type": "void", "args": (), "len": 0}, # internal api
+               "_drawChar": {"kind": "func", "type": "void", "args": ("char",), "len": 1}}, # internal api
     "Screen": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
                "clearScreen": {"kind": "func", "type": "void", "args": (), "len": 0},
                "setColor": {"kind": "func", "type": "void", "args": ("boolean", ), "len": 1},
@@ -72,10 +72,10 @@ sys_func = {
                "drawLine": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4},
                "drawRectangle": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4},
                "drawCircle": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3},
-               "updateLocation": {"kind": "func", "type": "void", "args": ("int", "Array"), "len": 2}, # internal api
-               "drawConditional": {"kind": "func", "type": "void", "args": ("int", "int", "boolean"), "len": 3}, # internal api
-               "drawHorizontal": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3}, # internal api
-               "drawSymetric": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4}, # internal api
+               "_updateLocation": {"kind": "func", "type": "void", "args": ("int", "Array"), "len": 2}, # internal api
+               "_drawConditional": {"kind": "func", "type": "void", "args": ("int", "int", "boolean"), "len": 3}, # internal api
+               "_drawHorizontal": {"kind": "func", "type": "void", "args": ("int",)*3, "len": 3}, # internal api
+               "_drawSymetric": {"kind": "func", "type": "void", "args": ("int",)*4, "len": 4}, # internal api
                },
     "Keyboard": {"init": {"kind": "func", "type": "void", "args": (), "len": 0},
                  "keyPressed": {"kind": "func", "type": "char", "args": (), "len": 0},

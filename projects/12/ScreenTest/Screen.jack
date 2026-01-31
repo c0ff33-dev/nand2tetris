@@ -41,9 +41,8 @@ class Screen {
         return;
     }
 
-    // Internal API seen in reversed VM code only
-    // set pixel by applying bitmask to screen addr (word)
-    function void updateLocation(int addr, int mask) {
+    /** Set pixel by applying bitmask to screen addr (word). */
+    function void _updateLocation(int addr, int mask) {
         if (color) {
             let scrArr[addr] = (scrArr[addr] | mask); // draw
         } else {
@@ -71,13 +70,12 @@ class Screen {
         let word = x / 16; // offset into the row in words
         let bit = x - (word * 16); // offset into the word (x % 16)
         let offset = (y * 32) + word; // word offset into the array (x rows)
-        do Screen.updateLocation(offset, powArr[bit]);
+        do Screen._updateLocation(offset, powArr[bit]);
         return;
     }
 
-    // Internal API seen in reversed VM code only
-    // optionally flip x/y coords
-    function void drawConditional(int x, int y, boolean flip) {
+    /** Optionally flip x/y coords. */
+    function void _drawConditional(int x, int y, boolean flip) {
         if (flip) {
             do Screen.drawPixel(y, x);
         } else {
@@ -129,7 +127,7 @@ class Screen {
         let accumulator = (2 * height) - width;
         let horDelta = (2 * height);
         let diagDelta = 2 * (height-width);
-        do Screen.drawConditional(x,y,flip);
+        do Screen._drawConditional(x,y,flip);
 
         while (x < end) {
             if (accumulator < 0) {
@@ -145,7 +143,7 @@ class Screen {
                 }
             }
             let x = x + 1;
-            do Screen.drawConditional(x,y,flip);
+            do Screen._drawConditional(x,y,flip);
         }
         return;
     }
@@ -175,20 +173,20 @@ class Screen {
             let rowEnd = scrIdx + width;
             if (width = 0) {
                 // rectangle <= one word width 
-                do Screen.updateLocation(scrIdx, (rightMask & leftMask));
+                do Screen._updateLocation(scrIdx, (rightMask & leftMask));
             } else {
                 // left edge (partial fill)
-                do Screen.updateLocation(scrIdx, leftMask);
+                do Screen._updateLocation(scrIdx, leftMask);
                 let scrIdx = scrIdx + 1;
 
                 // middle (fully filled)
                 while (scrIdx < rowEnd) {
-                    do Screen.updateLocation(scrIdx, -1);
+                    do Screen._updateLocation(scrIdx, -1);
                     let scrIdx = scrIdx + 1;
                 }
 
                 // right edge (partial fill)
-                do Screen.updateLocation(rowEnd, rightMask);
+                do Screen._updateLocation(rowEnd, rightMask);
             }
 
             // next row
@@ -198,10 +196,9 @@ class Screen {
         return;
     }
 
-    // Internal API seen in reversed VM code only
-    // draw a horizontal line only
     // TODO: this does not seem worth duplicating compared to drawRectangle() 
-    function void drawHorizontal(int y, int x1, int x2) {
+    /** Draw a horizontal line only. */
+    function void _drawHorizontal(int y, int x1, int x2) {
         var int scrIdx, startWord, endWord, endAddr, rightMask, leftMask, width, minX, maxX, startBit, endBit;
 
         // ensure x1 <= x2
@@ -229,32 +226,31 @@ class Screen {
             
             if (width = 0) {
                 // line <= one word width 
-                do Screen.updateLocation(scrIdx, (rightMask & leftMask));
+                do Screen._updateLocation(scrIdx, (rightMask & leftMask));
             } else {
                 // left edge (partial fill)
-                do Screen.updateLocation(scrIdx, leftMask);
+                do Screen._updateLocation(scrIdx, leftMask);
                 let scrIdx = scrIdx + 1;
 
                 // middle (fully filled)
                 while (scrIdx < endAddr) {
-                    do Screen.updateLocation(scrIdx, -1);
+                    do Screen._updateLocation(scrIdx, -1);
                     let scrIdx = scrIdx + 1;
                 }
 
                 // right edge (partial fill)
-                do Screen.updateLocation(endAddr, rightMask);
+                do Screen._updateLocation(endAddr, rightMask);
             }
         }
         return;
     }
 
-    // Internal API seen in reversed VM code only
-    // efficiently mirror a circle octant to fill the remaining shape
-    function void drawSymetric(int x1, int y1, int x2, int y2) {
-        do Screen.drawHorizontal(y1-y2, x1+x2, x1-x2); // bottom
-        do Screen.drawHorizontal(y1+y2, x1+x2, x1-x2); // top
-        do Screen.drawHorizontal(y1-x2, x1-y2, x1+y2); // middle-bottom
-        do Screen.drawHorizontal(y1+x2, x1-y2, x1+y2); // middle-top
+    /** Efficiently mirror a circle octant to fill the remaining shape. */
+    function void _drawSymetric(int x1, int y1, int x2, int y2) {
+        do Screen._drawHorizontal(y1-y2, x1+x2, x1-x2); // bottom
+        do Screen._drawHorizontal(y1+y2, x1+x2, x1-x2); // top
+        do Screen._drawHorizontal(y1-x2, x1-y2, x1+y2); // middle-bottom
+        do Screen._drawHorizontal(y1+x2, x1-y2, x1+y2); // middle-top
         return;
     }
 
@@ -270,10 +266,10 @@ class Screen {
         }
 
         // approximate the circle without using sqrt()
-        // calculates one octant then mirrors the rest using drawSymetric()
+        // calculates one octant then mirrors the rest using _drawSymetric()
         let yOffset = r;
         let accumulator = 1 - r;
-        do Screen.drawSymetric(x, y, xOffset, yOffset);
+        do Screen._drawSymetric(x, y, xOffset, yOffset);
         while (yOffset > xOffset) {
             if (accumulator < 0) {
                 let accumulator = accumulator + (2 * xOffset) + 3;
@@ -282,7 +278,7 @@ class Screen {
                 let yOffset = yOffset - 1;
             }
             let xOffset = xOffset + 1;
-            do Screen.drawSymetric(x, y, xOffset, yOffset);
+            do Screen._drawSymetric(x, y, xOffset, yOffset);
         }
         return;
     }
