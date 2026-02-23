@@ -196,7 +196,7 @@ class Screen {
         return;
     }
 
-    // TODO: this does not seem worth duplicating compared to drawRectangle() 
+    // FUTURE: this does not seem worth duplicating compared to drawRectangle() 
     /** Draw a horizontal line only. */
     function void _drawHorizontal(int y, int x1, int x2) {
         var int scrIdx, startWord, endWord, endAddr, rightMask, leftMask, width, minX, maxX, startBit, endBit;
