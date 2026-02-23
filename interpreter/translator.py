@@ -4,6 +4,7 @@ VM to HACK Assembly Translator
 import os
 
 # TODO: common asm blocks should only be emitted once & reused
+# TODO: goal is to get pong under ~57k asm instructions for fpga
 
 class Translator:
     def __init__(self, debug=False):

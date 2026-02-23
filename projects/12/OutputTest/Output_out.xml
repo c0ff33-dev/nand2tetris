@@ -124,7 +124,7 @@
           <keyword> do </keyword>
           <identifier> Output </identifier>
           <symbol> . </symbol>
-          <identifier> createShiftedMap </identifier>
+          <identifier> _createShiftedMap </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression/>
@@ -8353,7 +8353,7 @@
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
-    <identifier> createShiftedMap </identifier>
+    <identifier> _createShiftedMap </identifier>
     <symbol> ( </symbol>
     <parameterList/>
     <symbol> ) </symbol>
@@ -8754,7 +8754,7 @@
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
-    <identifier> drawChar </identifier>
+    <identifier> _drawChar </identifier>
     <symbol> ( </symbol>
     <parameterList>
       <keyword> char </keyword>
@@ -9146,7 +9146,7 @@
           <keyword> do </keyword>
           <identifier> Output </identifier>
           <symbol> . </symbol>
-          <identifier> drawChar </identifier>
+          <identifier> _drawChar </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -9261,7 +9261,7 @@
                   <keyword> do </keyword>
                   <identifier> Output </identifier>
                   <symbol> . </symbol>
-                  <identifier> drawChar </identifier>
+                  <identifier> _drawChar </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression>
@@ -9793,7 +9793,7 @@
           <keyword> do </keyword>
           <identifier> Output </identifier>
           <symbol> . </symbol>
-          <identifier> drawChar </identifier>
+          <identifier> _drawChar </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>

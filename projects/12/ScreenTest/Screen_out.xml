@@ -257,7 +257,7 @@
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
-    <identifier> updateLocation </identifier>
+    <identifier> _updateLocation </identifier>
     <symbol> ( </symbol>
     <parameterList>
       <keyword> int </keyword>
@@ -574,7 +574,7 @@
           <keyword> do </keyword>
           <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> updateLocation </identifier>
+          <identifier> _updateLocation </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -610,7 +610,7 @@
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
-    <identifier> drawConditional </identifier>
+    <identifier> _drawConditional </identifier>
     <symbol> ( </symbol>
     <parameterList>
       <keyword> int </keyword>
@@ -1270,7 +1270,7 @@
           <keyword> do </keyword>
           <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawConditional </identifier>
+          <identifier> _drawConditional </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -1430,7 +1430,7 @@
               <keyword> do </keyword>
               <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawConditional </identifier>
+              <identifier> _drawConditional </identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>
@@ -1859,7 +1859,7 @@
                   <keyword> do </keyword>
                   <identifier> Screen </identifier>
                   <symbol> . </symbol>
-                  <identifier> updateLocation </identifier>
+                  <identifier> _updateLocation </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression>
@@ -1896,7 +1896,7 @@
                   <keyword> do </keyword>
                   <identifier> Screen </identifier>
                   <symbol> . </symbol>
-                  <identifier> updateLocation </identifier>
+                  <identifier> _updateLocation </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression>
@@ -1948,7 +1948,7 @@
                       <keyword> do </keyword>
                       <identifier> Screen </identifier>
                       <symbol> . </symbol>
-                      <identifier> updateLocation </identifier>
+                      <identifier> _updateLocation </identifier>
                       <symbol> ( </symbol>
                       <expressionList>
                         <expression>
@@ -1989,7 +1989,7 @@
                   <keyword> do </keyword>
                   <identifier> Screen </identifier>
                   <symbol> . </symbol>
-                  <identifier> updateLocation </identifier>
+                  <identifier> _updateLocation </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression>
@@ -2058,7 +2058,7 @@
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
-    <identifier> drawHorizontal </identifier>
+    <identifier> _drawHorizontal </identifier>
     <symbol> ( </symbol>
     <parameterList>
       <keyword> int </keyword>
@@ -2495,7 +2495,7 @@
                   <keyword> do </keyword>
                   <identifier> Screen </identifier>
                   <symbol> . </symbol>
-                  <identifier> updateLocation </identifier>
+                  <identifier> _updateLocation </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression>
@@ -2532,7 +2532,7 @@
                   <keyword> do </keyword>
                   <identifier> Screen </identifier>
                   <symbol> . </symbol>
-                  <identifier> updateLocation </identifier>
+                  <identifier> _updateLocation </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression>
@@ -2584,7 +2584,7 @@
                       <keyword> do </keyword>
                       <identifier> Screen </identifier>
                       <symbol> . </symbol>
-                      <identifier> updateLocation </identifier>
+                      <identifier> _updateLocation </identifier>
                       <symbol> ( </symbol>
                       <expressionList>
                         <expression>
@@ -2625,7 +2625,7 @@
                   <keyword> do </keyword>
                   <identifier> Screen </identifier>
                   <symbol> . </symbol>
-                  <identifier> updateLocation </identifier>
+                  <identifier> _updateLocation </identifier>
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression>
@@ -2660,7 +2660,7 @@
   <subroutineDec>
     <keyword> function </keyword>
     <keyword> void </keyword>
-    <identifier> drawSymetric </identifier>
+    <identifier> _drawSymetric </identifier>
     <symbol> ( </symbol>
     <parameterList>
       <keyword> int </keyword>
@@ -2683,7 +2683,7 @@
           <keyword> do </keyword>
           <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawHorizontal </identifier>
+          <identifier> _drawHorizontal </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -2723,7 +2723,7 @@
           <keyword> do </keyword>
           <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawHorizontal </identifier>
+          <identifier> _drawHorizontal </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -2763,7 +2763,7 @@
           <keyword> do </keyword>
           <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawHorizontal </identifier>
+          <identifier> _drawHorizontal </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -2803,7 +2803,7 @@
           <keyword> do </keyword>
           <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawHorizontal </identifier>
+          <identifier> _drawHorizontal </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -3110,7 +3110,7 @@
           <keyword> do </keyword>
           <identifier> Screen </identifier>
           <symbol> . </symbol>
-          <identifier> drawSymetric </identifier>
+          <identifier> _drawSymetric </identifier>
           <symbol> ( </symbol>
           <expressionList>
             <expression>
@@ -3280,7 +3280,7 @@
               <keyword> do </keyword>
               <identifier> Screen </identifier>
               <symbol> . </symbol>
-              <identifier> drawSymetric </identifier>
+              <identifier> _drawSymetric </identifier>
               <symbol> ( </symbol>
               <expressionList>
                 <expression>

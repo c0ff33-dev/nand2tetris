@@ -70,7 +70,7 @@
 <keyword> do </keyword>
 <identifier> Output </identifier>
 <symbol> . </symbol>
-<identifier> createShiftedMap </identifier>
+<identifier> _createShiftedMap </identifier>
 <symbol> ( </symbol>
 <symbol> ) </symbol>
 <symbol> ; </symbol>
@@ -3132,7 +3132,7 @@
 <symbol> } </symbol>
 <keyword> function </keyword>
 <keyword> void </keyword>
-<identifier> createShiftedMap </identifier>
+<identifier> _createShiftedMap </identifier>
 <symbol> ( </symbol>
 <symbol> ) </symbol>
 <symbol> { </symbol>
@@ -3320,7 +3320,7 @@
 <symbol> } </symbol>
 <keyword> function </keyword>
 <keyword> void </keyword>
-<identifier> drawChar </identifier>
+<identifier> _drawChar </identifier>
 <symbol> ( </symbol>
 <keyword> char </keyword>
 <identifier> c </identifier>
@@ -3506,7 +3506,7 @@
 <keyword> do </keyword>
 <identifier> Output </identifier>
 <symbol> . </symbol>
-<identifier> drawChar </identifier>
+<identifier> _drawChar </identifier>
 <symbol> ( </symbol>
 <integerConstant> 32 </integerConstant>
 <symbol> ) </symbol>
@@ -3567,7 +3567,7 @@
 <keyword> do </keyword>
 <identifier> Output </identifier>
 <symbol> . </symbol>
-<identifier> drawChar </identifier>
+<identifier> _drawChar </identifier>
 <symbol> ( </symbol>
 <identifier> c </identifier>
 <symbol> ) </symbol>
@@ -3822,7 +3822,7 @@
 <keyword> do </keyword>
 <identifier> Output </identifier>
 <symbol> . </symbol>
-<identifier> drawChar </identifier>
+<identifier> _drawChar </identifier>
 <symbol> ( </symbol>
 <integerConstant> 32 </integerConstant>
 <symbol> ) </symbol>

@@ -567,7 +567,7 @@ if __name__ == '__main__':
         os.path.join("..", "projects", "12", "StringTest", "Main.vm"): 919,
         os.path.join("..", "projects", "12", "StringTest", "String.vm"): 393,
         os.path.join("..", "projects", "12", "MemoryTest", "Main.vm"): 176,
-        os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 376,
+        os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 392,
         os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"): 465,
         os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
         os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,
@@ -737,7 +737,7 @@ if __name__ == '__main__':
         os.path.join("..", "projects", "05", "ComputerRect.tst"),
         os.path.join("..", "projects", "05", "CPU-external.tst"),
         os.path.join("..", "projects", "05", "CPU.tst"),
-        # os.path.join("..", "projects", "05"Memory.tst"),  # interactive test (passed manually)
+        # os.path.join("..", "projects", "05", "Memory.tst"),  # interactive test (passed manually)
     ]
     
     # ASM tests (CPUEmulator): # project 1-12 accounted for & included in tester!
@@ -805,8 +805,12 @@ if __name__ == '__main__':
         breakpoints = [-1]
 
     # compile Jack to VM (course compiler)
+    if sys.platform.startswith("win"):
+        cmd = os.path.join("..", "tools", "JackCompiler.bat")
+    else:
+        cmd = os.path.join("..", "tools", "JackCompiler.sh")
     for jack_dir in jack_dirpaths:
-        result = subprocess.run([os.path.join("..", "tools", "JackCompiler.bat"), jack_dir], capture_output=True, text=True)
+        result = subprocess.run([cmd, jack_dir], capture_output=True, text=True)
         if result.stderr or result.returncode:
             raise RuntimeError(result.stderr)
         else:
@@ -954,7 +958,6 @@ if __name__ == '__main__':
 
     # test harness
     # TODO: import file lists from common file
-    # TODO: dynamically count lines in jack/strict matches
 
     # compiler
     # FIXME: // in string strips the string

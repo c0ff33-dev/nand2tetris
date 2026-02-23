@@ -1291,6 +1291,7 @@ def _compile(jack_filepaths, strict_matches):
                     else:
                         f.write(line + "\n")
 
+    # TODO: dynamically count lines in jack/strict matches
     # enforce matching for known samples
     for match in strict_matches:
         wip = match.replace(".vm", "_out.vm")
@@ -1298,16 +1299,12 @@ def _compile(jack_filepaths, strict_matches):
             with open(wip) as cur_file:
                 for index, (solution, current) in enumerate(zip(org_file, cur_file)):
                     if solution != current:
-                        print(f"Mismatch at {index}")
-                        break
-                index += 1
-                if strict_matches[match] and index < strict_matches[match]:
-                    raise RuntimeError("%s mismatch after line %s/%s" % (wip, index, strict_matches[match]))
+                        raise RuntimeError("%s mismatch after line %s/%s" % (wip, index, strict_matches[match]))
 
     if debug:
         print("\nAll compilation results match solution!")
         for match in strict_matches:
-            print("\t" + match)
+            print("    " + match)
 
 
 if __name__ == '__main__':
@@ -1387,7 +1384,7 @@ if __name__ == '__main__':
         os.path.join("..", "projects", "12", "StringTest", "Main.vm"): 919,
         os.path.join("..", "projects", "12", "StringTest", "String.vm"): 393,
         os.path.join("..", "projects", "12", "MemoryTest", "Main.vm"): 176,
-        os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 376,
+        os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"): 392,
         os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"): 465,
         os.path.join("..", "projects", "12", "MathTest", "Main.vm"): 162,
         os.path.join("..", "projects", "12", "MathTest", "Math.vm"): 408,

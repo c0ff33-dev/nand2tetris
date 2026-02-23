@@ -7276,7 +7276,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Math.vm)
+@16 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -7345,7 +7345,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@16 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Math.vm)
+@16 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -7369,7 +7369,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -7588,7 +7588,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -7645,7 +7645,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -7729,7 +7729,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -8759,7 +8759,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -8970,7 +8970,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -9681,7 +9681,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10013,7 +10013,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10109,7 +10109,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10293,7 +10293,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10329,7 +10329,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10392,7 +10392,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10545,7 +10545,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -10879,7 +10879,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -11060,7 +11060,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -11162,7 +11162,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -11699,7 +11699,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@16 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Math.vm)
+@16 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Math.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -12552,7 +12552,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 0
-@18 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Memory.vm)
+@18 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Memory.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -12576,7 +12576,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -12675,7 +12675,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -12845,7 +12845,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -12967,7 +12967,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // push static 0
-@18 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Memory.vm)
+@18 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Memory.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -17158,7 +17158,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 4
-@19 // pop static 4 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 4 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @4 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -17190,7 +17190,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -17214,7 +17214,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -17238,7 +17238,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -17307,7 +17307,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 3
-@19 // pop static 3 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 3 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @3 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -17618,7 +17618,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 5
-@19 // pop static 5 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 5 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @5 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -34774,7 +34774,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -36111,7 +36111,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 6
-@19 // pop static 6 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 6 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @6 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -36231,7 +36231,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -36378,7 +36378,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -37247,7 +37247,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE0) // label IF_FALSE0
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -37289,7 +37289,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 5
-@19 // push static 5 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 5 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @5 // offset
 A=D+A // &(asm_segment+offset)
@@ -37374,7 +37374,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 6
-@19 // push static 6 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 6 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @6 // offset
 A=D+A // &(asm_segment+offset)
@@ -37595,7 +37595,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -37691,7 +37691,7 @@ D=M-D // d = val - 0 // leave esp here (pop equivalent)
 D;JNE // jump if not zero
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -37733,7 +37733,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -37847,7 +37847,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -37949,7 +37949,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 4
-@19 // push static 4 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 4 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
@@ -38704,7 +38704,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38851,7 +38851,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -38875,7 +38875,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -38902,7 +38902,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -39039,7 +39039,7 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39707,7 +39707,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -39745,7 +39745,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE2) // label IF_TRUE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -39778,7 +39778,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39793,7 +39793,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -39826,7 +39826,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -39844,7 +39844,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -39985,7 +39985,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE3) // label IF_FALSE3
 
 // push static 2
-@19 // push static 2 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 2 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -40005,7 +40005,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40494,7 +40494,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.printInt) // function Output.printInt 0
 
 // push static 3
-@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 3 // function Output.printInt 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -40613,7 +40613,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 3
-@19 // push static 3 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 3 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
@@ -40772,7 +40772,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.println) // function Output.println 0
 
 // push static 1
-@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 1 // function Output.println 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -40804,7 +40804,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -40828,7 +40828,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40852,7 +40852,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40884,7 +40884,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -40899,7 +40899,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -40973,7 +40973,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41060,7 +41060,7 @@ A=M // d = *lcl-5 (*lcl)
 (Output.backSpace) // function Output.backSpace 0
 
 // push static 2
-@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 2 // function Output.backSpace 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -41089,7 +41089,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE0) // label IF_TRUE0
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -41154,7 +41154,7 @@ D;JNE // jump if not zero
 (Output.IF_TRUE1) // label IF_TRUE1
 
 // push static 0
-@19 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -41187,7 +41187,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41202,7 +41202,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41235,7 +41235,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41266,7 +41266,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 0
-@19 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41281,7 +41281,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41355,7 +41355,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41373,7 +41373,7 @@ M=D // dst = src (pop)
 (Output.IF_FALSE2) // label IF_FALSE2
 
 // push static 1
-@19 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Output.vm)
+@19 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -41406,7 +41406,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // pop static 1
-@19 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41433,7 +41433,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41472,7 +41472,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@19 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Output.vm)
+@19 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Output.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41672,7 +41672,7 @@ M=D // esp = constant
 @SP // &esp
 M=M+1 // &esp++
 // pop static 1
-@26 // pop static 1 // static + src segment offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // pop static 1 // static + src segment offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &(static+offset)
 @1 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41704,7 +41704,7 @@ M=!M // esp = !val1
 M=M+1 // &esp++
 
 // pop static 2
-@26 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41773,7 +41773,7 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // pop static 0
-@26 // pop static 0 // static + src segment offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // pop static 0 // static + src segment offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &(static+offset)
 @0 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -41797,7 +41797,7 @@ M=D // esp = constant
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -42016,7 +42016,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -42073,7 +42073,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -42157,7 +42157,7 @@ M=M-D // esp = val1 - val2
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -42433,7 +42433,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -42643,11 +42643,11 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// function Screen.updateLocation 0
-(Screen.updateLocation) // function Screen.updateLocation 0
+// function Screen._updateLocation 0
+(Screen._updateLocation) // function Screen._updateLocation 0
 
 // push static 2
-@26 // push static 2 // function Screen.updateLocation 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 2 // function Screen._updateLocation 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -42688,7 +42688,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -42724,7 +42724,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -42875,7 +42875,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -42911,7 +42911,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 1
-@26 // push static 1 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 1 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -43134,7 +43134,7 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 // pop static 2
-@26 // pop static 2 // static + src segment offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // pop static 2 // static + src segment offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &(static+offset)
 @2 // retrieve &dst (segment+offset) and store at R13
 D=D+A // d = &dst (asm_segment+offset)
@@ -43972,7 +43972,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -44022,9 +44022,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.448) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.448 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.448) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.448 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -44064,7 +44064,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -44148,11 +44148,11 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// function Screen.drawConditional 0
-(Screen.drawConditional) // function Screen.drawConditional 0
+// function Screen._drawConditional 0
+(Screen._drawConditional) // function Screen._drawConditional 0
 
 // push argument 2
-@ARG // push argument 2 // function Screen.drawConditional 0 (&asm_segment)
+@ARG // push argument 2 // function Screen._drawConditional 0 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -46277,9 +46277,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawConditional 3
-(Screen.Screen.drawConditional.475) // call Screen.drawConditional 3
-@Screen.Screen.drawConditional.475 // call Screen.drawConditional // push RP
+// call Screen._drawConditional 3
+(Screen.Screen._drawConditional.475) // call Screen._drawConditional 3
+@Screen.Screen._drawConditional.475 // call Screen._drawConditional // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -46319,7 +46319,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawConditional // &func (parsed from call <label> <num_args>)
+@Screen._drawConditional // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -46806,9 +46806,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawConditional 3
-(Screen.Screen.drawConditional.479) // call Screen.drawConditional 3
-@Screen.Screen.drawConditional.479 // call Screen.drawConditional // push RP
+// call Screen._drawConditional 3
+(Screen.Screen._drawConditional.479) // call Screen._drawConditional 3
+@Screen.Screen._drawConditional.479 // call Screen._drawConditional // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -46848,7 +46848,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawConditional // &func (parsed from call <label> <num_args>)
+@Screen._drawConditional // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -47926,7 +47926,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -48054,7 +48054,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -48585,9 +48585,9 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.501) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.501 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.501) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.501 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -48627,7 +48627,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -48676,9 +48676,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.503) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.503 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.503) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.503 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -48718,7 +48718,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -48885,9 +48885,9 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.506) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.506 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.506) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.506 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -48927,7 +48927,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -49024,9 +49024,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.508) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.508 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.508) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.508 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -49066,7 +49066,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -49280,11 +49280,11 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// function Screen.drawHorizontal 11
-(Screen.drawHorizontal) // function Screen.drawHorizontal 11
+// function Screen._drawHorizontal 11
+(Screen._drawHorizontal) // function Screen._drawHorizontal 11
 
 // push argument 1
-@ARG // push argument 1 // function Screen.drawHorizontal 11 (&asm_segment)
+@ARG // push argument 1 // function Screen._drawHorizontal 11 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -50417,7 +50417,7 @@ M=D // esp = *(asm_segment+offset)
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -50545,7 +50545,7 @@ M=D+M // esp = val2 + val1
 M=M+1 // &esp++
 
 // push static 0
-@26 // push static 0 (&asm_segment) // static + src offset (..\projects\12\ScreenTest\Screen.vm)
+@26 // push static 0 (&asm_segment) // static + src offset (../projects/12/ScreenTest/Screen.vm)
 D=A // d = &asm_segment
 @0 // offset
 A=D+A // &(asm_segment+offset)
@@ -50996,9 +50996,9 @@ M=D&M // esp = val2 & val1
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.533) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.533 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.533) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.533 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -51038,7 +51038,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -51087,9 +51087,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.535) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.535 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.535) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.535 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -51129,7 +51129,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -51296,9 +51296,9 @@ M=-M // esp = -val1
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.538) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.538 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.538) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.538 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -51338,7 +51338,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -51435,9 +51435,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.updateLocation 2
-(Screen.Screen.updateLocation.540) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.540 // call Screen.updateLocation // push RP
+// call Screen._updateLocation 2
+(Screen.Screen._updateLocation.540) // call Screen._updateLocation 2
+@Screen.Screen._updateLocation.540 // call Screen._updateLocation // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -51477,7 +51477,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
+@Screen._updateLocation // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -51567,11 +51567,11 @@ A=M-D // &old_lcl-5 (&lcl)
 A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
-// function Screen.drawSymetric 0
-(Screen.drawSymetric) // function Screen.drawSymetric 0
+// function Screen._drawSymetric 0
+(Screen._drawSymetric) // function Screen._drawSymetric 0
 
 // push argument 1
-@ARG // push argument 1 // function Screen.drawSymetric 0 (&asm_segment)
+@ARG // push argument 1 // function Screen._drawSymetric 0 (&asm_segment)
 D=M // d = *asm_segment
 @1 // offset
 A=D+A // &(asm_segment+offset)
@@ -51677,9 +51677,9 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.542) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.542 // call Screen.drawHorizontal // push RP
+// call Screen._drawHorizontal 3
+(Screen.Screen._drawHorizontal.542) // call Screen._drawHorizontal 3
+@Screen.Screen._drawHorizontal.542 // call Screen._drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -51818,7 +51818,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
+@Screen._drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -51944,9 +51944,9 @@ M=M-D // esp = val1 - val2
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.544) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.544 // call Screen.drawHorizontal // push RP
+// call Screen._drawHorizontal 3
+(Screen.Screen._drawHorizontal.544) // call Screen._drawHorizontal 3
+@Screen.Screen._drawHorizontal.544 // call Screen._drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -52085,7 +52085,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
+@Screen._drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -52211,9 +52211,9 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.546) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.546 // call Screen.drawHorizontal // push RP
+// call Screen._drawHorizontal 3
+(Screen.Screen._drawHorizontal.546) // call Screen._drawHorizontal 3
+@Screen.Screen._drawHorizontal.546 // call Screen._drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -52352,7 +52352,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
+@Screen._drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -52478,9 +52478,9 @@ M=D+M // esp = val2 + val1
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.548) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.548 // call Screen.drawHorizontal // push RP
+// call Screen._drawHorizontal 3
+(Screen.Screen._drawHorizontal.548) // call Screen._drawHorizontal 3
+@Screen.Screen._drawHorizontal.548 // call Screen._drawHorizontal // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -52619,7 +52619,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
+@Screen._drawHorizontal // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -53552,9 +53552,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawSymetric 4
-(Screen.Screen.drawSymetric.562) // call Screen.drawSymetric 4
-@Screen.Screen.drawSymetric.562 // call Screen.drawSymetric // push RP
+// call Screen._drawSymetric 4
+(Screen.Screen._drawSymetric.562) // call Screen._drawSymetric 4
+@Screen.Screen._drawSymetric.562 // call Screen._drawSymetric // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -53594,7 +53594,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawSymetric // &func (parsed from call <label> <num_args>)
+@Screen._drawSymetric // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0
@@ -54269,9 +54269,9 @@ M=D // esp = *(asm_segment+offset)
 @SP // &esp
 M=M+1 // &esp++
 
-// call Screen.drawSymetric 4
-(Screen.Screen.drawSymetric.570) // call Screen.drawSymetric 4
-@Screen.Screen.drawSymetric.570 // call Screen.drawSymetric // push RP
+// call Screen._drawSymetric 4
+(Screen.Screen._drawSymetric.570) // call Screen._drawSymetric 4
+@Screen.Screen._drawSymetric.570 // call Screen._drawSymetric // push RP
 D=A // d = RP
 @R13
 M=D // r13 = RP
@@ -54311,7 +54311,7 @@ D=A // d = num_locals
 D=M-D // d = *esp-num_locals (&lcl[0])
 @LCL // &lcl[0]
 M=D // &lcl[0] = &lcl[0]
-@Screen.drawSymetric // &func (parsed from call <label> <num_args>)
+@Screen._drawSymetric // &func (parsed from call <label> <num_args>)
 0;JMP // *func // jump to function (call target)
 
 // pop temp 0

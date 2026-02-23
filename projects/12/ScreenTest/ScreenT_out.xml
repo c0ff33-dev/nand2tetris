@@ -126,7 +126,7 @@
 <symbol> } </symbol>
 <keyword> function </keyword>
 <keyword> void </keyword>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <keyword> int </keyword>
 <identifier> addr </identifier>
@@ -279,7 +279,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> offset </identifier>
 <symbol> , </symbol>
@@ -294,7 +294,7 @@
 <symbol> } </symbol>
 <keyword> function </keyword>
 <keyword> void </keyword>
-<identifier> drawConditional </identifier>
+<identifier> _drawConditional </identifier>
 <symbol> ( </symbol>
 <keyword> int </keyword>
 <identifier> x </identifier>
@@ -613,7 +613,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawConditional </identifier>
+<identifier> _drawConditional </identifier>
 <symbol> ( </symbol>
 <identifier> x </identifier>
 <symbol> , </symbol>
@@ -687,7 +687,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawConditional </identifier>
+<identifier> _drawConditional </identifier>
 <symbol> ( </symbol>
 <identifier> x </identifier>
 <symbol> , </symbol>
@@ -891,7 +891,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> scrIdx </identifier>
 <symbol> , </symbol>
@@ -908,7 +908,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> scrIdx </identifier>
 <symbol> , </symbol>
@@ -932,7 +932,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> scrIdx </identifier>
 <symbol> , </symbol>
@@ -951,7 +951,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> rowEnd </identifier>
 <symbol> , </symbol>
@@ -981,7 +981,7 @@
 <symbol> } </symbol>
 <keyword> function </keyword>
 <keyword> void </keyword>
-<identifier> drawHorizontal </identifier>
+<identifier> _drawHorizontal </identifier>
 <symbol> ( </symbol>
 <keyword> int </keyword>
 <identifier> y </identifier>
@@ -1190,7 +1190,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> scrIdx </identifier>
 <symbol> , </symbol>
@@ -1207,7 +1207,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> scrIdx </identifier>
 <symbol> , </symbol>
@@ -1231,7 +1231,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> scrIdx </identifier>
 <symbol> , </symbol>
@@ -1250,7 +1250,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> updateLocation </identifier>
+<identifier> _updateLocation </identifier>
 <symbol> ( </symbol>
 <identifier> endAddr </identifier>
 <symbol> , </symbol>
@@ -1264,7 +1264,7 @@
 <symbol> } </symbol>
 <keyword> function </keyword>
 <keyword> void </keyword>
-<identifier> drawSymetric </identifier>
+<identifier> _drawSymetric </identifier>
 <symbol> ( </symbol>
 <keyword> int </keyword>
 <identifier> x1 </identifier>
@@ -1282,7 +1282,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawHorizontal </identifier>
+<identifier> _drawHorizontal </identifier>
 <symbol> ( </symbol>
 <identifier> y1 </identifier>
 <symbol> - </symbol>
@@ -1300,7 +1300,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawHorizontal </identifier>
+<identifier> _drawHorizontal </identifier>
 <symbol> ( </symbol>
 <identifier> y1 </identifier>
 <symbol> + </symbol>
@@ -1318,7 +1318,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawHorizontal </identifier>
+<identifier> _drawHorizontal </identifier>
 <symbol> ( </symbol>
 <identifier> y1 </identifier>
 <symbol> - </symbol>
@@ -1336,7 +1336,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawHorizontal </identifier>
+<identifier> _drawHorizontal </identifier>
 <symbol> ( </symbol>
 <identifier> y1 </identifier>
 <symbol> + </symbol>
@@ -1479,7 +1479,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawSymetric </identifier>
+<identifier> _drawSymetric </identifier>
 <symbol> ( </symbol>
 <identifier> x </identifier>
 <symbol> , </symbol>
@@ -1555,7 +1555,7 @@
 <keyword> do </keyword>
 <identifier> Screen </identifier>
 <symbol> . </symbol>
-<identifier> drawSymetric </identifier>
+<identifier> _drawSymetric </identifier>
 <symbol> ( </symbol>
 <identifier> x </identifier>
 <symbol> , </symbol>
