@@ -144,30 +144,11 @@ def load_cmp(cmp_filepath, debug=False):
 
 
 if __name__ == '__main__':
-    tst_filepaths = [
-        # project 1-12 accounted for & included in interpreter!
-
-        # week 5 and below use different multi row format (tested with HardwareSimulator/CPUEmulator)
-        # r'../projects/04/fill/Fill.tst',  # interactive test (passed manually)
-        # r'../projects/04/fill/FillAutomatic.tst',
-        # r'../projects/04/mult/Mult.tst',
-
-        r'../projects/07/MemoryAccess/BasicTest/BasicTest.tst',
-        r'../projects/07/MemoryAccess/PointerTest/PointerTest.tst',
-        r'../projects/07/MemoryAccess/StaticTest/StaticTest.tst',
-        r'../projects/07/StackArithmetic/SimpleAdd/SimpleAdd.tst',
-        r'../projects/07/StackArithmetic/StackTest/StackTest.tst',
-        r'../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.tst',
-        r'../projects/08/FunctionCalls/NestedCall/NestedCall.tst',
-        r'../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.tst',
-        r'../projects/08/FunctionCalls/StaticsTest/StaticsTest.tst',
-        r'../projects/08/ProgramFlow/BasicLoop/BasicLoop.tst',
-        r'../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.tst',
-    ]
+    from inputs import tester_tst_files
 
     debug_runs = [True, False]
     for _debug in debug_runs:
-        for _tst_filepath in tst_filepaths:
+        for _tst_filepath in tester_tst_files:
             _cmp_filepath = _tst_filepath.replace("VME", "").replace(".tst", ".cmp")
             _tst_params = load_tst(_tst_filepath, debug=_debug)
             _tst_params["compare"] = load_cmp(_cmp_filepath, debug=_debug)

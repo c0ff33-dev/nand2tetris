@@ -816,49 +816,7 @@ class Translator:
 
 
 if __name__ == "__main__":
-    # regular VM programs
-    # projects 1-12 accounted for, included in interpreter
-    _vm_dirpaths = [
-        r'../projects/07/MemoryAccess/BasicTest',
-        r'../projects/07/MemoryAccess/PointerTest',
-        r'../projects/07/MemoryAccess/StaticTest',
-        r'../projects/07/StackArithmetic/SimpleAdd',
-        r'../projects/07/StackArithmetic/StackTest',
-        r'../projects/08/ProgramFlow/BasicLoop',
-        r'../projects/08/ProgramFlow/FibonacciSeries',
-        # r'../projects/08/FunctionCalls/FibonacciElement',  # requires non-spec bootstrap (vm_bootstrap_paths)
-        # r'../projects/08/FunctionCalls/NestedCall',  # requires non-spec bootstrap (vm_bootstrap_paths)
-        r'../projects/08/FunctionCalls/SimpleFunction',
-        # r'../projects/08/FunctionCalls/StaticsTest'  # requires non-spec bootstrap (vm_bootstrap_paths)
-        r"../projects/09/Average",
-        r"../projects/09/Fraction",
-        r"../projects/09/HelloWorld",
-        r"../projects/09/List",
-        r"../projects/09/Square",
-        r"../projects/10/ArrayTest",
-        # r"../projects/10/ExpressionLessSquare",  # nonsense code that shouldn't compile or run
-        r"../projects/10/Square",
-        r"../projects/11/Average",
-        r"../projects/11/ComplexArrays",
-        r"../projects/11/ConvertToBin",
-        r"../projects/11/Pong",
-        r"../projects/11/Seven",
-        r"../projects/11/Square",
-
-        # TODO: Project 12
-        r"../projects/12/SysTest",
-        r"../projects/12/ArrayTest",
-        r"../projects/12/KeyboardTest",
-        r"../projects/12/StringTest",
-        # r"../projects/12/MemoryTest"
-    ]
-
-    # VM programs that require non-spec bootstrap to pass tests
-    _vm_bootstrap_paths = [
-        r'../projects/08/FunctionCalls/FibonacciElement',
-        r'../projects/08/FunctionCalls/NestedCall',
-        r'../projects/08/FunctionCalls/StaticsTest'
-    ]
+    from inputs import vm_dirpaths as _vm_dirpaths, vm_bootstrap_paths as _vm_bootstrap_paths
 
     _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
 
