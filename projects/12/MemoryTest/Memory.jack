@@ -77,7 +77,7 @@ class Memory {
                 // if nextBlock is end of list (**(nextPtr+1) == &blockData)
                 if (nextBlock[1] = (nextBlock + 2)) {
                     // currentBlock updated to reference closest data block (terminate list)
-                    // *nextPtr = &blockData+2
+                    // *nextPtr = &blockData
                     let blockPtr[1] = (blockPtr + 2);
                 } else { 
                     // else currentBlock inherits nextBlock flink
@@ -88,14 +88,14 @@ class Memory {
         }
 
         // error if loop was broken by exhausting heap / going out of bounds
-        // minimum (3 + size) words required to continue (blockSize, *nextPtr, freeBlockSize)
+        // minimum (4 + size) words required to continue (blockSize, *nextPtr, freeBlockSize, *nextFreePtr)
         if ((blockPtr + size) > 16379) {
             do Sys.error(6); // Heap overflow
         }
         
         // if blockSize is sufficient split into allocBlock/freeBlock and link them together
         if (blockPtr[0] > (size + 2)) {           
-            // freeBlockSize = blockSize - allocBlockSize
+            // freeBlockSize = blockSize - allocBlockSize - 2
             let blockPtr[size + 2] = blockPtr[0] - size - 2;
 
             // freeBlock inherits allocBlock *nextPtr (flink or terminate)
@@ -114,7 +114,7 @@ class Memory {
 
             // complete the chain by linking allocBlock to freeBlock
 
-            // *allocNextPtr = *freeBlock
+            // *allocNextPtr = &freeBlock
             let blockPtr[1] = blockPtr + size + 2;
         } else {
             // consume the whole block (size/flink unchanged)
@@ -131,7 +131,7 @@ class Memory {
     }
 
     /** De-allocates the given object (cast as an array) by making
-     *  it available for future allocations (appended to end of freeList). */
+     *  it available for future allocations (marked free in-place). */
     function void deAlloc(Array o) {
         var Array blockPtr;
         var Array nextPtr;

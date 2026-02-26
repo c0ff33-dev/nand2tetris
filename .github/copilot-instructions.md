@@ -79,3 +79,4 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 - All tests must pass before marking a task as done.
 - Must run `source ~/src/nand2tetris/.venv/bin/activate` in each shell before running Python commands.
 - Must `cd ~/src/nand2tetris/interpreter` before running tests via `python interpreter.py`.
+- Never commit changes (git commit) without being explicitly told to by the user.
