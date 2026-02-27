@@ -4,6 +4,7 @@ by tokenizer/analyzer.
 """
 
 import os
+import re
 import xml.etree.ElementTree as Et
 
 op_map = {"+": "add", "-": "sub", "*": "call Math.multiply 2", "/": "call Math.divide 2", "&": "and", "|": "or",
@@ -141,6 +142,36 @@ def store_pcode(pcode, cmd):
     pcode.append(cmd.strip()+"\n")
 
     return pcode
+
+
+def extract_asserts(jack_filepath):
+    """
+    scan raw Jack source for // ASSERT comments on let statements.
+    returns {(func_name, let_index): "ASSERT ..."} where let_index is 1-based per function.
+    """
+    asserts = {}
+    current_func = None
+    let_count = 0
+
+    with open(jack_filepath) as f:
+        for line in f:
+            stripped = line.strip()
+
+            # track function context
+            func_match = re.match(r'(?:function|method|constructor)\s+\S+\s+(\w+)\s*\(', stripped)
+            if func_match:
+                current_func = func_match.group(1)
+                let_count = 0
+                continue
+
+            # count let statements and check for ASSERT
+            if stripped.startswith('let ') and current_func:
+                let_count += 1
+                assert_match = re.search(r'//\s*ASSERT\s+(.*)', stripped)
+                if assert_match:
+                    asserts[(current_func, let_count)] = "ASSERT " + assert_match.group(1).strip()
+
+    return asserts
 
 
 def compile_class(pcode, class_name, class_dict):
@@ -727,7 +758,7 @@ def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False):
     return pcode, exp_buffer
 
 
-def main(filepath, file_list):
+def main(filepath, file_list, asserts=None):
     """
     main engine:
         - parse the AST
@@ -850,7 +881,7 @@ def main(filepath, file_list):
     if_list = []
     while_list = []
     end_block = first_eq = False
-    num_args = while_count = if_count = 0
+    num_args = while_count = if_count = let_count = 0
     class_name = statement = func_name = func_type = keyword = var_type = var_kind = identifier = ''
     lhs_var_name = lhs_array = parent_obj = child_func = func_kind = var_scope = ''
 
@@ -970,6 +1001,7 @@ def main(filepath, file_list):
                         continue  # identifier was object type not function name
                     else:
                         func_name = identifier  # sometimes needs to overwrite the previous function
+                        let_count = 0
 
                     if not func_type:
                         if keyword == 'constructor':
@@ -1188,6 +1220,10 @@ def main(filepath, file_list):
                 if exp_buffer:
                     raise RuntimeError("unparsed expressions still in buffer: %s" % exp_buffer)
 
+                # emit ASSERT if this let statement has one
+                if statement == 'let' and asserts and (func_name, let_count) in asserts:
+                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, let_count)])
+
                 # reset statement scoped vars
                 statement = lhs_var_name = lhs_array = ''
                 first_eq = False
@@ -1241,6 +1277,7 @@ def main(filepath, file_list):
             statement = 'do'
         elif elem.tag == 'letStatement':
             statement = 'let'
+            let_count += 1
         elif elem.tag == 'returnStatement':
             statement = 'return'
         elif elem.tag == 'expressionList':
@@ -1273,7 +1310,8 @@ def _compile(jack_filepaths, strict_matches):
                 objects.append(os.path.basename(_filepath).replace(".jack", ""))
 
         for _filepath in file_list:
-            pcode = main(_filepath, file_list)
+            asserts = extract_asserts(_filepath)
+            pcode = main(_filepath, file_list, asserts)
 
             # strip debug for result comparison
             with open(_filepath.replace(".jack", "_out.vm"), "w") as f:
@@ -1283,7 +1321,9 @@ def _compile(jack_filepaths, strict_matches):
                 print("Compiling: %s" % _filepath.replace(".jack", "_out.vm"))
                 for line in pcode:
                     comment = line.find("//")
-                    if line.startswith("//"):
+                    if line.startswith("// ASSERT"):
+                        f.write(line)  # preserve ASSERT directives
+                    elif line.startswith("//"):
                         continue
                     elif comment:
                         f.write(line[:comment].strip() + "\n")
@@ -1296,7 +1336,8 @@ def _compile(jack_filepaths, strict_matches):
         wip = match.replace(".vm", "_out.vm")
         with open(match) as org_file:
             with open(wip) as cur_file:
-                for index, (solution, current) in enumerate(zip(org_file, cur_file)):
+                cur_lines = (line for line in cur_file if not line.startswith("// ASSERT"))
+                for index, (solution, current) in enumerate(zip(org_file, cur_lines)):
                     if solution != current:
                         raise RuntimeError("%s mismatch after line %s/%s" % (wip, index, strict_matches[match]))
 

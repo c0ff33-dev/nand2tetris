@@ -605,8 +605,10 @@ class Translator:
         """
         translate the vm commands into a single asm file
         """
-        src = vm_filepath.split(os.path.sep)[-1].split('.vm')[0]
+        src = vm_filepath.split(os.path.sep)[-1].split('.vm')[0].removesuffix('_out')
         current_function = src  # fallback; updated on each 'function' command
+        # normalize to .vm path for static_dict lookups (keyed by reference path)
+        vm_ref_path = vm_filepath.replace('_out.vm', '.vm') if '_out.vm' in vm_filepath else vm_filepath
 
         with open(vm_filepath) as vm_file:
             vm_contents = vm_file.readlines()
@@ -615,7 +617,12 @@ class Translator:
         for cmd in vm_contents:
             # cleanup test file
             cmd = cmd.strip()
-            if cmd.startswith(r'//'):
+            if cmd.startswith('// ASSERT'):
+                # attach ASSERT to last emitted ASM instruction
+                asm_lines = self.asm.rstrip('\n').rsplit('\n', 1)
+                self.asm = asm_lines[0] + '\n' + asm_lines[1] + ' ' + cmd + '\n'
+                continue
+            elif cmd.startswith(r'//'):
                 continue
             elif cmd == "":
                 continue
@@ -650,9 +657,9 @@ class Translator:
 
             # parse commands
             if cmd.startswith("push"):
-                self.gen_push(cmd, vm_segment, asm_segment, value, vm_filepath)
+                self.gen_push(cmd, vm_segment, asm_segment, value, vm_ref_path)
             elif cmd.startswith("pop"):
-                self.gen_pop(cmd, vm_segment, asm_segment, value, vm_filepath)
+                self.gen_pop(cmd, vm_segment, asm_segment, value, vm_ref_path)
             elif cmd.startswith("add"):
                 self.gen_add(cmd)
             elif cmd.startswith("sub"):
@@ -682,7 +689,7 @@ class Translator:
                 stored_comment = " // %s" % cmd  # function only creates a label which gets parsed out
                 self.gen_function(cmd, src)
             elif cmd.startswith("return"):
-                self.gen_return(cmd, vm_filepath)
+                self.gen_return(cmd, vm_ref_path)
             elif cmd.startswith("call"):
                 self.gen_call(cmd, src)
             else:
@@ -793,10 +800,13 @@ class Translator:
             new_value = old_value + new_value
 
         for vm_filepath in vm_filelist:
-            if os.path.exists(vm_filepath):
+            # prefer _out.vm (custom compiler output with ASSERTs) over reference .vm
+            vm_out = vm_filepath.replace('.vm', '_out.vm')
+            use_filepath = vm_out if os.path.exists(vm_out) else vm_filepath
+            if os.path.exists(use_filepath):
                 if self.debug:
-                    print(vm_filepath)
-                self.parse_asm(vm_filepath)
+                    print(use_filepath)
+                self.parse_asm(use_filepath)
                 vm_dir_filelist.append(vm_filepath)
 
             # write asm_file

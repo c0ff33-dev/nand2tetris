@@ -1,6 +1,7 @@
 """"
 Python bindings & test framework for Nand2Tetris HACK Assembly language
 """
+import re
 import warnings
 import traceback
 import os
@@ -241,9 +242,18 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
     hw["ROM"] = {"raw": raw_asm, "debug": debug_asm}
 
+    # if ASSERTs are present, ensure proper bootstrap and enough cycles
+    has_asserts = any('// ASSERT ' in d[1] for d in debug_asm)
+    if has_asserts:
+        if hw["MAX"] < 50000000:
+            hw["MAX"] = 50000000
+        if hw["RAM"][0] == 0:
+            hw["RAM"][0] = 256  # bootstrap SP
+
     # runtime parsing
     cycle = 0
     call_tree = []
+    assert_pass = assert_fail = 0
     while cycle < hw["MAX"] and hw["PC"] < len(hw["ROM"]["raw"]):
         raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
         debug_cmd = hw["ROM"]["debug"][hw["PC"]][1]
@@ -368,6 +378,21 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         #  format primary debug output
         if debug:
             process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
+
+        # evaluate ASSERT directives
+        if '// ASSERT ' in debug_cmd:
+            assert_text = debug_cmd.split('// ASSERT ')[1].strip()
+            match = re.match(r'RAM\[(\d+)\]\s*=\s*(-?\d+)', assert_text)
+            if match:
+                addr, expected = int(match.group(1)), int(match.group(2))
+                actual = hw["RAM"][addr]
+                if actual != expected:
+                    assert_fail += 1
+                    print("ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d"
+                          % (addr, actual, expected, hw["PC"]-1))
+                else:
+                    assert_pass += 1
+
         cycle += 1  # always advance clock cycle
 
     # program end
@@ -379,6 +404,13 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
             print("Cycle limit reached: %s" % asm_filepath)
     if len(call_tree) >= 1:
         raise RuntimeError("Interpreter: Elements still exist in call tree at program exit")
+
+    # report ASSERT results
+    if assert_pass + assert_fail > 0:
+        total = assert_pass + assert_fail
+        print("ASSERT: %d/%d passed" % (assert_pass, total))
+        if assert_fail > 0:
+            raise RuntimeError("ASSERT: %d/%d failed" % (assert_fail, total))
 
     # evaluate results
     result_dict = {}

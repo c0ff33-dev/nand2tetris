@@ -1841,7 +1841,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8000] = 6
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -2098,7 +2098,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8001] = -180
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -2347,7 +2347,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8002] = -18000
 
 // push constant 3
 @3 // push constant 3 (constant)
@@ -2596,7 +2596,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8003] = -18000
 
 // push constant 4
 @4 // push constant 4 (constant)
@@ -2845,7 +2845,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8004] = 0
 
 // push constant 5
 @5 // push constant 5 (constant)
@@ -3034,7 +3034,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8005] = 3
 
 // push constant 6
 @6 // push constant 6 (constant)
@@ -3231,7 +3231,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8006] = -3000
 
 // push constant 7
 @7 // push constant 7 (constant)
@@ -3428,7 +3428,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8007] = 0
 
 // push constant 8
 @8 // push constant 8 (constant)
@@ -3608,7 +3608,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8008] = 3
 
 // push constant 9
 @9 // push constant 9 (constant)
@@ -3788,7 +3788,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8009] = 181
 
 // push constant 10
 @10 // push constant 10 (constant)
@@ -3941,7 +3941,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8010] = 123
 
 // push constant 11
 @11 // push constant 11 (constant)
@@ -4102,7 +4102,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8011] = 123
 
 // push constant 12
 @12 // push constant 12 (constant)
@@ -4246,7 +4246,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8012] = 27
 
 // push constant 13
 @13 // push constant 13 (constant)
@@ -4398,7 +4398,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8013] = 32767
 
 // push constant 0
 @0 // push constant 0 (constant)
