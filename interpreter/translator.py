@@ -353,8 +353,8 @@ class Translator:
             self.asm += "(%s.%s.%s) // %s\n" % (src, asm_label, guid, cmd)
             asm_label = "%s.%s.%s" % (src, asm_label, guid)
         elif cmd.startswith('label'):
-            self.asm += "(%s.%s) // %s\n" % (src, asm_label, cmd)
-            asm_label = "%s.%s" % (src, asm_label)
+            self.asm += "(%s$%s) // %s\n" % (src, asm_label, cmd)
+            asm_label = "%s$%s" % (src, asm_label)
         else:
             raise RuntimeError("Translator: Unexpected command %s")
         
@@ -366,7 +366,7 @@ class Translator:
         unconditional jump
         """
         asm_label = cmd.split(" ")[1]
-        asm_label = "%s.%s" % (src, asm_label)
+        asm_label = "%s$%s" % (src, asm_label)
 
         self.asm += '\n// %s\n' % (cmd)
         self.asm += "@%s // %s\n" % (asm_label, cmd)
@@ -378,7 +378,7 @@ class Translator:
         pop a value off the stack and jump if true
         """
         asm_label = cmd.split(" ")[1]
-        asm_label = "%s.%s" % (src, asm_label)
+        asm_label = "%s$%s" % (src, asm_label)
 
         self.asm += '\n// %s\n' % (cmd)
 
@@ -606,6 +606,7 @@ class Translator:
         translate the vm commands into a single asm file
         """
         src = vm_filepath.split(os.path.sep)[-1].split('.vm')[0]
+        current_function = src  # fallback; updated on each 'function' command
 
         with open(vm_filepath) as vm_file:
             vm_contents = vm_file.readlines()
@@ -671,12 +672,13 @@ class Translator:
             elif cmd.startswith("neg"):
                 self.gen_neg(cmd)
             elif cmd.startswith("label"):
-                _ = self.gen_label(cmd, src)
+                _ = self.gen_label(cmd, current_function)
             elif cmd.startswith("goto"):
-                self.gen_goto(cmd, src)
+                self.gen_goto(cmd, current_function)
             elif cmd.startswith("if-goto"):
-                self.gen_if_goto(cmd, src)
+                self.gen_if_goto(cmd, current_function)
             elif cmd.startswith("function"):
+                current_function = cmd.split(" ")[1]
                 stored_comment = " // %s" % cmd  # function only creates a label which gets parsed out
                 self.gen_function(cmd, src)
             elif cmd.startswith("return"):

@@ -123,7 +123,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label MAIN_LOOP_START
-(FibonacciSeries.MAIN_LOOP_START) // label MAIN_LOOP_START
+(FibonacciSeries$MAIN_LOOP_START) // label MAIN_LOOP_START
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -145,15 +145,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@FibonacciSeries.COMPUTE_ELEMENT
+@FibonacciSeries$COMPUTE_ELEMENT
 D;JNE // jump if not zero
 
 // goto END_PROGRAM // otherwise, goto END_PROGRAM
-@FibonacciSeries.END_PROGRAM // goto END_PROGRAM // otherwise, goto END_PROGRAM
+@FibonacciSeries$END_PROGRAM // goto END_PROGRAM // otherwise, goto END_PROGRAM
 0;JMP // unconditional jump
 
 // label COMPUTE_ELEMENT
-(FibonacciSeries.COMPUTE_ELEMENT) // label COMPUTE_ELEMENT
+(FibonacciSeries$COMPUTE_ELEMENT) // label COMPUTE_ELEMENT
 
 // push that 0
 @THAT // push that 0 (&asm_segment)
@@ -303,8 +303,8 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto MAIN_LOOP_START
-@FibonacciSeries.MAIN_LOOP_START // goto MAIN_LOOP_START
+@FibonacciSeries$MAIN_LOOP_START // goto MAIN_LOOP_START
 0;JMP // unconditional jump
 
 // label END_PROGRAM
-(FibonacciSeries.END_PROGRAM) // label END_PROGRAM
+(FibonacciSeries$END_PROGRAM) // label END_PROGRAM

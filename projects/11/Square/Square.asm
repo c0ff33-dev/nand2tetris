@@ -616,7 +616,7 @@ A=M // d = *lcl-5 (*lcl)
 (Sys.halt) // function Sys.halt 0
 
 // label WHILE_EXP0
-(Sys.WHILE_EXP0) // label WHILE_EXP0
+(Sys.halt$WHILE_EXP0) // label WHILE_EXP0
 
 // push constant 0
 @0 // push constant 0 // function Sys.halt 0 (constant)
@@ -650,15 +650,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Sys.WHILE_END0
+@Sys.halt$WHILE_END0
 D;JNE // jump if not zero
 
 // goto WHILE_EXP0
-@Sys.WHILE_EXP0 // goto WHILE_EXP0
+@Sys.halt$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Sys.WHILE_END0) // label WHILE_END0
+(Sys.halt$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -783,15 +783,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Sys.IF_TRUE0
+@Sys.wait$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Sys.IF_FALSE0 // goto IF_FALSE0
+@Sys.wait$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Sys.IF_TRUE0) // label IF_TRUE0
+(Sys.wait$IF_TRUE0) // label IF_TRUE0
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -863,10 +863,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Sys.IF_FALSE0) // label IF_FALSE0
+(Sys.wait$IF_FALSE0) // label IF_FALSE0
 
 // label WHILE_EXP0
-(Sys.WHILE_EXP0) // label WHILE_EXP0
+(Sys.wait$WHILE_EXP0) // label WHILE_EXP0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -931,7 +931,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Sys.WHILE_END0
+@Sys.wait$WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 50
@@ -959,7 +959,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP1
-(Sys.WHILE_EXP1) // label WHILE_EXP1
+(Sys.wait$WHILE_EXP1) // label WHILE_EXP1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -1024,7 +1024,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Sys.WHILE_END1
+@Sys.wait$WHILE_END1
 D;JNE // jump if not zero
 
 // push local 0
@@ -1076,11 +1076,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@Sys.WHILE_EXP1 // goto WHILE_EXP1
+@Sys.wait$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(Sys.WHILE_END1) // label WHILE_END1
+(Sys.wait$WHILE_END1) // label WHILE_END1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -1131,11 +1131,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Sys.WHILE_EXP0 // goto WHILE_EXP0
+@Sys.wait$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Sys.WHILE_END0) // label WHILE_END0
+(Sys.wait$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -3415,15 +3415,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Square.IF_TRUE0
+@Square.incSize$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Square.IF_FALSE0 // goto IF_FALSE0
+@Square.incSize$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Square.IF_TRUE0) // label IF_TRUE0
+(Square.incSize$IF_TRUE0) // label IF_TRUE0
 
 // push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -3618,7 +3618,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Square.IF_FALSE0) // label IF_FALSE0
+(Square.incSize$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -3770,15 +3770,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Square.IF_TRUE0
+@Square.decSize$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Square.IF_FALSE0 // goto IF_FALSE0
+@Square.decSize$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Square.IF_TRUE0) // label IF_TRUE0
+(Square.decSize$IF_TRUE0) // label IF_TRUE0
 
 // push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -3973,7 +3973,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Square.IF_FALSE0) // label IF_FALSE0
+(Square.decSize$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -4125,15 +4125,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Square.IF_TRUE0
+@Square.moveUp$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Square.IF_FALSE0 // goto IF_FALSE0
+@Square.moveUp$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Square.IF_TRUE0) // label IF_TRUE0
+(Square.moveUp$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -4846,7 +4846,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Square.IF_FALSE0) // label IF_FALSE0
+(Square.moveUp$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -5022,15 +5022,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Square.IF_TRUE0
+@Square.moveDown$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Square.IF_FALSE0 // goto IF_FALSE0
+@Square.moveDown$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Square.IF_TRUE0) // label IF_TRUE0
+(Square.moveDown$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -5743,7 +5743,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Square.IF_FALSE0) // label IF_FALSE0
+(Square.moveDown$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -5895,15 +5895,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Square.IF_TRUE0
+@Square.moveLeft$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Square.IF_FALSE0 // goto IF_FALSE0
+@Square.moveLeft$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Square.IF_TRUE0) // label IF_TRUE0
+(Square.moveLeft$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -6616,7 +6616,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Square.IF_FALSE0) // label IF_FALSE0
+(Square.moveLeft$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -6792,15 +6792,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Square.IF_TRUE0
+@Square.moveRight$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Square.IF_FALSE0 // goto IF_FALSE0
+@Square.moveRight$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Square.IF_TRUE0) // label IF_TRUE0
+(Square.moveRight$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -7513,7 +7513,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Square.IF_FALSE0) // label IF_FALSE0
+(Square.moveRight$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -7646,15 +7646,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Array.IF_TRUE0
+@Array.new$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Array.IF_FALSE0 // goto IF_FALSE0
+@Array.new$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Array.IF_TRUE0) // label IF_TRUE0
+(Array.new$IF_TRUE0) // label IF_TRUE0
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -7726,7 +7726,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Array.IF_FALSE0) // label IF_FALSE0
+(Array.new$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -8298,7 +8298,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Keyboard.WHILE_EXP0) // label WHILE_EXP0
+(Keyboard.readChar$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -8422,7 +8422,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Keyboard.WHILE_END0
+@Keyboard.readChar$WHILE_END0
 D;JNE // jump if not zero
 
 // call Keyboard.keyPressed 0
@@ -8549,15 +8549,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Keyboard.IF_TRUE0
+@Keyboard.readChar$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Keyboard.IF_FALSE0 // goto IF_FALSE0
+@Keyboard.readChar$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Keyboard.IF_TRUE0) // label IF_TRUE0
+(Keyboard.readChar$IF_TRUE0) // label IF_TRUE0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -8587,14 +8587,14 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Keyboard.IF_FALSE0) // label IF_FALSE0
+(Keyboard.readChar$IF_FALSE0) // label IF_FALSE0
 
 // goto WHILE_EXP0
-@Keyboard.WHILE_EXP0 // goto WHILE_EXP0
+@Keyboard.readChar$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Keyboard.WHILE_END0) // label WHILE_END0
+(Keyboard.readChar$WHILE_END0) // label WHILE_END0
 
 // call String.backSpace 0
 (Keyboard.String.backSpace.113) // call String.backSpace 0
@@ -9151,7 +9151,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Keyboard.WHILE_EXP0) // label WHILE_EXP0
+(Keyboard.readLine$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -9189,7 +9189,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Keyboard.WHILE_END0
+@Keyboard.readLine$WHILE_END0
 D;JNE // jump if not zero
 
 // call Keyboard.readChar 0
@@ -9372,15 +9372,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Keyboard.IF_TRUE0
+@Keyboard.readLine$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Keyboard.IF_FALSE0 // goto IF_FALSE0
+@Keyboard.readLine$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Keyboard.IF_TRUE0) // label IF_TRUE0
+(Keyboard.readLine$IF_TRUE0) // label IF_TRUE0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -9440,15 +9440,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Keyboard.IF_TRUE1
+@Keyboard.readLine$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Keyboard.IF_FALSE1 // goto IF_FALSE1
+@Keyboard.readLine$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Keyboard.IF_TRUE1) // label IF_TRUE1
+(Keyboard.readLine$IF_TRUE1) // label IF_TRUE1
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -9523,11 +9523,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END1
-@Keyboard.IF_END1 // goto IF_END1
+@Keyboard.readLine$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Keyboard.IF_FALSE1) // label IF_FALSE1
+(Keyboard.readLine$IF_FALSE1) // label IF_FALSE1
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -9614,17 +9614,17 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END1
-(Keyboard.IF_END1) // label IF_END1
+(Keyboard.readLine$IF_END1) // label IF_END1
 
 // label IF_FALSE0
-(Keyboard.IF_FALSE0) // label IF_FALSE0
+(Keyboard.readLine$IF_FALSE0) // label IF_FALSE0
 
 // goto WHILE_EXP0
-@Keyboard.WHILE_EXP0 // goto WHILE_EXP0
+@Keyboard.readLine$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Keyboard.WHILE_END0) // label WHILE_END0
+(Keyboard.readLine$WHILE_END0) // label WHILE_END0
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -10312,7 +10312,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.init$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -10377,7 +10377,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.WHILE_END0
+@Math.init$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -10702,11 +10702,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.init$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Math.WHILE_END0) // label WHILE_END0
+(Math.init$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -10831,15 +10831,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE0
+@Math.abs$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Math.IF_FALSE0 // goto IF_FALSE0
+@Math.abs$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Math.IF_TRUE0) // label IF_TRUE0
+(Math.abs$IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -10877,7 +10877,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Math.IF_FALSE0) // label IF_FALSE0
+(Math.abs$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -11391,15 +11391,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE0
+@Math.multiply$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Math.IF_FALSE0 // goto IF_FALSE0
+@Math.multiply$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Math.IF_TRUE0) // label IF_TRUE0
+(Math.multiply$IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -11483,10 +11483,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Math.IF_FALSE0) // label IF_FALSE0
+(Math.multiply$IF_FALSE0) // label IF_FALSE0
 
 // label WHILE_EXP0
-(Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.multiply$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -11596,7 +11596,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.WHILE_END0
+@Math.multiply$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 3
@@ -11737,15 +11737,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE1
+@Math.multiply$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Math.IF_FALSE1 // goto IF_FALSE1
+@Math.multiply$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Math.IF_TRUE1) // label IF_TRUE1
+(Math.multiply$IF_TRUE1) // label IF_TRUE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -11901,7 +11901,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(Math.IF_FALSE1) // label IF_FALSE1
+(Math.multiply$IF_FALSE1) // label IF_FALSE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -12003,11 +12003,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.multiply$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Math.WHILE_END0) // label WHILE_END0
+(Math.multiply$WHILE_END0) // label WHILE_END0
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -12029,15 +12029,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE2
+@Math.multiply$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@Math.IF_FALSE2 // goto IF_FALSE2
+@Math.multiply$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(Math.IF_TRUE2) // label IF_TRUE2
+(Math.multiply$IF_TRUE2) // label IF_TRUE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12075,7 +12075,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(Math.IF_FALSE2) // label IF_FALSE2
+(Math.multiply$IF_FALSE2) // label IF_FALSE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12203,15 +12203,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE0
+@Math.divide$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Math.IF_FALSE0 // goto IF_FALSE0
+@Math.divide$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Math.IF_TRUE0) // label IF_TRUE0
+(Math.divide$IF_TRUE0) // label IF_TRUE0
 
 // push constant 3
 @3 // push constant 3 (constant)
@@ -12283,7 +12283,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Math.IF_FALSE0) // label IF_FALSE0
+(Math.divide$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -12744,7 +12744,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.divide$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12841,7 +12841,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.WHILE_END0
+@Math.divide$WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 32767
@@ -13102,15 +13102,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE1
+@Math.divide$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Math.IF_FALSE1 // goto IF_FALSE1
+@Math.divide$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Math.IF_TRUE1) // label IF_TRUE1
+(Math.divide$IF_TRUE1) // label IF_TRUE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13571,15 +13571,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE2
+@Math.divide$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@Math.IF_FALSE2 // goto IF_FALSE2
+@Math.divide$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(Math.IF_TRUE2) // label IF_TRUE2
+(Math.divide$IF_TRUE2) // label IF_TRUE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13630,20 +13630,20 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(Math.IF_FALSE2) // label IF_FALSE2
+(Math.divide$IF_FALSE2) // label IF_FALSE2
 
 // label IF_FALSE1
-(Math.IF_FALSE1) // label IF_FALSE1
+(Math.divide$IF_FALSE1) // label IF_FALSE1
 
 // goto WHILE_EXP0
-@Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.divide$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Math.WHILE_END0) // label WHILE_END0
+(Math.divide$WHILE_END0) // label WHILE_END0
 
 // label WHILE_EXP1
-(Math.WHILE_EXP1) // label WHILE_EXP1
+(Math.divide$WHILE_EXP1) // label WHILE_EXP1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13716,7 +13716,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.WHILE_END1
+@Math.divide$WHILE_END1
 D;JNE // jump if not zero
 
 // push local 0
@@ -13878,15 +13878,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE3
+@Math.divide$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@Math.IF_FALSE3 // goto IF_FALSE3
+@Math.divide$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(Math.IF_TRUE3) // label IF_TRUE3
+(Math.divide$IF_TRUE3) // label IF_TRUE3
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -14093,7 +14093,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE3
-(Math.IF_FALSE3) // label IF_FALSE3
+(Math.divide$IF_FALSE3) // label IF_FALSE3
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14144,11 +14144,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@Math.WHILE_EXP1 // goto WHILE_EXP1
+@Math.divide$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(Math.WHILE_END1) // label WHILE_END1
+(Math.divide$WHILE_END1) // label WHILE_END1
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -14170,15 +14170,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE4
+@Math.divide$IF_TRUE4
 D;JNE // jump if not zero
 
 // goto IF_FALSE4
-@Math.IF_FALSE4 // goto IF_FALSE4
+@Math.divide$IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
 // label IF_TRUE4
-(Math.IF_TRUE4) // label IF_TRUE4
+(Math.divide$IF_TRUE4) // label IF_TRUE4
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -14216,7 +14216,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE4
-(Math.IF_FALSE4) // label IF_FALSE4
+(Math.divide$IF_FALSE4) // label IF_FALSE4
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -14344,15 +14344,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE0
+@Math.sqrt$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Math.IF_FALSE0 // goto IF_FALSE0
+@Math.sqrt$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Math.IF_TRUE0) // label IF_TRUE0
+(Math.sqrt$IF_TRUE0) // label IF_TRUE0
 
 // push constant 4
 @4 // push constant 4 (constant)
@@ -14424,7 +14424,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Math.IF_FALSE0) // label IF_FALSE0
+(Math.sqrt$IF_FALSE0) // label IF_FALSE0
 
 // push constant 7
 @7 // push constant 7 (constant)
@@ -14451,7 +14451,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Math.WHILE_EXP0) // label WHILE_EXP0
+(Math.sqrt$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14524,7 +14524,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.WHILE_END0
+@Math.sqrt$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 3
@@ -14891,15 +14891,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE1
+@Math.sqrt$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Math.IF_FALSE1 // goto IF_FALSE1
+@Math.sqrt$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Math.IF_TRUE1) // label IF_TRUE1
+(Math.sqrt$IF_TRUE1) // label IF_TRUE1
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -14929,7 +14929,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(Math.IF_FALSE1) // label IF_FALSE1
+(Math.sqrt$IF_FALSE1) // label IF_FALSE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14980,11 +14980,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Math.WHILE_EXP0 // goto WHILE_EXP0
+@Math.sqrt$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Math.WHILE_END0) // label WHILE_END0
+(Math.sqrt$WHILE_END0) // label WHILE_END0
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -15115,15 +15115,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE0
+@Math.max$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Math.IF_FALSE0 // goto IF_FALSE0
+@Math.max$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Math.IF_TRUE0) // label IF_TRUE0
+(Math.max$IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -15153,7 +15153,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Math.IF_FALSE0) // label IF_FALSE0
+(Math.max$IF_FALSE0) // label IF_FALSE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -15284,15 +15284,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Math.IF_TRUE0
+@Math.min$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Math.IF_FALSE0 // goto IF_FALSE0
+@Math.min$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Math.IF_TRUE0) // label IF_TRUE0
+(Math.min$IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -15322,7 +15322,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Math.IF_FALSE0) // label IF_FALSE0
+(Math.min$IF_FALSE0) // label IF_FALSE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -16035,15 +16035,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE0
+@Memory.alloc$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Memory.IF_FALSE0 // goto IF_FALSE0
+@Memory.alloc$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Memory.IF_TRUE0) // label IF_TRUE0
+(Memory.alloc$IF_TRUE0) // label IF_TRUE0
 
 // push constant 5
 @5 // push constant 5 (constant)
@@ -16115,7 +16115,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Memory.IF_FALSE0) // label IF_FALSE0
+(Memory.alloc$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -16172,15 +16172,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE1
+@Memory.alloc$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Memory.IF_FALSE1 // goto IF_FALSE1
+@Memory.alloc$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Memory.IF_TRUE1) // label IF_TRUE1
+(Memory.alloc$IF_TRUE1) // label IF_TRUE1
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -16207,7 +16207,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(Memory.IF_FALSE1) // label IF_FALSE1
+(Memory.alloc$IF_FALSE1) // label IF_FALSE1
 
 // push constant 2048
 @2048 // push constant 2048 (constant)
@@ -16234,7 +16234,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Memory.WHILE_EXP0) // label WHILE_EXP0
+(Memory.alloc$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -16409,7 +16409,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.WHILE_END0
+@Memory.alloc$WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 1
@@ -16756,15 +16756,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE2
+@Memory.alloc$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@Memory.IF_FALSE2 // goto IF_FALSE2
+@Memory.alloc$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(Memory.IF_TRUE2) // label IF_TRUE2
+(Memory.alloc$IF_TRUE2) // label IF_TRUE2
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -16794,11 +16794,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END2
-@Memory.IF_END2 // goto IF_END2
+@Memory.alloc$IF_END2 // goto IF_END2
 0;JMP // unconditional jump
 
 // label IF_FALSE2
-(Memory.IF_FALSE2) // label IF_FALSE2
+(Memory.alloc$IF_FALSE2) // label IF_FALSE2
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -17173,15 +17173,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE3
+@Memory.alloc$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@Memory.IF_FALSE3 // goto IF_FALSE3
+@Memory.alloc$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(Memory.IF_TRUE3) // label IF_TRUE3
+(Memory.alloc$IF_TRUE3) // label IF_TRUE3
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -17307,11 +17307,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END3
-@Memory.IF_END3 // goto IF_END3
+@Memory.alloc$IF_END3 // goto IF_END3
 0;JMP // unconditional jump
 
 // label IF_FALSE3
-(Memory.IF_FALSE3) // label IF_FALSE3
+(Memory.alloc$IF_FALSE3) // label IF_FALSE3
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -17464,17 +17464,17 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END3
-(Memory.IF_END3) // label IF_END3
+(Memory.alloc$IF_END3) // label IF_END3
 
 // label IF_END2
-(Memory.IF_END2) // label IF_END2
+(Memory.alloc$IF_END2) // label IF_END2
 
 // goto WHILE_EXP0
-@Memory.WHILE_EXP0 // goto WHILE_EXP0
+@Memory.alloc$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Memory.WHILE_END0) // label WHILE_END0
+(Memory.alloc$WHILE_END0) // label WHILE_END0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -17555,15 +17555,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE4
+@Memory.alloc$IF_TRUE4
 D;JNE // jump if not zero
 
 // goto IF_FALSE4
-@Memory.IF_FALSE4 // goto IF_FALSE4
+@Memory.alloc$IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
 // label IF_TRUE4
-(Memory.IF_TRUE4) // label IF_TRUE4
+(Memory.alloc$IF_TRUE4) // label IF_TRUE4
 
 // push constant 6
 @6 // push constant 6 (constant)
@@ -17635,7 +17635,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE4
-(Memory.IF_FALSE4) // label IF_FALSE4
+(Memory.alloc$IF_FALSE4) // label IF_FALSE4
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -17764,15 +17764,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE5
+@Memory.alloc$IF_TRUE5
 D;JNE // jump if not zero
 
 // goto IF_FALSE5
-@Memory.IF_FALSE5 // goto IF_FALSE5
+@Memory.alloc$IF_FALSE5 // goto IF_FALSE5
 0;JMP // unconditional jump
 
 // label IF_TRUE5
-(Memory.IF_TRUE5) // label IF_TRUE5
+(Memory.alloc$IF_TRUE5) // label IF_TRUE5
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -18120,15 +18120,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE6
+@Memory.alloc$IF_TRUE6
 D;JNE // jump if not zero
 
 // goto IF_FALSE6
-@Memory.IF_FALSE6 // goto IF_FALSE6
+@Memory.alloc$IF_FALSE6 // goto IF_FALSE6
 0;JMP // unconditional jump
 
 // label IF_TRUE6
-(Memory.IF_TRUE6) // label IF_TRUE6
+(Memory.alloc$IF_TRUE6) // label IF_TRUE6
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -18302,11 +18302,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END6
-@Memory.IF_END6 // goto IF_END6
+@Memory.alloc$IF_END6 // goto IF_END6
 0;JMP // unconditional jump
 
 // label IF_FALSE6
-(Memory.IF_FALSE6) // label IF_FALSE6
+(Memory.alloc$IF_FALSE6) // label IF_FALSE6
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -18483,7 +18483,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END6
-(Memory.IF_END6) // label IF_END6
+(Memory.alloc$IF_END6) // label IF_END6
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -18633,7 +18633,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE5
-(Memory.IF_FALSE5) // label IF_FALSE5
+(Memory.alloc$IF_FALSE5) // label IF_FALSE5
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -19052,15 +19052,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE0
+@Memory.deAlloc$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Memory.IF_FALSE0 // goto IF_FALSE0
+@Memory.deAlloc$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Memory.IF_TRUE0) // label IF_TRUE0
+(Memory.deAlloc$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -19258,11 +19258,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END0
-@Memory.IF_END0 // goto IF_END0
+@Memory.deAlloc$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Memory.IF_FALSE0) // label IF_FALSE0
+(Memory.deAlloc$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -19637,15 +19637,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Memory.IF_TRUE1
+@Memory.deAlloc$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Memory.IF_FALSE1 // goto IF_FALSE1
+@Memory.deAlloc$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Memory.IF_TRUE1) // label IF_TRUE1
+(Memory.deAlloc$IF_TRUE1) // label IF_TRUE1
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -19771,11 +19771,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END1
-@Memory.IF_END1 // goto IF_END1
+@Memory.deAlloc$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Memory.IF_FALSE1) // label IF_FALSE1
+(Memory.deAlloc$IF_FALSE1) // label IF_FALSE1
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -19928,10 +19928,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END1
-(Memory.IF_END1) // label IF_END1
+(Memory.deAlloc$IF_END1) // label IF_END1
 
 // label IF_END0
-(Memory.IF_END0) // label IF_END0
+(Memory.deAlloc$IF_END0) // label IF_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -39003,7 +39003,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Output.WHILE_EXP0) // label WHILE_EXP0
+(Output.createShiftedMap$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -39068,7 +39068,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.WHILE_END0
+@Output.createShiftedMap$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 2
@@ -39348,7 +39348,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP1
-(Output.WHILE_EXP1) // label WHILE_EXP1
+(Output.createShiftedMap$WHILE_EXP1) // label WHILE_EXP1
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -39413,7 +39413,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.WHILE_END1
+@Output.createShiftedMap$WHILE_END1
 D;JNE // jump if not zero
 
 // push local 3
@@ -39720,11 +39720,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@Output.WHILE_EXP1 // goto WHILE_EXP1
+@Output.createShiftedMap$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(Output.WHILE_END1) // label WHILE_END1
+(Output.createShiftedMap$WHILE_END1) // label WHILE_END1
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -39781,15 +39781,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE0
+@Output.createShiftedMap$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.IF_FALSE0 // goto IF_FALSE0
+@Output.createShiftedMap$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.IF_TRUE0) // label IF_TRUE0
+(Output.createShiftedMap$IF_TRUE0) // label IF_TRUE0
 
 // push constant 32
 @32 // push constant 32 (constant)
@@ -39816,11 +39816,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END0
-@Output.IF_END0 // goto IF_END0
+@Output.createShiftedMap$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Output.IF_FALSE0) // label IF_FALSE0
+(Output.createShiftedMap$IF_FALSE0) // label IF_FALSE0
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -39871,14 +39871,14 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END0
-(Output.IF_END0) // label IF_END0
+(Output.createShiftedMap$IF_END0) // label IF_END0
 
 // goto WHILE_EXP0
-@Output.WHILE_EXP0 // goto WHILE_EXP0
+@Output.createShiftedMap$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Output.WHILE_END0) // label WHILE_END0
+(Output.createShiftedMap$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -40062,15 +40062,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE0
+@Output.getMap$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.IF_FALSE0 // goto IF_FALSE0
+@Output.getMap$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.IF_TRUE0) // label IF_TRUE0
+(Output.getMap$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -40097,7 +40097,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Output.IF_FALSE0) // label IF_FALSE0
+(Output.getMap$IF_FALSE0) // label IF_FALSE0
 
 // push static 2
 @19 // push static 2 (&asm_segment) // static + src offset (../projects/11/Square/Output.vm)
@@ -40119,15 +40119,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE1
+@Output.getMap$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Output.IF_FALSE1 // goto IF_FALSE1
+@Output.getMap$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Output.IF_TRUE1) // label IF_TRUE1
+(Output.getMap$IF_TRUE1) // label IF_TRUE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -40208,11 +40208,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END1
-@Output.IF_END1 // goto IF_END1
+@Output.getMap$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Output.IF_FALSE1) // label IF_FALSE1
+(Output.getMap$IF_FALSE1) // label IF_FALSE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -40293,7 +40293,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END1
-(Output.IF_END1) // label IF_END1
+(Output.getMap$IF_END1) // label IF_END1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -40475,7 +40475,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Output.WHILE_EXP0) // label WHILE_EXP0
+(Output.drawChar$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -40540,7 +40540,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.WHILE_END0
+@Output.drawChar$WHILE_END0
 D;JNE // jump if not zero
 
 // push static 2
@@ -40563,15 +40563,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE0
+@Output.drawChar$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.IF_FALSE0 // goto IF_FALSE0
+@Output.drawChar$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.IF_TRUE0) // label IF_TRUE0
+(Output.drawChar$IF_TRUE0) // label IF_TRUE0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -40681,11 +40681,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END0
-@Output.IF_END0 // goto IF_END0
+@Output.drawChar$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Output.IF_FALSE0) // label IF_FALSE0
+(Output.drawChar$IF_FALSE0) // label IF_FALSE0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -40787,7 +40787,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END0
-(Output.IF_END0) // label IF_END0
+(Output.drawChar$IF_END0) // label IF_END0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -41066,11 +41066,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Output.WHILE_EXP0 // goto WHILE_EXP0
+@Output.drawChar$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Output.WHILE_END0) // label WHILE_END0
+(Output.drawChar$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -41372,15 +41372,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE0
+@Output.moveCursor$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.IF_FALSE0 // goto IF_FALSE0
+@Output.moveCursor$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.IF_TRUE0) // label IF_TRUE0
+(Output.moveCursor$IF_TRUE0) // label IF_TRUE0
 
 // push constant 20
 @20 // push constant 20 (constant)
@@ -41452,7 +41452,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Output.IF_FALSE0) // label IF_FALSE0
+(Output.moveCursor$IF_FALSE0) // label IF_FALSE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -42179,15 +42179,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE0
+@Output.printChar$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.IF_FALSE0 // goto IF_FALSE0
+@Output.printChar$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.IF_TRUE0) // label IF_TRUE0
+(Output.printChar$IF_TRUE0) // label IF_TRUE0
 
 // call Output.println 0
 (Output.Output.println.435) // call Output.println 0
@@ -42259,11 +42259,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END0
-@Output.IF_END0 // goto IF_END0
+@Output.printChar$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Output.IF_FALSE0) // label IF_FALSE0
+(Output.printChar$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -42365,15 +42365,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE1
+@Output.printChar$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Output.IF_FALSE1 // goto IF_FALSE1
+@Output.printChar$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Output.IF_TRUE1) // label IF_TRUE1
+(Output.printChar$IF_TRUE1) // label IF_TRUE1
 
 // call Output.backSpace 0
 (Output.Output.backSpace.440) // call Output.backSpace 0
@@ -42445,11 +42445,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END1
-@Output.IF_END1 // goto IF_END1
+@Output.printChar$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Output.IF_FALSE1) // label IF_FALSE1
+(Output.printChar$IF_FALSE1) // label IF_FALSE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -42587,15 +42587,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE2
+@Output.printChar$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@Output.IF_FALSE2 // goto IF_FALSE2
+@Output.printChar$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(Output.IF_TRUE2) // label IF_TRUE2
+(Output.printChar$IF_TRUE2) // label IF_TRUE2
 
 // push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (../projects/11/Square/Output.vm)
@@ -42694,7 +42694,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(Output.IF_FALSE2) // label IF_FALSE2
+(Output.printChar$IF_FALSE2) // label IF_FALSE2
 
 // push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (../projects/11/Square/Output.vm)
@@ -42751,15 +42751,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE3
+@Output.printChar$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@Output.IF_FALSE3 // goto IF_FALSE3
+@Output.printChar$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(Output.IF_TRUE3) // label IF_TRUE3
+(Output.printChar$IF_TRUE3) // label IF_TRUE3
 
 // call Output.println 0
 (Output.Output.println.445) // call Output.println 0
@@ -42831,11 +42831,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END3
-@Output.IF_END3 // goto IF_END3
+@Output.printChar$IF_END3 // goto IF_END3
 0;JMP // unconditional jump
 
 // label IF_FALSE3
-(Output.IF_FALSE3) // label IF_FALSE3
+(Output.printChar$IF_FALSE3) // label IF_FALSE3
 
 // push static 2
 @19 // push static 2 (&asm_segment) // static + src offset (../projects/11/Square/Output.vm)
@@ -42873,13 +42873,13 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END3
-(Output.IF_END3) // label IF_END3
+(Output.printChar$IF_END3) // label IF_END3
 
 // label IF_END1
-(Output.IF_END1) // label IF_END1
+(Output.printChar$IF_END1) // label IF_END1
 
 // label IF_END0
-(Output.IF_END0) // label IF_END0
+(Output.printChar$IF_END0) // label IF_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -43022,7 +43022,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Output.WHILE_EXP0) // label WHILE_EXP0
+(Output.printString$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -43090,7 +43090,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.WHILE_END0
+@Output.printString$WHILE_END0
 D;JNE // jump if not zero
 
 // push argument 0
@@ -43271,11 +43271,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Output.WHILE_EXP0 // goto WHILE_EXP0
+@Output.printString$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Output.WHILE_END0) // label WHILE_END0
+(Output.printString$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -43806,15 +43806,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE0
+@Output.println$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.IF_FALSE0 // goto IF_FALSE0
+@Output.println$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.IF_TRUE0) // label IF_TRUE0
+(Output.println$IF_TRUE0) // label IF_TRUE0
 
 // push constant 32
 @32 // push constant 32 (constant)
@@ -43841,7 +43841,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Output.IF_FALSE0) // label IF_FALSE0
+(Output.println$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -43931,15 +43931,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE0
+@Output.backSpace$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.IF_FALSE0 // goto IF_FALSE0
+@Output.backSpace$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.IF_TRUE0) // label IF_TRUE0
+(Output.backSpace$IF_TRUE0) // label IF_TRUE0
 
 // push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (../projects/11/Square/Output.vm)
@@ -43996,15 +43996,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE1
+@Output.backSpace$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Output.IF_FALSE1 // goto IF_FALSE1
+@Output.backSpace$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Output.IF_TRUE1) // label IF_TRUE1
+(Output.backSpace$IF_TRUE1) // label IF_TRUE1
 
 // push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (../projects/11/Square/Output.vm)
@@ -44103,11 +44103,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END1
-@Output.IF_END1 // goto IF_END1
+@Output.backSpace$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Output.IF_FALSE1) // label IF_FALSE1
+(Output.backSpace$IF_FALSE1) // label IF_FALSE1
 
 // push constant 31
 @31 // push constant 31 (constant)
@@ -44188,15 +44188,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Output.IF_TRUE2
+@Output.backSpace$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@Output.IF_FALSE2 // goto IF_FALSE2
+@Output.backSpace$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(Output.IF_TRUE2) // label IF_TRUE2
+(Output.backSpace$IF_TRUE2) // label IF_TRUE2
 
 // push constant 8128
 @8128 // push constant 8128 (constant)
@@ -44223,7 +44223,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(Output.IF_FALSE2) // label IF_FALSE2
+(Output.backSpace$IF_FALSE2) // label IF_FALSE2
 
 // push static 1
 @19 // push static 1 (&asm_segment) // static + src offset (../projects/11/Square/Output.vm)
@@ -44274,7 +44274,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END1
-(Output.IF_END1) // label IF_END1
+(Output.backSpace$IF_END1) // label IF_END1
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -44301,11 +44301,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END0
-@Output.IF_END0 // goto IF_END0
+@Output.backSpace$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Output.IF_FALSE0) // label IF_FALSE0
+(Output.backSpace$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -44340,7 +44340,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END0
-(Output.IF_END0) // label IF_END0
+(Output.backSpace$IF_END0) // label IF_END0
 
 // push constant 32
 @32 // push constant 32 (constant)
@@ -44740,7 +44740,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Screen.WHILE_EXP0) // label WHILE_EXP0
+(Screen.init$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -44805,7 +44805,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.WHILE_END0
+@Screen.init$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -45130,11 +45130,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Screen.WHILE_EXP0 // goto WHILE_EXP0
+@Screen.init$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Screen.WHILE_END0) // label WHILE_END0
+(Screen.init$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -45206,7 +45206,7 @@ A=M // d = *lcl-5 (*lcl)
 (Screen.clearScreen) // function Screen.clearScreen 1
 
 // label WHILE_EXP0
-(Screen.WHILE_EXP0) // label WHILE_EXP0
+(Screen.clearScreen$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 // function Screen.clearScreen 1 (&asm_segment)
@@ -45270,7 +45270,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.WHILE_END0
+@Screen.clearScreen$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -45424,11 +45424,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Screen.WHILE_EXP0 // goto WHILE_EXP0
+@Screen.clearScreen$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Screen.WHILE_END0) // label WHILE_END0
+(Screen.clearScreen$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -45518,15 +45518,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE0
+@Screen.updateLocation$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.IF_FALSE0 // goto IF_FALSE0
+@Screen.updateLocation$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.IF_TRUE0) // label IF_TRUE0
+(Screen.updateLocation$IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -45709,11 +45709,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END0
-@Screen.IF_END0 // goto IF_END0
+@Screen.updateLocation$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Screen.IF_FALSE0) // label IF_FALSE0
+(Screen.updateLocation$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -45904,7 +45904,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END0
-(Screen.IF_END0) // label IF_END0
+(Screen.updateLocation$IF_END0) // label IF_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -46301,15 +46301,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE0
+@Screen.drawPixel$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.IF_FALSE0 // goto IF_FALSE0
+@Screen.drawPixel$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.IF_TRUE0) // label IF_TRUE0
+(Screen.drawPixel$IF_TRUE0) // label IF_TRUE0
 
 // push constant 7
 @7 // push constant 7 (constant)
@@ -46381,7 +46381,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Screen.IF_FALSE0) // label IF_FALSE0
+(Screen.drawPixel$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -47023,15 +47023,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE0
+@Screen.drawConditional$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.IF_FALSE0 // goto IF_FALSE0
+@Screen.drawConditional$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.IF_TRUE0) // label IF_TRUE0
+(Screen.drawConditional$IF_TRUE0) // label IF_TRUE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -47145,11 +47145,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END0
-@Screen.IF_END0 // goto IF_END0
+@Screen.drawConditional$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Screen.IF_FALSE0) // label IF_FALSE0
+(Screen.drawConditional$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -47263,7 +47263,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END0
-(Screen.IF_END0) // label IF_END0
+(Screen.drawConditional$IF_END0) // label IF_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -47565,15 +47565,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE0
+@Screen.drawLine$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.IF_FALSE0 // goto IF_FALSE0
+@Screen.drawLine$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.IF_TRUE0) // label IF_TRUE0
+(Screen.drawLine$IF_TRUE0) // label IF_TRUE0
 
 // push constant 8
 @8 // push constant 8 (constant)
@@ -47645,7 +47645,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Screen.IF_FALSE0) // label IF_FALSE0
+(Screen.drawLine$IF_FALSE0) // label IF_FALSE0
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -48080,15 +48080,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE1
+@Screen.drawLine$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Screen.IF_FALSE1 // goto IF_FALSE1
+@Screen.drawLine$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Screen.IF_TRUE1) // label IF_TRUE1
+(Screen.drawLine$IF_TRUE1) // label IF_TRUE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -48253,7 +48253,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(Screen.IF_FALSE1) // label IF_FALSE1
+(Screen.drawLine$IF_FALSE1) // label IF_FALSE1
 
 // push local 6
 @LCL // push local 6 (&asm_segment)
@@ -48275,15 +48275,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE2
+@Screen.drawLine$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@Screen.IF_FALSE2 // goto IF_FALSE2
+@Screen.drawLine$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(Screen.IF_TRUE2) // label IF_TRUE2
+(Screen.drawLine$IF_TRUE2) // label IF_TRUE2
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -48513,11 +48513,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END2
-@Screen.IF_END2 // goto IF_END2
+@Screen.drawLine$IF_END2 // goto IF_END2
 0;JMP // unconditional jump
 
 // label IF_FALSE2
-(Screen.IF_FALSE2) // label IF_FALSE2
+(Screen.drawLine$IF_FALSE2) // label IF_FALSE2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -48666,7 +48666,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END2
-(Screen.IF_END2) // label IF_END2
+(Screen.drawLine$IF_END2) // label IF_END2
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -49191,7 +49191,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Screen.WHILE_EXP0) // label WHILE_EXP0
+(Screen.drawLine$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -49259,7 +49259,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.WHILE_END0
+@Screen.drawLine$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 5
@@ -49317,15 +49317,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE3
+@Screen.drawLine$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@Screen.IF_FALSE3 // goto IF_FALSE3
+@Screen.drawLine$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(Screen.IF_TRUE3) // label IF_TRUE3
+(Screen.drawLine$IF_TRUE3) // label IF_TRUE3
 
 // push local 5
 @LCL // push local 5 (&asm_segment)
@@ -49379,11 +49379,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END3
-@Screen.IF_END3 // goto IF_END3
+@Screen.drawLine$IF_END3 // goto IF_END3
 0;JMP // unconditional jump
 
 // label IF_FALSE3
-(Screen.IF_FALSE3) // label IF_FALSE3
+(Screen.drawLine$IF_FALSE3) // label IF_FALSE3
 
 // push local 5
 @LCL // push local 5 (&asm_segment)
@@ -49456,15 +49456,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE4
+@Screen.drawLine$IF_TRUE4
 D;JNE // jump if not zero
 
 // goto IF_FALSE4
-@Screen.IF_FALSE4 // goto IF_FALSE4
+@Screen.drawLine$IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
 // label IF_TRUE4
-(Screen.IF_TRUE4) // label IF_TRUE4
+(Screen.drawLine$IF_TRUE4) // label IF_TRUE4
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -49515,11 +49515,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END4
-@Screen.IF_END4 // goto IF_END4
+@Screen.drawLine$IF_END4 // goto IF_END4
 0;JMP // unconditional jump
 
 // label IF_FALSE4
-(Screen.IF_FALSE4) // label IF_FALSE4
+(Screen.drawLine$IF_FALSE4) // label IF_FALSE4
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -49570,10 +49570,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END4
-(Screen.IF_END4) // label IF_END4
+(Screen.drawLine$IF_END4) // label IF_END4
 
 // label IF_END3
-(Screen.IF_END3) // label IF_END3
+(Screen.drawLine$IF_END3) // label IF_END3
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -49720,11 +49720,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Screen.WHILE_EXP0 // goto WHILE_EXP0
+@Screen.drawLine$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Screen.WHILE_END0) // label WHILE_END0
+(Screen.drawLine$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -50150,15 +50150,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE0
+@Screen.drawRectangle$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.IF_FALSE0 // goto IF_FALSE0
+@Screen.drawRectangle$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.IF_TRUE0) // label IF_TRUE0
+(Screen.drawRectangle$IF_TRUE0) // label IF_TRUE0
 
 // push constant 9
 @9 // push constant 9 (constant)
@@ -50230,7 +50230,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Screen.IF_FALSE0) // label IF_FALSE0
+(Screen.drawRectangle$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -51195,7 +51195,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Screen.WHILE_EXP0) // label WHILE_EXP0
+(Screen.drawRectangle$WHILE_EXP0) // label WHILE_EXP0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -51271,7 +51271,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.WHILE_END0
+@Screen.drawRectangle$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -51380,15 +51380,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE1
+@Screen.drawRectangle$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Screen.IF_FALSE1 // goto IF_FALSE1
+@Screen.drawRectangle$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Screen.IF_TRUE1) // label IF_TRUE1
+(Screen.drawRectangle$IF_TRUE1) // label IF_TRUE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -51499,11 +51499,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END1
-@Screen.IF_END1 // goto IF_END1
+@Screen.drawRectangle$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Screen.IF_FALSE1) // label IF_FALSE1
+(Screen.drawRectangle$IF_FALSE1) // label IF_FALSE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -51638,7 +51638,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP1
-(Screen.WHILE_EXP1) // label WHILE_EXP1
+(Screen.drawRectangle$WHILE_EXP1) // label WHILE_EXP1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -51706,7 +51706,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.WHILE_END1
+@Screen.drawRectangle$WHILE_END1
 D;JNE // jump if not zero
 
 // push local 0
@@ -51847,11 +51847,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@Screen.WHILE_EXP1 // goto WHILE_EXP1
+@Screen.drawRectangle$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(Screen.WHILE_END1) // label WHILE_END1
+(Screen.drawRectangle$WHILE_END1) // label WHILE_END1
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -51938,7 +51938,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END1
-(Screen.IF_END1) // label IF_END1
+(Screen.drawRectangle$IF_END1) // label IF_END1
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -52061,11 +52061,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Screen.WHILE_EXP0 // goto WHILE_EXP0
+@Screen.drawRectangle$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Screen.WHILE_END0) // label WHILE_END0
+(Screen.drawRectangle$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -52551,15 +52551,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE0
+@Screen.drawHorizontal$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.IF_FALSE0 // goto IF_FALSE0
+@Screen.drawHorizontal$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.IF_TRUE0) // label IF_TRUE0
+(Screen.drawHorizontal$IF_TRUE0) // label IF_TRUE0
 
 // push local 7
 @LCL // push local 7 (&asm_segment)
@@ -53791,15 +53791,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE1
+@Screen.drawHorizontal$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Screen.IF_FALSE1 // goto IF_FALSE1
+@Screen.drawHorizontal$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Screen.IF_TRUE1) // label IF_TRUE1
+(Screen.drawHorizontal$IF_TRUE1) // label IF_TRUE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -53910,11 +53910,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END1
-@Screen.IF_END1 // goto IF_END1
+@Screen.drawHorizontal$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Screen.IF_FALSE1) // label IF_FALSE1
+(Screen.drawHorizontal$IF_FALSE1) // label IF_FALSE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -54049,7 +54049,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Screen.WHILE_EXP0) // label WHILE_EXP0
+(Screen.drawHorizontal$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -54117,7 +54117,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.WHILE_END0
+@Screen.drawHorizontal$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -54258,11 +54258,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Screen.WHILE_EXP0 // goto WHILE_EXP0
+@Screen.drawHorizontal$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Screen.WHILE_END0) // label WHILE_END0
+(Screen.drawHorizontal$WHILE_END0) // label WHILE_END0
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -54349,10 +54349,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END1
-(Screen.IF_END1) // label IF_END1
+(Screen.drawHorizontal$IF_END1) // label IF_END1
 
 // label IF_FALSE0
-(Screen.IF_FALSE0) // label IF_FALSE0
+(Screen.drawHorizontal$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -55790,15 +55790,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE0
+@Screen.drawCircle$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.IF_FALSE0 // goto IF_FALSE0
+@Screen.drawCircle$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.IF_TRUE0) // label IF_TRUE0
+(Screen.drawCircle$IF_TRUE0) // label IF_TRUE0
 
 // push constant 12
 @12 // push constant 12 (constant)
@@ -55870,7 +55870,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(Screen.IF_FALSE0) // label IF_FALSE0
+(Screen.drawCircle$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -56200,15 +56200,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE1
+@Screen.drawCircle$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Screen.IF_FALSE1 // goto IF_FALSE1
+@Screen.drawCircle$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Screen.IF_TRUE1) // label IF_TRUE1
+(Screen.drawCircle$IF_TRUE1) // label IF_TRUE1
 
 // push constant 13
 @13 // push constant 13 (constant)
@@ -56280,7 +56280,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(Screen.IF_FALSE1) // label IF_FALSE1
+(Screen.drawCircle$IF_FALSE1) // label IF_FALSE1
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -56466,7 +56466,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(Screen.WHILE_EXP0) // label WHILE_EXP0
+(Screen.drawCircle$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -56534,7 +56534,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.WHILE_END0
+@Screen.drawCircle$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 2
@@ -56592,15 +56592,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Screen.IF_TRUE2
+@Screen.drawCircle$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@Screen.IF_FALSE2 // goto IF_FALSE2
+@Screen.drawCircle$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(Screen.IF_TRUE2) // label IF_TRUE2
+(Screen.drawCircle$IF_TRUE2) // label IF_TRUE2
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -56774,11 +56774,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END2
-@Screen.IF_END2 // goto IF_END2
+@Screen.drawCircle$IF_END2 // goto IF_END2
 0;JMP // unconditional jump
 
 // label IF_FALSE2
-(Screen.IF_FALSE2) // label IF_FALSE2
+(Screen.drawCircle$IF_FALSE2) // label IF_FALSE2
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -57024,7 +57024,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_END2
-(Screen.IF_END2) // label IF_END2
+(Screen.drawCircle$IF_END2) // label IF_END2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -57183,11 +57183,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@Screen.WHILE_EXP0 // goto WHILE_EXP0
+@Screen.drawCircle$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Screen.WHILE_END0) // label WHILE_END0
+(Screen.drawCircle$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -57865,15 +57865,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE0
+@SquareGame.moveSquare$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@SquareGame.IF_FALSE0 // goto IF_FALSE0
+@SquareGame.moveSquare$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(SquareGame.IF_TRUE0) // label IF_TRUE0
+(SquareGame.moveSquare$IF_TRUE0) // label IF_TRUE0
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -57948,7 +57948,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(SquareGame.IF_FALSE0) // label IF_FALSE0
+(SquareGame.moveSquare$IF_FALSE0) // label IF_FALSE0
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -58005,15 +58005,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE1
+@SquareGame.moveSquare$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@SquareGame.IF_FALSE1 // goto IF_FALSE1
+@SquareGame.moveSquare$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(SquareGame.IF_TRUE1) // label IF_TRUE1
+(SquareGame.moveSquare$IF_TRUE1) // label IF_TRUE1
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -58088,7 +58088,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(SquareGame.IF_FALSE1) // label IF_FALSE1
+(SquareGame.moveSquare$IF_FALSE1) // label IF_FALSE1
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -58145,15 +58145,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE2
+@SquareGame.moveSquare$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@SquareGame.IF_FALSE2 // goto IF_FALSE2
+@SquareGame.moveSquare$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(SquareGame.IF_TRUE2) // label IF_TRUE2
+(SquareGame.moveSquare$IF_TRUE2) // label IF_TRUE2
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -58228,7 +58228,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(SquareGame.IF_FALSE2) // label IF_FALSE2
+(SquareGame.moveSquare$IF_FALSE2) // label IF_FALSE2
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -58285,15 +58285,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE3
+@SquareGame.moveSquare$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@SquareGame.IF_FALSE3 // goto IF_FALSE3
+@SquareGame.moveSquare$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(SquareGame.IF_TRUE3) // label IF_TRUE3
+(SquareGame.moveSquare$IF_TRUE3) // label IF_TRUE3
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -58368,7 +58368,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE3
-(SquareGame.IF_FALSE3) // label IF_FALSE3
+(SquareGame.moveSquare$IF_FALSE3) // label IF_FALSE3
 
 // push constant 5
 @5 // push constant 5 (constant)
@@ -58568,7 +58568,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(SquareGame.WHILE_EXP0) // label WHILE_EXP0
+(SquareGame.run$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -58606,11 +58606,11 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.WHILE_END0
+@SquareGame.run$WHILE_END0
 D;JNE // jump if not zero
 
 // label WHILE_EXP1
-(SquareGame.WHILE_EXP1) // label WHILE_EXP1
+(SquareGame.run$WHILE_EXP1) // label WHILE_EXP1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -58675,7 +58675,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.WHILE_END1
+@SquareGame.run$WHILE_END1
 D;JNE // jump if not zero
 
 // call Keyboard.keyPressed 0
@@ -58820,11 +58820,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@SquareGame.WHILE_EXP1 // goto WHILE_EXP1
+@SquareGame.run$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(SquareGame.WHILE_END1) // label WHILE_END1
+(SquareGame.run$WHILE_END1) // label WHILE_END1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -58881,15 +58881,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE0
+@SquareGame.run$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@SquareGame.IF_FALSE0 // goto IF_FALSE0
+@SquareGame.run$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(SquareGame.IF_TRUE0) // label IF_TRUE0
+(SquareGame.run$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -58924,7 +58924,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(SquareGame.IF_FALSE0) // label IF_FALSE0
+(SquareGame.run$IF_FALSE0) // label IF_FALSE0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -58981,15 +58981,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE1
+@SquareGame.run$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@SquareGame.IF_FALSE1 // goto IF_FALSE1
+@SquareGame.run$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(SquareGame.IF_TRUE1) // label IF_TRUE1
+(SquareGame.run$IF_TRUE1) // label IF_TRUE1
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -59064,7 +59064,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(SquareGame.IF_FALSE1) // label IF_FALSE1
+(SquareGame.run$IF_FALSE1) // label IF_FALSE1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -59121,15 +59121,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE2
+@SquareGame.run$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@SquareGame.IF_FALSE2 // goto IF_FALSE2
+@SquareGame.run$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(SquareGame.IF_TRUE2) // label IF_TRUE2
+(SquareGame.run$IF_TRUE2) // label IF_TRUE2
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -59204,7 +59204,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(SquareGame.IF_FALSE2) // label IF_FALSE2
+(SquareGame.run$IF_FALSE2) // label IF_FALSE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -59261,15 +59261,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE3
+@SquareGame.run$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@SquareGame.IF_FALSE3 // goto IF_FALSE3
+@SquareGame.run$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(SquareGame.IF_TRUE3) // label IF_TRUE3
+(SquareGame.run$IF_TRUE3) // label IF_TRUE3
 
 // push constant 1
 @1 // push constant 1 (constant)
@@ -59296,7 +59296,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE3
-(SquareGame.IF_FALSE3) // label IF_FALSE3
+(SquareGame.run$IF_FALSE3) // label IF_FALSE3
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -59353,15 +59353,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE4
+@SquareGame.run$IF_TRUE4
 D;JNE // jump if not zero
 
 // goto IF_FALSE4
-@SquareGame.IF_FALSE4 // goto IF_FALSE4
+@SquareGame.run$IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
 // label IF_TRUE4
-(SquareGame.IF_TRUE4) // label IF_TRUE4
+(SquareGame.run$IF_TRUE4) // label IF_TRUE4
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -59388,7 +59388,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE4
-(SquareGame.IF_FALSE4) // label IF_FALSE4
+(SquareGame.run$IF_FALSE4) // label IF_FALSE4
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -59445,15 +59445,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE5
+@SquareGame.run$IF_TRUE5
 D;JNE // jump if not zero
 
 // goto IF_FALSE5
-@SquareGame.IF_FALSE5 // goto IF_FALSE5
+@SquareGame.run$IF_FALSE5 // goto IF_FALSE5
 0;JMP // unconditional jump
 
 // label IF_TRUE5
-(SquareGame.IF_TRUE5) // label IF_TRUE5
+(SquareGame.run$IF_TRUE5) // label IF_TRUE5
 
 // push constant 3
 @3 // push constant 3 (constant)
@@ -59480,7 +59480,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE5
-(SquareGame.IF_FALSE5) // label IF_FALSE5
+(SquareGame.run$IF_FALSE5) // label IF_FALSE5
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -59537,15 +59537,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.IF_TRUE6
+@SquareGame.run$IF_TRUE6
 D;JNE // jump if not zero
 
 // goto IF_FALSE6
-@SquareGame.IF_FALSE6 // goto IF_FALSE6
+@SquareGame.run$IF_FALSE6 // goto IF_FALSE6
 0;JMP // unconditional jump
 
 // label IF_TRUE6
-(SquareGame.IF_TRUE6) // label IF_TRUE6
+(SquareGame.run$IF_TRUE6) // label IF_TRUE6
 
 // push constant 4
 @4 // push constant 4 (constant)
@@ -59572,10 +59572,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE6
-(SquareGame.IF_FALSE6) // label IF_FALSE6
+(SquareGame.run$IF_FALSE6) // label IF_FALSE6
 
 // label WHILE_EXP2
-(SquareGame.WHILE_EXP2) // label WHILE_EXP2
+(SquareGame.run$WHILE_EXP2) // label WHILE_EXP2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -59648,7 +59648,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@SquareGame.WHILE_END2
+@SquareGame.run$WHILE_END2
 D;JNE // jump if not zero
 
 // call Keyboard.keyPressed 0
@@ -59793,18 +59793,18 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP2
-@SquareGame.WHILE_EXP2 // goto WHILE_EXP2
+@SquareGame.run$WHILE_EXP2 // goto WHILE_EXP2
 0;JMP // unconditional jump
 
 // label WHILE_END2
-(SquareGame.WHILE_END2) // label WHILE_END2
+(SquareGame.run$WHILE_END2) // label WHILE_END2
 
 // goto WHILE_EXP0
-@SquareGame.WHILE_EXP0 // goto WHILE_EXP0
+@SquareGame.run$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(SquareGame.WHILE_END0) // label WHILE_END0
+(SquareGame.run$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -60016,15 +60016,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.new$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.new$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.new$IF_TRUE0) // label IF_TRUE0
 
 // push constant 14
 @14 // push constant 14 (constant)
@@ -60096,7 +60096,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.new$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -60153,15 +60153,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE1
+@String.new$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@String.IF_FALSE1 // goto IF_FALSE1
+@String.new$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(String.IF_TRUE1) // label IF_TRUE1
+(String.new$IF_TRUE1) // label IF_TRUE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -60236,7 +60236,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(String.IF_FALSE1) // label IF_FALSE1
+(String.new$IF_FALSE1) // label IF_FALSE1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -60442,15 +60442,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.dispose$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.dispose$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.dispose$IF_TRUE0) // label IF_TRUE0
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -60525,7 +60525,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.dispose$IF_FALSE0) // label IF_FALSE0
 
 // push pointer 0
 @3 // push pointer 0 (&asm_segment)
@@ -60989,15 +60989,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.charAt$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.charAt$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.charAt$IF_TRUE0) // label IF_TRUE0
 
 // push constant 15
 @15 // push constant 15 (constant)
@@ -61069,7 +61069,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.charAt$IF_FALSE0) // label IF_FALSE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -61399,15 +61399,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.setCharAt$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.setCharAt$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.setCharAt$IF_TRUE0) // label IF_TRUE0
 
 // push constant 16
 @16 // push constant 16 (constant)
@@ -61479,7 +61479,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.setCharAt$IF_FALSE0) // label IF_FALSE0
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -61739,15 +61739,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.appendChar$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.appendChar$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.appendChar$IF_TRUE0) // label IF_TRUE0
 
 // push constant 17
 @17 // push constant 17 (constant)
@@ -61819,7 +61819,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.appendChar$IF_FALSE0) // label IF_FALSE0
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -62127,15 +62127,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.eraseLastChar$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.eraseLastChar$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.eraseLastChar$IF_TRUE0) // label IF_TRUE0
 
 // push constant 18
 @18 // push constant 18 (constant)
@@ -62207,7 +62207,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.eraseLastChar$IF_FALSE0) // label IF_FALSE0
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -62407,15 +62407,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.intValue$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.intValue$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.intValue$IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -62484,7 +62484,7 @@ A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.intValue$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -62621,15 +62621,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE1
+@String.intValue$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@String.IF_FALSE1 // goto IF_FALSE1
+@String.intValue$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(String.IF_TRUE1) // label IF_TRUE1
+(String.intValue$IF_TRUE1) // label IF_TRUE1
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -62688,10 +62688,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(String.IF_FALSE1) // label IF_FALSE1
+(String.intValue$IF_FALSE1) // label IF_FALSE1
 
 // label WHILE_EXP0
-(String.WHILE_EXP0) // label WHILE_EXP0
+(String.intValue$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -62783,7 +62783,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.WHILE_END0
+@String.intValue$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -63034,15 +63034,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE2
+@String.intValue$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@String.IF_FALSE2 // goto IF_FALSE2
+@String.intValue$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(String.IF_TRUE2) // label IF_TRUE2
+(String.intValue$IF_TRUE2) // label IF_TRUE2
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -63243,14 +63243,14 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(String.IF_FALSE2) // label IF_FALSE2
+(String.intValue$IF_FALSE2) // label IF_FALSE2
 
 // goto WHILE_EXP0
-@String.WHILE_EXP0 // goto WHILE_EXP0
+@String.intValue$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(String.WHILE_END0) // label WHILE_END0
+(String.intValue$WHILE_END0) // label WHILE_END0
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -63272,15 +63272,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE3
+@String.intValue$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@String.IF_FALSE3 // goto IF_FALSE3
+@String.intValue$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(String.IF_TRUE3) // label IF_TRUE3
+(String.intValue$IF_TRUE3) // label IF_TRUE3
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -63318,7 +63318,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE3
-(String.IF_FALSE3) // label IF_FALSE3
+(String.intValue$IF_FALSE3) // label IF_FALSE3
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -63473,15 +63473,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE0
+@String.setInt$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@String.IF_FALSE0 // goto IF_FALSE0
+@String.setInt$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(String.IF_TRUE0) // label IF_TRUE0
+(String.setInt$IF_TRUE0) // label IF_TRUE0
 
 // push constant 19
 @19 // push constant 19 (constant)
@@ -63553,7 +63553,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE0
-(String.IF_FALSE0) // label IF_FALSE0
+(String.setInt$IF_FALSE0) // label IF_FALSE0
 
 // push constant 6
 @6 // push constant 6 (constant)
@@ -63679,15 +63679,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE1
+@String.setInt$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@String.IF_FALSE1 // goto IF_FALSE1
+@String.setInt$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(String.IF_TRUE1) // label IF_TRUE1
+(String.setInt$IF_TRUE1) // label IF_TRUE1
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -63757,7 +63757,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE1
-(String.IF_FALSE1) // label IF_FALSE1
+(String.setInt$IF_FALSE1) // label IF_FALSE1
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -63787,7 +63787,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP0
-(String.WHILE_EXP0) // label WHILE_EXP0
+(String.setInt$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -63852,7 +63852,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.WHILE_END0
+@String.setInt$WHILE_END0
 D;JNE // jump if not zero
 
 // push argument 1
@@ -64297,11 +64297,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP0
-@String.WHILE_EXP0 // goto WHILE_EXP0
+@String.setInt$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(String.WHILE_END0) // label WHILE_END0
+(String.setInt$WHILE_END0) // label WHILE_END0
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -64323,15 +64323,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE2
+@String.setInt$IF_TRUE2
 D;JNE // jump if not zero
 
 // goto IF_FALSE2
-@String.IF_FALSE2 // goto IF_FALSE2
+@String.setInt$IF_FALSE2 // goto IF_FALSE2
 0;JMP // unconditional jump
 
 // label IF_TRUE2
-(String.IF_TRUE2) // label IF_TRUE2
+(String.setInt$IF_TRUE2) // label IF_TRUE2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -64484,7 +64484,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE2
-(String.IF_FALSE2) // label IF_FALSE2
+(String.setInt$IF_FALSE2) // label IF_FALSE2
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -64544,15 +64544,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE3
+@String.setInt$IF_TRUE3
 D;JNE // jump if not zero
 
 // goto IF_FALSE3
-@String.IF_FALSE3 // goto IF_FALSE3
+@String.setInt$IF_FALSE3 // goto IF_FALSE3
 0;JMP // unconditional jump
 
 // label IF_TRUE3
-(String.IF_TRUE3) // label IF_TRUE3
+(String.setInt$IF_TRUE3) // label IF_TRUE3
 
 // push constant 19
 @19 // push constant 19 (constant)
@@ -64624,7 +64624,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label IF_FALSE3
-(String.IF_FALSE3) // label IF_FALSE3
+(String.setInt$IF_FALSE3) // label IF_FALSE3
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -64681,15 +64681,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.IF_TRUE4
+@String.setInt$IF_TRUE4
 D;JNE // jump if not zero
 
 // goto IF_FALSE4
-@String.IF_FALSE4 // goto IF_FALSE4
+@String.setInt$IF_FALSE4 // goto IF_FALSE4
 0;JMP // unconditional jump
 
 // label IF_TRUE4
-(String.IF_TRUE4) // label IF_TRUE4
+(String.setInt$IF_TRUE4) // label IF_TRUE4
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -64815,11 +64815,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto IF_END4
-@String.IF_END4 // goto IF_END4
+@String.setInt$IF_END4 // goto IF_END4
 0;JMP // unconditional jump
 
 // label IF_FALSE4
-(String.IF_FALSE4) // label IF_FALSE4
+(String.setInt$IF_FALSE4) // label IF_FALSE4
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -64846,7 +64846,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label WHILE_EXP1
-(String.WHILE_EXP1) // label WHILE_EXP1
+(String.setInt$WHILE_EXP1) // label WHILE_EXP1
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -64914,7 +64914,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@String.WHILE_END1
+@String.setInt$WHILE_END1
 D;JNE // jump if not zero
 
 // push this 2
@@ -65167,14 +65167,14 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // goto WHILE_EXP1
-@String.WHILE_EXP1 // goto WHILE_EXP1
+@String.setInt$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(String.WHILE_END1) // label WHILE_END1
+(String.setInt$WHILE_END1) // label WHILE_END1
 
 // label IF_END4
-(String.IF_END4) // label IF_END4
+(String.setInt$IF_END4) // label IF_END4
 
 // push local 2
 @LCL // push local 2 (&asm_segment)

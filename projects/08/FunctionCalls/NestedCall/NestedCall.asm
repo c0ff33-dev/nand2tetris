@@ -203,10 +203,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label LOOP
-(Sys.LOOP) // label LOOP
+(Sys.init$LOOP) // label LOOP
 
 // goto LOOP
-@Sys.LOOP // goto LOOP
+@Sys.init$LOOP // goto LOOP
 0;JMP // unconditional jump
 
 // function Sys.main 5

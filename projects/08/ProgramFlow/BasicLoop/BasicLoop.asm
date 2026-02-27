@@ -24,7 +24,7 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // label LOOP_START
-(BasicLoop.LOOP_START) // label LOOP_START
+(BasicLoop$LOOP_START) // label LOOP_START
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -145,7 +145,7 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@BasicLoop.LOOP_START
+@BasicLoop$LOOP_START
 D;JNE // jump if not zero
 
 // push local 0

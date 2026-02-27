@@ -305,10 +305,10 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // label WHILE
-(Sys.WHILE) // label WHILE
+(Sys.init$WHILE) // label WHILE
 
 // goto WHILE
-@Sys.WHILE // goto WHILE
+@Sys.init$WHILE // goto WHILE
 0;JMP // unconditional jump
 
 // function Class1.set 0

@@ -55,7 +55,7 @@ def assemble(asm_filepath, debug=False):
             continue  # skip comment lines
 
         if instruction[0] == "(":
-            label_val = instruction[1:-1]  # parse label name i.e. (LABEL)
+            label_val = instruction.split(")")[0][1:]  # parse label name e.g. (LABEL) or (LABEL) // comment
             if label_val not in address_labels:
                 address_labels[label_val] = line  # if required, add to dict
                 continue

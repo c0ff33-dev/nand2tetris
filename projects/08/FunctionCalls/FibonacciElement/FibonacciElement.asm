@@ -95,10 +95,10 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // label WHILE
-(Sys.WHILE) // label WHILE
+(Sys.init$WHILE) // label WHILE
 
 // goto WHILE // loops infinitely
-@Sys.WHILE // goto WHILE // loops infinitely
+@Sys.init$WHILE // goto WHILE // loops infinitely
 0;JMP // unconditional jump
 
 // function Main.fibonacci 0
@@ -158,15 +158,15 @@ D=A // d = 0
 M=M-1 // &esp-- (&val)
 A=M // *esp (*val)
 D=M-D // d = val - 0 // leave esp here (pop equivalent)
-@Main.IF_TRUE
+@Main.fibonacci$IF_TRUE
 D;JNE // jump if not zero
 
 // goto IF_FALSE
-@Main.IF_FALSE // goto IF_FALSE
+@Main.fibonacci$IF_FALSE // goto IF_FALSE
 0;JMP // unconditional jump
 
 // label IF_TRUE // if n<2, return n
-(Main.IF_TRUE) // label IF_TRUE // if n<2, return n
+(Main.fibonacci$IF_TRUE) // label IF_TRUE // if n<2, return n
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -238,7 +238,7 @@ A=M // d = *lcl-5 (*lcl)
 0;JMP // return (jump to RP)
 
 // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
-(Main.IF_FALSE) // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
+(Main.fibonacci$IF_FALSE) // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
