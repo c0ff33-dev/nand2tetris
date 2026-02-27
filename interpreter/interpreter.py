@@ -451,7 +451,7 @@ if __name__ == '__main__':
     vm_dirpaths = vm_dirpaths + vm_bootstrap_paths
 
     # init
-    debug = False
+    debug = True
     vm_static_dicts = {} 
     breakpoints = []
 
@@ -463,11 +463,11 @@ if __name__ == '__main__':
         jack_matches = {}
         vm_dirpaths = []
         vm_asm_filepaths = []
-        binary_asm_filepaths = [os.path.join("..", "..", "nand2tetris-fpga", "06_IO_Devices", "03_SPI", "cat.asm")]
+        binary_asm_filepaths = [os.path.join("..", "projects", "12", "MathTest", "MathTest.asm")]
         hw_tst_files = []
         cpu_tst_files = []
         vm_tst_files = []
-        breakpoints = [-1]
+        breakpoints = [13639]
 
     # compile Jack to VM (course compiler)
     if sys.platform.startswith("win"):
