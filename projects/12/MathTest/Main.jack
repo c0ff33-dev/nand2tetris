@@ -30,6 +30,6 @@ class Main {
         let r[12] = Math.abs(27);          // ASSERT RAM[8012] = 27
         let r[13] = Math.abs(-32767);      // ASSERT RAM[8013] = 32767
         
-        return;
+        return;                            // ASSERT REACHABLE
     }
 }

@@ -131,13 +131,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.halt$WHILE_END0
 D;JNE // jump if not zero
 
@@ -189,13 +185,9 @@ D=A
 (RET_LT_8)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.wait$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -260,13 +252,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.wait$WHILE_END0
 D;JNE // jump if not zero
 
@@ -317,13 +305,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.wait$WHILE_END1
 D;JNE // jump if not zero
 
@@ -586,7 +570,7 @@ M=0 // direct assign
 
 // return
 @RETURN_SUB
-0;JMP
+0;JMP // ASSERT REACHABLE
 
 // function Array.new 0
 (Array.new) // function Array.new 0
@@ -618,13 +602,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Array.new$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -853,13 +833,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.readChar$WHILE_END0
 D;JNE // jump if not zero
 
@@ -901,13 +877,9 @@ D=A
 (RET_GT_28)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.readChar$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -1133,13 +1105,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.readLine$WHILE_END0
 D;JNE // jump if not zero
 
@@ -1215,13 +1183,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.readLine$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -1260,13 +1224,9 @@ D=A
 (RET_EQ_38)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.readLine$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -1615,13 +1575,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.init$WHILE_END0
 D;JNE // jump if not zero
 
@@ -1864,13 +1820,9 @@ D=A
 (RET_LT_47)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.abs$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -2133,13 +2085,9 @@ D=A
 (RET_LT_54)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.multiply$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -2266,13 +2214,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.multiply$WHILE_END0
 D;JNE // jump if not zero
 
@@ -2353,13 +2297,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.multiply$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -2572,13 +2512,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.multiply$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -2664,13 +2600,9 @@ D=A
 (RET_EQ_57)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.divide$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -2977,13 +2909,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.divide$WHILE_END0
 D;JNE // jump if not zero
 
@@ -3147,13 +3075,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.divide$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -3445,13 +3369,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.divide$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -3541,13 +3461,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.divide$WHILE_END1
 D;JNE // jump if not zero
 
@@ -3639,13 +3555,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.divide$IF_TRUE3
 D;JNE // jump if not zero
 
@@ -3836,13 +3748,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.divide$IF_TRUE4
 D;JNE // jump if not zero
 
@@ -3928,13 +3836,9 @@ D=A
 (RET_LT_70)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.sqrt$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -4022,13 +3926,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.sqrt$WHILE_END0
 D;JNE // jump if not zero
 
@@ -4207,13 +4107,9 @@ A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.sqrt$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -4331,13 +4227,9 @@ D=A
 (RET_GT_76)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.max$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -4409,13 +4301,9 @@ D=A
 (RET_LT_77)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.min$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -4760,13 +4648,9 @@ D=A
 (RET_LT_78)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -4825,13 +4709,9 @@ D=A
 (RET_EQ_80)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -4969,13 +4849,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$WHILE_END0
 D;JNE // jump if not zero
 
@@ -5166,13 +5042,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -5428,13 +5300,9 @@ D=A
 (RET_EQ_86)
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$IF_TRUE3
 D;JNE // jump if not zero
 
@@ -5672,13 +5540,9 @@ D=A
 (RET_GT_87)
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$IF_TRUE4
 D;JNE // jump if not zero
 
@@ -5784,13 +5648,9 @@ D=A
 (RET_GT_89)
 
 // if-goto IF_TRUE5
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE5
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE5
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$IF_TRUE5
 D;JNE // jump if not zero
 
@@ -6010,13 +5870,9 @@ D=A
 (RET_EQ_90)
 
 // if-goto IF_TRUE6
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE6
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE6
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.alloc$IF_TRUE6
 D;JNE // jump if not zero
 
@@ -6576,13 +6432,9 @@ D=A
 (RET_EQ_91)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.deAlloc$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -6942,13 +6794,9 @@ D=A
 (RET_EQ_92)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.deAlloc$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -18080,13 +17928,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.createShiftedMap$WHILE_END0
 D;JNE // jump if not zero
 
@@ -18284,13 +18128,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.createShiftedMap$WHILE_END1
 D;JNE // jump if not zero
 
@@ -18480,13 +18320,9 @@ D=A
 (RET_EQ_199)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.createShiftedMap$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -18650,13 +18486,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.getMap$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -18693,13 +18525,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.getMap$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -18923,13 +18751,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.drawChar$WHILE_END0
 D;JNE // jump if not zero
 
@@ -18942,13 +18766,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.drawChar$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -19424,13 +19244,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.moveCursor$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -19662,13 +19478,9 @@ D=A
 (RET_EQ_215)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.printChar$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -19724,13 +19536,9 @@ D=A
 (RET_EQ_218)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.printChar$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -19799,13 +19607,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.printChar$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -19899,13 +19703,9 @@ D=A
 (RET_EQ_221)
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.printChar$IF_TRUE3
 D;JNE // jump if not zero
 
@@ -20044,13 +19844,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.printString$WHILE_END0
 D;JNE // jump if not zero
 
@@ -20307,13 +20103,9 @@ D=A
 (RET_EQ_229)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.println$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -20363,13 +20155,9 @@ AM=M+1
 A=A-1
 M=D
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.backSpace$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -20402,13 +20190,9 @@ D=A
 (RET_GT_230)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.backSpace$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -20521,13 +20305,9 @@ D=A
 (RET_EQ_231)
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.backSpace$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -20815,13 +20595,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.init$WHILE_END0
 D;JNE // jump if not zero
 
@@ -21080,13 +20856,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.clearScreen$WHILE_END0
 D;JNE // jump if not zero
 
@@ -21208,13 +20980,9 @@ AM=M+1
 A=A-1
 M=D
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.updateLocation$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -21624,13 +21392,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawPixel$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -21890,13 +21654,9 @@ AM=M+1
 A=A-1
 M=D
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawConditional$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -22137,13 +21897,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawLine$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -22424,13 +22180,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawLine$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -22594,13 +22346,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawLine$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -23141,13 +22889,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawLine$WHILE_END0
 D;JNE // jump if not zero
 
@@ -23176,13 +22920,9 @@ D=A
 (RET_LT_264)
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawLine$IF_TRUE3
 D;JNE // jump if not zero
 
@@ -23300,13 +23040,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawLine$IF_TRUE4
 D;JNE // jump if not zero
 
@@ -23690,13 +23426,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawRectangle$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -24221,13 +23953,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawRectangle$WHILE_END0
 D;JNE // jump if not zero
 
@@ -24291,13 +24019,9 @@ D=A
 (RET_EQ_279)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawRectangle$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -24465,13 +24189,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawRectangle$WHILE_END1
 D;JNE // jump if not zero
 
@@ -24920,13 +24640,9 @@ A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawHorizontal$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -25523,13 +25239,9 @@ D=A
 (RET_EQ_298)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawHorizontal$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -25699,13 +25411,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawHorizontal$WHILE_END0
 D;JNE // jump if not zero
 
@@ -26350,13 +26058,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawCircle$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -26578,13 +26282,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawCircle$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -26762,13 +26462,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawCircle$WHILE_END0
 D;JNE // jump if not zero
 
@@ -26797,13 +26493,9 @@ D=A
 (RET_LT_320)
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.drawCircle$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -27158,13 +26850,9 @@ D=A
 (RET_LT_325)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.new$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -27223,13 +26911,9 @@ D=A
 (RET_GT_327)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.new$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -27358,13 +27042,9 @@ D=A
 (RET_GT_329)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.dispose$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -27575,13 +27255,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.charAt$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -27771,13 +27447,9 @@ A=A-1 // A -> val1
 M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setCharAt$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -27935,13 +27607,9 @@ D=A
 (RET_EQ_340)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.appendChar$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -28137,13 +27805,9 @@ D=A
 (RET_EQ_342)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.eraseLastChar$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -28285,13 +27949,9 @@ D=A
 (RET_EQ_344)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.intValue$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -28395,13 +28055,9 @@ D=A
 (RET_EQ_345)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.intValue$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -28509,13 +28165,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.intValue$WHILE_END0
 D;JNE // jump if not zero
 
@@ -28679,13 +28331,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.intValue$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -28798,13 +28446,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.intValue$IF_TRUE3
 D;JNE // jump if not zero
 
@@ -28906,13 +28550,9 @@ D=A
 (RET_EQ_350)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setInt$IF_TRUE0
 D;JNE // jump if not zero
 
@@ -29001,13 +28641,9 @@ D=A
 (RET_LT_353)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setInt$IF_TRUE1
 D;JNE // jump if not zero
 
@@ -29117,13 +28753,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setInt$WHILE_END0
 D;JNE // jump if not zero
 
@@ -29337,13 +28969,9 @@ A=A-1
 M=D
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setInt$IF_TRUE2
 D;JNE // jump if not zero
 
@@ -29478,13 +29106,9 @@ D=A
 (RET_LT_357)
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setInt$IF_TRUE3
 D;JNE // jump if not zero
 
@@ -29543,13 +29167,9 @@ D=A
 (RET_EQ_359)
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setInt$IF_TRUE4
 D;JNE // jump if not zero
 
@@ -29705,13 +29325,9 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.setInt$WHILE_END1
 D;JNE // jump if not zero
 

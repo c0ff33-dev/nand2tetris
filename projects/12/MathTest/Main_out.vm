@@ -174,3 +174,4 @@ pop that 0
 // ASSERT RAM[8013] = 32767
 push constant 0
 return
+// ASSERT REACHABLE

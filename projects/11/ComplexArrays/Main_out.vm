@@ -671,6 +671,7 @@ call Output.println 0
 pop temp 0
 push constant 0
 return
+// ASSERT REACHABLE
 function Main.double 0
 push argument 0
 push constant 2

@@ -35,6 +35,6 @@ class Main {
         do c.dispose();
         do b.dispose();
         
-        return;
+        return;                       // ASSERT REACHABLE
     }
 }

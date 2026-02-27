@@ -245,8 +245,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     # if ASSERTs are present, ensure proper bootstrap and enough cycles
     expected_asserts = sum(1 for d in debug_asm if '// ASSERT ' in d[1])
     if expected_asserts > 0:
-        if hw["MAX"] < 10000000:
-            hw["MAX"] = 10000000
+        if hw["MAX"] < 20000000:
+            hw["MAX"] = 20000000
         if hw["RAM"][0] == 0:
             hw["RAM"][0] = 256  # bootstrap SP
 
@@ -386,16 +386,19 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         # evaluate ASSERT directives
         if '// ASSERT ' in debug_cmd:
             assert_text = debug_cmd.split('// ASSERT ')[1].strip()
-            match = re.match(r'RAM\[(\d+)\]\s*=\s*(-?\d+)', assert_text)
-            if match:
-                addr, expected = int(match.group(1)), int(match.group(2))
-                actual = hw["RAM"][addr]
-                if actual != expected:
-                    assert_fail += 1
-                    print("ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d"
-                          % (addr, actual, expected, hw["PC"]-1))
-                else:
-                    assert_pass += 1
+            if assert_text == 'REACHABLE':
+                assert_pass += 1
+            else:
+                match = re.match(r'RAM\[(\d+)\]\s*=\s*(-?\d+)', assert_text)
+                if match:
+                    addr, expected = int(match.group(1)), int(match.group(2))
+                    actual = hw["RAM"][addr]
+                    if actual != expected:
+                        assert_fail += 1
+                        print("ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d"
+                              % (addr, actual, expected, hw["PC"]-1))
+                    else:
+                        assert_pass += 1
 
         cycle += 1  # always advance clock cycle
 

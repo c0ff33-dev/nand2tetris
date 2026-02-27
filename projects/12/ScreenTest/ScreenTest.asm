@@ -1283,7 +1283,7 @@ M=0 // direct assign
 
 // return
 @RETURN_SUB
-0;JMP
+0;JMP // ASSERT REACHABLE
 
 // function Array.new 0
 (Array.new) // function Array.new 0
