@@ -416,7 +416,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
             raise RuntimeError("ASSERT: %d asserts in ROM but none were reached" % expected_asserts)
         elif evaluated < expected_asserts:
             raise RuntimeError("ASSERT: only %d/%d asserts were reached" % (evaluated, expected_asserts))
-        print("\tASSERT: %d/%d passed, halted @ cycle %d" % (assert_pass, expected_asserts, cycle))
+        if debug:
+            print("\tASSERT: %d/%d passed, halted @ cycle %d" % (assert_pass, expected_asserts, cycle))
         if assert_fail > 0:
             raise RuntimeError("ASSERT: %d/%d failed" % (assert_fail, expected_asserts))
 

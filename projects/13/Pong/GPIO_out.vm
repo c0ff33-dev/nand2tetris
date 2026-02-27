@@ -1,0 +1,85 @@
+function GPIO.init 0
+push constant 0
+push static 0
+add
+push constant 4096
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+push static 1
+add
+push constant 4097
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+push static 2
+add
+push constant 4107
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function GPIO.readLed 0
+push constant 0
+push static 0
+add
+pop pointer 1
+push that 0
+return
+function GPIO.writeLed 0
+push constant 0
+push static 0
+add
+push argument 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function GPIO.readBut 0
+push constant 0
+push static 1
+add
+pop pointer 1
+push that 0
+return
+function GPIO._readDebug 0
+push argument 0
+push static 2
+add
+pop pointer 1
+push that 0
+return
+function GPIO._writeDebug 0
+push argument 0
+push static 2
+add
+push argument 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function GPIO._blink 0
+push constant 1
+call GPIO.writeLed 1
+pop temp 0
+push argument 0
+call Sys.wait 1
+pop temp 0
+push constant 0
+call GPIO.writeLed 1
+pop temp 0
+push argument 0
+call Sys.wait 1
+pop temp 0
+push constant 0
+return
