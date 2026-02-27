@@ -245,8 +245,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     # if ASSERTs are present, ensure proper bootstrap and enough cycles
     expected_asserts = sum(1 for d in debug_asm if '// ASSERT ' in d[1])
     if expected_asserts > 0:
-        if hw["MAX"] < 50000000:
-            hw["MAX"] = 50000000
+        if hw["MAX"] < 10000000:
+            hw["MAX"] = 10000000
         if hw["RAM"][0] == 0:
             hw["RAM"][0] = 256  # bootstrap SP
 
@@ -258,6 +258,10 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
         debug_cmd = hw["ROM"]["debug"][hw["PC"]][1]
         src_line = hw["ROM"]["raw"][hw["PC"]][0]
+
+        # escape hatch: break out of Sys.halt infinite loop
+        if raw_cmd == "@Sys.halt":
+            break
 
         if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
             raise RuntimeError("Interpreter: Debug/Raw line number mismatch!")           
@@ -377,7 +381,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
         #  format primary debug output
         if debug:
-            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
+            # process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
+            print(cycle, src_line, debug_cmd)
 
         # evaluate ASSERT directives
         if '// ASSERT ' in debug_cmd:
@@ -471,7 +476,7 @@ if __name__ == '__main__':
         hw_tst_files = []
         cpu_tst_files = []
         vm_tst_files = []
-        breakpoints = [13639]
+        breakpoints = []
 
     # compile Jack to VM (course compiler)
     if sys.platform.startswith("win"):
