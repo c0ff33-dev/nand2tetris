@@ -454,6 +454,9 @@ class Translator:
         """
         restore caller stack, pop result & jump to RP
         first return emits full subroutine; subsequent returns are 2-instr jumps
+
+        stack frame before return = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<result><SP>
+        stack frame after return = <result><SP> // ...<RP><LCL><ARG><THIS><THAT><locals>
         """
         self.asm += '\n// %s\n' % (cmd)
 
@@ -667,7 +670,7 @@ class Translator:
         vm_dir_filelist = []
 
         # TODO: this should probably be a glob pattern w/ logic to preserve order where it matters (sys.vm)
-        # TODO: _out.vm files not processed (relevant if diverging from course compiler implementation later)
+        # _out.vm files not processed (only relevant if diverging from course compiler implementation)
         # spec dictates that Sys.init() is first function to run on boot which then calls Main.main()
         # so functionally anything after sys.vm doesn't matter other than changing compilation order
         vm_filelist = [

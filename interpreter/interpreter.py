@@ -145,7 +145,6 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     gui_log = []
 
     # initialize hardware
-    # TODO: switch for original vs modified spec
     ram = [0] * 57344  # original spec: 24577 (~24k) words, fgpa spec: 57344 (56k) words
     hw = {
         "RAM": ram,
@@ -200,8 +199,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
         "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
 
-        # TODO: switch for original vs modified spec
-        # FPGA symbols
+        # TODO: FPGA symbols
         "UART_TX": 4098
     }
 
@@ -295,11 +293,10 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
                 dst = raw_cmd[0]
                 eval_cmd = raw_cmd[2:]
             elif raw_cmd[2] == "=":  # XY=X
-                # will never be tested with vm generated asm
                 dst = raw_cmd[:2]
                 eval_cmd = raw_cmd[3:]
             elif raw_cmd[3] == "=":  # XYZ=X
-                # will never be tested with vm generated asm
+                # will never be tested with translator generated asm
                 dst = raw_cmd[:3]
                 eval_cmd = raw_cmd[4:]
             else:
@@ -625,51 +622,6 @@ if __name__ == '__main__':
                 os.rename(main_base, main_out)
                 os.rename(main_backup, main_base)
 
-    # project
     # TODO: diff Jack files (nand2tetris-fpga)
-    # TODO: comment remaining sys.errors
-    # TODO: Project 12: Implement the OS libraries in Jack, compile/test (test programs included)
-    # TODO: add integration for Project 12 translate/execute/assemble ASM > HACK (integration test)
-    # TODO: VMEmulator equivalent for Jack debugging + tests (no instruction limit)
     # TODO: separate interpreter from test harness
-
-    # test harness
-    # TODO: dynamically count lines in jack/strict matches
-
-    # compiler
-    # FIXME: // in string strips the string
-    # TODO: error check - int cannot exceed 32767
-    # TODO: error check - non-void without return value / void with return value
-    # TODO: error check - statement without keyword/statement type
-    # TODO: error check - non-terminated statement
-    # TODO: error check - prevent using reserved keywords as identifiers
-    # TODO: error check - prevent duplicate variable/subroutine declaration
-    # TODO: error check - check num args match called function
-    # TODO: error check - check subroutine returns
-    # TODO: error check - check constructor return type is class type
-    # TODO: error check - check constructor returns this
-    # TODO: error check - check for unexpected tokens after statement expression (if/while)
-
-    # TODO: Jack OS Error Codes
-    '''
-    Code Method/Function       Description
-    ---- ---------------       -----------------------------------------------
-     1   Sys.wait              Duration must be positive
-     2   Array.new             Array size must be positive
-     3   Math.divide           Division by zero
-     4   Math.sqrt             Cannot compute square root of a negative number
-     5   Memory.alloc          Allocated memory size must be positive
-     6   Memory.alloc          Heap overflow
-     7   Screen.drawPixel      Illegal pixel coordinates
-     8   Screen.drawLine       Illegal line coordinates
-     9   Screen.drawRectangle  Illegal rectangle coordinates
-    12   Screen.drawCircle     Illegal center coordinates
-    13   Screen.drawCircle     Illegal radius
-    14   String.new            Maximum length must be non-negative
-    15   String.charAt         String index out of bounds
-    16   String.setCharAt      String index out of bounds
-    17   String.appendChar     String is full
-    18   String.eraseLastChar  String is empty
-    19   String.setInt         Insufficient string capacity
-    20   Output.moveCursor     Illegal cursor location
-    '''
+    # FIXME: compiler - '//' in string strips the string
