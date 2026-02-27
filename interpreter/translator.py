@@ -15,6 +15,11 @@ class Translator:
         self.offset_list = []
         self.guid = 0
         self.call_generated = False
+        self.eq_sub_emitted = False
+        self.lt_sub_emitted = False
+        self.gt_sub_emitted = False
+        self.return_sub_emitted = False
+        self.asm_subroutines = ""
 
     # 7-10 instructions per VM command
     def gen_push(self, cmd, vm_segment, asm_segment, value, vm_filepath):
@@ -142,42 +147,46 @@ class Translator:
         self.asm += "A=A-1 // A -> val1\n"
         self.asm += "M=M-D // val1 = val1 - val2\n"
 
-    # ~21 instructions per VM command
+    # 4 instructions per VM command (+ 16 instruction subroutine emitted once per type)
+    def _gen_comparison_sub(self, label, jump_skip):
+        """emit a shared comparison subroutine (once per type), deferred to end of output"""
+        self.asm_subroutines += "(%s_SUB)\n" % label
+        self.asm_subroutines += "@R15\n"
+        self.asm_subroutines += "M=D // save return addr\n"
+        self.asm_subroutines += "@SP\n"
+        self.asm_subroutines += "AM=M-1 // SP--, A -> val2\n"
+        self.asm_subroutines += "D=M // D = val2\n"
+        self.asm_subroutines += "A=A-1 // A -> val1 (result slot)\n"
+        self.asm_subroutines += "D=M-D // D = val1 - val2\n"
+        self.asm_subroutines += "M=0 // assume false\n"
+        self.asm_subroutines += "@%s_END\n" % label
+        self.asm_subroutines += "D;%s // skip if false\n" % jump_skip
+        self.asm_subroutines += "@SP\n"
+        self.asm_subroutines += "A=M-1 // A -> result slot\n"
+        self.asm_subroutines += "M=-1 // true\n"
+        self.asm_subroutines += "(%s_END)\n" % label
+        self.asm_subroutines += "@R15\n"
+        self.asm_subroutines += "A=M\n"
+        self.asm_subroutines += "0;JMP // return\n"
+
+    def _gen_comparison_call(self, cmd, label):
+        """emit a 4-instruction call to a comparison subroutine"""
+        guid = self.gen_guid()
+        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "@RET_%s_%s\n" % (label, guid)
+        self.asm += "D=A\n"
+        self.asm += "@%s_SUB\n" % label
+        self.asm += "0;JMP\n"
+        self.asm += "(RET_%s_%s)\n" % (label, guid)
+
     def gen_eq(self, cmd):
         """
         pop 2 values from the stack and push -1 if they are the same or 0 if not
         """
-        guid = self.gen_guid()
-        self.asm += '\n// %s\n' % (cmd)
-
-        self.asm += "@SP // %s // &esp \n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
-        self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "D=M-D // d = val1 - val2\n"
-
-        self.asm += "@EQ_TRUE_%s\n" % guid
-        self.asm += "D;JEQ // jump if true\n"
-        self.asm += "// EQ_FALSE_%s\n" % guid
-        self.asm += "@0 // false\n"
-        self.asm += "D=A // d = false\n"
-        self.asm += "@EQ_END_%s\n" % guid
-        self.asm += "0;JMP // unconditional jump\n"
-
-        self.asm += "(EQ_TRUE_%s)\n" % guid
-        self.asm += "@0 // 0\n"
-        self.asm += "D=!A // d = -1 (true)\n"
-
-        self.asm += "(EQ_END_%s) // save eq result to stack\n" % guid
-        self.asm += "@SP // &esp (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D // esp = eq result\n"
-
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self._gen_comparison_call(cmd, "EQ")
+        if not self.eq_sub_emitted:
+            self.eq_sub_emitted = True
+            self._gen_comparison_sub("EQ", "JNE")
 
     def gen_guid(self):
         """
@@ -186,79 +195,23 @@ class Translator:
         self.guid += 1
         return self.guid
 
-    # ~21 instructions per VM command
     def gen_lt(self, cmd):
         """
         pop 2 values from the stack and push -1 if val1 < val2 or 0 if not
         """
-        guid = self.gen_guid()
-        self.asm += '\n// %s\n' % (cmd)
+        self._gen_comparison_call(cmd, "LT")
+        if not self.lt_sub_emitted:
+            self.lt_sub_emitted = True
+            self._gen_comparison_sub("LT", "JGE")
 
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
-        self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "D=M-D // d = val1 - val2\n"
-
-        self.asm += "@JLT_TRUE_%s\n" % guid
-        self.asm += "D;JLT\n"
-        self.asm += "// JLT_FALSE_%s\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=A // d = false\n"
-        self.asm += "@JLT_END_%s\n" % guid
-        self.asm += "0;JMP\n"
-
-        self.asm += "(JLT_TRUE_%s)\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=!A // d = -1 (true)\n"
-
-        self.asm += "(JLT_END_%s)\n" % guid
-        self.asm += "@SP // &esp (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D // esp = lt result\n"
-
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
-
-    # ~21 instructions per VM command
     def gen_gt(self, cmd):
         """
         pop 2 values from the stack and push -1 if val1 > val2 or 0 if not
         """
-        guid = self.gen_guid()
-        self.asm += '\n// %s\n' % (cmd)
-
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
-        self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "D=M-D // d = val1 - val2\n"
-
-        self.asm += "@JGT_TRUE_%s\n" % guid
-        self.asm += "D;JGT\n"
-        self.asm += "// JGT_FALSE_%s\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=A // d = false\n"
-        self.asm += "@JGT_END_%s\n" % guid
-        self.asm += "0;JMP\n"
-
-        self.asm += "(JGT_TRUE_%s)\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=!A // d = -1 (true)\n"
-
-        self.asm += "(JGT_END_%s)\n" % guid
-        self.asm += "@SP // &esp (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D // esp = gt result\n"
-
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self._gen_comparison_call(cmd, "GT")
+        if not self.gt_sub_emitted:
+            self.gt_sub_emitted = True
+            self._gen_comparison_sub("GT", "JLE")
 
     # 5 instructions per VM command
     def gen_and(self, cmd):
@@ -466,7 +419,7 @@ class Translator:
                 # JACK spec does not require static/field/local to be initialized, only args
                 # the decompiled VM code however definitely assumes local init to 0
                 self.gen_push("push constant 0 // local(%s) init" % i, "constant", "constant", 0, "")
-                prologue_size += 4  # 4 instructions per push(constant 0)
+                prologue_size += 4  # 4 instructions per push(constant 0/1/-1)
         else:
             num_locals = 0
 
@@ -515,60 +468,68 @@ class Translator:
     def gen_return(self, cmd, vm_filepath):
         """
         restore caller stack, pop result & jump to RP
+        first return emits full subroutine; subsequent returns are 2-instr jumps
         """
-        # stack frame before return = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<result><SP>
-        # stack frame after return = <result><SP> // ...<RP><LCL><ARG><THIS><THAT><locals>
-
         self.asm += '\n// %s\n' % (cmd)
-        self.gen_pop("pop argument 0 // return // move result to &arg[0] (soon to be last stack "
-                     "item)", "argument", "ARG", 0, vm_filepath)
 
-        self.asm += "@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]\n"
-        self.asm += "D=M+1 // d = *arg[1]\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=D // *esp = arg[1]\n"
+        if not self.return_sub_emitted:
+            self.return_sub_emitted = True
+            sub = "(RETURN_SUB)\n"
+            # R13 = frame (old LCL)
+            sub += "@LCL\n"
+            sub += "D=M\n"
+            sub += "@R13\n"
+            sub += "M=D // R13 = frame\n"
+            # R14 = retAddr = *(frame - 5)
+            sub += "@5\n"
+            sub += "A=D-A\n"
+            sub += "D=M\n"
+            sub += "@R14\n"
+            sub += "M=D // R14 = retAddr\n"
+            # *ARG = pop()
+            sub += "@SP\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@ARG\n"
+            sub += "A=M\n"
+            sub += "M=D // ARG[0] = result\n"
+            # SP = ARG + 1
+            sub += "@ARG\n"
+            sub += "D=M+1\n"
+            sub += "@SP\n"
+            sub += "M=D // SP = ARG + 1\n"
+            # THAT = *(frame - 1), decrement R13
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@THAT\n"
+            sub += "M=D\n"
+            # THIS = *(frame - 2)
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@THIS\n"
+            sub += "M=D\n"
+            # ARG = *(frame - 3)
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@ARG\n"
+            sub += "M=D\n"
+            # LCL = *(frame - 4)
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@LCL\n"
+            sub += "M=D\n"
+            # goto retAddr
+            sub += "@R14\n"
+            sub += "A=M\n"
+            sub += "0;JMP\n"
+            self.asm_subroutines += sub
 
-        self.asm += "@LCL // &lcl[0] // return: restore caller stack (THAT)\n"
-        self.asm += "A=M-1 // &that\n"
-        self.asm += "D=M // d = *that\n"
-        self.asm += "@THAT\n"
-        self.asm += "M=D // *that = *that\n"
-
-        self.asm += "@2 // return: restore caller stack (THIS)\n"
-        self.asm += "D=A // d=2\n"
-        self.asm += "@LCL // &lcl\n"
-        self.asm += "A=M-D // &this\n"
-        self.asm += "D=M // d = *this\n"
-        self.asm += "@THIS\n"
-        self.asm += "M=D // *this = *this\n"
-
-        self.asm += "@3 // return: restore caller stack (ARG)\n"
-        self.asm += "D=A // d=3\n"
-        self.asm += "@LCL // &lcl \n"
-        self.asm += "A=M-D // &lcl-3 (&arg)\n"
-        self.asm += "D=M // d = *arg\n"
-        self.asm += "@ARG\n"
-        self.asm += "M=D // *arg = *arg\n"
-
-        self.asm += "@LCL // &lcl // before restoring LCL, save it to R13\n"
-        self.asm += "D=M // d = *lcl\n"
-        self.asm += "@R13 // &r13\n"
-        self.asm += "M=D // *r13 = lcl\n"
-
-        self.asm += "@4 // return: restore caller stack (LCL)\n"
-        self.asm += "D=A // d=4\n"
-        self.asm += "@LCL // &lcl\n"
-        self.asm += "A=M-D // &lcl-4\n"
-        self.asm += "D=M // d = *lcl-4\n"
-        self.asm += "@LCL\n"
-        self.asm += "M=D // *lcl = *lcl-4\n"
-
-        self.asm += "@5 // return: unconditional jump to LCL-5 (RP)\n"
-        self.asm += "D=A // d=5\n"
-        self.asm += "@R13 // &r13 (old_lcl)\n"
-        self.asm += "A=M-D // &old_lcl-5 (&lcl)\n"
-        self.asm += "A=M // d = *lcl-5 (*lcl)\n"
-        self.asm += "0;JMP // return (jump to RP)\n"
+        self.asm += "@RETURN_SUB\n"
+        self.asm += "0;JMP\n"
 
     def parse_asm(self, vm_filepath):
         """
@@ -769,15 +730,19 @@ class Translator:
             # write asm_file
             asm_path = os.path.join(vm_dir, vm_dir.split(os.path.sep)[-1]+'.asm')
             with open(asm_path, 'w') as asm_file:
+                # halt loop prevents fall-through into subroutines
+                halt = ""
+                if self.asm_subroutines:
+                    halt = "\n// halt\n(END_PROGRAM)\n@END_PROGRAM\n0;JMP\n"
                 if any(bootstrap_path in asm_path for bootstrap_path in vm_bootstrap_paths):
                     # test scripts do not conform to spec (256)
                     bootstrap = "@261 // bootstrap: initialize SP as 261\n"
                     bootstrap += "D=A\n"
                     bootstrap += "@0\n"
                     bootstrap += "M=D\n"
-                    asm_file.write(bootstrap+self.asm)
+                    asm_file.write(bootstrap+self.asm+halt+self.asm_subroutines)
                 else:
-                    asm_file.write(self.asm)
+                    asm_file.write(self.asm+halt+self.asm_subroutines)
 
         print("Translated VM file(s) in directory: %s" % vm_dir)
         for vm_filepath in vm_dir_filelist:

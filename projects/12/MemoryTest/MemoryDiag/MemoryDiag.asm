@@ -561,61 +561,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Sys.halt 0
 (Sys.halt) // function Sys.halt 0
@@ -659,61 +606,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Sys.wait 1
 (Sys.wait) // function Sys.wait 1
@@ -735,30 +629,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_15
-D;JLT
-// JLT_FALSE_15
-@0
-D=A // d = false
-@JLT_END_15
+@RET_LT_15
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_15)
-@0
-D=!A // d = -1 (true)
-(JLT_END_15)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_15)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -864,30 +739,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_18
-D;JGT
-// JGT_FALSE_18
-@0
-D=A // d = false
-@JGT_END_18
+@RET_GT_18
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_18)
-@0
-D=!A // d = -1 (true)
-(JGT_END_18)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_18)
 
 // not
 @SP // not
@@ -945,30 +801,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_19
-D;JGT
-// JGT_FALSE_19
-@0
-D=A // d = false
-@JGT_END_19
+@RET_GT_19
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_19)
-@0
-D=!A // d = -1 (true)
-(JGT_END_19)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_19)
 
 // not
 @SP // not
@@ -1081,61 +918,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Sys.error 0
 (Sys.error) // function Sys.error 0
@@ -1489,61 +1273,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Main.main 5
 (Main.main) // function Main.main 5
@@ -7161,61 +6892,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Main.checkRange 1
 (Main.checkRange) // function Main.checkRange 1
@@ -7296,30 +6974,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_78
-D;JLT
-// JLT_FALSE_78
-@0
-D=A // d = false
-@JLT_END_78
+@RET_LT_78
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_78)
-@0
-D=!A // d = -1 (true)
-(JLT_END_78)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_78)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -7341,30 +7000,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_79
-D;JGT
-// JGT_FALSE_79
-@0
-D=A // d = false
-@JGT_END_79
+@RET_GT_79
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_79)
-@0
-D=!A // d = -1 (true)
-(JGT_END_79)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_79)
 
 // or
 @SP // or
@@ -7465,61 +7105,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Main.checkOverlap 2
 (Main.checkOverlap) // function Main.checkOverlap 2
@@ -7660,30 +7247,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_82
-D;JGT
-// JGT_FALSE_82
-@0
-D=A // d = false
-@JGT_END_82
+@RET_GT_82
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_82)
-@0
-D=!A // d = -1 (true)
-(JGT_END_82)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_82)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -7708,30 +7276,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_83
-D;JLT
-// JLT_FALSE_83
-@0
-D=A // d = false
-@JLT_END_83
+@RET_LT_83
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_83)
-@0
-D=!A // d = -1 (true)
-(JLT_END_83)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_83)
 
 // or
 @SP // or
@@ -7837,61 +7386,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Array.new 0
 (Array.new) // function Array.new 0
@@ -7913,30 +7409,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_86
-D;JGT
-// JGT_FALSE_86
-@0
-D=A // d = false
-@JGT_END_86
+@RET_GT_86
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_86)
-@0
-D=!A // d = -1 (true)
-(JGT_END_86)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_86)
 
 // not
 @SP // not
@@ -8097,61 +7574,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Array.dispose 0
 (Array.dispose) // function Array.dispose 0
@@ -8271,61 +7695,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Keyboard.init 0
 (Keyboard.init) // function Keyboard.init 0
@@ -8336,61 +7707,8 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=0 // direct assign
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Keyboard.keyPressed 0
 (Keyboard.keyPressed) // function Keyboard.keyPressed 0
@@ -8448,61 +7766,8 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Keyboard.readChar 2
 (Keyboard.readChar) // function Keyboard.readChar 2
@@ -8593,30 +7858,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_97
-D;JEQ // jump if true
-// EQ_FALSE_97
-@0 // false
-D=A // d = false
-@EQ_END_97
-0;JMP // unconditional jump
-(EQ_TRUE_97)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_97) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_97
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_97)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -8636,30 +7882,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_98
-D;JGT
-// JGT_FALSE_98
-@0
-D=A // d = false
-@JGT_END_98
+@RET_GT_98
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_98)
-@0
-D=!A // d = -1 (true)
-(JGT_END_98)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_98)
 
 // or
 @SP // or
@@ -8766,30 +7993,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_101
-D;JGT
-// JGT_FALSE_101
-@0
-D=A // d = false
-@JGT_END_101
+@RET_GT_101
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_101)
-@0
-D=!A // d = -1 (true)
-(JGT_END_101)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_101)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -9037,61 +8245,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Keyboard.readLine 5
 (Keyboard.readLine) // function Keyboard.readLine 5
@@ -9516,30 +8671,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_118
-D;JEQ // jump if true
-// EQ_FALSE_118
-@0 // false
-D=A // d = false
-@EQ_END_118
-0;JMP // unconditional jump
-(EQ_TRUE_118)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_118) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_118
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_118)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -9609,30 +8745,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_119
-D;JEQ // jump if true
-// EQ_FALSE_119
-@0 // false
-D=A // d = false
-@EQ_END_119
-0;JMP // unconditional jump
-(EQ_TRUE_119)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_119) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_119
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_119)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -9833,61 +8950,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Keyboard.readInt 2
 (Keyboard.readInt) // function Keyboard.readInt 2
@@ -10176,61 +9240,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Math.init 1
 (Math.init) // function Math.init 1
@@ -10479,30 +9490,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_134
-D;JLT
-// JLT_FALSE_134
-@0
-D=A // d = false
-@JLT_END_134
+@RET_LT_134
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_134)
-@0
-D=!A // d = -1 (true)
-(JLT_END_134)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_134)
 
 // not
 @SP // not
@@ -10797,61 +9789,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Math.abs 0
 (Math.abs) // function Math.abs 0
@@ -10873,30 +9812,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_135
-D;JLT
-// JLT_FALSE_135
-@0
-D=A // d = false
-@JLT_END_135
+@RET_LT_135
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_135)
-@0
-D=!A // d = -1 (true)
-(JLT_END_135)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_135)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -10958,61 +9878,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Math.multiply 5
 (Math.multiply) // function Math.multiply 5
@@ -11034,30 +9901,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_136
-D;JLT
-// JLT_FALSE_136
-@0
-D=A // d = false
-@JLT_END_136
+@RET_LT_136
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_136)
-@0
-D=!A // d = -1 (true)
-(JLT_END_136)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_136)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -11077,30 +9925,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_137
-D;JGT
-// JGT_FALSE_137
-@0
-D=A // d = false
-@JGT_END_137
+@RET_GT_137
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_137)
-@0
-D=!A // d = -1 (true)
-(JGT_END_137)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_137)
 
 // and
 @SP // and
@@ -11127,30 +9956,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_138
-D;JGT
-// JGT_FALSE_138
-@0
-D=A // d = false
-@JGT_END_138
+@RET_GT_138
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_138)
-@0
-D=!A // d = -1 (true)
-(JGT_END_138)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_138)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -11170,30 +9980,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_139
-D;JLT
-// JLT_FALSE_139
-@0
-D=A // d = false
-@JLT_END_139
+@RET_LT_139
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_139)
-@0
-D=!A // d = -1 (true)
-(JLT_END_139)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_139)
 
 // and
 @SP // and
@@ -11389,30 +10180,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_144
-D;JLT
-// JLT_FALSE_144
-@0
-D=A // d = false
-@JLT_END_144
+@RET_LT_144
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_144)
-@0
-D=!A // d = -1 (true)
-(JLT_END_144)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_144)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -11561,30 +10333,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_145
-D;JLT
-// JLT_FALSE_145
-@0
-D=A // d = false
-@JLT_END_145
+@RET_LT_145
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_145)
-@0
-D=!A // d = -1 (true)
-(JLT_END_145)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_145)
 
 // not
 @SP // not
@@ -11678,30 +10431,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_146
-D;JEQ // jump if true
-// EQ_FALSE_146
-@0 // false
-D=A // d = false
-@EQ_END_146
-0;JMP // unconditional jump
-(EQ_TRUE_146)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_146) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_146
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_146)
 
 // not
 @SP // not
@@ -12018,61 +10752,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Math.divide 4
 (Math.divide) // function Math.divide 4
@@ -12094,30 +10775,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_147
-D;JEQ // jump if true
-// EQ_FALSE_147
-@0 // false
-D=A // d = false
-@EQ_END_147
-0;JMP // unconditional jump
-(EQ_TRUE_147)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_147) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_147
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_147)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -12222,30 +10884,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_150
-D;JLT
-// JLT_FALSE_150
-@0
-D=A // d = false
-@JLT_END_150
+@RET_LT_150
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_150)
-@0
-D=!A // d = -1 (true)
-(JLT_END_150)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_150)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -12265,30 +10908,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_151
-D;JGT
-// JGT_FALSE_151
-@0
-D=A // d = false
-@JGT_END_151
+@RET_GT_151
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_151)
-@0
-D=!A // d = -1 (true)
-(JGT_END_151)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_151)
 
 // and
 @SP // and
@@ -12315,30 +10939,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_152
-D;JGT
-// JGT_FALSE_152
-@0
-D=A // d = false
-@JGT_END_152
+@RET_GT_152
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_152)
-@0
-D=!A // d = -1 (true)
-(JGT_END_152)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_152)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -12358,30 +10963,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_153
-D;JLT
-// JLT_FALSE_153
-@0
-D=A // d = false
-@JLT_END_153
+@RET_LT_153
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_153)
-@0
-D=!A // d = -1 (true)
-(JLT_END_153)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_153)
 
 // and
 @SP // and
@@ -12642,30 +11228,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_158
-D;JLT
-// JLT_FALSE_158
-@0
-D=A // d = false
-@JLT_END_158
+@RET_LT_158
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_158)
-@0
-D=!A // d = -1 (true)
-(JLT_END_158)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_158)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -12854,30 +11421,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_159
-D;JLT
-// JLT_FALSE_159
-@0
-D=A // d = false
-@JLT_END_159
+@RET_LT_159
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_159)
-@0
-D=!A // d = -1 (true)
-(JLT_END_159)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_159)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -13245,30 +11793,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_160
-D;JGT
-// JGT_FALSE_160
-@0
-D=A // d = false
-@JGT_END_160
+@RET_GT_160
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_160)
-@0
-D=!A // d = -1 (true)
-(JGT_END_160)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_160)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -13393,30 +11922,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_161
-D;JGT
-// JGT_FALSE_161
-@0
-D=A // d = false
-@JGT_END_161
+@RET_GT_161
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_161)
-@0
-D=!A // d = -1 (true)
-(JGT_END_161)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_161)
 
 // not
 @SP // not
@@ -13523,30 +12033,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_162
-D;JGT
-// JGT_FALSE_162
-@0
-D=A // d = false
-@JGT_END_162
+@RET_GT_162
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_162)
-@0
-D=!A // d = -1 (true)
-(JGT_END_162)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_162)
 
 // not
 @SP // not
@@ -13863,61 +12354,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Math.sqrt 4
 (Math.sqrt) // function Math.sqrt 4
@@ -13939,30 +12377,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_163
-D;JLT
-// JLT_FALSE_163
-@0
-D=A // d = false
-@JLT_END_163
+@RET_LT_163
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_163)
-@0
-D=!A // d = -1 (true)
-(JLT_END_163)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_163)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -14098,30 +12517,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_166
-D;JGT
-// JGT_FALSE_166
-@0
-D=A // d = false
-@JGT_END_166
+@RET_GT_166
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_166)
-@0
-D=!A // d = -1 (true)
-(JGT_END_166)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_166)
 
 // not
 @SP // not
@@ -14358,30 +12758,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_169
-D;JGT
-// JGT_FALSE_169
-@0
-D=A // d = false
-@JGT_END_169
+@RET_GT_169
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_169)
-@0
-D=!A // d = -1 (true)
-(JGT_END_169)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_169)
 
 // not
 @SP // not
@@ -14406,30 +12787,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_170
-D;JLT
-// JLT_FALSE_170
-@0
-D=A // d = false
-@JLT_END_170
+@RET_LT_170
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_170)
-@0
-D=!A // d = -1 (true)
-(JLT_END_170)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_170)
 
 // not
 @SP // not
@@ -14544,61 +12906,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Math.max 0
 (Math.max) // function Math.max 0
@@ -14625,30 +12934,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_171
-D;JGT
-// JGT_FALSE_171
-@0
-D=A // d = false
-@JGT_END_171
+@RET_GT_171
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_171)
-@0
-D=!A // d = -1 (true)
-(JGT_END_171)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_171)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -14705,61 +12995,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Math.min 0
 (Math.min) // function Math.min 0
@@ -14786,30 +13023,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_172
-D;JLT
-// JLT_FALSE_172
-@0
-D=A // d = false
-@JLT_END_172
+@RET_LT_172
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_172)
-@0
-D=!A // d = -1 (true)
-(JLT_END_172)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_172)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -14866,61 +13084,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Memory.init 0
 (Memory.init) // function Memory.init 0
@@ -15132,61 +13297,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Memory.peek 0
 (Memory.peek) // function Memory.peek 0
@@ -15246,61 +13358,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Memory.poke 0
 (Memory.poke) // function Memory.poke 0
@@ -15407,61 +13466,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Memory.alloc 2
 (Memory.alloc) // function Memory.alloc 2
@@ -15483,30 +13489,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_173
-D;JLT
-// JLT_FALSE_173
-@0
-D=A // d = false
-@JLT_END_173
+@RET_LT_173
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_173)
-@0
-D=!A // d = -1 (true)
-(JLT_END_173)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_173)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -15611,30 +13598,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_176
-D;JEQ // jump if true
-// EQ_FALSE_176
-@0 // false
-D=A // d = false
-@EQ_END_176
-0;JMP // unconditional jump
-(EQ_TRUE_176)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_176) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_176
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_176)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -15720,30 +13688,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_177
-D;JLT
-// JLT_FALSE_177
-@0
-D=A // d = false
-@JLT_END_177
+@RET_LT_177
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_177)
-@0
-D=!A // d = -1 (true)
-(JLT_END_177)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_177)
 
 // push constant 0
 @SP // push constant 0
@@ -15807,30 +13756,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_178
-D;JLT
-// JLT_FALSE_178
-@0
-D=A // d = false
-@JLT_END_178
+@RET_LT_178
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_178)
-@0
-D=!A // d = -1 (true)
-(JLT_END_178)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_178)
 
 // and
 @SP // and
@@ -15973,30 +13903,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_179
-D;JEQ // jump if true
-// EQ_FALSE_179
-@0 // false
-D=A // d = false
-@EQ_END_179
-0;JMP // unconditional jump
-(EQ_TRUE_179)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_179) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_179
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_179)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -16018,30 +13929,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_180
-D;JGT
-// JGT_FALSE_180
-@0
-D=A // d = false
-@JGT_END_180
+@RET_GT_180
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_180)
-@0
-D=!A // d = -1 (true)
-(JGT_END_180)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_180)
 
 // or
 @SP // or
@@ -16107,30 +13999,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_181
-D;JEQ // jump if true
-// EQ_FALSE_181
-@0 // false
-D=A // d = false
-@EQ_END_181
-0;JMP // unconditional jump
-(EQ_TRUE_181)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_181) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_181
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_181)
 
 // or
 @SP // or
@@ -16468,30 +14341,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_182
-D;JEQ // jump if true
-// EQ_FALSE_182
-@0 // false
-D=A // d = false
-@EQ_END_182
-0;JMP // unconditional jump
-(EQ_TRUE_182)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_182) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_182
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_182)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -16801,30 +14655,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_183
-D;JGT
-// JGT_FALSE_183
-@0
-D=A // d = false
-@JGT_END_183
+@RET_GT_183
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_183)
-@0
-D=!A // d = -1 (true)
-(JGT_END_183)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_183)
 
 // if-goto IF_TRUE4
 @SP // if-goto IF_TRUE4
@@ -16988,30 +14823,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_186
-D;JGT
-// JGT_FALSE_186
-@0
-D=A // d = false
-@JGT_END_186
+@RET_GT_186
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_186)
-@0
-D=!A // d = -1 (true)
-(JGT_END_186)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_186)
 
 // if-goto IF_TRUE5
 @SP // if-goto IF_TRUE5
@@ -17287,30 +15103,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_187
-D;JEQ // jump if true
-// EQ_FALSE_187
-@0 // false
-D=A // d = false
-@EQ_END_187
-0;JMP // unconditional jump
-(EQ_TRUE_187)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_187) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_187
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_187)
 
 // if-goto IF_TRUE6
 @SP // if-goto IF_TRUE6
@@ -17870,61 +15667,8 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Memory.deAlloc 2
 (Memory.deAlloc) // function Memory.deAlloc 2
@@ -18091,30 +15835,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_188
-D;JEQ // jump if true
-// EQ_FALSE_188
-@0 // false
-D=A // d = false
-@EQ_END_188
-0;JMP // unconditional jump
-(EQ_TRUE_188)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_188) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_188
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_188)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -18582,30 +16307,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_189
-D;JEQ // jump if true
-// EQ_FALSE_189
-@0 // false
-D=A // d = false
-@EQ_END_189
-0;JMP // unconditional jump
-(EQ_TRUE_189)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_189) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_189
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_189)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -18877,61 +16583,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.init 0
 (Output.init) // function Output.init 0
@@ -19263,61 +16916,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.initMap 0
 (Output.initMap) // function Output.initMap 0
@@ -34258,61 +31858,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.create 1
 (Output.create) // function Output.create 1
@@ -35506,61 +33053,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.createShiftedMap 4
 (Output.createShiftedMap) // function Output.createShiftedMap 4
@@ -35676,30 +33170,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_394
-D;JLT
-// JLT_FALSE_394
-@0
-D=A // d = false
-@JLT_END_394
+@RET_LT_394
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_394)
-@0
-D=!A // d = -1 (true)
-(JLT_END_394)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_394)
 
 // not
 @SP // not
@@ -35991,30 +33466,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_397
-D;JLT
-// JLT_FALSE_397
-@0
-D=A // d = false
-@JLT_END_397
+@RET_LT_397
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_397)
-@0
-D=!A // d = -1 (true)
-(JLT_END_397)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_397)
 
 // not
 @SP // not
@@ -36315,30 +33771,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_400
-D;JEQ // jump if true
-// EQ_FALSE_400
-@0 // false
-D=A // d = false
-@EQ_END_400
-0;JMP // unconditional jump
-(EQ_TRUE_400)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_400) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_400
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_400)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -36440,61 +33877,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.getMap 1
 (Output.getMap) // function Output.getMap 1
@@ -36518,30 +33902,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_401
-D;JLT
-// JLT_FALSE_401
-@0
-D=A // d = false
-@JLT_END_401
+@RET_LT_401
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_401)
-@0
-D=!A // d = -1 (true)
-(JLT_END_401)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_401)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -36563,30 +33928,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_402
-D;JGT
-// JGT_FALSE_402
-@0
-D=A // d = false
-@JGT_END_402
+@RET_GT_402
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_402)
-@0
-D=!A // d = -1 (true)
-(JGT_END_402)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_402)
 
 // or
 @SP // or
@@ -36820,61 +34166,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.drawChar 4
 (Output.drawChar) // function Output.drawChar 4
@@ -37004,30 +34297,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_405
-D;JLT
-// JLT_FALSE_405
-@0
-D=A // d = false
-@JLT_END_405
+@RET_LT_405
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_405)
-@0
-D=!A // d = -1 (true)
-(JLT_END_405)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_405)
 
 // not
 @SP // not
@@ -37503,61 +34777,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.moveCursor 0
 (Output.moveCursor) // function Output.moveCursor 0
@@ -37579,30 +34800,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_406
-D;JLT
-// JLT_FALSE_406
-@0
-D=A // d = false
-@JLT_END_406
+@RET_LT_406
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_406)
-@0
-D=!A // d = -1 (true)
-(JLT_END_406)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_406)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -37624,30 +34826,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_407
-D;JGT
-// JGT_FALSE_407
-@0
-D=A // d = false
-@JGT_END_407
+@RET_GT_407
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_407)
-@0
-D=!A // d = -1 (true)
-(JGT_END_407)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_407)
 
 // or
 @SP // or
@@ -37674,30 +34857,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_408
-D;JLT
-// JLT_FALSE_408
-@0
-D=A // d = false
-@JLT_END_408
+@RET_LT_408
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_408)
-@0
-D=!A // d = -1 (true)
-(JLT_END_408)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_408)
 
 // or
 @SP // or
@@ -37726,30 +34890,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_409
-D;JGT
-// JGT_FALSE_409
-@0
-D=A // d = false
-@JGT_END_409
+@RET_GT_409
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_409)
-@0
-D=!A // d = -1 (true)
-(JGT_END_409)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_409)
 
 // or
 @SP // or
@@ -38194,30 +35339,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_418
-D;JEQ // jump if true
-// EQ_FALSE_418
-@0 // false
-D=A // d = false
-@EQ_END_418
-0;JMP // unconditional jump
-(EQ_TRUE_418)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_418) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_418
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_418)
 
 // pop static 2
 @19 // pop static 2 // static + src segment offset (../projects/12/MemoryTest/MemoryDiag/Output.vm)
@@ -38333,61 +35459,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.printChar 0
 (Output.printChar) // function Output.printChar 0
@@ -38456,30 +35529,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_423
-D;JEQ // jump if true
-// EQ_FALSE_423
-@0 // false
-D=A // d = false
-@EQ_END_423
-0;JMP // unconditional jump
-(EQ_TRUE_423)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_423) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_423
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_423)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -38635,30 +35689,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_428
-D;JEQ // jump if true
-// EQ_FALSE_428
-@0 // false
-D=A // d = false
-@EQ_END_428
-0;JMP // unconditional jump
-(EQ_TRUE_428)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_428) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_428
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_428)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -38975,30 +36010,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_433
-D;JEQ // jump if true
-// EQ_FALSE_433
-@0 // false
-D=A // d = false
-@EQ_END_433
-0;JMP // unconditional jump
-(EQ_TRUE_433)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_433) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_433
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_433)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -39136,61 +36152,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.printString 2
 (Output.printString) // function Output.printString 2
@@ -39291,30 +36254,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_438
-D;JLT
-// JLT_FALSE_438
-@0
-D=A // d = false
-@JLT_END_438
+@RET_LT_438
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_438)
-@0
-D=!A // d = -1 (true)
-(JLT_END_438)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_438)
 
 // not
 @SP // not
@@ -39508,61 +36452,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.printInt 0
 (Output.printInt) // function Output.printInt 0
@@ -39762,61 +36653,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.println 0
 (Output.println) // function Output.println 0
@@ -39946,30 +36784,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_447
-D;JEQ // jump if true
-// EQ_FALSE_447
-@0 // false
-D=A // d = false
-@EQ_END_447
-0;JMP // unconditional jump
-(EQ_TRUE_447)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_447) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_447
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_447)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -40018,61 +36837,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Output.backSpace 0
 (Output.backSpace) // function Output.backSpace 0
@@ -40119,30 +36885,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_448
-D;JGT
-// JGT_FALSE_448
-@0
-D=A // d = false
-@JGT_END_448
+@RET_GT_448
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_448)
-@0
-D=!A // d = -1 (true)
-(JGT_END_448)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_448)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -40286,30 +37033,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_449
-D;JEQ // jump if true
-// EQ_FALSE_449
-@0 // false
-D=A // d = false
-@EQ_END_449
-0;JMP // unconditional jump
-(EQ_TRUE_449)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_449) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_449
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_449)
 
 // if-goto IF_TRUE2
 @SP // if-goto IF_TRUE2
@@ -40551,61 +37279,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.init 1
 (Screen.init) // function Screen.init 1
@@ -40835,30 +37510,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_454
-D;JLT
-// JLT_FALSE_454
-@0
-D=A // d = false
-@JLT_END_454
+@RET_LT_454
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_454)
-@0
-D=!A // d = -1 (true)
-(JLT_END_454)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_454)
 
 // not
 @SP // not
@@ -41153,61 +37809,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.clearScreen 1
 (Screen.clearScreen) // function Screen.clearScreen 1
@@ -41234,30 +37837,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_455
-D;JLT
-// JLT_FALSE_455
-@0
-D=A // d = false
-@JLT_END_455
+@RET_LT_455
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_455)
-@0
-D=!A // d = -1 (true)
-(JLT_END_455)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_455)
 
 // not
 @SP // not
@@ -41415,61 +37999,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.updateLocation 0
 (Screen.updateLocation) // function Screen.updateLocation 0
@@ -41836,61 +38367,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.setColor 0
 (Screen.setColor) // function Screen.setColor 0
@@ -41927,61 +38405,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.drawPixel 3
 (Screen.drawPixel) // function Screen.drawPixel 3
@@ -42003,30 +38428,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_456
-D;JLT
-// JLT_FALSE_456
-@0
-D=A // d = false
-@JLT_END_456
+@RET_LT_456
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_456)
-@0
-D=!A // d = -1 (true)
-(JLT_END_456)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_456)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -42048,30 +38454,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_457
-D;JGT
-// JGT_FALSE_457
-@0
-D=A // d = false
-@JGT_END_457
+@RET_GT_457
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_457)
-@0
-D=!A // d = -1 (true)
-(JGT_END_457)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_457)
 
 // or
 @SP // or
@@ -42098,30 +38485,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_458
-D;JLT
-// JLT_FALSE_458
-@0
-D=A // d = false
-@JLT_END_458
+@RET_LT_458
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_458)
-@0
-D=!A // d = -1 (true)
-(JLT_END_458)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_458)
 
 // or
 @SP // or
@@ -42150,30 +38518,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_459
-D;JGT
-// JGT_FALSE_459
-@0
-D=A // d = false
-@JGT_END_459
+@RET_GT_459
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_459)
-@0
-D=!A // d = -1 (true)
-(JGT_END_459)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_459)
 
 // or
 @SP // or
@@ -42757,61 +39106,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.drawConditional 0
 (Screen.drawConditional) // function Screen.drawConditional 0
@@ -43057,61 +39353,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.drawLine 11
 (Screen.drawLine) // function Screen.drawLine 11
@@ -43133,30 +39376,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_474
-D;JLT
-// JLT_FALSE_474
-@0
-D=A // d = false
-@JLT_END_474
+@RET_LT_474
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_474)
-@0
-D=!A // d = -1 (true)
-(JLT_END_474)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_474)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -43178,30 +39402,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_475
-D;JGT
-// JGT_FALSE_475
-@0
-D=A // d = false
-@JGT_END_475
+@RET_GT_475
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_475)
-@0
-D=!A // d = -1 (true)
-(JGT_END_475)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_475)
 
 // or
 @SP // or
@@ -43228,30 +39433,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_476
-D;JLT
-// JLT_FALSE_476
-@0
-D=A // d = false
-@JLT_END_476
+@RET_LT_476
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_476)
-@0
-D=!A // d = -1 (true)
-(JLT_END_476)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_476)
 
 // or
 @SP // or
@@ -43280,30 +39466,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_477
-D;JGT
-// JGT_FALSE_477
-@0
-D=A // d = false
-@JGT_END_477
+@RET_GT_477
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_477)
-@0
-D=!A // d = -1 (true)
-(JGT_END_477)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_477)
 
 // or
 @SP // or
@@ -43598,30 +39765,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_484
-D;JLT
-// JLT_FALSE_484
-@0
-D=A // d = false
-@JLT_END_484
+@RET_LT_484
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_484)
-@0
-D=!A // d = -1 (true)
-(JLT_END_484)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_484)
 
 // pop local 6
 @LCL // pop local 6 (&asm_segment)
@@ -43672,30 +39820,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_485
-D;JLT
-// JLT_FALSE_485
-@0
-D=A // d = false
-@JLT_END_485
+@RET_LT_485
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_485)
-@0
-D=!A // d = -1 (true)
-(JLT_END_485)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_485)
 
 // and
 @SP // and
@@ -43743,30 +39872,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_486
-D;JLT
-// JLT_FALSE_486
-@0
-D=A // d = false
-@JLT_END_486
+@RET_LT_486
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_486)
-@0
-D=!A // d = -1 (true)
-(JLT_END_486)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_486)
 
 // and
 @SP // and
@@ -44159,30 +40269,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_487
-D;JGT
-// JGT_FALSE_487
-@0
-D=A // d = false
-@JGT_END_487
+@RET_GT_487
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_487)
-@0
-D=!A // d = -1 (true)
-(JGT_END_487)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_487)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -44307,30 +40398,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_488
-D;JGT
-// JGT_FALSE_488
-@0
-D=A // d = false
-@JGT_END_488
+@RET_GT_488
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_488)
-@0
-D=!A // d = -1 (true)
-(JGT_END_488)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_488)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -44832,30 +40904,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_497
-D;JLT
-// JLT_FALSE_497
-@0
-D=A // d = false
-@JLT_END_497
+@RET_LT_497
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_497)
-@0
-D=!A // d = -1 (true)
-(JLT_END_497)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_497)
 
 // not
 @SP // not
@@ -44887,30 +40940,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_498
-D;JLT
-// JLT_FALSE_498
-@0
-D=A // d = false
-@JLT_END_498
+@RET_LT_498
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_498)
-@0
-D=!A // d = -1 (true)
-(JLT_END_498)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_498)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -45283,61 +41317,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.drawRectangle 9
 (Screen.drawRectangle) // function Screen.drawRectangle 9
@@ -45364,30 +41345,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_501
-D;JGT
-// JGT_FALSE_501
-@0
-D=A // d = false
-@JGT_END_501
+@RET_GT_501
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_501)
-@0
-D=!A // d = -1 (true)
-(JGT_END_501)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_501)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -45412,30 +41374,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_502
-D;JGT
-// JGT_FALSE_502
-@0
-D=A // d = false
-@JGT_END_502
+@RET_GT_502
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_502)
-@0
-D=!A // d = -1 (true)
-(JGT_END_502)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_502)
 
 // or
 @SP // or
@@ -45462,30 +41405,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_503
-D;JLT
-// JLT_FALSE_503
-@0
-D=A // d = false
-@JLT_END_503
+@RET_LT_503
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_503)
-@0
-D=!A // d = -1 (true)
-(JLT_END_503)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_503)
 
 // or
 @SP // or
@@ -45514,30 +41438,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_504
-D;JGT
-// JGT_FALSE_504
-@0
-D=A // d = false
-@JGT_END_504
+@RET_GT_504
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_504)
-@0
-D=!A // d = -1 (true)
-(JGT_END_504)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_504)
 
 // or
 @SP // or
@@ -45564,30 +41469,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_505
-D;JLT
-// JLT_FALSE_505
-@0
-D=A // d = false
-@JLT_END_505
+@RET_LT_505
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_505)
-@0
-D=!A // d = -1 (true)
-(JLT_END_505)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_505)
 
 // or
 @SP // or
@@ -45616,30 +41502,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_506
-D;JGT
-// JGT_FALSE_506
-@0
-D=A // d = false
-@JGT_END_506
+@RET_GT_506
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_506)
-@0
-D=!A // d = -1 (true)
-(JGT_END_506)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_506)
 
 // or
 @SP // or
@@ -46574,30 +42441,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_519
-D;JGT
-// JGT_FALSE_519
-@0
-D=A // d = false
-@JGT_END_519
+@RET_GT_519
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_519)
-@0
-D=!A // d = -1 (true)
-(JGT_END_519)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_519)
 
 // not
 @SP // not
@@ -46678,30 +42526,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_520
-D;JEQ // jump if true
-// EQ_FALSE_520
-@0 // false
-D=A // d = false
-@EQ_END_520
-0;JMP // unconditional jump
-(EQ_TRUE_520)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_520) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_520
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_520)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -46971,30 +42800,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_525
-D;JLT
-// JLT_FALSE_525
-@0
-D=A // d = false
-@JLT_END_525
+@RET_LT_525
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_525)
-@0
-D=!A // d = -1 (true)
-(JLT_END_525)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_525)
 
 // not
 @SP // not
@@ -47333,61 +43143,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.drawHorizontal 11
 (Screen.drawHorizontal) // function Screen.drawHorizontal 11
@@ -47578,30 +43335,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_534
-D;JGT
-// JGT_FALSE_534
-@0
-D=A // d = false
-@JGT_END_534
+@RET_GT_534
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_534)
-@0
-D=!A // d = -1 (true)
-(JGT_END_534)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_534)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -47623,30 +43361,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_535
-D;JLT
-// JLT_FALSE_535
-@0
-D=A // d = false
-@JLT_END_535
+@RET_LT_535
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_535)
-@0
-D=!A // d = -1 (true)
-(JLT_END_535)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_535)
 
 // and
 @SP // and
@@ -47675,30 +43394,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_536
-D;JLT
-// JLT_FALSE_536
-@0
-D=A // d = false
-@JLT_END_536
+@RET_LT_536
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_536)
-@0
-D=!A // d = -1 (true)
-(JLT_END_536)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_536)
 
 // and
 @SP // and
@@ -47730,30 +43430,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_537
-D;JGT
-// JGT_FALSE_537
-@0
-D=A // d = false
-@JGT_END_537
+@RET_GT_537
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_537)
-@0
-D=!A // d = -1 (true)
-(JGT_END_537)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_537)
 
 // and
 @SP // and
@@ -48809,30 +44490,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_552
-D;JEQ // jump if true
-// EQ_FALSE_552
-@0 // false
-D=A // d = false
-@EQ_END_552
-0;JMP // unconditional jump
-(EQ_TRUE_552)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_552) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_552
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_552)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -49102,30 +44764,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_557
-D;JLT
-// JLT_FALSE_557
-@0
-D=A // d = false
-@JLT_END_557
+@RET_LT_557
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_557)
-@0
-D=!A // d = -1 (true)
-(JLT_END_557)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_557)
 
 // not
 @SP // not
@@ -49362,61 +45005,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.drawSymetric 0
 (Screen.drawSymetric) // function Screen.drawSymetric 0
@@ -50279,61 +45869,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Screen.drawCircle 3
 (Screen.drawCircle) // function Screen.drawCircle 3
@@ -50355,30 +45892,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_570
-D;JLT
-// JLT_FALSE_570
-@0
-D=A // d = false
-@JLT_END_570
+@RET_LT_570
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_570)
-@0
-D=!A // d = -1 (true)
-(JLT_END_570)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_570)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50400,30 +45918,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_571
-D;JGT
-// JGT_FALSE_571
-@0
-D=A // d = false
-@JGT_END_571
+@RET_GT_571
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_571)
-@0
-D=!A // d = -1 (true)
-(JGT_END_571)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_571)
 
 // or
 @SP // or
@@ -50450,30 +45949,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_572
-D;JLT
-// JLT_FALSE_572
-@0
-D=A // d = false
-@JLT_END_572
+@RET_LT_572
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_572)
-@0
-D=!A // d = -1 (true)
-(JLT_END_572)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_572)
 
 // or
 @SP // or
@@ -50502,30 +45982,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_573
-D;JGT
-// JGT_FALSE_573
-@0
-D=A // d = false
-@JGT_END_573
+@RET_GT_573
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_573)
-@0
-D=!A // d = -1 (true)
-(JGT_END_573)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_573)
 
 // or
 @SP // or
@@ -50655,30 +46116,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_576
-D;JLT
-// JLT_FALSE_576
-@0
-D=A // d = false
-@JLT_END_576
+@RET_LT_576
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_576)
-@0
-D=!A // d = -1 (true)
-(JLT_END_576)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_576)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50718,30 +46160,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_577
-D;JGT
-// JGT_FALSE_577
-@0
-D=A // d = false
-@JGT_END_577
+@RET_GT_577
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_577)
-@0
-D=!A // d = -1 (true)
-(JGT_END_577)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_577)
 
 // or
 @SP // or
@@ -50786,30 +46209,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_578
-D;JLT
-// JLT_FALSE_578
-@0
-D=A // d = false
-@JLT_END_578
+@RET_LT_578
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_578)
-@0
-D=!A // d = -1 (true)
-(JLT_END_578)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_578)
 
 // or
 @SP // or
@@ -50856,30 +46260,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_579
-D;JGT
-// JGT_FALSE_579
-@0
-D=A // d = false
-@JGT_END_579
+@RET_GT_579
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_579)
-@0
-D=!A // d = -1 (true)
-(JGT_END_579)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_579)
 
 // or
 @SP // or
@@ -51168,30 +46553,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_584
-D;JGT
-// JGT_FALSE_584
-@0
-D=A // d = false
-@JGT_END_584
+@RET_GT_584
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_584)
-@0
-D=!A // d = -1 (true)
-(JGT_END_584)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_584)
 
 // not
 @SP // not
@@ -51223,30 +46589,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_585
-D;JLT
-// JLT_FALSE_585
-@0
-D=A // d = false
-@JLT_END_585
+@RET_LT_585
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_585)
-@0
-D=!A // d = -1 (true)
-(JLT_END_585)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_585)
 
 // if-goto IF_TRUE2
 @SP // if-goto IF_TRUE2
@@ -51770,61 +47117,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.new 0
 (String.new) // function String.new 0
@@ -51926,30 +47220,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_594
-D;JLT
-// JLT_FALSE_594
-@0
-D=A // d = false
-@JLT_END_594
+@RET_LT_594
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_594)
-@0
-D=!A // d = -1 (true)
-(JLT_END_594)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_594)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -52054,30 +47329,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_597
-D;JGT
-// JGT_FALSE_597
-@0
-D=A // d = false
-@JGT_END_597
+@RET_GT_597
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_597)
-@0
-D=!A // d = -1 (true)
-(JGT_END_597)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_597)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -52226,61 +47482,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.dispose 0
 (String.dispose) // function String.dispose 0
@@ -52328,30 +47531,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_600
-D;JGT
-// JGT_FALSE_600
-@0
-D=A // d = false
-@JGT_END_600
+@RET_GT_600
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_600)
-@0
-D=!A // d = -1 (true)
-(JGT_END_600)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_600)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -52531,61 +47715,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.length 0
 (String.length) // function String.length 0
@@ -52627,61 +47758,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.charAt 0
 (String.charAt) // function String.charAt 0
@@ -52729,30 +47807,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_605
-D;JLT
-// JLT_FALSE_605
-@0
-D=A // d = false
-@JLT_END_605
+@RET_LT_605
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_605)
-@0
-D=!A // d = -1 (true)
-(JLT_END_605)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_605)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -52777,30 +47836,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_606
-D;JGT
-// JGT_FALSE_606
-@0
-D=A // d = false
-@JGT_END_606
+@RET_GT_606
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_606)
-@0
-D=!A // d = -1 (true)
-(JGT_END_606)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_606)
 
 // or
 @SP // or
@@ -52832,30 +47872,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_607
-D;JEQ // jump if true
-// EQ_FALSE_607
-@0 // false
-D=A // d = false
-@EQ_END_607
-0;JMP // unconditional jump
-(EQ_TRUE_607)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_607) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_607
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_607)
 
 // or
 @SP // or
@@ -53005,61 +48026,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.setCharAt 0
 (String.setCharAt) // function String.setCharAt 0
@@ -53107,30 +48075,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_610
-D;JLT
-// JLT_FALSE_610
-@0
-D=A // d = false
-@JLT_END_610
+@RET_LT_610
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_610)
-@0
-D=!A // d = -1 (true)
-(JLT_END_610)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_610)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -53155,30 +48104,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_611
-D;JGT
-// JGT_FALSE_611
-@0
-D=A // d = false
-@JGT_END_611
+@RET_GT_611
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_611)
-@0
-D=!A // d = -1 (true)
-(JGT_END_611)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_611)
 
 // or
 @SP // or
@@ -53210,30 +48140,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_612
-D;JEQ // jump if true
-// EQ_FALSE_612
-@0 // false
-D=A // d = false
-@EQ_END_612
-0;JMP // unconditional jump
-(EQ_TRUE_612)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_612) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_612
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_612)
 
 // or
 @SP // or
@@ -53430,61 +48341,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.appendChar 0
 (String.appendChar) // function String.appendChar 0
@@ -53537,30 +48395,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_615
-D;JEQ // jump if true
-// EQ_FALSE_615
-@0 // false
-D=A // d = false
-@EQ_END_615
-0;JMP // unconditional jump
-(EQ_TRUE_615)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_615) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_615
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_615)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -53794,61 +48633,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.eraseLastChar 0
 (String.eraseLastChar) // function String.eraseLastChar 0
@@ -53896,30 +48682,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_618
-D;JEQ // jump if true
-// EQ_FALSE_618
-@0 // false
-D=A // d = false
-@EQ_END_618
-0;JMP // unconditional jump
-(EQ_TRUE_618)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_618) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_618
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_618)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -54052,61 +48819,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.intValue 5
 (String.intValue) // function String.intValue 5
@@ -54154,30 +48868,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_621
-D;JEQ // jump if true
-// EQ_FALSE_621
-@0 // false
-D=A // d = false
-@EQ_END_621
-0;JMP // unconditional jump
-(EQ_TRUE_621)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_621) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_621
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_621)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -54200,61 +48895,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // label IF_FALSE0
 (String.IF_FALSE0) // label IF_FALSE0
@@ -54344,30 +48986,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_622
-D;JEQ // jump if true
-// EQ_FALSE_622
-@0 // false
-D=A // d = false
-@EQ_END_622
-0;JMP // unconditional jump
-(EQ_TRUE_622)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_622) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_622
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_622)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -54459,30 +49082,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_623
-D;JLT
-// JLT_FALSE_623
-@0
-D=A // d = false
-@JLT_END_623
+@RET_LT_623
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_623)
-@0
-D=!A // d = -1 (true)
-(JLT_END_623)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_623)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -54617,30 +49221,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_624
-D;JLT
-// JLT_FALSE_624
-@0
-D=A // d = false
-@JLT_END_624
+@RET_LT_624
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_624)
-@0
-D=!A // d = -1 (true)
-(JLT_END_624)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_624)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -54662,30 +49247,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_625
-D;JGT
-// JGT_FALSE_625
-@0
-D=A // d = false
-@JGT_END_625
+@RET_GT_625
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_625)
-@0
-D=!A // d = -1 (true)
-(JGT_END_625)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_625)
 
 // or
 @SP // or
@@ -54986,61 +49552,8 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.setInt 4
 (String.setInt) // function String.setInt 4
@@ -55088,30 +49601,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_628
-D;JEQ // jump if true
-// EQ_FALSE_628
-@0 // false
-D=A // d = false
-@EQ_END_628
-0;JMP // unconditional jump
-(EQ_TRUE_628)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_628) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_628
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_628)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -55284,30 +49778,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_633
-D;JLT
-// JLT_FALSE_633
-@0
-D=A // d = false
-@JLT_END_633
+@RET_LT_633
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_633)
-@0
-D=!A // d = -1 (true)
-(JLT_END_633)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_633)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -55430,30 +49905,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@SP // &esp // gt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JGT_TRUE_634
-D;JGT
-// JGT_FALSE_634
-@0
-D=A // d = false
-@JGT_END_634
+@RET_GT_634
+D=A
+@GT_SUB
 0;JMP
-(JGT_TRUE_634)
-@0
-D=!A // d = -1 (true)
-(JGT_END_634)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = gt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_GT_634)
 
 // not
 @SP // not
@@ -56037,30 +50493,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_639
-D;JLT
-// JLT_FALSE_639
-@0
-D=A // d = false
-@JLT_END_639
+@RET_LT_639
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_639)
-@0
-D=!A // d = -1 (true)
-(JLT_END_639)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_639)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -56165,30 +50602,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@SP // eq // &esp 
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@EQ_TRUE_642
-D;JEQ // jump if true
-// EQ_FALSE_642
-@0 // false
-D=A // d = false
-@EQ_END_642
-0;JMP // unconditional jump
-(EQ_TRUE_642)
-@0 // 0
-D=!A // d = -1 (true)
-(EQ_END_642) // save eq result to stack
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = eq result
-@SP // &esp
-M=M+1 // &esp++
+@RET_EQ_642
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_642)
 
 // if-goto IF_TRUE4
 @SP // if-goto IF_TRUE4
@@ -56367,30 +50785,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@SP // &esp // lt
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_643
-D;JLT
-// JLT_FALSE_643
-@0
-D=A // d = false
-@JLT_END_643
+@RET_LT_643
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_643)
-@0
-D=!A // d = -1 (true)
-(JLT_END_643)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_643)
 
 // not
 @SP // not
@@ -56702,61 +51101,8 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.newLine 0
 (String.newLine) // function String.newLine 0
@@ -56769,61 +51115,8 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.backSpace 0
 (String.backSpace) // function String.backSpace 0
@@ -56836,61 +51129,8 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function String.doubleQuote 0
 (String.doubleQuote) // function String.doubleQuote 0
@@ -56903,58 +51143,107 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // return
+@RETURN_SUB
+0;JMP
 
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
+// halt
+(END_PROGRAM)
+@END_PROGRAM
+0;JMP
+(RETURN_SUB)
 @LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+D=M
+@R13
+M=D // R13 = frame
+@5
+A=D-A
+D=M
+@R14
+M=D // R14 = retAddr
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D // ARG[0] = result
+@ARG
+D=M+1
+@SP
+M=D // SP = ARG + 1
+@R13
+AM=M-1
+D=M
+@THAT
+M=D
+@R13
+AM=M-1
+D=M
+@THIS
+M=D
+@R13
+AM=M-1
+D=M
+@ARG
+M=D
+@R13
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP
+(LT_SUB)
+@R15
+M=D // save return addr
+@SP
+AM=M-1 // SP--, A -> val2
+D=M // D = val2
+A=A-1 // A -> val1 (result slot)
+D=M-D // D = val1 - val2
+M=0 // assume false
+@LT_END
+D;JGE // skip if false
+@SP
+A=M-1 // A -> result slot
+M=-1 // true
+(LT_END)
+@R15
+A=M
+0;JMP // return
+(GT_SUB)
+@R15
+M=D // save return addr
+@SP
+AM=M-1 // SP--, A -> val2
+D=M // D = val2
+A=A-1 // A -> val1 (result slot)
+D=M-D // D = val1 - val2
+M=0 // assume false
+@GT_END
+D;JLE // skip if false
+@SP
+A=M-1 // A -> result slot
+M=-1 // true
+(GT_END)
+@R15
+A=M
+0;JMP // return
+(EQ_SUB)
+@R15
+M=D // save return addr
+@SP
+AM=M-1 // SP--, A -> val2
+D=M // D = val2
+A=A-1 // A -> val1 (result slot)
+D=M-D // D = val1 - val2
+M=0 // assume false
+@EQ_END
+D;JNE // skip if false
+@SP
+A=M-1 // A -> result slot
+M=-1 // true
+(EQ_END)
+@R15
+A=M
+0;JMP // return
