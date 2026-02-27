@@ -419,7 +419,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
             raise RuntimeError("ASSERT: %d asserts in ROM but none were reached" % expected_asserts)
         elif evaluated < expected_asserts:
             raise RuntimeError("ASSERT: only %d/%d asserts were reached" % (evaluated, expected_asserts))
-        print("ASSERT: %d/%d passed" % (assert_pass, expected_asserts))
+        print("\tASSERT: %d/%d passed" % (assert_pass, expected_asserts))
         if assert_fail > 0:
             raise RuntimeError("ASSERT: %d/%d failed" % (assert_fail, expected_asserts))
 
@@ -462,7 +462,7 @@ if __name__ == '__main__':
     vm_dirpaths = vm_dirpaths + vm_bootstrap_paths
 
     # init
-    debug = True
+    debug = False
     vm_static_dicts = {} 
     breakpoints = []
 
