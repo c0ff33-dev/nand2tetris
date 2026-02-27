@@ -10,89 +10,15 @@ M=D
 @4 // push constant 4 // function Sys.init 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Main.fibonacci 1 // computes the 4th fibonacci element
-(Sys.Main.fibonacci.1) // call Main.fibonacci 1 // computes the 4th fibonacci element
-@Sys.Main.fibonacci.1 // call Main.fibonacci // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_2 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-(MICROCODE_CALL)
-@SP // &esp // save RP to the stack
-A=M // *esp
-M=D // esp = RP
-@SP // &esp
-M=M+1 // &esp++
-@LCL // &lcl[0] // save LCL to the stack
-D=M // d = *lcl[0]
-@SP // &esp
-A=M // *esp
-M=D // esp = lcl[0]
-@SP // &esp
-M=M+1 // &esp++
-@ARG // &arg // save ARG to the stack
-D=M // d = *arg
-@SP // &esp
-A=M // *esp
-M=D // esp = arg
-@SP // &esp
-M=M+1 // &esp++
-@THIS // &this // save THIS to the stack
-D=M // d = *this
-@SP // &esp
-A=M // *esp
-M=D // esp = this
-@SP // &esp
-M=M+1 // &esp++
-@THAT // &that // save THAT to the stack
-D=M // d = *that
-@SP // &esp
-A=M // *esp
-M=D // esp = that
-@SP // &esp
-M=M+1 // &esp++
-@R14 // &midpoint
-A=M // *midpoint
-0;JMP // return to dynamic call code
-(MICROCODE_CALL_MIDPOINT_2)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@75 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Main.fibonacci // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+@RET_CALL_1
+D=A
+@CALL_Main.fibonacci_1
+0;JMP
+(RET_CALL_1)
 
 // label WHILE
 (Sys.init$WHILE) // label WHILE
@@ -105,50 +31,27 @@ M=D // &lcl[0] = &lcl[0]
 (Main.fibonacci) // function Main.fibonacci 0
 
 // push argument 0
-@ARG // push argument 0 // function Main.fibonacci 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 0 // function Main.fibonacci 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt // checks if n<2
-@SP // &esp // lt // checks if n<2
-M=M-1 // &esp-- (&val2)
-A=M // *val2
-D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-D=M-D // d = val1 - val2
-@JLT_TRUE_3
-D;JLT
-// JLT_FALSE_3
-@0
-D=A // d = false
-@JLT_END_3
+@RET_LT_2
+D=A
+@LT_SUB
 0;JMP
-(JLT_TRUE_3)
-@0
-D=!A // d = -1 (true)
-(JLT_END_3)
-@SP // &esp (&val1)
-A=M // *esp (*val1)
-M=D // esp = lt result
-@SP // &esp
-M=M+1 // &esp++
+(RET_LT_2)
 
 // if-goto IF_TRUE
 // compare val (if-goto conditional) with 0
@@ -169,298 +72,210 @@ D;JNE // jump if not zero
 (Main.fibonacci$IF_TRUE) // label IF_TRUE // if n<2, return n
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
 (Main.fibonacci$IF_FALSE) // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Main.fibonacci 1 // computes fib(n-2)
-(Main.Main.fibonacci.4) // call Main.fibonacci 1 // computes fib(n-2)
-@Main.Main.fibonacci.4 // call Main.fibonacci // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_5 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_3
+D=A
+@CALL_Main.fibonacci_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_5)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Main.fibonacci // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_3)
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Main.fibonacci 1 // computes fib(n-1)
-(Main.Main.fibonacci.6) // call Main.fibonacci 1 // computes fib(n-1)
-@Main.Main.fibonacci.6 // call Main.fibonacci // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_7 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_4
+D=A
+@CALL_Main.fibonacci_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_7)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Main.fibonacci // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_4)
 
 // add // returns fib(n-1) + fib(n-2)
-@SP // &esp // add // returns fib(n-1) + fib(n-2)
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add // returns fib(n-1) + fib(n-2)
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // return
+@RETURN_SUB
+0;JMP
 
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
+// halt
+(END_PROGRAM)
+@END_PROGRAM
+0;JMP
+(CALL_Main.fibonacci_1)
+@R13
+M=D // R13 = retAddr
+@Main.fibonacci
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_SUB)
+@R15
+M=D // R15 = nArgs
+@R13
+D=M
+@SP
+A=M
+M=D // push retAddr
 @LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+D=M
+@SP
+AM=M+1
+M=D // push LCL
+@ARG
+D=M
+@SP
+AM=M+1
+M=D // push ARG
+@THIS
+D=M
+@SP
+AM=M+1
+M=D // push THIS
+@THAT
+D=M
+@SP
+AM=M+1
+M=D // push THAT
+@SP
+M=M+1
+@R15
+D=M // D = nArgs
+@5
+D=D+A // D = nArgs + 5
+@SP
+D=M-D // D = SP - nArgs - 5
+@ARG
+M=D // ARG = SP - nArgs - 5
+@SP
+D=M
+@LCL
+M=D // LCL = SP
+@R14
+A=M
+0;JMP
+(LT_SUB)
+@R15
+M=D // save return addr
+@SP
+AM=M-1 // SP--, A -> val2
+D=M // D = val2
+A=A-1 // A -> val1 (result slot)
+D=M-D // D = val1 - val2
+M=0 // assume false
+@LT_END
+D;JGE // skip if false
+@SP
+A=M-1 // A -> result slot
+M=-1 // true
+(LT_END)
+@R15
+A=M
+0;JMP // return
+(RETURN_SUB)
+@LCL
+D=M
+@R13
+M=D // R13 = frame
+@5
+A=D-A
+D=M
+@R14
+M=D // R14 = retAddr
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D // ARG[0] = result
+@ARG
+D=M+1
+@SP
+M=D // SP = ARG + 1
+@R13
+AM=M-1
+D=M
+@THAT
+M=D
+@R13
+AM=M-1
+D=M
+@THIS
+M=D
+@R13
+AM=M-1
+D=M
+@ARG
+M=D
+@R13
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP

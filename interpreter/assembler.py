@@ -110,7 +110,6 @@ def assemble(asm_filepath, debug=False):
                 address = "0"*i + address
 
             # add complete instruction to file
-            # TODO: for now allowing illegal 17+ bit a instructions only (length/compilation issue)
             if len(address) > 16:
                 warnings.warn("Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
                               % (asm_filepath, len(address), instruction, address), RuntimeWarning)
