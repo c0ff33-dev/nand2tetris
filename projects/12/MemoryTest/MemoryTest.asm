@@ -1733,7 +1733,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8000] = 333
 
 // push constant 8000
 @8000 // push constant 8000 (constant)
@@ -1904,7 +1904,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8001] = 334
 
 // push constant 3
 @3 // push constant 3 (constant)
@@ -2201,7 +2201,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8002] = 222
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -2713,7 +2713,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8003] = 122
 
 // push constant 0
 @0 // push constant 0 (constant)
@@ -3395,7 +3395,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8004] = 100
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -4051,7 +4051,7 @@ A=M // *src
 D=M // d = src
 @R13 // &r13 // retrieve &dst from r13 and complete the pop
 A=M // *r13 (*dst)
-M=D // dst = src (pop)
+M=D // dst = src (pop) // ASSERT RAM[8005] = 10
 
 // push local 4
 @LCL // push local 4 (&asm_segment)

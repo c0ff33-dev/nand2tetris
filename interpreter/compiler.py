@@ -146,12 +146,13 @@ def store_pcode(pcode, cmd):
 
 def extract_asserts(jack_filepath):
     """
-    scan raw Jack source for // ASSERT comments on let statements.
-    returns {(func_name, let_index): "ASSERT ..."} where let_index is 1-based per function.
+    scan raw Jack source for // ASSERT comments on let/do statements.
+    returns {(func_name, stmt_type, index): "ASSERT ..."} where index is 1-based per function.
     """
     asserts = {}
     current_func = None
     let_count = 0
+    do_count = 0
 
     with open(jack_filepath) as f:
         for line in f:
@@ -162,14 +163,25 @@ def extract_asserts(jack_filepath):
             if func_match:
                 current_func = func_match.group(1)
                 let_count = 0
+                do_count = 0
+                continue
+
+            if not current_func:
                 continue
 
             # count let statements and check for ASSERT
-            if stripped.startswith('let ') and current_func:
+            if stripped.startswith('let '):
                 let_count += 1
                 assert_match = re.search(r'//\s*ASSERT\s+(.*)', stripped)
                 if assert_match:
-                    asserts[(current_func, let_count)] = "ASSERT " + assert_match.group(1).strip()
+                    asserts[(current_func, 'let', let_count)] = "ASSERT " + assert_match.group(1).strip()
+
+            # count do statements and check for ASSERT
+            elif stripped.startswith('do '):
+                do_count += 1
+                assert_match = re.search(r'//\s*ASSERT\s+(.*)', stripped)
+                if assert_match:
+                    asserts[(current_func, 'do', do_count)] = "ASSERT " + assert_match.group(1).strip()
 
     return asserts
 
@@ -881,7 +893,7 @@ def main(filepath, file_list, asserts=None):
     if_list = []
     while_list = []
     end_block = first_eq = False
-    num_args = while_count = if_count = let_count = 0
+    num_args = while_count = if_count = let_count = do_count = 0
     class_name = statement = func_name = func_type = keyword = var_type = var_kind = identifier = ''
     lhs_var_name = lhs_array = parent_obj = child_func = func_kind = var_scope = ''
 
@@ -1002,6 +1014,7 @@ def main(filepath, file_list, asserts=None):
                     else:
                         func_name = identifier  # sometimes needs to overwrite the previous function
                         let_count = 0
+                        do_count = 0
 
                     if not func_type:
                         if keyword == 'constructor':
@@ -1220,9 +1233,11 @@ def main(filepath, file_list, asserts=None):
                 if exp_buffer:
                     raise RuntimeError("unparsed expressions still in buffer: %s" % exp_buffer)
 
-                # emit ASSERT if this let statement has one
-                if statement == 'let' and asserts and (func_name, let_count) in asserts:
-                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, let_count)])
+                # emit ASSERT if this let/do statement has one
+                if statement == 'let' and asserts and (func_name, 'let', let_count) in asserts:
+                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'let', let_count)])
+                elif statement == 'do' and asserts and (func_name, 'do', do_count) in asserts:
+                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'do', do_count)])
 
                 # reset statement scoped vars
                 statement = lhs_var_name = lhs_array = ''
@@ -1275,6 +1290,7 @@ def main(filepath, file_list, asserts=None):
             statement = 'param'
         elif elem.tag == 'doStatement':
             statement = 'do'
+            do_count += 1
         elif elem.tag == 'letStatement':
             statement = 'let'
             let_count += 1
