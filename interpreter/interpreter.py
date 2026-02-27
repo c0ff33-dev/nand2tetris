@@ -243,8 +243,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     hw["ROM"] = {"raw": raw_asm, "debug": debug_asm}
 
     # if ASSERTs are present, ensure proper bootstrap and enough cycles
-    has_asserts = any('// ASSERT ' in d[1] for d in debug_asm)
-    if has_asserts:
+    expected_asserts = sum(1 for d in debug_asm if '// ASSERT ' in d[1])
+    if expected_asserts > 0:
         if hw["MAX"] < 50000000:
             hw["MAX"] = 50000000
         if hw["RAM"][0] == 0:
@@ -406,11 +406,15 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         raise RuntimeError("Interpreter: Elements still exist in call tree at program exit")
 
     # report ASSERT results
-    if assert_pass + assert_fail > 0:
-        total = assert_pass + assert_fail
-        print("ASSERT: %d/%d passed" % (assert_pass, total))
+    if expected_asserts > 0:
+        evaluated = assert_pass + assert_fail
+        if evaluated == 0:
+            raise RuntimeError("ASSERT: %d asserts in ROM but none were reached" % expected_asserts)
+        elif evaluated < expected_asserts:
+            raise RuntimeError("ASSERT: only %d/%d asserts were reached" % (evaluated, expected_asserts))
+        print("ASSERT: %d/%d passed" % (assert_pass, expected_asserts))
         if assert_fail > 0:
-            raise RuntimeError("ASSERT: %d/%d failed" % (assert_fail, total))
+            raise RuntimeError("ASSERT: %d/%d failed" % (assert_fail, expected_asserts))
 
     # evaluate results
     result_dict = {}
