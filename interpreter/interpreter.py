@@ -245,8 +245,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
     # if ASSERTs are present, ensure proper bootstrap and enough cycles
     expected_asserts = sum(1 for d in debug_asm if '// ASSERT ' in d[1])
     if expected_asserts > 0:
-        if hw["MAX"] < 10000000:
-            hw["MAX"] = 10000000
+        if hw["MAX"] < 50000000:
+            hw["MAX"] = 50000000
         if hw["RAM"][0] == 0:
             hw["RAM"][0] = 256  # bootstrap SP
 
@@ -381,8 +381,10 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
         #  format primary debug output
         if debug:
+            # DEBUG: WIP
             # process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
-            print(cycle, src_line, debug_cmd)
+            # print(cycle, src_line, debug_cmd)
+            pass
 
         # evaluate ASSERT directives
         if '// ASSERT ' in debug_cmd:
