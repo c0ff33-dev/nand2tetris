@@ -11,25 +11,21 @@ D=A+1
 M=D
 
 // push local 0
-@LCL // push local 0 // function SimpleFunction.test 2 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@LCL // push local 0 // function SimpleFunction.test 2
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // push local 1
-@LCL // push local 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@LCL // push local 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // add
 @SP // add
@@ -44,15 +40,13 @@ A=M-1 // A -> top of stack
 M=!M // not in place
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // add
 @SP // add
@@ -62,15 +56,13 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // push argument 1
-@ARG // push argument 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // sub
 @SP // sub

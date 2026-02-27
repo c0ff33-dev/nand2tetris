@@ -6,44 +6,33 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // pop local 0 // initializes sum = 0
-@LCL // pop local 0 // initializes sum = 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop local 0 // initializes sum = 0
+AM=M-1
+D=M
+@LCL
+A=M
+M=D
 
 // label LOOP_START
 (BasicLoop.LOOP_START) // label LOOP_START
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push local 0
-@LCL // push local 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // add
 @SP // add
@@ -53,30 +42,21 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // pop local 0 // sum = sum + counter
-@LCL // pop local 0 // sum = sum + counter (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop local 0 // sum = sum + counter
+AM=M-1
+D=M
+@LCL
+A=M
+M=D
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 1
 @SP // push constant 1
@@ -92,30 +72,21 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // pop argument 0 // counter--
-@ARG // pop argument 0 // counter-- (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop argument 0 // counter--
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // if-goto LOOP_START // If counter > 0, goto LOOP_START
 @SP // if-goto LOOP_START // If counter > 0, goto LOOP_START
@@ -125,12 +96,10 @@ D=M // d = val
 D;JNE // jump if not zero
 
 // push local 0
-@LCL // push local 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D

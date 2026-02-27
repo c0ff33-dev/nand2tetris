@@ -253,16 +253,168 @@ Pong reduced from 74,222 → 46,418 hack instructions (37% total reduction).
 Well under the 57K FPGA target. Approaching the ~20K stretch goal requires the
 call/push/pop optimizations in Phases 3-4.
 
-## Phase 3: Call Optimization (cadet1620 multi-level)
+## Phase 3: Call Optimization ✅
 
-- [ ] 3a. Rewrite gen_call: 3-level call optimization
-- [ ] 3b. Clean up RP calculation (remove fragile prologue_size)
-- [ ] 3c. Optimize local init (push constant 0 → M=0/SP++)
+Replaced the monolithic gen_call (53+ instructions per call site, fragile
+prologue_size counter, per-call local init) with a 3-level call architecture.
 
-## Phase 4: Push/Pop Segment Optimizations
+- [x] 3a. Rewrite gen_call: 3-level call optimization
+- [x] 3b. Clean up RP calculation (remove fragile prologue_size)
+- [x] 3c. Optimize local init (push constant 0 → M=0/A=A+1 chain in gen_function)
 
-- [ ] 4a. Pop segment offset 0: 13 → 5 instr (direct addressing)
-- [ ] 4b. Pop segment offset 1: 13 → 6 instr (A=M+1)
-- [ ] 4c. Push segment offset 0/1: 9 → 7 instr
-- [ ] 4d. Pop temp/pointer: direct addressing (13 → 4 instr)
-- [ ] 4e. Push temp/pointer: direct addressing (9 → 6 instr)
+### 3a. Three-level call architecture
+
+**Level 1 — Call site** (4 instr + 1 label):
+```asm
+@RET_CALL_N      // return address (actual return point, no fixup)
+D=A
+@CALL_func_nArgs // jump to per-signature block
+0;JMP
+(RET_CALL_N)     // return lands here
+```
+
+**Level 2 — Per-signature block** (10 instr, emitted once per unique func+nArgs):
+```asm
+(CALL_func_nArgs)
+@R13 / M=D          // R13 = retAddr
+@func / D=A / @R14 / M=D  // R14 = func addr
+@nArgs / D=A        // D = nArgs
+@CALL_SUB / 0;JMP
+```
+
+**Level 3 — CALL_SUB** (44 instr, emitted once):
+Pushes retAddr (from R13), LCL, ARG, THIS, THAT onto stack using `AM=M+1` for
+the 4 subsequent pushes. Computes `ARG = SP - nArgs - 5` (nArgs from R15) and
+`LCL = SP`. Jumps to function via R14.
+
+### 3b. Return address is a label, not a computation
+
+The old design placed a label at the START of the call code and used
+`prologue_size` to adjust the return address forward past all the setup
+instructions. This counter had to be manually updated whenever instruction
+counts changed — a constant source of bugs.
+
+The new design places `(RET_CALL_N)` at the ACTUAL return point (immediately
+after the jump). `@RET_CALL_N / D=A` loads the correct return address directly.
+No fixup, no counter, no fragility.
+
+### 3c. Local init moved to gen_function
+
+Previously, gen_call initialized callee locals by emitting `push constant 0`
+for each local — at EVERY call site. A function with 5 locals called 10 times
+meant 50 × 4 = 200 instructions of local init code.
+
+Now gen_function emits local init once at the function entry point using an
+`A=A+1` chain:
+```asm
+@SP / A=M / M=0 / (A=A+1 / M=0)×(N-1) / D=A+1 / @SP / M=D
+```
+
+Cost: 2N+4 instructions emitted once, vs 4N per call site.
+
+### Eliminated: dummy push for 0-arg calls
+
+The old gen_call pushed `constant 9999` for 0-arg calls to create a return
+value slot. This is unnecessary: RETURN_SUB saves `retAddr` to R14 before
+overwriting `ARG[0]`. When nArgs=0, `ARG` points to the `retAddr` slot, but
+the value is already captured. Removing this saves 6 instructions per 0-arg
+call site.
+
+### Eliminated: MICROCODE_CALL, prologue_size, local_dict
+
+- `MICROCODE_CALL` (34-instr inline block): replaced by `CALL_SUB` subroutine
+- `prologue_size` counter: eliminated entirely
+- `local_dict` pre-scan: no longer needed (gen_function reads num_locals from cmd)
+
+### Post-Phase 3 Metrics
+
+| File | Phase 2b | Phase 3 | Δ |
+|------|----------|---------|---|
+| SimpleAdd | 17 | 17 | 0 |
+| BasicTest | 212 | 212 | 0 |
+| PointerTest | 127 | 127 | 0 |
+| StackTest | 250 | 250 | 0 |
+| StaticTest | 94 | 94 | 0 |
+| FibonacciElement | 311 | 220 | -91 |
+| NestedCall | 484 | 428 | -56 |
+| Pong | 46,418 | 33,006 | -13,412 |
+
+Files without function calls (project 07 tests) are unaffected. Pong dropped
+29% from Phase 2b — the largest single-phase improvement.
+
+## Phase 4: Push/Pop Segment Optimizations ✅
+
+Specialized push/pop code paths for segments where the target address is known
+at compile time (temp, pointer, static) or where small offsets (0, 1) enable
+direct dereferencing without address computation.
+
+- [x] 4a. Push temp/pointer/static: direct addressing (9 → 6 instr)
+- [x] 4b. Pop temp/pointer/static: direct addressing (13 → 5 instr)
+- [x] 4c. Push segment offset 0/1: skip @offset/A=D+A (9 → 7 instr)
+- [x] 4d. Pop segment offset 0/1: skip R13 save (13 → 6 instr)
+
+### 4a-b. Direct addressing for temp/pointer/static
+
+For `temp`, `pointer`, and `static` segments, the RAM address is fully
+determined at compile time:
+- `temp i` → `RAM[5+i]`
+- `pointer i` → `RAM[3+i]`
+- `static i` → `RAM[16 + file_offset + i]`
+
+Push reduces from 9 to 6 instructions — eliminates `D=A / @offset / A=D+A`:
+```asm
+@{addr}    // compile-time address
+D=M
+@SP / AM=M+1 / A=A-1 / M=D
+```
+
+Pop reduces from 13 to 5 instructions — eliminates R13 save entirely:
+```asm
+@SP / AM=M-1 / D=M
+@{addr}
+M=D
+```
+
+### 4c-d. Offset 0/1 for virtual segments
+
+For `local`, `argument`, `this`, `that` with offset 0 or 1, avoid the
+`@offset / A=D+A` address computation:
+
+Push offset 0: `@segment / A=M / D=M` (3 instr head vs 5)
+Push offset 1: `@segment / A=M+1 / D=M` (3 instr head vs 5)
+
+Pop offset 0: `@SP / AM=M-1 / D=M / @segment / A=M / M=D` (6 instr total)
+Pop offset 1: `@SP / AM=M-1 / D=M / @segment / A=M+1 / M=D` (6 instr total)
+
+The `A=M+1` trick works because the Hack ALU can compute `M+1` as a comp value
+and store to `A` — reading the segment pointer and incrementing in one
+instruction.
+
+### Post-Phase 4 Metrics
+
+| File | Phase 3 | Phase 4 | Δ |
+|------|---------|---------|---|
+| SimpleAdd | 17 | 17 | 0 |
+| BasicTest | 212 | 183 | -29 |
+| PointerTest | 127 | 105 | -22 |
+| StackTest | 250 | 250 | 0 |
+| StaticTest | 94 | 61 | -33 |
+| FibonacciElement | 220 | 212 | -8 |
+| NestedCall | 428 | 351 | -77 |
+| Pong | 33,006 | 26,845 | -6,161 |
+
+### Cumulative Progress (Baseline → Phase 4)
+
+| File | Baseline | Phase 4 | Δ | % |
+|------|----------|---------|---|---|
+| SimpleAdd | 24 | 17 | -7 | -29% |
+| BasicTest | 250 | 183 | -67 | -27% |
+| PointerTest | 150 | 105 | -45 | -30% |
+| StackTest | 402 | 250 | -152 | -38% |
+| StaticTest | 110 | 61 | -49 | -45% |
+| FibonacciElement | 398 | 212 | -186 | -47% |
+| NestedCall | 600 | 351 | -249 | -42% |
+| Pong | 74,222 | 26,845 | -47,377 | -64% |
+
+Pong reduced from 74,222 → 26,845 hack instructions (64% total reduction).
+Approaching cadet1620's ~20K stretch goal.

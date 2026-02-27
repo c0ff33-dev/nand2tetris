@@ -1,29 +1,19 @@
 
 // push argument 1
-@ARG // push argument 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // pop pointer 1 // that = argument[1]
-@3 // pop pointer 1 // that = argument[1] (&pointer)
-D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 1 // that = argument[1]
+AM=M-1
+D=M
+@4
+M=D
 
 // push constant 0
 @SP // push constant 0
@@ -32,19 +22,12 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // pop that 0 // first element in the series = 0
-@THAT // pop that 0 // first element in the series = 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop that 0 // first element in the series = 0
+AM=M-1
+D=M
+@THAT
+A=M
+M=D
 
 // push constant 1
 @SP // push constant 1
@@ -53,30 +36,21 @@ A=A-1 // A -> slot
 M=1 // direct assign
 
 // pop that 1 // second element in the series = 1
-@THAT // pop that 1 // second element in the series = 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop that 1 // second element in the series = 1
+AM=M-1
+D=M
+@THAT
+A=M+1
+M=D
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -94,33 +68,24 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // pop argument 0 // num_of_elements -= 2 (first 2 elements are set)
-@ARG // pop argument 0 // num_of_elements -= 2 (first 2 elements are set) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop argument 0 // num_of_elements -= 2 (first 2 elements are set)
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
 
 // label MAIN_LOOP_START
 (FibonacciSeries.MAIN_LOOP_START) // label MAIN_LOOP_START
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // if-goto COMPUTE_ELEMENT // if num_of_elements > 0, goto COMPUTE_ELEMENT
 @SP // if-goto COMPUTE_ELEMENT // if num_of_elements > 0, goto COMPUTE_ELEMENT
@@ -137,26 +102,22 @@ D;JNE // jump if not zero
 (FibonacciSeries.COMPUTE_ELEMENT) // label COMPUTE_ELEMENT
 
 // push that 0
-@THAT // push that 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@THAT // push that 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push that 1
-@THAT // push that 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@THAT // push that 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // add
 @SP // add
@@ -167,29 +128,26 @@ M=D+M // val1 = val2 + val1
 
 // pop that 2 // that[2] = that[0] + that[1]
 @THAT // pop that 2 // that[2] = that[0] + that[1] (&asm_segment)
-D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+D=M
+@2
+D=D+A
+@R13
+M=D // R13 = dst addr
+@SP
+M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 
 // push pointer 1
-@3 // push pointer 1 (&asm_segment)
-D=A // d = &asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@4 // push pointer 1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 1
 @SP // push constant 1
@@ -205,30 +163,20 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // pop pointer 1 // that += 1
-@3 // pop pointer 1 // that += 1 (&pointer)
-D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 1 // that += 1
+AM=M-1
+D=M
+@4
+M=D
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 1
 @SP // push constant 1
@@ -244,19 +192,12 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // pop argument 0 // num_of_elements--
-@ARG // pop argument 0 // num_of_elements-- (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop argument 0 // num_of_elements--
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
 
 // goto MAIN_LOOP_START
 @FibonacciSeries.MAIN_LOOP_START // goto MAIN_LOOP_START

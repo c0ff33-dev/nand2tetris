@@ -21,11 +21,10 @@ class Translator:
         self.call_sigs_emitted = set()
         self.asm_subroutines = ""
 
-    # 7-10 instructions per VM command
+    # 4-9 instructions per VM command (depends on segment/offset)
     def gen_push(self, cmd, vm_segment, asm_segment, value, vm_filepath):
         """
         push a new value onto the stack (either constant or segment+offset)
-        also called from within _call()
         """
         self.asm += '\n// %s\n' % (cmd)
 
@@ -45,81 +44,102 @@ class Translator:
                 self.asm += "AM=M+1 // SP++\n"
                 self.asm += "A=A-1 // A -> slot\n"
                 self.asm += "M=D // slot = constant\n"
+        elif vm_segment in ("temp", "pointer"):
+            # direct addressing: address known at compile time
+            base = 5 if vm_segment == "temp" else 3
+            addr = base + int(value)
+            self.asm += "@%s // %s\n" % (addr, cmd)
+            self.asm += "D=M\n"
+            self.asm += "@SP\n"
+            self.asm += "AM=M+1\n"
+            self.asm += "A=A-1\n"
+            self.asm += "M=D\n"
+        elif vm_segment == "static":
+            # direct addressing: address known at compile time
+            pos = self.static_dict[vm_filepath][0]
+            addr = 16 + self.offset_list[pos] + int(value)
+            self.asm += "@%s // %s (static %s)\n" % (addr, cmd, vm_filepath)
+            self.asm += "D=M\n"
+            self.asm += "@SP\n"
+            self.asm += "AM=M+1\n"
+            self.asm += "A=A-1\n"
+            self.asm += "M=D\n"
         else:
-            # retrieve a value from segment+offset and push it onto the stack
-            if vm_segment == "temp":
-                # fixed 8 word segment at RAM[5-12]
-                self.asm += "@5 // %s (&asm_segment)\n" % cmd
-                self.asm += "D=A // d = &asm_segment\n" 
-            elif vm_segment == "pointer":
-                # fixed 2 word segment at RAM[3-4] (THIS/THAT)
-                self.asm += "@3 // %s (&asm_segment)\n" % cmd 
-                self.asm += "D=A // d = &asm_segment\n"
-            elif vm_segment == "static":
-                # fixed 240 word segment at RAM[16-255] (namespace per file)
-                pos = self.static_dict[vm_filepath][0]
-                offset = 16 + (self.offset_list[pos])
-                self.asm += "@%s // %s (&asm_segment) // static + src offset (%s)\n" % (offset, cmd, vm_filepath)
-                self.asm += "D=A // d = &asm_segment\n"
+            # virtual segments (local, argument, this, that)
+            int_offset = int(value)
+            if int_offset == 0:
+                self.asm += "@%s // %s\n" % (asm_segment, cmd)
+                self.asm += "A=M\n"
+                self.asm += "D=M\n"
+            elif int_offset == 1:
+                self.asm += "@%s // %s\n" % (asm_segment, cmd)
+                self.asm += "A=M+1\n"
+                self.asm += "D=M\n"
             else:
-                # deref the virtual segment (local, argument, this, that)
                 self.asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
                 self.asm += "D=M // d = *asm_segment\n"
+                self.asm += "@%s // offset\n" % value
+                self.asm += "A=D+A // &(asm_segment+offset)\n"
+                self.asm += "D=M // d = *(asm_segment+offset)\n"
+            # push tail
+            self.asm += "@SP\n"
+            self.asm += "AM=M+1\n"
+            self.asm += "A=A-1\n"
+            self.asm += "M=D\n"
 
-            self.asm += "@%s // offset\n" % value
-            self.asm += "A=D+A // &(asm_segment+offset)\n"
-            self.asm += "D=M // d = *(asm_segment+offset)\n" 
-            self.asm += "@SP // &esp\n"
-            self.asm += "AM=M+1 // SP++\n"
-            self.asm += "A=A-1 // A -> slot\n"
-            self.asm += "M=D // slot = *(asm_segment+offset)\n"
-
-    # 13 instructions per VM command
+    # 5-13 instructions per VM command (depends on segment/offset)
     def gen_pop(self, cmd, vm_segment, asm_segment, value, vm_filepath):
         """
         pop a value from the stack into a segment+offset
-        also called from within gen_return()
         """
         self.asm += '\n// %s\n' % (cmd)
 
-        # pop a value from the stack and store it in segment+offset
-        # (copy from src to dst and dec esp)
+        int_offset = int(value)
 
-        # resolve segment base address
-        if vm_segment == "temp":
-            # fixed 8 word segment at RAM[5-12]
-            self.asm += "@5 // %s (&temp)\n" % cmd
-            self.asm += "D=A // d = &temp\n"
-        elif vm_segment == "pointer":
-            # fixed 2 word segment at RAM[3-4] (THIS/THAT)
-            self.asm += "@3 // %s (&pointer)\n" % cmd
-            self.asm += "D=A // d = &pointer\n"
+        if vm_segment in ("temp", "pointer"):
+            # direct addressing: address known at compile time
+            base = 5 if vm_segment == "temp" else 3
+            addr = base + int_offset
+            self.asm += "@SP // %s\n" % cmd
+            self.asm += "AM=M-1\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % addr
+            self.asm += "M=D\n"
         elif vm_segment == "static":
-            # fixed 240 word segment at RAM[16-255] (namespace per file)
+            # direct addressing: address known at compile time
             pos = self.static_dict[vm_filepath][0]
-            offset = 16 + (self.offset_list[pos])
-            self.asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)
-            self.asm += "D=A // d = &(static+offset)\n"
+            addr = 16 + self.offset_list[pos] + int_offset
+            self.asm += "@SP // %s\n" % cmd
+            self.asm += "AM=M-1\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % addr
+            self.asm += "M=D\n"
+        elif int_offset <= 1:
+            # virtual segments offset 0/1: direct deref without R13
+            self.asm += "@SP // %s\n" % cmd
+            self.asm += "AM=M-1\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % asm_segment
+            if int_offset == 0:
+                self.asm += "A=M\n"
+            else:
+                self.asm += "A=M+1\n"
+            self.asm += "M=D\n"
         else:
-            # resolve the base address of the remaining segments (local, argument, this, that)
+            # general case: compute address, save to R13, pop, write
             self.asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
-            self.asm += "D=M // d = *asm_segment\n"
-
-        self.asm += "@%s // retrieve &dst (segment+offset) and store at R13\n" % value
-        self.asm += "D=D+A // d = &dst (asm_segment+offset)\n"
-        self.asm += "@R13 // &r13\n"
-        self.asm += "M=D // r13 = &dst\n"
-
-        # implicitly free the top slot on the stack
-        self.asm += "@SP // &esp // retrieve &src from top of the stack\n"
-        self.asm += "M=M-1 // &esp-- (&src)\n"
-        self.asm += "A=M // *src\n"
-        self.asm += "D=M // d = src\n"
-
-        # the extra level of indirection for local/argument/this/that is already handled above
-        self.asm += "@R13 // &r13 // retrieve &dst from r13 and complete the pop\n"
-        self.asm += "A=M // *r13 (*dst)\n"
-        self.asm += "M=D // dst = src (pop)\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % value
+            self.asm += "D=D+A\n"
+            self.asm += "@R13\n"
+            self.asm += "M=D // R13 = dst addr\n"
+            self.asm += "@SP\n"
+            self.asm += "M=M-1\n"
+            self.asm += "A=M\n"
+            self.asm += "D=M\n"
+            self.asm += "@R13\n"
+            self.asm += "A=M\n"
+            self.asm += "M=D\n"
 
     # 5 instructions per VM command
     def gen_add(self, cmd):

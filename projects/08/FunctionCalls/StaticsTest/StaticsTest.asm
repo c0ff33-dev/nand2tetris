@@ -29,19 +29,11 @@ D=A
 (RET_CALL_1)
 
 // pop temp 0 // Dumps the return value
-@5 // pop temp 0 // Dumps the return value (&temp)
-D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop temp 0 // Dumps the return value
+AM=M-1
+D=M
+@5
+M=D
 
 // push constant 23
 @23 // push constant 23 (constant)
@@ -67,19 +59,11 @@ D=A
 (RET_CALL_2)
 
 // pop temp 0 // Dumps the return value
-@5 // pop temp 0 // Dumps the return value (&temp)
-D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop temp 0 // Dumps the return value
+AM=M-1
+D=M
+@5
+M=D
 
 // call Class1.get 0
 @RET_CALL_3
@@ -106,55 +90,35 @@ D=A
 (Class1.set) // function Class1.set 0
 
 // push argument 0
-@ARG // push argument 0 // function Class1.set 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0 // function Class1.set 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // pop static 0
-@16 // pop static 0 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
-D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 0
+AM=M-1
+D=M
+@16
+M=D
 
 // push argument 1
-@ARG // push argument 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
-D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 1
+AM=M-1
+D=M
+@17
+M=D
 
 // push constant 0
 @SP // push constant 0
@@ -170,25 +134,19 @@ M=0 // direct assign
 (Class1.get) // function Class1.get 0
 
 // push static 0
-@16 // push static 0 // function Class1.get 0 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
-D=A // d = &asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@16 // push static 0 // function Class1.get 0 (static ../projects/08/FunctionCalls/StaticsTest/Class1.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
-D=A // d = &asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@17 // push static 1 (static ../projects/08/FunctionCalls/StaticsTest/Class1.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // sub
 @SP // sub
@@ -205,55 +163,35 @@ M=M-D // val1 = val1 - val2
 (Class2.set) // function Class2.set 0
 
 // push argument 0
-@ARG // push argument 0 // function Class2.set 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0 // function Class2.set 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // pop static 0
-@18 // pop static 0 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
-D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 0
+AM=M-1
+D=M
+@18
+M=D
 
 // push argument 1
-@ARG // push argument 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // pop static 1
-@18 // pop static 1 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
-D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 1
+AM=M-1
+D=M
+@19
+M=D
 
 // push constant 0
 @SP // push constant 0
@@ -269,25 +207,19 @@ M=0 // direct assign
 (Class2.get) // function Class2.get 0
 
 // push static 0
-@18 // push static 0 // function Class2.get 0 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
-D=A // d = &asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@18 // push static 0 // function Class2.get 0 (static ../projects/08/FunctionCalls/StaticsTest/Class2.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // push static 1
-@18 // push static 1 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
-D=A // d = &asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@19 // push static 1 (static ../projects/08/FunctionCalls/StaticsTest/Class2.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // sub
 @SP // sub

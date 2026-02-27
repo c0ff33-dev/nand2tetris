@@ -31,15 +31,13 @@ D=A
 (Main.fibonacci) // function Main.fibonacci 0
 
 // push argument 0
-@ARG // push argument 0 // function Main.fibonacci 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0 // function Main.fibonacci 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
@@ -70,15 +68,13 @@ D;JNE // jump if not zero
 (Main.IF_TRUE) // label IF_TRUE // if n<2, return n
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // return
 @RETURN_SUB
@@ -88,15 +84,13 @@ M=D // slot = *(asm_segment+offset)
 (Main.IF_FALSE) // label IF_FALSE // if n>=2, returns fib(n-2)+fib(n-1)
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 2
 @2 // push constant 2 (constant)
@@ -121,15 +115,13 @@ D=A
 (RET_CALL_3)
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 1
 @SP // push constant 1

@@ -14,19 +14,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // pop pointer 0
-@3 // pop pointer 0 (&pointer)
-D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 0
+AM=M-1
+D=M
+@3
+M=D
 
 // push constant 5000
 @5000 // push constant 5000 (constant)
@@ -37,19 +29,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // pop pointer 1
-@3 // pop pointer 1 (&pointer)
-D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 1
+AM=M-1
+D=M
+@4
+M=D
 
 // call Sys.main 0
 @RET_CALL_1
@@ -59,19 +43,11 @@ D=A
 (RET_CALL_1)
 
 // pop temp 1
-@5 // pop temp 1 (&temp)
-D=A // d = &temp
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop temp 1
+AM=M-1
+D=M
+@6
+M=D
 
 // label LOOP
 (Sys.LOOP) // label LOOP
@@ -105,19 +81,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // pop pointer 0
-@3 // pop pointer 0 (&pointer)
-D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 0
+AM=M-1
+D=M
+@3
+M=D
 
 // push constant 5001
 @5001 // push constant 5001 (constant)
@@ -128,19 +96,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // pop pointer 1
-@3 // pop pointer 1 (&pointer)
-D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 1
+AM=M-1
+D=M
+@4
+M=D
 
 // push constant 200
 @200 // push constant 200 (constant)
@@ -151,19 +111,12 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // pop local 1
-@LCL // pop local 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop local 1
+AM=M-1
+D=M
+@LCL
+A=M+1
+M=D
 
 // push constant 40
 @40 // push constant 40 (constant)
@@ -175,18 +128,18 @@ M=D // slot = constant
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
-D=M // d = *asm_segment
-@2 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+D=M
+@2
+D=D+A
+@R13
+M=D // R13 = dst addr
+@SP
+M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 
 // push constant 6
 @6 // push constant 6 (constant)
@@ -198,18 +151,18 @@ M=D // slot = constant
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+D=M
+@3
+D=D+A
+@R13
+M=D // R13 = dst addr
+@SP
+M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 
 // push constant 123
 @123 // push constant 123 (constant)
@@ -227,41 +180,29 @@ D=A
 (RET_CALL_2)
 
 // pop temp 0
-@5 // pop temp 0 (&temp)
-D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
 
 // push local 0
-@LCL // push local 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push local 1
-@LCL // push local 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@LCL // push local 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -269,10 +210,10 @@ D=M // d = *asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -280,10 +221,10 @@ D=M // d = *asm_segment
 @3 // offset
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -291,10 +232,10 @@ D=M // d = *asm_segment
 @4 // offset
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // add
 @SP // add
@@ -339,19 +280,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // pop pointer 0
-@3 // pop pointer 0 (&pointer)
-D=A // d = &pointer
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 0
+AM=M-1
+D=M
+@3
+M=D
 
 // push constant 5002
 @5002 // push constant 5002 (constant)
@@ -362,30 +295,20 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // pop pointer 1
-@3 // pop pointer 1 (&pointer)
-D=A // d = &pointer
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop pointer 1
+AM=M-1
+D=M
+@4
+M=D
 
 // push argument 0
-@ARG // push argument 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = *(asm_segment+offset)
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // push constant 12
 @12 // push constant 12 (constant)
