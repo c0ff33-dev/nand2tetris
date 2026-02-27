@@ -9,10 +9,9 @@
 @9999 // push constant 9999 // call Memory.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Memory.init.1 // push RP
 D=A // d = RP
 @R13
@@ -65,7 +64,7 @@ A=M // *midpoint
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@82 // prologue_size
+@81 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -112,10 +111,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Math.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Math.init.3 // push RP
 D=A // d = RP
 @R13
@@ -131,18 +129,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_4)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@51 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -190,10 +185,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Screen.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Screen.init.5 // push RP
 D=A // d = RP
 @R13
@@ -209,18 +203,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_6)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@51 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -268,10 +259,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Output.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Output.init.7 // push RP
 D=A // d = RP
 @R13
@@ -289,7 +279,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -337,10 +327,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Keyboard.init.9 // push RP
 D=A // d = RP
 @R13
@@ -358,7 +347,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -406,10 +395,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Main.main // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Main.main.11 // push RP
 D=A // d = RP
 @R13
@@ -425,18 +413,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_12)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@51 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -484,10 +469,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Sys.halt.13 // push RP
 D=A // d = RP
 @R13
@@ -505,7 +489,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -547,13 +531,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -619,37 +600,24 @@ A=M // d = *lcl-5 (*lcl)
 (Sys.WHILE_EXP0) // label WHILE_EXP0
 
 // push constant 0
-@0 // push constant 0 // function Sys.halt 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // function Sys.halt 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.WHILE_END0
 D;JNE // jump if not zero
 
@@ -661,13 +629,10 @@ D;JNE // jump if not zero
 (Sys.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -736,18 +701,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -776,13 +737,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -794,13 +751,10 @@ D;JNE // jump if not zero
 (Sys.IF_TRUE0) // label IF_TRUE0
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // call Sys.error 1
 (Sys.Sys.error.16) // call Sys.error 1
@@ -875,19 +829,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -916,21 +866,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.WHILE_END0
 D;JNE // jump if not zero
 
@@ -938,10 +881,9 @@ D;JNE // jump if not zero
 @50 // push constant 50 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -968,19 +910,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -1009,21 +947,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Sys.WHILE_END1
 D;JNE // jump if not zero
 
@@ -1034,31 +965,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -1089,31 +1011,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -1138,13 +1051,10 @@ M=D // dst = src (pop)
 (Sys.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -1210,10 +1120,9 @@ A=M // d = *lcl-5 (*lcl)
 @69 // push constant 69 // function Sys.error 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Output.printChar 1
 (Sys.Output.printChar.20) // call Output.printChar 1
 @Sys.Output.printChar.20 // call Output.printChar // push RP
@@ -1278,10 +1187,9 @@ M=D // dst = src (pop)
 @82 // push constant 82 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Output.printChar 1
 (Sys.Output.printChar.22) // call Output.printChar 1
@@ -1347,10 +1255,9 @@ M=D // dst = src (pop)
 @82 // push constant 82 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Output.printChar 1
 (Sys.Output.printChar.24) // call Output.printChar 1
@@ -1419,10 +1326,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Output.printInt 1
 (Sys.Output.printInt.26) // call Output.printInt 1
@@ -1491,10 +1397,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Sys.halt.28 // push RP
 D=A // d = RP
 @R13
@@ -1512,7 +1417,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -1554,13 +1459,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -1626,18 +1528,14 @@ A=M // d = *lcl-5 (*lcl)
 @5 // push constant 5 // function Main.main 1 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call List.new 2
 (Main.List.new.30) // call List.new 2
@@ -1703,19 +1601,17 @@ M=D // dst = src (pop)
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -1724,10 +1620,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call List.new 2
 (Main.List.new.32) // call List.new 2
@@ -1841,10 +1736,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call List.print 1
 (Main.List.print.36) // call List.print 1
@@ -1863,18 +1757,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_37)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -1922,10 +1813,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call List.dispose 1
 (Main.List.dispose.38) // call List.dispose 1
@@ -1988,13 +1878,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -2060,10 +1947,9 @@ A=M // d = *lcl-5 (*lcl)
 @2 // push constant 2 // function List.new 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Memory.alloc 1
 (List.Memory.alloc.40) // call Memory.alloc 1
 @List.Memory.alloc.40 // call Memory.alloc // push RP
@@ -2081,27 +1967,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_41)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -2149,10 +2029,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop this 0
 @THIS // pop this 0 (&asm_segment)
@@ -2176,10 +2055,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop this 1
 @THIS // pop this 1 (&asm_segment)
@@ -2203,10 +2081,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -2275,10 +2152,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -2301,10 +2177,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -2373,10 +2248,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -2399,10 +2273,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -2471,10 +2344,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -2497,10 +2369,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -2527,19 +2398,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -2568,29 +2435,19 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @List.WHILE_END0
 D;JNE // jump if not zero
 
@@ -2601,10 +2458,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call List.getData 1
 (List.List.getData.43) // call List.getData 1
@@ -2715,10 +2571,9 @@ M=D // dst = src (pop)
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Output.printChar 1
 (List.Output.printChar.47) // call Output.printChar 1
@@ -2787,10 +2642,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call List.getNext 1
 (List.List.getNext.49) // call List.getNext 1
@@ -2860,13 +2714,10 @@ M=D // dst = src (pop)
 (List.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -2935,10 +2786,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -2961,19 +2811,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -3002,21 +2848,14 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @List.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -3034,10 +2873,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call List.dispose 1
 (List.List.dispose.52) // call List.dispose 1
@@ -3109,10 +2947,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Memory.deAlloc 1
 (List.Memory.deAlloc.54) // call Memory.deAlloc 1
@@ -3131,27 +2968,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_55)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -3193,13 +3024,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -3268,18 +3096,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -3308,21 +3132,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Array.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -3337,10 +3154,9 @@ D;JNE // jump if not zero
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Array.Sys.error.57) // call Sys.error 1
@@ -3412,10 +3228,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Memory.alloc 1
 (Array.Memory.alloc.59) // call Memory.alloc 1
@@ -3434,27 +3249,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_60)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -3547,10 +3356,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -3573,10 +3381,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Memory.deAlloc 1
 (Array.Memory.deAlloc.61) // call Memory.deAlloc 1
@@ -3595,27 +3402,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_62)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -3657,13 +3458,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -3726,13 +3524,10 @@ A=M // d = *lcl-5 (*lcl)
 (Keyboard.init) // function Keyboard.init 0
 
 // push constant 0
-@0 // push constant 0 // function Keyboard.init 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // function Keyboard.init 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 // return
 
 // pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
@@ -3797,10 +3592,9 @@ A=M // d = *lcl-5 (*lcl)
 @24576 // push constant 24576 // function Keyboard.keyPressed 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Memory.peek 1
 (Keyboard.Memory.peek.63) // call Memory.peek 1
 @Keyboard.Memory.peek.63 // call Memory.peek // push RP
@@ -3907,13 +3701,10 @@ A=M // d = *lcl-5 (*lcl)
 (Keyboard.readChar) // function Keyboard.readChar 2
 
 // push constant 0
-@0 // push constant 0 // function Keyboard.readChar 2 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // function Keyboard.readChar 2
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 // call Output.printChar 1
 (Keyboard.Output.printChar.65) // call Output.printChar 1
 @Keyboard.Output.printChar.65 // call Output.printChar // push RP
@@ -3984,19 +3775,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -4031,19 +3818,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -4072,33 +3855,21 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.WHILE_END0
 D;JNE // jump if not zero
 
@@ -4109,10 +3880,9 @@ D;JNE // jump if not zero
 @9999 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Keyboard.Keyboard.keyPressed.69 // push RP
 D=A // d = RP
 @R13
@@ -4130,7 +3900,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -4178,19 +3948,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -4219,13 +3985,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -4243,10 +4005,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -4280,10 +4041,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Keyboard.String.backSpace.72 // push RP
 D=A // d = RP
 @R13
@@ -4301,7 +4061,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -4394,10 +4154,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Output.printChar 1
 (Keyboard.Output.printChar.76) // call Output.printChar 1
@@ -4466,10 +4225,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -4535,10 +4293,9 @@ A=M // d = *lcl-5 (*lcl)
 @80 // push constant 80 // function Keyboard.readLine 5 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call String.new 1
 (Keyboard.String.new.78) // call String.new 1
 @Keyboard.String.new.78 // call String.new // push RP
@@ -4606,10 +4363,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Output.printString 1
 (Keyboard.Output.printString.80) // call Output.printString 1
@@ -4628,27 +4384,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_81)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -4696,10 +4446,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call String.newLine // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Keyboard.String.newLine.82 // push RP
 D=A // d = RP
 @R13
@@ -4717,7 +4466,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -4765,10 +4514,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Keyboard.String.backSpace.84 // push RP
 D=A // d = RP
 @R13
@@ -4786,7 +4534,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -4837,35 +4585,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.WHILE_END0
 D;JNE // jump if not zero
 
@@ -4876,10 +4613,9 @@ D;JNE // jump if not zero
 @9999 // push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Keyboard.Keyboard.readChar.86 // push RP
 D=A // d = RP
 @R13
@@ -4895,27 +4631,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_87)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@62 // prologue_size
+@55 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -4963,10 +4693,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -4975,10 +4704,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // eq
 @SP // eq // &esp 
@@ -5028,27 +4756,19 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -5066,10 +4786,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -5078,10 +4797,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // eq
 @SP // eq // &esp 
@@ -5110,13 +4828,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Keyboard.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -5134,10 +4848,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call String.eraseLastChar 1
 (Keyboard.String.eraseLastChar.90) // call String.eraseLastChar 1
@@ -5213,10 +4926,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -5225,10 +4937,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call String.appendChar 2
 (Keyboard.String.appendChar.92) // call String.appendChar 2
@@ -5310,10 +5021,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -5382,10 +5092,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // call Keyboard.readLine 1
 (Keyboard.Keyboard.readLine.94) // call Keyboard.readLine 1
 @Keyboard.Keyboard.readLine.94 // call Keyboard.readLine // push RP
@@ -5403,54 +5112,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_95)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -5498,10 +5192,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call String.intValue 1
 (Keyboard.String.intValue.96) // call String.intValue 1
@@ -5520,54 +5213,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_97)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -5615,10 +5293,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call String.dispose 1
 (Keyboard.String.dispose.98) // call String.dispose 1
@@ -5687,10 +5364,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -5756,10 +5432,9 @@ A=M // d = *lcl-5 (*lcl)
 @16 // push constant 16 // function Math.init 1 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Array.new 1
 (Math.Array.new.100) // call Array.new 1
 @Math.Array.new.100 // call Array.new // push RP
@@ -5824,10 +5499,9 @@ M=D // dst = src (pop)
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Array.new 1
 (Math.Array.new.102) // call Array.new 1
@@ -5890,13 +5564,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -5905,31 +5576,22 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -5968,10 +5630,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -5998,19 +5659,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -6039,21 +5698,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -6064,31 +5716,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -6112,10 +5755,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -6124,22 +5766,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -6148,31 +5784,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -6181,22 +5808,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -6220,10 +5841,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -6232,31 +5852,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -6265,22 +5876,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -6304,22 +5909,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -6358,10 +5957,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -6386,13 +5984,10 @@ M=D // dst = src (pop)
 (Math.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -6461,18 +6056,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -6501,13 +6092,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -6525,18 +6112,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -6563,10 +6146,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -6635,18 +6217,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -6681,19 +6259,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -6722,16 +6296,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -6740,19 +6309,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -6787,19 +6352,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -6828,28 +6389,18 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -6873,10 +6424,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
 (Math.Math.abs.110) // call Math.abs 1
@@ -6945,10 +6495,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
 (Math.Math.abs.112) // call Math.abs 1
@@ -7017,10 +6566,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -7029,10 +6577,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -7061,13 +6608,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -7085,10 +6628,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -7112,10 +6654,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -7139,10 +6680,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -7172,31 +6712,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -7205,31 +6736,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // lt
 @SP // &esp // lt
@@ -7258,21 +6780,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -7283,10 +6798,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -7295,22 +6809,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -7334,10 +6842,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -7346,31 +6853,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -7399,21 +6897,14 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -7431,10 +6922,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -7443,22 +6933,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -7482,10 +6966,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -7494,10 +6977,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -7506,22 +6988,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -7545,22 +7021,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -7587,10 +7057,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -7599,22 +7068,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -7638,31 +7101,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -7693,19 +7147,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -7723,18 +7172,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -7761,10 +7206,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -7833,18 +7277,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -7873,13 +7313,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -7894,10 +7330,9 @@ D;JNE // jump if not zero
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Math.Sys.error.118) // call Sys.error 1
@@ -7969,19 +7404,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -8016,19 +7447,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -8057,16 +7484,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -8075,19 +7497,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -8122,19 +7540,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -8163,28 +7577,18 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -8202,13 +7606,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -8217,22 +7618,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -8241,10 +7636,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
 (Math.Math.abs.124) // call Math.abs 1
@@ -8328,10 +7722,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -8355,10 +7748,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
 (Math.Math.abs.126) // call Math.abs 1
@@ -8430,19 +7822,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -8477,47 +7867,31 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -8525,10 +7899,9 @@ D;JNE // jump if not zero
 @32767 // push constant 32767 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -8537,10 +7910,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -8549,22 +7921,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -8588,43 +7954,29 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -8633,10 +7985,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -8645,22 +7996,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -8684,31 +8029,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // lt
 @SP // &esp // lt
@@ -8758,27 +8094,19 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -8796,31 +8124,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -8829,22 +8148,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -8853,10 +8166,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -8865,22 +8177,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -8904,10 +8210,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -8916,10 +8221,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -8928,22 +8232,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -8967,22 +8265,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -9021,10 +8313,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -9048,31 +8339,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -9081,22 +8363,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -9120,31 +8396,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -9153,31 +8420,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // gt
 @SP // &esp // gt
@@ -9227,27 +8485,19 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -9265,31 +8515,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -9329,27 +8570,20 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // gt
 @SP // &esp // gt
@@ -9378,21 +8612,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.WHILE_END1
 D;JNE // jump if not zero
 
@@ -9403,10 +8630,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -9415,22 +8641,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -9454,31 +8674,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -9487,31 +8698,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // gt
 @SP // &esp // gt
@@ -9540,21 +8742,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -9572,10 +8767,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -9584,10 +8778,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -9596,22 +8789,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -9635,22 +8822,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -9674,10 +8855,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -9686,10 +8866,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -9698,22 +8877,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -9737,22 +8910,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -9779,31 +8946,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -9834,19 +8992,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -9864,18 +9017,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -9902,10 +9051,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -9974,18 +9122,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -10014,13 +9158,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -10035,10 +9175,9 @@ D;JNE // jump if not zero
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Math.Sys.error.134) // call Sys.error 1
@@ -10107,10 +9246,9 @@ M=D // dst = src (pop)
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -10137,27 +9275,20 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // gt
 @SP // &esp // gt
@@ -10186,21 +9317,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.WHILE_END0
 D;JNE // jump if not zero
 
@@ -10211,10 +9335,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -10223,10 +9346,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @16 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Math.vm)
@@ -10235,22 +9357,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -10274,22 +9390,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -10313,10 +9423,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -10325,10 +9434,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
 (Math.Math.multiply.137) // call Math.multiply 2
@@ -10347,54 +9455,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_138)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -10442,10 +9535,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -10454,10 +9546,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -10486,12 +9577,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -10500,19 +9588,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -10541,33 +9625,21 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -10585,10 +9657,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -10615,31 +9686,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -10670,10 +9732,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -10742,10 +9803,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
@@ -10753,10 +9813,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -10785,13 +9844,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -10809,10 +9864,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -10839,10 +9893,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -10911,10 +9964,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
 D=M // d = *asm_segment
@@ -10922,10 +9974,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -10954,13 +10005,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Math.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -10978,10 +10025,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -11008,10 +10054,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -11074,13 +10119,10 @@ A=M // d = *lcl-5 (*lcl)
 (Memory.init) // function Memory.init 0
 
 // push constant 0
-@0 // push constant 0 // function Memory.init 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // function Memory.init 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 // pop static 0
 @18 // pop static 0 // static + src segment offset (../projects/09/List/Memory.vm)
 D=A // d = &(static+offset)
@@ -11100,10 +10142,9 @@ M=D // dst = src (pop)
 @2048 // push constant 2048 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
@@ -11112,31 +10153,24 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 14334
 @14334 // push constant 14334 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -11175,10 +10209,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -11199,10 +10232,9 @@ M=D // dst = src (pop)
 @2049 // push constant 2049 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
@@ -11211,31 +10243,24 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 2050
 @2050 // push constant 2050 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -11274,10 +10299,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -11295,13 +10319,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -11370,10 +10391,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
 D=A // d = &asm_segment
@@ -11381,22 +10401,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -11420,10 +10434,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -11492,10 +10505,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push static 0
 @18 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Memory.vm)
 D=A // d = &asm_segment
@@ -11503,22 +10515,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -11527,10 +10533,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -11569,10 +10574,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -11590,13 +10594,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -11665,18 +10666,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -11705,13 +10702,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -11726,10 +10719,9 @@ D;JNE // jump if not zero
 @5 // push constant 5 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Memory.Sys.error.144) // call Sys.error 1
@@ -11801,19 +10793,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -11842,13 +10830,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -11860,13 +10844,10 @@ D;JNE // jump if not zero
 (Memory.IF_TRUE1) // label IF_TRUE1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -11890,10 +10871,9 @@ M=D // dst = src (pop)
 @2048 // push constant 2048 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -11920,19 +10900,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16383
 @16383 // push constant 16383 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -11961,13 +10939,10 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -11976,22 +10951,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -12015,10 +10984,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -12027,10 +10995,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -12059,44 +11026,29 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.WHILE_END0
 D;JNE // jump if not zero
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12105,22 +11057,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -12144,10 +11090,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -12165,13 +11110,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12180,22 +11122,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -12219,19 +11155,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -12266,19 +11198,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16382
 @16382 // push constant 16382 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -12307,25 +11237,17 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -12334,22 +11256,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -12373,19 +11289,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -12414,25 +11326,16 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -12450,10 +11353,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -12478,13 +11380,10 @@ M=D // dst = src (pop)
 (Memory.IF_FALSE2) // label IF_FALSE2
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12493,31 +11392,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12526,22 +11416,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -12565,10 +11449,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12577,31 +11460,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -12610,22 +11484,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -12649,22 +11517,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -12703,10 +11565,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -12724,13 +11585,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -12739,22 +11597,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -12778,10 +11630,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -12790,31 +11641,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // eq
 @SP // eq // &esp 
@@ -12843,13 +11687,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -12861,13 +11701,10 @@ D;JNE // jump if not zero
 (Memory.IF_TRUE3) // label IF_TRUE3
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12876,22 +11713,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -12900,31 +11731,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -12963,10 +11787,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -12991,13 +11814,10 @@ M=D // dst = src (pop)
 (Memory.IF_FALSE3) // label IF_FALSE3
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13006,31 +11826,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -13039,22 +11850,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -13078,10 +11883,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -13120,10 +11924,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -13160,10 +11963,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -13172,31 +11974,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 16379
 @16379 // push constant 16379 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -13225,13 +12020,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -13246,10 +12037,9 @@ D;JNE // jump if not zero
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Memory.Sys.error.154) // call Sys.error 1
@@ -13315,13 +12105,10 @@ M=D // dst = src (pop)
 (Memory.IF_FALSE4) // label IF_FALSE4
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13330,22 +12117,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -13369,10 +12150,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -13381,31 +12161,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // gt
 @SP // &esp // gt
@@ -13434,13 +12207,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE5
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE5
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE5
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE5
 D;JNE // jump if not zero
 
@@ -13458,31 +12227,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13491,31 +12253,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13524,22 +12277,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -13563,10 +12310,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -13575,43 +12321,31 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -13650,10 +12384,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -13671,13 +12404,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13686,22 +12416,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -13725,10 +12449,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13737,31 +12460,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // eq
 @SP // eq // &esp 
@@ -13790,13 +12506,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE6
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE6
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE6
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE6
 D;JNE // jump if not zero
 
@@ -13814,31 +12526,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13847,22 +12552,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -13871,10 +12570,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -13883,43 +12581,31 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 4
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -13958,10 +12644,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -13992,31 +12677,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14025,31 +12703,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14058,22 +12727,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -14097,10 +12760,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -14139,10 +12801,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -14163,13 +12824,10 @@ M=D // dst = src (pop)
 (Memory.IF_END6) // label IF_END6
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14178,22 +12836,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14202,10 +12854,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -14214,43 +12865,31 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -14289,10 +12928,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -14313,13 +12951,10 @@ M=D // dst = src (pop)
 (Memory.IF_FALSE5) // label IF_FALSE5
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14328,31 +12963,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -14391,10 +13017,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -14418,31 +13043,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // return
 
@@ -14511,30 +13129,23 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -14552,13 +13163,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14567,22 +13175,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -14606,10 +13208,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -14627,13 +13228,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -14642,22 +13240,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -14681,19 +13273,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -14722,13 +13310,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -14740,13 +13324,10 @@ D;JNE // jump if not zero
 (Memory.IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14755,31 +13336,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14788,22 +13360,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -14827,10 +13393,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14839,43 +13404,31 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -14914,10 +13467,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -14942,13 +13494,10 @@ M=D // dst = src (pop)
 (Memory.IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14957,31 +13506,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -14990,22 +13530,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -15029,10 +13563,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -15041,31 +13574,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -15074,22 +13598,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -15113,22 +13631,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -15167,10 +13679,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -15188,13 +13699,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -15203,22 +13711,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -15242,10 +13744,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -15254,31 +13755,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // eq
 @SP // eq // &esp 
@@ -15307,13 +13801,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Memory.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -15325,13 +13815,10 @@ D;JNE // jump if not zero
 (Memory.IF_TRUE1) // label IF_TRUE1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -15340,22 +13827,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -15364,31 +13845,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -15427,10 +13901,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -15455,13 +13928,10 @@ M=D // dst = src (pop)
 (Memory.IF_FALSE1) // label IF_FALSE1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -15470,31 +13940,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -15503,22 +13964,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -15542,10 +13997,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -15584,10 +14038,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -15611,13 +14064,10 @@ M=D // dst = src (pop)
 (Memory.IF_END0) // label IF_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -15683,10 +14133,9 @@ A=M // d = *lcl-5 (*lcl)
 @16384 // push constant 16384 // function Output.init 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // pop static 4
 @19 // pop static 4 // static + src segment offset (../projects/09/List/Output.vm)
 D=A // d = &(static+offset)
@@ -15703,21 +14152,15 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop static 2
 @19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
@@ -15738,10 +14181,9 @@ M=D // dst = src (pop)
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -15759,13 +14201,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop static 0
 @19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
@@ -15786,10 +14225,9 @@ M=D // dst = src (pop)
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call String.new 1
 (Output.String.new.160) // call String.new 1
@@ -15858,10 +14296,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Output.initMap // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Output.Output.initMap.162 // push RP
 D=A // d = RP
 @R13
@@ -15879,7 +14316,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -15927,10 +14364,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Output.createShiftedMap // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Output.Output.createShiftedMap.164 // push RP
 D=A // d = RP
 @R13
@@ -15946,45 +14382,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_165)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@63 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -16026,13 +14450,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -16098,10 +14519,9 @@ A=M // d = *lcl-5 (*lcl)
 @127 // push constant 127 // function Output.initMap 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Array.new 1
 (Output.Array.new.166) // call Array.new 1
 @Output.Array.new.166 // call Array.new // push RP
@@ -16163,112 +14583,94 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.168) // call Output.create 12
@@ -16287,18 +14689,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_169)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -16343,109 +14742,75 @@ M=D // dst = src (pop)
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.170) // call Output.create 12
@@ -16464,18 +14829,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_171)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -16520,109 +14882,91 @@ M=D // dst = src (pop)
 @33 // push constant 33 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.172) // call Output.create 12
@@ -16641,18 +14985,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_173)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -16697,109 +15038,81 @@ M=D // dst = src (pop)
 @34 // push constant 34 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 20
 @20 // push constant 20 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.174) // call Output.create 12
@@ -16818,18 +15131,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_175)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -16874,109 +15184,91 @@ M=D // dst = src (pop)
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.176) // call Output.create 12
@@ -16995,18 +15287,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_177)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -17051,109 +15340,95 @@ M=D // dst = src (pop)
 @36 // push constant 36 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.178) // call Output.create 12
@@ -17172,18 +15447,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_179)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -17228,109 +15500,89 @@ M=D // dst = src (pop)
 @37 // push constant 37 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 49
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.180) // call Output.create 12
@@ -17349,18 +15601,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_181)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -17405,109 +15654,93 @@ M=D // dst = src (pop)
 @38 // push constant 38 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.182) // call Output.create 12
@@ -17526,18 +15759,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_183)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -17582,109 +15812,81 @@ M=D // dst = src (pop)
 @39 // push constant 39 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.184) // call Output.create 12
@@ -17703,18 +15905,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_185)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -17759,109 +15958,93 @@ M=D // dst = src (pop)
 @40 // push constant 40 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.186) // call Output.create 12
@@ -17880,18 +16063,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_187)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -17936,109 +16116,93 @@ M=D // dst = src (pop)
 @41 // push constant 41 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.188) // call Output.create 12
@@ -18057,18 +16221,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_189)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -18113,109 +16274,85 @@ M=D // dst = src (pop)
 @42 // push constant 42 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.190) // call Output.create 12
@@ -18234,18 +16371,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_191)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -18290,109 +16424,85 @@ M=D // dst = src (pop)
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.192) // call Output.create 12
@@ -18411,18 +16521,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_193)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -18467,109 +16574,81 @@ M=D // dst = src (pop)
 @44 // push constant 44 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.194) // call Output.create 12
@@ -18588,18 +16667,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_195)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -18644,109 +16720,77 @@ M=D // dst = src (pop)
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.196) // call Output.create 12
@@ -18765,18 +16809,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_197)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -18821,109 +16862,79 @@ M=D // dst = src (pop)
 @46 // push constant 46 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.198) // call Output.create 12
@@ -18942,18 +16953,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_199)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -18998,109 +17006,87 @@ M=D // dst = src (pop)
 @47 // push constant 47 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.200) // call Output.create 12
@@ -19119,18 +17105,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_201)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -19175,109 +17158,93 @@ M=D // dst = src (pop)
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.202) // call Output.create 12
@@ -19296,18 +17263,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_203)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -19352,109 +17316,93 @@ M=D // dst = src (pop)
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.204) // call Output.create 12
@@ -19473,18 +17421,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_205)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -19529,109 +17474,93 @@ M=D // dst = src (pop)
 @50 // push constant 50 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.206) // call Output.create 12
@@ -19650,18 +17579,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_207)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -19706,109 +17632,93 @@ M=D // dst = src (pop)
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.208) // call Output.create 12
@@ -19827,18 +17737,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_209)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -19883,109 +17790,93 @@ M=D // dst = src (pop)
 @52 // push constant 52 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 26
 @26 // push constant 26 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 25
 @25 // push constant 25 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 60
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.210) // call Output.create 12
@@ -20004,18 +17895,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_211)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -20060,109 +17948,93 @@ M=D // dst = src (pop)
 @53 // push constant 53 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.212) // call Output.create 12
@@ -20181,18 +18053,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_213)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -20237,109 +18106,93 @@ M=D // dst = src (pop)
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.214) // call Output.create 12
@@ -20358,18 +18211,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_215)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -20414,109 +18264,93 @@ M=D // dst = src (pop)
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 49
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.216) // call Output.create 12
@@ -20535,18 +18369,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_217)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -20591,109 +18422,93 @@ M=D // dst = src (pop)
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.218) // call Output.create 12
@@ -20712,18 +18527,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_219)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -20768,109 +18580,93 @@ M=D // dst = src (pop)
 @57 // push constant 57 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.220) // call Output.create 12
@@ -20889,18 +18685,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_221)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -20945,109 +18738,83 @@ M=D // dst = src (pop)
 @58 // push constant 58 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.222) // call Output.create 12
@@ -21066,18 +18833,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_223)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -21122,109 +18886,85 @@ M=D // dst = src (pop)
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.224) // call Output.create 12
@@ -21243,18 +18983,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_225)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -21299,109 +19036,89 @@ M=D // dst = src (pop)
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.226) // call Output.create 12
@@ -21420,18 +19137,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_227)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -21476,109 +19190,79 @@ M=D // dst = src (pop)
 @61 // push constant 61 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.228) // call Output.create 12
@@ -21597,18 +19281,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_229)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -21653,109 +19334,89 @@ M=D // dst = src (pop)
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.230) // call Output.create 12
@@ -21774,18 +19435,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_231)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -21830,109 +19488,93 @@ M=D // dst = src (pop)
 @64 // push constant 64 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.232) // call Output.create 12
@@ -21951,18 +19593,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_233)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -22007,109 +19646,91 @@ M=D // dst = src (pop)
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.234) // call Output.create 12
@@ -22128,18 +19749,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_235)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -22184,109 +19802,93 @@ M=D // dst = src (pop)
 @65 // push constant 65 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.236) // call Output.create 12
@@ -22305,18 +19907,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_237)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -22361,109 +19960,93 @@ M=D // dst = src (pop)
 @66 // push constant 66 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.238) // call Output.create 12
@@ -22482,18 +20065,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_239)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -22538,109 +20118,93 @@ M=D // dst = src (pop)
 @67 // push constant 67 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.240) // call Output.create 12
@@ -22659,18 +20223,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_241)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -22715,109 +20276,93 @@ M=D // dst = src (pop)
 @68 // push constant 68 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.242) // call Output.create 12
@@ -22836,18 +20381,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_243)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -22892,109 +20434,93 @@ M=D // dst = src (pop)
 @69 // push constant 69 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.244) // call Output.create 12
@@ -23013,18 +20539,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_245)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -23069,109 +20592,93 @@ M=D // dst = src (pop)
 @70 // push constant 70 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.246) // call Output.create 12
@@ -23190,18 +20697,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_247)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -23246,109 +20750,93 @@ M=D // dst = src (pop)
 @71 // push constant 71 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 44
 @44 // push constant 44 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.248) // call Output.create 12
@@ -23367,18 +20855,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_249)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -23423,109 +20908,93 @@ M=D // dst = src (pop)
 @72 // push constant 72 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.250) // call Output.create 12
@@ -23544,18 +21013,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_251)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -23600,109 +21066,93 @@ M=D // dst = src (pop)
 @73 // push constant 73 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.252) // call Output.create 12
@@ -23721,18 +21171,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_253)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -23777,109 +21224,93 @@ M=D // dst = src (pop)
 @74 // push constant 74 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 60
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.254) // call Output.create 12
@@ -23898,18 +21329,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_255)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -23954,109 +21382,93 @@ M=D // dst = src (pop)
 @75 // push constant 75 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.256) // call Output.create 12
@@ -24075,18 +21487,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_257)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -24131,109 +21540,93 @@ M=D // dst = src (pop)
 @76 // push constant 76 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.258) // call Output.create 12
@@ -24252,18 +21645,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_259)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -24308,109 +21698,93 @@ M=D // dst = src (pop)
 @77 // push constant 77 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 33
 @33 // push constant 33 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.260) // call Output.create 12
@@ -24429,18 +21803,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_261)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -24485,109 +21856,93 @@ M=D // dst = src (pop)
 @78 // push constant 78 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.262) // call Output.create 12
@@ -24606,18 +21961,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_263)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -24662,109 +22014,93 @@ M=D // dst = src (pop)
 @79 // push constant 79 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.264) // call Output.create 12
@@ -24783,18 +22119,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_265)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -24839,109 +22172,93 @@ M=D // dst = src (pop)
 @80 // push constant 80 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.266) // call Output.create 12
@@ -24960,18 +22277,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_267)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -25016,109 +22330,95 @@ M=D // dst = src (pop)
 @81 // push constant 81 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 59
 @59 // push constant 59 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.268) // call Output.create 12
@@ -25137,18 +22437,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_269)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -25193,109 +22490,93 @@ M=D // dst = src (pop)
 @82 // push constant 82 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.270) // call Output.create 12
@@ -25314,18 +22595,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_271)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -25370,109 +22648,93 @@ M=D // dst = src (pop)
 @83 // push constant 83 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.272) // call Output.create 12
@@ -25491,18 +22753,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_273)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -25547,109 +22806,93 @@ M=D // dst = src (pop)
 @84 // push constant 84 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.274) // call Output.create 12
@@ -25668,18 +22911,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_275)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -25724,109 +22964,93 @@ M=D // dst = src (pop)
 @85 // push constant 85 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.276) // call Output.create 12
@@ -25845,18 +23069,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_277)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -25901,109 +23122,93 @@ M=D // dst = src (pop)
 @86 // push constant 86 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.278) // call Output.create 12
@@ -26022,18 +23227,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_279)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -26078,109 +23280,93 @@ M=D // dst = src (pop)
 @87 // push constant 87 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.280) // call Output.create 12
@@ -26199,18 +23385,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_281)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -26255,109 +23438,93 @@ M=D // dst = src (pop)
 @88 // push constant 88 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.282) // call Output.create 12
@@ -26376,18 +23543,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_283)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -26432,109 +23596,93 @@ M=D // dst = src (pop)
 @89 // push constant 89 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.284) // call Output.create 12
@@ -26553,18 +23701,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_285)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -26609,109 +23754,93 @@ M=D // dst = src (pop)
 @90 // push constant 90 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 49
 @49 // push constant 49 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 35
 @35 // push constant 35 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.286) // call Output.create 12
@@ -26730,18 +23859,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_287)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -26786,109 +23912,93 @@ M=D // dst = src (pop)
 @91 // push constant 91 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.288) // call Output.create 12
@@ -26907,18 +24017,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_289)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -26963,109 +24070,87 @@ M=D // dst = src (pop)
 @92 // push constant 92 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.290) // call Output.create 12
@@ -27084,18 +24169,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_291)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -27140,109 +24222,93 @@ M=D // dst = src (pop)
 @93 // push constant 93 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.292) // call Output.create 12
@@ -27261,18 +24327,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_293)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -27317,109 +24380,81 @@ M=D // dst = src (pop)
 @94 // push constant 94 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 8
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.294) // call Output.create 12
@@ -27438,18 +24473,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_295)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -27494,109 +24526,77 @@ M=D // dst = src (pop)
 @95 // push constant 95 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.296) // call Output.create 12
@@ -27615,18 +24615,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_297)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -27671,109 +24668,81 @@ M=D // dst = src (pop)
 @96 // push constant 96 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.298) // call Output.create 12
@@ -27792,18 +24761,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_299)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -27848,109 +24814,87 @@ M=D // dst = src (pop)
 @97 // push constant 97 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.300) // call Output.create 12
@@ -27969,18 +24913,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_301)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -28025,109 +24966,93 @@ M=D // dst = src (pop)
 @98 // push constant 98 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.302) // call Output.create 12
@@ -28146,18 +25071,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_303)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -28202,109 +25124,87 @@ M=D // dst = src (pop)
 @99 // push constant 99 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.304) // call Output.create 12
@@ -28323,18 +25223,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_305)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -28379,109 +25276,93 @@ M=D // dst = src (pop)
 @100 // push constant 100 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 60
 @60 // push constant 60 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.306) // call Output.create 12
@@ -28500,18 +25381,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_307)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -28556,109 +25434,87 @@ M=D // dst = src (pop)
 @101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.308) // call Output.create 12
@@ -28677,18 +25533,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_309)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -28733,109 +25586,93 @@ M=D // dst = src (pop)
 @102 // push constant 102 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 38
 @38 // push constant 38 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.310) // call Output.create 12
@@ -28854,18 +25691,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_311)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -28910,109 +25744,91 @@ M=D // dst = src (pop)
 @103 // push constant 103 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.312) // call Output.create 12
@@ -29031,18 +25847,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_313)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -29087,109 +25900,93 @@ M=D // dst = src (pop)
 @104 // push constant 104 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.314) // call Output.create 12
@@ -29208,18 +26005,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_315)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -29264,109 +26058,91 @@ M=D // dst = src (pop)
 @105 // push constant 105 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.316) // call Output.create 12
@@ -29385,18 +26161,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_317)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -29441,109 +26214,93 @@ M=D // dst = src (pop)
 @106 // push constant 106 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.318) // call Output.create 12
@@ -29562,18 +26319,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_319)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -29618,109 +26372,93 @@ M=D // dst = src (pop)
 @107 // push constant 107 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.320) // call Output.create 12
@@ -29739,18 +26477,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_321)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -29795,109 +26530,93 @@ M=D // dst = src (pop)
 @108 // push constant 108 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 14
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.322) // call Output.create 12
@@ -29916,18 +26635,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_323)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -29972,109 +26688,87 @@ M=D // dst = src (pop)
 @109 // push constant 109 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 29
 @29 // push constant 29 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 43
 @43 // push constant 43 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.324) // call Output.create 12
@@ -30093,18 +26787,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_325)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -30149,109 +26840,87 @@ M=D // dst = src (pop)
 @110 // push constant 110 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 29
 @29 // push constant 29 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.326) // call Output.create 12
@@ -30270,18 +26939,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_327)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -30326,109 +26992,87 @@ M=D // dst = src (pop)
 @111 // push constant 111 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.328) // call Output.create 12
@@ -30447,18 +27091,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_329)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -30503,109 +27144,89 @@ M=D // dst = src (pop)
 @112 // push constant 112 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 31
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.330) // call Output.create 12
@@ -30624,18 +27245,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_331)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -30680,109 +27298,89 @@ M=D // dst = src (pop)
 @113 // push constant 113 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.332) // call Output.create 12
@@ -30801,18 +27399,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_333)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -30857,109 +27452,87 @@ M=D // dst = src (pop)
 @114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 29
 @29 // push constant 29 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 55
 @55 // push constant 55 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.334) // call Output.create 12
@@ -30978,18 +27551,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_335)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -31034,109 +27604,87 @@ M=D // dst = src (pop)
 @115 // push constant 115 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.336) // call Output.create 12
@@ -31155,18 +27703,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_337)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -31211,109 +27756,93 @@ M=D // dst = src (pop)
 @116 // push constant 116 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 4
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 28
 @28 // push constant 28 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.338) // call Output.create 12
@@ -31332,18 +27861,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_339)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -31388,109 +27914,87 @@ M=D // dst = src (pop)
 @117 // push constant 117 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 54
 @54 // push constant 54 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.340) // call Output.create 12
@@ -31509,18 +28013,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_341)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -31565,109 +28066,87 @@ M=D // dst = src (pop)
 @118 // push constant 118 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.342) // call Output.create 12
@@ -31686,18 +28165,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_343)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -31742,109 +28218,87 @@ M=D // dst = src (pop)
 @119 // push constant 119 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 18
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.344) // call Output.create 12
@@ -31863,18 +28317,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_345)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -31919,109 +28370,87 @@ M=D // dst = src (pop)
 @120 // push constant 120 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 30
 @30 // push constant 30 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.346) // call Output.create 12
@@ -32040,18 +28469,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_347)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -32096,109 +28522,89 @@ M=D // dst = src (pop)
 @121 // push constant 121 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 62
 @62 // push constant 62 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 24
 @24 // push constant 24 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.348) // call Output.create 12
@@ -32217,18 +28623,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_349)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -32273,109 +28676,87 @@ M=D // dst = src (pop)
 @122 // push constant 122 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 27
 @27 // push constant 27 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 6
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 51
 @51 // push constant 51 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.350) // call Output.create 12
@@ -32394,18 +28775,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_351)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -32450,109 +28828,93 @@ M=D // dst = src (pop)
 @123 // push constant 123 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.352) // call Output.create 12
@@ -32571,18 +28933,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_353)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -32627,109 +28986,93 @@ M=D // dst = src (pop)
 @124 // push constant 124 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.354) // call Output.create 12
@@ -32748,18 +29091,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_355)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -32804,109 +29144,93 @@ M=D // dst = src (pop)
 @125 // push constant 125 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 56
 @56 // push constant 56 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 12
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 7
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.356) // call Output.create 12
@@ -32925,18 +29249,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_357)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -32981,109 +29302,81 @@ M=D // dst = src (pop)
 @126 // push constant 126 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 38
 @38 // push constant 38 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 25
 @25 // push constant 25 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Output.create 12
 (Output.Output.create.358) // call Output.create 12
@@ -33102,18 +29395,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_359)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -33155,13 +29445,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -33227,10 +29514,9 @@ A=M // d = *lcl-5 (*lcl)
 @11 // push constant 11 // function Output.create 1 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Array.new 1
 (Output.Array.new.360) // call Array.new 1
 @Output.Array.new.360 // call Array.new // push RP
@@ -33298,10 +29584,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 5
 @19 // push static 5 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -33310,22 +29595,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -33334,10 +29613,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -33376,10 +29654,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -33397,13 +29674,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -33412,22 +29686,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -33436,10 +29704,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -33478,10 +29745,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -33499,13 +29765,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -33514,22 +29777,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -33538,10 +29795,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -33580,10 +29836,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -33604,10 +29859,9 @@ M=D // dst = src (pop)
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -33616,22 +29870,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -33640,10 +29888,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -33682,10 +29929,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -33706,10 +29952,9 @@ M=D // dst = src (pop)
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -33718,22 +29963,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 4
 @ARG // push argument 4 (&asm_segment)
@@ -33742,10 +29981,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -33784,10 +30022,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -33808,10 +30045,9 @@ M=D // dst = src (pop)
 @4 // push constant 4 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -33820,22 +30056,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 5
 @ARG // push argument 5 (&asm_segment)
@@ -33844,10 +30074,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -33886,10 +30115,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -33910,10 +30138,9 @@ M=D // dst = src (pop)
 @5 // push constant 5 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -33922,22 +30149,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 6
 @ARG // push argument 6 (&asm_segment)
@@ -33946,10 +30167,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -33988,10 +30208,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -34012,10 +30231,9 @@ M=D // dst = src (pop)
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -34024,22 +30242,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 7
 @ARG // push argument 7 (&asm_segment)
@@ -34048,10 +30260,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -34090,10 +30301,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -34114,10 +30324,9 @@ M=D // dst = src (pop)
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -34126,22 +30335,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 8
 @ARG // push argument 8 (&asm_segment)
@@ -34150,10 +30353,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -34192,10 +30394,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -34216,10 +30417,9 @@ M=D // dst = src (pop)
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -34228,22 +30428,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 9
 @ARG // push argument 9 (&asm_segment)
@@ -34252,10 +30446,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -34294,10 +30487,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -34318,10 +30510,9 @@ M=D // dst = src (pop)
 @9 // push constant 9 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -34330,22 +30521,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 10
 @ARG // push argument 10 (&asm_segment)
@@ -34354,10 +30539,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -34396,10 +30580,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -34420,10 +30603,9 @@ M=D // dst = src (pop)
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -34432,22 +30614,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 11
 @ARG // push argument 11 (&asm_segment)
@@ -34456,10 +30632,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -34498,10 +30673,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -34519,13 +30693,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -34591,10 +30762,9 @@ A=M // d = *lcl-5 (*lcl)
 @127 // push constant 127 // function Output.createShiftedMap 4 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Array.new 1
 (Output.Array.new.362) // call Array.new 1
 @Output.Array.new.362 // call Array.new // push RP
@@ -34656,13 +30826,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -34689,19 +30856,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 127
 @127 // push constant 127 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -34730,21 +30895,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
@@ -34755,10 +30913,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 5
 @19 // push static 5 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -34767,22 +30924,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -34806,10 +30957,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -34830,10 +30980,9 @@ M=D // dst = src (pop)
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Array.new 1
 (Output.Array.new.365) // call Array.new 1
@@ -34902,10 +31051,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 6
 @19 // push static 6 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -34914,22 +31062,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -34938,10 +31080,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -34980,10 +31121,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -35001,13 +31141,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -35034,19 +31171,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -35075,21 +31210,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.WHILE_END1
 D;JNE // jump if not zero
 
@@ -35100,10 +31228,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -35112,22 +31239,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -35136,10 +31257,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -35148,22 +31268,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -35187,19 +31301,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 256
 @256 // push constant 256 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Output.Math.multiply.368) // call Math.multiply 2
@@ -35218,54 +31330,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_369)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -35328,10 +31425,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -35355,31 +31451,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -35410,19 +31497,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -35451,13 +31534,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -35472,10 +31551,9 @@ D;JNE // jump if not zero
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -35506,31 +31584,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -35558,13 +31627,10 @@ M=D // dst = src (pop)
 (Output.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -35633,18 +31699,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -35679,19 +31743,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 126
 @126 // push constant 126 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -35720,25 +31782,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -35750,13 +31803,10 @@ D;JNE // jump if not zero
 (Output.IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -35783,19 +31833,14 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -35813,10 +31858,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 5
 @19 // push static 5 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -35825,22 +31869,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -35864,10 +31902,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -35898,10 +31935,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 6
 @19 // push static 6 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -35910,22 +31946,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -35949,10 +31979,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -35979,10 +32008,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -36051,10 +32079,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // call Output.getMap 1
 (Output.Output.getMap.373) // call Output.getMap 1
 @Output.Output.getMap.373 // call Output.getMap // push RP
@@ -36072,18 +32099,15 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_374)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @6 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@45 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -36131,10 +32155,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -36161,19 +32184,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 11
 @11 // push constant 11 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -36202,21 +32223,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
@@ -36227,19 +32241,14 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -36257,10 +32266,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 4
 @19 // push static 4 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -36269,22 +32277,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -36308,39 +32310,29 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 256
 @256 // push constant 256 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -36371,10 +32363,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 4
 @19 // push static 4 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -36383,22 +32374,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -36422,31 +32407,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -36473,10 +32451,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 4
 @19 // push static 4 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -36485,22 +32462,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -36509,10 +32480,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -36521,22 +32491,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -36560,10 +32524,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -36572,22 +32535,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -36626,10 +32583,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -36653,31 +32609,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -36701,31 +32650,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -36750,13 +32690,10 @@ M=D // dst = src (pop)
 (Output.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -36825,18 +32762,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -36871,19 +32804,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 22
 @22 // push constant 22 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -36912,16 +32843,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -36930,19 +32856,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -36971,16 +32893,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -36989,19 +32906,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 63
 @63 // push constant 63 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -37030,25 +32945,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -37063,10 +32969,9 @@ D;JNE // jump if not zero
 @20 // push constant 20 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Output.Sys.error.380) // call Sys.error 1
@@ -37138,19 +33043,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.divide 2
 (Output.Math.divide.382) // call Math.divide 2
@@ -37169,45 +33072,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_383)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -37252,10 +33143,9 @@ M=D // dst = src (pop)
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -37264,19 +33154,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 352
 @352 // push constant 352 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Output.Math.multiply.384) // call Math.multiply 2
@@ -37295,54 +33183,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_385)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -37369,16 +33242,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -37387,22 +33255,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -37426,10 +33288,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -37438,19 +33299,17 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Output.Math.multiply.386) // call Math.multiply 2
@@ -37469,54 +33328,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_387)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -37587,10 +33431,9 @@ M=D // dst = src (pop)
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Output.drawChar 1
 (Output.Output.drawChar.389) // call Output.drawChar 1
@@ -37609,45 +33452,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_390)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -37689,13 +33520,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -37764,10 +33592,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // call String.newLine 0
 (Output.String.newLine.391) // call String.newLine 0
 
@@ -37775,10 +33602,9 @@ M=M+1 // &esp++
 @9999 // push constant 9999 // call String.newLine // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Output.String.newLine.391 // push RP
 D=A // d = RP
 @R13
@@ -37796,7 +33622,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -37849,13 +33675,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -37873,10 +33695,9 @@ D;JNE // jump if not zero
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Output.Output.println.394 // push RP
 D=A // d = RP
 @R13
@@ -37894,7 +33715,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -37949,10 +33770,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call String.backSpace 0
 (Output.String.backSpace.396) // call String.backSpace 0
@@ -37961,10 +33781,9 @@ M=M+1 // &esp++
 @9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Output.String.backSpace.396 // push RP
 D=A // d = RP
 @R13
@@ -37982,7 +33801,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -38035,13 +33854,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -38059,10 +33874,9 @@ D;JNE // jump if not zero
 @9999 // push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Output.Output.backSpace.399 // push RP
 D=A // d = RP
 @R13
@@ -38080,7 +33894,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -38135,10 +33949,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Output.drawChar 1
 (Output.Output.drawChar.401) // call Output.drawChar 1
@@ -38157,45 +33970,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_402)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -38243,27 +34044,19 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -38281,31 +34074,22 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop static 0
 @19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
@@ -38329,31 +34113,22 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -38380,19 +34155,17 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // eq
 @SP // eq // &esp 
@@ -38421,13 +34194,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -38445,10 +34214,9 @@ D;JNE // jump if not zero
 @9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Output.Output.println.404 // push RP
 D=A // d = RP
 @R13
@@ -38466,7 +34234,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -38521,18 +34289,14 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop static 2
 @19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
@@ -38559,13 +34323,10 @@ M=D // dst = src (pop)
 (Output.IF_END0) // label IF_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -38634,10 +34395,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // call String.length 1
 (Output.String.length.406) // call String.length 1
 @Output.String.length.406 // call String.length // push RP
@@ -38708,10 +34468,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -38720,10 +34479,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -38752,21 +34510,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.WHILE_END0
 D;JNE // jump if not zero
 
@@ -38777,10 +34528,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -38789,10 +34539,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call String.charAt 2
 (Output.String.charAt.409) // call String.charAt 2
@@ -38906,31 +34655,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -38955,13 +34695,10 @@ M=D // dst = src (pop)
 (Output.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -39030,10 +34767,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
 D=M // d = *asm_segment
@@ -39041,10 +34777,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call String.setInt 2
 (Output.String.setInt.413) // call String.setInt 2
@@ -39063,45 +34798,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_414)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -39149,10 +34872,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Output.printString 1
 (Output.Output.printString.415) // call Output.printString 1
@@ -39171,27 +34893,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_416)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -39233,13 +34949,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -39308,30 +35021,23 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 352
 @352 // push constant 352 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push static 0
 @19 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Output.vm)
@@ -39340,22 +35046,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39373,13 +35073,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop static 0
 @19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39397,21 +35094,15 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop static 2
 @19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39435,19 +35126,17 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 8128
 @8128 // push constant 8128 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // eq
 @SP // eq // &esp 
@@ -39476,13 +35165,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -39497,10 +35182,9 @@ D;JNE // jump if not zero
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39521,13 +35205,10 @@ M=D // dst = src (pop)
 (Output.IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -39596,18 +35277,13 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -39625,19 +35301,15 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -39666,13 +35338,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -39690,31 +35358,22 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop static 0
 @19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39738,31 +35397,22 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39790,10 +35440,9 @@ M=D // dst = src (pop)
 @31 // push constant 31 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop static 0
 @19 // pop static 0 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39817,19 +35466,17 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // eq
 @SP // eq // &esp 
@@ -39858,13 +35505,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Output.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -39879,10 +35522,9 @@ D;JNE // jump if not zero
 @8128 // push constant 8128 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39909,31 +35551,24 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 321
 @321 // push constant 321 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop static 1
 @19 // pop static 1 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39954,13 +35589,10 @@ M=D // dst = src (pop)
 (Output.IF_END1) // label IF_END1
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop static 2
 @19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
@@ -39985,21 +35617,15 @@ M=D // dst = src (pop)
 (Output.IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop static 2
 @19 // pop static 2 // static + src segment offset (../projects/09/List/Output.vm)
@@ -40023,10 +35649,9 @@ M=D // dst = src (pop)
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Output.drawChar 1
 (Output.Output.drawChar.420) // call Output.drawChar 1
@@ -40045,45 +35670,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_421)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -40125,13 +35738,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -40197,10 +35807,9 @@ A=M // d = *lcl-5 (*lcl)
 @16384 // push constant 16384 // function Screen.init 1 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // pop static 1
 @26 // pop static 1 // static + src segment offset (../projects/09/List/Screen.vm)
 D=A // d = &(static+offset)
@@ -40217,21 +35826,15 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop static 2
 @26 // pop static 2 // static + src segment offset (../projects/09/List/Screen.vm)
@@ -40252,10 +35855,9 @@ M=D // dst = src (pop)
 @17 // push constant 17 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Array.new 1
 (Screen.Array.new.422) // call Array.new 1
@@ -40318,13 +35920,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -40333,31 +35932,22 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -40396,10 +35986,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -40426,19 +36015,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -40467,21 +36054,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -40492,31 +36072,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -40540,10 +36111,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -40552,22 +36122,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -40576,31 +36140,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -40609,22 +36164,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -40648,10 +36197,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -40660,31 +36208,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -40693,22 +36232,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -40732,22 +36265,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -40786,10 +36313,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -40814,13 +36340,10 @@ M=D // dst = src (pop)
 (Screen.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -40892,18 +36415,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 8192
 @8192 // push constant 8192 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -40932,21 +36453,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -40957,10 +36471,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -40969,31 +36482,22 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -41032,10 +36536,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -41059,31 +36562,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -41108,13 +36602,10 @@ M=D // dst = src (pop)
 (Screen.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -41183,18 +36674,13 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -41212,10 +36698,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -41224,22 +36709,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -41248,10 +36727,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -41260,22 +36738,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -41299,10 +36771,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -41311,22 +36782,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -41365,10 +36830,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -41399,10 +36863,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -41411,22 +36874,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -41435,10 +36892,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 1
 @26 // push static 1 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -41447,22 +36903,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -41486,10 +36936,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -41498,30 +36947,21 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -41560,10 +37000,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -41584,13 +37023,10 @@ M=D // dst = src (pop)
 (Screen.IF_END0) // label IF_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -41659,10 +37095,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop static 2
 @26 // pop static 2 // static + src segment offset (../projects/09/List/Screen.vm)
 D=A // d = &(static+offset)
@@ -41679,13 +37114,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -41754,18 +37186,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -41800,19 +37228,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -41841,16 +37267,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -41859,19 +37280,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -41900,16 +37317,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -41918,19 +37330,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -41959,25 +37369,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -41992,10 +37393,9 @@ D;JNE // jump if not zero
 @7 // push constant 7 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Screen.Sys.error.430) // call Sys.error 1
@@ -42067,19 +37467,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.divide 2
 (Screen.Math.divide.432) // call Math.divide 2
@@ -42098,45 +37496,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_433)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -42184,10 +37570,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -42196,19 +37581,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.434) // call Math.multiply 2
@@ -42227,54 +37610,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_435)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -42301,16 +37669,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -42334,19 +37697,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.436) // call Math.multiply 2
@@ -42365,54 +37726,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_437)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -42445,22 +37791,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -42484,10 +37824,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -42496,10 +37835,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -42508,22 +37846,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -42547,10 +37879,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.438) // call Screen.updateLocation 2
@@ -42613,13 +37944,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -42688,18 +38016,13 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -42717,10 +38040,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -42729,10 +38051,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawPixel 2
 (Screen.Screen.drawPixel.440) // call Screen.drawPixel 2
@@ -42751,36 +38072,27 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_441)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @8 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@62 // prologue_size
+@53 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -42835,10 +38147,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -42847,10 +38158,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawPixel 2
 (Screen.Screen.drawPixel.442) // call Screen.drawPixel 2
@@ -42869,36 +38179,27 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_443)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @8 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@62 // prologue_size
+@53 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -42943,13 +38244,10 @@ M=D // dst = src (pop)
 (Screen.IF_END0) // label IF_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -43018,18 +38316,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -43064,19 +38358,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -43105,16 +38397,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -43123,19 +38410,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -43164,16 +38447,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -43182,19 +38460,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -43223,25 +38499,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -43256,10 +38523,9 @@ D;JNE // jump if not zero
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Screen.Sys.error.448) // call Sys.error 1
@@ -43331,10 +38597,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -43343,22 +38608,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Math.abs 1
 (Screen.Math.abs.450) // call Math.abs 1
@@ -43427,10 +38686,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -43439,22 +38697,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Math.abs 1
 (Screen.Math.abs.452) // call Math.abs 1
@@ -43523,10 +38775,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -43535,10 +38786,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -43588,10 +38838,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -43600,10 +38849,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -43612,10 +38860,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -43644,16 +38891,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // push local 6
 @LCL // push local 6 (&asm_segment)
@@ -43662,18 +38904,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -43682,10 +38920,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -43694,10 +38931,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -43726,37 +38962,23 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -43774,10 +38996,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -43801,10 +39022,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -43828,10 +39048,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 2
 @ARG // pop argument 2 (&asm_segment)
@@ -43855,10 +39074,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -43882,10 +39100,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -43909,10 +39126,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 3
 @ARG // pop argument 3 (&asm_segment)
@@ -43939,19 +39155,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -43969,10 +39180,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -43996,10 +39206,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -44023,10 +39232,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -44050,10 +39258,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -44077,10 +39284,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -44104,10 +39310,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 8
 @LCL // pop local 8 (&asm_segment)
@@ -44131,10 +39336,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -44143,10 +39347,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -44203,10 +39406,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -44230,10 +39432,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -44257,10 +39458,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 8
 @LCL // pop local 8 (&asm_segment)
@@ -44284,10 +39484,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -44296,10 +39495,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -44349,10 +39547,9 @@ M=D // dst = src (pop)
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -44361,10 +39558,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
 (Screen.Math.multiply.459) // call Math.multiply 2
@@ -44383,54 +39579,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_460)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -44463,22 +39644,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 5
 @LCL // pop local 5 (&asm_segment)
@@ -44499,10 +39674,9 @@ M=D // dst = src (pop)
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -44511,10 +39685,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
 (Screen.Math.multiply.461) // call Math.multiply 2
@@ -44533,54 +39706,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_462)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -44625,10 +39783,9 @@ M=D // dst = src (pop)
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -44637,10 +39794,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -44649,22 +39805,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Math.multiply 2
 (Screen.Math.multiply.463) // call Math.multiply 2
@@ -44683,54 +39833,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_464)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -44778,10 +39913,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -44790,10 +39924,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 6
 @LCL // push local 6 (&asm_segment)
@@ -44802,10 +39935,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawConditional 3
 (Screen.Screen.drawConditional.465) // call Screen.drawConditional 3
@@ -44877,10 +40009,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 8
 @LCL // push local 8 (&asm_segment)
@@ -44889,10 +40020,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -44921,21 +40051,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -44946,19 +40069,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -44987,13 +40106,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -45011,10 +40126,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 9
 @LCL // push local 9 (&asm_segment)
@@ -45023,22 +40137,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 5
 @LCL // pop local 5 (&asm_segment)
@@ -45069,10 +40177,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 10
 @LCL // push local 10 (&asm_segment)
@@ -45081,22 +40188,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 5
 @LCL // pop local 5 (&asm_segment)
@@ -45120,19 +40221,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -45150,31 +40246,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -45205,31 +40292,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -45259,31 +40337,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -45307,10 +40376,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -45319,10 +40387,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 6
 @LCL // push local 6 (&asm_segment)
@@ -45331,10 +40398,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawConditional 3
 (Screen.Screen.drawConditional.469) // call Screen.drawConditional 3
@@ -45404,13 +40470,10 @@ M=D // dst = src (pop)
 (Screen.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -45479,10 +40542,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
@@ -45490,10 +40552,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -45528,10 +40589,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -45540,10 +40600,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -45572,16 +40631,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -45590,19 +40644,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -45631,16 +40681,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -45649,19 +40694,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -45690,16 +40733,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -45708,19 +40746,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -45749,16 +40783,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -45767,19 +40796,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -45808,25 +40835,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -45841,10 +40859,9 @@ D;JNE // jump if not zero
 @9 // push constant 9 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Screen.Sys.error.477) // call Sys.error 1
@@ -45916,19 +40933,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.divide 2
 (Screen.Math.divide.479) // call Math.divide 2
@@ -45947,45 +40962,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_480)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -46033,10 +41036,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -46045,19 +41047,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.481) // call Math.multiply 2
@@ -46076,54 +41076,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_482)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -46150,16 +41135,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -46183,19 +41163,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.divide 2
 (Screen.Math.divide.483) // call Math.divide 2
@@ -46214,45 +41192,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_484)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -46300,10 +41266,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -46312,19 +41277,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.485) // call Math.multiply 2
@@ -46343,54 +41306,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_486)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -46417,16 +41365,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 8
 @LCL // pop local 8 (&asm_segment)
@@ -46450,10 +41393,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -46462,22 +41404,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -46501,39 +41437,27 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop local 6
 @LCL // pop local 6 (&asm_segment)
@@ -46557,31 +41481,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -46590,22 +41505,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -46629,31 +41538,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 5
 @LCL // pop local 5 (&asm_segment)
@@ -46677,19 +41577,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.487) // call Math.multiply 2
@@ -46708,54 +41606,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_488)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -46788,22 +41671,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -46827,10 +41704,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -46839,22 +41715,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -46881,10 +41751,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -46893,10 +41762,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -46925,29 +41793,19 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -46958,10 +41816,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -46970,22 +41827,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -47009,19 +41860,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -47050,13 +41897,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -47074,10 +41917,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 5
 @LCL // push local 5 (&asm_segment)
@@ -47086,10 +41928,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 6
 @LCL // push local 6 (&asm_segment)
@@ -47098,22 +41939,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.491) // call Screen.updateLocation 2
@@ -47189,10 +42024,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 6
 @LCL // push local 6 (&asm_segment)
@@ -47201,10 +42035,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.493) // call Screen.updateLocation 2
@@ -47273,31 +42106,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -47324,10 +42148,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -47336,10 +42159,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -47368,21 +42190,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.WHILE_END1
 D;JNE // jump if not zero
 
@@ -47393,27 +42208,20 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.496) // call Screen.updateLocation 2
@@ -47482,31 +42290,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -47537,10 +42336,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 5
 @LCL // push local 5 (&asm_segment)
@@ -47549,10 +42347,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.498) // call Screen.updateLocation 2
@@ -47624,31 +42421,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -47672,31 +42460,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -47705,22 +42486,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -47745,13 +42520,10 @@ M=D // dst = src (pop)
 (Screen.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -47820,10 +42592,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
 D=M // d = *asm_segment
@@ -47831,10 +42602,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.min 2
 (Screen.Math.min.500) // call Math.min 2
@@ -47903,10 +42673,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -47915,10 +42684,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.max 2
 (Screen.Math.max.502) // call Math.max 2
@@ -47987,27 +42755,20 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // gt
 @SP // &esp // gt
@@ -48042,19 +42803,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 256
 @256 // push constant 256 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -48083,16 +42842,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // push local 7
 @LCL // push local 7 (&asm_segment)
@@ -48101,19 +42855,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 512
 @512 // push constant 512 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // lt
 @SP // &esp // lt
@@ -48142,16 +42894,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // push local 8
 @LCL // push local 8 (&asm_segment)
@@ -48160,27 +42907,20 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // gt
 @SP // &esp // gt
@@ -48209,25 +42949,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -48245,19 +42976,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // call Math.max 2
 (Screen.Math.max.508) // call Math.max 2
@@ -48326,19 +43053,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.min 2
 (Screen.Math.min.510) // call Math.min 2
@@ -48407,19 +43132,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.divide 2
 (Screen.Math.divide.512) // call Math.divide 2
@@ -48438,45 +43161,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_513)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -48524,10 +43235,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -48536,19 +43246,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.514) // call Math.multiply 2
@@ -48567,54 +43275,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_515)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -48641,16 +43334,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 9
 @LCL // pop local 9 (&asm_segment)
@@ -48674,19 +43362,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.divide 2
 (Screen.Math.divide.516) // call Math.divide 2
@@ -48705,45 +43391,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_517)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -48791,10 +43465,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -48803,19 +43476,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 16
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.518) // call Math.multiply 2
@@ -48834,54 +43505,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_519)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -48908,16 +43564,11 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 10
 @LCL // pop local 10 (&asm_segment)
@@ -48941,10 +43592,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -48953,22 +43603,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -48992,39 +43636,27 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop local 5
 @LCL // pop local 5 (&asm_segment)
@@ -49048,31 +43680,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push static 0
 @26 // push static 0 (&asm_segment) // static + src offset (../projects/09/List/Screen.vm)
@@ -49081,22 +43704,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -49120,31 +43737,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -49168,19 +43776,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 32
 @32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (Screen.Math.multiply.520) // call Math.multiply 2
@@ -49199,54 +43805,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_521)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -49279,22 +43870,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -49318,10 +43903,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -49330,22 +43914,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 6
 @LCL // pop local 6 (&asm_segment)
@@ -49369,10 +43947,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 6
 @LCL // push local 6 (&asm_segment)
@@ -49381,22 +43958,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -49420,19 +43991,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -49461,13 +44028,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -49485,10 +44048,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -49497,10 +44059,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 5
 @LCL // push local 5 (&asm_segment)
@@ -49509,22 +44070,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.523) // call Screen.updateLocation 2
@@ -49600,10 +44155,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 5
 @LCL // push local 5 (&asm_segment)
@@ -49612,10 +44166,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.525) // call Screen.updateLocation 2
@@ -49684,31 +44237,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -49735,10 +44279,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -49747,10 +44290,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -49779,21 +44321,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -49804,27 +44339,20 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.528) // call Screen.updateLocation 2
@@ -49893,31 +44421,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -49948,10 +44467,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 4
 @LCL // push local 4 (&asm_segment)
@@ -49960,10 +44478,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
 (Screen.Screen.updateLocation.530) // call Screen.updateLocation 2
@@ -50032,13 +44549,10 @@ M=D // dst = src (pop)
 (Screen.IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -50107,10 +44621,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
@@ -50118,22 +44631,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50142,10 +44649,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -50154,22 +44660,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50178,10 +44678,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -50190,22 +44689,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.532) // call Screen.drawHorizontal 3
@@ -50224,108 +44717,75 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_533)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(5) init
-@0 // push constant 0 // local(5) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(5) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(6) init
-@0 // push constant 0 // local(6) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(6) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(7) init
-@0 // push constant 0 // local(7) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(7) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(8) init
-@0 // push constant 0 // local(8) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(8) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(9) init
-@0 // push constant 0 // local(9) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(9) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(10) init
-@0 // push constant 0 // local(10) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(10) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @16 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@118 // prologue_size
+@85 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -50373,10 +44833,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -50385,22 +44844,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50409,10 +44862,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -50421,22 +44873,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50445,10 +44891,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -50457,22 +44902,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.534) // call Screen.drawHorizontal 3
@@ -50491,108 +44930,75 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_535)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(5) init
-@0 // push constant 0 // local(5) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(5) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(6) init
-@0 // push constant 0 // local(6) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(6) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(7) init
-@0 // push constant 0 // local(7) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(7) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(8) init
-@0 // push constant 0 // local(8) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(8) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(9) init
-@0 // push constant 0 // local(9) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(9) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(10) init
-@0 // push constant 0 // local(10) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(10) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @16 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@118 // prologue_size
+@85 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -50640,10 +45046,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -50652,22 +45057,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50676,10 +45075,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -50688,22 +45086,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50712,10 +45104,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -50724,22 +45115,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.536) // call Screen.drawHorizontal 3
@@ -50758,108 +45143,75 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_537)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(5) init
-@0 // push constant 0 // local(5) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(5) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(6) init
-@0 // push constant 0 // local(6) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(6) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(7) init
-@0 // push constant 0 // local(7) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(7) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(8) init
-@0 // push constant 0 // local(8) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(8) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(9) init
-@0 // push constant 0 // local(9) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(9) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(10) init
-@0 // push constant 0 // local(10) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(10) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @16 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@118 // prologue_size
+@85 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -50907,10 +45259,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -50919,22 +45270,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50943,10 +45288,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -50955,22 +45299,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -50979,10 +45317,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
@@ -50991,22 +45328,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // call Screen.drawHorizontal 3
 (Screen.Screen.drawHorizontal.538) // call Screen.drawHorizontal 3
@@ -51025,108 +45356,75 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_539)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(5) init
-@0 // push constant 0 // local(5) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(5) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(6) init
-@0 // push constant 0 // local(6) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(6) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(7) init
-@0 // push constant 0 // local(7) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(7) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(8) init
-@0 // push constant 0 // local(8) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(8) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(9) init
-@0 // push constant 0 // local(9) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(9) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(10) init
-@0 // push constant 0 // local(10) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(10) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @16 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@118 // prologue_size
+@85 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -51168,13 +45466,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -51243,18 +45538,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -51289,19 +45580,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -51330,16 +45619,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -51348,19 +45632,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -51389,16 +45669,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -51407,19 +45682,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -51448,25 +45721,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -51481,10 +45745,9 @@ D;JNE // jump if not zero
 @12 // push constant 12 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Screen.Sys.error.544) // call Sys.error 1
@@ -51556,10 +45819,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -51568,31 +45830,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -51627,10 +45880,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -51639,31 +45891,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 511
 @511 // push constant 511 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -51692,16 +45937,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -51710,10 +45950,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -51722,31 +45961,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -51775,16 +46005,11 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -51793,10 +46018,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -51805,31 +46029,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 255
 @255 // push constant 255 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -51858,25 +46075,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -51891,10 +46099,9 @@ D;JNE // jump if not zero
 @13 // push constant 13 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (Screen.Sys.error.550) // call Sys.error 1
@@ -51966,10 +46173,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -51987,13 +46193,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -52002,22 +46205,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -52041,10 +46238,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -52053,10 +46249,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -52065,10 +46260,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -52077,10 +46271,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawSymetric 4
 (Screen.Screen.drawSymetric.552) // call Screen.drawSymetric 4
@@ -52152,10 +46345,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -52164,10 +46356,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -52196,21 +46387,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.WHILE_END0
 D;JNE // jump if not zero
 
@@ -52221,19 +46405,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -52262,13 +46442,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Screen.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -52286,19 +46462,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -52307,10 +46481,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
 (Screen.Math.multiply.556) // call Math.multiply 2
@@ -52329,54 +46502,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_557)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -52403,37 +46561,26 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 3
 @3 // push constant 3 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -52464,19 +46611,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 2
 @2 // push constant 2 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -52485,10 +46630,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -52497,22 +46641,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // call Math.multiply 2
 (Screen.Math.multiply.558) // call Math.multiply 2
@@ -52531,54 +46669,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_559)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -52605,37 +46728,26 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 5
 @5 // push constant 5 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -52659,31 +46771,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -52710,31 +46813,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -52758,10 +46852,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -52770,10 +46863,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -52782,10 +46874,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -52794,10 +46885,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawSymetric 4
 (Screen.Screen.drawSymetric.560) // call Screen.drawSymetric 4
@@ -52867,13 +46957,10 @@ M=D // dst = src (pop)
 (Screen.WHILE_END0) // label WHILE_END0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -52939,10 +47026,9 @@ A=M // d = *lcl-5 (*lcl)
 @3 // push constant 3 // function String.new 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // call Memory.alloc 1
 (String.Memory.alloc.562) // call Memory.alloc 1
 @String.Memory.alloc.562 // call Memory.alloc // push RP
@@ -52960,27 +47046,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_563)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -53028,19 +47108,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -53069,13 +47145,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -53090,10 +47162,9 @@ D;JNE // jump if not zero
 @14 // push constant 14 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (String.Sys.error.565) // call Sys.error 1
@@ -53165,19 +47236,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -53206,13 +47273,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -53230,10 +47293,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Array.new 1
 (String.Array.new.568) // call Array.new 1
@@ -53305,10 +47367,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop this 0
 @THIS // pop this 0 (&asm_segment)
@@ -53326,13 +47387,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop this 2
 @THIS // pop this 2 (&asm_segment)
@@ -53356,10 +47414,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -53428,10 +47485,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -53454,19 +47510,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -53495,13 +47547,9 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -53519,10 +47567,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Array.dispose 1
 (String.Array.dispose.571) // call Array.dispose 1
@@ -53594,10 +47641,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Memory.deAlloc 1
 (String.Memory.deAlloc.573) // call Memory.deAlloc 1
@@ -53616,27 +47662,21 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_574)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @7 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
+@49 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -53678,13 +47718,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -53753,10 +47790,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -53779,10 +47815,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -53851,10 +47886,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -53877,19 +47911,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -53924,10 +47954,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -53936,10 +47965,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -53968,16 +47996,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -53986,10 +48009,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -53998,10 +48020,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // eq
 @SP // eq // &esp 
@@ -54030,25 +48051,16 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -54063,10 +48075,9 @@ D;JNE // jump if not zero
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (String.Sys.error.578) // call Sys.error 1
@@ -54138,10 +48149,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -54150,22 +48160,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -54189,10 +48193,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -54261,10 +48264,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -54287,19 +48289,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -54334,10 +48332,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -54346,10 +48343,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // gt
 @SP // &esp // gt
@@ -54378,16 +48374,11 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -54396,10 +48387,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -54408,10 +48398,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // eq
 @SP // eq // &esp 
@@ -54440,25 +48429,16 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -54473,10 +48453,9 @@ D;JNE // jump if not zero
 @16 // push constant 16 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (String.Sys.error.583) // call Sys.error 1
@@ -54548,10 +48527,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -54560,22 +48538,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -54584,10 +48556,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -54626,10 +48597,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -54647,13 +48617,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -54722,10 +48689,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -54748,10 +48714,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 0
 @THIS // push this 0 (&asm_segment)
@@ -54760,10 +48725,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // eq
 @SP // eq // &esp 
@@ -54792,13 +48756,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -54813,10 +48773,9 @@ D;JNE // jump if not zero
 @17 // push constant 17 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (String.Sys.error.586) // call Sys.error 1
@@ -54888,10 +48847,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -54900,22 +48858,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -54924,10 +48876,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -54966,10 +48917,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -54993,31 +48943,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop this 2
 @THIS // pop this 2 (&asm_segment)
@@ -55041,10 +48982,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -55113,10 +49053,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -55139,19 +49078,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -55180,13 +49115,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -55201,10 +49132,9 @@ D;JNE // jump if not zero
 @18 // push constant 18 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (String.Sys.error.589) // call Sys.error 1
@@ -55276,31 +49206,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop this 2
 @THIS // pop this 2 (&asm_segment)
@@ -55318,13 +49239,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -55393,10 +49311,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -55419,19 +49336,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -55460,13 +49373,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -55478,13 +49387,10 @@ D;JNE // jump if not zero
 (String.IF_TRUE0) // label IF_TRUE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -55547,21 +49453,15 @@ A=M // d = *lcl-5 (*lcl)
 (String.IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -55579,13 +49479,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -55594,22 +49491,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -55633,19 +49524,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // eq
 @SP // eq // &esp 
@@ -55674,13 +49563,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -55692,21 +49577,15 @@ D;JNE // jump if not zero
 (String.IF_TRUE1) // label IF_TRUE1
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -55724,13 +49603,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -55760,10 +49636,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -55772,10 +49647,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -55810,39 +49684,26 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // and
-@SP // &esp // and
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // and
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp = val1
-M=D&M // esp = val2 & val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D&M // val1 = val2 & val1
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.WHILE_END0
 D;JNE // jump if not zero
 
@@ -55853,10 +49714,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -55865,22 +49725,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -55904,31 +49758,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -55952,19 +49799,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -55999,19 +49842,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 9
 @9 // push constant 9 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // gt
 @SP // &esp // gt
@@ -56040,24 +49881,16 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // or
-@SP // &esp // or
-M=M-1 // &esp-- (&val2)
-A=M // *esp (*val2)
+@SP // or
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M|D // esp = val1 | val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -56081,19 +49914,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -56111,19 +49939,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 10
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (String.Math.multiply.596) // call Math.multiply 2
@@ -56142,54 +49968,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_597)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -56222,22 +50033,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -56261,31 +50066,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -56319,19 +50115,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -56349,18 +50140,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -56387,10 +50174,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // return
 
@@ -56459,10 +50245,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
 D=A // d = &pointer
@@ -56485,19 +50270,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -56526,13 +50307,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE0
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE0
 D;JNE // jump if not zero
 
@@ -56547,10 +50324,9 @@ D;JNE // jump if not zero
 @19 // push constant 19 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (String.Sys.error.599) // call Sys.error 1
@@ -56619,10 +50395,9 @@ M=D // dst = src (pop)
 @6 // push constant 6 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Array.new 1
 (String.Array.new.601) // call Array.new 1
@@ -56691,19 +50466,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // lt
 @SP // &esp // lt
@@ -56732,13 +50503,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE1
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE1
 D;JNE // jump if not zero
 
@@ -56750,21 +50517,15 @@ D;JNE // jump if not zero
 (String.IF_TRUE1) // label IF_TRUE1
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -56788,18 +50549,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // neg
-@SP // &esp // neg
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=-M // esp = -val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // neg
+A=M-1 // A -> top of stack
+M=-M // neg in place
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -56826,10 +50583,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -56856,19 +50612,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // gt
 @SP // &esp // gt
@@ -56897,21 +50649,14 @@ M=D // esp = gt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END0
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END0
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.WHILE_END0
 D;JNE // jump if not zero
 
@@ -56922,19 +50667,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 10
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.divide 2
 (String.Math.divide.605) // call Math.divide 2
@@ -56953,45 +50696,33 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_606)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @9 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@69 // prologue_size
+@57 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -57039,10 +50770,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -57051,31 +50781,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -57084,10 +50807,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -57096,19 +50818,17 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 10
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Math.multiply 2
 (String.Math.multiply.607) // call Math.multiply 2
@@ -57127,54 +50847,39 @@ D=M // d = *rp
 (MICROCODE_CALL_MIDPOINT_608)
 
 // push constant 0 // local(0) init
-@0 // push constant 0 // local(0) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(0) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(1) init
-@0 // push constant 0 // local(1) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(1) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(2) init
-@0 // push constant 0 // local(2) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(2) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(3) init
-@0 // push constant 0 // local(3) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(3) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push constant 0 // local(4) init
-@0 // push constant 0 // local(4) init (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0 // local(4) init
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 @10 // increment RP (SP-5+num_locals) by prologue_size
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@76 // prologue_size
+@61 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -57201,28 +50906,18 @@ M=D // &lcl[0] = &lcl[0]
 0;JMP // *func // jump to function (call target)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -57261,10 +50956,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -57288,31 +50982,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -57336,10 +51021,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -57370,19 +51054,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto IF_TRUE2
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE2
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE2
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE2
 D;JNE // jump if not zero
 
@@ -57400,10 +51079,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -57412,31 +51090,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -57475,10 +51146,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -57502,31 +51172,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -57553,10 +51214,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -57565,10 +51225,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -57597,13 +51256,9 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE3
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE3
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE3
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE3
 D;JNE // jump if not zero
 
@@ -57618,10 +51273,9 @@ D;JNE // jump if not zero
 @19 // push constant 19 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Sys.error 1
 (String.Sys.error.610) // call Sys.error 1
@@ -57693,19 +51347,15 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // eq
 @SP // eq // &esp 
@@ -57734,13 +51384,9 @@ M=D // esp = eq result
 M=M+1 // &esp++
 
 // if-goto IF_TRUE4
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE4
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE4
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.IF_TRUE4
 D;JNE // jump if not zero
 
@@ -57752,13 +51398,10 @@ D;JNE // jump if not zero
 (String.IF_TRUE4) // label IF_TRUE4
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -57767,31 +51410,24 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push constant 48
 @48 // push constant 48 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -57830,10 +51466,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -57851,13 +51486,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // pop this 2
 @THIS // pop this 2 (&asm_segment)
@@ -57882,13 +51514,10 @@ M=D // dst = src (pop)
 (String.IF_FALSE4) // label IF_FALSE4
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop this 2
 @THIS // pop this 2 (&asm_segment)
@@ -57915,10 +51544,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -57927,10 +51555,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // lt
 @SP // &esp // lt
@@ -57959,21 +51586,14 @@ M=D // esp = lt result
 M=M+1 // &esp++
 
 // not
-@SP // &esp // not
-M=M-1 // &esp-- (&val1)
-A=M // esp* (*val1)
-M=!M // esp = !val1
-@SP // &esp
-M=M+1 // &esp++
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
 
 // if-goto WHILE_END1
-// compare val (if-goto conditional) with 0
-@0 // if-goto WHILE_END1
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto WHILE_END1
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @String.WHILE_END1
 D;JNE // jump if not zero
 
@@ -57984,10 +51604,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 1
 @THIS // push this 1 (&asm_segment)
@@ -57996,22 +51615,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -58020,10 +51633,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -58032,43 +51644,29 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -58077,22 +51675,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop pointer 1
 @3 // pop pointer 1 (&pointer)
@@ -58116,10 +51708,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -58158,10 +51749,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop that 0
 @THAT // pop that 0 (&asm_segment)
@@ -58185,31 +51775,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop this 2
 @THIS // pop this 2 (&asm_segment)
@@ -58243,10 +51824,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // call Array.dispose 1
 (String.Array.dispose.614) // call Array.dispose 1
@@ -58309,13 +51889,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -58381,10 +51958,9 @@ A=M // d = *lcl-5 (*lcl)
 @128 // push constant 128 // function String.newLine 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // return
 
 // pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
@@ -58449,10 +52025,9 @@ A=M // d = *lcl-5 (*lcl)
 @129 // push constant 129 // function String.backSpace 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // return
 
 // pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
@@ -58517,10 +52092,9 @@ A=M // d = *lcl-5 (*lcl)
 @34 // push constant 34 // function String.doubleQuote 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // return
 
 // pop argument 0 // return // move result to &arg[0] (soon to be last stack item)

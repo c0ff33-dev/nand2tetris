@@ -1,12 +1,9 @@
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // pop local 0 // initializes sum = 0
 @LCL // pop local 0 // initializes sum = 0 (&asm_segment)
@@ -33,10 +30,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -45,22 +41,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // pop local 0 // sum = sum + counter
 @LCL // pop local 0 // sum = sum + counter (&asm_segment)
@@ -84,31 +74,22 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push constant 1
-@1 // push constant 1 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 1
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=1 // direct assign
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // pop argument 0 // counter--
 @ARG // pop argument 0 // counter-- (&asm_segment)
@@ -132,19 +113,14 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // if-goto LOOP_START // If counter > 0, goto LOOP_START
-// compare val (if-goto conditional) with 0
-@0 // if-goto LOOP_START // If counter > 0, goto LOOP_START
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto LOOP_START // If counter > 0, goto LOOP_START
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @BasicLoop.LOOP_START
 D;JNE // jump if not zero
 
@@ -155,7 +131,6 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)

@@ -3,10 +3,9 @@
 @10 // push constant 10 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -27,19 +26,17 @@ M=D // dst = src (pop)
 @21 // push constant 21 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 22
 @22 // push constant 22 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop argument 2
 @ARG // pop argument 2 (&asm_segment)
@@ -75,10 +72,9 @@ M=D // dst = src (pop)
 @36 // push constant 36 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop this 6
 @THIS // pop this 6 (&asm_segment)
@@ -99,19 +95,17 @@ M=D // dst = src (pop)
 @42 // push constant 42 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 45
 @45 // push constant 45 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop that 5
 @THAT // pop that 5 (&asm_segment)
@@ -147,10 +141,9 @@ M=D // dst = src (pop)
 @510 // push constant 510 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // pop temp 6
 @5 // pop temp 6 (&temp)
@@ -174,10 +167,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push that 5
 @THAT // push that 5 (&asm_segment)
@@ -186,22 +178,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -210,22 +196,16 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push this 6
 @THIS // push this 6 (&asm_segment)
@@ -234,10 +214,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // push this 6
 @THIS // push this 6 (&asm_segment)
@@ -246,34 +225,23 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // push temp 6
 @5 // push temp 6 (&asm_segment)
@@ -282,19 +250,13 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // add
-@SP // &esp // add
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // add
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=D+M // esp = val2 + val1
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1

@@ -10,18 +10,16 @@ M=D
 @6 // push constant 6 // function Sys.init 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // push constant 8
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Class1.set 2
 (Sys.Class1.set.1) // call Class1.set 2
@@ -122,19 +120,17 @@ M=D // dst = src (pop)
 @23 // push constant 23 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Class2.set 2
 (Sys.Class2.set.3) // call Class2.set 2
@@ -203,10 +199,9 @@ M=D // dst = src (pop)
 @9999 // push constant 9999 // call Class1.get // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Class1.get.5 // push RP
 D=A // d = RP
 @R13
@@ -224,7 +219,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -257,10 +252,9 @@ M=D // &lcl[0] = &lcl[0]
 @9999 // push constant 9999 // call Class2.get // if no args, create a space on the stack for the return (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 @Sys.Class2.get.7 // push RP
 D=A // d = RP
 @R13
@@ -278,7 +272,7 @@ D=M // d = *rp
 D=A // d = 5+num_locals
 @SP // &esp
 M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
+@47 // prologue_size
 D=A // d = prologue_size
 @SP // &esp (&rp)
 A=M // *esp (*rp)
@@ -321,10 +315,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop static 0
 @16 // pop static 0 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
 D=A // d = &(static+offset)
@@ -347,10 +340,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop static 1
 @16 // pop static 1 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
@@ -368,13 +360,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -443,10 +432,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push static 1
 @16 // push static 1 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class1.vm)
 D=A // d = &asm_segment
@@ -454,22 +442,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // return
 
@@ -538,10 +520,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // pop static 0
 @18 // pop static 0 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
 D=A // d = &(static+offset)
@@ -564,10 +545,9 @@ D=M // d = *asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // pop static 1
 @18 // pop static 1 // static + src segment offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
@@ -585,13 +565,10 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 
@@ -660,10 +637,9 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 // push static 1
 @18 // push static 1 (&asm_segment) // static + src offset (../projects/08/FunctionCalls/StaticsTest/Class2.vm)
 D=A // d = &asm_segment
@@ -671,22 +647,16 @@ D=A // d = &asm_segment
 A=D+A // &(asm_segment+offset)
 D=M // d = *(asm_segment+offset)
 @SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = *(asm_segment+offset)
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // return
 

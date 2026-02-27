@@ -55,7 +55,7 @@ def assemble(asm_filepath, debug=False):
             continue  # skip comment lines
 
         if instruction[0] == "(":
-            label_val = instruction[1:-1]  # parse label name i.e. (LABEL)
+            label_val = instruction.split(")")[0][1:]  # parse label name i.e. (LABEL)
             if label_val not in address_labels:
                 address_labels[label_val] = line  # if required, add to dict
                 continue
@@ -110,7 +110,6 @@ def assemble(asm_filepath, debug=False):
                 address = "0"*i + address
 
             # add complete instruction to file
-            # TODO: for now allowing illegal 17+ bit a instructions only (length/compilation issue)
             if len(address) > 16:
                 warnings.warn("Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
                               % (asm_filepath, len(address), instruction, address), RuntimeWarning)

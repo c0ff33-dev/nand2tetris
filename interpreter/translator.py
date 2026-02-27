@@ -26,13 +26,20 @@ class Translator:
 
         # push an arbitrary value onto the stack
         if vm_segment == "constant":
-            self.asm += "@%s // %s (constant)\n" % (value, cmd)
-            self.asm += "D=A // d = constant\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n" 
-            self.asm += "M=D // esp = constant\n" 
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n" 
+            int_value = int(value)
+            if int_value in (0, 1, -1):
+                # special case: M=0, M=1, M=-1 avoid loading through D
+                self.asm += "@SP // %s\n" % cmd
+                self.asm += "AM=M+1 // SP++\n"
+                self.asm += "A=A-1 // A -> slot\n"
+                self.asm += "M=%s // direct assign\n" % int_value
+            else:
+                self.asm += "@%s // %s (constant)\n" % (value, cmd)
+                self.asm += "D=A // d = constant\n"
+                self.asm += "@SP // &esp\n"
+                self.asm += "AM=M+1 // SP++\n"
+                self.asm += "A=A-1 // A -> slot\n"
+                self.asm += "M=D // slot = constant\n"
         else:
             # retrieve a value from segment+offset and push it onto the stack
             if vm_segment == "temp":
@@ -58,10 +65,9 @@ class Translator:
             self.asm += "A=D+A // &(asm_segment+offset)\n"
             self.asm += "D=M // d = *(asm_segment+offset)\n" 
             self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = *(asm_segment+offset)\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
+            self.asm += "AM=M+1 // SP++\n"
+            self.asm += "A=A-1 // A -> slot\n"
+            self.asm += "M=D // slot = *(asm_segment+offset)\n"
 
     # 13 instructions per VM command
     def gen_pop(self, cmd, vm_segment, asm_segment, value, vm_filepath):
@@ -110,43 +116,31 @@ class Translator:
         self.asm += "A=M // *r13 (*dst)\n"
         self.asm += "M=D // dst = src (pop)\n"
 
-    # 10 instructions per VM command
+    # 5 instructions per VM command
     def gen_add(self, cmd):
         """
         pop 2 values from the stack and push the result of their sum
         """
         self.asm += '\n// %s\n' % (cmd)
 
-        # add two values, push result, dec/inc esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp\n" 
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D+M // esp = val2 + val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=D+M // val1 = val2 + val1\n"
 
-    # 10 instructions per VM command
+    # 5 instructions per VM command
     def gen_sub(self, cmd):
         """
         pop 2 values from the stack and push the result of their difference
         """
         self.asm += '\n// %s\n' % (cmd)
 
-        # eval two values, push result, dec esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=M-D // esp = val1 - val2\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=M-D // val1 = val1 - val2\n"
 
     # ~21 instructions per VM command
     def gen_eq(self, cmd):
@@ -266,73 +260,53 @@ class Translator:
         self.asm += "@SP // &esp\n"
         self.asm += "M=M+1 // &esp++\n"
 
-    # 10 instructions per VM command
+    # 5 instructions per VM command
     def gen_and(self, cmd):
         """
         pop 2 values from the stack, push the AND result
         """
         self.asm += '\n// %s\n' % (cmd)
 
-        # eval two values, push result, dec esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *esp (*val2)\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp = val1\n"
-        self.asm += "M=D&M // esp = val2 & val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=D&M // val1 = val2 & val1\n"
 
-    # 10 instructions per VM command
+    # 5 instructions per VM command
     def gen_or(self, cmd):
         """
         pop 2 values from the stack, push the OR result
         """
         self.asm += '\n// %s\n' % (cmd)
 
-        # eval two values, push result, dec esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *esp (*val2)\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=M|D // esp = val1 | val2\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=M|D // val1 = val1 | val2\n"
 
-    # ~6 instructions per VM command
+    # 3 instructions per VM command
     def gen_not(self, cmd):
         """
-        pop a value from the stack, push the NOT result
+        NOT the top value on the stack in place
         """
         self.asm += '\n// %s\n' % (cmd)
 
-        # eval one value, push result
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // esp* (*val1)\n"
-        self.asm += "M=!M // esp = !val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "A=M-1 // A -> top of stack\n"
+        self.asm += "M=!M // not in place\n"
 
-    # ~6 instructions per VM command
+    # 3 instructions per VM command
     def gen_neg(self, cmd):
         """
-        pop 2 values from the stack, push the MINUS result
+        negate the top value on the stack in place
         """
         self.asm += '\n// %s\n' % (cmd)
 
-        # eval one value, push result
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=-M // esp = -val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "A=M-1 // A -> top of stack\n"
+        self.asm += "M=-M // neg in place\n"
 
     # ~0 instructions per VM command
     def gen_label(self, cmd, src):
@@ -372,7 +346,7 @@ class Translator:
         self.asm += "@%s // %s\n" % (asm_label, cmd)
         self.asm += "0;JMP // unconditional jump\n"
 
-    # ~8 instructions per VM command
+    # 5 instructions per VM command
     def gen_if_goto(self, cmd, src):
         """
         pop a value off the stack and jump if true
@@ -382,14 +356,9 @@ class Translator:
 
         self.asm += '\n// %s\n' % (cmd)
 
-        self.asm += "// compare val (if-goto conditional) with 0\n"
-        self.asm += "@0 // %s\n" % cmd
-        self.asm += "D=A // d = 0\n"
-        self.asm += "@SP // &esp // compare val to 0\n"
-        self.asm += "M=M-1 // &esp-- (&val)\n"
-        self.asm += "A=M // *esp (*val)\n"
-        self.asm += "D=M-D // d = val - 0 // leave esp here (pop equivalent)\n"
-
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val\n"
+        self.asm += "D=M // d = val\n"
         self.asm += "@%s\n" % asm_label
         self.asm += "D;JNE // jump if not zero\n"
 
@@ -413,7 +382,7 @@ class Translator:
             # TODO: the init'd return value doesn't matter so this could be inlined to just inc esp by num_locals?
             self.gen_push("push constant 9999 // call %s // if no args, create a space on the stack for "
                           "the return" % func_label, "constant", "constant", 9999, "")
-            prologue_size += 7  # 7 instructions per push()
+            prologue_size += 6  # 6 instructions per push(constant != 0/1/-1)
             num_args = 1
             self.asm += "@%s // push RP\n" % asm_label # return point (RP)
         else:
@@ -497,7 +466,7 @@ class Translator:
                 # JACK spec does not require static/field/local to be initialized, only args
                 # the decompiled VM code however definitely assumes local init to 0
                 self.gen_push("push constant 0 // local(%s) init" % i, "constant", "constant", 0, "")
-                prologue_size += 7  # 7 instructions per push()
+                prologue_size += 4  # 4 instructions per push(constant 0)
         else:
             num_locals = 0
 
