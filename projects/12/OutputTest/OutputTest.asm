@@ -2,93 +2,12 @@
 // function Sys.init 0
 (Sys.init) // function Sys.init 0
 
-// call Memory.init 0
-(Sys.Memory.init.1) // call Memory.init 0 // function Sys.init 0
-
-// push constant 9999 // call Memory.init // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Memory.init // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Memory.init.1 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_2 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-(MICROCODE_CALL)
-@SP // &esp // save RP to the stack
-A=M // *esp
-M=D // esp = RP
-@SP // &esp
-M=M+1 // &esp++
-@LCL // &lcl[0] // save LCL to the stack
-D=M // d = *lcl[0]
-@SP // &esp
-A=M // *esp
-M=D // esp = lcl[0]
-@SP // &esp
-M=M+1 // &esp++
-@ARG // &arg // save ARG to the stack
-D=M // d = *arg
-@SP // &esp
-A=M // *esp
-M=D // esp = arg
-@SP // &esp
-M=M+1 // &esp++
-@THIS // &this // save THIS to the stack
-D=M // d = *this
-@SP // &esp
-A=M // *esp
-M=D // esp = this
-@SP // &esp
-M=M+1 // &esp++
-@THAT // &that // save THAT to the stack
-D=M // d = *that
-@SP // &esp
-A=M // *esp
-M=D // esp = that
-@SP // &esp
-M=M+1 // &esp++
-@R14 // &midpoint
-A=M // *midpoint
-0;JMP // return to dynamic call code
-(MICROCODE_CALL_MIDPOINT_2)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@81 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Memory.init // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+// call Memory.init 0 // function Sys.init 0
+@RET_CALL_1
+D=A
+@CALL_Memory.init_0
+0;JMP
+(RET_CALL_1)
 // pop temp 0
 @5 // pop temp 0 (&temp)
 D=A // d = &temp
@@ -105,63 +24,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Math.init 0
-(Sys.Math.init.3) // call Math.init 0
-
-// push constant 9999 // call Math.init // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Math.init // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Math.init.3 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_4 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_2
+D=A
+@CALL_Math.init_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_4)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@51 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.init // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_2)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -179,63 +46,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Screen.init 0
-(Sys.Screen.init.5) // call Screen.init 0
-
-// push constant 9999 // call Screen.init // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Screen.init // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Screen.init.5 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_6 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_3
+D=A
+@CALL_Screen.init_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_6)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@51 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.init // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_3)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -253,57 +68,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.init 0
-(Sys.Output.init.7) // call Output.init 0
-
-// push constant 9999 // call Output.init // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.init // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Output.init.7 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_8 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_4
+D=A
+@CALL_Output.init_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_8)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.init // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_4)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -321,57 +90,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Keyboard.init 0
-(Sys.Keyboard.init.9) // call Keyboard.init 0
-
-// push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Keyboard.init // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Keyboard.init.9 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_10 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_5
+D=A
+@CALL_Keyboard.init_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_10)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Keyboard.init // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_5)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -389,63 +112,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Main.main 0
-(Sys.Main.main.11) // call Main.main 0
-
-// push constant 9999 // call Main.main // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Main.main // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Main.main.11 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_12 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_6
+D=A
+@CALL_Main.main_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_12)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@51 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Main.main // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_6)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -463,57 +134,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Sys.halt 0
-(Sys.Sys.halt.13) // call Sys.halt 0
-
-// push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Sys.halt.13 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_14 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_7
+D=A
+@CALL_Sys.halt_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_14)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.halt // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_7)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -587,6 +212,12 @@ M=0 // direct assign
 
 // function Sys.wait 1
 (Sys.wait) // function Sys.wait 1
+@SP
+A=M
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Sys.wait 1 (&asm_segment)
@@ -605,11 +236,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_15
+@RET_LT_8
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_15)
+(RET_LT_8)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -632,49 +263,11 @@ A=A-1 // A -> slot
 M=1 // direct assign
 
 // call Sys.error 1
-(Sys.Sys.error.16) // call Sys.error 1
-@Sys.Sys.error.16 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_17 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_9
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_17)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_9)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -715,11 +308,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_18
+@RET_GT_10
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_18)
+(RET_GT_10)
 
 // not
 @SP // not
@@ -777,11 +370,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_19
+@RET_GT_11
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_19)
+(RET_GT_11)
 
 // not
 @SP // not
@@ -908,49 +501,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Output.printChar 1
-(Sys.Output.printChar.20) // call Output.printChar 1
-@Sys.Output.printChar.20 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_21 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_12
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_21)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_12)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -976,49 +531,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printChar 1
-(Sys.Output.printChar.22) // call Output.printChar 1
-@Sys.Output.printChar.22 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_23 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_13
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_23)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_13)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1044,49 +561,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printChar 1
-(Sys.Output.printChar.24) // call Output.printChar 1
-@Sys.Output.printChar.24 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_25 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_14
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_25)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_14)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1115,49 +594,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Output.printInt 1
-(Sys.Output.printInt.26) // call Output.printInt 1
-@Sys.Output.printInt.26 // call Output.printInt // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_27 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_15
+D=A
+@CALL_Output.printInt_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_27)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printInt // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_15)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1175,57 +616,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Sys.halt 0
-(Sys.Sys.halt.28) // call Sys.halt 0
-
-// push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Sys.halt // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Sys.Sys.halt.28 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_29 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_16
+D=A
+@CALL_Sys.halt_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_29)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.halt // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_16)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1254,6 +649,12 @@ M=0 // direct assign
 
 // function Main.main 1
 (Main.main) // function Main.main 1
+@SP
+A=M
+M=0
+D=A+1
+@SP
+M=D
 
 // push constant 1
 @SP // push constant 1 // function Main.main 1
@@ -1261,49 +662,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=1 // direct assign
 // call String.new 1
-(Main.String.new.30) // call String.new 1
-@Main.String.new.30 // call String.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_31 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_17
+D=A
+@CALL_String.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_31)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_17)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -1332,102 +695,18 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.doubleQuote 0
-(Main.String.doubleQuote.32) // call String.doubleQuote 0
-
-// push constant 9999 // call String.doubleQuote // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call String.doubleQuote // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Main.String.doubleQuote.32 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_33 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_18
+D=A
+@CALL_String.doubleQuote_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_33)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.doubleQuote // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_18)
 
 // call String.appendChar 2
-(Main.String.appendChar.34) // call String.appendChar 2
-@Main.String.appendChar.34 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_35 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_19
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_35)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_19)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1459,49 +738,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.moveCursor 2
-(Main.Output.moveCursor.36) // call Output.moveCursor 2
-@Main.Output.moveCursor.36 // call Output.moveCursor // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_37 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_20
+D=A
+@CALL_Output.moveCursor_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_37)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.moveCursor // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_20)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1527,49 +768,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printChar 1
-(Main.Output.printChar.38) // call Output.printChar 1
-@Main.Output.printChar.38 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_39 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_21
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_39)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_21)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1601,49 +804,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.moveCursor 2
-(Main.Output.moveCursor.40) // call Output.moveCursor 2
-@Main.Output.moveCursor.40 // call Output.moveCursor // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_41 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_22
+D=A
+@CALL_Output.moveCursor_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_41)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.moveCursor // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_22)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1669,49 +834,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printChar 1
-(Main.Output.printChar.42) // call Output.printChar 1
-@Main.Output.printChar.42 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_43 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_23
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_43)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_23)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1745,49 +872,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.moveCursor 2
-(Main.Output.moveCursor.44) // call Output.moveCursor 2
-@Main.Output.moveCursor.44 // call Output.moveCursor // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_45 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_24
+D=A
+@CALL_Output.moveCursor_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_45)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.moveCursor // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_24)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1813,49 +902,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printChar 1
-(Main.Output.printChar.46) // call Output.printChar 1
-@Main.Output.printChar.46 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_47 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_25
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_47)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_25)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1881,49 +932,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printChar 1
-(Main.Output.printChar.48) // call Output.printChar 1
-@Main.Output.printChar.48 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_49 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_26
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_49)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_26)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -1955,49 +968,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.moveCursor 2
-(Main.Output.moveCursor.50) // call Output.moveCursor 2
-@Main.Output.moveCursor.50 // call Output.moveCursor // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_51 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_27
+D=A
+@CALL_Output.moveCursor_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_51)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.moveCursor // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_27)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -2023,49 +998,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.new 1
-(Main.String.new.52) // call String.new 1
-@Main.String.new.52 // call String.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_53 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_28
+D=A
+@CALL_String.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_53)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_28)
 
 // push constant 48
 @48 // push constant 48 (constant)
@@ -2076,49 +1013,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.54) // call String.appendChar 2
-@Main.String.appendChar.54 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_55 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_29
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_55)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_29)
 
 // push constant 49
 @49 // push constant 49 (constant)
@@ -2129,49 +1028,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.56) // call String.appendChar 2
-@Main.String.appendChar.56 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_57 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_30
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_57)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_30)
 
 // push constant 50
 @50 // push constant 50 (constant)
@@ -2182,49 +1043,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.58) // call String.appendChar 2
-@Main.String.appendChar.58 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_59 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_31
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_59)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_31)
 
 // push constant 51
 @51 // push constant 51 (constant)
@@ -2235,49 +1058,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.60) // call String.appendChar 2
-@Main.String.appendChar.60 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_61 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_32
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_61)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_32)
 
 // push constant 52
 @52 // push constant 52 (constant)
@@ -2288,49 +1073,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.62) // call String.appendChar 2
-@Main.String.appendChar.62 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_63 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_33
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_63)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_33)
 
 // push constant 53
 @53 // push constant 53 (constant)
@@ -2341,49 +1088,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.64) // call String.appendChar 2
-@Main.String.appendChar.64 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_65 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_34
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_65)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_34)
 
 // push constant 54
 @54 // push constant 54 (constant)
@@ -2394,49 +1103,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.66) // call String.appendChar 2
-@Main.String.appendChar.66 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_67 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_35
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_67)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_35)
 
 // push constant 55
 @55 // push constant 55 (constant)
@@ -2447,49 +1118,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.68) // call String.appendChar 2
-@Main.String.appendChar.68 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_69 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_36
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_69)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_36)
 
 // push constant 56
 @56 // push constant 56 (constant)
@@ -2500,49 +1133,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.70) // call String.appendChar 2
-@Main.String.appendChar.70 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_71 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_37
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_71)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_37)
 
 // push constant 57
 @57 // push constant 57 (constant)
@@ -2553,106 +1148,18 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.72) // call String.appendChar 2
-@Main.String.appendChar.72 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_73 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_38
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_73)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_38)
 
 // call Output.printString 1
-(Main.Output.printString.74) // call Output.printString 1
-@Main.Output.printString.74 // call Output.printString // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_75 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_39
+D=A
+@CALL_Output.printString_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_75)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printString // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_39)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -2670,57 +1177,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(Main.Output.println.76) // call Output.println 0
-
-// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Main.Output.println.76 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_77 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_40
+D=A
+@CALL_Output.println_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_77)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.println // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_40)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -2746,49 +1207,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.new 1
-(Main.String.new.78) // call String.new 1
-@Main.String.new.78 // call String.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_79 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_41
+D=A
+@CALL_String.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_79)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_41)
 
 // push constant 65
 @65 // push constant 65 (constant)
@@ -2799,49 +1222,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.80) // call String.appendChar 2
-@Main.String.appendChar.80 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_81 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_42
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_81)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_42)
 
 // push constant 66
 @66 // push constant 66 (constant)
@@ -2852,49 +1237,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.82) // call String.appendChar 2
-@Main.String.appendChar.82 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_83 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_43
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_83)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_43)
 
 // push constant 67
 @67 // push constant 67 (constant)
@@ -2905,49 +1252,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.84) // call String.appendChar 2
-@Main.String.appendChar.84 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_85 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_44
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_85)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_44)
 
 // push constant 68
 @68 // push constant 68 (constant)
@@ -2958,49 +1267,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.86) // call String.appendChar 2
-@Main.String.appendChar.86 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_87 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_45
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_87)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_45)
 
 // push constant 69
 @69 // push constant 69 (constant)
@@ -3011,49 +1282,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.88) // call String.appendChar 2
-@Main.String.appendChar.88 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_89 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_46
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_89)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_46)
 
 // push constant 70
 @70 // push constant 70 (constant)
@@ -3064,49 +1297,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.90) // call String.appendChar 2
-@Main.String.appendChar.90 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_91 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_47
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_91)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_47)
 
 // push constant 71
 @71 // push constant 71 (constant)
@@ -3117,49 +1312,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.92) // call String.appendChar 2
-@Main.String.appendChar.92 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_93 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_48
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_93)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_48)
 
 // push constant 72
 @72 // push constant 72 (constant)
@@ -3170,49 +1327,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.94) // call String.appendChar 2
-@Main.String.appendChar.94 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_95 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_49
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_95)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_49)
 
 // push constant 73
 @73 // push constant 73 (constant)
@@ -3223,49 +1342,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.96) // call String.appendChar 2
-@Main.String.appendChar.96 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_97 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_50
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_97)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_50)
 
 // push constant 74
 @74 // push constant 74 (constant)
@@ -3276,49 +1357,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.98) // call String.appendChar 2
-@Main.String.appendChar.98 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_99 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_51
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_99)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_51)
 
 // push constant 75
 @75 // push constant 75 (constant)
@@ -3329,49 +1372,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.100) // call String.appendChar 2
-@Main.String.appendChar.100 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_101 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_52
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_101)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_52)
 
 // push constant 76
 @76 // push constant 76 (constant)
@@ -3382,49 +1387,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.102) // call String.appendChar 2
-@Main.String.appendChar.102 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_103 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_53
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_103)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_53)
 
 // push constant 77
 @77 // push constant 77 (constant)
@@ -3435,49 +1402,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.104) // call String.appendChar 2
-@Main.String.appendChar.104 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_105 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_54
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_105)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_54)
 
 // push constant 78
 @78 // push constant 78 (constant)
@@ -3488,49 +1417,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.106) // call String.appendChar 2
-@Main.String.appendChar.106 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_107 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_55
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_107)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_55)
 
 // push constant 79
 @79 // push constant 79 (constant)
@@ -3541,49 +1432,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.108) // call String.appendChar 2
-@Main.String.appendChar.108 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_109 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_56
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_109)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_56)
 
 // push constant 80
 @80 // push constant 80 (constant)
@@ -3594,49 +1447,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.110) // call String.appendChar 2
-@Main.String.appendChar.110 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_111 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_57
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_111)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_57)
 
 // push constant 81
 @81 // push constant 81 (constant)
@@ -3647,49 +1462,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.112) // call String.appendChar 2
-@Main.String.appendChar.112 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_113 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_58
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_113)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_58)
 
 // push constant 82
 @82 // push constant 82 (constant)
@@ -3700,49 +1477,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.114) // call String.appendChar 2
-@Main.String.appendChar.114 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_115 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_59
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_115)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_59)
 
 // push constant 83
 @83 // push constant 83 (constant)
@@ -3753,49 +1492,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.116) // call String.appendChar 2
-@Main.String.appendChar.116 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_117 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_60
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_117)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_60)
 
 // push constant 84
 @84 // push constant 84 (constant)
@@ -3806,49 +1507,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.118) // call String.appendChar 2
-@Main.String.appendChar.118 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_119 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_61
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_119)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_61)
 
 // push constant 85
 @85 // push constant 85 (constant)
@@ -3859,49 +1522,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.120) // call String.appendChar 2
-@Main.String.appendChar.120 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_121 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_62
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_121)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_62)
 
 // push constant 86
 @86 // push constant 86 (constant)
@@ -3912,49 +1537,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.122) // call String.appendChar 2
-@Main.String.appendChar.122 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_123 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_63
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_123)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_63)
 
 // push constant 87
 @87 // push constant 87 (constant)
@@ -3965,49 +1552,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.124) // call String.appendChar 2
-@Main.String.appendChar.124 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_125 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_64
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_125)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_64)
 
 // push constant 88
 @88 // push constant 88 (constant)
@@ -4018,49 +1567,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.126) // call String.appendChar 2
-@Main.String.appendChar.126 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_127 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_65
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_127)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_65)
 
 // push constant 89
 @89 // push constant 89 (constant)
@@ -4071,49 +1582,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.128) // call String.appendChar 2
-@Main.String.appendChar.128 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_129 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_66
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_129)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_66)
 
 // push constant 90
 @90 // push constant 90 (constant)
@@ -4124,49 +1597,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.130) // call String.appendChar 2
-@Main.String.appendChar.130 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_131 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_67
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_131)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_67)
 
 // push constant 32
 @32 // push constant 32 (constant)
@@ -4177,49 +1612,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.132) // call String.appendChar 2
-@Main.String.appendChar.132 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_133 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_68
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_133)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_68)
 
 // push constant 97
 @97 // push constant 97 (constant)
@@ -4230,49 +1627,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.134) // call String.appendChar 2
-@Main.String.appendChar.134 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_135 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_69
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_135)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_69)
 
 // push constant 98
 @98 // push constant 98 (constant)
@@ -4283,49 +1642,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.136) // call String.appendChar 2
-@Main.String.appendChar.136 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_137 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_70
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_137)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_70)
 
 // push constant 99
 @99 // push constant 99 (constant)
@@ -4336,49 +1657,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.138) // call String.appendChar 2
-@Main.String.appendChar.138 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_139 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_71
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_139)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_71)
 
 // push constant 100
 @100 // push constant 100 (constant)
@@ -4389,49 +1672,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.140) // call String.appendChar 2
-@Main.String.appendChar.140 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_141 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_72
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_141)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_72)
 
 // push constant 101
 @101 // push constant 101 (constant)
@@ -4442,49 +1687,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.142) // call String.appendChar 2
-@Main.String.appendChar.142 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_143 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_73
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_143)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_73)
 
 // push constant 102
 @102 // push constant 102 (constant)
@@ -4495,49 +1702,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.144) // call String.appendChar 2
-@Main.String.appendChar.144 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_145 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_74
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_145)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_74)
 
 // push constant 103
 @103 // push constant 103 (constant)
@@ -4548,49 +1717,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.146) // call String.appendChar 2
-@Main.String.appendChar.146 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_147 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_75
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_147)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_75)
 
 // push constant 104
 @104 // push constant 104 (constant)
@@ -4601,49 +1732,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.148) // call String.appendChar 2
-@Main.String.appendChar.148 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_149 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_76
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_149)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_76)
 
 // push constant 105
 @105 // push constant 105 (constant)
@@ -4654,49 +1747,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.150) // call String.appendChar 2
-@Main.String.appendChar.150 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_151 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_77
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_151)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_77)
 
 // push constant 106
 @106 // push constant 106 (constant)
@@ -4707,49 +1762,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.152) // call String.appendChar 2
-@Main.String.appendChar.152 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_153 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_78
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_153)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_78)
 
 // push constant 107
 @107 // push constant 107 (constant)
@@ -4760,49 +1777,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.154) // call String.appendChar 2
-@Main.String.appendChar.154 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_155 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_79
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_155)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_79)
 
 // push constant 108
 @108 // push constant 108 (constant)
@@ -4813,49 +1792,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.156) // call String.appendChar 2
-@Main.String.appendChar.156 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_157 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_80
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_157)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_80)
 
 // push constant 109
 @109 // push constant 109 (constant)
@@ -4866,49 +1807,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.158) // call String.appendChar 2
-@Main.String.appendChar.158 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_159 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_81
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_159)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_81)
 
 // push constant 110
 @110 // push constant 110 (constant)
@@ -4919,49 +1822,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.160) // call String.appendChar 2
-@Main.String.appendChar.160 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_161 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_82
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_161)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_82)
 
 // push constant 111
 @111 // push constant 111 (constant)
@@ -4972,49 +1837,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.162) // call String.appendChar 2
-@Main.String.appendChar.162 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_163 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_83
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_163)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_83)
 
 // push constant 112
 @112 // push constant 112 (constant)
@@ -5025,49 +1852,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.164) // call String.appendChar 2
-@Main.String.appendChar.164 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_165 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_84
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_165)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_84)
 
 // push constant 113
 @113 // push constant 113 (constant)
@@ -5078,49 +1867,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.166) // call String.appendChar 2
-@Main.String.appendChar.166 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_167 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_85
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_167)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_85)
 
 // push constant 114
 @114 // push constant 114 (constant)
@@ -5131,49 +1882,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.168) // call String.appendChar 2
-@Main.String.appendChar.168 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_169 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_86
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_169)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_86)
 
 // push constant 115
 @115 // push constant 115 (constant)
@@ -5184,49 +1897,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.170) // call String.appendChar 2
-@Main.String.appendChar.170 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_171 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_87
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_171)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_87)
 
 // push constant 116
 @116 // push constant 116 (constant)
@@ -5237,49 +1912,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.172) // call String.appendChar 2
-@Main.String.appendChar.172 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_173 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_88
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_173)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_88)
 
 // push constant 117
 @117 // push constant 117 (constant)
@@ -5290,49 +1927,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.174) // call String.appendChar 2
-@Main.String.appendChar.174 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_175 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_89
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_175)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_89)
 
 // push constant 118
 @118 // push constant 118 (constant)
@@ -5343,49 +1942,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.176) // call String.appendChar 2
-@Main.String.appendChar.176 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_177 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_90
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_177)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_90)
 
 // push constant 119
 @119 // push constant 119 (constant)
@@ -5396,49 +1957,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.178) // call String.appendChar 2
-@Main.String.appendChar.178 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_179 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_91
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_179)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_91)
 
 // push constant 120
 @120 // push constant 120 (constant)
@@ -5449,49 +1972,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.180) // call String.appendChar 2
-@Main.String.appendChar.180 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_181 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_92
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_181)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_92)
 
 // push constant 121
 @121 // push constant 121 (constant)
@@ -5502,49 +1987,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.182) // call String.appendChar 2
-@Main.String.appendChar.182 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_183 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_93
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_183)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_93)
 
 // push constant 122
 @122 // push constant 122 (constant)
@@ -5555,106 +2002,18 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.184) // call String.appendChar 2
-@Main.String.appendChar.184 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_185 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_94
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_185)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_94)
 
 // call Output.printString 1
-(Main.Output.printString.186) // call Output.printString 1
-@Main.Output.printString.186 // call Output.printString // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_187 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_95
+D=A
+@CALL_Output.printString_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_187)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printString // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_95)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -5672,57 +2031,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(Main.Output.println.188) // call Output.println 0
-
-// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Main.Output.println.188 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_189 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_96
+D=A
+@CALL_Output.println_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_189)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.println // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_96)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -5748,49 +2061,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.new 1
-(Main.String.new.190) // call String.new 1
-@Main.String.new.190 // call String.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_191 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_97
+D=A
+@CALL_String.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_191)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_97)
 
 // push constant 33
 @33 // push constant 33 (constant)
@@ -5801,49 +2076,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.192) // call String.appendChar 2
-@Main.String.appendChar.192 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_193 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_98
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_193)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_98)
 
 // push constant 35
 @35 // push constant 35 (constant)
@@ -5854,49 +2091,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.194) // call String.appendChar 2
-@Main.String.appendChar.194 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_195 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_99
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_195)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_99)
 
 // push constant 36
 @36 // push constant 36 (constant)
@@ -5907,49 +2106,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.196) // call String.appendChar 2
-@Main.String.appendChar.196 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_197 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_100
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_197)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_100)
 
 // push constant 37
 @37 // push constant 37 (constant)
@@ -5960,49 +2121,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.198) // call String.appendChar 2
-@Main.String.appendChar.198 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_199 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_101
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_199)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_101)
 
 // push constant 38
 @38 // push constant 38 (constant)
@@ -6013,49 +2136,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.200) // call String.appendChar 2
-@Main.String.appendChar.200 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_201 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_102
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_201)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_102)
 
 // push constant 39
 @39 // push constant 39 (constant)
@@ -6066,49 +2151,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.202) // call String.appendChar 2
-@Main.String.appendChar.202 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_203 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_103
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_203)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_103)
 
 // push constant 40
 @40 // push constant 40 (constant)
@@ -6119,49 +2166,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.204) // call String.appendChar 2
-@Main.String.appendChar.204 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_205 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_104
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_205)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_104)
 
 // push constant 41
 @41 // push constant 41 (constant)
@@ -6172,49 +2181,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.206) // call String.appendChar 2
-@Main.String.appendChar.206 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_207 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_105
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_207)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_105)
 
 // push constant 42
 @42 // push constant 42 (constant)
@@ -6225,49 +2196,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.208) // call String.appendChar 2
-@Main.String.appendChar.208 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_209 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_106
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_209)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_106)
 
 // push constant 43
 @43 // push constant 43 (constant)
@@ -6278,49 +2211,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.210) // call String.appendChar 2
-@Main.String.appendChar.210 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_211 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_107
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_211)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_107)
 
 // push constant 44
 @44 // push constant 44 (constant)
@@ -6331,49 +2226,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.212) // call String.appendChar 2
-@Main.String.appendChar.212 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_213 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_108
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_213)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_108)
 
 // push constant 45
 @45 // push constant 45 (constant)
@@ -6384,49 +2241,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.214) // call String.appendChar 2
-@Main.String.appendChar.214 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_215 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_109
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_215)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_109)
 
 // push constant 46
 @46 // push constant 46 (constant)
@@ -6437,49 +2256,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.216) // call String.appendChar 2
-@Main.String.appendChar.216 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_217 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_110
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_217)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_110)
 
 // push constant 47
 @47 // push constant 47 (constant)
@@ -6490,49 +2271,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.218) // call String.appendChar 2
-@Main.String.appendChar.218 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_219 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_111
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_219)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_111)
 
 // push constant 58
 @58 // push constant 58 (constant)
@@ -6543,49 +2286,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.220) // call String.appendChar 2
-@Main.String.appendChar.220 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_221 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_112
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_221)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_112)
 
 // push constant 59
 @59 // push constant 59 (constant)
@@ -6596,49 +2301,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.222) // call String.appendChar 2
-@Main.String.appendChar.222 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_223 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_113
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_223)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_113)
 
 // push constant 60
 @60 // push constant 60 (constant)
@@ -6649,49 +2316,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.224) // call String.appendChar 2
-@Main.String.appendChar.224 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_225 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_114
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_225)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_114)
 
 // push constant 61
 @61 // push constant 61 (constant)
@@ -6702,49 +2331,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.226) // call String.appendChar 2
-@Main.String.appendChar.226 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_227 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_115
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_227)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_115)
 
 // push constant 62
 @62 // push constant 62 (constant)
@@ -6755,49 +2346,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.228) // call String.appendChar 2
-@Main.String.appendChar.228 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_229 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_116
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_229)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_116)
 
 // push constant 63
 @63 // push constant 63 (constant)
@@ -6808,49 +2361,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.230) // call String.appendChar 2
-@Main.String.appendChar.230 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_231 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_117
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_231)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_117)
 
 // push constant 64
 @64 // push constant 64 (constant)
@@ -6861,49 +2376,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.232) // call String.appendChar 2
-@Main.String.appendChar.232 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_233 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_118
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_233)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_118)
 
 // push constant 91
 @91 // push constant 91 (constant)
@@ -6914,49 +2391,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.234) // call String.appendChar 2
-@Main.String.appendChar.234 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_235 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_119
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_235)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_119)
 
 // push constant 93
 @93 // push constant 93 (constant)
@@ -6967,49 +2406,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.236) // call String.appendChar 2
-@Main.String.appendChar.236 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_237 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_120
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_237)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_120)
 
 // push constant 94
 @94 // push constant 94 (constant)
@@ -7020,49 +2421,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.238) // call String.appendChar 2
-@Main.String.appendChar.238 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_239 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_121
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_239)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_121)
 
 // push constant 95
 @95 // push constant 95 (constant)
@@ -7073,49 +2436,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.240) // call String.appendChar 2
-@Main.String.appendChar.240 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_241 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_122
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_241)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_122)
 
 // push constant 96
 @96 // push constant 96 (constant)
@@ -7126,49 +2451,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.242) // call String.appendChar 2
-@Main.String.appendChar.242 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_243 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_123
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_243)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_123)
 
 // push constant 123
 @123 // push constant 123 (constant)
@@ -7179,49 +2466,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.244) // call String.appendChar 2
-@Main.String.appendChar.244 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_245 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_124
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_245)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_124)
 
 // push constant 124
 @124 // push constant 124 (constant)
@@ -7232,49 +2481,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.246) // call String.appendChar 2
-@Main.String.appendChar.246 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_247 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_125
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_247)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_125)
 
 // push constant 125
 @125 // push constant 125 (constant)
@@ -7285,49 +2496,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.248) // call String.appendChar 2
-@Main.String.appendChar.248 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_249 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_126
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_249)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_126)
 
 // push constant 126
 @126 // push constant 126 (constant)
@@ -7338,106 +2511,18 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-(Main.String.appendChar.250) // call String.appendChar 2
-@Main.String.appendChar.250 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_251 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_127
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_251)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_127)
 
 // call Output.printString 1
-(Main.Output.printString.252) // call Output.printString 1
-@Main.Output.printString.252 // call Output.printString // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_253 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_128
+D=A
+@CALL_Output.printString_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_253)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printString // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_128)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -7466,61 +2551,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Output.printString 1
-(Main.Output.printString.254) // call Output.printString 1
-@Main.Output.printString.254 // call Output.printString // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_255 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_129
+D=A
+@CALL_Output.printString_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_255)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printString // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_129)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -7538,57 +2573,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.println 0
-(Main.Output.println.256) // call Output.println 0
-
-// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Main.Output.println.256 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_257 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_130
+D=A
+@CALL_Output.println_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_257)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.println // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_130)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -7619,49 +2608,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // call Output.printInt 1
-(Main.Output.printInt.258) // call Output.printInt 1
-@Main.Output.printInt.258 // call Output.printInt // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_259 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_131
+D=A
+@CALL_Output.printInt_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_259)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printInt // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_131)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -7679,57 +2630,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.backSpace 0
-(Main.Output.backSpace.260) // call Output.backSpace 0
-
-// push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Main.Output.backSpace.260 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_261 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_132
+D=A
+@CALL_Output.backSpace_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_261)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.backSpace // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_132)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -7755,49 +2660,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printInt 1
-(Main.Output.printInt.262) // call Output.printInt 1
-@Main.Output.printInt.262 // call Output.printInt // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_263 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_133
+D=A
+@CALL_Output.printInt_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_263)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printInt // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_133)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -7844,11 +2711,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_264
+@RET_GT_134
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_264)
+(RET_GT_134)
 
 // not
 @SP // not
@@ -7878,49 +2745,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Array.Sys.error.265) // call Sys.error 1
-@Array.Sys.error.265 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_266 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_135
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_266)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_135)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -7952,61 +2781,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Memory.alloc 1
-(Array.Memory.alloc.267) // call Memory.alloc 1
-@Array.Memory.alloc.267 // call Memory.alloc // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_268 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_136
+D=A
+@CALL_Memory.alloc_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_268)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Memory.alloc // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_136)
 
 // return
 @RETURN_SUB
@@ -8052,61 +2831,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Memory.deAlloc 1
-(Array.Memory.deAlloc.269) // call Memory.deAlloc 1
-@Array.Memory.deAlloc.269 // call Memory.deAlloc // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_270 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_137
+D=A
+@CALL_Memory.deAlloc_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_270)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Memory.deAlloc // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_137)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -8156,49 +2885,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Memory.peek 1
-(Keyboard.Memory.peek.271) // call Memory.peek 1
-@Keyboard.Memory.peek.271 // call Memory.peek // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_272 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_138
+D=A
+@CALL_Memory.peek_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_272)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Memory.peek // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_138)
 
 // return
 @RETURN_SUB
@@ -8206,6 +2897,14 @@ M=D // &lcl[0] = &lcl[0]
 
 // function Keyboard.readChar 2
 (Keyboard.readChar) // function Keyboard.readChar 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push constant 0
 @SP // push constant 0 // function Keyboard.readChar 2
@@ -8213,49 +2912,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=0 // direct assign
 // call Output.printChar 1
-(Keyboard.Output.printChar.273) // call Output.printChar 1
-@Keyboard.Output.printChar.273 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_274 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_139
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_274)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_139)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -8293,11 +2954,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_275
+@RET_EQ_140
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_275)
+(RET_EQ_140)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -8317,11 +2978,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_276
+@RET_GT_141
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_276)
+(RET_GT_141)
 
 // or
 @SP // or
@@ -8343,57 +3004,11 @@ D=M // d = val
 D;JNE // jump if not zero
 
 // call Keyboard.keyPressed 0
-(Keyboard.Keyboard.keyPressed.277) // call Keyboard.keyPressed 0
-
-// push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Keyboard.keyPressed // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Keyboard.Keyboard.keyPressed.277 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_278 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_142
+D=A
+@CALL_Keyboard.keyPressed_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_278)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Keyboard.keyPressed // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_142)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -8428,11 +3043,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_279
+@RET_GT_143
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_279)
+(RET_GT_143)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -8485,102 +3100,18 @@ M=D // dst = src (pop)
 (Keyboard.WHILE_END0) // label WHILE_END0
 
 // call String.backSpace 0
-(Keyboard.String.backSpace.280) // call String.backSpace 0
-
-// push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Keyboard.String.backSpace.280 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_281 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_144
+D=A
+@CALL_String.backSpace_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_281)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.backSpace // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_144)
 
 // call Output.printChar 1
-(Keyboard.Output.printChar.282) // call Output.printChar 1
-@Keyboard.Output.printChar.282 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_283 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_145
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_283)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_145)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -8609,49 +3140,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Output.printChar 1
-(Keyboard.Output.printChar.284) // call Output.printChar 1
-@Keyboard.Output.printChar.284 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_285 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_146
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_285)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_146)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -8685,6 +3178,20 @@ M=D // slot = *(asm_segment+offset)
 
 // function Keyboard.readLine 5
 (Keyboard.readLine) // function Keyboard.readLine 5
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push constant 80
 @80 // push constant 80 // function Keyboard.readLine 5 (constant)
@@ -8694,49 +3201,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call String.new 1
-(Keyboard.String.new.286) // call String.new 1
-@Keyboard.String.new.286 // call String.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_287 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_147
+D=A
+@CALL_String.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_287)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_147)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -8765,61 +3234,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Output.printString 1
-(Keyboard.Output.printString.288) // call Output.printString 1
-@Keyboard.Output.printString.288 // call Output.printString // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_289 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_148
+D=A
+@CALL_Output.printString_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_289)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printString // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_148)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -8837,57 +3256,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call String.newLine 0
-(Keyboard.String.newLine.290) // call String.newLine 0
-
-// push constant 9999 // call String.newLine // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call String.newLine // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Keyboard.String.newLine.290 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_291 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_149
+D=A
+@CALL_String.newLine_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_291)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.newLine // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_149)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -8905,57 +3278,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call String.backSpace 0
-(Keyboard.String.backSpace.292) // call String.backSpace 0
-
-// push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Keyboard.String.backSpace.292 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_293 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_150
+D=A
+@CALL_String.backSpace_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_293)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.backSpace // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_150)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -9004,69 +3331,11 @@ D=M // d = val
 D;JNE // jump if not zero
 
 // call Keyboard.readChar 0
-(Keyboard.Keyboard.readChar.294) // call Keyboard.readChar 0
-
-// push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Keyboard.readChar // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Keyboard.Keyboard.readChar.294 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_295 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_151
+D=A
+@CALL_Keyboard.readChar_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_295)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@55 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Keyboard.readChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_151)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -9106,11 +3375,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@RET_EQ_296
+@RET_EQ_152
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_296)
+(RET_EQ_152)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -9180,11 +3449,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@RET_EQ_297
+@RET_EQ_153
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_297)
+(RET_EQ_153)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -9212,49 +3481,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.eraseLastChar 1
-(Keyboard.String.eraseLastChar.298) // call String.eraseLastChar 1
-@Keyboard.String.eraseLastChar.298 // call String.eraseLastChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_299 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_154
+D=A
+@CALL_String.eraseLastChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_299)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.eraseLastChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_154)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -9301,49 +3532,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.appendChar 2
-(Keyboard.String.appendChar.300) // call String.appendChar 2
-@Keyboard.String.appendChar.300 // call String.appendChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_301 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_155
+D=A
+@CALL_String.appendChar_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_301)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.appendChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_155)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -9390,6 +3583,14 @@ M=D // slot = *(asm_segment+offset)
 
 // function Keyboard.readInt 2
 (Keyboard.readInt) // function Keyboard.readInt 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Keyboard.readInt 2 (&asm_segment)
@@ -9402,79 +3603,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 // call Keyboard.readLine 1
-(Keyboard.Keyboard.readLine.302) // call Keyboard.readLine 1
-@Keyboard.Keyboard.readLine.302 // call Keyboard.readLine // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_303 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_156
+D=A
+@CALL_Keyboard.readLine_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_303)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Keyboard.readLine // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_156)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -9503,79 +3636,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.intValue 1
-(Keyboard.String.intValue.304) // call String.intValue 1
-@Keyboard.String.intValue.304 // call String.intValue // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_305 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_157
+D=A
+@CALL_String.intValue_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_305)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.intValue // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_157)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -9604,49 +3669,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.dispose 1
-(Keyboard.String.dispose.306) // call String.dispose 1
-@Keyboard.String.dispose.306 // call String.dispose // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_307 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_158
+D=A
+@CALL_String.dispose_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_307)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.dispose // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_158)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -9680,6 +3707,12 @@ M=D // slot = *(asm_segment+offset)
 
 // function Math.init 1
 (Math.init) // function Math.init 1
+@SP
+A=M
+M=0
+D=A+1
+@SP
+M=D
 
 // push constant 16
 @16 // push constant 16 // function Math.init 1 (constant)
@@ -9689,49 +3722,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Array.new 1
-(Math.Array.new.308) // call Array.new 1
-@Math.Array.new.308 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_309 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_159
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_309)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_159)
 
 // pop static 1
 @16 // pop static 1 // static + src segment offset (../projects/12/OutputTest/Math.vm)
@@ -9757,49 +3752,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Array.new 1
-(Math.Array.new.310) // call Array.new 1
-@Math.Array.new.310 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_311 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_160
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_311)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_160)
 
 // pop static 0
 @16 // pop static 0 // static + src segment offset (../projects/12/OutputTest/Math.vm)
@@ -9925,11 +3882,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_312
+@RET_LT_161
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_312)
+(RET_LT_161)
 
 // not
 @SP // not
@@ -10247,11 +4204,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_313
+@RET_LT_162
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_313)
+(RET_LT_162)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -10318,6 +4275,20 @@ M=D // slot = *(asm_segment+offset)
 
 // function Math.multiply 5
 (Math.multiply) // function Math.multiply 5
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Math.multiply 5 (&asm_segment)
@@ -10336,11 +4307,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_314
+@RET_LT_163
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_314)
+(RET_LT_163)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -10360,11 +4331,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_315
+@RET_GT_164
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_315)
+(RET_GT_164)
 
 // and
 @SP // and
@@ -10391,11 +4362,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_316
+@RET_GT_165
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_316)
+(RET_GT_165)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -10415,11 +4386,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_317
+@RET_LT_166
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_317)
+(RET_LT_166)
 
 // and
 @SP // and
@@ -10462,49 +4433,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
-(Math.Math.abs.318) // call Math.abs 1
-@Math.Math.abs.318 // call Math.abs // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_319 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_167
+D=A
+@CALL_Math.abs_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_319)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.abs // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_167)
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -10533,49 +4466,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
-(Math.Math.abs.320) // call Math.abs 1
-@Math.Math.abs.320 // call Math.abs // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_321 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_168
+D=A
+@CALL_Math.abs_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_321)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.abs // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_168)
 
 // pop argument 1
 @ARG // pop argument 1 (&asm_segment)
@@ -10615,11 +4510,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_322
+@RET_LT_169
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_322)
+(RET_LT_169)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -10768,11 +4663,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // lt
-@RET_LT_323
+@RET_LT_170
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_323)
+(RET_LT_170)
 
 // not
 @SP // not
@@ -10866,11 +4761,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_324
+@RET_EQ_171
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_324)
+(RET_EQ_171)
 
 // not
 @SP // not
@@ -11192,6 +5087,18 @@ M=D // slot = *(asm_segment+offset)
 
 // function Math.divide 4
 (Math.divide) // function Math.divide 4
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 1
 @ARG // push argument 1 // function Math.divide 4 (&asm_segment)
@@ -11210,11 +5117,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_325
+@RET_EQ_172
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_325)
+(RET_EQ_172)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -11239,49 +5146,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Math.Sys.error.326) // call Sys.error 1
-@Math.Sys.error.326 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_327 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_173
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_327)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_173)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -11319,11 +5188,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_328
+@RET_LT_174
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_328)
+(RET_LT_174)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -11343,11 +5212,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_329
+@RET_GT_175
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_329)
+(RET_GT_175)
 
 // and
 @SP // and
@@ -11374,11 +5243,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_330
+@RET_GT_176
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_330)
+(RET_GT_176)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -11398,11 +5267,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_331
+@RET_LT_177
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_331)
+(RET_LT_177)
 
 // and
 @SP // and
@@ -11469,49 +5338,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
-(Math.Math.abs.332) // call Math.abs 1
-@Math.Math.abs.332 // call Math.abs // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_333 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_178
+D=A
+@CALL_Math.abs_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_333)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.abs // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_178)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -11581,49 +5412,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.abs 1
-(Math.Math.abs.334) // call Math.abs 1
-@Math.Math.abs.334 // call Math.abs // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_335 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_179
+D=A
+@CALL_Math.abs_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_335)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.abs // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_179)
 
 // pop argument 0
 @ARG // pop argument 0 (&asm_segment)
@@ -11663,11 +5456,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_336
+@RET_LT_180
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_336)
+(RET_LT_180)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -11856,11 +5649,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // lt
-@RET_LT_337
+@RET_LT_181
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_337)
+(RET_LT_181)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -12228,11 +6021,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // gt
-@RET_GT_338
+@RET_GT_182
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_338)
+(RET_GT_182)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -12357,11 +6150,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@RET_GT_339
+@RET_GT_183
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_339)
+(RET_GT_183)
 
 // not
 @SP // not
@@ -12468,11 +6261,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // gt
-@RET_GT_340
+@RET_GT_184
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_340)
+(RET_GT_184)
 
 // not
 @SP // not
@@ -12794,6 +6587,18 @@ M=D // slot = *(asm_segment+offset)
 
 // function Math.sqrt 4
 (Math.sqrt) // function Math.sqrt 4
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Math.sqrt 4 (&asm_segment)
@@ -12812,11 +6617,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_341
+@RET_LT_185
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_341)
+(RET_LT_185)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -12841,49 +6646,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Math.Sys.error.342) // call Sys.error 1
-@Math.Sys.error.342 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_343 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_186
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_343)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_186)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -12952,11 +6719,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@RET_GT_344
+@RET_GT_187
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_344)
+(RET_GT_187)
 
 // not
 @SP // not
@@ -13081,79 +6848,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
-(Math.Math.multiply.345) // call Math.multiply 2
-@Math.Math.multiply.345 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_346 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_188
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_346)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_188)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -13193,11 +6892,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_347
+@RET_GT_189
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_347)
+(RET_GT_189)
 
 // not
 @SP // not
@@ -13222,11 +6921,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_348
+@RET_LT_190
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_348)
+(RET_LT_190)
 
 // not
 @SP // not
@@ -13369,11 +7068,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_349
+@RET_GT_191
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_349)
+(RET_GT_191)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -13458,11 +7157,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_350
+@RET_LT_192
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_350)
+(RET_LT_192)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -13906,6 +7605,14 @@ M=0 // direct assign
 
 // function Memory.alloc 2
 (Memory.alloc) // function Memory.alloc 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Memory.alloc 2 (&asm_segment)
@@ -13924,11 +7631,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_351
+@RET_LT_193
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_351)
+(RET_LT_193)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -13953,49 +7660,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Memory.Sys.error.352) // call Sys.error 1
-@Memory.Sys.error.352 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_353 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_194
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_353)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_194)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -14033,11 +7702,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_354
+@RET_EQ_195
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_354)
+(RET_EQ_195)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -14123,11 +7792,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_355
+@RET_LT_196
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_355)
+(RET_LT_196)
 
 // push constant 0
 @SP // push constant 0
@@ -14191,11 +7860,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_356
+@RET_LT_197
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_356)
+(RET_LT_197)
 
 // and
 @SP // and
@@ -14338,11 +8007,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_357
+@RET_EQ_198
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_357)
+(RET_EQ_198)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -14364,11 +8033,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_358
+@RET_GT_199
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_358)
+(RET_GT_199)
 
 // or
 @SP // or
@@ -14434,11 +8103,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_359
+@RET_EQ_200
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_359)
+(RET_EQ_200)
 
 // or
 @SP // or
@@ -14776,11 +8445,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // eq
-@RET_EQ_360
+@RET_EQ_201
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_360)
+(RET_EQ_201)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -15090,11 +8759,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_361
+@RET_GT_202
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_361)
+(RET_GT_202)
 
 // if-goto IF_TRUE4
 @SP // if-goto IF_TRUE4
@@ -15119,49 +8788,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Memory.Sys.error.362) // call Sys.error 1
-@Memory.Sys.error.362 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_363 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_203
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_363)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_203)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -15258,11 +8889,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // gt
-@RET_GT_364
+@RET_GT_204
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_364)
+(RET_GT_204)
 
 // if-goto IF_TRUE5
 @SP // if-goto IF_TRUE5
@@ -15538,11 +9169,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // eq
-@RET_EQ_365
+@RET_EQ_205
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_365)
+(RET_EQ_205)
 
 // if-goto IF_TRUE6
 @SP // if-goto IF_TRUE6
@@ -16107,6 +9738,14 @@ M=D+M // val1 = val2 + val1
 
 // function Memory.deAlloc 2
 (Memory.deAlloc) // function Memory.deAlloc 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Memory.deAlloc 2 (&asm_segment)
@@ -16270,11 +9909,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_366
+@RET_EQ_206
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_366)
+(RET_EQ_206)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -16742,11 +10381,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // eq
-@RET_EQ_367
+@RET_EQ_207
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_367)
+(RET_EQ_207)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -17125,49 +10764,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.new 1
-(Output.String.new.368) // call String.new 1
-@Output.String.new.368 // call String.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_369 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_208
+D=A
+@CALL_String.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_369)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_208)
 
 // pop static 3
 @19 // pop static 3 // static + src segment offset (../projects/12/OutputTest/Output.vm)
@@ -17185,57 +10786,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output.initMap 0
-(Output.Output.initMap.370) // call Output.initMap 0
-
-// push constant 9999 // call Output.initMap // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.initMap // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Output.Output.initMap.370 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_371 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_209
+D=A
+@CALL_Output.initMap_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_371)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.initMap // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_209)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -17253,81 +10808,11 @@ A=M // *r13 (*dst)
 M=D // dst = src (pop)
 
 // call Output._createShiftedMap 0
-(Output.Output._createShiftedMap.372) // call Output._createShiftedMap 0
-
-// push constant 9999 // call Output._createShiftedMap // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output._createShiftedMap // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Output.Output._createShiftedMap.372 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_373 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_210
+D=A
+@CALL_Output._createShiftedMap_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_373)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@63 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output._createShiftedMap // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_210)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -17365,49 +10850,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Array.new 1
-(Output.Array.new.374) // call Array.new 1
-@Output.Array.new.374 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_375 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_211
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_375)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_211)
 
 // pop static 5
 @19 // pop static 5 // static + src segment offset (../projects/12/OutputTest/Output.vm)
@@ -17515,55 +10962,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.376) // call Output.create 12
-@Output.Output.create.376 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_377 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_212
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_377)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_212)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -17655,55 +11058,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.378) // call Output.create 12
-@Output.Output.create.378 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_379 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_213
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_379)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_213)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -17811,55 +11170,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.380) // call Output.create 12
-@Output.Output.create.380 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_381 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_214
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_381)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_214)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -17957,55 +11272,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.382) // call Output.create 12
-@Output.Output.create.382 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_383 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_215
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_383)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_215)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -18113,55 +11384,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.384) // call Output.create 12
-@Output.Output.create.384 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_385 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_216
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_385)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_216)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -18273,55 +11500,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.386) // call Output.create 12
-@Output.Output.create.386 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_387 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_217
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_387)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_217)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -18427,55 +11610,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.388) // call Output.create 12
-@Output.Output.create.388 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_389 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_218
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_389)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_218)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -18585,55 +11724,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.390) // call Output.create 12
-@Output.Output.create.390 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_391 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_219
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_391)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_219)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -18731,55 +11826,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.392) // call Output.create 12
-@Output.Output.create.392 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_393 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_220
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_393)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_220)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -18889,55 +11940,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.394) // call Output.create 12
-@Output.Output.create.394 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_395 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_221
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_395)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_221)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -19047,55 +12054,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.396) // call Output.create 12
-@Output.Output.create.396 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_397 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_222
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_397)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_222)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -19197,55 +12160,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.398) // call Output.create 12
-@Output.Output.create.398 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_399 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_223
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_399)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_223)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -19347,55 +12266,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.400) // call Output.create 12
-@Output.Output.create.400 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_401 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_224
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_401)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_224)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -19493,55 +12368,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.402) // call Output.create 12
-@Output.Output.create.402 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_403 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_225
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_403)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_225)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -19635,55 +12466,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.404) // call Output.create 12
-@Output.Output.create.404 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_405 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_226
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_405)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_226)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -19779,55 +12566,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.406) // call Output.create 12
-@Output.Output.create.406 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_407 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_227
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_407)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_227)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -19931,55 +12674,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.408) // call Output.create 12
-@Output.Output.create.408 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_409 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_228
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_409)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_228)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -20089,55 +12788,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.410) // call Output.create 12
-@Output.Output.create.410 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_411 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_229
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_411)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_229)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -20247,55 +12902,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.412) // call Output.create 12
-@Output.Output.create.412 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_413 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_230
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_413)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_230)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -20405,55 +13016,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.414) // call Output.create 12
-@Output.Output.create.414 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_415 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_231
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_415)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_231)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -20563,55 +13130,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.416) // call Output.create 12
-@Output.Output.create.416 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_417 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_232
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_417)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_232)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -20721,55 +13244,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.418) // call Output.create 12
-@Output.Output.create.418 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_419 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_233
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_419)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_233)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -20879,55 +13358,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.420) // call Output.create 12
-@Output.Output.create.420 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_421 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_234
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_421)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_234)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -21037,55 +13472,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.422) // call Output.create 12
-@Output.Output.create.422 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_423 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_235
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_423)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_235)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -21195,55 +13586,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.424) // call Output.create 12
-@Output.Output.create.424 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_425 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_236
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_425)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_236)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -21353,55 +13700,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.426) // call Output.create 12
-@Output.Output.create.426 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_427 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_237
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_427)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_237)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -21511,55 +13814,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.428) // call Output.create 12
-@Output.Output.create.428 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_429 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_238
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_429)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_238)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -21659,55 +13918,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.430) // call Output.create 12
-@Output.Output.create.430 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_431 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_239
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_431)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_239)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -21809,55 +14024,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.432) // call Output.create 12
-@Output.Output.create.432 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_433 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_240
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_433)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_240)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -21963,55 +14134,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.434) // call Output.create 12
-@Output.Output.create.434 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_435 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_241
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_435)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_241)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -22107,55 +14234,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.436) // call Output.create 12
-@Output.Output.create.436 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_437 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_242
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_437)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_242)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -22261,55 +14344,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.438) // call Output.create 12
-@Output.Output.create.438 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_439 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_243
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_439)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_243)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -22419,55 +14458,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.440) // call Output.create 12
-@Output.Output.create.440 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_441 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_244
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_441)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_244)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -22575,55 +14570,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.442) // call Output.create 12
-@Output.Output.create.442 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_443 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_245
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_443)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_245)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -22733,55 +14684,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.444) // call Output.create 12
-@Output.Output.create.444 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_445 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_246
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_445)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_246)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -22891,55 +14798,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.446) // call Output.create 12
-@Output.Output.create.446 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_447 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_247
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_447)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_247)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -23049,55 +14912,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.448) // call Output.create 12
-@Output.Output.create.448 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_449 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_248
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_449)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_248)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -23207,55 +15026,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.450) // call Output.create 12
-@Output.Output.create.450 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_451 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_249
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_451)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_249)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -23365,55 +15140,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.452) // call Output.create 12
-@Output.Output.create.452 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_453 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_250
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_453)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_250)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -23523,55 +15254,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.454) // call Output.create 12
-@Output.Output.create.454 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_455 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_251
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_455)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_251)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -23681,55 +15368,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.456) // call Output.create 12
-@Output.Output.create.456 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_457 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_252
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_457)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_252)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -23839,55 +15482,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.458) // call Output.create 12
-@Output.Output.create.458 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_459 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_253
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_459)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_253)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -23997,55 +15596,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.460) // call Output.create 12
-@Output.Output.create.460 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_461 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_254
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_461)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_254)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -24155,55 +15710,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.462) // call Output.create 12
-@Output.Output.create.462 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_463 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_255
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_463)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_255)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -24313,55 +15824,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.464) // call Output.create 12
-@Output.Output.create.464 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_465 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_256
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_465)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_256)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -24471,55 +15938,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.466) // call Output.create 12
-@Output.Output.create.466 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_467 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_257
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_467)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_257)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -24629,55 +16052,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.468) // call Output.create 12
-@Output.Output.create.468 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_469 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_258
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_469)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_258)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -24787,55 +16166,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.470) // call Output.create 12
-@Output.Output.create.470 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_471 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_259
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_471)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_259)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -24945,55 +16280,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.472) // call Output.create 12
-@Output.Output.create.472 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_473 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_260
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_473)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_260)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -25103,55 +16394,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.474) // call Output.create 12
-@Output.Output.create.474 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_475 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_261
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_475)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_261)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -25263,55 +16510,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.476) // call Output.create 12
-@Output.Output.create.476 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_477 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_262
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_477)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_262)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -25421,55 +16624,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.478) // call Output.create 12
-@Output.Output.create.478 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_479 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_263
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_479)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_263)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -25579,55 +16738,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.480) // call Output.create 12
-@Output.Output.create.480 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_481 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_264
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_481)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_264)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -25737,55 +16852,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.482) // call Output.create 12
-@Output.Output.create.482 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_483 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_265
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_483)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_265)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -25895,55 +16966,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.484) // call Output.create 12
-@Output.Output.create.484 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_485 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_266
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_485)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_266)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -26053,55 +17080,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.486) // call Output.create 12
-@Output.Output.create.486 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_487 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_267
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_487)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_267)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -26211,55 +17194,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.488) // call Output.create 12
-@Output.Output.create.488 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_489 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_268
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_489)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_268)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -26369,55 +17308,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.490) // call Output.create 12
-@Output.Output.create.490 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_491 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_269
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_491)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_269)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -26527,55 +17422,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.492) // call Output.create 12
-@Output.Output.create.492 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_493 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_270
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_493)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_270)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -26685,55 +17536,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.494) // call Output.create 12
-@Output.Output.create.494 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_495 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_271
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_495)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_271)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -26843,55 +17650,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.496) // call Output.create 12
-@Output.Output.create.496 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_497 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_272
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_497)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_272)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -26995,55 +17758,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.498) // call Output.create 12
-@Output.Output.create.498 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_499 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_273
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_499)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_273)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -27153,55 +17872,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.500) // call Output.create 12
-@Output.Output.create.500 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_501 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_274
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_501)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_274)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -27299,55 +17974,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.502) // call Output.create 12
-@Output.Output.create.502 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_503 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_275
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_503)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_275)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -27441,55 +18072,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.504) // call Output.create 12
-@Output.Output.create.504 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_505 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_276
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_505)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_276)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -27587,55 +18174,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.506) // call Output.create 12
-@Output.Output.create.506 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_507 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_277
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_507)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_277)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -27739,55 +18282,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.508) // call Output.create 12
-@Output.Output.create.508 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_509 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_278
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_509)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_278)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -27897,55 +18396,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.510) // call Output.create 12
-@Output.Output.create.510 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_511 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_279
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_511)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_279)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -28049,55 +18504,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.512) // call Output.create 12
-@Output.Output.create.512 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_513 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_280
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_513)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_280)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -28207,55 +18618,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.514) // call Output.create 12
-@Output.Output.create.514 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_515 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_281
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_515)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_281)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -28359,55 +18726,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.516) // call Output.create 12
-@Output.Output.create.516 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_517 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_282
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_517)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_282)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -28517,55 +18840,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.518) // call Output.create 12
-@Output.Output.create.518 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_519 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_283
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_519)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_283)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -28673,55 +18952,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.520) // call Output.create 12
-@Output.Output.create.520 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_521 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_284
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_521)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_284)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -28831,55 +19066,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.522) // call Output.create 12
-@Output.Output.create.522 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_523 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_285
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_523)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_285)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -28987,55 +19178,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.524) // call Output.create 12
-@Output.Output.create.524 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_525 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_286
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_525)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_286)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -29145,55 +19292,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.526) // call Output.create 12
-@Output.Output.create.526 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_527 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_287
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_527)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_287)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -29303,55 +19406,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.528) // call Output.create 12
-@Output.Output.create.528 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_529 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_288
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_529)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_288)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -29461,55 +19520,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.530) // call Output.create 12
-@Output.Output.create.530 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_531 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_289
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_531)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_289)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -29613,55 +19628,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.532) // call Output.create 12
-@Output.Output.create.532 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_533 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_290
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_533)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_290)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -29765,55 +19736,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.534) // call Output.create 12
-@Output.Output.create.534 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_535 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_291
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_535)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_291)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -29917,55 +19844,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.536) // call Output.create 12
-@Output.Output.create.536 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_537 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_292
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_537)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_292)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -30071,55 +19954,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.538) // call Output.create 12
-@Output.Output.create.538 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_539 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_293
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_539)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_293)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -30225,55 +20064,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.540) // call Output.create 12
-@Output.Output.create.540 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_541 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_294
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_541)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_294)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -30377,55 +20172,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.542) // call Output.create 12
-@Output.Output.create.542 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_543 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_295
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_543)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_295)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -30529,55 +20280,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.544) // call Output.create 12
-@Output.Output.create.544 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_545 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_296
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_545)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_296)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -30687,55 +20394,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.546) // call Output.create 12
-@Output.Output.create.546 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_547 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_297
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_547)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_297)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -30839,55 +20502,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.548) // call Output.create 12
-@Output.Output.create.548 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_549 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_298
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_549)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_298)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -30991,55 +20610,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.550) // call Output.create 12
-@Output.Output.create.550 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_551 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_299
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_551)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_299)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -31143,55 +20718,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.552) // call Output.create 12
-@Output.Output.create.552 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_553 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_300
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_553)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_300)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -31295,55 +20826,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.554) // call Output.create 12
-@Output.Output.create.554 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_555 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_301
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_555)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_301)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -31449,55 +20936,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.556) // call Output.create 12
-@Output.Output.create.556 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_557 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_302
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_557)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_302)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -31601,55 +21044,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.558) // call Output.create 12
-@Output.Output.create.558 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_559 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_303
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_559)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_303)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -31759,55 +21158,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.560) // call Output.create 12
-@Output.Output.create.560 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_561 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_304
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_561)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_304)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -31917,55 +21272,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.562) // call Output.create 12
-@Output.Output.create.562 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_563 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_305
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_563)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_305)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -32075,55 +21386,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.564) // call Output.create 12
-@Output.Output.create.564 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_565 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_306
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_565)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_306)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -32221,55 +21488,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Output.create 12
-(Output.Output.create.566) // call Output.create 12
-@Output.Output.create.566 // call Output.create // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_567 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_307
+D=A
+@CALL_Output.create_12
 0;JMP
-(MICROCODE_CALL_MIDPOINT_567)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@12 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.create // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_307)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -32298,6 +21521,12 @@ M=0 // direct assign
 
 // function Output.create 1
 (Output.create) // function Output.create 1
+@SP
+A=M
+M=0
+D=A+1
+@SP
+M=D
 
 // push constant 11
 @11 // push constant 11 // function Output.create 1 (constant)
@@ -32307,49 +21536,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Array.new 1
-(Output.Array.new.568) // call Array.new 1
-@Output.Array.new.568 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_569 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_308
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_569)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_308)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -33493,6 +22684,18 @@ M=0 // direct assign
 
 // function Output._createShiftedMap 4
 (Output._createShiftedMap) // function Output._createShiftedMap 4
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push constant 127
 @127 // push constant 127 // function Output._createShiftedMap 4 (constant)
@@ -33502,49 +22705,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Array.new 1
-(Output.Array.new.570) // call Array.new 1
-@Output.Array.new.570 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_571 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_309
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_571)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_309)
 
 // pop static 6
 @19 // pop static 6 // static + src segment offset (../projects/12/OutputTest/Output.vm)
@@ -33605,11 +22770,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_572
+@RET_LT_310
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_572)
+(RET_LT_310)
 
 // not
 @SP // not
@@ -33702,49 +22867,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Array.new 1
-(Output.Array.new.573) // call Array.new 1
-@Output.Array.new.573 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_574 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_311
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_574)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_311)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -33901,11 +23028,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_575
+@RET_LT_312
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_575)
+(RET_LT_312)
 
 // not
 @SP // not
@@ -34012,79 +23139,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Output.Math.multiply.576) // call Math.multiply 2
-@Output.Math.multiply.576 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_577 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_313
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_577)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_313)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -34206,11 +23265,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_578
+@RET_EQ_314
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_578)
+(RET_EQ_314)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -34317,6 +23376,12 @@ M=0 // direct assign
 
 // function Output.getMap 1
 (Output.getMap) // function Output.getMap 1
+@SP
+A=M
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Output.getMap 1 (&asm_segment)
@@ -34337,11 +23402,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_579
+@RET_LT_315
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_579)
+(RET_LT_315)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -34363,11 +23428,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_580
+@RET_GT_316
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_580)
+(RET_GT_316)
 
 // or
 @SP // or
@@ -34606,6 +23671,18 @@ M=D // slot = *(asm_segment+offset)
 
 // function Output._drawChar 4
 (Output._drawChar) // function Output._drawChar 4
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Output._drawChar 4 (&asm_segment)
@@ -34618,55 +23695,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 // call Output.getMap 1
-(Output.Output.getMap.581) // call Output.getMap 1
-@Output.Output.getMap.581 // call Output.getMap // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_582 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_317
+D=A
+@CALL_Output.getMap_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_582)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@6 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@45 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@6 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@6 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@1 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.getMap // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_317)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -34732,11 +23765,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_583
+@RET_LT_318
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_583)
+(RET_LT_318)
 
 // not
 @SP // not
@@ -35235,11 +24268,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_584
+@RET_LT_319
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_584)
+(RET_LT_319)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -35261,11 +24294,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_585
+@RET_GT_320
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_585)
+(RET_GT_320)
 
 // or
 @SP // or
@@ -35292,11 +24325,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_586
+@RET_LT_321
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_586)
+(RET_LT_321)
 
 // or
 @SP // or
@@ -35325,11 +24358,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_587
+@RET_GT_322
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_587)
+(RET_GT_322)
 
 // or
 @SP // or
@@ -35361,49 +24394,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Output.Sys.error.588) // call Sys.error 1
-@Output.Sys.error.588 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_589 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_323
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_589)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_323)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -35443,73 +24438,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-(Output.Math.divide.590) // call Math.divide 2
-@Output.Math.divide.590 // call Math.divide // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_591 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_324
+D=A
+@CALL_Math.divide_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_591)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.divide // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_324)
 
 // pop static 0
 @19 // pop static 0 // static + src segment offset (../projects/12/OutputTest/Output.vm)
@@ -35554,79 +24487,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Output.Math.multiply.592) // call Math.multiply 2
-@Output.Math.multiply.592 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_593 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_325
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_593)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_325)
 
 // add
 @SP // add
@@ -35699,86 +24564,18 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Output.Math.multiply.594) // call Math.multiply 2
-@Output.Math.multiply.594 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_595 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_326
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_595)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_326)
 
 // eq
-@RET_EQ_596
+@RET_EQ_327
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_596)
+(RET_EQ_327)
 
 // pop static 2
 @19 // pop static 2 // static + src segment offset (../projects/12/OutputTest/Output.vm)
@@ -35804,73 +24601,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output._drawChar 1
-(Output.Output._drawChar.597) // call Output._drawChar 1
-@Output.Output._drawChar.597 // call Output._drawChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_598 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_328
+D=A
+@CALL_Output._drawChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_598)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output._drawChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_328)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -35911,64 +24646,18 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 // call String.newLine 0
-(Output.String.newLine.599) // call String.newLine 0
-
-// push constant 9999 // call String.newLine // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call String.newLine // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Output.String.newLine.599 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_600 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_329
+D=A
+@CALL_String.newLine_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_600)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.newLine // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_329)
 
 // eq
-@RET_EQ_601
+@RET_EQ_330
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_601)
+(RET_EQ_330)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -35985,57 +24674,11 @@ D;JNE // jump if not zero
 (Output.IF_TRUE0) // label IF_TRUE0
 
 // call Output.println 0
-(Output.Output.println.602) // call Output.println 0
-
-// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Output.Output.println.602 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_603 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_331
+D=A
+@CALL_Output.println_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_603)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.println // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_331)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -36071,64 +24714,18 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.backSpace 0
-(Output.String.backSpace.604) // call String.backSpace 0
-
-// push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call String.backSpace // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Output.String.backSpace.604 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_605 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_332
+D=A
+@CALL_String.backSpace_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_605)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.backSpace // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_332)
 
 // eq
-@RET_EQ_606
+@RET_EQ_333
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_606)
+(RET_EQ_333)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -36145,57 +24742,11 @@ D;JNE // jump if not zero
 (Output.IF_TRUE1) // label IF_TRUE1
 
 // call Output.backSpace 0
-(Output.Output.backSpace.607) // call Output.backSpace 0
-
-// push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.backSpace // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Output.Output.backSpace.607 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_608 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_334
+D=A
+@CALL_Output.backSpace_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_608)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.backSpace // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_334)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -36231,73 +24782,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Output._drawChar 1
-(Output.Output._drawChar.609) // call Output._drawChar 1
-@Output.Output._drawChar.609 // call Output._drawChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_610 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_335
+D=A
+@CALL_Output._drawChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_610)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output._drawChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_335)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -36445,11 +24934,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_611
+@RET_EQ_336
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_611)
+(RET_EQ_336)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -36466,57 +24955,11 @@ D;JNE // jump if not zero
 (Output.IF_TRUE3) // label IF_TRUE3
 
 // call Output.println 0
-(Output.Output.println.612) // call Output.println 0
-
-// push constant 9999 // call Output.println // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Output.println // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-@Output.Output.println.612 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_613 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_337
+D=A
+@CALL_Output.println_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_613)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@47 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.println // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_337)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -36592,6 +25035,14 @@ M=0 // direct assign
 
 // function Output.printString 2
 (Output.printString) // function Output.printString 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Output.printString 2 (&asm_segment)
@@ -36604,49 +25055,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 // call String.length 1
-(Output.String.length.614) // call String.length 1
-@Output.String.length.614 // call String.length // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_615 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_338
+D=A
+@CALL_String.length_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_615)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.length // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_338)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -36689,11 +25102,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_616
+@RET_LT_339
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_616)
+(RET_LT_339)
 
 // not
 @SP // not
@@ -36730,94 +25143,18 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.charAt 2
-(Output.String.charAt.617) // call String.charAt 2
-@Output.String.charAt.617 // call String.charAt // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_618 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_340
+D=A
+@CALL_String.charAt_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_618)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.charAt // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_340)
 
 // call Output.printChar 1
-(Output.Output.printChar.619) // call Output.printChar 1
-@Output.Output.printChar.619 // call Output.printChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_620 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_341
+D=A
+@CALL_Output.printChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_620)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_341)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -36915,73 +25252,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call String.setInt 2
-(Output.String.setInt.621) // call String.setInt 2
-@Output.String.setInt.621 // call String.setInt // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_622 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_342
+D=A
+@CALL_String.setInt_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_622)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@String.setInt // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_342)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -37010,61 +25285,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Output.printString 1
-(Output.Output.printString.623) // call Output.printString 1
-@Output.Output.printString.623 // call Output.printString // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_624 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_343
+D=A
+@CALL_Output.printString_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_624)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output.printString // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_343)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -37219,11 +25444,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_625
+@RET_EQ_344
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_625)
+(RET_EQ_344)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -37320,11 +25545,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_626
+@RET_GT_345
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_626)
+(RET_GT_345)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -37468,11 +25693,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_627
+@RET_EQ_346
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_627)
+(RET_EQ_346)
 
 // if-goto IF_TRUE2
 @SP // if-goto IF_TRUE2
@@ -37624,73 +25849,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output._drawChar 1
-(Output.Output._drawChar.628) // call Output._drawChar 1
-@Output.Output._drawChar.628 // call Output._drawChar // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_629 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_347
+D=A
+@CALL_Output._drawChar_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_629)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Output._drawChar // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_347)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -37719,6 +25882,12 @@ M=0 // direct assign
 
 // function Screen.init 1
 (Screen.init) // function Screen.init 1
+@SP
+A=M
+M=0
+D=A+1
+@SP
+M=D
 
 // push constant 16384
 @16384 // push constant 16384 // function Screen.init 1 (constant)
@@ -37777,49 +25946,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Array.new 1
-(Screen.Array.new.630) // call Array.new 1
-@Screen.Array.new.630 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_631 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_348
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_631)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_348)
 
 // pop static 0
 @26 // pop static 0 // static + src segment offset (../projects/12/OutputTest/Screen.vm)
@@ -37945,11 +26076,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_632
+@RET_LT_349
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_632)
+(RET_LT_349)
 
 // not
 @SP // not
@@ -38249,6 +26380,12 @@ M=0 // direct assign
 
 // function Screen.clearScreen 1
 (Screen.clearScreen) // function Screen.clearScreen 1
+@SP
+A=M
+M=0
+D=A+1
+@SP
+M=D
 
 // label WHILE_EXP0
 (Screen.WHILE_EXP0) // label WHILE_EXP0
@@ -38272,11 +26409,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_633
+@RET_LT_350
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_633)
+(RET_LT_350)
 
 // not
 @SP // not
@@ -38845,6 +26982,16 @@ M=0 // direct assign
 
 // function Screen.drawPixel 3
 (Screen.drawPixel) // function Screen.drawPixel 3
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Screen.drawPixel 3 (&asm_segment)
@@ -38863,11 +27010,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_634
+@RET_LT_351
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_634)
+(RET_LT_351)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -38889,11 +27036,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_635
+@RET_GT_352
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_635)
+(RET_GT_352)
 
 // or
 @SP // or
@@ -38920,11 +27067,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_636
+@RET_LT_353
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_636)
+(RET_LT_353)
 
 // or
 @SP // or
@@ -38953,11 +27100,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_637
+@RET_GT_354
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_637)
+(RET_GT_354)
 
 // or
 @SP // or
@@ -38989,49 +27136,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Screen.Sys.error.638) // call Sys.error 1
-@Screen.Sys.error.638 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_639 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_355
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_639)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_355)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -39071,73 +27180,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-(Screen.Math.divide.640) // call Math.divide 2
-@Screen.Math.divide.640 // call Math.divide // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_641 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_356
+D=A
+@CALL_Math.divide_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_641)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.divide // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_356)
 
 // pop local 0
 @LCL // pop local 0 (&asm_segment)
@@ -39185,79 +27232,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.642) // call Math.multiply 2
-@Screen.Math.multiply.642 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_643 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_357
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_643)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_357)
 
 // sub
 @SP // sub
@@ -39301,79 +27280,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.644) // call Math.multiply 2
-@Screen.Math.multiply.644 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_645 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_358
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_645)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_358)
 
 // push local 0
 @LCL // push local 0 (&asm_segment)
@@ -39475,49 +27386,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.646) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.646 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_647 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_359
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_647)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_359)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -39594,67 +27467,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawPixel 2
-(Screen.Screen.drawPixel.648) // call Screen.drawPixel 2
-@Screen.Screen.drawPixel.648 // call Screen.drawPixel // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_649 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_360
+D=A
+@CALL_Screen.drawPixel_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_649)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@8 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@53 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@8 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@8 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@3 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawPixel // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_360)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -39701,67 +27518,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawPixel 2
-(Screen.Screen.drawPixel.650) // call Screen.drawPixel 2
-@Screen.Screen.drawPixel.650 // call Screen.drawPixel // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_651 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_361
+D=A
+@CALL_Screen.drawPixel_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_651)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@8 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@53 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@8 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@8 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@3 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawPixel // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_361)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -39793,6 +27554,32 @@ M=0 // direct assign
 
 // function Screen.drawLine 11
 (Screen.drawLine) // function Screen.drawLine 11
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Screen.drawLine 11 (&asm_segment)
@@ -39811,11 +27598,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_652
+@RET_LT_362
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_652)
+(RET_LT_362)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -39837,11 +27624,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_653
+@RET_GT_363
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_653)
+(RET_GT_363)
 
 // or
 @SP // or
@@ -39868,11 +27655,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_654
+@RET_LT_364
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_654)
+(RET_LT_364)
 
 // or
 @SP // or
@@ -39901,11 +27688,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_655
+@RET_GT_365
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_655)
+(RET_GT_365)
 
 // or
 @SP // or
@@ -39937,49 +27724,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Screen.Sys.error.656) // call Sys.error 1
-@Screen.Sys.error.656 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_657 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_366
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_657)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_366)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -40029,49 +27778,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.abs 1
-(Screen.Math.abs.658) // call Math.abs 1
-@Screen.Math.abs.658 // call Math.abs // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_659 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_367
+D=A
+@CALL_Math.abs_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_659)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.abs // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_367)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -40118,49 +27829,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.abs 1
-(Screen.Math.abs.660) // call Math.abs 1
-@Screen.Math.abs.660 // call Math.abs // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_661 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_368
+D=A
+@CALL_Math.abs_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_661)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.abs // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_368)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -40200,11 +27873,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_662
+@RET_LT_369
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_662)
+(RET_LT_369)
 
 // pop local 6
 @LCL // pop local 6 (&asm_segment)
@@ -40255,11 +27928,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_663
+@RET_LT_370
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_663)
+(RET_LT_370)
 
 // and
 @SP // and
@@ -40307,11 +27980,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_664
+@RET_LT_371
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_664)
+(RET_LT_371)
 
 // and
 @SP // and
@@ -40704,11 +28377,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_665
+@RET_GT_372
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_665)
+(RET_GT_372)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -40833,11 +28506,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_666
+@RET_GT_373
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_666)
+(RET_GT_373)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -40877,79 +28550,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
-(Screen.Math.multiply.667) // call Math.multiply 2
-@Screen.Math.multiply.667 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_668 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_374
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_668)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_374)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -41004,79 +28609,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
-(Screen.Math.multiply.669) // call Math.multiply 2
-@Screen.Math.multiply.669 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_670 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_375
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_670)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_375)
 
 // pop local 9
 @LCL // pop local 9 (&asm_segment)
@@ -41131,79 +28668,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.multiply 2
-(Screen.Math.multiply.671) // call Math.multiply 2
-@Screen.Math.multiply.671 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_672 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_376
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_672)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_376)
 
 // pop local 10
 @LCL // pop local 10 (&asm_segment)
@@ -41254,49 +28723,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawConditional 3
-(Screen.Screen.drawConditional.673) // call Screen.drawConditional 3
-@Screen.Screen.drawConditional.673 // call Screen.drawConditional // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_674 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_377
+D=A
+@CALL_Screen.drawConditional_3
 0;JMP
-(MICROCODE_CALL_MIDPOINT_674)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@3 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawConditional // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_377)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -41339,11 +28770,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_675
+@RET_LT_378
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_675)
+(RET_LT_378)
 
 // not
 @SP // not
@@ -41375,11 +28806,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_676
+@RET_LT_379
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_676)
+(RET_LT_379)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -41679,49 +29110,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawConditional 3
-(Screen.Screen.drawConditional.677) // call Screen.drawConditional 3
-@Screen.Screen.drawConditional.677 // call Screen.drawConditional // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_678 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_380
+D=A
+@CALL_Screen.drawConditional_3
 0;JMP
-(MICROCODE_CALL_MIDPOINT_678)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@3 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawConditional // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_380)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -41757,6 +29150,28 @@ M=0 // direct assign
 
 // function Screen.drawRectangle 9
 (Screen.drawRectangle) // function Screen.drawRectangle 9
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Screen.drawRectangle 9 (&asm_segment)
@@ -41780,11 +29195,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_679
+@RET_GT_381
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_679)
+(RET_GT_381)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -41809,11 +29224,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_680
+@RET_GT_382
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_680)
+(RET_GT_382)
 
 // or
 @SP // or
@@ -41840,11 +29255,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_681
+@RET_LT_383
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_681)
+(RET_LT_383)
 
 // or
 @SP // or
@@ -41873,11 +29288,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_682
+@RET_GT_384
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_682)
+(RET_GT_384)
 
 // or
 @SP // or
@@ -41904,11 +29319,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_683
+@RET_LT_385
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_683)
+(RET_LT_385)
 
 // or
 @SP // or
@@ -41937,11 +29352,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_684
+@RET_GT_386
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_684)
+(RET_GT_386)
 
 // or
 @SP // or
@@ -41973,49 +29388,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Screen.Sys.error.685) // call Sys.error 1
-@Screen.Sys.error.685 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_686 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_387
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_686)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_387)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -42055,73 +29432,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-(Screen.Math.divide.687) // call Math.divide 2
-@Screen.Math.divide.687 // call Math.divide // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_688 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_388
+D=A
+@CALL_Math.divide_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_688)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.divide // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_388)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -42169,79 +29484,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.689) // call Math.multiply 2
-@Screen.Math.multiply.689 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_690 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_389
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_690)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_389)
 
 // sub
 @SP // sub
@@ -42285,73 +29532,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-(Screen.Math.divide.691) // call Math.divide 2
-@Screen.Math.divide.691 // call Math.divide // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_692 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_390
+D=A
+@CALL_Math.divide_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_692)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.divide // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_390)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -42399,79 +29584,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.693) // call Math.multiply 2
-@Screen.Math.multiply.693 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_694 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_391
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_694)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_391)
 
 // sub
 @SP // sub
@@ -42699,79 +29816,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.695) // call Math.multiply 2
-@Screen.Math.multiply.695 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_696 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_392
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_696)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_392)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -42876,11 +29925,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_697
+@RET_GT_393
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_697)
+(RET_GT_393)
 
 // not
 @SP // not
@@ -42961,11 +30010,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_698
+@RET_EQ_394
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_698)
+(RET_EQ_394)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -43022,49 +30071,11 @@ A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.699) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.699 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_700 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_395
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_700)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_395)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -43111,49 +30122,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.701) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.701 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_702 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_396
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_702)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_396)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -43235,11 +30208,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_703
+@RET_LT_397
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_703)
+(RET_LT_397)
 
 // not
 @SP // not
@@ -43276,49 +30249,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.704) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.704 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_705 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_398
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_705)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_398)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -43404,49 +30339,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.706) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.706 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_707 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_399
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_707)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_399)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -43583,6 +30480,32 @@ M=0 // direct assign
 
 // function Screen.drawHorizontal 11
 (Screen.drawHorizontal) // function Screen.drawHorizontal 11
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 1
 @ARG // push argument 1 // function Screen.drawHorizontal 11 (&asm_segment)
@@ -43606,49 +30529,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.min 2
-(Screen.Math.min.708) // call Math.min 2
-@Screen.Math.min.708 // call Math.min // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_709 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_400
+D=A
+@CALL_Math.min_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_709)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.min // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_400)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -43688,49 +30573,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.max 2
-(Screen.Math.max.710) // call Math.max 2
-@Screen.Math.max.710 // call Math.max // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_711 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_401
+D=A
+@CALL_Math.max_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_711)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.max // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_401)
 
 // pop local 8
 @LCL // pop local 8 (&asm_segment)
@@ -43770,11 +30617,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@RET_GT_712
+@RET_GT_402
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_712)
+(RET_GT_402)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -43796,11 +30643,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_713
+@RET_LT_403
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_713)
+(RET_LT_403)
 
 // and
 @SP // and
@@ -43829,11 +30676,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_714
+@RET_LT_404
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_714)
+(RET_LT_404)
 
 // and
 @SP // and
@@ -43865,11 +30712,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@RET_GT_715
+@RET_GT_405
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_715)
+(RET_GT_405)
 
 // and
 @SP // and
@@ -43910,49 +30757,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Math.max 2
-(Screen.Math.max.716) // call Math.max 2
-@Screen.Math.max.716 // call Math.max // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_717 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_406
+D=A
+@CALL_Math.max_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_717)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.max // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_406)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -43989,49 +30798,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.min 2
-(Screen.Math.min.718) // call Math.min 2
-@Screen.Math.min.718 // call Math.min // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_719 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_407
+D=A
+@CALL_Math.min_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_719)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.min // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_407)
 
 // pop local 8
 @LCL // pop local 8 (&asm_segment)
@@ -44068,73 +30839,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-(Screen.Math.divide.720) // call Math.divide 2
-@Screen.Math.divide.720 // call Math.divide // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_721 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_408
+D=A
+@CALL_Math.divide_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_721)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.divide // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_408)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -44182,79 +30891,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.722) // call Math.multiply 2
-@Screen.Math.multiply.722 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_723 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_409
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_723)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_409)
 
 // sub
 @SP // sub
@@ -44298,73 +30939,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-(Screen.Math.divide.724) // call Math.divide 2
-@Screen.Math.divide.724 // call Math.divide // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_725 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_410
+D=A
+@CALL_Math.divide_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_725)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.divide // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_410)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -44412,79 +30991,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.726) // call Math.multiply 2
-@Screen.Math.multiply.726 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_727 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_411
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_727)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_411)
 
 // sub
 @SP // sub
@@ -44712,79 +31223,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(Screen.Math.multiply.728) // call Math.multiply 2
-@Screen.Math.multiply.728 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_729 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_412
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_729)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_412)
 
 // push local 1
 @LCL // push local 1 (&asm_segment)
@@ -44925,11 +31368,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_730
+@RET_EQ_413
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_730)
+(RET_EQ_413)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -44986,49 +31429,11 @@ A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.731) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.731 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_732 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_414
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_732)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_414)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -45075,49 +31480,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.733) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.733 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_734 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_415
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_734)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_415)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -45199,11 +31566,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_735
+@RET_LT_416
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_735)
+(RET_LT_416)
 
 // not
 @SP // not
@@ -45240,49 +31607,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.736) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.736 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_737 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_417
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_737)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_417)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -45368,49 +31697,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.updateLocation 2
-(Screen.Screen.updateLocation.738) // call Screen.updateLocation 2
-@Screen.Screen.updateLocation.738 // call Screen.updateLocation // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_739 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_418
+D=A
+@CALL_Screen.updateLocation_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_739)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.updateLocation // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_418)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -45533,115 +31824,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.740) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.740 // call Screen.drawHorizontal // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_741 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_419
+D=A
+@CALL_Screen.drawHorizontal_3
 0;JMP
-(MICROCODE_CALL_MIDPOINT_741)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(5) init
-@SP // push constant 0 // local(5) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(6) init
-@SP // push constant 0 // local(6) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(7) init
-@SP // push constant 0 // local(7) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(8) init
-@SP // push constant 0 // local(8) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(9) init
-@SP // push constant 0 // local(9) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(10) init
-@SP // push constant 0 // local(10) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@16 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@85 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@16 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@16 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@3 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@11 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_419)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -45746,115 +31933,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.742) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.742 // call Screen.drawHorizontal // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_743 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_420
+D=A
+@CALL_Screen.drawHorizontal_3
 0;JMP
-(MICROCODE_CALL_MIDPOINT_743)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(5) init
-@SP // push constant 0 // local(5) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(6) init
-@SP // push constant 0 // local(6) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(7) init
-@SP // push constant 0 // local(7) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(8) init
-@SP // push constant 0 // local(8) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(9) init
-@SP // push constant 0 // local(9) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(10) init
-@SP // push constant 0 // local(10) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@16 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@85 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@16 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@16 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@3 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@11 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_420)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -45959,115 +32042,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.744) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.744 // call Screen.drawHorizontal // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_745 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_421
+D=A
+@CALL_Screen.drawHorizontal_3
 0;JMP
-(MICROCODE_CALL_MIDPOINT_745)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(5) init
-@SP // push constant 0 // local(5) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(6) init
-@SP // push constant 0 // local(6) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(7) init
-@SP // push constant 0 // local(7) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(8) init
-@SP // push constant 0 // local(8) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(9) init
-@SP // push constant 0 // local(9) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(10) init
-@SP // push constant 0 // local(10) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@16 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@85 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@16 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@16 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@3 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@11 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_421)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -46172,115 +32151,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // call Screen.drawHorizontal 3
-(Screen.Screen.drawHorizontal.746) // call Screen.drawHorizontal 3
-@Screen.Screen.drawHorizontal.746 // call Screen.drawHorizontal // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_747 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_422
+D=A
+@CALL_Screen.drawHorizontal_3
 0;JMP
-(MICROCODE_CALL_MIDPOINT_747)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(5) init
-@SP // push constant 0 // local(5) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(6) init
-@SP // push constant 0 // local(6) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(7) init
-@SP // push constant 0 // local(7) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(8) init
-@SP // push constant 0 // local(8) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(9) init
-@SP // push constant 0 // local(9) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(10) init
-@SP // push constant 0 // local(10) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@16 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@85 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@16 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@16 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@3 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@11 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawHorizontal // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_422)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -46309,6 +32184,16 @@ M=0 // direct assign
 
 // function Screen.drawCircle 3
 (Screen.drawCircle) // function Screen.drawCircle 3
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function Screen.drawCircle 3 (&asm_segment)
@@ -46327,11 +32212,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_748
+@RET_LT_423
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_748)
+(RET_LT_423)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -46353,11 +32238,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_749
+@RET_GT_424
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_749)
+(RET_GT_424)
 
 // or
 @SP // or
@@ -46384,11 +32269,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_750
+@RET_LT_425
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_750)
+(RET_LT_425)
 
 // or
 @SP // or
@@ -46417,11 +32302,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_751
+@RET_GT_426
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_751)
+(RET_GT_426)
 
 // or
 @SP // or
@@ -46453,49 +32338,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Screen.Sys.error.752) // call Sys.error 1
-@Screen.Sys.error.752 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_753 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_427
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_753)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_427)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -46551,11 +32398,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_754
+@RET_LT_428
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_754)
+(RET_LT_428)
 
 // push argument 0
 @ARG // push argument 0 (&asm_segment)
@@ -46595,11 +32442,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_755
+@RET_GT_429
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_755)
+(RET_GT_429)
 
 // or
 @SP // or
@@ -46644,11 +32491,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_756
+@RET_LT_430
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_756)
+(RET_LT_430)
 
 // or
 @SP // or
@@ -46695,11 +32542,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_757
+@RET_GT_431
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_757)
+(RET_GT_431)
 
 // or
 @SP // or
@@ -46731,49 +32578,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(Screen.Sys.error.758) // call Sys.error 1
-@Screen.Sys.error.758 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_759 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_432
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_759)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_432)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -46903,49 +32712,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawSymetric 4
-(Screen.Screen.drawSymetric.760) // call Screen.drawSymetric 4
-@Screen.Screen.drawSymetric.760 // call Screen.drawSymetric // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_761 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_433
+D=A
+@CALL_Screen.drawSymetric_4
 0;JMP
-(MICROCODE_CALL_MIDPOINT_761)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@4 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawSymetric // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_433)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -46988,11 +32759,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_762
+@RET_GT_434
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_762)
+(RET_GT_434)
 
 // not
 @SP // not
@@ -47024,11 +32795,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_763
+@RET_LT_435
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_763)
+(RET_LT_435)
 
 // if-goto IF_TRUE2
 @SP // if-goto IF_TRUE2
@@ -47075,79 +32846,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Math.multiply 2
-(Screen.Math.multiply.764) // call Math.multiply 2
-@Screen.Math.multiply.764 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_765 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_436
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_765)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_436)
 
 // add
 @SP // add
@@ -47242,79 +32945,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.multiply 2
-(Screen.Math.multiply.766) // call Math.multiply 2
-@Screen.Math.multiply.766 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_767 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_437
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_767)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_437)
 
 // add
 @SP // add
@@ -47479,49 +33114,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Screen.drawSymetric 4
-(Screen.Screen.drawSymetric.768) // call Screen.drawSymetric 4
-@Screen.Screen.drawSymetric.768 // call Screen.drawSymetric // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_769 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_438
+D=A
+@CALL_Screen.drawSymetric_4
 0;JMP
-(MICROCODE_CALL_MIDPOINT_769)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@4 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Screen.drawSymetric // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_438)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -47566,61 +33163,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Memory.alloc 1
-(String.Memory.alloc.770) // call Memory.alloc 1
-@String.Memory.alloc.770 // call Memory.alloc // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_771 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_439
+D=A
+@CALL_Memory.alloc_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_771)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Memory.alloc // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_439)
 
 // pop pointer 0
 @3 // pop pointer 0 (&pointer)
@@ -47655,11 +33202,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_772
+@RET_LT_440
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_772)
+(RET_LT_440)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -47684,49 +33231,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(String.Sys.error.773) // call Sys.error 1
-@String.Sys.error.773 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_774 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_441
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_774)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_441)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -47764,11 +33273,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_775
+@RET_GT_442
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_775)
+(RET_GT_442)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -47796,49 +33305,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Array.new 1
-(String.Array.new.776) // call Array.new 1
-@String.Array.new.776 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_777 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_443
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_777)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_443)
 
 // pop this 1
 @THIS // pop this 1 (&asm_segment)
@@ -47966,11 +33437,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_778
+@RET_GT_444
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_778)
+(RET_GT_444)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -47998,49 +33469,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Array.dispose 1
-(String.Array.dispose.779) // call Array.dispose 1
-@String.Array.dispose.779 // call Array.dispose // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_780 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_445
+D=A
+@CALL_Array.dispose_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_780)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.dispose // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_445)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -48072,61 +33505,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Memory.deAlloc 1
-(String.Memory.deAlloc.781) // call Memory.deAlloc 1
-@String.Memory.deAlloc.781 // call Memory.deAlloc // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_782 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_446
+D=A
+@CALL_Memory.deAlloc_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_782)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@7 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@49 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@7 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@7 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@2 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Memory.deAlloc // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_446)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -48242,11 +33625,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_783
+@RET_LT_447
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_783)
+(RET_LT_447)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -48271,11 +33654,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_784
+@RET_GT_448
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_784)
+(RET_GT_448)
 
 // or
 @SP // or
@@ -48307,11 +33690,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@RET_EQ_785
+@RET_EQ_449
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_785)
+(RET_EQ_449)
 
 // or
 @SP // or
@@ -48343,49 +33726,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(String.Sys.error.786) // call Sys.error 1
-@String.Sys.error.786 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_787 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_450
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_787)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_450)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -48510,11 +33855,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_788
+@RET_LT_451
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_788)
+(RET_LT_451)
 
 // push argument 1
 @ARG // push argument 1 (&asm_segment)
@@ -48539,11 +33884,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // gt
-@RET_GT_789
+@RET_GT_452
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_789)
+(RET_GT_452)
 
 // or
 @SP // or
@@ -48575,11 +33920,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@RET_EQ_790
+@RET_EQ_453
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_790)
+(RET_EQ_453)
 
 // or
 @SP // or
@@ -48611,49 +33956,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(String.Sys.error.791) // call Sys.error 1
-@String.Sys.error.791 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_792 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_454
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_792)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_454)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -48830,11 +34137,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // eq
-@RET_EQ_793
+@RET_EQ_455
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_793)
+(RET_EQ_455)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -48859,49 +34166,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(String.Sys.error.794) // call Sys.error 1
-@String.Sys.error.794 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_795 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_456
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_795)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_456)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -49117,11 +34386,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_796
+@RET_EQ_457
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_796)
+(RET_EQ_457)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -49146,49 +34415,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(String.Sys.error.797) // call Sys.error 1
-@String.Sys.error.797 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_798 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_458
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_798)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_458)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -49259,6 +34490,20 @@ M=0 // direct assign
 
 // function String.intValue 5
 (String.intValue) // function String.intValue 5
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function String.intValue 5 (&asm_segment)
@@ -49303,11 +34548,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_799
+@RET_EQ_459
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_799)
+(RET_EQ_459)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -49421,11 +34666,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_800
+@RET_EQ_460
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_800)
+(RET_EQ_460)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -49517,11 +34762,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_801
+@RET_LT_461
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_801)
+(RET_LT_461)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -49656,11 +34901,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_802
+@RET_LT_462
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_802)
+(RET_LT_462)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -49682,11 +34927,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_803
+@RET_GT_463
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_803)
+(RET_GT_463)
 
 // or
 @SP // or
@@ -49760,79 +35005,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(String.Math.multiply.804) // call Math.multiply 2
-@String.Math.multiply.804 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_805 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_464
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_805)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_464)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -49992,6 +35169,18 @@ M=D // slot = *(asm_segment+offset)
 
 // function String.setInt 4
 (String.setInt) // function String.setInt 4
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push argument 0
 @ARG // push argument 0 // function String.setInt 4 (&asm_segment)
@@ -50036,11 +35225,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_806
+@RET_EQ_465
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_806)
+(RET_EQ_465)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -50065,49 +35254,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(String.Sys.error.807) // call Sys.error 1
-@String.Sys.error.807 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_808 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_466
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_808)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_466)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -50136,49 +35287,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Array.new 1
-(String.Array.new.809) // call Array.new 1
-@String.Array.new.809 // call Array.new // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_810 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_467
+D=A
+@CALL_Array.new_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_810)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.new // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_467)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -50213,11 +35326,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_811
+@RET_LT_468
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_811)
+(RET_LT_468)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -50340,11 +35453,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_812
+@RET_GT_469
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_812)
+(RET_GT_469)
 
 // not
 @SP // not
@@ -50378,73 +35491,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-(String.Math.divide.813) // call Math.divide 2
-@String.Math.divide.813 // call Math.divide // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_814 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_470
+D=A
+@CALL_Math.divide_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_814)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@9 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@57 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@9 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@9 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@4 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.divide // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_470)
 
 // pop local 1
 @LCL // pop local 1 (&asm_segment)
@@ -50529,79 +35580,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-(String.Math.multiply.815) // call Math.multiply 2
-@String.Math.multiply.815 // call Math.multiply // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_816 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_471
+D=A
+@CALL_Math.multiply_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_816)
-
-// push constant 0 // local(0) init
-@SP // push constant 0 // local(0) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(1) init
-@SP // push constant 0 // local(1) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(2) init
-@SP // push constant 0 // local(2) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(3) init
-@SP // push constant 0 // local(3) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// push constant 0 // local(4) init
-@SP // push constant 0 // local(4) init
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-@10 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@61 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@10 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@10 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@5 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Math.multiply // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_471)
 
 // sub
 @SP // sub
@@ -50928,11 +35911,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_817
+@RET_LT_472
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_817)
+(RET_LT_472)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -50957,49 +35940,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-(String.Sys.error.818) // call Sys.error 1
-@String.Sys.error.818 // call Sys.error // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_819 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_473
+D=A
+@CALL_Sys.error_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_819)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Sys.error // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_473)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -51037,11 +35982,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_820
+@RET_EQ_474
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_820)
+(RET_EQ_474)
 
 // if-goto IF_TRUE4
 @SP // if-goto IF_TRUE4
@@ -51220,11 +36165,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // lt
-@RET_LT_821
+@RET_LT_475
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_821)
+(RET_LT_475)
 
 // not
 @SP // not
@@ -51470,49 +36415,11 @@ A=A-1 // A -> slot
 M=D // slot = *(asm_segment+offset)
 
 // call Array.dispose 1
-(String.Array.dispose.822) // call Array.dispose 1
-@String.Array.dispose.822 // call Array.dispose // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_823 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_476
+D=A
+@CALL_Array.dispose_1
 0;JMP
-(MICROCODE_CALL_MIDPOINT_823)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Array.dispose // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_476)
 
 // pop temp 0
 @5 // pop temp 0 (&temp)
@@ -51585,6 +36492,128 @@ M=D // slot = constant
 (END_PROGRAM)
 @END_PROGRAM
 0;JMP
+(CALL_Memory.init_0)
+@R13
+M=D // R13 = retAddr
+@Memory.init
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_SUB)
+@R15
+M=D // R15 = nArgs
+@R13
+D=M
+@SP
+A=M
+M=D // push retAddr
+@LCL
+D=M
+@SP
+AM=M+1
+M=D // push LCL
+@ARG
+D=M
+@SP
+AM=M+1
+M=D // push ARG
+@THIS
+D=M
+@SP
+AM=M+1
+M=D // push THIS
+@THAT
+D=M
+@SP
+AM=M+1
+M=D // push THAT
+@SP
+M=M+1
+@R15
+D=M // D = nArgs
+@5
+D=D+A // D = nArgs + 5
+@SP
+D=M-D // D = SP - nArgs - 5
+@ARG
+M=D // ARG = SP - nArgs - 5
+@SP
+D=M
+@LCL
+M=D // LCL = SP
+@R14
+A=M
+0;JMP
+(CALL_Math.init_0)
+@R13
+M=D // R13 = retAddr
+@Math.init
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Screen.init_0)
+@R13
+M=D // R13 = retAddr
+@Screen.init
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.init_0)
+@R13
+M=D // R13 = retAddr
+@Output.init
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Keyboard.init_0)
+@R13
+M=D // R13 = retAddr
+@Keyboard.init
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Main.main_0)
+@R13
+M=D // R13 = retAddr
+@Main.main
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Sys.halt_0)
+@R13
+M=D // R13 = retAddr
+@Sys.halt
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
 (RETURN_SUB)
 @LCL
 D=M
@@ -51646,6 +36675,17 @@ M=-1 // true
 @R15
 A=M
 0;JMP // return
+(CALL_Sys.error_1)
+@R13
+M=D // R13 = retAddr
+@Sys.error
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
 (GT_SUB)
 @R15
 M=D // save return addr
@@ -51664,6 +36704,138 @@ M=-1 // true
 @R15
 A=M
 0;JMP // return
+(CALL_Output.printChar_1)
+@R13
+M=D // R13 = retAddr
+@Output.printChar
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.printInt_1)
+@R13
+M=D // R13 = retAddr
+@Output.printInt
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.new_1)
+@R13
+M=D // R13 = retAddr
+@String.new
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.doubleQuote_0)
+@R13
+M=D // R13 = retAddr
+@String.doubleQuote
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.appendChar_2)
+@R13
+M=D // R13 = retAddr
+@String.appendChar
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.moveCursor_2)
+@R13
+M=D // R13 = retAddr
+@Output.moveCursor
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.printString_1)
+@R13
+M=D // R13 = retAddr
+@Output.printString
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.println_0)
+@R13
+M=D // R13 = retAddr
+@Output.println
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.backSpace_0)
+@R13
+M=D // R13 = retAddr
+@Output.backSpace
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Memory.alloc_1)
+@R13
+M=D // R13 = retAddr
+@Memory.alloc
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Memory.deAlloc_1)
+@R13
+M=D // R13 = retAddr
+@Memory.deAlloc
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Memory.peek_1)
+@R13
+M=D // R13 = retAddr
+@Memory.peek
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
 (EQ_SUB)
 @R15
 M=D // save return addr
@@ -51682,3 +36854,311 @@ M=-1 // true
 @R15
 A=M
 0;JMP // return
+(CALL_Keyboard.keyPressed_0)
+@R13
+M=D // R13 = retAddr
+@Keyboard.keyPressed
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.backSpace_0)
+@R13
+M=D // R13 = retAddr
+@String.backSpace
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.newLine_0)
+@R13
+M=D // R13 = retAddr
+@String.newLine
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Keyboard.readChar_0)
+@R13
+M=D // R13 = retAddr
+@Keyboard.readChar
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.eraseLastChar_1)
+@R13
+M=D // R13 = retAddr
+@String.eraseLastChar
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Keyboard.readLine_1)
+@R13
+M=D // R13 = retAddr
+@Keyboard.readLine
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.intValue_1)
+@R13
+M=D // R13 = retAddr
+@String.intValue
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.dispose_1)
+@R13
+M=D // R13 = retAddr
+@String.dispose
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Array.new_1)
+@R13
+M=D // R13 = retAddr
+@Array.new
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Math.abs_1)
+@R13
+M=D // R13 = retAddr
+@Math.abs
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Math.multiply_2)
+@R13
+M=D // R13 = retAddr
+@Math.multiply
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.initMap_0)
+@R13
+M=D // R13 = retAddr
+@Output.initMap
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output._createShiftedMap_0)
+@R13
+M=D // R13 = retAddr
+@Output._createShiftedMap
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.create_12)
+@R13
+M=D // R13 = retAddr
+@Output.create
+D=A
+@R14
+M=D // R14 = func addr
+@12
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output.getMap_1)
+@R13
+M=D // R13 = retAddr
+@Output.getMap
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Math.divide_2)
+@R13
+M=D // R13 = retAddr
+@Math.divide
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Output._drawChar_1)
+@R13
+M=D // R13 = retAddr
+@Output._drawChar
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.length_1)
+@R13
+M=D // R13 = retAddr
+@String.length
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.charAt_2)
+@R13
+M=D // R13 = retAddr
+@String.charAt
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_String.setInt_2)
+@R13
+M=D // R13 = retAddr
+@String.setInt
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Screen.updateLocation_2)
+@R13
+M=D // R13 = retAddr
+@Screen.updateLocation
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Screen.drawPixel_2)
+@R13
+M=D // R13 = retAddr
+@Screen.drawPixel
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Screen.drawConditional_3)
+@R13
+M=D // R13 = retAddr
+@Screen.drawConditional
+D=A
+@R14
+M=D // R14 = func addr
+@3
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Math.min_2)
+@R13
+M=D // R13 = retAddr
+@Math.min
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Math.max_2)
+@R13
+M=D // R13 = retAddr
+@Math.max
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Screen.drawHorizontal_3)
+@R13
+M=D // R13 = retAddr
+@Screen.drawHorizontal
+D=A
+@R14
+M=D // R14 = func addr
+@3
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Screen.drawSymetric_4)
+@R13
+M=D // R13 = retAddr
+@Screen.drawSymetric
+D=A
+@R14
+M=D // R14 = func addr
+@4
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Array.dispose_1)
+@R13
+M=D // R13 = retAddr
+@Array.dispose
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP

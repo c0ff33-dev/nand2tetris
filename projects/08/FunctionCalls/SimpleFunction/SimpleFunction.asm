@@ -1,6 +1,14 @@
 
 // function SimpleFunction.test 2
 (SimpleFunction.test) // function SimpleFunction.test 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
 
 // push local 0
 @LCL // push local 0 // function SimpleFunction.test 2 (&asm_segment)

@@ -11,14 +11,14 @@ class Translator:
         self.debug = debug
         self.asm = ""
         self.static_dict = {}
-        self.local_dict = {}
         self.offset_list = []
         self.guid = 0
-        self.call_generated = False
         self.eq_sub_emitted = False
         self.lt_sub_emitted = False
         self.gt_sub_emitted = False
         self.return_sub_emitted = False
+        self.call_sub_emitted = False
+        self.call_sigs_emitted = set()
         self.asm_subroutines = ""
 
     # 7-10 instructions per VM command
@@ -315,154 +315,122 @@ class Translator:
         self.asm += "@%s\n" % asm_label
         self.asm += "D;JNE // jump if not zero\n"
 
-    # TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
-    # ~63 instructions per VM command + 7 per local + 7 per arg
+    # 4 instructions per call site
     def gen_call(self, cmd, src):
         """
-        save the caller stack frame and initialize the callee ARG/LCL segments
+        emit a 4-instruction call stub that jumps to a per-signature block
+        per-signature block (10 instr) and CALL_SUB (44 instr) emitted once each
         """
-        # TODO: this is fragile / maybe there is a better way to set RP?
-        prologue_size = 41  # realign stack frame (base = number of instructions in this func, excl push/label())
-
         num_args = int(cmd.split(" ")[2])
-        func_label = cmd.split(" ")[1]  # Module.funcName (entry point)
-        asm_label = self.gen_label(cmd, src)
+        func_label = cmd.split(" ")[1]
 
-        # stack frame before call = <args>...<SP>
-        # stack frame after call = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<SP>
-
-        if num_args == 0:
-            # TODO: the init'd return value doesn't matter so this could be inlined to just inc esp by num_locals?
-            self.gen_push("push constant 9999 // call %s // if no args, create a space on the stack for "
-                          "the return" % func_label, "constant", "constant", 9999, "")
-            prologue_size += 6  # 6 instructions per push(constant != 0/1/-1)
-            num_args = 1
-            self.asm += "@%s // push RP\n" % asm_label # return point (RP)
-        else:
-            self.asm += "@%s // call %s // push RP\n" % (asm_label, func_label)
-        
-        # save RP before A is manipulated again
-        self.asm += "D=A // d = RP\n"
-        self.asm += "@R13\n"
-        self.asm += "M=D // r13 = RP\n"
-
-        # dynamic addresses need to be saved in registers to be ref'd in microcode
+        # unique return label placed at actual return point (no prologue_size fixup)
         guid = self.gen_guid()
-        self.asm += "@MICROCODE_CALL_MIDPOINT_%s // save to r14\n" % guid
-        self.asm += "D=A // d = &midpoint\n"
-        self.asm += "@R14 // &r14\n"
-        self.asm += "M=D // r14 = &midpoint\n"
+        ret_label = "RET_CALL_%s" % guid
+        sig_label = "CALL_%s_%s" % (func_label, num_args)
 
-        self.asm += "@R13 // &rp // restore RP\n"
-        self.asm += "D=M // d = *rp\n"
+        # call site: 4 instructions + 1 label
+        self.asm += '\n// %s\n' % cmd
+        self.asm += "@%s\n" % ret_label
+        self.asm += "D=A\n"
+        self.asm += "@%s\n" % sig_label
+        self.asm += "0;JMP\n"
+        self.asm += "(%s)\n" % ret_label
 
-        if self.call_generated:
-            self.asm += "@MICROCODE_CALL\n"
-            self.asm += "0;JMP\n"
-        else:
-            # generate the static call microcode (once)
-            self.call_generated = True
-            prologue_size += 34
+        # per-signature block (once per unique func+nArgs)
+        sig_key = (func_label, num_args)
+        if sig_key not in self.call_sigs_emitted:
+            self.call_sigs_emitted.add(sig_key)
+            sig = "(%s)\n" % sig_label
+            sig += "@R13\n"
+            sig += "M=D // R13 = retAddr\n"
+            sig += "@%s\n" % func_label
+            sig += "D=A\n"
+            sig += "@R14\n"
+            sig += "M=D // R14 = func addr\n"
+            sig += "@%s\n" % num_args
+            sig += "D=A // D = nArgs\n"
+            sig += "@CALL_SUB\n"
+            sig += "0;JMP\n"
+            self.asm_subroutines += sig
 
-            self.asm += "(MICROCODE_CALL)\n"
-            self.asm += "@SP // &esp // save RP to the stack\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = RP\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
+        # CALL_SUB (once)
+        if not self.call_sub_emitted:
+            self.call_sub_emitted = True
+            sub = "(CALL_SUB)\n"
+            # save nArgs for ARG calculation
+            sub += "@R15\n"
+            sub += "M=D // R15 = nArgs\n"
+            # push retAddr (from R13)
+            sub += "@R13\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "A=M\n"
+            sub += "M=D // push retAddr\n"
+            # push LCL
+            sub += "@LCL\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push LCL\n"
+            # push ARG
+            sub += "@ARG\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push ARG\n"
+            # push THIS
+            sub += "@THIS\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push THIS\n"
+            # push THAT
+            sub += "@THAT\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push THAT\n"
+            # SP++ (final increment for retAddr push)
+            sub += "@SP\n"
+            sub += "M=M+1\n"
+            # ARG = SP - nArgs - 5
+            sub += "@R15\n"
+            sub += "D=M // D = nArgs\n"
+            sub += "@5\n"
+            sub += "D=D+A // D = nArgs + 5\n"
+            sub += "@SP\n"
+            sub += "D=M-D // D = SP - nArgs - 5\n"
+            sub += "@ARG\n"
+            sub += "M=D // ARG = SP - nArgs - 5\n"
+            # LCL = SP
+            sub += "@SP\n"
+            sub += "D=M\n"
+            sub += "@LCL\n"
+            sub += "M=D // LCL = SP\n"
+            # jump to function (from R14)
+            sub += "@R14\n"
+            sub += "A=M\n"
+            sub += "0;JMP\n"
+            self.asm_subroutines += sub
 
-            self.asm += "@LCL // &lcl[0] // save LCL to the stack\n"
-            self.asm += "D=M // d = *lcl[0]\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = lcl[0]\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@ARG // &arg // save ARG to the stack\n"
-            self.asm += "D=M // d = *arg\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = arg\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@THIS // &this // save THIS to the stack\n"
-            self.asm += "D=M // d = *this\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = this\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@THAT // &that // save THAT to the stack\n"
-            self.asm += "D=M // d = *that\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = that\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@R14 // &midpoint\n"
-            self.asm += "A=M // *midpoint\n"
-            self.asm += "0;JMP // return to dynamic call code\n"
-
-        # TODO: inline remaining code as asm + pull dynamic values from R13-15
-        self.asm += "(MICROCODE_CALL_MIDPOINT_%s)\n" % guid
-        
-        # num_locals can be computed in advance but push() writes to asm
-        current_function = cmd.split(" ")[1]
-        if current_function in self.local_dict:
-            num_locals = self.local_dict[current_function]
-            for i in range(0, num_locals):
-                # VM spec requires local segment to be initialized to 0
-                # JACK spec does not require static/field/local to be initialized, only args
-                # the decompiled VM code however definitely assumes local init to 0
-                self.gen_push("push constant 0 // local(%s) init" % i, "constant", "constant", 0, "")
-                prologue_size += 4  # 4 instructions per push(constant 0/1/-1)
-        else:
-            num_locals = 0
-
-        # TODO: can this be refactored to push the correct value above rather than double handling?
-        self.asm += "@%s // increment RP (SP-5+num_locals) by prologue_size\n" % (5+num_locals)
-        self.asm += "D=A // d = 5+num_locals\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M-D // &esp = &esp-(5+num_locals) (&rp)\n"
-        self.asm += "@%s // prologue_size\n" % prologue_size
-        self.asm += "D=A // d = prologue_size\n"
-        self.asm += "@SP // &esp (&rp)\n"
-        self.asm += "A=M // *esp (*rp)\n"
-        self.asm += "M=M+D // rp = rp+prologue_size\n"
-        self.asm += "@%s // 5+num_locals\n" % (5+num_locals)
-        self.asm += "D=A // d = 5+num_locals\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+D // *esp = *esp+(5+num_locals)\n"
-
-        self.asm += "@%s // (5+num_locals) // initialize ARG segment for callee\n" % (5+num_locals)
-        self.asm += "D=A // d = (5+num_locals)\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "D=M-D // d = *esp-(5+num_locals) (*RP) \n"
-        self.asm += "@%s // parse num_args from call <label> <num_args>\n" % num_args
-        self.asm += "D=D-A // d = rp-num_args (&arg1)\n"
-        self.asm += "@ARG // &arg\n"
-        self.asm += "M=D // *arg = &arg1\n"
-
-        self.asm += "@%s // (num_locals) // initialize callee LCL (same as SP if none) \n" % num_locals
-        self.asm += "D=A // d = num_locals\n"
-        self.asm += "@SP // (&esp currently at bottom of stack frame)\n"
-        self.asm += "D=M-D // d = *esp-num_locals (&lcl[0])\n"
-        self.asm += "@LCL // &lcl[0]\n"
-        self.asm += "M=D // &lcl[0] = &lcl[0]\n"
-
-        self.asm += "@%s // &func (parsed from call <label> <num_args>)\n" % func_label
-        self.asm += "0;JMP // *func // jump to function (call target)\n"
-
-    # ~0 instructions per VM command
+    # ~0 instructions per VM command (+ local init)
     def gen_function(self, cmd, src):
         """
-        define a function label (entry point)
+        emit function entry label and initialize local variables to 0
         """
         _ = self.gen_label(cmd, src)
+        num_locals = int(cmd.split(" ")[2])
+        if num_locals > 0:
+            self.asm += "@SP\n"
+            self.asm += "A=M\n"
+            self.asm += "M=0\n"
+            for i in range(1, num_locals):
+                self.asm += "A=A+1\n"
+                self.asm += "M=0\n"
+            self.asm += "D=A+1\n"
+            self.asm += "@SP\n"
+            self.asm += "M=D\n"
 
     # ~40 instructions per VM command + 13 for the pop
     def gen_return(self, cmd, vm_filepath):
@@ -650,11 +618,6 @@ class Translator:
                         value = int(parsed_cmd[2])
                     except ValueError:
                         raise RuntimeError("Translator: No value to parse, add to exclude or fix code: %s" % cmd)
-
-            # update local dictionary
-            if cmd.startswith("function"):
-                current_function = parsed_cmd[1]
-                self.local_dict[current_function] = value
 
             # update static dictionary
             if cmd.startswith("pop static") or cmd.startswith("push static"):
