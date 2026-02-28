@@ -29,8 +29,6 @@
         <keyword> var </keyword>
         <keyword> int </keyword>
         <identifier> i </identifier>
-        <symbol> , </symbol>
-        <identifier> v </identifier>
         <symbol> ; </symbol>
       </varDec>
       <statements>

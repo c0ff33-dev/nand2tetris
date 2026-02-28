@@ -296,7 +296,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
             raise RuntimeError("Interpreter: Symbols should already be parsed out!")
 
         # @address assignment
-        elif raw_cmd[0] == "@":
+        if raw_cmd[0] == "@":
             raw_cmd = raw_cmd.split(" //")[0].strip()  # drop everything after inline comment
             # assign @statics as they are encountered
             if raw_cmd[1].isnumeric():
@@ -348,10 +348,11 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
                 if "M" in dst:
                     # TODO: switch for original vs modified spec
                     # TODO: update behaviour for this and other IO ports
-                    if hw["A"] != 4098: # UART_TX
-                        hw["RAM"][hw["A"]] = eval_result
-                    if hw["A"] != 4100: # SPI
-                        hw["RAM"][hw["A"]] = eval_result
+                    # if hw["A"] != 4098: # UART_TX
+                    #     hw["RAM"][hw["A"]] = eval_result
+                    # if hw["A"] != 4100: # SPI
+                    #     hw["RAM"][hw["A"]] = eval_result
+                    hw["RAM"][hw["A"]] = eval_result
                 if "A" in dst:
                     hw["A"] = eval_result
                 if "D" in dst:

@@ -32,6 +32,12 @@ $ source ~/src/nand2tetris/.venv/bin/activate
 $ python -m pip install -r requirements.txt
 ```
 
+### Run interpreter
+
+```
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python interpreter.py
+```
+
 ## Miscellaneous
 
 ### Useful VSC extensions

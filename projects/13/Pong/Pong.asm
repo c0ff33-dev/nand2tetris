@@ -28359,19 +28359,17 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP
 
-// function Screen.init 2
-(Screen.init) // function Screen.init 2
+// function Screen.init 1
+(Screen.init) // function Screen.init 1
 @SP
 A=M
-M=0
-A=A+1
 M=0
 D=A+1
 @SP
 M=D
 
 // push constant 16384
-@16384 // push constant 16384 // function Screen.init 2 (constant)
+@16384 // push constant 16384 // function Screen.init 1 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++

@@ -1,4 +1,4 @@
-function Screen.init 2
+function Screen.init 1
 push constant 16384
 pop static 1
 push constant 0
