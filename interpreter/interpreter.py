@@ -128,7 +128,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
                 print(f"RAM[{addr}] = {hw['RAM'][int(addr)]}")
 
 
-def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=False):
+def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
     gui_log = []
 
     # initialize hardware
@@ -490,7 +490,6 @@ if __name__ == '__main__':
 
     # init
     debug = False
-    vm_static_dicts = {} 
     breakpoints = [] # TODO: add to CLI args
 
     # compile Jack to VM (course compiler)
@@ -513,10 +512,26 @@ if __name__ == '__main__':
     # compile Jack to VM (match against course compiler)
     compiler._compile(jack_filepath_lists, jack_matches)
     
-    # translate VM to ASM
+    # translate VM to ASM (multiprocess)
+    processes = []
     for vm_dir in vm_dirpaths:
-        t = Translator(debug=debug)
-        vm_static_dicts[vm_dir] = t.translate(vm_dir, vm_bootstrap_paths)
+        def _translate(vm_dir, vm_bootstrap_paths, debug):
+            t = Translator(debug=debug)
+            t.translate(vm_dir, vm_bootstrap_paths)
+        p = multiprocessing.Process(target=_translate, args=(vm_dir, vm_bootstrap_paths, debug))
+        processes.append((vm_dir, p))
+        p.start()
+
+    failures = []
+    for vm_dir, p in processes:
+        p.join()
+        if p.exitcode != 0:
+            failures.append((vm_dir, p.exitcode))
+
+    if failures:
+        for dirpath, code in failures:
+            print("FAILED: %s (exit code %d)" % (dirpath, code))
+        raise RuntimeError("Translator: %d/%d translations failed" % (len(failures), len(processes)))
     
     # assemble all ASM to HACK and binary match if available
     asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
@@ -528,7 +543,6 @@ if __name__ == '__main__':
     processes = []
 
     for asm_filepath in binary_asm_filepaths:
-        print("Interpreter: Running %s" % asm_filepath)
         p = multiprocessing.Process(
             target=run,
             args=(asm_filepath,),
@@ -543,16 +557,10 @@ if __name__ == '__main__':
         tst_params = tester.load_tst(tst_filepath, debug=debug)
         tst_params["compare"] = tester.load_cmp(cmp_filepath, debug=debug)
 
-        _static_dict = None
-        for vm_dir in vm_dirpaths:
-            if vm_dir in asm_filepath:
-                _static_dict = vm_static_dicts[vm_dir]
-
-        print("Interpreter: Testing %s" % asm_filepath)
         p = multiprocessing.Process(
             target=run,
             args=(asm_filepath,),
-            kwargs={"static_dict": _static_dict, "tst_params": tst_params, "debug": debug}
+            kwargs={"tst_params": tst_params, "debug": debug}
         )
         processes.append((asm_filepath, p))
         p.start()
