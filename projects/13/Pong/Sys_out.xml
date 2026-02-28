@@ -26,6 +26,22 @@
         </doStatement>
         <doStatement>
           <keyword> do </keyword>
+          <identifier> GPIO </identifier>
+          <symbol> . </symbol>
+          <identifier> writeLed </identifier>
+          <symbol> ( </symbol>
+          <expressionList>
+            <expression>
+              <term>
+                <integerConstant> 1 </integerConstant>
+              </term>
+            </expression>
+          </expressionList>
+          <symbol> ) </symbol>
+          <symbol> ; </symbol>
+        </doStatement>
+        <doStatement>
+          <keyword> do </keyword>
           <identifier> Memory </identifier>
           <symbol> . </symbol>
           <identifier> init </identifier>

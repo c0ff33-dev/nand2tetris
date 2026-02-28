@@ -11,6 +11,7 @@ class Sys {
     /** Performs all the initializations required by the OS. */
     function void init() {
         do GPIO.init();
+        do GPIO.writeLed(1); // DEBUG: hw tests
         do Memory.init();
         do Math.init();
         do Output.init();
