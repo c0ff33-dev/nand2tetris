@@ -39,6 +39,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     table = Table(show_header=False)
     table.add_column(justify="left")
     table.add_column(justify="left")
+    table.add_column(justify="left")
 
     def title(header, size):
         multi = int((size - len(header)) / 2)
@@ -53,70 +54,52 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
     row_code = title("Code", 80) + code(gui_log)
     row_stack = title("Stack", 80) + "[TODO]"
 
-    if debug_cmd.startswith("@") or debug_cmd.startswith("A="):
-        row_reg = title("Registers", 0) +\
-        "[red]A[/red] [bold yellow]%s[/bold yellow]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
-            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-        "[red]R15[/red] %s" % (hw["RAM"][15])
-
-    elif debug_cmd.startswith("D="):
-        row_reg = title("Registers", 0) +\
-        "[red]A[/red] %s\n[red]D[/red] [bold yellow]%s[/bold yellow]\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
-            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-        "[red]R15[/red] %s" % (hw["RAM"][15])
-
-    elif debug_cmd.startswith("M="):
-        row_reg = title("Registers", 0) +\
-        "[red]A[/red] %s\n[red]D[/red] %s\n[red]M[/red] [bold yellow]%s[/bold yellow]\n" %\
-            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
-            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-        "[red]R15[/red] %s" % (hw["RAM"][15])
-
-    elif debug_cmd.startswith("D;"):
-        row_reg = title("Registers", 0) +\
-        "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] [bold cyan]%s[/bold cyan]\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
-            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-        "[red]R15[/red] %s" % (hw["RAM"][15])
-
-    elif debug_cmd.startswith("0;"):
-        row_reg = title("Registers", 0) +\
-        "[red]A[/red] [bold green]%s[/bold green]\n[red]D[/red] %s\n[red]M[/red] %s\n" %\
-            (hw["A"], hw["D"], hw["RAM"][hw["A"]]) +\
-        "[red]R0(SP)[/red] %s\n[red]R1(LCL)[/red] %s\n[red]R2(ARG)[/red] %s\n[red]R3(THIS)[/red] %s\n[red]R4(THAT)[/red] %s\n" %\
-            (hw["RAM"][0], hw["RAM"][1], hw["RAM"][2], hw["RAM"][3], hw["RAM"][4]) +\
-        "[red]R5[/red] %s\n[red]R6[/red] %s\n[red]R7[/red] %s\n[red]R8[/red] %s\n[red]R9[/red] %s\n" %\
-            (hw["RAM"][5], hw["RAM"][6], hw["RAM"][7], hw["RAM"][8], hw["RAM"][9]) +\
-        "[red]R10[/red] %s\n[red]R11[/red] %s\n[red]R12[/red] %s\n[red]R13[/red] %s\n[red]R14[/red] %s\n" %\
-            (hw["RAM"][10], hw["RAM"][11], hw["RAM"][12], hw["RAM"][13], hw["RAM"][14]) +\
-        "[red]R15[/red] %s" % (hw["RAM"][15])
-
+    # Determine register highlighting based on instruction type
+    a_style = d_style = m_style = None
+    if debug_cmd.startswith("@"):
+        a_style = "bold yellow"
+    elif ";" in debug_cmd:
+        # jump: A = target (green), D = condition (cyan) unless unconditional
+        a_style = "bold green"
+        if not debug_cmd.startswith("0;"):
+            d_style = "bold cyan"
+    elif "=" in debug_cmd:
+        dest = debug_cmd.split("=")[0]
+        if "A" in dest: a_style = "bold yellow"
+        if "D" in dest: d_style = "bold yellow"
+        if "M" in dest: m_style = "bold yellow"
     else:
         raise RuntimeError(f"Unexpected asm command: {debug_cmd}")
 
-    table.add_row(row_code + row_stack, row_reg)
+    def reg(label, value, style=None):
+        val = f"[{style}]{value}[/{style}]" if style else str(value)
+        return f"[red]{label}[/red] {val}"
+
+    ram = hw["RAM"]
+    row_reg = title("Registers", 0) + "\n".join([
+        reg("A", hw["A"], a_style),
+        reg("D", hw["D"], d_style),
+        reg("M", ram[hw["A"]], m_style),
+        reg("R0(SP)",   ram[0]),  reg("R1(LCL)",  ram[1]),
+        reg("R2(ARG)",  ram[2]),  reg("R3(THIS)", ram[3]),
+        reg("R4(THAT)", ram[4]),
+        reg("R5",  ram[5]),  reg("R6",  ram[6]),
+        reg("R7",  ram[7]),  reg("R8",  ram[8]),
+        reg("R9",  ram[9]),
+        reg("R10", ram[10]), reg("R11", ram[11]),
+        reg("R12", ram[12]), reg("R13", ram[13]),
+        reg("R14", ram[14]),
+        reg("R15", ram[15]),
+    ])
+
+    row_help = title("Keys", 0) + "\n".join([
+        "[bold]q[/bold] quit",
+        "[bold]p[/bold] run",
+        "[bold]n[/bold] step",
+        "[bold]i[/bold] peek",
+    ])
+
+    table.add_row(row_code + row_stack, row_reg, row_help)
     if src_line in breakpoints or step or breakpoints == [-1]:
         console.print(table)
 
@@ -203,8 +186,45 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
         "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
 
-        # TODO: FPGA symbols
+        # TODO: FPGA symbols (add here and assembler / where necessary)
         "UART_TX": 4098
+        # SP               0
+        # LCL              1
+        # ARG              2
+        # THIS             3
+        # THAT             4
+        # R0               0
+        # R1               1
+        # R2               2
+        # R3               3
+        # R4               4
+        # R5               5
+        # R6               6
+        # R7               7
+        # R8               8
+        # R9               9
+        # R10              10
+        # R11              11
+        # R12              12
+        # R13              13
+        # R14              14
+        # R15              15
+        # LED              4096
+        # BUT              4097
+        # UART_TX          4098
+        # UART_RX          4099
+        # SPI              4100
+        # SRAM_A           4101
+        # SRAM_D           4102
+        # GO               4103
+        # LCD8             4104
+        # LCD16            4105
+        # RTP              4106
+        # DEBUG0           4107
+        # DEBUG1           4108
+        # DEBUG2           4109
+        # DEBUG3           4110
+        # DEBUG4           4111
     }
 
     with open(asm_filepath, "r") as asm_file:
