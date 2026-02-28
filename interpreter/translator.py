@@ -688,9 +688,13 @@ class Translator:
             os.path.join(vm_dir, 'Output.vm'),
             os.path.join(vm_dir, 'PongGame.vm'),
             os.path.join(vm_dir, 'Screen.vm'),
+            os.path.join(vm_dir, 'ScreenExt.vm'),
             os.path.join(vm_dir, 'SquareGame.vm'),
+            os.path.join(vm_dir, 'StdIO.vm'),
+            os.path.join(vm_dir, 'Touch.vm'),
             os.path.join(vm_dir, 'String.vm'),
             os.path.join(vm_dir, 'UART.vm'),
+            os.path.join(vm_dir, 'Util.vm'),
         ]
 
         # detect Jack files in the directory (Jack programs need SP=256 bootstrap)
