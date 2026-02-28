@@ -322,7 +322,7 @@ binary_asm_filepaths = [
     # os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"), # ASSERT
     # os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"), # ASSERT
     # os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"), # ASSERT
-    os.path.join("..", "projects", "13", "Pong", "Pong.asm"), # ASSERT # FIXME: broken control flow
+    os.path.join("..", "projects", "13", "Pong", "Pong.asm"), # ASSERT
 ]
 
 # HDL test scripts (interpreter: HardwareSimulator)
