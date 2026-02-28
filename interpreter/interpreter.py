@@ -486,7 +486,7 @@ if __name__ == '__main__':
     # init
     debug = False
     vm_static_dicts = {} 
-    breakpoints = [6] # TODO: add to CLI args
+    breakpoints = [] # TODO: add to CLI args
 
     # compile Jack to VM (course compiler)
     if sys.platform.startswith("win"):

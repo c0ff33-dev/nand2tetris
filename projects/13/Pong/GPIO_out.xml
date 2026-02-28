@@ -25,13 +25,6 @@
         <letStatement>
           <keyword> let </keyword>
           <identifier> LED </identifier>
-          <symbol> [ </symbol>
-          <expression>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ] </symbol>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -43,13 +36,6 @@
         <letStatement>
           <keyword> let </keyword>
           <identifier> BUT </identifier>
-          <symbol> [ </symbol>
-          <expression>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ] </symbol>
           <symbol> = </symbol>
           <expression>
             <term>
@@ -61,13 +47,6 @@
         <letStatement>
           <keyword> let </keyword>
           <identifier> DEBUG0 </identifier>
-          <symbol> [ </symbol>
-          <expression>
-            <term>
-              <integerConstant> 0 </integerConstant>
-            </term>
-          </expression>
-          <symbol> ] </symbol>
           <symbol> = </symbol>
           <expression>
             <term>

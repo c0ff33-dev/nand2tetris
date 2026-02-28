@@ -1,28 +1,10 @@
 function GPIO.init 0
-push constant 0
-push static 0
-add
 push constant 4096
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 0
-push static 1
-add
+pop static 0
 push constant 4097
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 0
-push static 2
-add
+pop static 1
 push constant 4107
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
+pop static 2
 push constant 0
 return
 function GPIO.readLed 0

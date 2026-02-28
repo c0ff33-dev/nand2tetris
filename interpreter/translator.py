@@ -682,6 +682,7 @@ class Translator:
             os.path.join(vm_dir, 'Array.vm'),
             os.path.join(vm_dir, 'Ball.vm'),
             os.path.join(vm_dir, 'Bat.vm'),
+            os.path.join(vm_dir, 'GPIO.vm'),
             os.path.join(vm_dir, 'Keyboard.vm'),
             os.path.join(vm_dir, 'Math.vm'),
             os.path.join(vm_dir, 'Memory.vm'),
