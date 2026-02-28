@@ -1,3 +1,7 @@
+@256 // bootstrap: initialize SP as 256
+D=A
+@0
+M=D
 
 // function Sys.init 0
 (Sys.init) // function Sys.init 0

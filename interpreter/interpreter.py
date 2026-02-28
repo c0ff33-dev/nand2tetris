@@ -254,8 +254,6 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
     if expected_asserts > 0:
         if hw["MAX"] < 20000000:
             hw["MAX"] = 20000000
-        if hw["RAM"][0] == 0:
-            hw["RAM"][0] = 256  # bootstrap SP
 
     # runtime parsing
     cycle = 0

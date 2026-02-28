@@ -692,6 +692,9 @@ class Translator:
             os.path.join(vm_dir, 'String.vm'),
         ]
 
+        # detect Jack files in the directory (Jack programs need SP=256 bootstrap)
+        has_jack = any(f.endswith('.jack') for f in os.listdir(vm_dir) if os.path.isfile(os.path.join(vm_dir, f)))
+
         for vm_filepath in vm_filelist:
             if os.path.exists(vm_filepath):
                 self.parse_static(vm_filepath)
@@ -732,6 +735,13 @@ class Translator:
                 if any(bootstrap_path in asm_path for bootstrap_path in vm_bootstrap_paths):
                     # test scripts do not conform to spec (256)
                     bootstrap = "@261 // bootstrap: initialize SP as 261\n"
+                    bootstrap += "D=A\n"
+                    bootstrap += "@0\n"
+                    bootstrap += "M=D\n"
+                    asm_file.write(bootstrap+self.asm+halt+self.asm_subroutines)
+                elif has_jack:
+                    # Jack programs: initialize SP to spec (256)
+                    bootstrap = "@256 // bootstrap: initialize SP as 256\n"
                     bootstrap += "D=A\n"
                     bootstrap += "@0\n"
                     bootstrap += "M=D\n"
