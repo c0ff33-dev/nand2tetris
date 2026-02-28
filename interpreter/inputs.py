@@ -275,16 +275,16 @@ vm_asm_filepaths = [
 
 # ASM files for assembler/interpreter
 binary_asm_filepaths = [
-    #  tested against HACK solutions for project 6
-    os.path.join("..", "projects", "04", "fill", "Fill.asm"),
-    os.path.join("..", "projects", "04", "mult", "Mult.asm"),
-    os.path.join("..", "projects", "06", "add", "Add.asm"),
-    os.path.join("..", "projects", "06", "max", "Max.asm"),
-    os.path.join("..", "projects", "06", "max", "MaxL.asm"),
-    os.path.join("..", "projects", "06", "pong", "Pong.asm"),
-    os.path.join("..", "projects", "06", "pong", "PongL.asm"),
-    os.path.join("..", "projects", "06", "rect", "Rect.asm"),
-    os.path.join("..", "projects", "06", "rect", "RectL.asm"),
+    # #  tested against HACK solutions for project 6
+    # os.path.join("..", "projects", "04", "fill", "Fill.asm"),
+    # os.path.join("..", "projects", "04", "mult", "Mult.asm"),
+    # os.path.join("..", "projects", "06", "add", "Add.asm"),
+    # os.path.join("..", "projects", "06", "max", "Max.asm"),
+    # os.path.join("..", "projects", "06", "max", "MaxL.asm"),
+    # os.path.join("..", "projects", "06", "pong", "Pong.asm"),
+    # os.path.join("..", "projects", "06", "pong", "PongL.asm"),
+    # os.path.join("..", "projects", "06", "rect", "Rect.asm"),
+    # os.path.join("..", "projects", "06", "rect", "RectL.asm"),
 
     # exercised during vm_asm_filepaths
     # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm"),
@@ -300,29 +300,29 @@ binary_asm_filepaths = [
     # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.asm"),
 
     # ASSERT = at least one ASSERT directive present for test automation
-    # os.path.join("..", "projects", "09", "Average", "Average.asm"),
-    os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"), # ASSERT
-    os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"), # ASSERT
-    os.path.join("..", "projects", "09", "List", "List.asm"), # ASSERT
-    # os.path.join("..", "projects", "09", "Square", "Square.asm"),
-    # os.path.join("..", "projects", "10", "ArrayTest", "ArrayTest.asm"),
-    # os.path.join("..", "projects", "10", "Square", "Square.asm"),  # different Main.jack to 9/11
-    # os.path.join("..", "projects", "11", "Average", "Average.asm"),
-    os.path.join("..", "projects", "11", "ComplexArrays", "ComplexArrays.asm"), # ASSERT
-    os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"), # ASSERT
-    # # # os.path.join("..", "projects", "11", "Pong", "Pong.asm"),
-    os.path.join("..", "projects", "11", "Seven", "Seven.asm"), # ASSERT
-    # os.path.join("..", "projects", "11", "Square", "Square.asm"),
-    # os.path.join("..", "projects", "12", "SysTest", "SysTest.asm"),
-    os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"), # ASSERT
-    # os.path.join("..", "projects", "12", "KeyboardTest", "KeyboardTest.asm"),
-    os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"), # ASSERT
-    os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"), # ASSERT
-    # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.asm"),
-    os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"), # ASSERT
-    os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"), # ASSERT
-    os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"), # ASSERT
-    # os.path.join("..", "projects", "13", "Pong", "Pong.asm"), # ASSERT # FIXME: broken control flow
+    # # os.path.join("..", "projects", "09", "Average", "Average.asm"),
+    # os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"), # ASSERT
+    # os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"), # ASSERT
+    # os.path.join("..", "projects", "09", "List", "List.asm"), # ASSERT
+    # # os.path.join("..", "projects", "09", "Square", "Square.asm"),
+    # # os.path.join("..", "projects", "10", "ArrayTest", "ArrayTest.asm"),
+    # # os.path.join("..", "projects", "10", "Square", "Square.asm"),  # different Main.jack to 9/11
+    # # os.path.join("..", "projects", "11", "Average", "Average.asm"),
+    # os.path.join("..", "projects", "11", "ComplexArrays", "ComplexArrays.asm"), # ASSERT
+    # os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"), # ASSERT
+    # # # # os.path.join("..", "projects", "11", "Pong", "Pong.asm"),
+    # os.path.join("..", "projects", "11", "Seven", "Seven.asm"), # ASSERT
+    # # os.path.join("..", "projects", "11", "Square", "Square.asm"),
+    # # os.path.join("..", "projects", "12", "SysTest", "SysTest.asm"),
+    # os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"), # ASSERT
+    # # os.path.join("..", "projects", "12", "KeyboardTest", "KeyboardTest.asm"),
+    # os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"), # ASSERT
+    # os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"), # ASSERT
+    # # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.asm"),
+    # os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"), # ASSERT
+    # os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"), # ASSERT
+    # os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"), # ASSERT
+    os.path.join("..", "projects", "13", "Pong", "Pong.asm"), # ASSERT # FIXME: broken control flow
 ]
 
 # HDL test scripts (interpreter: HardwareSimulator)

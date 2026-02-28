@@ -287,7 +287,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
         # trap Sys.error before it enters an infinite loop
         if raw_cmd == "@Sys.error":
-            raise RuntimeError("Interpreter: Sys.error() called at cycle %d, PC=%d" % (cycle, hw["PC"]))
+            raise RuntimeError("Interpreter: Sys.error() called @ src_line %d" % src_line)
 
         if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
             raise RuntimeError("Interpreter: Debug/Raw line number mismatch!")           
@@ -527,7 +527,7 @@ if __name__ == '__main__':
     # load & execute modules without test scripts
     for asm_filepath in binary_asm_filepaths:
         try:
-            run(asm_filepath, breakpoints=breakpoints, debug=debug)
+            run(asm_filepath, breakpoints=breakpoints, debug=debug) # TODO: multiprocess
         except IndexError:
             warnings.warn("Interpreter: Probable memory access violation captured during execution of %s"
                             % asm_filepath)
@@ -547,7 +547,7 @@ if __name__ == '__main__':
                 _static_dict = vm_static_dicts[vm_dir]
     
         # execute
-        run(asm_filepath, static_dict=_static_dict, tst_params=tst_params, debug=debug)
+        run(asm_filepath, static_dict=_static_dict, tst_params=tst_params, debug=debug) # TODO: multiprocess
     
     # run hdl tests (HardwareSimulator)
     if sys.platform.startswith("win"):
