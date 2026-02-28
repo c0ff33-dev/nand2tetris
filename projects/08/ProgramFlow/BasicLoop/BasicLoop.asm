@@ -89,13 +89,9 @@ A=A-1
 M=D
 
 // if-goto LOOP_START // If counter > 0, goto LOOP_START
-// compare val (if-goto conditional) with 0
-@0 // if-goto LOOP_START // If counter > 0, goto LOOP_START
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto LOOP_START // If counter > 0, goto LOOP_START
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @BasicLoop$LOOP_START
 D;JNE // jump if not zero
 

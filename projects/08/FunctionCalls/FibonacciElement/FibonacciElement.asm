@@ -54,13 +54,9 @@ D=A
 (RET_LT_2)
 
 // if-goto IF_TRUE
-// compare val (if-goto conditional) with 0
-@0 // if-goto IF_TRUE
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto IF_TRUE
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @Main.fibonacci$IF_TRUE
 D;JNE // jump if not zero
 

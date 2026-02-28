@@ -10,14 +10,16 @@ class Sys {
     
     /** Performs all the initializations required by the OS. */
     function void init() {
-        do GPIO.init();
-        do GPIO.writeLed(1); // ASSERT REACHABLE
-        // do Memory.init();
-        // do Math.init();
-        // do Output.init();
-        // do Screen.init();
-        // do Keyboard.init();
-        // do Main.main();
+        // do GPIO.init();
+        // do GPIO.writeLed(1); // BROKEN: because addresses are excluded/weird?
+        do Memory.init(); // OK
+        do Math.init(); // OK
+
+        // do Screen.init(); // BROKEN
+        // do Output.init(); // BROKEN
+        
+        do Keyboard.init(); // OK
+        do Main.main(); // ASSERT REACHABLE
         do Sys.halt();
         return;
     }

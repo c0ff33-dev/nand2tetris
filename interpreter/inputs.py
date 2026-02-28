@@ -7,20 +7,20 @@ import os
 
 # Jack program directories for course compiler (interpreter: JackCompiler)
 jack_dirpaths = [
-    # os.path.join("..", "projects", "09", "Average"),
+    os.path.join("..", "projects", "09", "Average"),
     os.path.join("..", "projects", "09", "Fraction"),
     os.path.join("..", "projects", "09", "HelloWorld"),
     os.path.join("..", "projects", "09", "List"),
-    # os.path.join("..", "projects", "09", "Square"),
-    # os.path.join("..", "projects", "10", "ArrayTest"),
-    # # os.path.join("..", "projects", "10", "ExpressionLessSquare"),  # nonsense code that shouldn't compile or run
-    # os.path.join("..", "projects", "10", "Square"),
-    # os.path.join("..", "projects", "11", "Average"),
+    os.path.join("..", "projects", "09", "Square"),
+    os.path.join("..", "projects", "10", "ArrayTest"),
+    # os.path.join("..", "projects", "10", "ExpressionLessSquare"),  # nonsense code that shouldn't compile or run
+    os.path.join("..", "projects", "10", "Square"),
+    os.path.join("..", "projects", "11", "Average"),
     os.path.join("..", "projects", "11", "ComplexArrays"),
     os.path.join("..", "projects", "11", "ConvertToBin"),
-    # os.path.join("..", "projects", "11", "Pong"),
+    os.path.join("..", "projects", "11", "Pong"),
     os.path.join("..", "projects", "11", "Seven"),
-    # os.path.join("..", "projects", "11", "Square"),
+    os.path.join("..", "projects", "11", "Square"),
     os.path.join("..", "projects", "12", "SysTest"),
     os.path.join("..", "projects", "12", "ArrayTest"),
     os.path.join("..", "projects", "12", "KeyboardTest"),
@@ -35,33 +35,36 @@ jack_dirpaths = [
 
 # Jack source files for tokenizer and analyzer
 jack_filepaths = [
-    # os.path.join("..", "projects", "09", "Average", "Main.jack"),
+    os.path.join("..", "projects", "09", "Average", "Main.jack"),
     os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
     os.path.join("..", "projects", "09", "Fraction", "Fraction.jack"),
     os.path.join("..", "projects", "09", "HelloWorld", "Main.jack"),
     os.path.join("..", "projects", "09", "List", "Main.jack"),
     os.path.join("..", "projects", "09", "List", "List.jack"),
-    # os.path.join("..", "projects", "09", "Square", "Main.jack"),
-    # os.path.join("..", "projects", "09", "Square", "Square.jack"),
-    # os.path.join("..", "projects", "09", "Square", "SquareGame.jack"),
-    # os.path.join("..", "projects", "10", "ArrayTest", "Main.jack"),
-    # # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  # nonsense code that shouldn't compile or run
-    # # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
-    # # os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack"),
-    # os.path.join("..", "projects", "10", "Square", "Main.jack"),
-    # os.path.join("..", "projects", "10", "Square", "Square.jack"),
-    # os.path.join("..", "projects", "10", "Square", "SquareGame.jack"),
-    # os.path.join("..", "projects", "11", "Average", "Main.jack"),
+    os.path.join("..", "projects", "09", "Square", "Main.jack"),
+    os.path.join("..", "projects", "09", "Square", "Square.jack"),
+    os.path.join("..", "projects", "09", "Square", "SquareGame.jack"),
+    os.path.join("..", "projects", "10", "ArrayTest", "Main.jack"),
+
+    # nonsense code that shouldn't compile or run
+    # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  
+    # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
+    # os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack"),
+
+    os.path.join("..", "projects", "10", "Square", "Main.jack"),
+    os.path.join("..", "projects", "10", "Square", "Square.jack"),
+    os.path.join("..", "projects", "10", "Square", "SquareGame.jack"),
+    os.path.join("..", "projects", "11", "Average", "Main.jack"),
     os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack"),
     os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack"),
-    # os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
-    # os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
-    # os.path.join("..", "projects", "11", "Pong", "Main.jack"),
-    # os.path.join("..", "projects", "11", "Pong", "PongGame.jack"),
+    os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
+    os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
+    os.path.join("..", "projects", "11", "Pong", "Main.jack"),
+    os.path.join("..", "projects", "11", "Pong", "PongGame.jack"),
     os.path.join("..", "projects", "11", "Seven", "Main.jack"),
-    # os.path.join("..", "projects", "11", "Square", "Main.jack"),
-    # os.path.join("..", "projects", "11", "Square", "Square.jack"),
-    # os.path.join("..", "projects", "11", "Square", "SquareGame.jack"),
+    os.path.join("..", "projects", "11", "Square", "Main.jack"),
+    os.path.join("..", "projects", "11", "Square", "Square.jack"),
+    os.path.join("..", "projects", "11", "Square", "SquareGame.jack"),
     os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
     os.path.join("..", "projects", "12", "SysTest", "Sys.jack"),
     os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
@@ -96,33 +99,36 @@ jack_filepaths = [
 
 # Jack source file groups (compiler)
 jack_filepath_lists = [
-    # [os.path.join("..", "projects", "09", "Average", "Main.jack")],
+    [os.path.join("..", "projects", "09", "Average", "Main.jack")],
     [os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
      os.path.join("..", "projects", "09", "Fraction", "Fraction.jack")],
     [os.path.join("..", "projects", "09", "HelloWorld", "Main.jack")],
     [os.path.join("..", "projects", "09", "List", "Main.jack"),
      os.path.join("..", "projects", "09", "List", "List.jack")],
-    # [os.path.join("..", "projects", "09", "Square", "Main.jack"),
-    #  os.path.join("..", "projects", "09", "Square", "Square.jack"),
-    #  os.path.join("..", "projects", "09", "Square", "SquareGame.jack")],
-    # [os.path.join("..", "projects", "10", "ArrayTest", "Main.jack")],
-    # # [os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  # nonsense code that shouldn't compile or run
-    # #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
-    # #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack")],
-    # [os.path.join("..", "projects", "10", "Square", "Main.jack"),
-    #  os.path.join("..", "projects", "10", "Square", "Square.jack"),
-    #  os.path.join("..", "projects", "10", "Square", "SquareGame.jack")],
-    # [os.path.join("..", "projects", "11", "Average", "Main.jack")],
+    [os.path.join("..", "projects", "09", "Square", "Main.jack"),
+     os.path.join("..", "projects", "09", "Square", "Square.jack"),
+     os.path.join("..", "projects", "09", "Square", "SquareGame.jack")],
+    [os.path.join("..", "projects", "10", "ArrayTest", "Main.jack")],
+
+    # nonsense code that shouldn't compile or run
+    # [os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  
+    #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
+    #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack")],
+
+    [os.path.join("..", "projects", "10", "Square", "Main.jack"),
+     os.path.join("..", "projects", "10", "Square", "Square.jack"),
+     os.path.join("..", "projects", "10", "Square", "SquareGame.jack")],
+    [os.path.join("..", "projects", "11", "Average", "Main.jack")],
     [os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack")],
     [os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack")],
-    # [os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
-    #  os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
-    #  os.path.join("..", "projects", "11", "Pong", "Main.jack"),
-    #  os.path.join("..", "projects", "11", "Pong", "PongGame.jack")],
+    [os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
+     os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
+     os.path.join("..", "projects", "11", "Pong", "Main.jack"),
+     os.path.join("..", "projects", "11", "Pong", "PongGame.jack")],
     [os.path.join("..", "projects", "11", "Seven", "Main.jack")],
-    # [os.path.join("..", "projects", "11", "Square", "Main.jack"),
-    #  os.path.join("..", "projects", "11", "Square", "Square.jack"),
-    #  os.path.join("..", "projects", "11", "Square", "SquareGame.jack")],
+    [os.path.join("..", "projects", "11", "Square", "Main.jack"),
+     os.path.join("..", "projects", "11", "Square", "Square.jack"),
+     os.path.join("..", "projects", "11", "Square", "SquareGame.jack")],
     [os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
      os.path.join("..", "projects", "12", "SysTest", "Sys.jack")],
     [os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
@@ -157,22 +163,22 @@ jack_filepath_lists = [
 
 # Expected VM line counts for validation against course compiler (compiler)
 jack_matches = {
-    # os.path.join("..", "projects", "09", "Average", "Main.vm"): 149,
+    os.path.join("..", "projects", "09", "Average", "Main.vm"): 149,
     os.path.join("..", "projects", "09", "Fraction", "Main.vm"): 18,
     os.path.join("..", "projects", "09", "Fraction", "Fraction.vm"): 116,
     os.path.join("..", "projects", "09", "HelloWorld", "Main.vm"): 33,
     os.path.join("..", "projects", "09", "List", "Main.vm"): 19,
     os.path.join("..", "projects", "09", "List", "List.vm"): 65,
-    # os.path.join("..", "projects", "09", "Square", "Main.vm"): 11,
-    # os.path.join("..", "projects", "09", "Square", "Square.vm"): 304,
-    # os.path.join("..", "projects", "09", "Square", "SquareGame.vm"): 179,
-    # os.path.join("..", "projects", "10", "ArrayTest", "Main.vm"): 183,
+    os.path.join("..", "projects", "09", "Square", "Main.vm"): 11,
+    os.path.join("..", "projects", "09", "Square", "Square.vm"): 304,
+    os.path.join("..", "projects", "09", "Square", "SquareGame.vm"): 179,
+    os.path.join("..", "projects", "10", "ArrayTest", "Main.vm"): 183,
     os.path.join("..", "projects", "11", "ComplexArrays", "Main.vm"): 702,
     os.path.join("..", "projects", "11", "ConvertToBin", "Main.vm"): 109,
-    # os.path.join("..", "projects", "11", "Pong", "Bat.vm"): 207,
-    # os.path.join("..", "projects", "11", "Pong", "Ball.vm"): 444,
-    # os.path.join("..", "projects", "11", "Pong", "Main.vm"): 13,
-    # os.path.join("..", "projects", "11", "Pong", "PongGame.vm"): 318,
+    os.path.join("..", "projects", "11", "Pong", "Bat.vm"): 207,
+    os.path.join("..", "projects", "11", "Pong", "Ball.vm"): 444,
+    os.path.join("..", "projects", "11", "Pong", "Main.vm"): 13,
+    os.path.join("..", "projects", "11", "Pong", "PongGame.vm"): 318,
     os.path.join("..", "projects", "11", "Seven", "Main.vm"): 10,
     os.path.join("..", "projects", "12", "SysTest", "Main.vm"): 281,
     os.path.join("..", "projects", "12", "SysTest", "Sys.vm"): 83,
@@ -191,35 +197,48 @@ jack_matches = {
     os.path.join("..", "projects", "12", "OutputTest", "Output.vm"): 1852,
     os.path.join("..", "projects", "12", "ScreenTest", "Main.vm"): 104,
     os.path.join("..", "projects", "12", "ScreenTest", "Screen.vm"): 806,
+    os.path.join("..", "projects", "13", "Pong", "Array.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Ball.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Bat.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "GPIO.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Keyboard.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Main.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Math.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Memory.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Output.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "PongGame.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Screen.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "String.jack"): 0,
+    os.path.join("..", "projects", "13", "Pong", "Sys.jack"): 0,
 }
 
 # VM program directories (translator)
 vm_dirpaths = [
-    # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries"),
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),  # requires non-spec bootstrap (vm_bootstrap_paths)
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),  # requires non-spec bootstrap (vm_bootstrap_paths)
-    # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction"),
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest"),  # requires non-spec bootstrap (vm_bootstrap_paths)
-    # os.path.join("..", "projects", "09", "Average"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "StackTest"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries"),
+    # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+    # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+    os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction"),
+    # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+    os.path.join("..", "projects", "09", "Average"),
     os.path.join("..", "projects", "09", "Fraction"),
     os.path.join("..", "projects", "09", "HelloWorld"),
     os.path.join("..", "projects", "09", "List"),
-    # os.path.join("..", "projects", "09", "Square"),
-    # os.path.join("..", "projects", "10", "ArrayTest"),
-    # # os.path.join("..", "projects", "10", "ExpressionLessSquare"),  # nonsense code that shouldn't compile or run
-    # os.path.join("..", "projects", "10", "Square"),
-    # os.path.join("..", "projects", "11", "Average"),
+    os.path.join("..", "projects", "09", "Square"),
+    os.path.join("..", "projects", "10", "ArrayTest"),
+    # os.path.join("..", "projects", "10", "ExpressionLessSquare"),  # nonsense code that shouldn't compile or run
+    os.path.join("..", "projects", "10", "Square"),
+    os.path.join("..", "projects", "11", "Average"),
     os.path.join("..", "projects", "11", "ComplexArrays"),
     os.path.join("..", "projects", "11", "ConvertToBin"),
-    # os.path.join("..", "projects", "11", "Pong"),
+    os.path.join("..", "projects", "11", "Pong"),
     os.path.join("..", "projects", "11", "Seven"),
-    # os.path.join("..", "projects", "11", "Square"),
+    os.path.join("..", "projects", "11", "Square"),
     os.path.join("..", "projects", "12", "SysTest"),
     os.path.join("..", "projects", "12", "ArrayTest"),
     os.path.join("..", "projects", "12", "KeyboardTest"),
@@ -234,13 +253,40 @@ vm_dirpaths = [
 
 # VM programs requiring non-spec bootstrap to pass tests (translator)
 vm_bootstrap_paths = [
-    # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest"),
 ]
 
 # ASM files from VM translation (assembler/tester)
 vm_asm_filepaths = [
+    os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.asm"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.asm"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.asm"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.asm"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.asm"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.asm"),
+    # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.asm"),  # non-spec issues break interpreter
+    os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.asm"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.asm"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.asm"),
+]
+
+# ASM files for assembler/interpreter
+binary_asm_filepaths = [
+    #  tested against HACK solutions for project 6
+    os.path.join("..", "projects", "04", "fill", "Fill.asm"),
+    os.path.join("..", "projects", "04", "mult", "Mult.asm"),
+    os.path.join("..", "projects", "06", "add", "Add.asm"),
+    os.path.join("..", "projects", "06", "max", "Max.asm"),
+    os.path.join("..", "projects", "06", "max", "MaxL.asm"),
+    os.path.join("..", "projects", "06", "pong", "Pong.asm"),
+    os.path.join("..", "projects", "06", "pong", "PongL.asm"),
+    os.path.join("..", "projects", "06", "rect", "Rect.asm"),
+    os.path.join("..", "projects", "06", "rect", "RectL.asm"),
+
+    # exercised during vm_asm_filepaths
     # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm"),
     # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.asm"),
     # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.asm"),
@@ -248,61 +294,35 @@ vm_asm_filepaths = [
     # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.asm"),
     # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.asm"),
     # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.asm"),
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.asm"),  # non-spec issues break interpreter
+    # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.asm"),
     # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.asm"),
     # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.asm"),
     # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.asm"),
-]
 
-# ASM files for assembler/interpreter
-binary_asm_filepaths = [
-    # #  tested against HACK solutions for project 6
-    # os.path.join("..", "projects", "04", "fill", "Fill.asm"),
-    # os.path.join("..", "projects", "04", "mult", "Mult.asm"),
-    # os.path.join("..", "projects", "06", "add", "Add.asm"),
-    # os.path.join("..", "projects", "06", "max", "Max.asm"),
-    # os.path.join("..", "projects", "06", "max", "MaxL.asm"),
-    # os.path.join("..", "projects", "06", "pong", "Pong.asm"),
-    # os.path.join("..", "projects", "06", "pong", "PongL.asm"),
-    # os.path.join("..", "projects", "06", "rect", "Rect.asm"),
-    # os.path.join("..", "projects", "06", "rect", "RectL.asm"),
-
-    # # exercised during vm_asm_filepaths
-    # # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm"),
-    # # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.asm"),
-    # # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.asm"),
-    # # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.asm"),
-    # # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.asm"),
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.asm"),
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.asm"),
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.asm"),
-    # # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.asm"),
-    # # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.asm"),
-    # # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.asm"),
-
-    # # os.path.join("..", "projects", "09", "Average", "Average.asm"),
-    # os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"),
-    # os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"),
-    # os.path.join("..", "projects", "09", "List", "List.asm"),
-    # # os.path.join("..", "projects", "09", "Square", "Square.asm"),
-    # # os.path.join("..", "projects", "10", "ArrayTest", "ArrayTest.asm"),
-    # # # os.path.join("..", "projects", "10", "Square", "Square.asm"),  # different Main.jack to 9/11
-    # # os.path.join("..", "projects", "11", "Average", "Average.asm"),
-    # os.path.join("..", "projects", "11", "ComplexArrays", "ComplexArrays.asm"),
-    # os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"),
+    # ASSERT = at least one ASSERT directive present for test automation
+    # os.path.join("..", "projects", "09", "Average", "Average.asm"),
+    os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"), # ASSERT
+    os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"), # ASSERT
+    os.path.join("..", "projects", "09", "List", "List.asm"), # ASSERT
+    # os.path.join("..", "projects", "09", "Square", "Square.asm"),
+    # os.path.join("..", "projects", "10", "ArrayTest", "ArrayTest.asm"),
+    # os.path.join("..", "projects", "10", "Square", "Square.asm"),  # different Main.jack to 9/11
+    # os.path.join("..", "projects", "11", "Average", "Average.asm"),
+    os.path.join("..", "projects", "11", "ComplexArrays", "ComplexArrays.asm"), # ASSERT
+    os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"), # ASSERT
     # # # os.path.join("..", "projects", "11", "Pong", "Pong.asm"),
-    # os.path.join("..", "projects", "11", "Seven", "Seven.asm"),
-    # # os.path.join("..", "projects", "11", "Square", "Square.asm"),
+    os.path.join("..", "projects", "11", "Seven", "Seven.asm"), # ASSERT
+    # os.path.join("..", "projects", "11", "Square", "Square.asm"),
     # os.path.join("..", "projects", "12", "SysTest", "SysTest.asm"),
-    # os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"),
+    os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"), # ASSERT
     # os.path.join("..", "projects", "12", "KeyboardTest", "KeyboardTest.asm"),
-    # os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"),
-    # os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"),
+    os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"), # ASSERT
+    os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"), # ASSERT
     # os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.asm"),
-    # os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"),
-    # os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"),
-    # os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"),
-    os.path.join("..", "projects", "13", "Pong", "Pong.asm"),
+    os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"), # ASSERT
+    os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"), # ASSERT
+    os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"), # ASSERT
+    # os.path.join("..", "projects", "13", "Pong", "Pong.asm"), # ASSERT # FIXME: broken control flow
 ]
 
 # HDL test scripts (interpreter: HardwareSimulator)
@@ -349,61 +369,64 @@ hw_tst_files = [
 
 # ASM test scripts (interpreter: CPUEmulator)
 cpu_tst_files = [
-    # # os.path.join("..", "projects", "04", "fill", "Fill.tst"),  # interactive test (passed manually)
-    # os.path.join("..", "projects", "04", "fill", "FillAutomatic.tst"),
-    # os.path.join("..", "projects", "04", "mult", "Mult.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.tst"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.tst"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.tst"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.tst"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.tst"),
+    # os.path.join("..", "projects", "04", "fill", "Fill.tst"),  # interactive test (passed manually)
+    os.path.join("..", "projects", "04", "fill", "FillAutomatic.tst"),
+    os.path.join("..", "projects", "04", "mult", "Mult.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.tst"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.tst"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.tst"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.tst"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.tst"),
 ]
 
 # VM test scripts (interpreter: VMEmulator, not included in tester)
 vm_tst_files = [
-    # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTestVME.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTestVME.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTestVME.tst"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAddVME.tst"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTestVME.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElementVME.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCallVME.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunctionVME.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTestVME.tst"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoopVME.tst"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeriesVME.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTestVME.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTestVME.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTestVME.tst"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAddVME.tst"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTestVME.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElementVME.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCallVME.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunctionVME.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTestVME.tst"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoopVME.tst"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeriesVME.tst"),
     os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.tst"),
     os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.tst"),
     os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.tst"),
     os.path.join("..", "projects", "12", "MathTest", "MathTest.tst"),
-    # # os.path.join("..", "projects", "12", "SysTest"),  # interactively tested / no test files
-    # # os.path.join("..", "projects", "12", "KeyboardTest"),
-    # # os.path.join("..", "projects", "12", "StringTest"),
-    # # os.path.join("..", "projects", "12", "OutputTest"),
-    # # os.path.join("..", "projects", "12", "ScreenTest"),
+
+    # interactively tested / no test files
+    # os.path.join("..", "projects", "12", "SysTest"),  
+    # os.path.join("..", "projects", "12", "KeyboardTest"),
+    # os.path.join("..", "projects", "12", "StringTest"),
+    # os.path.join("..", "projects", "12", "OutputTest"),
+    # os.path.join("..", "projects", "12", "ScreenTest"),
 ]
 
-# ASM tests (interpreter: CPUEmulator)
+# ASM tests (tester)
 tester_tst_files = [
-    # # week 5 and below use different multi row format (tested with HardwareSimulator/CPUEmulator)
-    # # os.path.join("..", "projects", "04", "fill", "Fill.tst"),  # interactive test (passed manually)
-    # # os.path.join("..", "projects", "04", "fill", "FillAutomatic.tst"),
-    # # os.path.join("..", "projects", "04", "mult", "Mult.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.tst"),
-    # os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.tst"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.tst"),
-    # os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.tst"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.tst"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.tst"),
-    # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.tst"),
+    # week 5 and below use different multi row format (tested with HardwareSimulator/CPUEmulator)
+    # os.path.join("..", "projects", "04", "fill", "Fill.tst"),  # interactive test (passed manually)
+    # os.path.join("..", "projects", "04", "fill", "FillAutomatic.tst"),
+    # os.path.join("..", "projects", "04", "mult", "Mult.tst"),
+
+    os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.tst"),
+    os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.tst"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "SimpleAdd", "SimpleAdd.tst"),
+    os.path.join("..", "projects", "07", "StackArithmetic", "StackTest", "StackTest.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement", "FibonacciElement.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall", "NestedCall.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction", "SimpleFunction.tst"),
+    os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.tst"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.tst"),
+    os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.tst"),
 ]

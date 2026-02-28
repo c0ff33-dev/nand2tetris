@@ -88,13 +88,9 @@ A=A-1
 M=D
 
 // if-goto COMPUTE_ELEMENT // if num_of_elements > 0, goto COMPUTE_ELEMENT
-// compare val (if-goto conditional) with 0
-@0 // if-goto COMPUTE_ELEMENT // if num_of_elements > 0, goto COMPUTE_ELEMENT
-D=A // d = 0
-@SP // &esp // compare val to 0
-M=M-1 // &esp-- (&val)
-A=M // *esp (*val)
-D=M-D // d = val - 0 // leave esp here (pop equivalent)
+@SP // if-goto COMPUTE_ELEMENT // if num_of_elements > 0, goto COMPUTE_ELEMENT
+AM=M-1 // SP--, A -> val
+D=M // d = val
 @FibonacciSeries$COMPUTE_ELEMENT
 D;JNE // jump if not zero
 
