@@ -16,7 +16,8 @@ import compiler
 from translator import Translator
 
 from pathlib import Path
-from pynput import keyboard
+import tty
+import termios
 from rich.console import Console
 from rich.table import Table
 console = Console()
@@ -24,6 +25,8 @@ step = False
 
 
 def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
+    global step, console
+
     # highlight current command in red
     gui_log.append(f"[red]{src_line}: {debug_cmd}[/red]")
     if len(gui_log) > 1:
@@ -111,34 +114,35 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         "[red]R15[/red] %s" % (hw["RAM"][15])
 
     else:
-        raise RuntimeError(debug_cmd)
+        raise RuntimeError(f"Unexpected asm command: {debug_cmd}")
 
     table.add_row(row_code + row_stack, row_reg)
     if src_line in breakpoints or step or breakpoints == [-1]:
         console.print(table)
 
-        def on_press(key):
-            global step
+        def read_key():
+            """Read a single keypress using raw terminal mode (works on WSL/Wayland/SSH)."""
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
             try:
-                if key.char == 'q': 
-                    os._exit(0) # quit
-                elif key.char == 'p':
-                    # continue
-                    step = False
-                    return False
-                elif key.char == 'n':
-                    # step to next instruction
-                    step = True
-                    return False
-                elif key.char == 'i':
-                    addr = input("peek: ")
-                    print(f"RAM[{addr}] = {hw['RAM'][int(addr)]}")
-            except AttributeError:
-                pass
-        
-        # TODO: linux: only works on xorg not wayland
-        with keyboard.Listener(on_press=on_press, suppress=True) as listener:
-            listener.join()
+                tty.setraw(fd)
+                return sys.stdin.read(1)
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
+        while True:
+            ch = read_key()
+            if ch == 'q':
+                os._exit(0)
+            elif ch == 'p':
+                step = False
+                break
+            elif ch == 'n':
+                step = True
+                break
+            elif ch == 'i':
+                addr = input("peek: ")
+                print(f"RAM[{addr}] = {hw['RAM'][int(addr)]}")
 
 
 def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=False):
@@ -376,8 +380,8 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         else:
             raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" % (hw["PC"], raw_cmd, "---", debug_cmd))
 
-        #  format primary debug output
-        if debug:
+        #  render debug interface
+        if breakpoints:
             process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
 
         # evaluate ASSERT directives
@@ -462,7 +466,7 @@ if __name__ == '__main__':
     # init
     debug = False
     vm_static_dicts = {} 
-    breakpoints = [-1] # TODO: add to CLI args
+    breakpoints = [6] # TODO: add to CLI args
 
     # compile Jack to VM (course compiler)
     if sys.platform.startswith("win"):
