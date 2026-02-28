@@ -722,7 +722,8 @@ class Translator:
                 vm_dir_filelist.append(vm_filepath)
 
             # write asm_file
-            asm_path = os.path.join(vm_dir, vm_dir.split(os.path.sep)[-1]+'.asm')
+            file_base = vm_dir.split(os.path.sep)[-1] or "out"
+            asm_path = os.path.join(vm_dir, file_base+'.asm')
             with open(asm_path, 'w') as asm_file:
                 # halt loop prevents fall-through into subroutines
                 halt = ""
