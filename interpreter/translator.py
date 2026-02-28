@@ -745,10 +745,16 @@ class Translator:
 
 
 if __name__ == "__main__":
-    from inputs import vm_dirpaths as _vm_dirpaths, vm_bootstrap_paths as _vm_bootstrap_paths
+    import sys
 
-    _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
-
-    for _vm_dir in _vm_dirpaths:
+    if len(sys.argv) > 1:
         t = Translator(debug=False)
-        t.translate(_vm_dir, _vm_bootstrap_paths)
+        t.translate(sys.argv[1])
+    else:
+        from inputs import vm_dirpaths as _vm_dirpaths, vm_bootstrap_paths as _vm_bootstrap_paths
+
+        _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
+
+        for _vm_dir in _vm_dirpaths:
+            t = Translator(debug=False)
+            t.translate(_vm_dir, _vm_bootstrap_paths)

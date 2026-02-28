@@ -272,11 +272,16 @@ def assemble(asm_filepath, debug=False):
 
 
 if __name__ == '__main__':
-    from inputs import vm_asm_filepaths, binary_asm_filepaths
-    _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
+    import sys
 
-    # debug_runs = [True, False]
-    debug_runs = [False]
-    for _debug in debug_runs:
-        for _asm_filepath in _asm_filepaths:
-            assemble(_asm_filepath, debug=_debug)
+    if len(sys.argv) > 1:
+        assemble(sys.argv[1], debug=False)
+    else:
+        from inputs import vm_asm_filepaths, binary_asm_filepaths
+        _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
+
+        # debug_runs = [True, False]
+        debug_runs = [False]
+        for _debug in debug_runs:
+            for _asm_filepath in _asm_filepaths:
+                assemble(_asm_filepath, debug=_debug)

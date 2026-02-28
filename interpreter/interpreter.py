@@ -462,21 +462,7 @@ if __name__ == '__main__':
     # init
     debug = False
     vm_static_dicts = {} 
-    breakpoints = []
-
-    # DEBUG: overrides
-    if debug:
-        jack_dirpaths = [] 
-        jack_filepaths = []
-        jack_filepath_lists = []
-        jack_matches = {}
-        vm_dirpaths = []
-        vm_asm_filepaths = []
-        binary_asm_filepaths = [os.path.join("..", "projects", "12", "MathTest", "MathTest.asm")]
-        hw_tst_files = []
-        cpu_tst_files = []
-        vm_tst_files = []
-        breakpoints = []
+    breakpoints = [] # TODO: add to CLI args
 
     # compile Jack to VM (course compiler)
     if sys.platform.startswith("win"):

@@ -1377,7 +1377,20 @@ def _compile(jack_filepaths, strict_matches):
 
 
 if __name__ == '__main__':
-    from inputs import jack_filepath_lists, jack_matches
+    import sys
+    import glob as _glob
 
-    debug = True  # default True if run from main, otherwise False if called externally
-    _compile(jack_filepath_lists, jack_matches)
+    if len(sys.argv) > 1:
+        _path = sys.argv[1]
+        if os.path.isdir(_path):
+            # TODO: compilation order matters
+            _files = sorted(_glob.glob(os.path.join(_path, "*.jack")))
+        else:
+            _files = [_path]
+        debug = True
+        _compile([_files], {})
+    else:
+        from inputs import jack_filepath_lists, jack_matches
+
+        debug = True  # default True if run from main, otherwise False if called externally
+        _compile(jack_filepath_lists, jack_matches)
