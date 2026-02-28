@@ -285,6 +285,10 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
         if raw_cmd == "@Sys.halt":
             break
 
+        # trap Sys.error before it enters an infinite loop
+        if raw_cmd == "@Sys.error":
+            raise RuntimeError("Interpreter: Sys.error() called at cycle %d, PC=%d" % (cycle, hw["PC"]))
+
         if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
             raise RuntimeError("Interpreter: Debug/Raw line number mismatch!")           
 
