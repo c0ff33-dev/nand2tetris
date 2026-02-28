@@ -39,7 +39,6 @@ sys_func = {
                "poke": {"kind": "func", "type": "void", "args": ("int", "int"), "len": 2},
                "alloc": {"kind": "func", "type": "Array", "args": ("int",), "len": 1},
                "deAlloc": {"kind": "func", "type": "void", "args": ("Array",), "len": 1}},
-    # TODO: methods should probably just be len+1 in compiler handling but hard coded for now
     "String": {"new": {"kind": "const", "type": "String", "args": ("int",), "len": 1},
                "dispose": {"kind": "method", "type": "void", "args": (), "len": 0+1},
                "length": {"kind": "method", "type": "int", "args": (), "len": 0+1},
@@ -125,7 +124,6 @@ def store_pcode(pcode, cmd):
     global debug
 
     if debug:
-        # TODO: for performance reasons this should be persistent not called every time
         count = 0
         for p in pcode:
             if not p.startswith("//"):
@@ -277,7 +275,6 @@ def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_n
     return pcode, class_dict
 
 
-# TODO: mandatory kwargs are not clearly identifiable
 def compile_statement(pcode=None, statement=None, class_dict=None, class_name=None, func_name=None, call_class=None,
                       call_func=None, var_type=None, var_name=None, num_args=0, exp_buffer=[], var_scope=None,
                       if_count=0, while_count=0, lhs_array=False, var_kind=None, prescan=False):
@@ -287,7 +284,6 @@ def compile_statement(pcode=None, statement=None, class_dict=None, class_name=No
     compile_statement(pcode=pcode, statement=statement, class_dict=class_dict, num_args=num_args,
                       while_count=while_count, if_count=if_count, exp_buffer=exp_buffer)
     """
-
     if statement == "do":
         pass
 
@@ -615,7 +611,6 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
 
 
 def compile_string(pcode, string):
-    # FUTURE: literal could be disposed after statement (not implemented in course compiler)
     pcode = store_pcode(pcode, "push constant %s // strlen" % len(string))
     pcode = store_pcode(pcode, "call String.new 1 // \"%s\"" % string)
     for c, char in enumerate(string):
@@ -925,13 +920,11 @@ def main(filepath, file_list, asserts=None):
                 lhs_array = None  # None signifies lhs_array was true but now compiled/consumed
 
         # if stand-alone var array buffered in a non-assignment statement process it now
-        # TODO: this is probably a bit fragile (but is still necessary)
         if statement != 'let' and elem.text != '[' and exp_buffer and exp_buffer[-1].endswith("(*array var)"):
             pcode = store_pcode(pcode, exp_buffer.pop())
 
         if end_block:
             if block:
-                # TODO: compile_end_block
                 # if-without-else
                 if elem.text != 'else' and block[-1] == 'if':
                     pcode = store_pcode(pcode, "\nlabel IF_FALSE%s // end if_block" % (if_list[-1]))
@@ -1076,7 +1069,6 @@ def main(filepath, file_list, asserts=None):
 
                 # collect class/func for call, compile when paired
                 elif statement == 'do':
-                    # TODO: move out of expression handler
                     pcode, exp_buffer, parent_obj, child_func = \
                             expression_handler(pcode, statement, exp_buffer, class_dict=class_dict,
                                                identifier=identifier, class_name=class_name, func_name=func_name,
@@ -1127,7 +1119,6 @@ def main(filepath, file_list, asserts=None):
                 raise RuntimeError("no keyword or statement defined for '%s'" % elem.text)
 
         elif elem.tag == 'symbol':
-            # TODO: compile_symbol
             symbol = elem.text.strip()
 
             if symbol in ".":
@@ -1140,7 +1131,6 @@ def main(filepath, file_list, asserts=None):
                 if exp_buffer:
                     raise RuntimeError("unparsed expressions still in buffer: %s" % exp_buffer)
 
-                # TODO: compile_start_block
                 elif keyword == 'else':  # no explicit statement type for else
                     block.append(keyword)
                     # close the latest if_true block but don't dec/pop until IF_END
@@ -1383,7 +1373,6 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         _path = sys.argv[1]
         if os.path.isdir(_path):
-            # TODO: compilation order matters
             _files = sorted(_glob.glob(os.path.join(_path, "*.jack")))
         else:
             _files = [_path]

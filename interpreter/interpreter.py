@@ -186,46 +186,31 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
         "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
 
-        # TODO: FPGA symbols (add here and assembler / where necessary)
-        "UART_TX": 4098
-        # SP               0
-        # LCL              1
-        # ARG              2
-        # THIS             3
-        # THAT             4
-        # R0               0
-        # R1               1
-        # R2               2
-        # R3               3
-        # R4               4
-        # R5               5
-        # R6               6
-        # R7               7
-        # R8               8
-        # R9               9
-        # R10              10
-        # R11              11
-        # R12              12
-        # R13              13
-        # R14              14
-        # R15              15
-        # LED              4096
-        # BUT              4097
-        # UART_TX          4098
-        # UART_RX          4099
-        # SPI              4100
-        # SRAM_A           4101
-        # SRAM_D           4102
-        # GO               4103
-        # LCD8             4104
-        # LCD16            4105
-        # RTP              4106
-        # DEBUG0           4107
-        # DEBUG1           4108
-        # DEBUG2           4109
-        # DEBUG3           4110
-        # DEBUG4           4111
+        # FPGA symbols # TODO: add to assembler
+        # the non-standard behaviour of these ports that don't behave like RAM is not emulated!
+        "LED":     4096,
+        "BUT":     4097,
+        "UART_TX": 4098,
+        "UART_RX": 4099,
+        "SPI":     4100,
+        "SRAM_A":  4101,
+        "SRAM_D":  4102,
+        "GO":      4103,
+        "LCD8":    4104,
+        "LCD16":   4105,
+        "RTP":     4106,
+        "DEBUG0":  4107,
+        "DEBUG1":  4108,
+        "DEBUG2":  4109,
+        "DEBUG3":  4110,
+        "DEBUG4":  4111,
     }
+
+    # New A/C instruction spec:
+    # original A instructions: 0x0-7FFF (32K words)
+    # original C instructions: 0x8000-0xFFFF (32K words, 8K reserved)
+    # new A instructions: 0x0-0xDFFF (56k words)
+    # new C instructions: 0xE000-FFFF (8K words)
 
     with open(asm_filepath, "r") as asm_file:
         asm_content = asm_file.readlines()
@@ -346,12 +331,6 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
                 # if multiple dst all are written to the same eval result simultaneously
                 # in practice because the interpreter runs procedurally writing M before A should suffice
                 if "M" in dst:
-                    # TODO: switch for original vs modified spec
-                    # TODO: update behaviour for this and other IO ports
-                    # if hw["A"] != 4098: # UART_TX
-                    #     hw["RAM"][hw["A"]] = eval_result
-                    # if hw["A"] != 4100: # SPI
-                    #     hw["RAM"][hw["A"]] = eval_result
                     hw["RAM"][hw["A"]] = eval_result
                 if "A" in dst:
                     hw["A"] = eval_result
@@ -480,7 +459,7 @@ if __name__ == '__main__':
     Project 9-11: JACK > T_XML (CST) > XML (AST) > VM (tokenizer > analyzer > compiler) // VM > ASM > HACK as above
                   Only Project 10 has CST/AST solution XML files
     '''
-    # TODO: Use symlinks for libraries and purge dupes from git history
+    # TODO: Use symlinks for libraries
 
     from inputs import (jack_dirpaths, jack_filepaths, jack_filepath_lists, jack_matches,
                         vm_dirpaths, vm_bootstrap_paths, vm_asm_filepaths, binary_asm_filepaths,

@@ -661,7 +661,6 @@ class Translator:
         if vm_filepath in self.static_dict:
             self.static_dict[vm_filepath][1] += 1  # inc by 1 as it starts at zero
 
-    # TODO: don't bother translating common libs (i.e. symlinks, when implemented)
     def translate(self, vm_dir, vm_bootstrap_paths=()):
         """
         translate vm files/dirs into asm
@@ -699,7 +698,6 @@ class Translator:
 
         # initialize offset array
         for i in range(0, len(self.static_dict)):
-            # TODO: why is this a seperate structure from static_dict?
             self.offset_list.append(-1)
 
         # drop the size of each offset into array position

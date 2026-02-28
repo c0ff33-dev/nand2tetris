@@ -27,7 +27,7 @@ class Sys {
         return;
     }
 
-    // FUTURE: can fine tune in sim (also needs 1/4 reduction from main implementation)
+    // FUTURE: can fine tune in sim (needs to be retuned post-optimization)
     /** Attempts to sleep for duration milliseconds and returns. */
     function void wait(int duration) {
         // ~255 total instructions
