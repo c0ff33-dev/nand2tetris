@@ -661,7 +661,7 @@ class Translator:
         if vm_filepath in self.static_dict:
             self.static_dict[vm_filepath][1] += 1  # inc by 1 as it starts at zero
 
-    def translate(self, vm_dir, vm_bootstrap_paths=()):
+    def translate(self, vm_dir, vm_bootstrap_paths=(), quiet=False):
         """
         translate vm files/dirs into asm
         """
@@ -739,9 +739,10 @@ class Translator:
                 else:
                     asm_file.write(self.asm+halt+self.asm_subroutines)
 
-        print("Translated VM file(s) in directory: %s" % vm_dir)
-        for vm_filepath in vm_dir_filelist:
-            print("\t%s" % vm_filepath)
+        if not quiet:
+            print("Translated VM file(s) in directory: %s" % vm_dir)
+            for vm_filepath in vm_dir_filelist:
+                print("\t%s" % vm_filepath)
 
 
 if __name__ == "__main__":
@@ -749,7 +750,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) > 1:
         t = Translator(debug=False)
-        t.translate(sys.argv[1])
+        t.translate(sys.argv[1], quiet=True)
     else:
         from inputs import vm_dirpaths as _vm_dirpaths, vm_bootstrap_paths as _vm_bootstrap_paths
 

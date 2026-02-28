@@ -6,7 +6,7 @@ import os
 import warnings
 
 
-def assemble(asm_filepath, debug=False):
+def assemble(asm_filepath, debug=False, quiet=False):
     warnings.simplefilter("default")  # enable warnings on new file
 
     if debug:
@@ -268,14 +268,15 @@ def assemble(asm_filepath, debug=False):
                 #     print('code : ' + bin_line[0:3] + " " + bin_line[3] + " " + bin_line[4:10] +
                 #           " " + bin_line[10:13] + " " + bin_line[13:])
                 output_file.write(bin_line + '\n')
-        print('Assembler: %s Complete (no errors / no solution file)' % asm_filepath)
+        if not quiet:
+            print('Assembler: %s Complete (no errors / no solution file)' % asm_filepath)
 
 
 if __name__ == '__main__':
     import sys
 
     if len(sys.argv) > 1:
-        assemble(sys.argv[1], debug=False)
+        assemble(sys.argv[1], debug=False, quiet=True)
     else:
         from inputs import vm_asm_filepaths, binary_asm_filepaths
         _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
