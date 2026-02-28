@@ -11,7 +11,6 @@ class Sys {
     /** Performs all the initializations required by the OS. */
     function void init() {
         do GPIO.init();
-        do GPIO.writeLed(1); // ASSERT REACHABLE
         do Memory.init();
         do Math.init();
         do Screen.init();

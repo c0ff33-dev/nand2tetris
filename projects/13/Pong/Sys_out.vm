@@ -1,10 +1,6 @@
 function Sys.init 0
 call GPIO.init 0
 pop temp 0
-push constant 1
-call GPIO.writeLed 1
-pop temp 0
-// ASSERT REACHABLE
 call Memory.init 0
 pop temp 0
 call Math.init 0

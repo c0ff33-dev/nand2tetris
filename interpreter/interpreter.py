@@ -3,9 +3,9 @@ Python bindings & test framework for Nand2Tetris HACK Assembly language
 """
 import re
 import warnings
-import traceback
 import os
 import sys
+import multiprocessing
 
 import assembler
 import tester
@@ -287,7 +287,7 @@ def run(asm_filepath, static_dict=None, tst_params=None, breakpoints=[], debug=F
 
         # trap Sys.error before it enters an infinite loop
         if raw_cmd == "@Sys.error":
-            raise RuntimeError("Interpreter: Sys.error() called @ src_line %d" % src_line)
+            raise RuntimeError("Interpreter: Sys.error() called @ src_line %d %s" % (src_line, asm_filepath))
 
         if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
             raise RuntimeError("Interpreter: Debug/Raw line number mismatch!")           
@@ -524,30 +524,50 @@ if __name__ == '__main__':
         assembler.assemble(asm_filepath, debug=debug)
     warnings.simplefilter("default")  # reset warning filter
 
-    # load & execute modules without test scripts
-    for asm_filepath in binary_asm_filepaths:
-        try:
-            run(asm_filepath, breakpoints=breakpoints, debug=debug) # TODO: multiprocess
-        except IndexError:
-            warnings.warn("Interpreter: Probable memory access violation captured during execution of %s"
-                            % asm_filepath)
-            traceback.print_exc()
+    # load & execute modules (multiprocess)
+    processes = []
 
-    # load & execute modules with test scripts
+    for asm_filepath in binary_asm_filepaths:
+        print("Interpreter: Running %s" % asm_filepath)
+        p = multiprocessing.Process(
+            target=run,
+            args=(asm_filepath,),
+            kwargs={"breakpoints": breakpoints, "debug": debug}
+        )
+        processes.append((asm_filepath, p))
+        p.start()
+
     for asm_filepath in vm_asm_filepaths:
         tst_filepath = asm_filepath.replace(".asm", ".tst")
         cmp_filepath = asm_filepath.replace(".asm", ".cmp")
         tst_params = tester.load_tst(tst_filepath, debug=debug)
         tst_params["compare"] = tester.load_cmp(cmp_filepath, debug=debug)
-    
-        # retrieve static_dict from translator run
+
         _static_dict = None
         for vm_dir in vm_dirpaths:
             if vm_dir in asm_filepath:
                 _static_dict = vm_static_dicts[vm_dir]
-    
-        # execute
-        run(asm_filepath, static_dict=_static_dict, tst_params=tst_params, debug=debug) # TODO: multiprocess
+
+        print("Interpreter: Testing %s" % asm_filepath)
+        p = multiprocessing.Process(
+            target=run,
+            args=(asm_filepath,),
+            kwargs={"static_dict": _static_dict, "tst_params": tst_params, "debug": debug}
+        )
+        processes.append((asm_filepath, p))
+        p.start()
+
+    # wait for all processes and check return codes
+    failures = []
+    for asm_filepath, p in processes:
+        p.join()
+        if p.exitcode != 0:
+            failures.append((asm_filepath, p.exitcode))
+
+    if failures:
+        for filepath, code in failures:
+            print("FAILED: %s (exit code %d)" % (filepath, code))
+        raise RuntimeError("Interpreter: %d/%d runs failed" % (len(failures), len(processes)))
     
     # run hdl tests (HardwareSimulator)
     if sys.platform.startswith("win"):

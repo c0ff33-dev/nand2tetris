@@ -16,14 +16,6 @@
 <symbol> ) </symbol>
 <symbol> ; </symbol>
 <keyword> do </keyword>
-<identifier> GPIO </identifier>
-<symbol> . </symbol>
-<identifier> writeLed </identifier>
-<symbol> ( </symbol>
-<integerConstant> 1 </integerConstant>
-<symbol> ) </symbol>
-<symbol> ; </symbol>
-<keyword> do </keyword>
 <identifier> Memory </identifier>
 <symbol> . </symbol>
 <identifier> init </identifier>
