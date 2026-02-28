@@ -36,7 +36,24 @@ def assemble(asm_filepath, debug=False, quiet=False):
         "THIS": 3,
         "THAT": 4,
         # --------
-        "BASE": 15
+        "BASE": 15,
+        # --------
+        "LED":     4096,
+        "BUT":     4097,
+        "UART_TX": 4098,
+        "UART_RX": 4099,
+        "SPI":     4100,
+        "SRAM_A":  4101,
+        "SRAM_D":  4102,
+        "GO":      4103,
+        "LCD8":    4104,
+        "LCD16":   4105,
+        "RTP":     4106,
+        "DEBUG0":  4107,
+        "DEBUG1":  4108,
+        "DEBUG2":  4109,
+        "DEBUG3":  4110,
+        "DEBUG4":  4111,
     }
 
     with open(asm_filepath, "r") as asm_file:

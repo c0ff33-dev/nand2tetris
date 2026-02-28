@@ -186,7 +186,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
         "SCREEN": 16384,  # 16384-24575 incl (persistent)
         "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
 
-        # FPGA symbols # TODO: add to assembler
+        # FPGA symbols
         # the non-standard behaviour of these ports that don't behave like RAM is not emulated!
         "LED":     4096,
         "BUT":     4097,
