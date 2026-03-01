@@ -315,10 +315,14 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
             raise RuntimeError("Interpreter: Sys.error() called @ src_line %d %s" % (src_line, asm_filepath))
 
         if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
-            raise ValueError("Interpreter: Debug/Raw line number mismatch!")           
+            raise ValueError("Interpreter: Debug/Raw line number mismatch! %s" % asm_filepath)           
 
         if raw_cmd[0] == "(":
-            raise ValueError("Interpreter: Symbols should already be parsed out!")
+            raise ValueError("Interpreter: Symbols should already be parsed out! %s" % asm_filepath)
+
+        # evaluate ASSERT REACHABLE pre-execution
+        if '// ASSERT REACHABLE' in debug_cmd:
+            assert_pass += 1
 
         # @address assignment
         if raw_cmd[0] == "@":
@@ -332,7 +336,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                     # not hit during week 7-8 tests
                     address_labels["BASE"] += 1  # if not, increment to next slot on the heap and assign it
                     if address_labels["BASE"] >= 255:
-                        raise OverflowError("Interpreter: Statics were about to overflow into the stack!")
+                        raise OverflowError("Interpreter: Statics were about to overflow into the stack! %s" % asm_filepath)
                     address_labels[temp_label] = address_labels["BASE"]
                 address = address_labels[temp_label]
 
@@ -353,8 +357,8 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                 dst = raw_cmd[:3]
                 eval_cmd = raw_cmd[4:]
             else:
-                raise ValueError("Interpreter: Unexpected command: %s %s %s %s" %
-                                   (hw["PC"], raw_cmd, "---", debug_cmd))
+                raise ValueError("Interpreter: Unexpected command: %s %s %s %s %s" %
+                                   (hw["PC"], raw_cmd, "---", debug_cmd, asm_filepath))
 
             # deref the real register values for the eval
             raw_eval_cmd = eval_cmd \
@@ -378,13 +382,13 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                     hw["D"] = eval_result
                 
                 if not any(x in dst for x in ["A", "D", "M"]):
-                    raise ValueError("Interpreter: Unexpected dst in command: %s %s %s %s" % 
-                                       (hw["PC"], raw_cmd, "---", debug_cmd))
+                    raise ValueError("Interpreter: Unexpected dst in command: %s %s %s %s %s" % 
+                                       (hw["PC"], raw_cmd, "---", debug_cmd, asm_filepath))
                 
                 hw["PC"] += 1  # advance to next instruction
             else:
-                raise ValueError("Interpreter: Unexpected command: %s %s %s %s" %
-                                   (hw["PC"], raw_cmd, "---", debug_cmd))
+                raise ValueError("Interpreter: Unexpected command: %s %s %s %s %s" %
+                                   (hw["PC"], raw_cmd, "---", debug_cmd, asm_filepath))
 
         # jumps
         elif ";" in raw_cmd:
@@ -411,18 +415,18 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                     if hw["D"] <= 0:
                         jump = True
                 else:
-                    raise ValueError("Interpreter: Unexpected jump command: %s %s %s %s" %
-                                       (hw["PC"], raw_cmd, "---", debug_cmd))
+                    raise ValueError("Interpreter: Unexpected jump command: %s %s %s %s %s" %
+                                       (hw["PC"], raw_cmd, "---", debug_cmd, asm_filepath))
 
                 if jump:
                     hw["PC"] = hw["A"]  # execute the jump
                 else:
                     hw["PC"] += 1  # fall through to next instruction
             else:
-                raise ValueError("Interpreter: Unexpected command: %s %s %s %s" %
-                                   (hw["PC"], raw_cmd, "---", debug_cmd))
+                raise ValueError("Interpreter: Unexpected command: %s %s %s %s %s" %
+                                   (hw["PC"], raw_cmd, "---", debug_cmd, asm_filepath))
         else:
-            raise ValueError("Interpreter: Unexpected command: %s %s %s %s" % (hw["PC"], raw_cmd, "---", debug_cmd))
+            raise ValueError("Interpreter: Unexpected command: %s %s %s %s %s" % (hw["PC"], raw_cmd, "---", debug_cmd, asm_filepath))
 
         # track call tree from translator comments
         if '// call ' in debug_cmd:
@@ -435,11 +439,11 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
         if breakpoints or func_breakpoints:
             process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func_breakpoints)
 
-        # evaluate ASSERT directives
+        # evaluate ASSERT directives (post-execution)
         if '// ASSERT ' in debug_cmd:
             assert_text = debug_cmd.split('// ASSERT ')[1].strip()
             if assert_text == 'REACHABLE':
-                assert_pass += 1
+                pass  # handled pre-execution above
             else:
                 match = re.match(r'RAM\[(\d+)\]\s*=\s*(-?\d+)', assert_text)
                 if match:
@@ -447,8 +451,8 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                     actual = hw["RAM"][addr]
                     if actual != expected:
                         assert_fail += 1
-                        print("ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d"
-                              % (addr, actual, expected, hw["PC"]-1))
+                        print("ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d %s"
+                              % (addr, actual, expected, hw["PC"]-1, asm_filepath))
                     else:
                         assert_pass += 1
 
@@ -466,13 +470,13 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
     if expected_asserts > 0:
         evaluated = assert_pass + assert_fail
         if evaluated == 0:
-            raise AssertionError("ASSERT: %d asserts in ROM but none were reached" % expected_asserts)
+            raise AssertionError("ASSERT: %d asserts in ROM but none were reached %s" % (expected_asserts, asm_filepath))
         elif evaluated < expected_asserts:
-            raise AssertionError("ASSERT: only %d/%d asserts were reached" % (evaluated, expected_asserts))
+            raise AssertionError("ASSERT: only %d/%d asserts were reached %s" % (evaluated, expected_asserts, asm_filepath))
         if debug:
             print("\tASSERT: %d/%d passed, halted @ cycle %d" % (assert_pass, expected_asserts, cycle))
         if assert_fail > 0:
-            raise AssertionError("ASSERT: %d/%d failed" % (assert_fail, expected_asserts))
+            raise AssertionError("ASSERT: %d/%d failed %s" % (assert_fail, expected_asserts, asm_filepath))
 
     # evaluate results
     result_dict = {}
