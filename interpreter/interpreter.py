@@ -432,7 +432,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
         if '// call ' in debug_cmd:
             func = debug_cmd.split('// call ')[1].split(' //')[0].rsplit(' ', 1)[0]
             call_tree.append(func)
-        elif '// return' in debug_cmd and call_tree:
+        elif '// return' in debug_cmd and call_tree: # FIXME: I don't think this is sufficient/accurate anymore
             call_tree.pop()
 
         #  render debug interface

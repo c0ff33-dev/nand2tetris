@@ -538,8 +538,13 @@ class Translator:
             cmd = cmd.strip()
             if cmd.startswith('// ASSERT'):
                 # attach ASSERT to last emitted ASM instruction
-                asm_lines = self.asm.rstrip('\n').rsplit('\n', 1)
-                self.asm = asm_lines[0] + '\n' + asm_lines[1] + ' ' + cmd + '\n'
+                # skip trailing return labels and their jumps to land on the call site
+                lines = self.asm.rstrip('\n').split('\n')
+                target = len(lines) - 1
+                if lines[target].strip().startswith('(RET_'):
+                    target -= 2  # skip label and 0;JMP to reach @CALL_* or @*_SUB
+                lines[target] += ' ' + cmd
+                self.asm = '\n'.join(lines) + '\n'
                 continue
             elif cmd.startswith(r'//'):
                 continue
@@ -662,6 +667,70 @@ class Translator:
         if vm_filepath in self.static_dict:
             self.static_dict[vm_filepath][1] += 1  # inc by 1 as it starts at zero
 
+    def link_check(self, vm_filelist, has_jack):
+        """
+        pre-translation validation: check for undefined functions, dead files,
+        and missing init() calls in Sys.init()
+        """
+        defined = {}    # func_name -> vm_filepath
+        called = {}     # func_name -> set of vm_filepaths that call it
+        sys_init_calls = set()
+
+        for vm_filepath in vm_filelist:
+            vm_out = vm_filepath.replace('.vm', '_out.vm')
+            use_filepath = vm_out if os.path.exists(vm_out) else vm_filepath
+
+            with open(use_filepath) as f:
+                current_function = None
+                for line in f:
+                    line = line.strip()
+                    if line.startswith('//') or line == '':
+                        continue
+                    if line.startswith('function '):
+                        func_name = line.split(' ')[1]
+                        defined[func_name] = vm_filepath
+                        current_function = func_name
+                    elif line.startswith('call '):
+                        callee = line.split(' ')[1]
+                        called.setdefault(callee, set()).add(vm_filepath)
+                        if current_function == 'Sys.init':
+                            sys_init_calls.add(callee)
+
+        # check for dead files first (no functions called by any other file)
+        dead_files = set()
+        if has_jack and len(vm_filelist) > 1:
+            for vm_filepath in vm_filelist:
+                file_funcs = {f for f, p in defined.items() if p == vm_filepath}
+                called_externally = any(
+                    f in called and called[f] - {vm_filepath}
+                    for f in file_funcs
+                )
+                if not called_externally and file_funcs:
+                    name = os.path.basename(vm_filepath)
+                    if name != 'Sys.vm':  # Sys.vm is the entry point
+                        dead_files.add(vm_filepath)
+                        print("\tLink warning: file %s has no refs and will be pruned from compilation" % name)
+
+        # check for undefined functions (skip if all callers are dead files)
+        all_called = set(called.keys())
+        all_defined = set(defined.keys())
+        undefined = all_called - all_defined
+        if undefined:
+            for func in sorted(undefined):
+                live_callers = called[func] - dead_files
+                if live_callers:
+                    callers = ', '.join(os.path.basename(f) for f in sorted(live_callers))
+                    raise RuntimeError("\tLink error: undefined function '%s' called from [%s]" % (func, callers))
+
+        # check that <Class>.init() is called in Sys.init() (skip dead files)
+        if has_jack and 'Sys.init' in defined:
+            for func_name, vm_filepath in defined.items():
+                if func_name.endswith('.init') and func_name != 'Sys.init':
+                    if vm_filepath not in dead_files and func_name not in sys_init_calls:
+                        print("\tLink warning: '%s' defines init() but not called in Sys.init()" % func_name)
+
+        return dead_files
+
     def translate(self, vm_dir, vm_bootstrap_paths=(), quiet=False):
         """
         translate vm files/dirs into asm
@@ -686,6 +755,15 @@ class Translator:
 
         # detect Jack files in the directory (Jack programs need SP=256 bootstrap)
         has_jack = any(f.endswith('.jack') for f in os.listdir(vm_dir) if os.path.isfile(os.path.join(vm_dir, f)))
+
+        # pre-translation link checks
+        dead_files = set()
+        if len(vm_filelist) > 1:
+            dead_files = self.link_check(vm_filelist, has_jack)
+
+        # cull dead files from translation
+        if dead_files:
+            vm_filelist = [f for f in vm_filelist if f not in dead_files]
 
         for vm_filepath in vm_filelist:
             self.parse_static(vm_filepath)

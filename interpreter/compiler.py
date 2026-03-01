@@ -1221,7 +1221,15 @@ def main(filepath, file_list, asserts=None):
                 if statement == 'let' and asserts and (func_name, 'let', let_count) in asserts:
                     pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'let', let_count)])
                 elif statement == 'do' and asserts and (func_name, 'do', do_count) in asserts:
-                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'do', do_count)])
+                    assert_text = "// %s" % asserts[(func_name, 'do', do_count)]
+                    if 'REACHABLE' in assert_text:
+                        # insert before pop temp 0 so ASSERT lands on call site
+                        for _i in range(len(pcode) - 1, -1, -1):
+                            if pcode[_i].startswith('pop temp 0'):
+                                pcode.insert(_i, assert_text + "\n")
+                                break
+                    else:
+                        pcode = store_pcode(pcode, assert_text)
                 elif statement == 'return' and asserts and (func_name, 'return', return_count) in asserts:
                     pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'return', return_count)])
 
