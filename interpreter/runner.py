@@ -217,3 +217,4 @@ if __name__ == '__main__':
     # FUTURE: diff Jack files (nand2tetris-fpga)
     # FIXME: compiler - '//' in string strips the string
     # TODO: analyze compiler.py for dead code and signatures that can be simplified
+    # TODO: Add call tree tracing to interpreter TUI in its own panel similar to stack

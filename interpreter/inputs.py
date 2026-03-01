@@ -4,6 +4,7 @@ Each module's __main__ imports its relevant lists from here.
 """
 
 import os
+import glob as _glob
 
 # Jack program directories for course compiler (interpreter: JackCompiler)
 jack_dirpaths = [
@@ -33,184 +34,21 @@ jack_dirpaths = [
     os.path.join("..", "projects", "13", "Pong"),
 ]
 
-# Jack source files for tokenizer and analyzer
-jack_filepaths = [
-    os.path.join("..", "projects", "09", "Average", "Main.jack"),
-    os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
-    os.path.join("..", "projects", "09", "Fraction", "Fraction.jack"),
-    os.path.join("..", "projects", "09", "HelloWorld", "Main.jack"),
-    os.path.join("..", "projects", "09", "List", "Main.jack"),
-    os.path.join("..", "projects", "09", "List", "List.jack"),
-    os.path.join("..", "projects", "09", "Square", "Main.jack"),
-    os.path.join("..", "projects", "09", "Square", "Square.jack"),
-    os.path.join("..", "projects", "09", "Square", "SquareGame.jack"),
-    os.path.join("..", "projects", "10", "ArrayTest", "Main.jack"),
-
-    # nonsense code that shouldn't compile or run
-    # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  
-    # os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
-    # os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack"),
-
-    os.path.join("..", "projects", "10", "Square", "Main.jack"),
-    os.path.join("..", "projects", "10", "Square", "Square.jack"),
-    os.path.join("..", "projects", "10", "Square", "SquareGame.jack"),
-    os.path.join("..", "projects", "11", "Average", "Main.jack"),
-    os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack"),
-    os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack"),
-    os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
-    os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
-    os.path.join("..", "projects", "11", "Pong", "Main.jack"),
-    os.path.join("..", "projects", "11", "Pong", "PongGame.jack"),
-    os.path.join("..", "projects", "11", "Seven", "Main.jack"),
-    os.path.join("..", "projects", "11", "Square", "Main.jack"),
-    os.path.join("..", "projects", "11", "Square", "Square.jack"),
-    os.path.join("..", "projects", "11", "Square", "SquareGame.jack"),
-    os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "SysTest", "Sys.jack"),
-    os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "ArrayTest", "Array.jack"),
-    os.path.join("..", "projects", "12", "KeyboardTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.jack"),
-    os.path.join("..", "projects", "12", "StringTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "StringTest", "String.jack"),
-    os.path.join("..", "projects", "12", "MemoryTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "MemoryTest", "Memory.jack"),
-    os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack"),
-    os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "MathTest", "Math.jack"),
-    os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "OutputTest", "Output.jack"),
-    os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"),
-    os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Array.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Ball.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Bat.jack"),
-    os.path.join("..", "projects", "13", "Pong", "GPIO.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Keyboard.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Main.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Math.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Memory.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Output.jack"),
-    os.path.join("..", "projects", "13", "Pong", "PongGame.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Screen.jack"),
-    os.path.join("..", "projects", "13", "Pong", "String.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Sys.jack"),
-]
-
-# Jack source file groups (compiler)
-jack_filepath_lists = [
-    [os.path.join("..", "projects", "09", "Average", "Main.jack")],
-    [os.path.join("..", "projects", "09", "Fraction", "Main.jack"),
-     os.path.join("..", "projects", "09", "Fraction", "Fraction.jack")],
-    [os.path.join("..", "projects", "09", "HelloWorld", "Main.jack")],
-    [os.path.join("..", "projects", "09", "List", "Main.jack"),
-     os.path.join("..", "projects", "09", "List", "List.jack")],
-    [os.path.join("..", "projects", "09", "Square", "Main.jack"),
-     os.path.join("..", "projects", "09", "Square", "Square.jack"),
-     os.path.join("..", "projects", "09", "Square", "SquareGame.jack")],
-    [os.path.join("..", "projects", "10", "ArrayTest", "Main.jack")],
-
-    # nonsense code that shouldn't compile or run
-    # [os.path.join("..", "projects", "10", "ExpressionLessSquare", "Main.jack"),  
-    #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "Square.jack"),
-    #  os.path.join("..", "projects", "10", "ExpressionLessSquare", "SquareGame.jack")],
-
-    [os.path.join("..", "projects", "10", "Square", "Main.jack"),
-     os.path.join("..", "projects", "10", "Square", "Square.jack"),
-     os.path.join("..", "projects", "10", "Square", "SquareGame.jack")],
-    [os.path.join("..", "projects", "11", "Average", "Main.jack")],
-    [os.path.join("..", "projects", "11", "ComplexArrays", "Main.jack")],
-    [os.path.join("..", "projects", "11", "ConvertToBin", "Main.jack")],
-    [os.path.join("..", "projects", "11", "Pong", "Ball.jack"),
-     os.path.join("..", "projects", "11", "Pong", "Bat.jack"),
-     os.path.join("..", "projects", "11", "Pong", "Main.jack"),
-     os.path.join("..", "projects", "11", "Pong", "PongGame.jack")],
-    [os.path.join("..", "projects", "11", "Seven", "Main.jack")],
-    [os.path.join("..", "projects", "11", "Square", "Main.jack"),
-     os.path.join("..", "projects", "11", "Square", "Square.jack"),
-     os.path.join("..", "projects", "11", "Square", "SquareGame.jack")],
-    [os.path.join("..", "projects", "12", "SysTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "SysTest", "Sys.jack")],
-    [os.path.join("..", "projects", "12", "ArrayTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "ArrayTest", "Array.jack")],
-    [os.path.join("..", "projects", "12", "KeyboardTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.jack")],
-    [os.path.join("..", "projects", "12", "StringTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "StringTest", "String.jack")],
-    [os.path.join("..", "projects", "12", "MemoryTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "MemoryTest", "Memory.jack")],
-    [os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.jack")],
-    [os.path.join("..", "projects", "12", "MathTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "MathTest", "Math.jack")],
-    [os.path.join("..", "projects", "12", "OutputTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "OutputTest", "Output.jack")],
-    [os.path.join("..", "projects", "12", "ScreenTest", "Main.jack"),
-     os.path.join("..", "projects", "12", "ScreenTest", "Screen.jack")],
-    [os.path.join("..", "projects", "13", "Pong", "Array.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Ball.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Bat.jack"),
-     os.path.join("..", "projects", "13", "Pong", "GPIO.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Keyboard.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Main.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Math.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Memory.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Output.jack"),
-     os.path.join("..", "projects", "13", "Pong", "PongGame.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Screen.jack"),
-     os.path.join("..", "projects", "13", "Pong", "String.jack"),
-     os.path.join("..", "projects", "13", "Pong", "Sys.jack")],
-]
+# Jack source files derived from jack_dirpaths (tokenizer, analyzer, compiler)
+jack_filepaths = []
+jack_filepath_lists = []
+for _dir in jack_dirpaths:
+    _files = sorted(_glob.glob(os.path.join(_dir, "*.jack")))
+    jack_filepaths.extend(_files)
+    jack_filepath_lists.append(_files)
 
 # Reference files for validation against course compiler (compiler)
-jack_matches = [
-    os.path.join("..", "projects", "09", "Average", "Main.vm"),
-    os.path.join("..", "projects", "09", "Fraction", "Main.vm"),
-    os.path.join("..", "projects", "09", "Fraction", "Fraction.vm"),
-    os.path.join("..", "projects", "09", "HelloWorld", "Main.vm"),
-    os.path.join("..", "projects", "09", "List", "Main.vm"),
-    os.path.join("..", "projects", "09", "List", "List.vm"),
-    os.path.join("..", "projects", "09", "Square", "Main.vm"),
-    os.path.join("..", "projects", "09", "Square", "Square.vm"),
-    os.path.join("..", "projects", "09", "Square", "SquareGame.vm"),
-    os.path.join("..", "projects", "10", "ArrayTest", "Main.vm"),
-    os.path.join("..", "projects", "11", "ComplexArrays", "Main.vm"),
-    os.path.join("..", "projects", "11", "ConvertToBin", "Main.vm"),
-    os.path.join("..", "projects", "11", "Pong", "Bat.vm"),
-    os.path.join("..", "projects", "11", "Pong", "Ball.vm"),
-    os.path.join("..", "projects", "11", "Pong", "Main.vm"),
-    os.path.join("..", "projects", "11", "Pong", "PongGame.vm"),
-    os.path.join("..", "projects", "11", "Seven", "Main.vm"),
-    os.path.join("..", "projects", "12", "SysTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "SysTest", "Sys.vm"),
-    os.path.join("..", "projects", "12", "ArrayTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "ArrayTest", "Array.vm"),
-    os.path.join("..", "projects", "12", "KeyboardTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "KeyboardTest", "Keyboard.vm"),
-    os.path.join("..", "projects", "12", "StringTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "StringTest", "String.vm"),
-    os.path.join("..", "projects", "12", "MemoryTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "MemoryTest", "Memory.vm"),
-    os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "Main.vm"),
-    os.path.join("..", "projects", "12", "MathTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "MathTest", "Math.vm"),
-    os.path.join("..", "projects", "12", "OutputTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "OutputTest", "Output.vm"),
-    os.path.join("..", "projects", "12", "ScreenTest", "Main.vm"),
-    os.path.join("..", "projects", "12", "ScreenTest", "Screen.vm"),
-    os.path.join("..", "projects", "13", "Pong", "Array.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Ball.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Bat.jack"),
-    os.path.join("..", "projects", "13", "Pong", "GPIO.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Keyboard.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Main.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Math.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Memory.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Output.jack"),
-    os.path.join("..", "projects", "13", "Pong", "PongGame.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Screen.jack"),
-    os.path.join("..", "projects", "13", "Pong", "String.jack"),
-    os.path.join("..", "projects", "13", "Pong", "Sys.jack"),
-]
+# For each .jack, prefer the corresponding .vm (course compiler output) if it exists
+jack_matches = []
+for _dir in jack_dirpaths:
+    for _jack in sorted(_glob.glob(os.path.join(_dir, "*.jack"))):
+        _vm = _jack.replace(".jack", ".vm")
+        jack_matches.append(_vm if os.path.exists(_vm) else _jack)
 
 # VM program directories (translator)
 vm_dirpaths = [
