@@ -438,8 +438,7 @@ def compile_constant(pcode, constant, exp_buffer=None):
         return pcode
 
 
-# TODO: remove num_params, num_args
-def compile_call(pcode, call_class, call_func, num_args, statement, class_name, exp_buffer=None, class_dict=None,
+def compile_call(pcode, call_class, call_func, statement, class_name, exp_buffer=None, class_dict=None,
                  qualified=False):
     """
     emit pcode when call encountered, discard return on do call
@@ -712,13 +711,13 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
 
         # if parent/child pair found assume call & compile
         if not array and parent_obj and child_func:
-            exp_buffer = compile_call(pcode, parent_obj, child_func, num_params, statement, class_name=class_name,
+            exp_buffer = compile_call(pcode, parent_obj, child_func, statement, class_name=class_name,
                                       exp_buffer=exp_buffer, class_dict=class_dict, qualified=True)
             parent_obj = child_func = ''
 
         # compile unqualified function call
         elif not array and identifier in class_dict[class_name]:
-            exp_buffer = compile_call(pcode, class_name, identifier, num_params, statement, class_name=class_name,
+            exp_buffer = compile_call(pcode, class_name, identifier, statement, class_name=class_name,
                                       exp_buffer=exp_buffer, class_dict=class_dict, qualified=False)
             parent_obj = child_func = ''
 
@@ -1349,7 +1348,6 @@ def _compile(jack_filepaths, strict_matches):
                     else:
                         f.write(line + "\n")
 
-    # TODO: dynamically count lines in jack/strict matches
     # enforce matching for known samples
     for match in strict_matches:
         wip = match.replace(".vm", "_out.vm")
@@ -1358,7 +1356,8 @@ def _compile(jack_filepaths, strict_matches):
                 cur_lines = (line for line in cur_file if not line.startswith("// ASSERT"))
                 for index, (solution, current) in enumerate(zip(org_file, cur_lines)):
                     if solution != current:
-                        raise RuntimeError("%s mismatch after line %s/%s" % (wip, index, strict_matches[match]))
+                        total = sum(1 for _ in open(match))
+                        raise RuntimeError("%s mismatch after line %s/%s" % (wip, index, total))
 
     if debug:
         print("\nAll compilation results match solution!")
