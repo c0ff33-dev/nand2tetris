@@ -78,9 +78,11 @@ python assembler.py path/to/file.asm       # assemble a single file
 Interactive CPU emulator with a Rich TUI for interactive debugging.
 
 ```sh
-python interpreter.py path/to/file.asm                    # run a program
-python interpreter.py path/to/file.asm --break 42 100     # break at ROM lines 42 and 100
-python interpreter.py path/to/file.asm --debug            # verbose output
+python interpreter.py path/to/file.asm                          # run a program
+python interpreter.py path/to/file.asm --break 42 100           # break at ROM lines 42 and 100
+python interpreter.py path/to/file.asm --break Math.init        # break on entering Math.init
+python interpreter.py path/to/file.asm --break 42 Main.main     # mix line numbers and function names
+python interpreter.py path/to/file.asm --debug                  # verbose output
 ```
 
 ### tester.py — test script parser

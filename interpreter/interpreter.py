@@ -13,7 +13,7 @@ console = Console()
 step = False
 
 
-def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree):
+def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func_breakpoints):
     global step, console
 
     # highlight current command in red
@@ -42,16 +42,34 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree):
 
     row_code = title("Code", 80) + code(gui_log)
 
-    # display stack contents (RAM[256..SP-1], top of stack last)
+    # ~20 rows budget for call tree + stack in side column
+    max_side_rows = 10
+    call_rows = len(call_tree)
+    stack_row_budget = max(0, max_side_rows - call_rows)
+
+    # display call tree (indented by depth)
+    call_lines = ""
+    for depth, func_name in enumerate(call_tree):
+        call_lines += f"{'  ' * depth}→ {func_name}\n"
+    if not call_lines:
+        call_lines = "Sys.init\n"
+    row_calls = "\n" + title("Call Tree", 0) + call_lines
+
+    # display stack contents (RAM[256..SP-1], most recent at top)
     sp = hw["RAM"][0]
     stack_entries = hw["RAM"][256:sp] if sp > 256 else []
+    if len(stack_entries) > stack_row_budget:
+        stack_entries = stack_entries[-stack_row_budget:]
+        stack_start = sp - stack_row_budget
+    else:
+        stack_start = 256
     stack_lines = ""
     for i, val in enumerate(stack_entries):
-        addr = 256 + i
+        addr = stack_start + i
         stack_lines += f"{addr}: {val}\n"
     if not stack_lines:
-        stack_lines = "(empty)"
-    row_stack = title("Stack", 80) + stack_lines
+        stack_lines = "Sys.init"
+    row_stack = "\n" + title("Stack", 0) + stack_lines
 
     # Determine register highlighting based on instruction type
     a_style = d_style = m_style = None
@@ -95,7 +113,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree):
         "[bold]q[/bold] quit",
         "[bold]p[/bold] run",
         "[bold]n[/bold] step",
-        "[bold]i[/bold] peek",
+        "[bold]i[/bold] peek\n\n",
     ])
 
     # display call tree (indented by depth)
@@ -103,11 +121,20 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree):
     for depth, func_name in enumerate(call_tree):
         call_lines += f"{'  ' * depth}→ {func_name}\n"
     if not call_lines:
-        call_lines = "(empty)"
+        call_lines = "Sys.init\n"
     row_calls = title("Call Tree", 0) + call_lines
 
-    table.add_row(row_code + row_stack, row_reg, row_help + row_calls)
-    if src_line in breakpoints or step or breakpoints == [-1]:
+    table.add_row(row_code, row_reg, row_help + row_calls + row_stack)
+
+    # check function breakpoints (break when entering the function, not at call site)
+    func_break_hit = False
+    if func_breakpoints:
+        for fb in func_breakpoints:
+            if "// (%s)" % fb in debug_cmd:
+                func_break_hit = True
+                break
+
+    if src_line in breakpoints or step or breakpoints == [-1] or func_break_hit:
         console.print(table)
 
         def read_key():
@@ -135,7 +162,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree):
                 print(f"RAM[{addr}] = {hw['RAM'][int(addr)]}")
 
 
-def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
+def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debug=False):
     gui_log = []
 
     # initialize hardware
@@ -227,12 +254,16 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
     debug_asm = []
     raw_asm = []
     symbol = False
+    pending_comment = None
 
     for src_line, debug_cmd in enumerate(asm_content, start=1):
         debug_cmd = debug_cmd.strip()  # remove indentation / trailing whitespace
         if debug_cmd == "":
             continue  # empty line
         elif debug_cmd[0] == "/":
+            # preserve call/return/function comments for call tree tracking
+            if debug_cmd.startswith("// call ") or debug_cmd.startswith("// return") or debug_cmd.startswith("// function "):
+                pending_comment = debug_cmd
             continue  # skip comment lines entirely
 
         raw_cmd = debug_cmd.split(" //")[0].strip()  # drop comments and strip
@@ -249,6 +280,10 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
             if symbol:
                 debug_cmd += " // (%s)" % symbol
                 symbol = False
+            # attach pending call/return/function comment
+            if pending_comment:
+                debug_cmd += " %s" % pending_comment
+                pending_comment = None
             line += 1
 
         debug_asm.append([src_line, debug_cmd])  # preserve comments
@@ -264,7 +299,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
 
     # runtime parsing
     cycle = 0
-    call_tree = []
+    call_tree = ["Sys.init"]
     assert_pass = assert_fail = 0
     while cycle < hw["MAX"] and hw["PC"] < len(hw["ROM"]["raw"]):
         raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
@@ -397,8 +432,8 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
             call_tree.pop()
 
         #  render debug interface
-        if breakpoints:
-            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree)
+        if breakpoints or func_breakpoints:
+            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func_breakpoints)
 
         # evaluate ASSERT directives
         if '// ASSERT ' in debug_cmd:
@@ -426,8 +461,6 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
     elif cycle == hw["MAX"]:
         if debug:
             print("Cycle limit reached: %s" % asm_filepath)
-    if len(call_tree) >= 1:
-        raise RuntimeError("Interpreter: Elements still exist in call tree at program exit")
 
     # report ASSERT results
     if expected_asserts > 0:
@@ -467,9 +500,18 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Nand2Tetris HACK CPU emulator")
     parser.add_argument('file', help='Path to .asm file to execute')
-    parser.add_argument('--break', dest='breakpoints', type=int, nargs='+', default=[],
-                        help='ROM line numbers to break at (e.g. --break 42 100)')
+    parser.add_argument('--break', dest='breakpoints', nargs='+', default=[],
+                        help='Breakpoints: line numbers or function names (e.g. --break 42 Math.init)')
     parser.add_argument('--debug', action='store_true', help='Enable verbose output')
     args = parser.parse_args()
 
-    run(args.file, breakpoints=args.breakpoints, debug=args.debug)
+    # split into line breakpoints (int) and function breakpoints (str)
+    line_breaks = []
+    func_breaks = []
+    for bp in args.breakpoints:
+        if bp.lstrip('-').isnumeric():
+            line_breaks.append(int(bp))
+        else:
+            func_breaks.append(bp)
+
+    run(args.file, breakpoints=line_breaks, func_breakpoints=func_breaks, debug=args.debug)
