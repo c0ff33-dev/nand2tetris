@@ -275,8 +275,8 @@ def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_n
     return pcode, class_dict
 
 
-def compile_statement(pcode=None, statement=None, class_dict=None, class_name=None, func_name=None, call_class=None,
-                      call_func=None, var_type=None, var_name=None, num_args=0, exp_buffer=[], var_scope=None,
+def compile_statement(pcode=None, statement=None, class_dict=None, class_name=None, func_name=None,
+                      var_type=None, var_name=None, num_args=0, exp_buffer=[], var_scope=None,
                       if_count=0, while_count=0, lhs_array=False, var_kind=None, prescan=False):
     """
     provides a common interface to the statement compilers
@@ -489,21 +489,6 @@ def compile_return(pcode, class_dict, class_name, func_name):
     return pcode
 
 
-def compile_literal(pcode, code, exp_buffer=None):
-    """
-    emit pcode when literal encountered
-    """
-    if not code:
-        raise RuntimeError("illegal literal: '%s'" % code)
-
-    if type(exp_buffer) is list:
-        exp_buffer.append(code)
-        return exp_buffer
-    else:
-        pcode = store_pcode(pcode, "\n%s" % code)
-        return pcode
-
-
 def compile_boolean(pcode, value, exp_buffer=None):
     """
     store pcode in exp_buffer so its emitted when expression is closed
@@ -588,7 +573,7 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
                                 (class_dict[class_name][func_name]['args'][var_name]['kind'],
                                  class_dict[class_name][func_name]['args'][var_name]['index'], var_name))
             if array:
-                pcode[-1].append(" (*array var)")
+                pcode[-1] = pcode[-1].rstrip("\n") + " (*array var)\n"
                 
             return pcode
 
@@ -604,7 +589,7 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
                 raise RuntimeError("unexpected kind: '%s'" % class_dict[class_name]['args'][var_name]['kind'])
 
             if array:
-                pcode[-1].append(" (*array var)")
+                pcode[-1] = pcode[-1].rstrip("\n") + " (*array var)\n"
             
             return pcode
 
@@ -1338,15 +1323,16 @@ def _compile(jack_filepaths, strict_matches):
 
                 print("Compiling: %s" % _filepath.replace(".jack", "_out.vm"))
                 for line in pcode:
-                    comment = line.find("//")
                     if line.startswith("// ASSERT"):
                         f.write(line)  # preserve ASSERT directives
                     elif line.startswith("//"):
                         continue
-                    elif comment:
-                        f.write(line[:comment].strip() + "\n")
                     else:
-                        f.write(line + "\n")
+                        comment = line.find("//")
+                        if comment != -1:
+                            f.write(line[:comment].strip() + "\n")
+                        else:
+                            f.write(line)
 
     # enforce matching for known samples
     for match in strict_matches:

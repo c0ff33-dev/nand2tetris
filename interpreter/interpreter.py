@@ -13,7 +13,7 @@ console = Console()
 step = False
 
 
-def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
+def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree):
     global step, console
 
     # highlight current command in red
@@ -98,7 +98,15 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         "[bold]i[/bold] peek",
     ])
 
-    table.add_row(row_code + row_stack, row_reg, row_help)
+    # display call tree (indented by depth)
+    call_lines = ""
+    for depth, func_name in enumerate(call_tree):
+        call_lines += f"{'  ' * depth}→ {func_name}\n"
+    if not call_lines:
+        call_lines = "(empty)"
+    row_calls = title("Call Tree", 0) + call_lines
+
+    table.add_row(row_code + row_stack, row_reg, row_help + row_calls)
     if src_line in breakpoints or step or breakpoints == [-1]:
         console.print(table)
 
@@ -381,9 +389,16 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
         else:
             raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" % (hw["PC"], raw_cmd, "---", debug_cmd))
 
+        # track call tree from translator comments
+        if '// call ' in debug_cmd:
+            func = debug_cmd.split('// call ')[1].split(' //')[0].rsplit(' ', 1)[0]
+            call_tree.append(func)
+        elif '// return' in debug_cmd and call_tree:
+            call_tree.pop()
+
         #  render debug interface
         if breakpoints:
-            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints)
+            process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree)
 
         # evaluate ASSERT directives
         if '// ASSERT ' in debug_cmd:

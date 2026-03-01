@@ -105,7 +105,15 @@ def main(filepath, debug=False):
 
         if debug:
             print("// line:", line)
-        line = line.split("//")[0].strip()
+
+        # strip inline comments, respecting string literals (strings may contain //)
+        in_string = False
+        for i, ch in enumerate(line):
+            if ch == '"':
+                in_string = not in_string
+            elif not in_string and line[i:i+2] == '//':
+                line = line[:i].strip()
+                break
 
         # string_constant parsing
         if '"' in line:
