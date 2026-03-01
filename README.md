@@ -75,7 +75,9 @@ python assembler.py path/to/file.asm       # assemble a single file
 
 ### interpreter.py — HACK CPU emulator & debugger
 
-Interactive CPU emulator with a Rich TUI for interactive debugging.
+Interactive CPU emulator with a Rich TUI for step-through debugging. 
+
+There is a default cycle limit which defaults to 10,000 for batch runs; `--debug` or `--break` removes the limit for interactive use. Test harness runs (`runner.py`) override the limit per `.tst` file, and Jack programs tagged with `ASSERT` directives auto-raise to 20M cycles.
 
 ```sh
 python interpreter.py path/to/file.asm                          # run a program
@@ -84,6 +86,16 @@ python interpreter.py path/to/file.asm --break Math.init        # break on enter
 python interpreter.py path/to/file.asm --break 42 Main.main     # mix line numbers and function names
 python interpreter.py path/to/file.asm --debug                  # verbose output
 ```
+
+### interpreter.py — Jack ASSERT directives
+
+The following Jack directives will activate special test behaviour in the interpreter:
+
+* `// ASSERT RAM[8000] = 6`: Assert the value of a RAM address after the execution of a `let` or `do` statement, e.g. `let r[0] = 2 * 3; // ASSERT RAM[8000] = 6`.
+* `// ASSERT REACHABLE`: Assert this `let`, `do` or `return` statement is reachable at runtime, e.g. `return; // ASSERT REACHABLE`.
+
+Jack files are statically scanned for `ASSERT` directives at runtime, if there are any mismatches or if the number of processed directives does not match the expected result an `AssertionError` exception will be thrown.
+
 
 ### tester.py — test script parser
 

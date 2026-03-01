@@ -271,7 +271,7 @@ def assemble(asm_filepath, debug=False, quiet=False):
                         if debug:
                             print('target : ' + sol_line[0:3]+" "+sol_line[3]+" "+sol_line[4:10] +
                                   " "+sol_line[10:13]+" "+sol_line[13:])
-                        raise RuntimeError('Assembler: %s: mismatch on line %s' % (asm_filepath, i))
+                        raise AssertionError('Assembler: %s: mismatch on line %s' % (asm_filepath, i))
             print('Assembler: %s Complete (no errors / matches solution file)' % asm_filepath)
 
     else:

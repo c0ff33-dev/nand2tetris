@@ -42,11 +42,6 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
 
     row_code = title("Code", 80) + code(gui_log)
 
-    # ~20 rows budget for call tree + stack in side column
-    max_side_rows = 10
-    call_rows = len(call_tree)
-    stack_row_budget = max(0, max_side_rows - call_rows)
-
     # display call tree (indented by depth)
     call_lines = ""
     for depth, func_name in enumerate(call_tree):
@@ -55,12 +50,13 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
         call_lines = "Sys.init\n"
     row_calls = "\n" + title("Call Tree", 0) + call_lines
 
-    # display stack contents (RAM[256..SP-1], most recent at top)
+    # display stack contents (RAM[256..SP-1], most recent at top, max 5)
     sp = hw["RAM"][0]
     stack_entries = hw["RAM"][256:sp] if sp > 256 else []
-    if len(stack_entries) > stack_row_budget:
-        stack_entries = stack_entries[-stack_row_budget:]
-        stack_start = sp - stack_row_budget
+    max_stack_display = 5
+    if len(stack_entries) > max_stack_display:
+        stack_entries = stack_entries[-max_stack_display:]
+        stack_start = sp - max_stack_display
     else:
         stack_start = 256
     stack_lines = ""
@@ -181,6 +177,10 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
     if tst_params is not None:
         hw["RAM"] = tst_params["RAM"]
         hw["MAX"] = tst_params["MAX"]
+
+    # unlimited cycles in interactive/debug mode
+    if breakpoints or func_breakpoints or debug:
+        hw["MAX"] = float('inf')
 
     print('Interpreter: Running %s' % asm_filepath)
 
@@ -466,13 +466,13 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
     if expected_asserts > 0:
         evaluated = assert_pass + assert_fail
         if evaluated == 0:
-            raise RuntimeError("ASSERT: %d asserts in ROM but none were reached" % expected_asserts)
+            raise AssertionError("ASSERT: %d asserts in ROM but none were reached" % expected_asserts)
         elif evaluated < expected_asserts:
-            raise RuntimeError("ASSERT: only %d/%d asserts were reached" % (evaluated, expected_asserts))
+            raise AssertionError("ASSERT: only %d/%d asserts were reached" % (evaluated, expected_asserts))
         if debug:
             print("\tASSERT: %d/%d passed, halted @ cycle %d" % (assert_pass, expected_asserts, cycle))
         if assert_fail > 0:
-            raise RuntimeError("ASSERT: %d/%d failed" % (assert_fail, expected_asserts))
+            raise AssertionError("ASSERT: %d/%d failed" % (assert_fail, expected_asserts))
 
     # evaluate results
     result_dict = {}
@@ -492,7 +492,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
         if tst_params["compare"] == result_dict:
             print("Interpreter: Test passed for %s" % asm_filepath)
         else:
-            raise RuntimeError("Interpreter: Test results did not match for %s" % asm_filepath)
+            raise AssertionError("Interpreter: Test results did not match for %s" % asm_filepath)
 
 
 if __name__ == '__main__':

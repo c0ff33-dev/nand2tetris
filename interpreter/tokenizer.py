@@ -157,7 +157,7 @@ def main(filepath, debug=False):
             match_contents = match_file.read()
 
         if match_contents != pretty_xml:
-            raise RuntimeError("%s did not match solution file" % output_file)
+            raise AssertionError("%s did not match solution file" % output_file)
 
 
 if __name__ == '__main__':

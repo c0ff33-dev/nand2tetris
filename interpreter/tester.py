@@ -137,7 +137,7 @@ def load_cmp(cmp_filepath, debug=False):
     if not len(address_list) or not len(value_list):
         raise RuntimeError("Tester: Address or Value parsing error (no values): %s" % cmp_filepath)
     if len(address_list) != len(value_list):
-        raise RuntimeError("Tester: Address/Value mismatch in cmp file parsing: %s" % cmp_filepath)
+        raise AssertionError("Tester: Address/Value mismatch in cmp file parsing: %s" % cmp_filepath)
 
     print("Tester: loaded test targets %s" % cmp_filepath)
     return cmp_dict

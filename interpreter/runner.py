@@ -152,7 +152,7 @@ if __name__ == '__main__':
             with open(cmp_file) as cmp:
                 for index, (solution, current) in enumerate(zip(cmp, out)):
                     if solution != current:
-                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                        raise AssertionError("%s mismatch after line %s" % (out_file, index))
                 line += 1
     
     # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
@@ -174,7 +174,7 @@ if __name__ == '__main__':
             with open(cmp_file) as cmp:
                 for index, (solution, current) in enumerate(zip(cmp, out)):
                     if solution != current:
-                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
+                        raise AssertionError("%s mismatch after line %s" % (out_file, index))
                 line += 1
     
     # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
