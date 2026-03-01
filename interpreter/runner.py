@@ -214,5 +214,6 @@ if __name__ == '__main__':
                 os.rename(main_base, main_out)
                 os.rename(main_backup, main_base)
 
-    # TODO: diff Jack files (nand2tetris-fpga)
+    # FUTURE: diff Jack files (nand2tetris-fpga)
     # FIXME: compiler - '//' in string strips the string
+    # TODO: analyze compiler.py for dead code and signatures that can be simplified

@@ -278,12 +278,6 @@ def assemble(asm_filepath, debug=False, quiet=False):
         # no solution file, just write the result
         with open(asm_filepath.replace(".asm", ".hack"), "w") as output_file:
             for (bin_line, in_line) in zip(binary_file, asm_content_stripped):
-                # DEBUG: cleanup
-                # if debug:
-                #     print('%s / %s' % (in_line, bin_line))
-                #     print('map  : ' + 'ixx a cccccc ddd jjj')
-                #     print('code : ' + bin_line[0:3] + " " + bin_line[3] + " " + bin_line[4:10] +
-                #           " " + bin_line[10:13] + " " + bin_line[13:])
                 output_file.write(bin_line + '\n')
         if not quiet:
             print('Assembler: %s Complete (no errors / no solution file)' % asm_filepath)
@@ -298,8 +292,5 @@ if __name__ == '__main__':
         from inputs import vm_asm_filepaths, binary_asm_filepaths
         _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
 
-        # debug_runs = [True, False]
-        debug_runs = [False]
-        for _debug in debug_runs:
-            for _asm_filepath in _asm_filepaths:
-                assemble(_asm_filepath, debug=_debug)
+        for _asm_filepath in _asm_filepaths:
+            assemble(_asm_filepath, debug=False)
