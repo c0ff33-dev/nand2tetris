@@ -19,7 +19,8 @@ Jack source → tokenizer.py → analyzer.py → compiler.py → translator.py �
 - **compiler.py** — Compiles parse tree XML into VM bytecode. Handles Jack's class/method/constructor semantics, array/pointer arithmetic, and standard library (`sys_func` dict).
 - **translator.py** — `Translator` class converts VM instructions to HACK assembly. Manages memory segments (temp, pointer, static, local, argument, this, that) and emits inline comments for traceability.
 - **assembler.py** — Two-pass assembler: first pass resolves labels to addresses, second pass encodes A/C-instructions into 16-bit binary.
-- **interpreter.py** — HACK CPU emulator with interactive debugging (breakpoints, step-through) using `rich` for TUI and `pynput` for keyboard input. This is the main entry point that imports all other modules.
+- **interpreter.py** — HACK CPU emulator with interactive debugging (breakpoints, step-through) using `rich` for TUI. Standalone entry point for running/debugging individual `.asm` files.
+- **runner.py** — Test runner that orchestrates the full pipeline: course compiler, tokenizer, analyzer, compiler, translator, assembler, and all test suites (HardwareSimulator, CPUEmulator, VMEmulator). This is the main entry point for running all tests.
 - **tester.py** — Parses `.tst` test scripts and `.cmp` comparison files; equivalent to the course's CPUEmulator in non-interactive mode.
 
 ### Project Files (`projects/01-12`)
@@ -50,7 +51,9 @@ The interpreter modules are run from within the `interpreter/` directory (they i
 
 ```sh
 cd interpreter
-python interpreter.py <path-to-file>
+python runner.py                # run the full test suite
+python runner.py --debug        # run with verbose output
+python interpreter.py file.asm  # run/debug a single .asm file
 ```
 
 The Java tools are invoked via shell/batch scripts in `tools/`:
@@ -78,5 +81,5 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 
 - All tests must pass before marking a task as done.
 - Must run `source ~/src/nand2tetris/.venv/bin/activate` in each shell before running Python commands.
-- Must `cd ~/src/nand2tetris/interpreter` before running tests via `python interpreter.py`.
+- Must `cd ~/src/nand2tetris/interpreter` before running tests via `python runner.py`.
 - Never commit changes (git commit) without being explicitly told to by the user.
