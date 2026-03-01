@@ -2,6 +2,7 @@
 VM to HACK Assembly Translator
 """
 import os
+import glob as _glob
 
 class Translator:
     def __init__(self, debug=False):
@@ -668,41 +669,26 @@ class Translator:
         # walk the VM program directories
         vm_dir_filelist = []
 
-        # TODO: this should probably be a glob pattern w/ logic to preserve order where it matters (sys.vm)
-        # _out.vm files not processed (only relevant if diverging from course compiler implementation)
-        # spec dictates that Sys.init() is first function to run on boot which then calls Main.main()
-        # so functionally anything after sys.vm doesn't matter other than changing compilation order
-        vm_filelist = [
-            os.path.join(vm_dir, 'Sys.vm'),
-            os.path.join(vm_dir, 'Main.vm'),
-            os.path.join(vm_dir, vm_dir.split(os.path.sep)[-1]+'.vm'),
-            os.path.join(vm_dir, 'Class1.vm'),
-            os.path.join(vm_dir, 'Class2.vm'),
-            os.path.join(vm_dir, 'Array.vm'),
-            os.path.join(vm_dir, 'Ball.vm'),
-            os.path.join(vm_dir, 'Bat.vm'),
-            os.path.join(vm_dir, 'GPIO.vm'),
-            os.path.join(vm_dir, 'Keyboard.vm'),
-            os.path.join(vm_dir, 'Math.vm'),
-            os.path.join(vm_dir, 'Memory.vm'),
-            os.path.join(vm_dir, 'Output.vm'),
-            os.path.join(vm_dir, 'PongGame.vm'),
-            os.path.join(vm_dir, 'Screen.vm'),
-            os.path.join(vm_dir, 'ScreenExt.vm'),
-            os.path.join(vm_dir, 'SquareGame.vm'),
-            os.path.join(vm_dir, 'StdIO.vm'),
-            os.path.join(vm_dir, 'Touch.vm'),
-            os.path.join(vm_dir, 'String.vm'),
-            os.path.join(vm_dir, 'UART.vm'),
-            os.path.join(vm_dir, 'Util.vm'),
-        ]
+        # discover .vm files, exclude _out.vm; Sys.vm first, Main.vm second
+        all_vm = sorted(_glob.glob(os.path.join(vm_dir, '*.vm')))
+        vm_filelist = [f for f in all_vm if not f.endswith('_out.vm')]
+
+        def vm_sort_key(path):
+            name = os.path.basename(path)
+            if name == 'Sys.vm':
+                return (0, name)
+            elif name == 'Main.vm':
+                return (1, name)
+            else:
+                return (2, name)
+
+        vm_filelist.sort(key=vm_sort_key)
 
         # detect Jack files in the directory (Jack programs need SP=256 bootstrap)
         has_jack = any(f.endswith('.jack') for f in os.listdir(vm_dir) if os.path.isfile(os.path.join(vm_dir, f)))
 
         for vm_filepath in vm_filelist:
-            if os.path.exists(vm_filepath):
-                self.parse_static(vm_filepath)
+            self.parse_static(vm_filepath)
 
         # initialize offset array
         for i in range(0, len(self.static_dict)):
@@ -723,11 +709,10 @@ class Translator:
             # prefer _out.vm (custom compiler output with ASSERTs) over reference .vm
             vm_out = vm_filepath.replace('.vm', '_out.vm')
             use_filepath = vm_out if os.path.exists(vm_out) else vm_filepath
-            if os.path.exists(use_filepath):
-                if self.debug:
-                    print(use_filepath)
-                self.parse_asm(use_filepath)
-                vm_dir_filelist.append(vm_filepath)
+            if self.debug:
+                print(use_filepath)
+            self.parse_asm(use_filepath)
+            vm_dir_filelist.append(vm_filepath)
 
             # write asm_file
             file_base = vm_dir.split(os.path.sep)[-1] or "out"
