@@ -185,7 +185,7 @@ class Translator:
         self.asm_subroutines += "(%s_END)\n" % label
         self.asm_subroutines += "@R15\n"
         self.asm_subroutines += "A=M\n"
-        self.asm_subroutines += "0;JMP // return\n"
+        self.asm_subroutines += "0;JMP // sub return\n"
 
     def _gen_comparison_call(self, cmd, label):
         """emit a 4-instruction call to a comparison subroutine"""

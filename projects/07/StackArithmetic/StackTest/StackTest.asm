@@ -305,7 +305,7 @@ M=-1 // true
 (EQ_END)
 @R15
 A=M
-0;JMP // return
+0;JMP // sub return
 (LT_SUB)
 @R15
 M=D // save return addr
@@ -323,7 +323,7 @@ M=-1 // true
 (LT_END)
 @R15
 A=M
-0;JMP // return
+0;JMP // sub return
 (GT_SUB)
 @R15
 M=D // save return addr
@@ -341,4 +341,4 @@ M=-1 // true
 (GT_END)
 @R15
 A=M
-0;JMP // return
+0;JMP // sub return

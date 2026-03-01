@@ -45,7 +45,8 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
     # display call tree (indented by depth)
     call_lines = ""
     for depth, func_name in enumerate(call_tree):
-        call_lines += f"{'  ' * depth}→ {func_name}\n"
+        prefix = "" if depth == 0 else f"{' ' * depth}→"
+        call_lines += f"{prefix} {func_name}\n" if prefix else f"{func_name}\n"
     if not call_lines:
         call_lines = "(empty)\n"
     row_calls = "\n" + title("Call Tree", 0) + call_lines
@@ -111,14 +112,6 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
         "[bold]n[/bold] step",
         "[bold]i[/bold] peek\n\n",
     ])
-
-    # display call tree (indented by depth)
-    call_lines = ""
-    for depth, func_name in enumerate(call_tree):
-        call_lines += f"{'  ' * depth}→ {func_name}\n"
-    if not call_lines:
-        call_lines = "(empty)\n"
-    row_calls = title("Call Tree", 0) + call_lines
 
     table.add_row(row_code, row_reg, row_help + row_calls + row_stack)
 
@@ -305,6 +298,10 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
         raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
         debug_cmd = hw["ROM"]["debug"][hw["PC"]][1]
         src_line = hw["ROM"]["raw"][hw["PC"]][0]
+
+        # inject Sys.init at top of call tree on bootstrap
+        if not call_tree and '// bootstrap: initialize SP' in debug_cmd:
+            call_tree.append('Sys.init')
 
         # escape hatch: break out of Sys.halt infinite loop
         if raw_cmd == "@Sys.halt":

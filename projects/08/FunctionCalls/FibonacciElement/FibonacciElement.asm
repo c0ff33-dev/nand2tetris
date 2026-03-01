@@ -231,7 +231,7 @@ M=-1 // true
 (LT_END)
 @R15
 A=M
-0;JMP // return
+0;JMP // sub return
 (RETURN_SUB)
 @LCL
 D=M

@@ -36762,7 +36762,7 @@ M=-1 // true
 (LT_END)
 @R15
 A=M
-0;JMP // return
+0;JMP // sub return
 (CALL_Sys.error_1)
 @R13
 M=D // R13 = retAddr
@@ -36791,7 +36791,7 @@ M=-1 // true
 (GT_END)
 @R15
 A=M
-0;JMP // return
+0;JMP // sub return
 (CALL_Output.printChar_1)
 @R13
 M=D // R13 = retAddr
@@ -37018,7 +37018,7 @@ M=-1 // true
 (EQ_END)
 @R15
 A=M
-0;JMP // return
+0;JMP // sub return
 (CALL_Keyboard.keyPressed_0)
 @R13
 M=D // R13 = retAddr
