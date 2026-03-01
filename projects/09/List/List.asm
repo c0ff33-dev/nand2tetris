@@ -654,6 +654,867 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP // ASSERT REACHABLE
 
+// function Array.new 0
+(Array.new) // function Array.new 0
+
+// push argument 0
+@ARG // push argument 0 // function Array.new 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+
+// gt
+@RET_GT_22
+D=A
+@GT_SUB
+0;JMP
+(RET_GT_22)
+
+// not
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
+
+// if-goto IF_TRUE0
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
+@Array.new$IF_TRUE0
+D;JNE // jump if not zero
+
+// goto IF_FALSE0
+@Array.new$IF_FALSE0 // goto IF_FALSE0
+0;JMP // unconditional jump
+
+// label IF_TRUE0
+(Array.new$IF_TRUE0) // label IF_TRUE0
+
+// push constant 2
+@2 // push constant 2 (constant)
+D=A // d = constant
+@SP // &esp
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
+
+// call Sys.error 1
+@RET_CALL_23
+D=A
+@CALL_Sys.error_1
+0;JMP
+(RET_CALL_23)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// label IF_FALSE0
+(Array.new$IF_FALSE0) // label IF_FALSE0
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call Memory.alloc 1
+@RET_CALL_24
+D=A
+@CALL_Memory.alloc_1
+0;JMP
+(RET_CALL_24)
+
+// return
+@RETURN_SUB
+0;JMP
+
+// function Array.dispose 0
+(Array.dispose) // function Array.dispose 0
+
+// push argument 0
+@ARG // push argument 0 // function Array.dispose 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+// pop pointer 0
+@SP // pop pointer 0
+AM=M-1
+D=M
+@3
+M=D
+
+// push pointer 0
+@3 // push pointer 0
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call Memory.deAlloc 1
+@RET_CALL_25
+D=A
+@CALL_Memory.deAlloc_1
+0;JMP
+(RET_CALL_25)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+
+// return
+@RETURN_SUB
+0;JMP
+
+// function Keyboard.init 0
+(Keyboard.init) // function Keyboard.init 0
+
+// push constant 0
+@SP // push constant 0 // function Keyboard.init 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+// return
+@RETURN_SUB
+0;JMP
+
+// function Keyboard.keyPressed 0
+(Keyboard.keyPressed) // function Keyboard.keyPressed 0
+
+// push constant 24576
+@24576 // push constant 24576 // function Keyboard.keyPressed 0 (constant)
+D=A // d = constant
+@SP // &esp
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
+// call Memory.peek 1
+@RET_CALL_26
+D=A
+@CALL_Memory.peek_1
+0;JMP
+(RET_CALL_26)
+
+// return
+@RETURN_SUB
+0;JMP
+
+// function Keyboard.readChar 2
+(Keyboard.readChar) // function Keyboard.readChar 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
+
+// push constant 0
+@SP // push constant 0 // function Keyboard.readChar 2
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+// call Output.printChar 1
+@RET_CALL_27
+D=A
+@CALL_Output.printChar_1
+0;JMP
+(RET_CALL_27)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// label WHILE_EXP0
+(Keyboard.readChar$WHILE_EXP0) // label WHILE_EXP0
+
+// push local 1
+@LCL // push local 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+
+// eq
+@RET_EQ_28
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_28)
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+
+// gt
+@RET_GT_29
+D=A
+@GT_SUB
+0;JMP
+(RET_GT_29)
+
+// or
+@SP // or
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=M|D // val1 = val1 | val2
+
+// not
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
+
+// if-goto WHILE_END0
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
+@Keyboard.readChar$WHILE_END0
+D;JNE // jump if not zero
+
+// call Keyboard.keyPressed 0
+@RET_CALL_30
+D=A
+@CALL_Keyboard.keyPressed_0
+0;JMP
+(RET_CALL_30)
+
+// pop local 0
+@SP // pop local 0
+AM=M-1
+D=M
+@LCL
+A=M
+M=D
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+
+// gt
+@RET_GT_31
+D=A
+@GT_SUB
+0;JMP
+(RET_GT_31)
+
+// if-goto IF_TRUE0
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
+@Keyboard.readChar$IF_TRUE0
+D;JNE // jump if not zero
+
+// goto IF_FALSE0
+@Keyboard.readChar$IF_FALSE0 // goto IF_FALSE0
+0;JMP // unconditional jump
+
+// label IF_TRUE0
+(Keyboard.readChar$IF_TRUE0) // label IF_TRUE0
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// pop local 1
+@SP // pop local 1
+AM=M-1
+D=M
+@LCL
+A=M+1
+M=D
+
+// label IF_FALSE0
+(Keyboard.readChar$IF_FALSE0) // label IF_FALSE0
+
+// goto WHILE_EXP0
+@Keyboard.readChar$WHILE_EXP0 // goto WHILE_EXP0
+0;JMP // unconditional jump
+
+// label WHILE_END0
+(Keyboard.readChar$WHILE_END0) // label WHILE_END0
+
+// call String.backSpace 0
+@RET_CALL_32
+D=A
+@CALL_String.backSpace_0
+0;JMP
+(RET_CALL_32)
+
+// call Output.printChar 1
+@RET_CALL_33
+D=A
+@CALL_Output.printChar_1
+0;JMP
+(RET_CALL_33)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// push local 1
+@LCL // push local 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call Output.printChar 1
+@RET_CALL_34
+D=A
+@CALL_Output.printChar_1
+0;JMP
+(RET_CALL_34)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// push local 1
+@LCL // push local 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// return
+@RETURN_SUB
+0;JMP
+
+// function Keyboard.readLine 5
+(Keyboard.readLine) // function Keyboard.readLine 5
+@SP
+A=M
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
+
+// push constant 80
+@80 // push constant 80 // function Keyboard.readLine 5 (constant)
+D=A // d = constant
+@SP // &esp
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
+// call String.new 1
+@RET_CALL_35
+D=A
+@CALL_String.new_1
+0;JMP
+(RET_CALL_35)
+
+// pop local 3
+@LCL // pop local 3 (&asm_segment)
+D=M
+@3
+D=D+A
+@R13
+M=D // R13 = dst addr
+@SP
+M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call Output.printString 1
+@RET_CALL_36
+D=A
+@CALL_Output.printString_1
+0;JMP
+(RET_CALL_36)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// call String.newLine 0
+@RET_CALL_37
+D=A
+@CALL_String.newLine_0
+0;JMP
+(RET_CALL_37)
+
+// pop local 1
+@SP // pop local 1
+AM=M-1
+D=M
+@LCL
+A=M+1
+M=D
+
+// call String.backSpace 0
+@RET_CALL_38
+D=A
+@CALL_String.backSpace_0
+0;JMP
+(RET_CALL_38)
+
+// pop local 2
+@LCL // pop local 2 (&asm_segment)
+D=M
+@2
+D=D+A
+@R13
+M=D // R13 = dst addr
+@SP
+M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
+
+// label WHILE_EXP0
+(Keyboard.readLine$WHILE_EXP0) // label WHILE_EXP0
+
+// push local 4
+@LCL // push local 4 (&asm_segment)
+D=M // d = *asm_segment
+@4 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// not
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
+
+// not
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
+
+// if-goto WHILE_END0
+@SP // if-goto WHILE_END0
+AM=M-1 // SP--, A -> val
+D=M // d = val
+@Keyboard.readLine$WHILE_END0
+D;JNE // jump if not zero
+
+// call Keyboard.readChar 0
+@RET_CALL_39
+D=A
+@CALL_Keyboard.readChar_0
+0;JMP
+(RET_CALL_39)
+
+// pop local 0
+@SP // pop local 0
+AM=M-1
+D=M
+@LCL
+A=M
+M=D
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push local 1
+@LCL // push local 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// eq
+@RET_EQ_40
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_40)
+
+// pop local 4
+@LCL // pop local 4 (&asm_segment)
+D=M
+@4
+D=D+A
+@R13
+M=D // R13 = dst addr
+@SP
+M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
+
+// push local 4
+@LCL // push local 4 (&asm_segment)
+D=M // d = *asm_segment
+@4 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// not
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
+
+// if-goto IF_TRUE0
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
+@Keyboard.readLine$IF_TRUE0
+D;JNE // jump if not zero
+
+// goto IF_FALSE0
+@Keyboard.readLine$IF_FALSE0 // goto IF_FALSE0
+0;JMP // unconditional jump
+
+// label IF_TRUE0
+(Keyboard.readLine$IF_TRUE0) // label IF_TRUE0
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push local 2
+@LCL // push local 2 (&asm_segment)
+D=M // d = *asm_segment
+@2 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// eq
+@RET_EQ_41
+D=A
+@EQ_SUB
+0;JMP
+(RET_EQ_41)
+
+// if-goto IF_TRUE1
+@SP // if-goto IF_TRUE1
+AM=M-1 // SP--, A -> val
+D=M // d = val
+@Keyboard.readLine$IF_TRUE1
+D;JNE // jump if not zero
+
+// goto IF_FALSE1
+@Keyboard.readLine$IF_FALSE1 // goto IF_FALSE1
+0;JMP // unconditional jump
+
+// label IF_TRUE1
+(Keyboard.readLine$IF_TRUE1) // label IF_TRUE1
+
+// push local 3
+@LCL // push local 3 (&asm_segment)
+D=M // d = *asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call String.eraseLastChar 1
+@RET_CALL_42
+D=A
+@CALL_String.eraseLastChar_1
+0;JMP
+(RET_CALL_42)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// goto IF_END1
+@Keyboard.readLine$IF_END1 // goto IF_END1
+0;JMP // unconditional jump
+
+// label IF_FALSE1
+(Keyboard.readLine$IF_FALSE1) // label IF_FALSE1
+
+// push local 3
+@LCL // push local 3 (&asm_segment)
+D=M // d = *asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call String.appendChar 2
+@RET_CALL_43
+D=A
+@CALL_String.appendChar_2
+0;JMP
+(RET_CALL_43)
+
+// pop local 3
+@LCL // pop local 3 (&asm_segment)
+D=M
+@3
+D=D+A
+@R13
+M=D // R13 = dst addr
+@SP
+M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
+
+// label IF_END1
+(Keyboard.readLine$IF_END1) // label IF_END1
+
+// label IF_FALSE0
+(Keyboard.readLine$IF_FALSE0) // label IF_FALSE0
+
+// goto WHILE_EXP0
+@Keyboard.readLine$WHILE_EXP0 // goto WHILE_EXP0
+0;JMP // unconditional jump
+
+// label WHILE_END0
+(Keyboard.readLine$WHILE_END0) // label WHILE_END0
+
+// push local 3
+@LCL // push local 3 (&asm_segment)
+D=M // d = *asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// return
+@RETURN_SUB
+0;JMP
+
+// function Keyboard.readInt 2
+(Keyboard.readInt) // function Keyboard.readInt 2
+@SP
+A=M
+M=0
+A=A+1
+M=0
+D=A+1
+@SP
+M=D
+
+// push argument 0
+@ARG // push argument 0 // function Keyboard.readInt 2
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+// call Keyboard.readLine 1
+@RET_CALL_44
+D=A
+@CALL_Keyboard.readLine_1
+0;JMP
+(RET_CALL_44)
+
+// pop local 0
+@SP // pop local 0
+AM=M-1
+D=M
+@LCL
+A=M
+M=D
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call String.intValue 1
+@RET_CALL_45
+D=A
+@CALL_String.intValue_1
+0;JMP
+(RET_CALL_45)
+
+// pop local 1
+@SP // pop local 1
+AM=M-1
+D=M
+@LCL
+A=M+1
+M=D
+
+// push local 0
+@LCL // push local 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call String.dispose 1
+@RET_CALL_46
+D=A
+@CALL_String.dispose_1
+0;JMP
+(RET_CALL_46)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// push local 1
+@LCL // push local 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// return
+@RETURN_SUB
+0;JMP
+
 // function List.new 0
 (List.new) // function List.new 0
 
@@ -665,11 +1526,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Memory.alloc 1
-@RET_CALL_22
+@RET_CALL_47
 D=A
 @CALL_Memory.alloc_1
 0;JMP
-(RET_CALL_22)
+(RET_CALL_47)
 
 // pop pointer 0
 @SP // pop pointer 0
@@ -845,11 +1706,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_23
+@RET_EQ_48
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_23)
+(RET_EQ_48)
 
 // not
 @SP // not
@@ -878,18 +1739,18 @@ A=A-1
 M=D
 
 // call List.getData 1
-@RET_CALL_24
+@RET_CALL_49
 D=A
 @CALL_List.getData_1
 0;JMP
-(RET_CALL_24)
+(RET_CALL_49)
 
 // call Output.printInt 1
-@RET_CALL_25
+@RET_CALL_50
 D=A
 @CALL_Output.printInt_1
 0;JMP
-(RET_CALL_25)
+(RET_CALL_50)
 
 // pop temp 0
 @SP // pop temp 0
@@ -907,11 +1768,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.printChar 1
-@RET_CALL_26
+@RET_CALL_51
 D=A
 @CALL_Output.printChar_1
 0;JMP
-(RET_CALL_26)
+(RET_CALL_51)
 
 // pop temp 0
 @SP // pop temp 0
@@ -930,11 +1791,11 @@ A=A-1
 M=D
 
 // call List.getNext 1
-@RET_CALL_27
+@RET_CALL_52
 D=A
 @CALL_List.getNext_1
 0;JMP
-(RET_CALL_27)
+(RET_CALL_52)
 
 // pop local 0
 @SP // pop local 0
@@ -995,11 +1856,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_28
+@RET_EQ_53
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_28)
+(RET_EQ_53)
 
 // not
 @SP // not
@@ -1030,11 +1891,11 @@ A=A-1
 M=D
 
 // call List.dispose 1
-@RET_CALL_29
+@RET_CALL_54
 D=A
 @CALL_List.dispose_1
 0;JMP
-(RET_CALL_29)
+(RET_CALL_54)
 
 // pop temp 0
 @SP // pop temp 0
@@ -1055,867 +1916,9 @@ A=A-1
 M=D
 
 // call Memory.deAlloc 1
-@RET_CALL_30
-D=A
-@CALL_Memory.deAlloc_1
-0;JMP
-(RET_CALL_30)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Array.new 0
-(Array.new) // function Array.new 0
-
-// push argument 0
-@ARG // push argument 0 // function Array.new 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// gt
-@RET_GT_31
-D=A
-@GT_SUB
-0;JMP
-(RET_GT_31)
-
-// not
-@SP // not
-A=M-1 // A -> top of stack
-M=!M // not in place
-
-// if-goto IF_TRUE0
-@SP // if-goto IF_TRUE0
-AM=M-1 // SP--, A -> val
-D=M // d = val
-@Array.new$IF_TRUE0
-D;JNE // jump if not zero
-
-// goto IF_FALSE0
-@Array.new$IF_FALSE0 // goto IF_FALSE0
-0;JMP // unconditional jump
-
-// label IF_TRUE0
-(Array.new$IF_TRUE0) // label IF_TRUE0
-
-// push constant 2
-@2 // push constant 2 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-
-// call Sys.error 1
-@RET_CALL_32
-D=A
-@CALL_Sys.error_1
-0;JMP
-(RET_CALL_32)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// label IF_FALSE0
-(Array.new$IF_FALSE0) // label IF_FALSE0
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call Memory.alloc 1
-@RET_CALL_33
-D=A
-@CALL_Memory.alloc_1
-0;JMP
-(RET_CALL_33)
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Array.dispose 0
-(Array.dispose) // function Array.dispose 0
-
-// push argument 0
-@ARG // push argument 0 // function Array.dispose 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-// pop pointer 0
-@SP // pop pointer 0
-AM=M-1
-D=M
-@3
-M=D
-
-// push pointer 0
-@3 // push pointer 0
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call Memory.deAlloc 1
-@RET_CALL_34
-D=A
-@CALL_Memory.deAlloc_1
-0;JMP
-(RET_CALL_34)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Keyboard.init 0
-(Keyboard.init) // function Keyboard.init 0
-
-// push constant 0
-@SP // push constant 0 // function Keyboard.init 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-// return
-@RETURN_SUB
-0;JMP
-
-// function Keyboard.keyPressed 0
-(Keyboard.keyPressed) // function Keyboard.keyPressed 0
-
-// push constant 24576
-@24576 // push constant 24576 // function Keyboard.keyPressed 0 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-// call Memory.peek 1
-@RET_CALL_35
-D=A
-@CALL_Memory.peek_1
-0;JMP
-(RET_CALL_35)
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Keyboard.readChar 2
-(Keyboard.readChar) // function Keyboard.readChar 2
-@SP
-A=M
-M=0
-A=A+1
-M=0
-D=A+1
-@SP
-M=D
-
-// push constant 0
-@SP // push constant 0 // function Keyboard.readChar 2
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-// call Output.printChar 1
-@RET_CALL_36
-D=A
-@CALL_Output.printChar_1
-0;JMP
-(RET_CALL_36)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// label WHILE_EXP0
-(Keyboard.readChar$WHILE_EXP0) // label WHILE_EXP0
-
-// push local 1
-@LCL // push local 1
-A=M+1
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// eq
-@RET_EQ_37
-D=A
-@EQ_SUB
-0;JMP
-(RET_EQ_37)
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// gt
-@RET_GT_38
-D=A
-@GT_SUB
-0;JMP
-(RET_GT_38)
-
-// or
-@SP // or
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=M|D // val1 = val1 | val2
-
-// not
-@SP // not
-A=M-1 // A -> top of stack
-M=!M // not in place
-
-// if-goto WHILE_END0
-@SP // if-goto WHILE_END0
-AM=M-1 // SP--, A -> val
-D=M // d = val
-@Keyboard.readChar$WHILE_END0
-D;JNE // jump if not zero
-
-// call Keyboard.keyPressed 0
-@RET_CALL_39
-D=A
-@CALL_Keyboard.keyPressed_0
-0;JMP
-(RET_CALL_39)
-
-// pop local 0
-@SP // pop local 0
-AM=M-1
-D=M
-@LCL
-A=M
-M=D
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// gt
-@RET_GT_40
-D=A
-@GT_SUB
-0;JMP
-(RET_GT_40)
-
-// if-goto IF_TRUE0
-@SP // if-goto IF_TRUE0
-AM=M-1 // SP--, A -> val
-D=M // d = val
-@Keyboard.readChar$IF_TRUE0
-D;JNE // jump if not zero
-
-// goto IF_FALSE0
-@Keyboard.readChar$IF_FALSE0 // goto IF_FALSE0
-0;JMP // unconditional jump
-
-// label IF_TRUE0
-(Keyboard.readChar$IF_TRUE0) // label IF_TRUE0
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// pop local 1
-@SP // pop local 1
-AM=M-1
-D=M
-@LCL
-A=M+1
-M=D
-
-// label IF_FALSE0
-(Keyboard.readChar$IF_FALSE0) // label IF_FALSE0
-
-// goto WHILE_EXP0
-@Keyboard.readChar$WHILE_EXP0 // goto WHILE_EXP0
-0;JMP // unconditional jump
-
-// label WHILE_END0
-(Keyboard.readChar$WHILE_END0) // label WHILE_END0
-
-// call String.backSpace 0
-@RET_CALL_41
-D=A
-@CALL_String.backSpace_0
-0;JMP
-(RET_CALL_41)
-
-// call Output.printChar 1
-@RET_CALL_42
-D=A
-@CALL_Output.printChar_1
-0;JMP
-(RET_CALL_42)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push local 1
-@LCL // push local 1
-A=M+1
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call Output.printChar 1
-@RET_CALL_43
-D=A
-@CALL_Output.printChar_1
-0;JMP
-(RET_CALL_43)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push local 1
-@LCL // push local 1
-A=M+1
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Keyboard.readLine 5
-(Keyboard.readLine) // function Keyboard.readLine 5
-@SP
-A=M
-M=0
-A=A+1
-M=0
-A=A+1
-M=0
-A=A+1
-M=0
-A=A+1
-M=0
-D=A+1
-@SP
-M=D
-
-// push constant 80
-@80 // push constant 80 // function Keyboard.readLine 5 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-// call String.new 1
-@RET_CALL_44
-D=A
-@CALL_String.new_1
-0;JMP
-(RET_CALL_44)
-
-// pop local 3
-@LCL // pop local 3 (&asm_segment)
-D=M
-@3
-D=D+A
-@R13
-M=D // R13 = dst addr
-@SP
-M=M-1
-A=M
-D=M
-@R13
-A=M
-M=D
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call Output.printString 1
-@RET_CALL_45
-D=A
-@CALL_Output.printString_1
-0;JMP
-(RET_CALL_45)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// call String.newLine 0
-@RET_CALL_46
-D=A
-@CALL_String.newLine_0
-0;JMP
-(RET_CALL_46)
-
-// pop local 1
-@SP // pop local 1
-AM=M-1
-D=M
-@LCL
-A=M+1
-M=D
-
-// call String.backSpace 0
-@RET_CALL_47
-D=A
-@CALL_String.backSpace_0
-0;JMP
-(RET_CALL_47)
-
-// pop local 2
-@LCL // pop local 2 (&asm_segment)
-D=M
-@2
-D=D+A
-@R13
-M=D // R13 = dst addr
-@SP
-M=M-1
-A=M
-D=M
-@R13
-A=M
-M=D
-
-// label WHILE_EXP0
-(Keyboard.readLine$WHILE_EXP0) // label WHILE_EXP0
-
-// push local 4
-@LCL // push local 4 (&asm_segment)
-D=M // d = *asm_segment
-@4 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// not
-@SP // not
-A=M-1 // A -> top of stack
-M=!M // not in place
-
-// not
-@SP // not
-A=M-1 // A -> top of stack
-M=!M // not in place
-
-// if-goto WHILE_END0
-@SP // if-goto WHILE_END0
-AM=M-1 // SP--, A -> val
-D=M // d = val
-@Keyboard.readLine$WHILE_END0
-D;JNE // jump if not zero
-
-// call Keyboard.readChar 0
-@RET_CALL_48
-D=A
-@CALL_Keyboard.readChar_0
-0;JMP
-(RET_CALL_48)
-
-// pop local 0
-@SP // pop local 0
-AM=M-1
-D=M
-@LCL
-A=M
-M=D
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push local 1
-@LCL // push local 1
-A=M+1
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// eq
-@RET_EQ_49
-D=A
-@EQ_SUB
-0;JMP
-(RET_EQ_49)
-
-// pop local 4
-@LCL // pop local 4 (&asm_segment)
-D=M
-@4
-D=D+A
-@R13
-M=D // R13 = dst addr
-@SP
-M=M-1
-A=M
-D=M
-@R13
-A=M
-M=D
-
-// push local 4
-@LCL // push local 4 (&asm_segment)
-D=M // d = *asm_segment
-@4 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// not
-@SP // not
-A=M-1 // A -> top of stack
-M=!M // not in place
-
-// if-goto IF_TRUE0
-@SP // if-goto IF_TRUE0
-AM=M-1 // SP--, A -> val
-D=M // d = val
-@Keyboard.readLine$IF_TRUE0
-D;JNE // jump if not zero
-
-// goto IF_FALSE0
-@Keyboard.readLine$IF_FALSE0 // goto IF_FALSE0
-0;JMP // unconditional jump
-
-// label IF_TRUE0
-(Keyboard.readLine$IF_TRUE0) // label IF_TRUE0
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push local 2
-@LCL // push local 2 (&asm_segment)
-D=M // d = *asm_segment
-@2 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// eq
-@RET_EQ_50
-D=A
-@EQ_SUB
-0;JMP
-(RET_EQ_50)
-
-// if-goto IF_TRUE1
-@SP // if-goto IF_TRUE1
-AM=M-1 // SP--, A -> val
-D=M // d = val
-@Keyboard.readLine$IF_TRUE1
-D;JNE // jump if not zero
-
-// goto IF_FALSE1
-@Keyboard.readLine$IF_FALSE1 // goto IF_FALSE1
-0;JMP // unconditional jump
-
-// label IF_TRUE1
-(Keyboard.readLine$IF_TRUE1) // label IF_TRUE1
-
-// push local 3
-@LCL // push local 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call String.eraseLastChar 1
-@RET_CALL_51
-D=A
-@CALL_String.eraseLastChar_1
-0;JMP
-(RET_CALL_51)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// goto IF_END1
-@Keyboard.readLine$IF_END1 // goto IF_END1
-0;JMP // unconditional jump
-
-// label IF_FALSE1
-(Keyboard.readLine$IF_FALSE1) // label IF_FALSE1
-
-// push local 3
-@LCL // push local 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call String.appendChar 2
-@RET_CALL_52
-D=A
-@CALL_String.appendChar_2
-0;JMP
-(RET_CALL_52)
-
-// pop local 3
-@LCL // pop local 3 (&asm_segment)
-D=M
-@3
-D=D+A
-@R13
-M=D // R13 = dst addr
-@SP
-M=M-1
-A=M
-D=M
-@R13
-A=M
-M=D
-
-// label IF_END1
-(Keyboard.readLine$IF_END1) // label IF_END1
-
-// label IF_FALSE0
-(Keyboard.readLine$IF_FALSE0) // label IF_FALSE0
-
-// goto WHILE_EXP0
-@Keyboard.readLine$WHILE_EXP0 // goto WHILE_EXP0
-0;JMP // unconditional jump
-
-// label WHILE_END0
-(Keyboard.readLine$WHILE_END0) // label WHILE_END0
-
-// push local 3
-@LCL // push local 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Keyboard.readInt 2
-(Keyboard.readInt) // function Keyboard.readInt 2
-@SP
-A=M
-M=0
-A=A+1
-M=0
-D=A+1
-@SP
-M=D
-
-// push argument 0
-@ARG // push argument 0 // function Keyboard.readInt 2
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-// call Keyboard.readLine 1
-@RET_CALL_53
-D=A
-@CALL_Keyboard.readLine_1
-0;JMP
-(RET_CALL_53)
-
-// pop local 0
-@SP // pop local 0
-AM=M-1
-D=M
-@LCL
-A=M
-M=D
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call String.intValue 1
-@RET_CALL_54
-D=A
-@CALL_String.intValue_1
-0;JMP
-(RET_CALL_54)
-
-// pop local 1
-@SP // pop local 1
-AM=M-1
-D=M
-@LCL
-A=M+1
-M=D
-
-// push local 0
-@LCL // push local 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call String.dispose 1
 @RET_CALL_55
 D=A
-@CALL_String.dispose_1
+@CALL_Memory.deAlloc_1
 0;JMP
 (RET_CALL_55)
 
@@ -1926,14 +1929,11 @@ D=M
 @5
 M=D
 
-// push local 1
-@LCL // push local 1
-A=M+1
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
 @RETURN_SUB
@@ -30376,46 +30376,6 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
-(EQ_SUB)
-@R15
-M=D // save return addr
-@SP
-AM=M-1 // SP--, A -> val2
-D=M // D = val2
-A=A-1 // A -> val1 (result slot)
-D=M-D // D = val1 - val2
-M=0 // assume false
-@EQ_END
-D;JNE // skip if false
-@SP
-A=M-1 // A -> result slot
-M=-1 // true
-(EQ_END)
-@R15
-A=M
-0;JMP // return
-(CALL_List.getData_1)
-@R13
-M=D // R13 = retAddr
-@List.getData
-D=A
-@R14
-M=D // R14 = func addr
-@1
-D=A // D = nArgs
-@CALL_SUB
-0;JMP
-(CALL_List.getNext_1)
-@R13
-M=D // R13 = retAddr
-@List.getNext
-D=A
-@R14
-M=D // R14 = func addr
-@1
-D=A // D = nArgs
-@CALL_SUB
-0;JMP
 (CALL_Memory.deAlloc_1)
 @R13
 M=D // R13 = retAddr
@@ -30438,6 +30398,24 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
+(EQ_SUB)
+@R15
+M=D // save return addr
+@SP
+AM=M-1 // SP--, A -> val2
+D=M // D = val2
+A=A-1 // A -> val1 (result slot)
+D=M-D // D = val1 - val2
+M=0 // assume false
+@EQ_END
+D;JNE // skip if false
+@SP
+A=M-1 // A -> result slot
+M=-1 // true
+(EQ_END)
+@R15
+A=M
+0;JMP // return
 (CALL_Keyboard.keyPressed_0)
 @R13
 M=D // R13 = retAddr
@@ -30552,6 +30530,28 @@ D=A // D = nArgs
 @R13
 M=D // R13 = retAddr
 @String.dispose
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_List.getData_1)
+@R13
+M=D // R13 = retAddr
+@List.getData
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_List.getNext_1)
+@R13
+M=D // R13 = retAddr
+@List.getNext
 D=A
 @R14
 M=D // R14 = func addr

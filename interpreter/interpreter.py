@@ -1,21 +1,10 @@
 """"
-Python bindings & test framework for Nand2Tetris HACK Assembly language
+HACK CPU emulator and interactive debugger for Nand2Tetris
 """
 import re
-import warnings
 import os
 import sys
-import multiprocessing
 
-import assembler
-import tester
-import subprocess
-import tokenizer
-import analyzer
-import compiler
-from translator import Translator
-
-from pathlib import Path
 import tty
 import termios
 from rich.console import Console
@@ -52,7 +41,17 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints):
         return _code
 
     row_code = title("Code", 80) + code(gui_log)
-    row_stack = title("Stack", 80) + "[TODO]"
+
+    # display stack contents (RAM[256..SP-1], top of stack last)
+    sp = hw["RAM"][0]
+    stack_entries = hw["RAM"][256:sp] if sp > 256 else []
+    stack_lines = ""
+    for i, val in enumerate(stack_entries):
+        addr = 256 + i
+        stack_lines += f"{addr}: {val}\n"
+    if not stack_lines:
+        stack_lines = "(empty)"
+    row_stack = title("Stack", 80) + stack_lines
 
     # Determine register highlighting based on instruction type
     a_style = d_style = m_style = None
@@ -449,199 +448,13 @@ def run(asm_filepath, tst_params=None, breakpoints=[], debug=False):
 
 
 if __name__ == '__main__':
-    '''
-    Projects 1-5: HDL, TST orchestration (HardwareSimulator/CPUEmulator), OUT matched to CMP truth table 
-    Project 6:    ASM (assembler/interpreter) > HACK (python_hdl) matched against CMP binary
-    Project 7-8:  VM (translator) > ASM // ASM > HACK as above
-                  TST file (CPUEmulator/VMEmulator/tester) > OUT matched to CMP machine state
-    Project 9-11: JACK > T_XML (CST) > XML (AST) > VM (tokenizer > analyzer > compiler) // VM > ASM > HACK as above
-                  Only Project 10 has CST/AST solution XML files
-    '''
-    # TODO: Use symlinks for libraries
+    import argparse
 
-    from inputs import (jack_dirpaths, jack_filepaths, jack_filepath_lists, jack_matches,
-                        vm_dirpaths, vm_bootstrap_paths, vm_asm_filepaths, binary_asm_filepaths,
-                        hw_tst_files, cpu_tst_files, vm_tst_files)
+    parser = argparse.ArgumentParser(description="Nand2Tetris HACK CPU emulator")
+    parser.add_argument('file', help='Path to .asm file to execute')
+    parser.add_argument('--break', dest='breakpoints', type=int, nargs='+', default=[],
+                        help='ROM line numbers to break at (e.g. --break 42 100)')
+    parser.add_argument('--debug', action='store_true', help='Enable verbose output')
+    args = parser.parse_args()
 
-    vm_dirpaths = vm_dirpaths + vm_bootstrap_paths
-
-    # init
-    debug = False
-    breakpoints = [] # TODO: add to CLI args
-
-    # compile Jack to VM (course compiler)
-    if sys.platform.startswith("win"):
-        cmd = os.path.join("..", "tools", "JackCompiler.bat")
-    else:
-        cmd = os.path.join("..", "tools", "JackCompiler.sh")
-    for jack_dir in jack_dirpaths:
-        result = subprocess.run([cmd, jack_dir], capture_output=True, text=True)
-        if result.stderr or result.returncode:
-            raise RuntimeError(result.stderr)
-        else:
-            print("Course Compiler: %s" % result.stdout.strip())
-    
-    # tokenize / analyze Jack (not required with course compiler)
-    for filepath in jack_filepaths:
-        tokenizer.main(filepath, debug=debug)
-        analyzer.main(filepath, debug=debug)
-    
-    # compile Jack to VM (match against course compiler)
-    compiler._compile(jack_filepath_lists, jack_matches)
-    
-    # translate VM to ASM (multiprocess)
-    processes = []
-    for vm_dir in vm_dirpaths:
-        def _translate(vm_dir, vm_bootstrap_paths, debug):
-            t = Translator(debug=debug)
-            t.translate(vm_dir, vm_bootstrap_paths)
-        p = multiprocessing.Process(target=_translate, args=(vm_dir, vm_bootstrap_paths, debug))
-        processes.append((vm_dir, p))
-        p.start()
-
-    failures = []
-    for vm_dir, p in processes:
-        p.join()
-        if p.exitcode != 0:
-            failures.append((vm_dir, p.exitcode))
-
-    if failures:
-        for dirpath, code in failures:
-            print("FAILED: %s (exit code %d)" % (dirpath, code))
-        raise RuntimeError("Translator: %d/%d translations failed" % (len(failures), len(processes)))
-    
-    # assemble all ASM to HACK and binary match if available
-    asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
-    for asm_filepath in asm_filepaths:
-        assembler.assemble(asm_filepath, debug=debug)
-    warnings.simplefilter("default")  # reset warning filter
-
-    # load & execute modules (multiprocess)
-    processes = []
-
-    for asm_filepath in binary_asm_filepaths:
-        p = multiprocessing.Process(
-            target=run,
-            args=(asm_filepath,),
-            kwargs={"breakpoints": breakpoints, "debug": debug}
-        )
-        processes.append((asm_filepath, p))
-        p.start()
-
-    for asm_filepath in vm_asm_filepaths:
-        tst_filepath = asm_filepath.replace(".asm", ".tst")
-        cmp_filepath = asm_filepath.replace(".asm", ".cmp")
-        tst_params = tester.load_tst(tst_filepath, debug=debug)
-        tst_params["compare"] = tester.load_cmp(cmp_filepath, debug=debug)
-
-        p = multiprocessing.Process(
-            target=run,
-            args=(asm_filepath,),
-            kwargs={"tst_params": tst_params, "debug": debug}
-        )
-        processes.append((asm_filepath, p))
-        p.start()
-
-    # wait for all processes and check return codes
-    failures = []
-    for asm_filepath, p in processes:
-        p.join()
-        if p.exitcode != 0:
-            failures.append((asm_filepath, p.exitcode))
-
-    if failures:
-        for filepath, code in failures:
-            print("FAILED: %s (exit code %d)" % (filepath, code))
-        raise RuntimeError("Interpreter: %d/%d runs failed" % (len(failures), len(processes)))
-    
-    # run hdl tests (HardwareSimulator)
-    if sys.platform.startswith("win"):
-        cmd = os.path.join("..", "tools", "HardwareSimulator.bat")
-    else:
-        cmd = os.path.join("..", "tools", "HardwareSimulator.sh")
-
-    for test in hw_tst_files:
-        print(r"Running: %s %s" % (cmd, test))
-        result = subprocess.run([cmd, test], capture_output=True, text=True)
-        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-    
-        # different style of TST file, but the test has passed
-        if test in (
-            os.path.join("..", "projects", "05", "CPU-external.tst"), 
-            os.path.join("..", "projects", "05", "CPU.tst")
-        ):
-            continue
-    
-        line = 0
-        out_file = test.replace(".tst", ".out")
-        cmp_file = test.replace(".tst", ".cmp")
-        with open(out_file) as out:
-            with open(cmp_file) as cmp:
-                for index, (solution, current) in enumerate(zip(cmp, out)):
-                    if solution != current:
-                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-                line += 1
-    
-    # run hack tests (CPUEmulator) -- shares CMP and OUT files with VMEmulator
-    if sys.platform.startswith("win"):
-        cmd = os.path.join("..", "tools", "CPUEmulator.bat")
-    else:
-        cmd = os.path.join("..", "tools", "CPUEmulator.sh")
-
-    for test in cpu_tst_files:
-        print(r"Running: %s %s" % (cmd, test))
-        result = subprocess.run([cmd, test], capture_output=True, text=True)
-        if 'End of script - Comparison ended successfully\n' != result.stdout and not result.stderr:
-            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-    
-        line = 0
-        out_file = test.replace(".tst", ".out")
-        cmp_file = test.replace(".tst", ".cmp")
-        with open(out_file) as out:
-            with open(cmp_file) as cmp:
-                for index, (solution, current) in enumerate(zip(cmp, out)):
-                    if solution != current:
-                        raise RuntimeError("%s mismatch after line %s" % (out_file, index))
-                line += 1
-    
-    # run VM tests (VMEmulator) -- shares CMP and OUT files with CPUEmulator
-    if sys.platform.startswith("win"):
-        cmd = os.path.join("..", "tools", "VMEmulator.bat")
-    else:
-        cmd = os.path.join("..", "tools", "VMEmulator.sh")
-
-    for test in vm_tst_files:
-        print(r"Running: %s %s" % (cmd, test))
-
-        # VMEmulator will conflict if multiple VM implementations
-        # so temporarily rename the course compiler version(s)
-        if test.startswith(os.path.join("..", "projects", "12")):
-            vm_base = test.replace("Test.tst", ".vm")
-            vm_out = vm_base.replace(".vm", "_out.vm")
-            vm_backup = vm_base.replace(".vm", ".bak")
-            os.rename(vm_base, vm_backup)
-            os.rename(vm_out, vm_base)
-
-            main_base = str(Path(test).with_name("Main.vm"))
-            main_out = main_base.replace("Main.vm", "Main_out.vm")
-            main_backup = main_base.replace(".vm", ".bak")
-            os.rename(main_base, main_backup)
-            os.rename(main_out, main_base)
-        try:
-            result = subprocess.run([cmd, test], capture_output=True, text=True)
-            if result.stdout != 'End of script - Comparison ended successfully\n':
-                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        except: 
-            raise
-        finally:
-            # in either case restore restore the file names
-            if test.startswith(os.path.join("..", "projects", "12")):
-                os.rename(vm_base, vm_out)
-                os.rename(vm_backup, vm_base)
-                os.rename(main_base, main_out)
-                os.rename(main_backup, main_base)
-
-    # TODO: diff Jack files (nand2tetris-fpga)
-    # TODO: separate interpreter from test harness
-    # FIXME: compiler - '//' in string strips the string
+    run(args.file, breakpoints=args.breakpoints, debug=args.debug)

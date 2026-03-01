@@ -8511,10 +8511,10 @@ D=M
 @5
 M=D
 
-// call Output.createShiftedMap 0
+// call Output._createShiftedMap 0
 @RET_CALL_114
 D=A
-@CALL_Output.createShiftedMap_0
+@CALL_Output._createShiftedMap_0
 0;JMP
 (RET_CALL_114)
 
@@ -19252,8 +19252,8 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP
 
-// function Output.createShiftedMap 4
-(Output.createShiftedMap) // function Output.createShiftedMap 4
+// function Output._createShiftedMap 4
+(Output._createShiftedMap) // function Output._createShiftedMap 4
 @SP
 A=M
 M=0
@@ -19268,7 +19268,7 @@ D=A+1
 M=D
 
 // push constant 127
-@127 // push constant 127 // function Output.createShiftedMap 4 (constant)
+@127 // push constant 127 // function Output._createShiftedMap 4 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -19310,7 +19310,7 @@ A=M
 M=D
 
 // label WHILE_EXP0
-(Output.createShiftedMap$WHILE_EXP0) // label WHILE_EXP0
+(Output._createShiftedMap$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -19347,7 +19347,7 @@ M=!M // not in place
 @SP // if-goto WHILE_END0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Output.createShiftedMap$WHILE_END0
+@Output._createShiftedMap$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 2
@@ -19510,7 +19510,7 @@ A=M
 M=D
 
 // label WHILE_EXP1
-(Output.createShiftedMap$WHILE_EXP1) // label WHILE_EXP1
+(Output._createShiftedMap$WHILE_EXP1) // label WHILE_EXP1
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -19547,7 +19547,7 @@ M=!M // not in place
 @SP // if-goto WHILE_END1
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Output.createShiftedMap$WHILE_END1
+@Output._createShiftedMap$WHILE_END1
 D;JNE // jump if not zero
 
 // push local 3
@@ -19705,11 +19705,11 @@ A=M
 M=D
 
 // goto WHILE_EXP1
-@Output.createShiftedMap$WHILE_EXP1 // goto WHILE_EXP1
+@Output._createShiftedMap$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
 
 // label WHILE_END1
-(Output.createShiftedMap$WHILE_END1) // label WHILE_END1
+(Output._createShiftedMap$WHILE_END1) // label WHILE_END1
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -19739,15 +19739,15 @@ D=A
 @SP // if-goto IF_TRUE0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Output.createShiftedMap$IF_TRUE0
+@Output._createShiftedMap$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.createShiftedMap$IF_FALSE0 // goto IF_FALSE0
+@Output._createShiftedMap$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.createShiftedMap$IF_TRUE0) // label IF_TRUE0
+(Output._createShiftedMap$IF_TRUE0) // label IF_TRUE0
 
 // push constant 32
 @32 // push constant 32 (constant)
@@ -19773,11 +19773,11 @@ A=M
 M=D
 
 // goto IF_END0
-@Output.createShiftedMap$IF_END0 // goto IF_END0
+@Output._createShiftedMap$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Output.createShiftedMap$IF_FALSE0) // label IF_FALSE0
+(Output._createShiftedMap$IF_FALSE0) // label IF_FALSE0
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -19819,14 +19819,14 @@ A=M
 M=D
 
 // label IF_END0
-(Output.createShiftedMap$IF_END0) // label IF_END0
+(Output._createShiftedMap$IF_END0) // label IF_END0
 
 // goto WHILE_EXP0
-@Output.createShiftedMap$WHILE_EXP0 // goto WHILE_EXP0
+@Output._createShiftedMap$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Output.createShiftedMap$WHILE_END0) // label WHILE_END0
+(Output._createShiftedMap$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @SP // push constant 0
@@ -20073,8 +20073,8 @@ M=D
 @RETURN_SUB
 0;JMP
 
-// function Output.drawChar 4
-(Output.drawChar) // function Output.drawChar 4
+// function Output._drawChar 4
+(Output._drawChar) // function Output._drawChar 4
 @SP
 A=M
 M=0
@@ -20089,7 +20089,7 @@ D=A+1
 M=D
 
 // push argument 0
-@ARG // push argument 0 // function Output.drawChar 4
+@ARG // push argument 0 // function Output._drawChar 4
 A=M
 D=M
 @SP
@@ -20135,7 +20135,7 @@ A=M
 M=D
 
 // label WHILE_EXP0
-(Output.drawChar$WHILE_EXP0) // label WHILE_EXP0
+(Output._drawChar$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 1
 @LCL // push local 1
@@ -20170,7 +20170,7 @@ M=!M // not in place
 @SP // if-goto WHILE_END0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Output.drawChar$WHILE_END0
+@Output._drawChar$WHILE_END0
 D;JNE // jump if not zero
 
 // push static 2
@@ -20185,15 +20185,15 @@ M=D
 @SP // if-goto IF_TRUE0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Output.drawChar$IF_TRUE0
+@Output._drawChar$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Output.drawChar$IF_FALSE0 // goto IF_FALSE0
+@Output._drawChar$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Output.drawChar$IF_TRUE0) // label IF_TRUE0
+(Output._drawChar$IF_TRUE0) // label IF_TRUE0
 
 // push local 0
 @LCL // push local 0
@@ -20271,11 +20271,11 @@ A=M
 M=D
 
 // goto IF_END0
-@Output.drawChar$IF_END0 // goto IF_END0
+@Output._drawChar$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Output.drawChar$IF_FALSE0) // label IF_FALSE0
+(Output._drawChar$IF_FALSE0) // label IF_FALSE0
 
 // push local 0
 @LCL // push local 0
@@ -20348,7 +20348,7 @@ A=M
 M=D
 
 // label IF_END0
-(Output.drawChar$IF_END0) // label IF_END0
+(Output._drawChar$IF_END0) // label IF_END0
 
 // push local 0
 @LCL // push local 0
@@ -20528,11 +20528,11 @@ A=M+1
 M=D
 
 // goto WHILE_EXP0
-@Output.drawChar$WHILE_EXP0 // goto WHILE_EXP0
+@Output._drawChar$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Output.drawChar$WHILE_END0) // label WHILE_END0
+(Output._drawChar$WHILE_END0) // label WHILE_END0
 
 // push constant 0
 @SP // push constant 0
@@ -20844,10 +20844,10 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 
-// call Output.drawChar 1
+// call Output._drawChar 1
 @RET_CALL_232
 D=A
-@CALL_Output.drawChar_1
+@CALL_Output._drawChar_1
 0;JMP
 (RET_CALL_232)
 
@@ -20995,10 +20995,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Output.drawChar 1
+// call Output._drawChar 1
 @RET_CALL_239
 D=A
-@CALL_Output.drawChar_1
+@CALL_Output._drawChar_1
 0;JMP
 (RET_CALL_239)
 
@@ -21834,10 +21834,10 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 
-// call Output.drawChar 1
+// call Output._drawChar 1
 @RET_CALL_251
 D=A
-@CALL_Output.drawChar_1
+@CALL_Output._drawChar_1
 0;JMP
 (RET_CALL_251)
 
@@ -22385,11 +22385,11 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP
 
-// function Screen.updateLocation 0
-(Screen.updateLocation) // function Screen.updateLocation 0
+// function Screen._updateLocation 0
+(Screen._updateLocation) // function Screen._updateLocation 0
 
 // push static 2
-@28 // push static 2 // function Screen.updateLocation 0 (static ../projects/12/MemoryTest/Screen.vm)
+@28 // push static 2 // function Screen._updateLocation 0 (static ../projects/12/MemoryTest/Screen.vm)
 D=M
 @SP
 AM=M+1
@@ -22399,15 +22399,15 @@ M=D
 @SP // if-goto IF_TRUE0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Screen.updateLocation$IF_TRUE0
+@Screen._updateLocation$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.updateLocation$IF_FALSE0 // goto IF_FALSE0
+@Screen._updateLocation$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.updateLocation$IF_TRUE0) // label IF_TRUE0
+(Screen._updateLocation$IF_TRUE0) // label IF_TRUE0
 
 // push argument 0
 @ARG // push argument 0
@@ -22520,11 +22520,11 @@ A=M
 M=D
 
 // goto IF_END0
-@Screen.updateLocation$IF_END0 // goto IF_END0
+@Screen._updateLocation$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Screen.updateLocation$IF_FALSE0) // label IF_FALSE0
+(Screen._updateLocation$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0
@@ -22642,7 +22642,7 @@ A=M
 M=D
 
 // label IF_END0
-(Screen.updateLocation$IF_END0) // label IF_END0
+(Screen._updateLocation$IF_END0) // label IF_END0
 
 // push constant 0
 @SP // push constant 0
@@ -23032,10 +23032,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_263
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_263)
 
@@ -23056,11 +23056,11 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP
 
-// function Screen.drawConditional 0
-(Screen.drawConditional) // function Screen.drawConditional 0
+// function Screen._drawConditional 0
+(Screen._drawConditional) // function Screen._drawConditional 0
 
 // push argument 2
-@ARG // push argument 2 // function Screen.drawConditional 0 (&asm_segment)
+@ARG // push argument 2 // function Screen._drawConditional 0 (&asm_segment)
 D=M // d = *asm_segment
 @2 // offset
 A=D+A // &(asm_segment+offset)
@@ -23073,15 +23073,15 @@ M=D
 @SP // if-goto IF_TRUE0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Screen.drawConditional$IF_TRUE0
+@Screen._drawConditional$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.drawConditional$IF_FALSE0 // goto IF_FALSE0
+@Screen._drawConditional$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.drawConditional$IF_TRUE0) // label IF_TRUE0
+(Screen._drawConditional$IF_TRUE0) // label IF_TRUE0
 
 // push argument 1
 @ARG // push argument 1
@@ -23116,11 +23116,11 @@ D=M
 M=D
 
 // goto IF_END0
-@Screen.drawConditional$IF_END0 // goto IF_END0
+@Screen._drawConditional$IF_END0 // goto IF_END0
 0;JMP // unconditional jump
 
 // label IF_FALSE0
-(Screen.drawConditional$IF_FALSE0) // label IF_FALSE0
+(Screen._drawConditional$IF_FALSE0) // label IF_FALSE0
 
 // push argument 0
 @ARG // push argument 0
@@ -23155,7 +23155,7 @@ D=M
 M=D
 
 // label IF_END0
-(Screen.drawConditional$IF_END0) // label IF_END0
+(Screen._drawConditional$IF_END0) // label IF_END0
 
 // push constant 0
 @SP // push constant 0
@@ -24255,10 +24255,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.drawConditional 3
+// call Screen._drawConditional 3
 @RET_CALL_281
 D=A
-@CALL_Screen.drawConditional_3
+@CALL_Screen._drawConditional_3
 0;JMP
 (RET_CALL_281)
 
@@ -24601,10 +24601,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.drawConditional 3
+// call Screen._drawConditional 3
 @RET_CALL_284
 D=A
-@CALL_Screen.drawConditional_3
+@CALL_Screen._drawConditional_3
 0;JMP
 (RET_CALL_284)
 
@@ -25486,10 +25486,10 @@ D=M // d = val2
 A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_299
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_299)
 
@@ -25527,10 +25527,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_300
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_300)
 
@@ -25631,10 +25631,10 @@ M=1 // direct assign
 A=M-1 // A -> top of stack
 M=-M // neg in place
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_302
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_302)
 
@@ -25702,10 +25702,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_303
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_303)
 
@@ -25816,8 +25816,8 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP
 
-// function Screen.drawHorizontal 11
-(Screen.drawHorizontal) // function Screen.drawHorizontal 11
+// function Screen._drawHorizontal 11
+(Screen._drawHorizontal) // function Screen._drawHorizontal 11
 @SP
 A=M
 M=0
@@ -25846,7 +25846,7 @@ D=A+1
 M=D
 
 // push argument 1
-@ARG // push argument 1 // function Screen.drawHorizontal 11
+@ARG // push argument 1 // function Screen._drawHorizontal 11
 A=M+1
 D=M
 @SP
@@ -26059,15 +26059,15 @@ M=D&M // val1 = val2 & val1
 @SP // if-goto IF_TRUE0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Screen.drawHorizontal$IF_TRUE0
+@Screen._drawHorizontal$IF_TRUE0
 D;JNE // jump if not zero
 
 // goto IF_FALSE0
-@Screen.drawHorizontal$IF_FALSE0 // goto IF_FALSE0
+@Screen._drawHorizontal$IF_FALSE0 // goto IF_FALSE0
 0;JMP // unconditional jump
 
 // label IF_TRUE0
-(Screen.drawHorizontal$IF_TRUE0) // label IF_TRUE0
+(Screen._drawHorizontal$IF_TRUE0) // label IF_TRUE0
 
 // push local 7
 @LCL // push local 7 (&asm_segment)
@@ -26658,15 +26658,15 @@ D=A
 @SP // if-goto IF_TRUE1
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Screen.drawHorizontal$IF_TRUE1
+@Screen._drawHorizontal$IF_TRUE1
 D;JNE // jump if not zero
 
 // goto IF_FALSE1
-@Screen.drawHorizontal$IF_FALSE1 // goto IF_FALSE1
+@Screen._drawHorizontal$IF_FALSE1 // goto IF_FALSE1
 0;JMP // unconditional jump
 
 // label IF_TRUE1
-(Screen.drawHorizontal$IF_TRUE1) // label IF_TRUE1
+(Screen._drawHorizontal$IF_TRUE1) // label IF_TRUE1
 
 // push local 0
 @LCL // push local 0
@@ -26706,10 +26706,10 @@ D=M // d = val2
 A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_318
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_318)
 
@@ -26721,11 +26721,11 @@ D=M
 M=D
 
 // goto IF_END1
-@Screen.drawHorizontal$IF_END1 // goto IF_END1
+@Screen._drawHorizontal$IF_END1 // goto IF_END1
 0;JMP // unconditional jump
 
 // label IF_FALSE1
-(Screen.drawHorizontal$IF_FALSE1) // label IF_FALSE1
+(Screen._drawHorizontal$IF_FALSE1) // label IF_FALSE1
 
 // push local 0
 @LCL // push local 0
@@ -26747,10 +26747,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_319
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_319)
 
@@ -26792,7 +26792,7 @@ A=M
 M=D
 
 // label WHILE_EXP0
-(Screen.drawHorizontal$WHILE_EXP0) // label WHILE_EXP0
+(Screen._drawHorizontal$WHILE_EXP0) // label WHILE_EXP0
 
 // push local 0
 @LCL // push local 0
@@ -26830,7 +26830,7 @@ M=!M // not in place
 @SP // if-goto WHILE_END0
 AM=M-1 // SP--, A -> val
 D=M // d = val
-@Screen.drawHorizontal$WHILE_END0
+@Screen._drawHorizontal$WHILE_END0
 D;JNE // jump if not zero
 
 // push local 0
@@ -26853,10 +26853,10 @@ M=1 // direct assign
 A=M-1 // A -> top of stack
 M=-M // neg in place
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_321
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_321)
 
@@ -26898,11 +26898,11 @@ A=M
 M=D
 
 // goto WHILE_EXP0
-@Screen.drawHorizontal$WHILE_EXP0 // goto WHILE_EXP0
+@Screen._drawHorizontal$WHILE_EXP0 // goto WHILE_EXP0
 0;JMP // unconditional jump
 
 // label WHILE_END0
-(Screen.drawHorizontal$WHILE_END0) // label WHILE_END0
+(Screen._drawHorizontal$WHILE_END0) // label WHILE_END0
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -26926,10 +26926,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.updateLocation 2
+// call Screen._updateLocation 2
 @RET_CALL_322
 D=A
-@CALL_Screen.updateLocation_2
+@CALL_Screen._updateLocation_2
 0;JMP
 (RET_CALL_322)
 
@@ -26941,10 +26941,10 @@ D=M
 M=D
 
 // label IF_END1
-(Screen.drawHorizontal$IF_END1) // label IF_END1
+(Screen._drawHorizontal$IF_END1) // label IF_END1
 
 // label IF_FALSE0
-(Screen.drawHorizontal$IF_FALSE0) // label IF_FALSE0
+(Screen._drawHorizontal$IF_FALSE0) // label IF_FALSE0
 
 // push constant 0
 @SP // push constant 0
@@ -26956,11 +26956,11 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP
 
-// function Screen.drawSymetric 0
-(Screen.drawSymetric) // function Screen.drawSymetric 0
+// function Screen._drawSymetric 0
+(Screen._drawSymetric) // function Screen._drawSymetric 0
 
 // push argument 1
-@ARG // push argument 1 // function Screen.drawSymetric 0
+@ARG // push argument 1 // function Screen._drawSymetric 0
 A=M+1
 D=M
 @SP
@@ -27039,10 +27039,10 @@ D=M // d = val2
 A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
-// call Screen.drawHorizontal 3
+// call Screen._drawHorizontal 3
 @RET_CALL_323
 D=A
-@CALL_Screen.drawHorizontal_3
+@CALL_Screen._drawHorizontal_3
 0;JMP
 (RET_CALL_323)
 
@@ -27134,10 +27134,10 @@ D=M // d = val2
 A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
-// call Screen.drawHorizontal 3
+// call Screen._drawHorizontal 3
 @RET_CALL_324
 D=A
-@CALL_Screen.drawHorizontal_3
+@CALL_Screen._drawHorizontal_3
 0;JMP
 (RET_CALL_324)
 
@@ -27229,10 +27229,10 @@ D=M // d = val2
 A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
-// call Screen.drawHorizontal 3
+// call Screen._drawHorizontal 3
 @RET_CALL_325
 D=A
-@CALL_Screen.drawHorizontal_3
+@CALL_Screen._drawHorizontal_3
 0;JMP
 (RET_CALL_325)
 
@@ -27324,10 +27324,10 @@ D=M // d = val2
 A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
-// call Screen.drawHorizontal 3
+// call Screen._drawHorizontal 3
 @RET_CALL_326
 D=A
-@CALL_Screen.drawHorizontal_3
+@CALL_Screen._drawHorizontal_3
 0;JMP
 (RET_CALL_326)
 
@@ -27830,10 +27830,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.drawSymetric 4
+// call Screen._drawSymetric 4
 @RET_CALL_337
 D=A
-@CALL_Screen.drawSymetric_4
+@CALL_Screen._drawSymetric_4
 0;JMP
 (RET_CALL_337)
 
@@ -28188,10 +28188,10 @@ AM=M+1
 A=A-1
 M=D
 
-// call Screen.drawSymetric 4
+// call Screen._drawSymetric 4
 @RET_CALL_342
 D=A
-@CALL_Screen.drawSymetric_4
+@CALL_Screen._drawSymetric_4
 0;JMP
 (RET_CALL_342)
 
@@ -31480,10 +31480,10 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
-(CALL_Output.createShiftedMap_0)
+(CALL_Output._createShiftedMap_0)
 @R13
 M=D // R13 = retAddr
-@Output.createShiftedMap
+@Output._createShiftedMap
 D=A
 @R14
 M=D // R14 = func addr
@@ -31524,10 +31524,10 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
-(CALL_Output.drawChar_1)
+(CALL_Output._drawChar_1)
 @R13
 M=D // R13 = retAddr
-@Output.drawChar
+@Output._drawChar
 D=A
 @R14
 M=D // R14 = func addr
@@ -31590,10 +31590,10 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
-(CALL_Screen.updateLocation_2)
+(CALL_Screen._updateLocation_2)
 @R13
 M=D // R13 = retAddr
-@Screen.updateLocation
+@Screen._updateLocation
 D=A
 @R14
 M=D // R14 = func addr
@@ -31612,10 +31612,10 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
-(CALL_Screen.drawConditional_3)
+(CALL_Screen._drawConditional_3)
 @R13
 M=D // R13 = retAddr
-@Screen.drawConditional
+@Screen._drawConditional
 D=A
 @R14
 M=D // R14 = func addr
@@ -31645,10 +31645,10 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
-(CALL_Screen.drawHorizontal_3)
+(CALL_Screen._drawHorizontal_3)
 @R13
 M=D // R13 = retAddr
-@Screen.drawHorizontal
+@Screen._drawHorizontal
 D=A
 @R14
 M=D // R14 = func addr
@@ -31656,10 +31656,10 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
-(CALL_Screen.drawSymetric_4)
+(CALL_Screen._drawSymetric_4)
 @R13
 M=D // R13 = retAddr
-@Screen.drawSymetric
+@Screen._drawSymetric
 D=A
 @R14
 M=D // R14 = func addr

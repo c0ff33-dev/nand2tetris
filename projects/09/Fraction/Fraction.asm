@@ -661,6 +661,144 @@ M=0 // direct assign
 @RETURN_SUB
 0;JMP // ASSERT REACHABLE
 
+// function Array.new 0
+(Array.new) // function Array.new 0
+
+// push argument 0
+@ARG // push argument 0 // function Array.new 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+
+// gt
+@RET_GT_21
+D=A
+@GT_SUB
+0;JMP
+(RET_GT_21)
+
+// not
+@SP // not
+A=M-1 // A -> top of stack
+M=!M // not in place
+
+// if-goto IF_TRUE0
+@SP // if-goto IF_TRUE0
+AM=M-1 // SP--, A -> val
+D=M // d = val
+@Array.new$IF_TRUE0
+D;JNE // jump if not zero
+
+// goto IF_FALSE0
+@Array.new$IF_FALSE0 // goto IF_FALSE0
+0;JMP // unconditional jump
+
+// label IF_TRUE0
+(Array.new$IF_TRUE0) // label IF_TRUE0
+
+// push constant 2
+@2 // push constant 2 (constant)
+D=A // d = constant
+@SP // &esp
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
+
+// call Sys.error 1
+@RET_CALL_22
+D=A
+@CALL_Sys.error_1
+0;JMP
+(RET_CALL_22)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// label IF_FALSE0
+(Array.new$IF_FALSE0) // label IF_FALSE0
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call Memory.alloc 1
+@RET_CALL_23
+D=A
+@CALL_Memory.alloc_1
+0;JMP
+(RET_CALL_23)
+
+// return
+@RETURN_SUB
+0;JMP
+
+// function Array.dispose 0
+(Array.dispose) // function Array.dispose 0
+
+// push argument 0
+@ARG // push argument 0 // function Array.dispose 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+// pop pointer 0
+@SP // pop pointer 0
+AM=M-1
+D=M
+@3
+M=D
+
+// push pointer 0
+@3 // push pointer 0
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// call Memory.deAlloc 1
+@RET_CALL_24
+D=A
+@CALL_Memory.deAlloc_1
+0;JMP
+(RET_CALL_24)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// push constant 0
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
+
+// return
+@RETURN_SUB
+0;JMP
+
 // function Fraction.new 0
 (Fraction.new) // function Fraction.new 0
 
@@ -672,11 +810,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Memory.alloc 1
-@RET_CALL_21
+@RET_CALL_25
 D=A
 @CALL_Memory.alloc_1
 0;JMP
-(RET_CALL_21)
+(RET_CALL_25)
 
 // pop pointer 0
 @SP // pop pointer 0
@@ -728,11 +866,11 @@ A=A-1
 M=D
 
 // call Fraction.reduce 1
-@RET_CALL_22
+@RET_CALL_26
 D=A
 @CALL_Fraction.reduce_1
 0;JMP
-(RET_CALL_22)
+(RET_CALL_26)
 
 // pop temp 0
 @SP // pop temp 0
@@ -796,11 +934,11 @@ A=A-1
 M=D
 
 // call Fraction.gcd 2
-@RET_CALL_23
+@RET_CALL_27
 D=A
 @CALL_Fraction.gcd_2
 0;JMP
-(RET_CALL_23)
+(RET_CALL_27)
 
 // pop local 0
 @SP // pop local 0
@@ -826,11 +964,11 @@ A=A-1 // A -> slot
 M=1 // direct assign
 
 // gt
-@RET_GT_24
+@RET_GT_28
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_24)
+(RET_GT_28)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -865,11 +1003,11 @@ A=A-1
 M=D
 
 // call Math.divide 2
-@RET_CALL_25
+@RET_CALL_29
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_25)
+(RET_CALL_29)
 
 // pop this 0
 @SP // pop this 0
@@ -898,11 +1036,11 @@ A=A-1
 M=D
 
 // call Math.divide 2
-@RET_CALL_26
+@RET_CALL_30
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_26)
+(RET_CALL_30)
 
 // pop this 1
 @SP // pop this 1
@@ -1030,18 +1168,18 @@ A=A-1
 M=D
 
 // call Fraction.getDenominator 1
-@RET_CALL_27
+@RET_CALL_31
 D=A
 @CALL_Fraction.getDenominator_1
 0;JMP
-(RET_CALL_27)
+(RET_CALL_31)
 
 // call Math.multiply 2
-@RET_CALL_28
+@RET_CALL_32
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_28)
+(RET_CALL_32)
 
 // push argument 1
 @ARG // push argument 1
@@ -1053,11 +1191,11 @@ A=A-1
 M=D
 
 // call Fraction.getNumerator 1
-@RET_CALL_29
+@RET_CALL_33
 D=A
 @CALL_Fraction.getNumerator_1
 0;JMP
-(RET_CALL_29)
+(RET_CALL_33)
 
 // push this 1
 @THIS // push this 1
@@ -1069,11 +1207,11 @@ A=A-1
 M=D
 
 // call Math.multiply 2
-@RET_CALL_30
+@RET_CALL_34
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_30)
+(RET_CALL_34)
 
 // add
 @SP // add
@@ -1118,25 +1256,25 @@ A=A-1
 M=D
 
 // call Fraction.getDenominator 1
-@RET_CALL_31
+@RET_CALL_35
 D=A
 @CALL_Fraction.getDenominator_1
 0;JMP
-(RET_CALL_31)
+(RET_CALL_35)
 
 // call Math.multiply 2
-@RET_CALL_32
+@RET_CALL_36
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_32)
+(RET_CALL_36)
 
 // call Fraction.new 2
-@RET_CALL_33
+@RET_CALL_37
 D=A
 @CALL_Fraction.new_2
 0;JMP
-(RET_CALL_33)
+(RET_CALL_37)
 
 // return
 @RETURN_SUB
@@ -1169,11 +1307,11 @@ A=A-1
 M=D
 
 // call Memory.deAlloc 1
-@RET_CALL_34
+@RET_CALL_38
 D=A
 @CALL_Memory.deAlloc_1
 0;JMP
-(RET_CALL_34)
+(RET_CALL_38)
 
 // pop temp 0
 @SP // pop temp 0
@@ -1220,11 +1358,11 @@ A=A-1
 M=D
 
 // call Output.printInt 1
-@RET_CALL_35
+@RET_CALL_39
 D=A
 @CALL_Output.printInt_1
 0;JMP
-(RET_CALL_35)
+(RET_CALL_39)
 
 // pop temp 0
 @SP // pop temp 0
@@ -1240,11 +1378,11 @@ A=A-1 // A -> slot
 M=1 // direct assign
 
 // call String.new 1
-@RET_CALL_36
+@RET_CALL_40
 D=A
 @CALL_String.new_1
 0;JMP
-(RET_CALL_36)
+(RET_CALL_40)
 
 // push constant 47
 @47 // push constant 47 (constant)
@@ -1255,18 +1393,18 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.appendChar 2
-@RET_CALL_37
+@RET_CALL_41
 D=A
 @CALL_String.appendChar_2
 0;JMP
-(RET_CALL_37)
+(RET_CALL_41)
 
 // call Output.printString 1
-@RET_CALL_38
+@RET_CALL_42
 D=A
 @CALL_Output.printString_1
 0;JMP
-(RET_CALL_38)
+(RET_CALL_42)
 
 // pop temp 0
 @SP // pop temp 0
@@ -1285,11 +1423,11 @@ A=A-1
 M=D
 
 // call Output.printInt 1
-@RET_CALL_39
+@RET_CALL_43
 D=A
 @CALL_Output.printInt_1
 0;JMP
-(RET_CALL_39)
+(RET_CALL_43)
 
 // pop temp 0
 @SP // pop temp 0
@@ -1335,11 +1473,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_40
+@RET_EQ_44
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_40)
+(RET_EQ_44)
 
 // not
 @SP // not
@@ -1395,18 +1533,18 @@ A=A-1
 M=D
 
 // call Math.divide 2
-@RET_CALL_41
+@RET_CALL_45
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_41)
+(RET_CALL_45)
 
 // call Math.multiply 2
-@RET_CALL_42
+@RET_CALL_46
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_42)
+(RET_CALL_46)
 
 // sub
 @SP // sub
@@ -1472,144 +1610,6 @@ D=M
 AM=M+1
 A=A-1
 M=D
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Array.new 0
-(Array.new) // function Array.new 0
-
-// push argument 0
-@ARG // push argument 0 // function Array.new 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
-
-// gt
-@RET_GT_43
-D=A
-@GT_SUB
-0;JMP
-(RET_GT_43)
-
-// not
-@SP // not
-A=M-1 // A -> top of stack
-M=!M // not in place
-
-// if-goto IF_TRUE0
-@SP // if-goto IF_TRUE0
-AM=M-1 // SP--, A -> val
-D=M // d = val
-@Array.new$IF_TRUE0
-D;JNE // jump if not zero
-
-// goto IF_FALSE0
-@Array.new$IF_FALSE0 // goto IF_FALSE0
-0;JMP // unconditional jump
-
-// label IF_TRUE0
-(Array.new$IF_TRUE0) // label IF_TRUE0
-
-// push constant 2
-@2 // push constant 2 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-
-// call Sys.error 1
-@RET_CALL_44
-D=A
-@CALL_Sys.error_1
-0;JMP
-(RET_CALL_44)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// label IF_FALSE0
-(Array.new$IF_FALSE0) // label IF_FALSE0
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call Memory.alloc 1
-@RET_CALL_45
-D=A
-@CALL_Memory.alloc_1
-0;JMP
-(RET_CALL_45)
-
-// return
-@RETURN_SUB
-0;JMP
-
-// function Array.dispose 0
-(Array.dispose) // function Array.dispose 0
-
-// push argument 0
-@ARG // push argument 0 // function Array.dispose 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-// pop pointer 0
-@SP // pop pointer 0
-AM=M-1
-D=M
-@3
-M=D
-
-// push pointer 0
-@3 // push pointer 0
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// call Memory.deAlloc 1
-@RET_CALL_46
-D=A
-@CALL_Memory.deAlloc_1
-0;JMP
-(RET_CALL_46)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push constant 0
-@SP // push constant 0
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=0 // direct assign
 
 // return
 @RETURN_SUB
@@ -30775,6 +30775,17 @@ M=D // R14 = func addr
 D=A // D = nArgs
 @CALL_SUB
 0;JMP
+(CALL_Memory.deAlloc_1)
+@R13
+M=D // R13 = retAddr
+@Memory.deAlloc
+D=A
+@R14
+M=D // R14 = func addr
+@1
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
 (CALL_Fraction.reduce_1)
 @R13
 M=D // R13 = retAddr
@@ -30834,17 +30845,6 @@ D=A // D = nArgs
 @R13
 M=D // R13 = retAddr
 @Fraction.getNumerator
-D=A
-@R14
-M=D // R14 = func addr
-@1
-D=A // D = nArgs
-@CALL_SUB
-0;JMP
-(CALL_Memory.deAlloc_1)
-@R13
-M=D // R13 = retAddr
-@Memory.deAlloc
 D=A
 @R14
 M=D // R14 = func addr
