@@ -82,7 +82,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
         if "D" in dest: d_style = "bold yellow"
         if "M" in dest: m_style = "bold yellow"
     else:
-        raise RuntimeError(f"Unexpected asm command: {debug_cmd}")
+        raise ValueError(f"Unexpected asm command: {debug_cmd}")
 
     def reg(label, value, style=None):
         val = f"[{style}]{value}[/{style}]" if style else str(value)
@@ -315,10 +315,10 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
             raise RuntimeError("Interpreter: Sys.error() called @ src_line %d %s" % (src_line, asm_filepath))
 
         if hw["ROM"]["raw"][hw["PC"]][0] != hw["ROM"]["debug"][hw["PC"]][0]:
-            raise RuntimeError("Interpreter: Debug/Raw line number mismatch!")           
+            raise ValueError("Interpreter: Debug/Raw line number mismatch!")           
 
         if raw_cmd[0] == "(":
-            raise RuntimeError("Interpreter: Symbols should already be parsed out!")
+            raise ValueError("Interpreter: Symbols should already be parsed out!")
 
         # @address assignment
         if raw_cmd[0] == "@":
@@ -332,7 +332,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                     # not hit during week 7-8 tests
                     address_labels["BASE"] += 1  # if not, increment to next slot on the heap and assign it
                     if address_labels["BASE"] >= 255:
-                        raise RuntimeError("Interpreter: Statics were about to overflow into the stack!")
+                        raise OverflowError("Interpreter: Statics were about to overflow into the stack!")
                     address_labels[temp_label] = address_labels["BASE"]
                 address = address_labels[temp_label]
 
@@ -353,7 +353,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                 dst = raw_cmd[:3]
                 eval_cmd = raw_cmd[4:]
             else:
-                raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" %
+                raise ValueError("Interpreter: Unexpected command: %s %s %s %s" %
                                    (hw["PC"], raw_cmd, "---", debug_cmd))
 
             # deref the real register values for the eval
@@ -378,12 +378,12 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                     hw["D"] = eval_result
                 
                 if not any(x in dst for x in ["A", "D", "M"]):
-                    raise RuntimeError("Interpreter: Unexpected dst in command: %s %s %s %s" % 
+                    raise ValueError("Interpreter: Unexpected dst in command: %s %s %s %s" % 
                                        (hw["PC"], raw_cmd, "---", debug_cmd))
                 
                 hw["PC"] += 1  # advance to next instruction
             else:
-                raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" %
+                raise ValueError("Interpreter: Unexpected command: %s %s %s %s" %
                                    (hw["PC"], raw_cmd, "---", debug_cmd))
 
         # jumps
@@ -411,7 +411,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                     if hw["D"] <= 0:
                         jump = True
                 else:
-                    raise RuntimeError("Interpreter: Unexpected jump command: %s %s %s %s" %
+                    raise ValueError("Interpreter: Unexpected jump command: %s %s %s %s" %
                                        (hw["PC"], raw_cmd, "---", debug_cmd))
 
                 if jump:
@@ -419,10 +419,10 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                 else:
                     hw["PC"] += 1  # fall through to next instruction
             else:
-                raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" %
+                raise ValueError("Interpreter: Unexpected command: %s %s %s %s" %
                                    (hw["PC"], raw_cmd, "---", debug_cmd))
         else:
-            raise RuntimeError("Interpreter: Unexpected command: %s %s %s %s" % (hw["PC"], raw_cmd, "---", debug_cmd))
+            raise ValueError("Interpreter: Unexpected command: %s %s %s %s" % (hw["PC"], raw_cmd, "---", debug_cmd))
 
         # track call tree from translator comments
         if '// call ' in debug_cmd:

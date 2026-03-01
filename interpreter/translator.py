@@ -647,7 +647,7 @@ class Translator:
                     try:
                         value = int(parsed_cmd[2])
                     except ValueError:
-                        raise RuntimeError("Translator: No value to parse, add to exclude or fix code: %s" % cmd)
+                        raise ValueError("Translator: No value to parse, add to exclude or fix code: %s" % cmd)
 
             # update static dictionary
             if cmd.startswith("pop static") or cmd.startswith("push static"):

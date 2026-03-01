@@ -198,7 +198,7 @@ def compile_class(pcode, class_name, class_dict):
     update the class_dict during pre-scan, emit pcode when declaration encountered
     """
     if not class_name:
-        raise RuntimeError("illegal class name: '%s'" % class_name)
+        raise ValueError("illegal class name: '%s'" % class_name)
 
     # define class_name and initialize symbol table
     if class_name not in class_dict:
@@ -215,15 +215,15 @@ def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_n
     update the class_dict during pre-scan, emit pcode when declaration encountered
     """
     if not func_name:
-        raise RuntimeError("illegal function name: '%s'" % func_name)
+        raise ValueError("illegal function name: '%s'" % func_name)
     if func_name == class_name:
-        raise RuntimeError("illegal function name: '%s'" % func_name)
+        raise ValueError("illegal function name: '%s'" % func_name)
     if not func_type:
-        raise RuntimeError("illegal function type: '%s'" % func_type)
+        raise ValueError("illegal function type: '%s'" % func_type)
     if not func_kind:
-        raise RuntimeError("illegal function kind: '%s'" % func_kind)
+        raise ValueError("illegal function kind: '%s'" % func_kind)
     if func_kind not in ("function", "method", "constructor"):
-        raise RuntimeError("illegal function kind: '%s'" % func_kind)
+        raise ValueError("illegal function kind: '%s'" % func_kind)
 
     # define function symbol
     prescan = False
@@ -270,7 +270,7 @@ def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_n
             pass
 
         else:
-            raise RuntimeError("Unexpected function kind '%s'")
+            raise ValueError("Unexpected function kind '%s'")
 
     return pcode, class_dict
 
@@ -321,7 +321,7 @@ def compile_statement(pcode=None, statement=None, class_dict=None, class_name=No
                                            var_name=var_name, prescan=prescan)
 
     else:
-        raise RuntimeError("Unexpected statement type '%s'" % statement)
+        raise ValueError("Unexpected statement type '%s'" % statement)
 
     return pcode, class_dict, num_args, while_count, if_count, exp_buffer, lhs_array
 
@@ -332,7 +332,7 @@ def compile_assignment(class_dict, class_name, func_name, var_name, exp_buffer, 
     store pcode in exp_buffer so its emitted when expression is closed
     """
     if var_scope not in ('local', 'member'):
-        raise RuntimeError("Unexpected scope '%s'" % var_scope)
+        raise ValueError("Unexpected scope '%s'" % var_scope)
 
     # typical assignment (local, static, field)
     if var_scope == 'local':
@@ -363,11 +363,11 @@ def compile_vardec(pcode, class_dict, class_name, func_name, var_kind, var_type,
     add var to the class dict, print a comment in pcode
     """
     if not var_name:
-        raise RuntimeError("illegal var name: '%s'" % var_name)
+        raise ValueError("illegal var name: '%s'" % var_name)
     if not var_type:
-        raise RuntimeError("illegal var type: '%s'" % var_type)
+        raise ValueError("illegal var type: '%s'" % var_type)
     if not var_kind:
-        raise RuntimeError("illegal var kind: '%s'" % var_kind)
+        raise ValueError("illegal var kind: '%s'" % var_kind)
 
     # don't emit pcode during pre-scan
     # class fields / statics
@@ -397,9 +397,9 @@ def compile_vardec(pcode, class_dict, class_name, func_name, var_kind, var_type,
     # debug info only
     elif not prescan:
         if not var_type:
-            raise RuntimeError("unexpected var_type '%s' (%s.%s.%s)" % (var_type, class_name, func_name, var_name))
+            raise ValueError("unexpected var_type '%s' (%s.%s.%s)" % (var_type, class_name, func_name, var_name))
         if var_type == var_name:
-            raise RuntimeError("unexpected var_name '%s' (%s.%s.%s)" % (var_type, class_name, func_name, var_name))
+            raise ValueError("unexpected var_name '%s' (%s.%s.%s)" % (var_type, class_name, func_name, var_name))
 
         if var_kind == 'local':
             pcode = store_pcode(pcode, "// var %s %s (%s %s)" %
@@ -417,7 +417,7 @@ def compile_vardec(pcode, class_dict, class_name, func_name, var_kind, var_type,
                                  class_dict[class_name]['args'][var_name]['index']))
 
         elif var_kind is not None:
-            raise RuntimeError("unexpected var_kind '%s'" % var_kind)
+            raise ValueError("unexpected var_kind '%s'" % var_kind)
 
     return pcode, class_dict
 
@@ -427,7 +427,7 @@ def compile_constant(pcode, constant, exp_buffer=None):
     emit pcode when constant encountered
     """
     if not constant:
-        raise RuntimeError("illegal constant: '%s'" % constant)
+        raise ValueError("illegal constant: '%s'" % constant)
 
     if type(exp_buffer) is list:
         exp_buffer.append("push constant %s" % constant)
@@ -444,9 +444,9 @@ def compile_call(pcode, call_class, call_func, statement, class_name, exp_buffer
     emit pcode when call encountered, discard return on do call
     """
     if not call_class:
-        raise RuntimeError("illegal class: '%s'" % call_class)
+        raise ValueError("illegal class: '%s'" % call_class)
     if not call_func:
-        raise RuntimeError("illegal callee: '%s'" % call_func)
+        raise ValueError("illegal callee: '%s'" % call_func)
 
     # count arguments
     num_args = 0
@@ -494,7 +494,7 @@ def compile_boolean(pcode, value, exp_buffer=None):
     store pcode in exp_buffer so its emitted when expression is closed
     """
     if value not in ('true', 'false'):
-        raise RuntimeError("illegal boolean value '%s'" % value)
+        raise ValueError("illegal boolean value '%s'" % value)
 
     if type(exp_buffer) is list:
         if value == "true":
@@ -527,19 +527,19 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
     emit pcode when var encountered
     """
     if var_scope not in ('local', 'member'):
-        raise RuntimeError("Unexpected scope '%s'" % var_scope)
+        raise ValueError("Unexpected scope '%s'" % var_scope)
 
     if var_scope == 'local':
         if not class_dict[class_name][func_name]['args'][var_name]['type']:
-            raise RuntimeError("illegal type '%s'" % class_dict[class_name][func_name]['args'][var_name]['type'])
+            raise ValueError("illegal type '%s'" % class_dict[class_name][func_name]['args'][var_name]['type'])
         if not class_dict[class_name][func_name]['args'][var_name]['kind']:
-            raise RuntimeError("illegal kind '%s'" % class_dict[class_name][func_name]['args'][var_name]['kind'])
+            raise ValueError("illegal kind '%s'" % class_dict[class_name][func_name]['args'][var_name]['kind'])
 
     elif var_scope == 'member':
         if not class_dict[class_name]['args'][var_name]['type']:
-            raise RuntimeError("illegal type '%s'" % class_dict[class_name]['args'][var_name]['type'])
+            raise ValueError("illegal type '%s'" % class_dict[class_name]['args'][var_name]['type'])
         if not class_dict[class_name]['args'][var_name]['kind']:
-            raise RuntimeError("illegal kind '%s'" % class_dict[class_name]['args'][var_name]['kind'])
+            raise ValueError("illegal kind '%s'" % class_dict[class_name]['args'][var_name]['kind'])
 
     if type(exp_buffer) is list:
         if var_scope == 'local':
@@ -560,7 +560,7 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
                 exp_buffer.append("push this %s // %s" %
                                   (class_dict[class_name]['args'][var_name]['index'], var_name))
             else:
-                raise RuntimeError("unexpected kind: '%s'" % class_dict[class_name]['args'][var_name]['kind'])
+                raise ValueError("unexpected kind: '%s'" % class_dict[class_name]['args'][var_name]['kind'])
 
             if array:
                 exp_buffer[-1] = exp_buffer[-1] + " (*array var)"
@@ -586,7 +586,7 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
                 pcode = store_pcode(pcode, "\npush this %s // %s" %
                                     (class_dict[class_name]['args'][var_name]['index'], var_name))
             else:
-                raise RuntimeError("unexpected kind: '%s'" % class_dict[class_name]['args'][var_name]['kind'])
+                raise ValueError("unexpected kind: '%s'" % class_dict[class_name]['args'][var_name]['kind'])
 
             if array:
                 pcode[-1] = pcode[-1].rstrip("\n") + " (*array var)\n"
@@ -633,7 +633,7 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
                     if class_dict[call_class][call_func]['kind'] == 'method':
                         store_pcode(pcode, "push pointer 0 // this")
                 else:
-                    raise RuntimeError("class not found: '%s'" % call_class)
+                    raise NameError("class not found: '%s'" % call_class)
 
             exp_buffer.append("// %s" % symbol)  # inject expression marker into buffer
 
@@ -728,7 +728,7 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
 
         else:
             if identifier != parent_obj:  # ignore first instance of parent_obj (first pass)
-                raise RuntimeError("unexpected identifier: %s" % identifier)
+                raise NameError("unexpected identifier: %s" % identifier)
 
     elif keyword == 'this':
         pcode = store_pcode(pcode, "push pointer 0 // this")
@@ -745,7 +745,7 @@ def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False):
     """
     if stop_at and exp_buffer:
         if stop_at not in exp_buffer:
-            raise RuntimeError(f"stop_value '{stop_at}' was not found in exp_buffer: {exp_buffer}")
+            raise LookupError(f"stop_value '{stop_at}' was not found in exp_buffer: {exp_buffer}")
 
         while exp_buffer[-1] != stop_at:
             pcode = store_pcode(pcode, exp_buffer.pop())
@@ -823,14 +823,14 @@ def main(filepath, file_list, asserts=None):
                             func_type = identifier
                             continue
                         else:
-                            raise RuntimeError("unexpected type '%s'" % identifier)
+                            raise NameError("unexpected type '%s'" % identifier)
 
                     elif identifier not in types and identifier not in objects:
                         func_name = identifier
                         pcode, class_dict = compile_function(pcode, func_name, func_type, func_kind, class_dict,
                                                              class_name)
                     else:
-                        raise RuntimeError("illegal identifier '%s'" % identifier)
+                        raise NameError("illegal identifier '%s'" % identifier)
 
                 elif statement in ('var', 'param', 'class_var'):
                     # external or built-in types
@@ -848,7 +848,7 @@ def main(filepath, file_list, asserts=None):
                         continue  # already processed
 
                     if not var_type:
-                        raise RuntimeError("var type not found/defined")
+                        raise NameError("var type not found/defined")
 
                     # no if_count, while_count, exp_buffer during pre_scan
                     if keyword in ('field', 'static'):
@@ -934,7 +934,7 @@ def main(filepath, file_list, asserts=None):
                     pcode = store_pcode(pcode, "// popping '%s' from while_list" % while_list.pop())
 
                 else:
-                    raise RuntimeError("unexpected block '%s'" % block[-1])
+                    raise ValueError("unexpected block '%s'" % block[-1])
 
             end_block = False
 
@@ -969,14 +969,14 @@ def main(filepath, file_list, asserts=None):
                 func_kind = elem.text
                 while_count = if_count = 0
                 if while_list or if_list:
-                    raise RuntimeError("while (%s) or if (%s) list was not empty" % (while_list, if_list))
+                    raise ValueError("while (%s) or if (%s) list was not empty" % (while_list, if_list))
 
             if not keyword:
                 keyword = elem.text  # preserved for later
             elif not var_type:
                 var_type = elem.text  # preserved for later
             else:
-                raise RuntimeError("unexpected keywords '%s' '%s' '%s'" % (keyword, var_type, elem.text))
+                raise ValueError("unexpected keywords '%s' '%s' '%s'" % (keyword, var_type, elem.text))
 
         elif elem.tag == 'identifier':
             if keyword or statement:
@@ -1031,7 +1031,7 @@ def main(filepath, file_list, asserts=None):
                             var_type = identifier
                             continue  # process on next loop
                         else:
-                            raise RuntimeError("No type found for '%s'" % identifier)
+                            raise NameError("No type found for '%s'" % identifier)
 
                     if keyword in ('field', 'static'):
                         pcode, class_dict, num_args, while_count, if_count, exp_buffer, lhs_array = \
@@ -1077,7 +1077,7 @@ def main(filepath, file_list, asserts=None):
                                 if lhs_array is not None:
                                     lhs_array = True
                         else:
-                            raise RuntimeError("var not found: %s" % lhs_var_name)
+                            raise NameError("var not found: %s" % lhs_var_name)
 
                         pcode, class_dict, num_args, while_count, if_count, exp_buffer, lhs_array = \
                             compile_statement(pcode=pcode, statement=statement, class_dict=class_dict,
@@ -1097,10 +1097,10 @@ def main(filepath, file_list, asserts=None):
                                            identifier=identifier, class_name=class_name, func_name=func_name,
                                            parent_obj=parent_obj, child_func=child_func)
                 else:
-                    raise RuntimeError("unexpected keyword/statement '%s'/'%s' for identifier '%s'" %
+                    raise ValueError("unexpected keyword/statement '%s'/'%s' for identifier '%s'" %
                                        (keyword, statement, elem.text))
             else:
-                raise RuntimeError("no keyword or statement defined for '%s'" % elem.text)
+                raise ValueError("no keyword or statement defined for '%s'" % elem.text)
 
         elif elem.tag == 'symbol':
             symbol = elem.text.strip()
@@ -1113,7 +1113,7 @@ def main(filepath, file_list, asserts=None):
 
             elif symbol == "{":
                 if exp_buffer:
-                    raise RuntimeError("unparsed expressions still in buffer: %s" % exp_buffer)
+                    raise LookupError("unparsed expressions still in buffer: %s" % exp_buffer)
 
                 elif keyword == 'else':  # no explicit statement type for else
                     block.append(keyword)
@@ -1140,7 +1140,7 @@ def main(filepath, file_list, asserts=None):
                     pass
 
                 elif keyword not in ('class', 'function') and not if_list:
-                    raise RuntimeError("unexpected '{' (statement '%s', keyword '%s')" % (statement, keyword))
+                    raise ValueError("unexpected '{' (statement '%s', keyword '%s')" % (statement, keyword))
 
             elif symbol == "}":
                 end_block = True  # compilation triggered on next token due to if-no-else case
@@ -1165,7 +1165,7 @@ def main(filepath, file_list, asserts=None):
                                            class_dict[class_name]['args'][identifier]['index'], identifier))
 
                     else:
-                        raise RuntimeError("Unexpected var_scope %s" % var_scope)
+                        raise ValueError("Unexpected var_scope %s" % var_scope)
 
                     lhs_array = None  # None signifies lhs_array was true but now compiled/consumed
 
@@ -1215,7 +1215,7 @@ def main(filepath, file_list, asserts=None):
                                           if_count=if_count)
 
                 if exp_buffer:
-                    raise RuntimeError("unparsed expressions still in buffer: %s" % exp_buffer)
+                    raise LookupError("unparsed expressions still in buffer: %s" % exp_buffer)
 
                 # emit ASSERT if this let/do/return statement has one
                 if statement == 'let' and asserts and (func_name, 'let', let_count) in asserts:
@@ -1251,7 +1251,7 @@ def main(filepath, file_list, asserts=None):
                 else:
                     exp_buffer.append(op_map[symbol])
             else:
-                raise RuntimeError("unexpected symbol '%s'" % elem.text)
+                raise ValueError("unexpected symbol '%s'" % elem.text)
 
         elif elem.tag == 'integerConstant':
             pcode = compile_constant(pcode, elem.text)
@@ -1291,7 +1291,7 @@ def main(filepath, file_list, asserts=None):
             pass
 
         else:
-            raise RuntimeError("unparsed tag '%s'" % elem.tag)
+            raise SyntaxError("unparsed tag '%s'" % elem.tag)
 
     return pcode
 
@@ -1343,7 +1343,7 @@ def _compile(jack_filepaths, strict_matches):
                 for index, (solution, current) in enumerate(zip(org_file, cur_lines)):
                     if solution != current:
                         total = sum(1 for _ in open(match))
-                        raise RuntimeError("%s mismatch after line %s/%s" % (wip, index, total))
+                        raise AssertionError("%s mismatch after line %s/%s" % (wip, index, total))
 
     if debug:
         print("\nAll compilation results match solution!")

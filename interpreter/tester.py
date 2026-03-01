@@ -77,7 +77,7 @@ def load_tst(tst_filepath, debug=False):
             elif test_cmd.startswith("set PC "):
                 pass
             else:
-                raise RuntimeError("Tester: Unexpected set command: %s" % test_cmd)
+                raise ValueError("Tester: Unexpected set command: %s" % test_cmd)
 
             test_params["RAM"][int(set_var)] = int(set_element.replace(",", "").replace(";", ""))
 
@@ -135,7 +135,7 @@ def load_cmp(cmp_filepath, debug=False):
         print(cmp_dict)
 
     if not len(address_list) or not len(value_list):
-        raise RuntimeError("Tester: Address or Value parsing error (no values): %s" % cmp_filepath)
+        raise ValueError("Tester: Address or Value parsing error (no values): %s" % cmp_filepath)
     if len(address_list) != len(value_list):
         raise AssertionError("Tester: Address/Value mismatch in cmp file parsing: %s" % cmp_filepath)
 

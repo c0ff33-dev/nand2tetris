@@ -136,7 +136,7 @@ def assemble(asm_filepath, debug=False, quiet=False):
                 binary_file.append(address)
                 line += 1
             else:
-                raise RuntimeError("Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
+                raise ValueError("Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
                                    % (asm_filepath, len(address), instruction, address))
 
         elif c_command:
@@ -203,7 +203,7 @@ def assemble(asm_filepath, debug=False, quiet=False):
             elif operation == "D|A" or operation == "A|D" or operation == "M|D" or operation == "D|M":
                 binary_line += "010101"
             else:
-                raise RuntimeError("Assembler: %s: Unexpected command: %s" % (asm_filepath, instruction))
+                raise ValueError("Assembler: %s: Unexpected command: %s" % (asm_filepath, instruction))
 
             # write dest bits
             if destination == "M":
@@ -246,7 +246,7 @@ def assemble(asm_filepath, debug=False, quiet=False):
                 binary_file.append(binary_line)
                 line += 1
             else:
-                raise RuntimeError("Assembler: %s: Parsed %s bits worth of instructions (c command): %s >> %s"
+                raise ValueError("Assembler: %s: Parsed %s bits worth of instructions (c command): %s >> %s"
                                    % (asm_filepath, len(binary_line), instruction, binary_line))
 
     output_filepath = asm_filepath.replace(".asm", ".hack")
