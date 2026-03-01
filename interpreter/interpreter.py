@@ -47,7 +47,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
     for depth, func_name in enumerate(call_tree):
         call_lines += f"{'  ' * depth}→ {func_name}\n"
     if not call_lines:
-        call_lines = "Sys.init\n"
+        call_lines = "(empty)\n"
     row_calls = "\n" + title("Call Tree", 0) + call_lines
 
     # display stack contents (RAM[256..SP-1], most recent at top, max 5)
@@ -64,7 +64,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
         addr = stack_start + i
         stack_lines += f"{addr}: {val}\n"
     if not stack_lines:
-        stack_lines = "Sys.init"
+        stack_lines = "(empty)"
     row_stack = "\n" + title("Stack", 0) + stack_lines
 
     # Determine register highlighting based on instruction type
@@ -117,7 +117,7 @@ def process_debug(gui_log, debug_cmd, hw, src_line, breakpoints, call_tree, func
     for depth, func_name in enumerate(call_tree):
         call_lines += f"{'  ' * depth}→ {func_name}\n"
     if not call_lines:
-        call_lines = "Sys.init\n"
+        call_lines = "(empty)\n"
     row_calls = title("Call Tree", 0) + call_lines
 
     table.add_row(row_code, row_reg, row_help + row_calls + row_stack)
@@ -178,8 +178,8 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
         hw["RAM"] = tst_params["RAM"]
         hw["MAX"] = tst_params["MAX"]
 
-    # unlimited cycles in interactive/debug mode
-    if breakpoints or func_breakpoints or debug:
+    # unlimited cycles when setting breakpoints
+    if breakpoints or func_breakpoints:
         hw["MAX"] = float('inf')
 
     print('Interpreter: Running %s' % asm_filepath)
@@ -299,7 +299,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
 
     # runtime parsing
     cycle = 0
-    call_tree = ["Sys.init"]
+    call_tree = []
     assert_pass = assert_fail = 0
     while cycle < hw["MAX"] and hw["PC"] < len(hw["ROM"]["raw"]):
         raw_cmd = hw["ROM"]["raw"][hw["PC"]][1]
