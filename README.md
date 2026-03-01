@@ -43,8 +43,6 @@ Lexes Jack source into XML token streams (`*T_out.xml`).
 python tokenizer.py    # tokenize all configured Jack files
 ```
 
-*No single-file CLI yet.*
-
 ### analyzer.py — Jack parser
 
 Parses token streams into XML parse trees (`*_out.xml`).
@@ -52,8 +50,6 @@ Parses token streams into XML parse trees (`*_out.xml`).
 ```sh
 python analyzer.py    # analyze all configured Jack files
 ```
-
-*No single-file CLI yet.*
 
 ### translator.py — VM to ASM translator
 
@@ -104,8 +100,6 @@ Parses `.tst` test scripts and `.cmp` comparison files (used internally by `runn
 ```sh
 python tester.py    # parse all configured test files
 ```
-
-*No single-file CLI yet.*
 
 ## Java Tools
 

@@ -142,7 +142,7 @@ binary_asm_filepaths = [
     os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"), # ASSERT
     os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"), # ASSERT
     os.path.join("..", "projects", "09", "List", "List.asm"), # ASSERT
-    # os.path.join("..", "projects", "09", "Square", "Square.asm"),  # interactive, no ASSERT = bootstrap issues
+    os.path.join("..", "projects", "09", "Square", "Square.asm"),  # interactive
     os.path.join("..", "projects", "10", "ArrayTest", "ArrayTest.asm"),
     os.path.join("..", "projects", "10", "Square", "Square.asm"),  # different Main.jack to 9/11
     os.path.join("..", "projects", "11", "Average", "Average.asm"),
@@ -150,8 +150,8 @@ binary_asm_filepaths = [
     os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"), # ASSERT
     os.path.join("..", "projects", "11", "Pong", "Pong.asm"),
     os.path.join("..", "projects", "11", "Seven", "Seven.asm"), # ASSERT
-    # os.path.join("..", "projects", "11", "Square", "Square.asm"),  # interactive, no ASSERT = bootstrap issues
-    # os.path.join("..", "projects", "12", "SysTest", "SysTest.asm"),  # interactive, no ASSERT = bootstrap issues
+    os.path.join("..", "projects", "11", "Square", "Square.asm"),  # interactive
+    os.path.join("..", "projects", "12", "SysTest", "SysTest.asm"),  # interactive
     os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"), # ASSERT
     os.path.join("..", "projects", "12", "KeyboardTest", "KeyboardTest.asm"),
     os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"), # ASSERT
