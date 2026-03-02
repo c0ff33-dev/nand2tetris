@@ -1,6 +1,6 @@
 # Changelog
 
-`main` (`d21e028`) → `HEAD` (`f18bc7b`), 69 commits on `fpga-updates`.
+`main` (`d21e028`) → `HEAD` (`65531332`), on `fpga-updates`.
 
 ---
 
@@ -20,4 +20,4 @@
 - Debugger: added stack & call tree tracking, refactors. 
 - Compiler:
     - Dead code detection: automatically prunes unused libraries from compilation.
-    - Detect broken calls to uninitialized & unlinked classes.
+    - Detect broken calls to uninitialized & unlinked classes via graph search.

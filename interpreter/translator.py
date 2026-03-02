@@ -667,18 +667,22 @@ class Translator:
         if vm_filepath in self.static_dict:
             self.static_dict[vm_filepath][1] += 1  # inc by 1 as it starts at zero
 
-    def link_check(self, vm_filelist, has_jack):
+    def link_check(self, vm_filelist, has_jack, vm_dir):
         """
-        pre-translation validation: check for undefined functions, dead files,
-        and missing init() calls in Sys.init()
+        pre-translation validation: walk call graph from Main.main to determine
+        which files are live, check for undefined functions, and verify that
+        all live classes with init() are called from Sys.init()
         """
+        project = os.path.basename(vm_dir)
         defined = {}    # func_name -> vm_filepath
         called = {}     # func_name -> set of vm_filepaths that call it
+        file_calls = {} # vm_filepath -> set of func_names called from that file
         sys_init_calls = set()
 
         for vm_filepath in vm_filelist:
             vm_out = vm_filepath.replace('.vm', '_out.vm')
             use_filepath = vm_out if os.path.exists(vm_out) else vm_filepath
+            file_calls[vm_filepath] = set()
 
             with open(use_filepath) as f:
                 current_function = None
@@ -693,23 +697,43 @@ class Translator:
                     elif line.startswith('call '):
                         callee = line.split(' ')[1]
                         called.setdefault(callee, set()).add(vm_filepath)
+                        file_calls[vm_filepath].add(callee)
                         if current_function == 'Sys.init':
                             sys_init_calls.add(callee)
 
-        # check for dead files first (no functions called by any other file)
+        # walk call graph from Main.main to find all reachable files
+        # Sys.vm is always live (entry point); start by tracing its calls
+        live_files = set()
+        sys_file = defined.get('Sys.init')
+        if sys_file:
+            live_files.add(sys_file)
+
+        # seed with files directly called from Sys.init (Main.main, *.init, etc.)
+        worklist = set()
+        for callee in file_calls.get(sys_file, set()):
+            if callee in defined:
+                worklist.add(defined[callee])
+
+        # BFS: for each live file, trace all call sites to find more live files
+        while worklist:
+            vm_filepath = worklist.pop()
+            if vm_filepath in live_files:
+                continue
+            live_files.add(vm_filepath)
+            for callee in file_calls.get(vm_filepath, set()):
+                if callee in defined:
+                    target = defined[callee]
+                    if target not in live_files:
+                        worklist.add(target)
+
+        # dead files = not reachable from call graph
         dead_files = set()
         if has_jack and len(vm_filelist) > 1:
             for vm_filepath in vm_filelist:
-                file_funcs = {f for f, p in defined.items() if p == vm_filepath}
-                called_externally = any(
-                    f in called and called[f] - {vm_filepath}
-                    for f in file_funcs
-                )
-                if not called_externally and file_funcs:
+                if vm_filepath not in live_files:
                     name = os.path.basename(vm_filepath)
-                    if name != 'Sys.vm':  # Sys.vm is the entry point
-                        dead_files.add(vm_filepath)
-                        print("\tLink warning: file %s has no refs and will be pruned from compilation" % name)
+                    dead_files.add(vm_filepath)
+                    print("\tLink warning: %s: file %s has no refs and will be pruned from compilation" % (project, name))
 
         # check for undefined functions (skip if all callers are dead files)
         all_called = set(called.keys())
@@ -720,14 +744,14 @@ class Translator:
                 live_callers = called[func] - dead_files
                 if live_callers:
                     callers = ', '.join(os.path.basename(f) for f in sorted(live_callers))
-                    raise RuntimeError("\tLink error: undefined function '%s' called from [%s]" % (func, callers))
+                    raise RuntimeError("\tLink error: %s: undefined function '%s' called from [%s]" % (project, func, callers))
 
-        # check that <Class>.init() is called in Sys.init() (skip dead files)
+        # check that <Class>.init() is called in Sys.init() for all live files
         if has_jack and 'Sys.init' in defined:
             for func_name, vm_filepath in defined.items():
                 if func_name.endswith('.init') and func_name != 'Sys.init':
                     if vm_filepath not in dead_files and func_name not in sys_init_calls:
-                        print("\tLink warning: '%s' defines init() but not called in Sys.init()" % func_name)
+                        raise RuntimeError("\tLink error: %s: '%s' defines init() but not called in Sys.init()" % (project, func_name))
 
         return dead_files
 
@@ -759,7 +783,7 @@ class Translator:
         # pre-translation link checks
         dead_files = set()
         if len(vm_filelist) > 1:
-            dead_files = self.link_check(vm_filelist, has_jack)
+            dead_files = self.link_check(vm_filelist, has_jack, vm_dir)
 
         # cull dead files from translation
         if dead_files:
