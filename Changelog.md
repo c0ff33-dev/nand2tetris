@@ -7,8 +7,8 @@
 - Docs: Updated `README.md` with usage docs and `Appendix.md` for environment setup.
 - Input Refactor: Centralized all input file path lists into `inputs.py`, replacing per-module `__main__` lists.
 - Translator Optimization:
-    - Pong (Original): ~74k → ~27k HACK instructions, ~63% reduction, ~2.8x perf increase.
-    - Pong (FPGA): ~32k → ~27k HACK instructions, ~16% reduction, ~18% perf increase.
+    - Pong (Original): ~74k → ~27k HACK instructions, ~63% reduction, ~2.8x perf increase, ~= to course version.
+    - Pong (FPGA): ~37k → ~27k HACK instructions, ~26% reduction, ~35% perf increase.
 - Test Automation
     - ASSERTs: Compiler injects `// ASSERT` and `// ASSERT REACHABLE` directives from Jack into VM > ASM where interpreter actions them accordingly, added to many non-interactive programs & tests.
     - `Sys.error/halt`: Interpreter traps `Sys.error()` as a `RuntimeError` and breaks on `Sys.halt` entry.
