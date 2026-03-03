@@ -36,7 +36,7 @@ $ python -m pip install -r requirements.txt
 
 ```
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python runner.py
-cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python interpreter.py ~/src/nand2tetris/projects/13/Pong/Pong.asm --break Main.main
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python interpreter.py ~/src/nand2tetris/projects/11/Pong/Pong.asm --break Main.main
 ```
 
 ## Miscellaneous

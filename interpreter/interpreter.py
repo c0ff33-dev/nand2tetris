@@ -155,7 +155,7 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
     gui_log = []
 
     # initialize hardware
-    ram = [0] * 57344  # original spec: 24577 (~24k) words, fgpa spec: 57344 (56k) words
+    ram = [0] * 57344  # original spec: 24577 (~24K) words, fgpa spec: 57344 (56K) words
     hw = {
         "RAM": ram,
         "ROM": {},

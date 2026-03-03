@@ -31,7 +31,6 @@ jack_dirpaths = [
     os.path.join("..", "projects", "12", "MathTest"),
     os.path.join("..", "projects", "12", "OutputTest"),
     os.path.join("..", "projects", "12", "ScreenTest"),
-    os.path.join("..", "projects", "13", "Pong"),
 ]
 
 # Jack source files derived from jack_dirpaths (tokenizer, analyzer, compiler)
@@ -86,7 +85,6 @@ vm_dirpaths = [
     os.path.join("..", "projects", "12", "MathTest"),
     os.path.join("..", "projects", "12", "OutputTest"),
     os.path.join("..", "projects", "12", "ScreenTest"),
-    os.path.join("..", "projects", "13", "Pong"),
 ]
 
 # VM programs requiring non-spec bootstrap to pass tests (translator)
@@ -160,7 +158,6 @@ binary_asm_filepaths = [
     os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"), # ASSERT
     os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"), # ASSERT
     os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"), # ASSERT
-    os.path.join("..", "projects", "13", "Pong", "Pong.asm"),
 ]
 
 # HDL test scripts (interpreter: HardwareSimulator)
