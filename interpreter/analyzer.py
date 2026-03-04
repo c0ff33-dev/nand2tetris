@@ -331,7 +331,19 @@ def main(filepath, debug=False):
 
 
 if __name__ == '__main__':
-    from inputs import jack_filepaths
+    import sys
+    import glob as _glob
 
-    for _filepath in jack_filepaths:
-        main(_filepath, debug=False)
+    if len(sys.argv) > 1:
+        _path = sys.argv[1]
+        if os.path.isdir(_path):
+            _files = sorted(_glob.glob(os.path.join(_path, "*.jack")))
+        else:
+            _files = [_path]
+        for _filepath in _files:
+            main(_filepath, debug=False)
+    else:
+        from inputs import jack_filepaths
+
+        for _filepath in jack_filepaths:
+            main(_filepath, debug=False)
