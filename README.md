@@ -25,6 +25,16 @@ python runner.py            # run all tests
 python runner.py --debug    # verbose output
 ```
 
+### emulator.py — Pygame HACK platform emulator
+
+Graphical emulator that renders the memory-mapped screen and handles keyboard I/O while driving the CPU engine. Screen (RAM[16384..24575]) is rendered via numpy bit-unpacking at ~30 FPS; keyboard events map to RAM[24576].
+
+```sh
+python emulator.py path/to/file.asm                # run in emulator (2x scale)
+python emulator.py path/to/file.asm --scale 3      # 3x display scale
+python emulator.py path/to/file.asm --fps 60       # target 60 FPS rendering
+```
+
 ### compiler.py — Jack to VM compiler
 
 Compiles Jack source files into VM bytecode and validates output against course compiler reference files.
@@ -69,21 +79,21 @@ python assembler.py                        # assemble all configured ASM files
 python assembler.py path/to/file.asm       # assemble a single file
 ```
 
-### interpreter.py — HACK CPU emulator & debugger
+### debugger.py — HACK CPU debugger
 
-Interactive CPU emulator with a Rich TUI for step-through debugging. 
+Interactive CPU debugger with a Rich TUI for step-through debugging. Uses `Engine` from `engine.py` for execution.
 
-There is a default cycle limit for batch runs, `--break` removes the limit for interactive use. Test harness runs (`runner.py`) override the limit per `.tst` file, and Jack programs tagged with `ASSERT` directives auto-raise to a higher limit. See `hw["MAX"]` in `interpreter.py` for implementation details.
+There is a default cycle limit for batch runs, `--break` removes the limit for interactive use. Test harness runs (`runner.py`) override the limit per `.tst` file, and Jack programs tagged with `ASSERT` directives auto-raise to a higher limit.
 
 ```sh
-python interpreter.py path/to/file.asm                          # run a program
-python interpreter.py path/to/file.asm --break 42 100           # break at ROM lines 42 and 100
-python interpreter.py path/to/file.asm --break Math.init        # break on entering Math.init
-python interpreter.py path/to/file.asm --break 42 String.init   # mix line numbers and function names
-python interpreter.py path/to/file.asm --debug                  # verbose output
+python debugger.py path/to/file.asm                          # run a program
+python debugger.py path/to/file.asm --break 42 100           # break at ROM lines 42 and 100
+python debugger.py path/to/file.asm --break Math.init        # break on entering Math.init
+python debugger.py path/to/file.asm --break 42 String.init   # mix line numbers and function names
+python debugger.py path/to/file.asm --debug                  # verbose output
 ```
 
-### interpreter.py — Jack ASSERT directives
+### debugger.py — Jack ASSERT directives
 
 The following Jack directives will activate special test behaviour in the interpreter:
 

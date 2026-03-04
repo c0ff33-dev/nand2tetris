@@ -23,8 +23,8 @@ SCREEN_HEIGHT = 256
 WORDS_PER_ROW = 32  # 512 pixels / 16 bits per word
 
 # Timing
-CPU_HZ = 6_250_000
-DEFAULT_FPS = 30
+CPU_HZ = 3_000_000
+DEFAULT_FPS = 15
 DEFAULT_SCALE = 2
 
 # Pygame key → HACK key code (128+)

@@ -14,7 +14,7 @@ import tokenizer
 import analyzer
 import compiler
 from translator import Translator
-from interpreter import run
+from debugger import run
 
 
 if __name__ == '__main__':
