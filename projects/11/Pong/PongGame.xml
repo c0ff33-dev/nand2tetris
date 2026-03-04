@@ -547,22 +547,6 @@
                   <symbol> ) </symbol>
                   <symbol> ; </symbol>
                 </doStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <identifier> Sys </identifier>
-                  <symbol> . </symbol>
-                  <identifier> wait </identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                    <expression>
-                      <term>
-                        <integerConstant> 50 </integerConstant>
-                      </term>
-                    </expression>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
               </statements>
               <symbol> } </symbol>
             </whileStatement>
@@ -754,22 +738,6 @@
                   <symbol> ( </symbol>
                   <expressionList>
                     <expression/>
-                  </expressionList>
-                  <symbol> ) </symbol>
-                  <symbol> ; </symbol>
-                </doStatement>
-                <doStatement>
-                  <keyword> do </keyword>
-                  <identifier> Sys </identifier>
-                  <symbol> . </symbol>
-                  <identifier> wait </identifier>
-                  <symbol> ( </symbol>
-                  <expressionList>
-                    <expression>
-                      <term>
-                        <integerConstant> 50 </integerConstant>
-                      </term>
-                    </expression>
                   </expressionList>
                   <symbol> ) </symbol>
                   <symbol> ; </symbol>

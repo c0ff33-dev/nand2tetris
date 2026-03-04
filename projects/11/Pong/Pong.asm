@@ -26166,28 +26166,6 @@ D=M
 @5
 M=D
 
-// push constant 50
-@50 // push constant 50 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-
-// call Sys.wait 1
-@RET_CALL_329
-D=A
-@CALL_Sys.wait_1
-0;JMP
-(RET_CALL_329)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
 // goto WHILE_EXP1
 @PongGame.run$WHILE_EXP1 // goto WHILE_EXP1
 0;JMP // unconditional jump
@@ -26213,11 +26191,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_330
+@RET_EQ_329
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_330)
+(RET_EQ_329)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -26249,11 +26227,11 @@ A=A-1 // A -> slot
 M=1 // direct assign
 
 // call Bat.setDirection 2
-@RET_CALL_331
+@RET_CALL_330
 D=A
 @CALL_Bat.setDirection_2
 0;JMP
-(RET_CALL_331)
+(RET_CALL_330)
 
 // pop temp 0
 @SP // pop temp 0
@@ -26287,11 +26265,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_332
+@RET_EQ_331
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_332)
+(RET_EQ_331)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -26325,11 +26303,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Bat.setDirection 2
-@RET_CALL_333
+@RET_CALL_332
 D=A
 @CALL_Bat.setDirection_2
 0;JMP
-(RET_CALL_333)
+(RET_CALL_332)
 
 // pop temp 0
 @SP // pop temp 0
@@ -26363,11 +26341,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_334
+@RET_EQ_333
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_334)
+(RET_EQ_333)
 
 // if-goto IF_TRUE2
 @SP // if-goto IF_TRUE2
@@ -26437,11 +26415,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_335
+@RET_EQ_334
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_335)
+(RET_EQ_334)
 
 // not
 @SP // not
@@ -26484,11 +26462,11 @@ D=M // d = val
 D;JNE // jump if not zero
 
 // call Keyboard.keyPressed 0
-@RET_CALL_336
+@RET_CALL_335
 D=A
 @CALL_Keyboard.keyPressed_0
 0;JMP
-(RET_CALL_336)
+(RET_CALL_335)
 
 // pop local 0
 @SP // pop local 0
@@ -26508,11 +26486,11 @@ A=A-1
 M=D
 
 // call Bat.move 1
-@RET_CALL_337
+@RET_CALL_336
 D=A
 @CALL_Bat.move_1
 0;JMP
-(RET_CALL_337)
+(RET_CALL_336)
 
 // pop temp 0
 @SP // pop temp 0
@@ -26530,33 +26508,11 @@ A=A-1
 M=D
 
 // call PongGame.moveBall 1
-@RET_CALL_338
+@RET_CALL_337
 D=A
 @CALL_PongGame.moveBall_1
 0;JMP
-(RET_CALL_338)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push constant 50
-@50 // push constant 50 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-
-// call Sys.wait 1
-@RET_CALL_339
-D=A
-@CALL_Sys.wait_1
-0;JMP
-(RET_CALL_339)
+(RET_CALL_337)
 
 // pop temp 0
 @SP // pop temp 0
@@ -26621,11 +26577,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.moveCursor 2
-@RET_CALL_340
+@RET_CALL_338
 D=A
 @CALL_Output.moveCursor_2
 0;JMP
-(RET_CALL_340)
+(RET_CALL_338)
 
 // pop temp 0
 @SP // pop temp 0
@@ -26643,14 +26599,44 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call String.new 1
-@RET_CALL_341
+@RET_CALL_339
 D=A
 @CALL_String.new_1
 0;JMP
-(RET_CALL_341)
+(RET_CALL_339)
 
 // push constant 71
 @71 // push constant 71 (constant)
+D=A // d = constant
+@SP // &esp
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
+
+// call String.appendChar 2
+@RET_CALL_340
+D=A
+@CALL_String.appendChar_2
+0;JMP
+(RET_CALL_340)
+
+// push constant 97
+@97 // push constant 97 (constant)
+D=A // d = constant
+@SP // &esp
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
+
+// call String.appendChar 2
+@RET_CALL_341
+D=A
+@CALL_String.appendChar_2
+0;JMP
+(RET_CALL_341)
+
+// push constant 109
+@109 // push constant 109 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -26664,8 +26650,8 @@ D=A
 0;JMP
 (RET_CALL_342)
 
-// push constant 97
-@97 // push constant 97 (constant)
+// push constant 101
+@101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -26679,8 +26665,8 @@ D=A
 0;JMP
 (RET_CALL_343)
 
-// push constant 109
-@109 // push constant 109 (constant)
+// push constant 32
+@32 // push constant 32 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -26694,8 +26680,8 @@ D=A
 0;JMP
 (RET_CALL_344)
 
-// push constant 101
-@101 // push constant 101 (constant)
+// push constant 79
+@79 // push constant 79 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -26709,8 +26695,8 @@ D=A
 0;JMP
 (RET_CALL_345)
 
-// push constant 32
-@32 // push constant 32 (constant)
+// push constant 118
+@118 // push constant 118 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -26724,8 +26710,8 @@ D=A
 0;JMP
 (RET_CALL_346)
 
-// push constant 79
-@79 // push constant 79 (constant)
+// push constant 101
+@101 // push constant 101 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -26739,8 +26725,8 @@ D=A
 0;JMP
 (RET_CALL_347)
 
-// push constant 118
-@118 // push constant 118 (constant)
+// push constant 114
+@114 // push constant 114 (constant)
 D=A // d = constant
 @SP // &esp
 AM=M+1 // SP++
@@ -26754,42 +26740,12 @@ D=A
 0;JMP
 (RET_CALL_348)
 
-// push constant 101
-@101 // push constant 101 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-
-// call String.appendChar 2
-@RET_CALL_349
-D=A
-@CALL_String.appendChar_2
-0;JMP
-(RET_CALL_349)
-
-// push constant 114
-@114 // push constant 114 (constant)
-D=A // d = constant
-@SP // &esp
-AM=M+1 // SP++
-A=A-1 // A -> slot
-M=D // slot = constant
-
-// call String.appendChar 2
-@RET_CALL_350
-D=A
-@CALL_String.appendChar_2
-0;JMP
-(RET_CALL_350)
-
 // call Output.printString 1
-@RET_CALL_351
+@RET_CALL_349
 D=A
 @CALL_Output.printString_1
 0;JMP
-(RET_CALL_351)
+(RET_CALL_349)
 
 // pop temp 0
 @SP // pop temp 0
@@ -26853,11 +26809,11 @@ A=A-1
 M=D
 
 // call Ball.move 1
-@RET_CALL_352
+@RET_CALL_350
 D=A
 @CALL_Ball.move_1
 0;JMP
-(RET_CALL_352)
+(RET_CALL_350)
 
 // pop this 2
 @THIS // pop this 2 (&asm_segment)
@@ -26892,11 +26848,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_353
+@RET_GT_351
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_353)
+(RET_GT_351)
 
 // push this 2
 @THIS // push this 2 (&asm_segment)
@@ -26921,11 +26877,11 @@ A=A-1
 M=D
 
 // eq
-@RET_EQ_354
+@RET_EQ_352
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_354)
+(RET_EQ_352)
 
 // not
 @SP // not
@@ -27003,11 +26959,11 @@ A=A-1
 M=D
 
 // call Bat.getLeft 1
-@RET_CALL_355
+@RET_CALL_353
 D=A
 @CALL_Bat.getLeft_1
 0;JMP
-(RET_CALL_355)
+(RET_CALL_353)
 
 // pop local 1
 @SP // pop local 1
@@ -27027,11 +26983,11 @@ A=A-1
 M=D
 
 // call Bat.getRight 1
-@RET_CALL_356
+@RET_CALL_354
 D=A
 @CALL_Bat.getRight_1
 0;JMP
-(RET_CALL_356)
+(RET_CALL_354)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -27058,11 +27014,11 @@ A=A-1
 M=D
 
 // call Ball.getLeft 1
-@RET_CALL_357
+@RET_CALL_355
 D=A
 @CALL_Ball.getLeft_1
 0;JMP
-(RET_CALL_357)
+(RET_CALL_355)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -27089,11 +27045,11 @@ A=A-1
 M=D
 
 // call Ball.getRight 1
-@RET_CALL_358
+@RET_CALL_356
 D=A
 @CALL_Ball.getRight_1
 0;JMP
-(RET_CALL_358)
+(RET_CALL_356)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -27130,11 +27086,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_359
+@RET_EQ_357
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_359)
+(RET_EQ_357)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -27171,11 +27127,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_360
+@RET_GT_358
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_360)
+(RET_GT_358)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -27200,11 +27156,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_361
+@RET_LT_359
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_361)
+(RET_LT_359)
 
 // or
 @SP // or
@@ -27294,11 +27250,11 @@ A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
 
 // lt
-@RET_LT_362
+@RET_LT_360
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_362)
+(RET_LT_360)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -27378,11 +27334,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // gt
-@RET_GT_363
+@RET_GT_361
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_363)
+(RET_GT_361)
 
 // if-goto IF_TRUE4
 @SP // if-goto IF_TRUE4
@@ -27480,11 +27436,11 @@ A=A-1
 M=D
 
 // call Bat.setWidth 2
-@RET_CALL_364
+@RET_CALL_362
 D=A
 @CALL_Bat.setWidth_2
 0;JMP
-(RET_CALL_364)
+(RET_CALL_362)
 
 // pop temp 0
 @SP // pop temp 0
@@ -27549,11 +27505,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Output.moveCursor 2
-@RET_CALL_365
+@RET_CALL_363
 D=A
 @CALL_Output.moveCursor_2
 0;JMP
-(RET_CALL_365)
+(RET_CALL_363)
 
 // pop temp 0
 @SP // pop temp 0
@@ -27574,11 +27530,11 @@ A=A-1
 M=D
 
 // call Output.printInt 1
-@RET_CALL_366
+@RET_CALL_364
 D=A
 @CALL_Output.printInt_1
 0;JMP
-(RET_CALL_366)
+(RET_CALL_364)
 
 // pop temp 0
 @SP // pop temp 0
@@ -27612,11 +27568,11 @@ A=A-1
 M=D
 
 // call Ball.bounce 2
-@RET_CALL_367
+@RET_CALL_365
 D=A
 @CALL_Ball.bounce_2
 0;JMP
-(RET_CALL_367)
+(RET_CALL_365)
 
 // pop temp 0
 @SP // pop temp 0
@@ -27688,11 +27644,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Array.new 1
-@RET_CALL_368
+@RET_CALL_366
 D=A
 @CALL_Array.new_1
 0;JMP
-(RET_CALL_368)
+(RET_CALL_366)
 
 // pop static 0
 @SP // pop static 0
@@ -27779,11 +27735,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_369
+@RET_LT_367
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_369)
+(RET_LT_367)
 
 // not
 @SP // not
@@ -28040,11 +27996,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_370
+@RET_LT_368
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_370)
+(RET_LT_368)
 
 // not
 @SP // not
@@ -28490,11 +28446,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_371
+@RET_LT_369
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_371)
+(RET_LT_369)
 
 // push argument 0
 @ARG // push argument 0
@@ -28514,11 +28470,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_372
+@RET_GT_370
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_372)
+(RET_GT_370)
 
 // or
 @SP // or
@@ -28543,11 +28499,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_373
+@RET_LT_371
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_373)
+(RET_LT_371)
 
 // or
 @SP // or
@@ -28574,11 +28530,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_374
+@RET_GT_372
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_374)
+(RET_GT_372)
 
 // or
 @SP // or
@@ -28610,11 +28566,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_375
+@RET_CALL_373
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_375)
+(RET_CALL_373)
 
 // pop temp 0
 @SP // pop temp 0
@@ -28644,11 +28600,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-@RET_CALL_376
+@RET_CALL_374
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_376)
+(RET_CALL_374)
 
 // pop local 0
 @SP // pop local 0
@@ -28685,11 +28641,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_377
+@RET_CALL_375
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_377)
+(RET_CALL_375)
 
 // sub
 @SP // sub
@@ -28724,11 +28680,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_378
+@RET_CALL_376
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_378)
+(RET_CALL_376)
 
 // push local 0
 @LCL // push local 0
@@ -28813,11 +28769,11 @@ A=A-1
 M=D
 
 // call Screen.updateLocation 2
-@RET_CALL_379
+@RET_CALL_377
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_379)
+(RET_CALL_377)
 
 // pop temp 0
 @SP // pop temp 0
@@ -28882,11 +28838,11 @@ A=A-1
 M=D
 
 // call Screen.drawPixel 2
-@RET_CALL_380
+@RET_CALL_378
 D=A
 @CALL_Screen.drawPixel_2
 0;JMP
-(RET_CALL_380)
+(RET_CALL_378)
 
 // pop temp 0
 @SP // pop temp 0
@@ -28921,11 +28877,11 @@ A=A-1
 M=D
 
 // call Screen.drawPixel 2
-@RET_CALL_381
+@RET_CALL_379
 D=A
 @CALL_Screen.drawPixel_2
 0;JMP
-(RET_CALL_381)
+(RET_CALL_379)
 
 // pop temp 0
 @SP // pop temp 0
@@ -28991,11 +28947,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_382
+@RET_LT_380
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_382)
+(RET_LT_380)
 
 // push argument 2
 @ARG // push argument 2 (&asm_segment)
@@ -29017,11 +28973,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_383
+@RET_GT_381
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_383)
+(RET_GT_381)
 
 // or
 @SP // or
@@ -29046,11 +29002,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_384
+@RET_LT_382
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_384)
+(RET_LT_382)
 
 // or
 @SP // or
@@ -29079,11 +29035,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_385
+@RET_GT_383
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_385)
+(RET_GT_383)
 
 // or
 @SP // or
@@ -29115,11 +29071,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_386
+@RET_CALL_384
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_386)
+(RET_CALL_384)
 
 // pop temp 0
 @SP // pop temp 0
@@ -29159,11 +29115,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.abs 1
-@RET_CALL_387
+@RET_CALL_385
 D=A
 @CALL_Math.abs_1
 0;JMP
-(RET_CALL_387)
+(RET_CALL_385)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -29208,11 +29164,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.abs 1
-@RET_CALL_388
+@RET_CALL_386
 D=A
 @CALL_Math.abs_1
 0;JMP
-(RET_CALL_388)
+(RET_CALL_386)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -29252,11 +29208,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_389
+@RET_LT_387
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_389)
+(RET_LT_387)
 
 // pop local 6
 @LCL // pop local 6 (&asm_segment)
@@ -29305,11 +29261,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_390
+@RET_LT_388
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_390)
+(RET_LT_388)
 
 // and
 @SP // and
@@ -29355,11 +29311,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_391
+@RET_LT_389
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_391)
+(RET_LT_389)
 
 // and
 @SP // and
@@ -29714,11 +29670,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_392
+@RET_GT_390
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_392)
+(RET_GT_390)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -29823,11 +29779,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_393
+@RET_GT_391
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_393)
+(RET_GT_391)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -29867,11 +29823,11 @@ A=A-1
 M=D
 
 // call Math.multiply 2
-@RET_CALL_394
+@RET_CALL_392
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_394)
+(RET_CALL_392)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -29926,11 +29882,11 @@ A=A-1
 M=D
 
 // call Math.multiply 2
-@RET_CALL_395
+@RET_CALL_393
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_395)
+(RET_CALL_393)
 
 // pop local 9
 @LCL // pop local 9 (&asm_segment)
@@ -29985,11 +29941,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.multiply 2
-@RET_CALL_396
+@RET_CALL_394
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_396)
+(RET_CALL_394)
 
 // pop local 10
 @LCL // pop local 10 (&asm_segment)
@@ -30036,11 +29992,11 @@ A=A-1
 M=D
 
 // call Screen.drawConditional 3
-@RET_CALL_397
+@RET_CALL_395
 D=A
 @CALL_Screen.drawConditional_3
 0;JMP
-(RET_CALL_397)
+(RET_CALL_395)
 
 // pop temp 0
 @SP // pop temp 0
@@ -30073,11 +30029,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_398
+@RET_LT_396
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_398)
+(RET_LT_396)
 
 // not
 @SP // not
@@ -30109,11 +30065,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_399
+@RET_LT_397
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_399)
+(RET_LT_397)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -30382,11 +30338,11 @@ A=A-1
 M=D
 
 // call Screen.drawConditional 3
-@RET_CALL_400
+@RET_CALL_398
 D=A
 @CALL_Screen.drawConditional_3
 0;JMP
-(RET_CALL_400)
+(RET_CALL_398)
 
 // pop temp 0
 @SP // pop temp 0
@@ -30457,11 +30413,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_401
+@RET_GT_399
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_401)
+(RET_GT_399)
 
 // push argument 1
 @ARG // push argument 1
@@ -30484,11 +30440,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_402
+@RET_GT_400
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_402)
+(RET_GT_400)
 
 // or
 @SP // or
@@ -30513,11 +30469,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_403
+@RET_LT_401
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_403)
+(RET_LT_401)
 
 // or
 @SP // or
@@ -30546,11 +30502,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_404
+@RET_GT_402
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_404)
+(RET_GT_402)
 
 // or
 @SP // or
@@ -30575,11 +30531,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_405
+@RET_LT_403
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_405)
+(RET_LT_403)
 
 // or
 @SP // or
@@ -30608,11 +30564,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_406
+@RET_GT_404
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_406)
+(RET_GT_404)
 
 // or
 @SP // or
@@ -30644,11 +30600,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_407
+@RET_CALL_405
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_407)
+(RET_CALL_405)
 
 // pop temp 0
 @SP // pop temp 0
@@ -30678,11 +30634,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-@RET_CALL_408
+@RET_CALL_406
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_408)
+(RET_CALL_406)
 
 // pop local 3
 @LCL // pop local 3 (&asm_segment)
@@ -30728,11 +30684,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_409
+@RET_CALL_407
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_409)
+(RET_CALL_407)
 
 // sub
 @SP // sub
@@ -30776,11 +30732,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-@RET_CALL_410
+@RET_CALL_408
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_410)
+(RET_CALL_408)
 
 // pop local 4
 @LCL // pop local 4 (&asm_segment)
@@ -30828,11 +30784,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_411
+@RET_CALL_409
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_411)
+(RET_CALL_409)
 
 // sub
 @SP // sub
@@ -31032,11 +30988,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_412
+@RET_CALL_410
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_412)
+(RET_CALL_410)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -31132,11 +31088,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_413
+@RET_GT_411
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_413)
+(RET_GT_411)
 
 // not
 @SP // not
@@ -31208,11 +31164,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_414
+@RET_EQ_412
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_414)
+(RET_EQ_412)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -31267,11 +31223,11 @@ A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
 // call Screen.updateLocation 2
-@RET_CALL_415
+@RET_CALL_413
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_415)
+(RET_CALL_413)
 
 // pop temp 0
 @SP // pop temp 0
@@ -31308,11 +31264,11 @@ A=A-1
 M=D
 
 // call Screen.updateLocation 2
-@RET_CALL_416
+@RET_CALL_414
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_416)
+(RET_CALL_414)
 
 // pop temp 0
 @SP // pop temp 0
@@ -31373,11 +31329,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_417
+@RET_LT_415
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_417)
+(RET_LT_415)
 
 // not
 @SP // not
@@ -31412,11 +31368,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // call Screen.updateLocation 2
-@RET_CALL_418
+@RET_CALL_416
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_418)
+(RET_CALL_416)
 
 // pop temp 0
 @SP // pop temp 0
@@ -31483,11 +31439,11 @@ A=A-1
 M=D
 
 // call Screen.updateLocation 2
-@RET_CALL_419
+@RET_CALL_417
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_419)
+(RET_CALL_417)
 
 // pop temp 0
 @SP // pop temp 0
@@ -31645,11 +31601,11 @@ A=A-1
 M=D
 
 // call Math.min 2
-@RET_CALL_420
+@RET_CALL_418
 D=A
 @CALL_Math.min_2
 0;JMP
-(RET_CALL_420)
+(RET_CALL_418)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -31687,11 +31643,11 @@ A=A-1
 M=D
 
 // call Math.max 2
-@RET_CALL_421
+@RET_CALL_419
 D=A
 @CALL_Math.max_2
 0;JMP
-(RET_CALL_421)
+(RET_CALL_419)
 
 // pop local 8
 @LCL // pop local 8 (&asm_segment)
@@ -31729,11 +31685,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@RET_GT_422
+@RET_GT_420
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_422)
+(RET_GT_420)
 
 // push argument 0
 @ARG // push argument 0
@@ -31753,11 +31709,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_423
+@RET_LT_421
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_423)
+(RET_LT_421)
 
 // and
 @SP // and
@@ -31786,11 +31742,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // lt
-@RET_LT_424
+@RET_LT_422
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_424)
+(RET_LT_422)
 
 // and
 @SP // and
@@ -31822,11 +31778,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // gt
-@RET_GT_425
+@RET_GT_423
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_425)
+(RET_GT_423)
 
 // and
 @SP // and
@@ -31867,11 +31823,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // call Math.max 2
-@RET_CALL_426
+@RET_CALL_424
 D=A
 @CALL_Math.max_2
 0;JMP
-(RET_CALL_426)
+(RET_CALL_424)
 
 // pop local 7
 @LCL // pop local 7 (&asm_segment)
@@ -31908,11 +31864,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.min 2
-@RET_CALL_427
+@RET_CALL_425
 D=A
 @CALL_Math.min_2
 0;JMP
-(RET_CALL_427)
+(RET_CALL_425)
 
 // pop local 8
 @LCL // pop local 8 (&asm_segment)
@@ -31949,11 +31905,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-@RET_CALL_428
+@RET_CALL_426
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_428)
+(RET_CALL_426)
 
 // pop local 1
 @SP // pop local 1
@@ -31992,11 +31948,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_429
+@RET_CALL_427
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_429)
+(RET_CALL_427)
 
 // sub
 @SP // sub
@@ -32040,11 +31996,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-@RET_CALL_430
+@RET_CALL_428
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_430)
+(RET_CALL_428)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -32092,11 +32048,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_431
+@RET_CALL_429
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_431)
+(RET_CALL_429)
 
 // sub
 @SP // sub
@@ -32296,11 +32252,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_432
+@RET_CALL_430
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_432)
+(RET_CALL_430)
 
 // push local 1
 @LCL // push local 1
@@ -32428,11 +32384,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_433
+@RET_EQ_431
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_433)
+(RET_EQ_431)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -32487,11 +32443,11 @@ A=A-1 // A -> val1
 M=D&M // val1 = val2 & val1
 
 // call Screen.updateLocation 2
-@RET_CALL_434
+@RET_CALL_432
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_434)
+(RET_CALL_432)
 
 // pop temp 0
 @SP // pop temp 0
@@ -32528,11 +32484,11 @@ A=A-1
 M=D
 
 // call Screen.updateLocation 2
-@RET_CALL_435
+@RET_CALL_433
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_435)
+(RET_CALL_433)
 
 // pop temp 0
 @SP // pop temp 0
@@ -32595,11 +32551,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_436
+@RET_LT_434
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_436)
+(RET_LT_434)
 
 // not
 @SP // not
@@ -32634,11 +32590,11 @@ A=M-1 // A -> top of stack
 M=-M // neg in place
 
 // call Screen.updateLocation 2
-@RET_CALL_437
+@RET_CALL_435
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_437)
+(RET_CALL_435)
 
 // pop temp 0
 @SP // pop temp 0
@@ -32707,11 +32663,11 @@ A=A-1
 M=D
 
 // call Screen.updateLocation 2
-@RET_CALL_438
+@RET_CALL_436
 D=A
 @CALL_Screen.updateLocation_2
 0;JMP
-(RET_CALL_438)
+(RET_CALL_436)
 
 // pop temp 0
 @SP // pop temp 0
@@ -32820,6 +32776,196 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Screen.drawHorizontal 3
+@RET_CALL_437
+D=A
+@CALL_Screen.drawHorizontal_3
+0;JMP
+(RET_CALL_437)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// push argument 1
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push argument 3
+@ARG // push argument 3 (&asm_segment)
+D=M // d = *asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// add
+@SP // add
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push argument 2
+@ARG // push argument 2 (&asm_segment)
+D=M // d = *asm_segment
+@2 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// add
+@SP // add
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push argument 2
+@ARG // push argument 2 (&asm_segment)
+D=M // d = *asm_segment
+@2 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// sub
+@SP // sub
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
+
+// call Screen.drawHorizontal 3
+@RET_CALL_438
+D=A
+@CALL_Screen.drawHorizontal_3
+0;JMP
+(RET_CALL_438)
+
+// pop temp 0
+@SP // pop temp 0
+AM=M-1
+D=M
+@5
+M=D
+
+// push argument 1
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push argument 2
+@ARG // push argument 2 (&asm_segment)
+D=M // d = *asm_segment
+@2 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// sub
+@SP // sub
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push argument 3
+@ARG // push argument 3 (&asm_segment)
+D=M // d = *asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// sub
+@SP // sub
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push argument 3
+@ARG // push argument 3 (&asm_segment)
+D=M // d = *asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// add
+@SP // add
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
+
+// call Screen.drawHorizontal 3
 @RET_CALL_439
 D=A
 @CALL_Screen.drawHorizontal_3
@@ -32842,6 +32988,60 @@ AM=M+1
 A=A-1
 M=D
 
+// push argument 2
+@ARG // push argument 2 (&asm_segment)
+D=M // d = *asm_segment
+@2 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// add
+@SP // add
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=D+M // val1 = val2 + val1
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// push argument 3
+@ARG // push argument 3 (&asm_segment)
+D=M // d = *asm_segment
+@3 // offset
+A=D+A // &(asm_segment+offset)
+D=M // d = *(asm_segment+offset)
+@SP
+AM=M+1
+A=A-1
+M=D
+
+// sub
+@SP // sub
+AM=M-1 // SP--, A -> val2
+D=M // d = val2
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
+
+// push argument 0
+@ARG // push argument 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
+
 // push argument 3
 @ARG // push argument 3 (&asm_segment)
 D=M // d = *asm_segment
@@ -32859,60 +33059,6 @@ AM=M-1 // SP--, A -> val2
 D=M // d = val2
 A=A-1 // A -> val1
 M=D+M // val1 = val2 + val1
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 2
-@ARG // push argument 2 (&asm_segment)
-D=M // d = *asm_segment
-@2 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// add
-@SP // add
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=D+M // val1 = val2 + val1
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 2
-@ARG // push argument 2 (&asm_segment)
-D=M // d = *asm_segment
-@2 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// sub
-@SP // sub
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=M-D // val1 = val1 - val2
 
 // call Screen.drawHorizontal 3
 @RET_CALL_440
@@ -32920,196 +33066,6 @@ D=A
 @CALL_Screen.drawHorizontal_3
 0;JMP
 (RET_CALL_440)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push argument 1
-@ARG // push argument 1
-A=M+1
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 2
-@ARG // push argument 2 (&asm_segment)
-D=M // d = *asm_segment
-@2 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// sub
-@SP // sub
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=M-D // val1 = val1 - val2
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 3
-@ARG // push argument 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// sub
-@SP // sub
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=M-D // val1 = val1 - val2
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 3
-@ARG // push argument 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// add
-@SP // add
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=D+M // val1 = val2 + val1
-
-// call Screen.drawHorizontal 3
-@RET_CALL_441
-D=A
-@CALL_Screen.drawHorizontal_3
-0;JMP
-(RET_CALL_441)
-
-// pop temp 0
-@SP // pop temp 0
-AM=M-1
-D=M
-@5
-M=D
-
-// push argument 1
-@ARG // push argument 1
-A=M+1
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 2
-@ARG // push argument 2 (&asm_segment)
-D=M // d = *asm_segment
-@2 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// add
-@SP // add
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=D+M // val1 = val2 + val1
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 3
-@ARG // push argument 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// sub
-@SP // sub
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=M-D // val1 = val1 - val2
-
-// push argument 0
-@ARG // push argument 0
-A=M
-D=M
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// push argument 3
-@ARG // push argument 3 (&asm_segment)
-D=M // d = *asm_segment
-@3 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP
-AM=M+1
-A=A-1
-M=D
-
-// add
-@SP // add
-AM=M-1 // SP--, A -> val2
-D=M // d = val2
-A=A-1 // A -> val1
-M=D+M // val1 = val2 + val1
-
-// call Screen.drawHorizontal 3
-@RET_CALL_442
-D=A
-@CALL_Screen.drawHorizontal_3
-0;JMP
-(RET_CALL_442)
 
 // pop temp 0
 @SP // pop temp 0
@@ -33156,11 +33112,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_443
+@RET_LT_441
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_443)
+(RET_LT_441)
 
 // push argument 0
 @ARG // push argument 0
@@ -33180,11 +33136,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_444
+@RET_GT_442
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_444)
+(RET_GT_442)
 
 // or
 @SP // or
@@ -33209,11 +33165,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_445
+@RET_LT_443
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_445)
+(RET_LT_443)
 
 // or
 @SP // or
@@ -33240,11 +33196,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_446
+@RET_GT_444
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_446)
+(RET_GT_444)
 
 // or
 @SP // or
@@ -33276,11 +33232,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_447
+@RET_CALL_445
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_447)
+(RET_CALL_445)
 
 // pop temp 0
 @SP // pop temp 0
@@ -33326,11 +33282,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_448
+@RET_LT_446
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_448)
+(RET_LT_446)
 
 // push argument 0
 @ARG // push argument 0
@@ -33368,11 +33324,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_449
+@RET_GT_447
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_449)
+(RET_GT_447)
 
 // or
 @SP // or
@@ -33415,11 +33371,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_450
+@RET_LT_448
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_450)
+(RET_LT_448)
 
 // or
 @SP // or
@@ -33464,11 +33420,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_451
+@RET_GT_449
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_451)
+(RET_GT_449)
 
 // or
 @SP // or
@@ -33500,11 +33456,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_452
+@RET_CALL_450
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_452)
+(RET_CALL_450)
 
 // pop temp 0
 @SP // pop temp 0
@@ -33611,11 +33567,11 @@ A=A-1
 M=D
 
 // call Screen.drawSymetric 4
-@RET_CALL_453
+@RET_CALL_451
 D=A
 @CALL_Screen.drawSymetric_4
 0;JMP
-(RET_CALL_453)
+(RET_CALL_451)
 
 // pop temp 0
 @SP // pop temp 0
@@ -33646,11 +33602,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_454
+@RET_GT_452
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_454)
+(RET_GT_452)
 
 // not
 @SP // not
@@ -33682,11 +33638,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_455
+@RET_LT_453
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_455)
+(RET_LT_453)
 
 // if-goto IF_TRUE2
 @SP // if-goto IF_TRUE2
@@ -33731,11 +33687,11 @@ A=A-1
 M=D
 
 // call Math.multiply 2
-@RET_CALL_456
+@RET_CALL_454
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_456)
+(RET_CALL_454)
 
 // add
 @SP // add
@@ -33826,11 +33782,11 @@ A=A-1 // A -> val1
 M=M-D // val1 = val1 - val2
 
 // call Math.multiply 2
-@RET_CALL_457
+@RET_CALL_455
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_457)
+(RET_CALL_455)
 
 // add
 @SP // add
@@ -33969,11 +33925,11 @@ A=A-1
 M=D
 
 // call Screen.drawSymetric 4
-@RET_CALL_458
+@RET_CALL_456
 D=A
 @CALL_Screen.drawSymetric_4
 0;JMP
-(RET_CALL_458)
+(RET_CALL_456)
 
 // pop temp 0
 @SP // pop temp 0
@@ -34010,11 +33966,11 @@ AM=M+1 // SP++
 A=A-1 // A -> slot
 M=D // slot = constant
 // call Memory.alloc 1
-@RET_CALL_459
+@RET_CALL_457
 D=A
 @CALL_Memory.alloc_1
 0;JMP
-(RET_CALL_459)
+(RET_CALL_457)
 
 // pop pointer 0
 @SP // pop pointer 0
@@ -34039,11 +33995,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_460
+@RET_LT_458
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_460)
+(RET_LT_458)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -34068,11 +34024,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_461
+@RET_CALL_459
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_461)
+(RET_CALL_459)
 
 // pop temp 0
 @SP // pop temp 0
@@ -34100,11 +34056,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_462
+@RET_GT_460
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_462)
+(RET_GT_460)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -34130,11 +34086,11 @@ A=A-1
 M=D
 
 // call Array.new 1
-@RET_CALL_463
+@RET_CALL_461
 D=A
 @CALL_Array.new_1
 0;JMP
-(RET_CALL_463)
+(RET_CALL_461)
 
 // pop this 1
 @SP // pop this 1
@@ -34231,11 +34187,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_464
+@RET_GT_462
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_464)
+(RET_GT_462)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -34261,11 +34217,11 @@ A=A-1
 M=D
 
 // call Array.dispose 1
-@RET_CALL_465
+@RET_CALL_463
 D=A
 @CALL_Array.dispose_1
 0;JMP
-(RET_CALL_465)
+(RET_CALL_463)
 
 // pop temp 0
 @SP // pop temp 0
@@ -34286,11 +34242,11 @@ A=A-1
 M=D
 
 // call Memory.deAlloc 1
-@RET_CALL_466
+@RET_CALL_464
 D=A
 @CALL_Memory.deAlloc_1
 0;JMP
-(RET_CALL_466)
+(RET_CALL_464)
 
 // pop temp 0
 @SP // pop temp 0
@@ -34376,11 +34332,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_467
+@RET_LT_465
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_467)
+(RET_LT_465)
 
 // push argument 1
 @ARG // push argument 1
@@ -34403,11 +34359,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_468
+@RET_GT_466
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_468)
+(RET_GT_466)
 
 // or
 @SP // or
@@ -34437,11 +34393,11 @@ A=A-1
 M=D
 
 // eq
-@RET_EQ_469
+@RET_EQ_467
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_469)
+(RET_EQ_467)
 
 // or
 @SP // or
@@ -34473,11 +34429,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_470
+@RET_CALL_468
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_470)
+(RET_CALL_468)
 
 // pop temp 0
 @SP // pop temp 0
@@ -34568,11 +34524,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_471
+@RET_LT_469
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_471)
+(RET_LT_469)
 
 // push argument 1
 @ARG // push argument 1
@@ -34595,11 +34551,11 @@ A=A-1
 M=D
 
 // gt
-@RET_GT_472
+@RET_GT_470
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_472)
+(RET_GT_470)
 
 // or
 @SP // or
@@ -34629,11 +34585,11 @@ A=A-1
 M=D
 
 // eq
-@RET_EQ_473
+@RET_EQ_471
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_473)
+(RET_EQ_471)
 
 // or
 @SP // or
@@ -34665,11 +34621,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_474
+@RET_CALL_472
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_474)
+(RET_CALL_472)
 
 // pop temp 0
 @SP // pop temp 0
@@ -34796,11 +34752,11 @@ A=A-1
 M=D
 
 // eq
-@RET_EQ_475
+@RET_EQ_473
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_475)
+(RET_EQ_473)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -34825,11 +34781,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_476
+@RET_CALL_474
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_476)
+(RET_CALL_474)
 
 // pop temp 0
 @SP // pop temp 0
@@ -34994,11 +34950,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_477
+@RET_EQ_475
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_477)
+(RET_EQ_475)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -35023,11 +34979,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_478
+@RET_CALL_476
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_478)
+(RET_CALL_476)
 
 // pop temp 0
 @SP // pop temp 0
@@ -35138,11 +35094,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_479
+@RET_EQ_477
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_479)
+(RET_EQ_477)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -35244,11 +35200,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // eq
-@RET_EQ_480
+@RET_EQ_478
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_480)
+(RET_EQ_478)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -35331,11 +35287,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_481
+@RET_LT_479
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_481)
+(RET_LT_479)
 
 // push local 3
 @LCL // push local 3 (&asm_segment)
@@ -35456,11 +35412,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_482
+@RET_LT_480
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_482)
+(RET_LT_480)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -35482,11 +35438,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // gt
-@RET_GT_483
+@RET_GT_481
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_483)
+(RET_GT_481)
 
 // or
 @SP // or
@@ -35558,11 +35514,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_484
+@RET_CALL_482
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_484)
+(RET_CALL_482)
 
 // push local 2
 @LCL // push local 2 (&asm_segment)
@@ -35739,11 +35695,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_485
+@RET_EQ_483
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_485)
+(RET_EQ_483)
 
 // if-goto IF_TRUE0
 @SP // if-goto IF_TRUE0
@@ -35768,11 +35724,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_486
+@RET_CALL_484
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_486)
+(RET_CALL_484)
 
 // pop temp 0
 @SP // pop temp 0
@@ -35793,11 +35749,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Array.new 1
-@RET_CALL_487
+@RET_CALL_485
 D=A
 @CALL_Array.new_1
 0;JMP
-(RET_CALL_487)
+(RET_CALL_485)
 
 // pop local 2
 @LCL // pop local 2 (&asm_segment)
@@ -35830,11 +35786,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // lt
-@RET_LT_488
+@RET_LT_486
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_488)
+(RET_LT_486)
 
 // if-goto IF_TRUE1
 @SP // if-goto IF_TRUE1
@@ -35937,11 +35893,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // gt
-@RET_GT_489
+@RET_GT_487
 D=A
 @GT_SUB
 0;JMP
-(RET_GT_489)
+(RET_GT_487)
 
 // not
 @SP // not
@@ -35973,11 +35929,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.divide 2
-@RET_CALL_490
+@RET_CALL_488
 D=A
 @CALL_Math.divide_2
 0;JMP
-(RET_CALL_490)
+(RET_CALL_488)
 
 // pop local 1
 @SP // pop local 1
@@ -36049,11 +36005,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Math.multiply 2
-@RET_CALL_491
+@RET_CALL_489
 D=A
 @CALL_Math.multiply_2
 0;JMP
-(RET_CALL_491)
+(RET_CALL_489)
 
 // sub
 @SP // sub
@@ -36295,11 +36251,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_492
+@RET_LT_490
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_492)
+(RET_LT_490)
 
 // if-goto IF_TRUE3
 @SP // if-goto IF_TRUE3
@@ -36324,11 +36280,11 @@ A=A-1 // A -> slot
 M=D // slot = constant
 
 // call Sys.error 1
-@RET_CALL_493
+@RET_CALL_491
 D=A
 @CALL_Sys.error_1
 0;JMP
-(RET_CALL_493)
+(RET_CALL_491)
 
 // pop temp 0
 @SP // pop temp 0
@@ -36356,11 +36312,11 @@ A=A-1 // A -> slot
 M=0 // direct assign
 
 // eq
-@RET_EQ_494
+@RET_EQ_492
 D=A
 @EQ_SUB
 0;JMP
-(RET_EQ_494)
+(RET_EQ_492)
 
 // if-goto IF_TRUE4
 @SP // if-goto IF_TRUE4
@@ -36509,11 +36465,11 @@ A=A-1
 M=D
 
 // lt
-@RET_LT_495
+@RET_LT_493
 D=A
 @LT_SUB
 0;JMP
-(RET_LT_495)
+(RET_LT_493)
 
 // not
 @SP // not
@@ -36719,11 +36675,11 @@ A=A-1
 M=D
 
 // call Array.dispose 1
-@RET_CALL_496
+@RET_CALL_494
 D=A
 @CALL_Array.dispose_1
 0;JMP
-(RET_CALL_496)
+(RET_CALL_494)
 
 // pop temp 0
 @SP // pop temp 0
@@ -37583,17 +37539,6 @@ D=A // D = nArgs
 @R13
 M=D // R13 = retAddr
 @PongGame.moveBall
-D=A
-@R14
-M=D // R14 = func addr
-@1
-D=A // D = nArgs
-@CALL_SUB
-0;JMP
-(CALL_Sys.wait_1)
-@R13
-M=D // R13 = retAddr
-@Sys.wait
 D=A
 @R14
 M=D // R14 = func addr

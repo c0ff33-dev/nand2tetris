@@ -671,7 +671,7 @@ class Translator:
         which files are live, check for undefined functions, and verify that
         all live classes with init() are called from Sys.init()
         """
-        project = os.path.basename(vm_dir)
+        project = os.path.basename(os.path.abspath(vm_dir))
         defined = {}    # func_name -> vm_filepath
         called = {}     # func_name -> set of vm_filepaths that call it
         file_calls = {} # vm_filepath -> set of func_names called from that file
@@ -740,14 +740,14 @@ class Translator:
                 live_callers = called[func] - dead_files
                 if live_callers:
                     callers = ', '.join(os.path.basename(f) for f in sorted(live_callers))
-                    raise RuntimeError("\tLink error: %s: undefined function '%s' called from [%s]" % (project, func, callers))
+                    raise RuntimeError("Link error: %s: undefined function '%s' called from [%s]" % (project, func, callers))
 
         # check that <Class>.init() is called in Sys.init() for all live files
         if has_jack and 'Sys.init' in defined:
             for func_name, vm_filepath in defined.items():
                 if func_name.endswith('.init') and func_name != 'Sys.init':
                     if vm_filepath not in dead_files and func_name not in sys_init_calls:
-                        raise RuntimeError("\tLink error: %s: '%s' defines init() but not called in Sys.init()" % (project, func_name))
+                        raise RuntimeError("Link error: %s: '%s' defines init() but not called in Sys.init()" % (project, func_name))
 
         return dead_files
 
