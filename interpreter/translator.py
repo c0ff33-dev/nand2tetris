@@ -524,10 +524,8 @@ class Translator:
         """
         translate the vm commands into a single asm file
         """
-        src = vm_filepath.split(os.path.sep)[-1].split('.vm')[0].removesuffix('_out')
+        src = vm_filepath.split(os.path.sep)[-1].split('.vm')[0]
         current_function = src  # fallback; updated on each 'function' command
-        # normalize to .vm path for static_dict lookups (keyed by reference path)
-        vm_ref_path = vm_filepath.replace('_out.vm', '.vm') if '_out.vm' in vm_filepath else vm_filepath
 
         with open(vm_filepath) as vm_file:
             vm_contents = vm_file.readlines()
@@ -581,9 +579,9 @@ class Translator:
 
             # parse commands
             if cmd.startswith("push"):
-                self.gen_push(cmd, vm_segment, asm_segment, value, vm_ref_path)
+                self.gen_push(cmd, vm_segment, asm_segment, value, vm_filepath)
             elif cmd.startswith("pop"):
-                self.gen_pop(cmd, vm_segment, asm_segment, value, vm_ref_path)
+                self.gen_pop(cmd, vm_segment, asm_segment, value, vm_filepath)
             elif cmd.startswith("add"):
                 self.gen_add(cmd)
             elif cmd.startswith("sub"):
@@ -613,7 +611,7 @@ class Translator:
                 stored_comment = " // %s" % cmd  # function only creates a label which gets parsed out
                 self.gen_function(cmd, src)
             elif cmd.startswith("return"):
-                self.gen_return(cmd, vm_ref_path)
+                self.gen_return(cmd, vm_filepath)
             elif cmd.startswith("call"):
                 self.gen_call(cmd, src)
             else:
@@ -680,11 +678,9 @@ class Translator:
         sys_init_calls = set()
 
         for vm_filepath in vm_filelist:
-            vm_out = vm_filepath.replace('.vm', '_out.vm')
-            use_filepath = vm_out if os.path.exists(vm_out) else vm_filepath
             file_calls[vm_filepath] = set()
 
-            with open(use_filepath) as f:
+            with open(vm_filepath) as f:
                 current_function = None
                 for line in f:
                     line = line.strip()
@@ -762,9 +758,8 @@ class Translator:
         # walk the VM program directories
         vm_dir_filelist = []
 
-        # discover .vm files, exclude _out.vm; Sys.vm first, Main.vm second
-        all_vm = sorted(_glob.glob(os.path.join(vm_dir, '*.vm')))
-        vm_filelist = [f for f in all_vm if not f.endswith('_out.vm')]
+        # discover .vm files; Sys.vm first, Main.vm second
+        vm_filelist = _glob.glob(os.path.join(vm_dir, '*.vm'))
 
         def vm_sort_key(path):
             name = os.path.basename(path)
@@ -808,12 +803,9 @@ class Translator:
             new_value = old_value + new_value
 
         for vm_filepath in vm_filelist:
-            # prefer _out.vm (custom compiler output with ASSERTs) over reference .vm
-            vm_out = vm_filepath.replace('.vm', '_out.vm')
-            use_filepath = vm_out if os.path.exists(vm_out) else vm_filepath
             if self.debug:
-                print(use_filepath)
-            self.parse_asm(use_filepath)
+                print(vm_filepath)
+            self.parse_asm(vm_filepath)
             vm_dir_filelist.append(vm_filepath)
 
             # write asm_file

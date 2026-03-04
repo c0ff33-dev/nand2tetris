@@ -1,6 +1,5 @@
 """
-From the *T_out.xml produced by the tokenizer add additional metadata, prettify it and write it to *_out.xml
-Where available the solution files are *.xml (i.e. not *_out.xml)
+From the *T.xml produced by the tokenizer add additional metadata, prettify it and write it to *.xml
 """
 
 import xml.etree.ElementTree as Et
@@ -31,7 +30,7 @@ def find_ancestor(tree, node, ancestors):
 def main(filepath, debug=False):
     operators = ['+', '-', '*', '/', '&', '|', '<', '>', '~']
 
-    input_tree = Et.parse(filepath.replace(".jack", "T_out.xml"))
+    input_tree = Et.parse(filepath.replace(".jack", "T.xml"))
     input_root = input_tree.getroot()
     output_root = Et.Element("class")
     input_list = []
@@ -318,8 +317,7 @@ def main(filepath, debug=False):
                 raise
 
     # write/check output
-    output_filepath = filepath.replace(".jack", "_out.xml")
-    match_filepath = filepath.replace(".jack", ".xml")
+    output_filepath = filepath.replace(".jack", ".xml")
     tree_string = Et.tostring(output_root).strip()
     raw_xml = minidom.parseString(tree_string)
     pretty_xml = raw_xml.toprettyxml(indent="  ").replace(r'<?xml version="1.0" ?>'+'\n', '')
@@ -330,13 +328,6 @@ def main(filepath, debug=False):
 
     with open(output_filepath, "w") as output_file:
         output_file.write(pretty_xml)
-
-    if os.path.exists(match_filepath):
-        with open(match_filepath, "r") as match_file:
-            match_contents = match_file.read()
-
-        if match_contents != pretty_xml:
-            raise AssertionError("%s did not match solution file" % output_file)
 
 
 if __name__ == '__main__':

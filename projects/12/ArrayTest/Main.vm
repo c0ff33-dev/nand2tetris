@@ -24,6 +24,7 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+// ASSERT RAM[8000] = 222
 push constant 3
 call Array.new 1
 pop local 2
@@ -53,6 +54,7 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+// ASSERT RAM[8001] = 122
 push constant 500
 call Array.new 1
 pop local 3
@@ -86,6 +88,7 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+// ASSERT RAM[8002] = 100
 push local 1
 call Array.dispose 1
 pop temp 0
@@ -121,6 +124,7 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+// ASSERT RAM[8003] = 10
 push local 3
 call Array.dispose 1
 pop temp 0
@@ -129,3 +133,4 @@ call Array.dispose 1
 pop temp 0
 push constant 0
 return
+// ASSERT REACHABLE

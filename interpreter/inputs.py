@@ -41,14 +41,6 @@ for _dir in jack_dirpaths:
     jack_filepaths.extend(_files)
     jack_filepath_lists.append(_files)
 
-# Reference files for validation against course compiler (compiler)
-# For each .jack, prefer the corresponding .vm (course compiler output) if it exists
-jack_matches = []
-for _dir in jack_dirpaths:
-    for _jack in sorted(_glob.glob(os.path.join(_dir, "*.jack"))):
-        _vm = _jack.replace(".jack", ".vm")
-        jack_matches.append(_vm if os.path.exists(_vm) else _jack)
-
 # VM program directories (translator)
 vm_dirpaths = [
     os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest"),

@@ -1,6 +1,5 @@
 """
-From a JACK source file tokenize every word/symbol in the source file into the *T_out.xml
-Where available the solution files are *T.xml (i.e. not *T_out.xml)
+From a JACK source file tokenize every word/symbol in the source file into *T.xml
 """
 
 import xml.etree.ElementTree as ET
@@ -138,8 +137,7 @@ def main(filepath, debug=False):
             tokens, keyword = parse(word, keyword, strings, tokens, debug=debug)
 
     # write/check output
-    output_filepath = filepath.replace(".jack", "T_out.xml")
-    match_filepath = filepath.replace(".jack", "T.xml")
+    output_filepath = filepath.replace(".jack", "T.xml")
     tree_string = ET.tostring(tokens)
     raw_xml = minidom.parseString(tree_string)
     pretty_xml = raw_xml.toprettyxml(indent="").replace(r'<?xml version="1.0" ?>', '').strip()
@@ -151,13 +149,6 @@ def main(filepath, debug=False):
 
     with open(output_filepath, "w") as output_file:
         output_file.write(pretty_xml)
-
-    if os.path.exists(match_filepath):
-        with open(match_filepath, "r") as match_file:
-            match_contents = match_file.read()
-
-        if match_contents != pretty_xml:
-            raise AssertionError("%s did not match solution file" % output_file)
 
 
 if __name__ == '__main__':

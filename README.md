@@ -37,7 +37,7 @@ python compiler.py path/to/project/dir      # compile all .jack files in a direc
 
 ### tokenizer.py — Jack lexer
 
-Lexes Jack source into XML token streams (`*T_out.xml`).
+Lexes Jack source into XML token streams (`*T.xml`).
 
 ```sh
 python tokenizer.py    # tokenize all configured Jack files
@@ -45,7 +45,7 @@ python tokenizer.py    # tokenize all configured Jack files
 
 ### analyzer.py — Jack parser
 
-Parses token streams into XML parse trees (`*_out.xml`).
+Parses token streams into XML parse trees (`*.xml`).
 
 ```sh
 python analyzer.py    # analyze all configured Jack files

@@ -485,11 +485,6 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
             print(result_dict)
             print(tst_params["compare"])
 
-        with open(asm_filepath.replace(".asm", ".cmp"), "r") as cmp_file:
-            cmp_file_contents = cmp_file.read()
-        with open(asm_filepath.replace(".asm", ".out"), "w") as out_file:
-            out_file.write(cmp_file_contents)
-
         if tst_params["compare"] == result_dict:
             print("Interpreter: Test passed for %s" % asm_filepath)
         else:

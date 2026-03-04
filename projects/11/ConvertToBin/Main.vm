@@ -13,6 +13,7 @@ call Main.convert 1
 pop temp 0
 push constant 0
 return
+// ASSERT REACHABLE
 function Main.convert 3
 push constant 0
 not

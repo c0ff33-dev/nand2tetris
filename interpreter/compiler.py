@@ -777,7 +777,7 @@ def main(filepath, file_list, asserts=None):
         class_name = statement = func_name = func_kind = keyword = var_type = func_type = ''
 
         print("Pre-scan: %s" % pre_file)
-        tree = Et.parse(pre_file.replace(".jack", "_out.xml"))
+        tree = Et.parse(pre_file.replace(".jack", ".xml"))
 
         for elem in tree.iter():
             elem.tag = (elem.tag or '')
@@ -890,7 +890,7 @@ def main(filepath, file_list, asserts=None):
     if debug:
         print()  # formatting
 
-    tree = Et.parse(filepath.replace(".jack", "_out.xml"))
+    tree = Et.parse(filepath.replace(".jack", ".xml"))
     for elem in tree.iter():
         elem.tag = (elem.tag or '')
         elem.text = (elem.text or '')[1:-1]  # strip outermost padding
@@ -1304,13 +1304,13 @@ def main(filepath, file_list, asserts=None):
     return pcode
 
 
-def _compile(jack_filepaths, strict_matches):
+def _compile(jack_filepaths):
     """
     loop across multiple files:
         - update the object list
         - call the main engine
         - write pcode to output file
-        - where possible, enforce match to course compiled programs
+        - where possible, enforce match to course compiled programs (.cc reference)
     """
     global debug
 
@@ -1324,12 +1324,20 @@ def _compile(jack_filepaths, strict_matches):
             asserts = extract_asserts(_filepath)
             pcode = main(_filepath, file_list, asserts)
 
+            vm_path = _filepath.replace(".jack", ".vm")
+            cc_path = _filepath.replace(".jack", ".cc")
+
+            # preserve course compiler output for comparison
+            # i.e. if vm exists pre-compilation assumed to be from course compiler
+            if os.path.exists(vm_path) and not os.path.exists(cc_path):
+                os.rename(vm_path, cc_path)
+
             # strip debug for result comparison
-            with open(_filepath.replace(".jack", "_out.vm"), "w") as f:
+            with open(vm_path, "w") as f:
                 if debug:
                     print()  # formatting
 
-                print("Compiling: %s" % _filepath.replace(".jack", "_out.vm"))
+                print("Compiling: %s" % vm_path)
                 for line in pcode:
                     if line.startswith("// ASSERT"):
                         f.write(line)  # preserve ASSERT directives
@@ -1342,21 +1350,28 @@ def _compile(jack_filepaths, strict_matches):
                         else:
                             f.write(line)
 
-    # enforce matching for known samples
-    for match in strict_matches:
-        wip = match.replace(".vm", "_out.vm")
+    # enforce matching against course compiler references (.cc files)
+    matches = []
+    for file_list in jack_filepaths:
+        for _filepath in file_list:
+            cc_path = _filepath.replace(".jack", ".cc")
+            if os.path.exists(cc_path):
+                matches.append(cc_path)
+
+    for match in matches:
+        vm_path = match.replace(".cc", ".vm")
         with open(match) as org_file:
-            with open(wip) as cur_file:
+            with open(vm_path) as cur_file:
                 cur_lines = (line for line in cur_file if not line.startswith("// ASSERT"))
                 for index, (solution, current) in enumerate(zip(org_file, cur_lines)):
                     if solution != current:
                         total = sum(1 for _ in open(match))
-                        raise AssertionError("%s mismatch after line %s/%s" % (wip, index, total))
+                        raise AssertionError("%s mismatch after line %s/%s" % (vm_path, index, total))
 
     if debug:
         print("\nAll compilation results match solution!")
-        for match in strict_matches:
-            print("    " + match)
+        for match in matches:
+            print("    " + match.replace(".cc", ".vm"))
 
 
 if __name__ == '__main__':
@@ -1370,9 +1385,9 @@ if __name__ == '__main__':
         else:
             _files = [_path]
         debug = True
-        _compile([_files], {})
+        _compile([_files])
     else:
-        from inputs import jack_filepath_lists, jack_matches
+        from inputs import jack_filepath_lists
 
         debug = True  # default True if run from main, otherwise False if called externally
-        _compile(jack_filepath_lists, jack_matches)
+        _compile(jack_filepath_lists)

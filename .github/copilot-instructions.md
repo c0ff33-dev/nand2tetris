@@ -11,7 +11,7 @@ The `interpreter/` directory implements the full nand2tetris toolchain as a Pyth
 ```
 Jack source → tokenizer.py → analyzer.py → compiler.py → translator.py → assembler.py → HACK binary
                   ↓                ↓
-              *T_out.xml       *_out.xml
+              *T.xml            *.xml
 ```
 
 - **tokenizer.py** — Lexes Jack source into XML token stream. Uses recursive descent with a string placeholder system (`__string0__`, etc.).
@@ -71,7 +71,7 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 ## Conventions
 
 - All interpreter modules use a `debug=False` parameter to gate verbose output.
-- Intermediate XML outputs (`*T_out.xml`, `*_out.xml`) are generated for validation against reference XML files when available.
+- Intermediate XML outputs (`*T.xml`, `*.xml`) are generated for validation against reference XML files when available.
 - The `Translator` class is the only class-based module; all others use standalone functions.
 - Assembly output includes inline `//` comments tracing back to the source VM command for debuggability.
 - The HACK CPU emulator simulates 57,344 words of RAM (extended from the original 24,577 for FPGA compatibility).

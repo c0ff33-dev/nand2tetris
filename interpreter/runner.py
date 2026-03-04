@@ -6,7 +6,7 @@ import sys
 import warnings
 import multiprocessing
 import subprocess
-from pathlib import Path
+import glob as _glob
 
 import assembler
 import tester
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     parser.add_argument('--debug', action='store_true', help='Enable verbose output')
     args = parser.parse_args()
 
-    from inputs import (jack_dirpaths, jack_filepaths, jack_filepath_lists, jack_matches,
+    from inputs import (jack_dirpaths, jack_filepaths, jack_filepath_lists,
                         vm_dirpaths, vm_bootstrap_paths, vm_asm_filepaths, binary_asm_filepaths,
                         hw_tst_files, cpu_tst_files, vm_tst_files)
 
@@ -53,13 +53,20 @@ if __name__ == '__main__':
         else:
             print("Course Compiler: %s" % result.stdout.strip())
     
+    # rename course compiler .vm output to .cc for comparison (only files with matching .jack)
+    for jack_dir in jack_dirpaths:
+        for vm_file in _glob.glob(os.path.join(jack_dir, "*.vm")):
+            jack_file = vm_file.replace(".vm", ".jack")
+            if os.path.exists(jack_file):
+                os.rename(vm_file, vm_file.replace(".vm", ".cc"))
+
     # tokenize / analyze Jack (not required with course compiler)
     for filepath in jack_filepaths:
         tokenizer.main(filepath, debug=debug)
         analyzer.main(filepath, debug=debug)
     
-    # compile Jack to VM (match against course compiler)
-    compiler._compile(jack_filepath_lists, jack_matches)
+    # compile Jack to VM (match against course compiler .cc references)
+    compiler._compile(jack_filepath_lists)
     
     # translate VM to ASM (multiprocess)
     processes = []
@@ -185,33 +192,22 @@ if __name__ == '__main__':
 
     for test in vm_tst_files:
         print(r"Running: %s %s" % (cmd, test))
+        result = subprocess.run([cmd, test], capture_output=True, text=True)
+        if result.stdout != 'End of script - Comparison ended successfully\n':
+            raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
 
-        # VMEmulator will conflict if multiple VM implementations
-        # so temporarily rename the course compiler version(s)
-        if test.startswith(os.path.join("..", "projects", "12")):
-            vm_base = test.replace("Test.tst", ".vm")
-            vm_out = vm_base.replace(".vm", "_out.vm")
-            vm_backup = vm_base.replace(".vm", ".bak")
-            os.rename(vm_base, vm_backup)
-            os.rename(vm_out, vm_base)
-
-            main_base = str(Path(test).with_name("Main.vm"))
-            main_out = main_base.replace("Main.vm", "Main_out.vm")
-            main_backup = main_base.replace(".vm", ".bak")
-            os.rename(main_base, main_backup)
-            os.rename(main_out, main_base)
-        try:
-            result = subprocess.run([cmd, test], capture_output=True, text=True)
-            if result.stdout != 'End of script - Comparison ended successfully\n':
-                raise RuntimeError(r"Error when running %s: %s" % (cmd, result.stderr))
-        except: 
-            raise
-        finally:
-            # in either case restore restore the file names
-            if test.startswith(os.path.join("..", "projects", "12")):
-                os.rename(vm_base, vm_out)
-                os.rename(vm_backup, vm_base)
-                os.rename(main_base, main_out)
-                os.rename(main_backup, main_base)
+    # cleanup intermediate files (.cc course compiler refs, .out test outputs)
+    for jack_dir in jack_dirpaths:
+        for cc_file in _glob.glob(os.path.join(jack_dir, "*.cc")):
+            os.remove(cc_file)
+    for tst_list in (hw_tst_files, cpu_tst_files, vm_tst_files):
+        for test in tst_list:
+            out_file = test.replace(".tst", ".out")
+            if os.path.exists(out_file):
+                os.remove(out_file)
+            # VME tests write to base-named .out (e.g. BasicTestVME.tst → BasicTest.out)
+            base_out = out_file.replace("VME.out", ".out")
+            if base_out != out_file and os.path.exists(base_out):
+                os.remove(base_out)
 
     # FUTURE: diff Jack files (nand2tetris-fpga)

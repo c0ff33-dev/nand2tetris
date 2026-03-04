@@ -2,3 +2,5 @@
 .venv
 tools/bin/*.dat
 **/__pycache__/
+projects/**/*.out
+projects/**/*.cc
