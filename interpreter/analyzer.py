@@ -322,8 +322,8 @@ def main(filepath, debug=False):
     raw_xml = minidom.parseString(tree_string)
     pretty_xml = raw_xml.toprettyxml(indent="  ").replace(r'<?xml version="1.0" ?>'+'\n', '')
 
-    print("Analyzed: %s" % output_filepath)
     if debug:
+        print("Analyzed: %s" % output_filepath)
         print(pretty_xml)
 
     with open(output_filepath, "w") as output_file:

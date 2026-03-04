@@ -143,8 +143,8 @@ def main(filepath, debug=False):
     pretty_xml = raw_xml.toprettyxml(indent="").replace(r'<?xml version="1.0" ?>', '').strip()
     pretty_xml += "\n"
 
-    print("Tokenized: %s" % output_filepath)
     if debug:
+        print("Tokenized: %s" % output_filepath)
         print(pretty_xml)
 
     with open(output_filepath, "w") as output_file:

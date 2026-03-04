@@ -66,7 +66,7 @@ if __name__ == '__main__':
         analyzer.main(filepath, debug=debug)
     
     # compile Jack to VM (match against course compiler .cc references)
-    compiler._compile(jack_filepath_lists)
+    compiler._compile(jack_filepath_lists, debug=debug)
     
     # translate VM to ASM (multiprocess)
     processes = []

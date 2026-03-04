@@ -106,8 +106,6 @@ types = ['int', 'boolean', 'char', 'void']
 objects = ['Math', 'Memory', 'String', 'Array', 'Output', 'Screen', 'Keyboard', 'Sys']
 kinds = ['class', 'constructor', 'method', 'function', 'static', 'field', 'var']
 
-debug = False
-
 
 def find_parent(tree, node):
     """
@@ -117,11 +115,10 @@ def find_parent(tree, node):
     return parent_map[node]
 
 
-def store_pcode(pcode, cmd):
+def store_pcode(pcode, cmd, debug=False):
     """
     optionally dynamically print the pcode with additional debug information, store for later file output
     """
-    global debug
 
     if debug:
         count = 0
@@ -193,7 +190,7 @@ def extract_asserts(jack_filepath):
     return asserts
 
 
-def compile_class(pcode, class_name, class_dict):
+def compile_class(pcode, class_name, class_dict, debug=False):
     """
     update the class_dict during pre-scan, emit pcode when declaration encountered
     """
@@ -205,12 +202,12 @@ def compile_class(pcode, class_name, class_dict):
         class_dict[class_name] = {"args": {}, "index_dict": {}}
     else:
         # don't emit pcode on pre-scan
-        pcode = store_pcode(pcode, "// class %s" % class_name)
+        pcode = store_pcode(pcode, "// class %s" % class_name, debug)
 
     return pcode, class_dict
 
 
-def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_name):
+def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_name, debug=False):
     """
     update the class_dict during pre-scan, emit pcode when declaration encountered
     """
@@ -252,19 +249,19 @@ def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_n
             if class_dict[class_name]['args'][arg]['kind'] == 'field':
                 num_members += 1
 
-        pcode = store_pcode(pcode, "\nfunction %s.%s %s // %s" % (class_name, func_name, num_vars, func_kind))
+        pcode = store_pcode(pcode, "\nfunction %s.%s %s // %s" % (class_name, func_name, num_vars, func_kind), debug)
 
         if func_kind == "constructor":
             # allocate space on heap
-            pcode = store_pcode(pcode, "push constant %s" % num_members)
+            pcode = store_pcode(pcode, "push constant %s" % num_members, debug)
             # non-void return (no pop)
-            pcode = store_pcode(pcode, "call Memory.alloc 1 // allocate object + params on heap")
-            pcode = store_pcode(pcode, "pop pointer 0 // *this = &<heap>")
+            pcode = store_pcode(pcode, "call Memory.alloc 1 // allocate object + params on heap", debug)
+            pcode = store_pcode(pcode, "pop pointer 0 // *this = &<heap>", debug)
 
         elif func_kind == "method":
             # move pointer to current object (implicit "this" argument)
-            pcode = store_pcode(pcode, "\npush argument 0 // &this")
-            pcode = store_pcode(pcode, "pop pointer 0 // *this =")
+            pcode = store_pcode(pcode, "\npush argument 0 // &this", debug)
+            pcode = store_pcode(pcode, "pop pointer 0 // *this =", debug)
 
         elif func_kind == 'function':
             pass
@@ -277,12 +274,12 @@ def compile_function(pcode, func_name, func_type, func_kind, class_dict, class_n
 
 def compile_statement(pcode=None, statement=None, class_dict=None, class_name=None, func_name=None,
                       var_type=None, var_name=None, num_args=0, exp_buffer=[], var_scope=None,
-                      if_count=0, while_count=0, lhs_array=False, var_kind=None, prescan=False):
+                      if_count=0, while_count=0, lhs_array=False, var_kind=None, prescan=False, debug=False):
     """
     provides a common interface to the statement compilers
     must passthrough at least statement + return args + inner call args i.e.
     compile_statement(pcode=pcode, statement=statement, class_dict=class_dict, num_args=num_args,
-                      while_count=while_count, if_count=if_count, exp_buffer=exp_buffer)
+                      while_count=while_count, if_count=if_count, exp_buffer=exp_buffer, debug=debug)
     """
     if statement == "do":
         pass
@@ -294,10 +291,10 @@ def compile_statement(pcode=None, statement=None, class_dict=None, class_name=No
 
     elif statement == "return":
         # looks up func type (affects return behaviour)
-        pcode = compile_return(pcode=pcode, class_dict=class_dict, class_name=class_name, func_name=func_name)
+        pcode = compile_return(pcode=pcode, class_dict=class_dict, class_name=class_name, func_name=func_name, debug=debug)
 
     elif statement == "while":
-        pcode, while_count = compile_while(pcode=pcode, while_count=while_count)
+        pcode, while_count = compile_while(pcode=pcode, while_count=while_count, debug=debug)
 
     elif statement == "if":
         pass
@@ -306,19 +303,19 @@ def compile_statement(pcode=None, statement=None, class_dict=None, class_name=No
         # update class/func dict
         pcode, class_dict = compile_vardec(pcode=pcode, class_dict=class_dict, class_name=class_name,
                                            func_name=func_name, var_kind='local', var_type=var_type, var_name=var_name,
-                                           prescan=prescan)
+                                           prescan=prescan, debug=debug)
 
     elif statement == "class_var":
         # update class/func dict
         pcode, class_dict = compile_vardec(pcode=pcode, class_dict=class_dict, class_name=class_name,
                                            func_name=func_name, var_kind=var_kind, var_type=var_type, var_name=var_name,
-                                           prescan=prescan)
+                                           prescan=prescan, debug=debug)
 
     elif statement == "param":
         # update class/func dict
         pcode, class_dict = compile_vardec(pcode=pcode, class_dict=class_dict, class_name=class_name,
                                            func_name=func_name, var_kind='argument', var_type=var_type,
-                                           var_name=var_name, prescan=prescan)
+                                           var_name=var_name, prescan=prescan, debug=debug)
 
     else:
         raise ValueError("Unexpected statement type '%s'" % statement)
@@ -358,7 +355,7 @@ def compile_assignment(class_dict, class_name, func_name, var_name, exp_buffer, 
     return exp_buffer, class_dict, lhs_array
 
 
-def compile_vardec(pcode, class_dict, class_name, func_name, var_kind, var_type, var_name, prescan=False):
+def compile_vardec(pcode, class_dict, class_name, func_name, var_kind, var_type, var_name, prescan=False, debug=False):
     """
     add var to the class dict, print a comment in pcode
     """
@@ -404,17 +401,17 @@ def compile_vardec(pcode, class_dict, class_name, func_name, var_kind, var_type,
         if var_kind == 'local':
             pcode = store_pcode(pcode, "// var %s %s (%s %s)" %
                                 (var_type, var_name,  var_kind,
-                                 class_dict[class_name][func_name]['args'][var_name]['index']))
+                                 class_dict[class_name][func_name]['args'][var_name]['index']), debug)
 
         elif var_kind == 'argument':
             pcode = store_pcode(pcode, "// param %s %s (%s %s)" %
                                 (var_type, var_name, var_kind,
-                                 class_dict[class_name][func_name]['args'][var_name]['index']))
+                                 class_dict[class_name][func_name]['args'][var_name]['index']), debug)
 
         elif var_kind in ('field', 'static'):
             pcode = store_pcode(pcode, "// %s %s %s (%s %s)" %
                                 (var_kind, var_type, var_name, var_kind,
-                                 class_dict[class_name]['args'][var_name]['index']))
+                                 class_dict[class_name]['args'][var_name]['index']), debug)
 
         elif var_kind is not None:
             raise ValueError("unexpected var_kind '%s'" % var_kind)
@@ -422,7 +419,7 @@ def compile_vardec(pcode, class_dict, class_name, func_name, var_kind, var_type,
     return pcode, class_dict
 
 
-def compile_constant(pcode, constant, exp_buffer=None):
+def compile_constant(pcode, constant, exp_buffer=None, debug=False):
     """
     emit pcode when constant encountered
     """
@@ -434,7 +431,7 @@ def compile_constant(pcode, constant, exp_buffer=None):
         return exp_buffer
 
     else:
-        pcode = store_pcode(pcode, "\npush constant %s" % constant)
+        pcode = store_pcode(pcode, "\npush constant %s" % constant, debug)
         return pcode
 
 
@@ -477,19 +474,19 @@ def compile_call(pcode, call_class, call_func, statement, class_name, exp_buffer
         raise NotImplementedError
 
 
-def compile_return(pcode, class_dict, class_name, func_name):
+def compile_return(pcode, class_dict, class_name, func_name, debug=False):
     """
     emit pcode when return encountered
     return expression will compile without extra handling
     """
 
     if class_dict[class_name][func_name]["type"] == "void":
-        pcode = store_pcode(pcode, "push constant 0 // void return")
-    pcode = store_pcode(pcode, "\nreturn")
+        pcode = store_pcode(pcode, "push constant 0 // void return", debug)
+    pcode = store_pcode(pcode, "\nreturn", debug)
     return pcode
 
 
-def compile_boolean(pcode, value, exp_buffer=None):
+def compile_boolean(pcode, value, exp_buffer=None, debug=False):
     """
     store pcode in exp_buffer so its emitted when expression is closed
     """
@@ -507,22 +504,22 @@ def compile_boolean(pcode, value, exp_buffer=None):
 
     else:
         if value == "true":
-            pcode = store_pcode(pcode, "\npush constant 0 // true (1/2)")
-            pcode = store_pcode(pcode, "\nnot // true (2/2)")
+            pcode = store_pcode(pcode, "\npush constant 0 // true (1/2)", debug)
+            pcode = store_pcode(pcode, "\nnot // true (2/2)", debug)
         elif value == "false":
-            pcode = store_pcode(pcode, "\npush constant 0 // false")
+            pcode = store_pcode(pcode, "\npush constant 0 // false", debug)
         return pcode
 
 
-def compile_while(pcode, while_count):
+def compile_while(pcode, while_count, debug=False):
     """
     emit pcode when while encountered
     """
-    pcode = store_pcode(pcode, "\nlabel WHILE_EXP%s // begin while expression" % while_count)
+    pcode = store_pcode(pcode, "\nlabel WHILE_EXP%s // begin while expression" % while_count, debug)
     return pcode, while_count
 
 
-def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, exp_buffer=None, array=False):
+def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, exp_buffer=None, array=False, debug=False):
     """
     emit pcode when var encountered
     """
@@ -571,7 +568,7 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
         if var_scope == 'local':
             pcode = store_pcode(pcode, "\npush %s %s // %s" %
                                 (class_dict[class_name][func_name]['args'][var_name]['kind'],
-                                 class_dict[class_name][func_name]['args'][var_name]['index'], var_name))
+                                 class_dict[class_name][func_name]['args'][var_name]['index'], var_name), debug)
             if array:
                 pcode[-1] = pcode[-1].rstrip("\n") + " (*array var)\n"
                 
@@ -580,11 +577,11 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
         elif var_scope == 'member':
             if class_dict[class_name]['args'][var_name]['kind'] == 'static':
                 pcode = store_pcode(pcode, "\npush static %s // %s" %
-                                    (class_dict[class_name]['args'][var_name]['index'], var_name))
+                                    (class_dict[class_name]['args'][var_name]['index'], var_name), debug)
 
             elif class_dict[class_name]['args'][var_name]['kind'] == 'field':
                 pcode = store_pcode(pcode, "\npush this %s // %s" %
-                                    (class_dict[class_name]['args'][var_name]['index'], var_name))
+                                    (class_dict[class_name]['args'][var_name]['index'], var_name), debug)
             else:
                 raise ValueError("unexpected kind: '%s'" % class_dict[class_name]['args'][var_name]['kind'])
 
@@ -594,23 +591,23 @@ def compile_var(pcode, class_dict, class_name, func_name, var_name, var_scope, e
             return pcode
 
 
-def compile_string(pcode, string):
-    pcode = store_pcode(pcode, "push constant %s // strlen" % len(string))
-    pcode = store_pcode(pcode, "call String.new 1 // \"%s\"" % string)
+def compile_string(pcode, string, debug=False):
+    pcode = store_pcode(pcode, "push constant %s // strlen" % len(string), debug)
+    pcode = store_pcode(pcode, "call String.new 1 // \"%s\"" % string, debug)
     for c, char in enumerate(string):
-        pcode = compile_char(pcode, char)
-        pcode = store_pcode(pcode, "call String.appendChar 2")
+        pcode = compile_char(pcode, char, debug=debug)
+        pcode = store_pcode(pcode, "call String.appendChar 2", debug)
     return pcode
 
 
-def compile_char(pcode, char):
+def compile_char(pcode, char, debug=False):
     global char_map
-    pcode = store_pcode(pcode, "push constant %s // '%s' (char)" % (char_map[char], char))
+    pcode = store_pcode(pcode, "push constant %s // '%s' (char)" % (char_map[char], char), debug)
     return pcode
 
 
 def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier=None, class_name=None, func_name=None,
-                       parent_obj=None, child_func=None, symbol=None, keyword=None):
+                       parent_obj=None, child_func=None, symbol=None, keyword=None, debug=False):
     """
     expressions call the buffered version of compile functions so they are parsed first in, last out
     expressions are found in let (rhs), array indexes, if/while conditions and optionally as return values
@@ -619,7 +616,7 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
 
     if symbol:
         if symbol in ("(", "["):
-            pcode = store_pcode(pcode, "// %s" % symbol)
+            pcode = store_pcode(pcode, "// %s" % symbol, debug)
 
             # on unqualified class method call inject implicit this param before others
             if exp_buffer and exp_buffer[-1].startswith("call") and exp_buffer[-1].endswith("// unqualified"):
@@ -627,11 +624,11 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
 
                 if call_class in sys_func:
                     if sys_func[call_class][call_func]['kind'] == 'method':
-                        store_pcode(pcode, "push pointer 0 // this")
+                        store_pcode(pcode, "push pointer 0 // this", debug)
 
                 elif call_class in class_dict:
                     if class_dict[call_class][call_func]['kind'] == 'method':
-                        store_pcode(pcode, "push pointer 0 // this")
+                        store_pcode(pcode, "push pointer 0 // this", debug)
                 else:
                     raise NameError("class not found: '%s'" % call_class)
 
@@ -639,21 +636,21 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
 
         elif symbol == ")":
             # process everything up to & including the last expression opening from buffer
-            pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// (", pop_incl=True)
-            pcode = store_pcode(pcode, "// %s" % symbol)
+            pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// (", pop_incl=True, debug=debug)
+            pcode = store_pcode(pcode, "// %s" % symbol, debug)
 
             # pop the call only when all expressions following it exhausted
             if exp_buffer and exp_buffer[-1].startswith("call"):
-                pcode = store_pcode(pcode, exp_buffer.pop())
+                pcode = store_pcode(pcode, exp_buffer.pop(), debug)
 
         elif symbol == "]":
             # process everything up to & including the last expression opening from buffer
-            pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// [", pop_incl=True)
-            pcode = store_pcode(pcode, "// %s" % symbol)
+            pcode, exp_buffer = pop_buffer(pcode, exp_buffer, stop_at="// [", pop_incl=True, debug=debug)
+            pcode = store_pcode(pcode, "// %s" % symbol, debug)
 
             # pop the array var as well (if present)
             if "(*array var)" in exp_buffer[-1]:
-                pcode = store_pcode(pcode, exp_buffer.pop())
+                pcode = store_pcode(pcode, exp_buffer.pop(), debug)
 
         elif symbol == ",":
             # process everything up to but not including the last expression opening from buffer
@@ -711,35 +708,35 @@ def expression_handler(pcode, statement, exp_buffer, class_dict=None, identifier
             if array:
                 # if var is array compile to buffer
                 exp_buffer = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local',
-                                         exp_buffer=exp_buffer, array=array)
+                                         exp_buffer=exp_buffer, array=array, debug=debug)
             else:
                 # otherwise if var found compile directly (not buffer)
-                pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local')
+                pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'local', debug=debug)
 
         # compile as regular var (member)
         elif identifier in class_dict[class_name]['args']:
             if array:
                 # if var is array compile to buffer
                 exp_buffer = compile_var(pcode, class_dict, class_name, func_name, identifier, 'member',
-                                         exp_buffer=exp_buffer, array=array)
+                                         exp_buffer=exp_buffer, array=array, debug=debug)
             else:
                 # otherwise if var found compile directly (not buffer)
-                pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'member')
+                pcode = compile_var(pcode, class_dict, class_name, func_name, identifier, 'member', debug=debug)
 
         else:
             if identifier != parent_obj:  # ignore first instance of parent_obj (first pass)
                 raise NameError("unexpected identifier: %s" % identifier)
 
     elif keyword == 'this':
-        pcode = store_pcode(pcode, "push pointer 0 // this")
+        pcode = store_pcode(pcode, "push pointer 0 // this", debug)
 
     elif keyword == 'null':
-        pcode = store_pcode(pcode, "push constant 0 // null")
+        pcode = store_pcode(pcode, "push constant 0 // null", debug)
 
     return pcode, exp_buffer, parent_obj, child_func
 
 
-def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False):
+def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False, debug=False):
     """
     selectively or entirely process the expression buffer
     """
@@ -748,17 +745,17 @@ def pop_buffer(pcode, exp_buffer, stop_at=None, pop_incl=False):
             raise LookupError(f"stop_value '{stop_at}' was not found in exp_buffer: {exp_buffer}")
 
         while exp_buffer[-1] != stop_at:
-            pcode = store_pcode(pcode, exp_buffer.pop())
+            pcode = store_pcode(pcode, exp_buffer.pop(), debug)
 
         if pop_incl:
             exp_buffer.pop()  # already emitted by caller
     else:
         while exp_buffer:
-            store_pcode(pcode, exp_buffer.pop())
+            store_pcode(pcode, exp_buffer.pop(), debug)
     return pcode, exp_buffer
 
 
-def main(filepath, file_list, asserts=None):
+def main(filepath, file_list, debug=False, asserts=None):
     """
     main engine:
         - parse the AST
@@ -767,7 +764,6 @@ def main(filepath, file_list, asserts=None):
           - tag scope is defined by tree depth, some need to be carried forward, others cleared on depth change
         - call compile functions once enough information is parsed
     """
-    global debug
     pcode = []
     class_dict = {}
 
@@ -776,7 +772,8 @@ def main(filepath, file_list, asserts=None):
     for pre_file in file_list:
         class_name = statement = func_name = func_kind = keyword = var_type = func_type = ''
 
-        print("Pre-scan: %s" % pre_file)
+        if debug:
+            print("Pre-scan: %s" % pre_file)
         tree = Et.parse(pre_file.replace(".jack", ".xml"))
 
         for elem in tree.iter():
@@ -787,7 +784,7 @@ def main(filepath, file_list, asserts=None):
             if elem.tag == 'class':
                 continue
 
-            if elem:  # has children
+            if len(elem):  # has children
                 keyword = var_type = func_type = ''  # reset tag context on depth change
 
             if elem.tag == 'keyword':
@@ -814,7 +811,7 @@ def main(filepath, file_list, asserts=None):
 
                 if keyword == 'class':
                     class_name = identifier  # preserved for later
-                    pcode, class_dict = compile_class(pcode, class_name, class_dict)
+                    pcode, class_dict = compile_class(pcode, class_name, class_dict, debug=debug)
 
                 elif keyword in ('function', 'method', 'constructor'):
                     # type could be keyword or identifier
@@ -828,7 +825,7 @@ def main(filepath, file_list, asserts=None):
                     elif identifier not in types and identifier not in objects:
                         func_name = identifier
                         pcode, class_dict = compile_function(pcode, func_name, func_type, func_kind, class_dict,
-                                                             class_name)
+                                                             class_name, debug=debug)
                     else:
                         raise NameError("illegal identifier '%s'" % identifier)
 
@@ -855,12 +852,12 @@ def main(filepath, file_list, asserts=None):
                         pcode, class_dict, num_args, while_count, if_count, exp_buffer, lhs_array = \
                             compile_statement(pcode=pcode, statement=statement, class_dict=class_dict,
                                               class_name=class_name, func_name=func_name, var_type=var_type,
-                                              var_name=identifier, var_kind=keyword, prescan=True)
+                                              var_name=identifier, var_kind=keyword, prescan=True, debug=debug)
                     else:
                         pcode, class_dict, num_args, while_count, if_count, exp_buffer, lhs_array = \
                             compile_statement(pcode=pcode, statement=statement, class_dict=class_dict,
                                               class_name=class_name, func_name=func_name, var_type=var_type,
-                                              var_name=identifier, prescan=True)
+                                              var_name=identifier, prescan=True, debug=debug)
 
             elif elem.tag == 'classVarDec':
                 statement = 'class_var'
@@ -886,8 +883,8 @@ def main(filepath, file_list, asserts=None):
     lhs_var_name = lhs_array = parent_obj = child_func = func_kind = var_scope = ''
 
     # walk AST
-    print("Parsing AST: %s" % filepath)
     if debug:
+        print("Parsing AST: %s" % filepath)
         print()  # formatting
 
     tree = Et.parse(filepath.replace(".jack", ".xml"))
@@ -905,33 +902,33 @@ def main(filepath, file_list, asserts=None):
 
         # if stand-alone var array buffered in a non-assignment statement process it now
         if statement != 'let' and elem.text != '[' and exp_buffer and exp_buffer[-1].endswith("(*array var)"):
-            pcode = store_pcode(pcode, exp_buffer.pop())
+            pcode = store_pcode(pcode, exp_buffer.pop(), debug)
 
         if end_block:
             if block:
                 # if-without-else
                 if elem.text != 'else' and block[-1] == 'if':
-                    pcode = store_pcode(pcode, "\nlabel IF_FALSE%s // end if_block" % (if_list[-1]))
-                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop())
-                    pcode = store_pcode(pcode, "// popping '%s' from if_list" % if_list.pop())
+                    pcode = store_pcode(pcode, "\nlabel IF_FALSE%s // end if_block" % (if_list[-1]), debug)
+                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop(), debug)
+                    pcode = store_pcode(pcode, "// popping '%s' from if_list" % if_list.pop(), debug)
 
                 # if-else
                 elif block[-1] == 'else':
-                    pcode = store_pcode(pcode, "\nlabel IF_END%s // end if_block" % (if_list[-1]))
-                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop())
-                    pcode = store_pcode(pcode, "// popping '%s' from if_list" % if_list.pop())
+                    pcode = store_pcode(pcode, "\nlabel IF_END%s // end if_block" % (if_list[-1]), debug)
+                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop(), debug)
+                    pcode = store_pcode(pcode, "// popping '%s' from if_list" % if_list.pop(), debug)
 
                 # if-else
                 elif block[-1] == 'if':
-                    pcode = store_pcode(pcode, "\ngoto IF_END%s // end if_true_block" % (if_list[-1]))
-                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop())
+                    pcode = store_pcode(pcode, "\ngoto IF_END%s // end if_true_block" % (if_list[-1]), debug)
+                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop(), debug)
 
                 elif block[-1] == 'while':
                     pcode = store_pcode(pcode, "\ngoto WHILE_EXP%s // loop to start of while_block" %
-                                        (while_list[-1]))
-                    pcode = store_pcode(pcode, "\nlabel WHILE_END%s // end while_block" % (while_list[-1]))
-                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop())
-                    pcode = store_pcode(pcode, "// popping '%s' from while_list" % while_list.pop())
+                                        (while_list[-1]), debug)
+                    pcode = store_pcode(pcode, "\nlabel WHILE_END%s // end while_block" % (while_list[-1]), debug)
+                    pcode = store_pcode(pcode, "// popping '%s' from block" % block.pop(), debug)
+                    pcode = store_pcode(pcode, "// popping '%s' from while_list" % while_list.pop(), debug)
 
                 else:
                     raise ValueError("unexpected block '%s'" % block[-1])
@@ -939,20 +936,20 @@ def main(filepath, file_list, asserts=None):
             end_block = False
 
         # has children
-        if elem:
+        if len(elem):
             # reset select tag contexts on depth change
             keyword = var_type = var_kind = identifier = var_scope = ''
 
         # set keyword flag (single depth)
         if elem.tag == 'keyword':
             if elem.text in ('true', 'false'):
-                exp_buffer = compile_boolean(pcode, elem.text, exp_buffer)
+                exp_buffer = compile_boolean(pcode, elem.text, exp_buffer, debug=debug)
                 continue
 
             elif elem.text in ('this', 'null'):
                 pcode, exp_buffer, parent_obj, child_func = \
                     expression_handler(pcode, statement, exp_buffer, parent_obj=parent_obj, child_func=child_func,
-                                       keyword=elem.text)
+                                       keyword=elem.text, debug=debug)
                 continue
 
             elif elem.text == 'if':
@@ -991,7 +988,7 @@ def main(filepath, file_list, asserts=None):
                 # class declaration
                 if keyword == 'class':
                     class_name = identifier  # preserved for later
-                    pcode, class_dict = compile_class(pcode, class_name, class_dict)
+                    pcode, class_dict = compile_class(pcode, class_name, class_dict, debug=debug)
 
                 # function declaration
                 elif keyword in ('function', 'constructor', 'method'):
@@ -1010,7 +1007,7 @@ def main(filepath, file_list, asserts=None):
                             func_type = class_dict[class_name][func_name]['type']
 
                     pcode, class_dict = compile_function(pcode, func_name, func_type, func_kind, class_dict,
-                                                         class_name)
+                                                         class_name, debug=debug)
 
                 # var declaration (local or function parameter)
                 elif statement in ('var', 'param', 'class_var'):
@@ -1038,7 +1035,7 @@ def main(filepath, file_list, asserts=None):
                             compile_statement(pcode=pcode, statement=statement, class_dict=class_dict,
                                               class_name=class_name, func_name=func_name, var_type=var_type,
                                               var_name=identifier, while_count=while_count, if_count=if_count,
-                                              var_kind=keyword)
+                                              var_kind=keyword, debug=debug)
                     else:
                         if not var_kind and var_type in kinds:
                             var_kind = var_type
@@ -1047,7 +1044,7 @@ def main(filepath, file_list, asserts=None):
                             compile_statement(pcode=pcode, statement=statement, class_dict=class_dict,
                                               class_name=class_name, func_name=func_name, var_type=var_type,
                                               var_name=identifier, while_count=while_count, if_count=if_count,
-                                              var_kind=var_kind)
+                                              var_kind=var_kind, debug=debug)
 
                     keyword = var_type = ''
 
@@ -1056,7 +1053,7 @@ def main(filepath, file_list, asserts=None):
                     pcode, exp_buffer, parent_obj, child_func = \
                             expression_handler(pcode, statement, exp_buffer, class_dict=class_dict,
                                                identifier=identifier, class_name=class_name, func_name=func_name,
-                                               parent_obj=parent_obj, child_func=child_func)
+                                               parent_obj=parent_obj, child_func=child_func, debug=debug)
 
                 # buffer assignee compilation first, then buffer any remaining expressions
                 elif statement == 'let':
@@ -1083,19 +1080,19 @@ def main(filepath, file_list, asserts=None):
                             compile_statement(pcode=pcode, statement=statement, class_dict=class_dict,
                                               class_name=class_name, func_name=func_name, var_name=identifier,
                                               exp_buffer=exp_buffer, while_count=while_count, if_count=if_count,
-                                              lhs_array=lhs_array, var_scope=var_scope)
+                                              lhs_array=lhs_array, var_scope=var_scope, debug=debug)
                     else:
                         pcode, exp_buffer, parent_obj, child_func = \
                             expression_handler(pcode, statement, exp_buffer, class_dict=class_dict,
                                                identifier=identifier, class_name=class_name, func_name=func_name,
-                                               parent_obj=parent_obj, child_func=child_func)
+                                               parent_obj=parent_obj, child_func=child_func, debug=debug)
 
                 # buffer while/if expressions
                 elif statement in ('while', 'if', 'return'):
                     pcode, exp_buffer, parent_obj, child_func = \
                         expression_handler(pcode, statement, exp_buffer, class_dict=class_dict,
                                            identifier=identifier, class_name=class_name, func_name=func_name,
-                                           parent_obj=parent_obj, child_func=child_func)
+                                           parent_obj=parent_obj, child_func=child_func, debug=debug)
                 else:
                     raise ValueError("unexpected keyword/statement '%s'/'%s' for identifier '%s'" %
                                        (keyword, statement, elem.text))
@@ -1118,22 +1115,22 @@ def main(filepath, file_list, asserts=None):
                 elif keyword == 'else':  # no explicit statement type for else
                     block.append(keyword)
                     # close the latest if_true block but don't dec/pop until IF_END
-                    pcode = store_pcode(pcode, "\nlabel IF_FALSE%s // begin if_false_block" % (if_list[-1]))
+                    pcode = store_pcode(pcode, "\nlabel IF_FALSE%s // begin if_false_block" % (if_list[-1]), debug)
 
                 elif statement == 'if':
                     block.append(statement)
                     if_list.append(if_count)
-                    pcode = store_pcode(pcode, "\nif-goto IF_TRUE%s // end if expression / if_true_jump" % if_count)
-                    pcode = store_pcode(pcode, "\ngoto IF_FALSE%s // if_false_jump" % if_count)
-                    pcode = store_pcode(pcode, "\nlabel IF_TRUE%s // begin if_true_block" % if_count)
+                    pcode = store_pcode(pcode, "\nif-goto IF_TRUE%s // end if expression / if_true_jump" % if_count, debug)
+                    pcode = store_pcode(pcode, "\ngoto IF_FALSE%s // if_false_jump" % if_count, debug)
+                    pcode = store_pcode(pcode, "\nlabel IF_TRUE%s // begin if_true_block" % if_count, debug)
                     if_count += 1
 
                 elif statement == 'while':
                     block.append(statement)
                     while_list.append(while_count)
-                    pcode = store_pcode(pcode, "\nnot // end while expression / while_jump (1/2)")
+                    pcode = store_pcode(pcode, "\nnot // end while expression / while_jump (1/2)", debug)
                     pcode = store_pcode(pcode, "\nif-goto WHILE_END%s // while_jump (2/2) [break loop if not]" %
-                                        while_count)
+                                        while_count, debug)
                     while_count += 1
 
                 elif statement == 'param':
@@ -1172,54 +1169,54 @@ def main(filepath, file_list, asserts=None):
                 # mark the start of a new expression
                 pcode, exp_buffer, parent_obj, child_func = \
                     expression_handler(pcode, statement, exp_buffer, class_dict=class_dict, identifier=identifier,
-                                       class_name=class_name, func_name=func_name, symbol=symbol)
+                                       class_name=class_name, func_name=func_name, symbol=symbol, debug=debug)
 
             elif symbol == "]":
                 # pop the last buffered expression (including the brackets)
                 pcode, exp_buffer, parent_obj, child_func = \
                     expression_handler(pcode, statement, exp_buffer, class_dict=class_dict, identifier=identifier,
-                                       class_name=class_name, func_name=func_name, symbol=symbol)
+                                       class_name=class_name, func_name=func_name, symbol=symbol, debug=debug)
 
-                pcode = store_pcode(pcode, "add // *array var + [index]")
+                pcode = store_pcode(pcode, "add // *array var + [index]", debug)
 
                 # if part of an expression deref the array[index] immediately
                 if not lhs_array and not find_parent(tree, elem).tag == "letStatement":
-                    pcode = store_pcode(pcode, "pop pointer 1 // *that =")
-                    pcode = store_pcode(pcode, "push that 0 // **that (array[index])")
+                    pcode = store_pcode(pcode, "pop pointer 1 // *that =", debug)
+                    pcode = store_pcode(pcode, "push that 0 // **that (array[index])", debug)
 
             elif symbol == "(":
                 # mark the start of a new expression
                 pcode, exp_buffer, parent_obj, child_func = \
                     expression_handler(pcode, statement, exp_buffer, class_dict=class_dict, identifier=identifier,
-                                       class_name=class_name, func_name=func_name, symbol=symbol)
+                                       class_name=class_name, func_name=func_name, symbol=symbol, debug=debug)
 
             elif symbol == ")":
                 # pop the last buffered expression (including the brackets)
                 pcode, exp_buffer, parent_obj, child_func = \
                     expression_handler(pcode, statement, exp_buffer, class_dict=class_dict, identifier=identifier,
-                                       class_name=class_name, func_name=func_name, symbol=symbol)
+                                       class_name=class_name, func_name=func_name, symbol=symbol, debug=debug)
 
             elif symbol == ',':
                 # pop any buffered expressions up to but not including the next opening bracket
                 pcode, exp_buffer, parent_obj, child_func = \
                     expression_handler(pcode, statement, exp_buffer, class_dict=class_dict, identifier=identifier,
-                                       class_name=class_name, func_name=func_name, symbol=symbol)
+                                       class_name=class_name, func_name=func_name, symbol=symbol, debug=debug)
 
             elif symbol == ';':
-                pcode, exp_buffer = pop_buffer(pcode, exp_buffer)  # empty the buffer
+                pcode, exp_buffer = pop_buffer(pcode, exp_buffer, debug=debug)  # empty the buffer
 
                 if statement == 'return':
                     pcode, class_dict, num_args, while_count, if_count, exp_buffer, lhs_array = \
                         compile_statement(pcode=pcode, class_dict=class_dict, class_name=class_name,
                                           func_name=func_name, statement=statement, while_count=while_count,
-                                          if_count=if_count)
+                                          if_count=if_count, debug=debug)
 
                 if exp_buffer:
                     raise LookupError("unparsed expressions still in buffer: %s" % exp_buffer)
 
                 # emit ASSERT if this let/do/return statement has one
                 if statement == 'let' and asserts and (func_name, 'let', let_count) in asserts:
-                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'let', let_count)])
+                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'let', let_count)], debug)
                 elif statement == 'do' and asserts and (func_name, 'do', do_count) in asserts:
                     assert_text = "// %s" % asserts[(func_name, 'do', do_count)]
                     if 'REACHABLE' in assert_text:
@@ -1229,9 +1226,9 @@ def main(filepath, file_list, asserts=None):
                                 pcode.insert(_i, assert_text + "\n")
                                 break
                     else:
-                        pcode = store_pcode(pcode, assert_text)
+                        pcode = store_pcode(pcode, assert_text, debug)
                 elif statement == 'return' and asserts and (func_name, 'return', return_count) in asserts:
-                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'return', return_count)])
+                    pcode = store_pcode(pcode, "// %s" % asserts[(func_name, 'return', return_count)], debug)
 
                 # reset statement scoped vars
                 statement = lhs_var_name = lhs_array = ''
@@ -1246,15 +1243,15 @@ def main(filepath, file_list, asserts=None):
                     if symbol != "~":
                         # '~' can be consecutive as it only affects one term 
                         # i.e. process a & b & ~c as ((a & b) & (~c))
-                        pcode = store_pcode(pcode, exp_buffer.pop())
+                        pcode = store_pcode(pcode, exp_buffer.pop(), debug)
                     exp_buffer.append(op_map[symbol])
                 elif exp_buffer and exp_buffer[-1].endswith("(*array var)"):
                     # if operating on naked array var pop that first
-                    pcode = store_pcode(pcode, exp_buffer.pop())
+                    pcode = store_pcode(pcode, exp_buffer.pop(), debug)
                     
                     # if this would then create double op pop first op
                     if exp_buffer and exp_buffer[-1] in op_words:
-                        pcode = store_pcode(pcode, exp_buffer.pop())
+                        pcode = store_pcode(pcode, exp_buffer.pop(), debug)
                     exp_buffer.append(op_map[symbol])
                 else:
                     exp_buffer.append(op_map[symbol])
@@ -1262,20 +1259,20 @@ def main(filepath, file_list, asserts=None):
                 raise ValueError("unexpected symbol '%s'" % elem.text)
 
         elif elem.tag == 'integerConstant':
-            pcode = compile_constant(pcode, elem.text)
+            pcode = compile_constant(pcode, elem.text, debug=debug)
 
         elif elem.tag == 'stringConstant':
-            pcode = compile_string(pcode, elem.text)
+            pcode = compile_string(pcode, elem.text, debug=debug)
 
         elif elem.tag == 'ifStatement':
             statement = 'if'
-            pcode = store_pcode(pcode, "\n// begin if expression")
+            pcode = store_pcode(pcode, "\n// begin if expression", debug)
         elif elem.tag == 'whileStatement':
             statement = 'while'
             pcode, class_dict, num_args, while_count, if_count, exp_buffer, lhs_array = \
                 compile_statement(pcode=pcode, statement=statement, class_dict=class_dict, num_args=num_args,
                                   while_count=while_count, if_count=if_count, exp_buffer=exp_buffer,
-                                  class_name=class_name)
+                                  class_name=class_name, debug=debug)
         elif elem.tag == 'varDec':
             statement = 'var'
         elif elem.tag == 'classVarDec':
@@ -1304,7 +1301,7 @@ def main(filepath, file_list, asserts=None):
     return pcode
 
 
-def _compile(jack_filepaths):
+def _compile(jack_filepaths, debug=False):
     """
     loop across multiple files:
         - update the object list
@@ -1312,7 +1309,6 @@ def _compile(jack_filepaths):
         - write pcode to output file
         - where possible, enforce match to course compiled programs (.cc reference)
     """
-    global debug
 
     for file_list in jack_filepaths:
         # check external modules at runtime
@@ -1322,7 +1318,7 @@ def _compile(jack_filepaths):
 
         for _filepath in file_list:
             asserts = extract_asserts(_filepath)
-            pcode = main(_filepath, file_list, asserts)
+            pcode = main(_filepath, file_list, debug=debug, asserts=asserts)
 
             vm_path = _filepath.replace(".jack", ".vm")
             cc_path = _filepath.replace(".jack", ".cc")
@@ -1335,9 +1331,8 @@ def _compile(jack_filepaths):
             # strip debug for result comparison
             with open(vm_path, "w") as f:
                 if debug:
-                    print()  # formatting
-
-                print("Compiling: %s" % vm_path)
+                    print("\nCompiling: %s" % vm_path)
+                
                 for line in pcode:
                     if line.startswith("// ASSERT"):
                         f.write(line)  # preserve ASSERT directives
@@ -1368,7 +1363,7 @@ def _compile(jack_filepaths):
                         total = sum(1 for _ in open(match))
                         raise AssertionError("%s mismatch after line %s/%s" % (vm_path, index, total))
 
-    if debug:
+    if debug and matches:
         print("\nAll compilation results match solution!")
         for match in matches:
             print("    " + match.replace(".cc", ".vm"))
@@ -1384,10 +1379,8 @@ if __name__ == '__main__':
             _files = sorted(_glob.glob(os.path.join(_path, "*.jack")))
         else:
             _files = [_path]
-        debug = True
-        _compile([_files])
+        _compile([_files], debug=False)
     else:
         from inputs import jack_filepath_lists
 
-        debug = True  # default True if run from main, otherwise False if called externally
-        _compile(jack_filepath_lists)
+        _compile(jack_filepath_lists, debug=False)
