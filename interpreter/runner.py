@@ -98,6 +98,7 @@ if __name__ == '__main__':
     # load & execute modules (multiprocess)
     processes = []
 
+    # run via interpreter
     for asm_filepath in binary_asm_filepaths:
         p = multiprocessing.Process(
             target=run,

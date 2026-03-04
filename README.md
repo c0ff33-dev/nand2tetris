@@ -73,7 +73,7 @@ python assembler.py path/to/file.asm       # assemble a single file
 
 Interactive CPU emulator with a Rich TUI for step-through debugging. 
 
-There is a default cycle limit for batch runs, `--break` removes the limit for interactive use. Test harness runs (`runner.py`) override the limit per `.tst` file, and Jack programs tagged with `ASSERT` directives auto-raise to a higher limit. See `hw["MAX"]` in `interpreter.py` for implementation details. It will take a while to break in at `Main.main` or beyond for a typical Jack OS runtime.
+There is a default cycle limit for batch runs, `--break` removes the limit for interactive use. Test harness runs (`runner.py`) override the limit per `.tst` file, and Jack programs tagged with `ASSERT` directives auto-raise to a higher limit. See `hw["MAX"]` in `interpreter.py` for implementation details.
 
 ```sh
 python interpreter.py path/to/file.asm                          # run a program
