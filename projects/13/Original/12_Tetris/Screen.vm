@@ -1,0 +1,469 @@
+function Screen.init 1
+push constant 0
+pop local 0
+push constant 0
+not
+pop static 0
+push local 0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 319
+pop static 1
+push constant 239
+pop static 2
+goto IF_END0
+label IF_FALSE0
+push constant 239
+pop static 1
+push constant 319
+pop static 2
+label IF_END0
+push constant 0
+return
+function Screen.clearScreen 3
+push constant 0
+push constant 0
+push static 1
+push static 2
+call ScreenExt.setWindow 4
+pop temp 0
+call ScreenExt.getBackColor 0
+pop local 2
+push constant 44
+call ScreenExt.writeCommand 1
+pop temp 0
+push static 1
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END0
+push static 2
+pop local 1
+label WHILE_EXP1
+push local 1
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END1
+push local 2
+call ScreenExt.writeData 1
+pop temp 0
+push local 1
+push constant 1
+sub
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+push constant 1
+sub
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+call ScreenExt._completeTransaction 0
+pop temp 0
+push constant 0
+return
+function Screen.setColor 0
+push argument 0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call ScreenExt.BLACK 0
+call ScreenExt.setPenColor 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+call ScreenExt.WHITE 0
+call ScreenExt.setPenColor 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Screen.drawPixel 0
+push argument 0
+push argument 1
+push argument 0
+push argument 1
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Screen._drawConditional 0
+push argument 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push argument 0
+call Screen.drawPixel 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push argument 0
+push argument 1
+call Screen.drawPixel 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Screen.drawLine 11
+push argument 2
+push argument 0
+sub
+call Math.abs 1
+pop local 3
+push argument 3
+push argument 1
+sub
+call Math.abs 1
+pop local 2
+push local 3
+push local 2
+lt
+pop local 6
+push local 6
+push argument 3
+push argument 1
+lt
+and
+push local 6
+not
+push argument 2
+push argument 0
+lt
+and
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+pop local 4
+push argument 2
+pop argument 0
+push local 4
+pop argument 2
+push argument 1
+pop local 4
+push argument 3
+pop argument 1
+push local 4
+pop argument 3
+label IF_FALSE0
+push local 6
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 3
+pop local 4
+push local 2
+pop local 3
+push local 4
+pop local 2
+push argument 1
+pop local 1
+push argument 0
+pop local 0
+push argument 3
+pop local 8
+push argument 0
+push argument 2
+gt
+pop local 7
+goto IF_END1
+label IF_FALSE1
+push argument 0
+pop local 1
+push argument 1
+pop local 0
+push argument 2
+pop local 8
+push argument 1
+push argument 3
+gt
+pop local 7
+label IF_END1
+push constant 2
+push local 2
+call Math.multiply 2
+push local 3
+sub
+pop local 5
+push constant 2
+push local 2
+call Math.multiply 2
+pop local 9
+push constant 2
+push local 2
+push local 3
+sub
+call Math.multiply 2
+pop local 10
+push local 1
+push local 0
+push local 6
+call Screen._drawConditional 3
+pop temp 0
+label WHILE_EXP0
+push local 1
+push local 8
+lt
+not
+if-goto WHILE_END0
+push local 5
+push constant 0
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 5
+push local 9
+add
+pop local 5
+goto IF_END2
+label IF_FALSE2
+push local 5
+push local 10
+add
+pop local 5
+push local 7
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push constant 1
+sub
+pop local 0
+goto IF_END3
+label IF_FALSE3
+push local 0
+push constant 1
+add
+pop local 0
+label IF_END3
+label IF_END2
+push local 1
+push constant 1
+add
+pop local 1
+push local 1
+push local 0
+push local 6
+call Screen._drawConditional 3
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Screen.drawRectangle 3
+push argument 0
+push argument 1
+push argument 2
+push argument 3
+call ScreenExt.setWindow 4
+pop temp 0
+call ScreenExt.getPenColor 0
+pop local 2
+push constant 44
+call ScreenExt.writeCommand 1
+pop temp 0
+push argument 2
+push argument 0
+sub
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END0
+push argument 3
+push argument 1
+sub
+pop local 1
+label WHILE_EXP1
+push local 1
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END1
+push local 2
+call ScreenExt.writeData 1
+pop temp 0
+push local 1
+push constant 1
+sub
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+push constant 1
+sub
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+call ScreenExt._completeTransaction 0
+pop temp 0
+push constant 0
+return
+function Screen._drawSymetric 0
+push argument 0
+push argument 2
+add
+push argument 1
+push argument 3
+sub
+push argument 0
+push argument 2
+sub
+push argument 1
+push argument 3
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push argument 2
+add
+push argument 1
+push argument 3
+add
+push argument 0
+push argument 2
+sub
+push argument 1
+push argument 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push argument 3
+sub
+push argument 1
+push argument 2
+sub
+push argument 0
+push argument 3
+add
+push argument 1
+push argument 2
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push argument 3
+sub
+push argument 1
+push argument 2
+add
+push argument 0
+push argument 3
+add
+push argument 1
+push argument 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Screen.drawCircle 3
+push argument 0
+push argument 2
+sub
+push constant 0
+lt
+push argument 0
+push argument 2
+add
+push static 1
+gt
+or
+push argument 1
+push argument 2
+sub
+push constant 0
+lt
+or
+push argument 1
+push argument 2
+add
+push static 2
+gt
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 13
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 2
+pop local 1
+push constant 1
+push argument 2
+sub
+pop local 2
+push argument 0
+push argument 1
+push local 0
+push local 1
+call Screen._drawSymetric 4
+pop temp 0
+label WHILE_EXP0
+push local 1
+push local 0
+gt
+not
+if-goto WHILE_END0
+push local 2
+push constant 0
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 2
+push constant 2
+push local 0
+call Math.multiply 2
+add
+push constant 3
+add
+pop local 2
+goto IF_END1
+label IF_FALSE1
+push local 2
+push constant 2
+push local 0
+push local 1
+sub
+call Math.multiply 2
+add
+push constant 5
+add
+pop local 2
+push local 1
+push constant 1
+sub
+pop local 1
+label IF_END1
+push local 0
+push constant 1
+add
+pop local 0
+push argument 0
+push argument 1
+push local 0
+push local 1
+call Screen._drawSymetric 4
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

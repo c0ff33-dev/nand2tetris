@@ -1,0 +1,166 @@
+function Main.main 2
+push constant 0
+push constant 0
+push constant 0
+push constant 5
+call String.new 1
+push constant 32
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+call Menu.new 4
+pop static 1
+call Tile.init 0
+pop temp 0
+push constant 10000
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push local 1
+push constant 10000
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Main.drawStart 0
+pop temp 0
+call Main.drawTile 0
+pop temp 0
+push static 1
+call Menu.draw 1
+pop temp 0
+label IF_FALSE0
+push local 1
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+call Main.clearTile 0
+pop temp 0
+call Main.drawTile 0
+pop temp 0
+push constant 10000
+pop local 1
+label IF_FALSE1
+push static 1
+call Menu.getButton 1
+pop local 0
+push local 0
+push constant 3
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+call Main.clearTile 0
+pop temp 0
+call TetrisGame.new 0
+pop static 2
+push static 2
+call TetrisGame.run 1
+pop temp 0
+push static 2
+call TetrisGame.dispose 1
+pop temp 0
+push static 1
+call Menu.draw 1
+pop temp 0
+push constant 5000
+call Sys.wait 1
+pop temp 0
+push constant 20000
+pop local 1
+label IF_FALSE2
+push local 1
+push constant 1
+sub
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Main.drawTile 0
+call Tile.new 0
+pop static 0
+push static 0
+push constant 6
+push constant 12
+call Tile.move 3
+pop temp 0
+push static 0
+call Tile.draw 1
+pop temp 0
+push constant 0
+return
+function Main.clearTile 0
+push static 0
+call Tile.erase 1
+pop temp 0
+push static 0
+call Tile.dispose 1
+pop temp 0
+push constant 0
+return
+function Main.drawStart 2
+push constant 16
+call String.new 1
+push constant 110
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 50
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+pop local 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 0
+call ScreenExt.setPenColor 1
+pop temp 0
+push constant 6
+push constant 7
+call Output.moveCursor 2
+pop temp 0
+push local 0
+call Output.printString 1
+pop temp 0
+push local 0
+call String.dispose 1
+pop temp 0
+push constant 0
+return
