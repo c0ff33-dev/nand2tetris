@@ -159,17 +159,20 @@ def main(filepath: str, debug: bool = False) -> None:
                 line = line[:i].strip()
                 break
 
-        # string_constant parsing
+        # string_constant parsing — split by " gives alternating code/string parts
+        # to handle multiple string literals in a line i.e. foobar("hello", "world");
         if '"' in line:
-            string_line = line.split('"')
-            for i in range(0, len(string_line), 3):
-                substring = string_line[i + 1]
-                strings["__string%s__" % string_id] = substring
-                line = line.replace(substring, " __string%s__ " % string_id)
-                string_id += 1
-
-            while '"' in line:
-                line = line.replace('"', "")
+            parts = line.split('"')
+            rebuilt = []
+            for i, part in enumerate(parts):
+                if i % 2 == 1:
+                    placeholder = "__string%s__" % string_id
+                    strings[placeholder] = part
+                    rebuilt.append(" %s " % placeholder)
+                    string_id += 1
+                else:
+                    rebuilt.append(part)
+            line = "".join(rebuilt)
             if debug:
                 print("// line post-replace:", line)
 
