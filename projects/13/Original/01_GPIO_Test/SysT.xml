@@ -40,6 +40,8 @@
 <keyword> void </keyword>
 <identifier> wait </identifier>
 <symbol> ( </symbol>
+<keyword> int </keyword>
+<identifier> duration </identifier>
 <symbol> ) </symbol>
 <symbol> { </symbol>
 <keyword> return </keyword>

@@ -72,7 +72,10 @@
     <keyword> void </keyword>
     <identifier> wait </identifier>
     <symbol> ( </symbol>
-    <parameterList/>
+    <parameterList>
+      <keyword> int </keyword>
+      <identifier> duration </identifier>
+    </parameterList>
     <symbol> ) </symbol>
     <subroutineBody>
       <symbol> { </symbol>

@@ -67,7 +67,6 @@ if __name__ == "__main__":
     debug = args.debug
 
     # join FPGA lists before course compiler so they get .cc references too
-    jack_fpga_dirpaths = []
     if args.fpga:
         from inputs import jack_fpga_dirpaths, jack_fpga_filepaths, jack_fpga_filepath_lists, jack_fpga_vm_dirpaths
 
@@ -81,22 +80,15 @@ if __name__ == "__main__":
         cmd = os.path.join("..", "tools", "JackCompiler.bat")
     else:
         cmd = os.path.join("..", "tools", "JackCompiler.sh")
-    cc_skip_dirs = []
     for jack_dir in jack_dirpaths:
         result = subprocess.run([cmd, jack_dir], capture_output=True, text=True)
         if result.stderr or result.returncode:
-            if jack_dir in jack_fpga_dirpaths:
-                print("Course Compiler: SKIP %s (%s)" % (jack_dir, result.stderr.strip().split("\n")[0]))
-                cc_skip_dirs.append(jack_dir)
-            else:
-                raise RuntimeError(result.stderr)
+            raise RuntimeError(result.stderr)
         else:
             print("Course Compiler: %s" % result.stdout.strip())
 
     # rename course compiler .vm output to .cc for comparison (only files with matching .jack)
     for jack_dir in jack_dirpaths:
-        if jack_dir in cc_skip_dirs:
-            continue
         for vm_file in _glob.glob(os.path.join(jack_dir, "*.vm")):
             jack_file = vm_file.replace(".vm", ".jack")
             if os.path.exists(jack_file):
