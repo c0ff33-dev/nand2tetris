@@ -1276,6 +1276,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
     :raises LookupError: If a required symbol is not found.
     :raises NameError: If a referenced name is undefined.
     :raises SyntaxError: If source has syntax errors.
+    :raises TypeError: If a non-Array variable is indexed.
     :raises ValueError: If an invalid value is encountered.
     """
     pcode = []
@@ -1351,7 +1352,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
                         continue  # process on next loop
 
                     # param in function declaration
-                    elif keyword in types or keyword in objects:
+                    elif not var_type and (keyword in types or keyword in objects):
                         var_type = keyword
 
                     # local var passed as param

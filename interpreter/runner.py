@@ -30,6 +30,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Nand2Tetris test runner")
     parser.add_argument("--debug", action="store_true", help="Enable verbose output")
     parser.add_argument("--no-lint", action="store_true", help="Skip ruff linting")
+    parser.add_argument("--fpga", action="store_true", help="Also compile FPGA Jack programs (projects/13)")
     args = parser.parse_args()
 
     # lint
@@ -84,7 +85,16 @@ if __name__ == "__main__":
             if os.path.exists(jack_file):
                 os.rename(vm_file, vm_file.replace(".vm", ".cc"))
 
-    # tokenize / analyze Jack (not required with course compiler)
+    # join FPGA lists after course compiler (FPGA has no .cc references)
+    if args.fpga:
+        from inputs import jack_fpga_dirpaths, jack_fpga_filepaths, jack_fpga_filepath_lists, jack_fpga_vm_dirpaths
+
+        jack_dirpaths = jack_dirpaths + jack_fpga_dirpaths
+        jack_filepaths = jack_filepaths + jack_fpga_filepaths
+        jack_filepath_lists = jack_filepath_lists + jack_fpga_filepath_lists
+        vm_dirpaths = vm_dirpaths + jack_fpga_vm_dirpaths
+
+    # tokenize / analyze Jack
     for filepath in jack_filepaths:
         tokenizer.main(filepath, debug=debug)
         analyzer.main(filepath, debug=debug)
@@ -116,7 +126,10 @@ if __name__ == "__main__":
         raise RuntimeError("Translator: %d/%d translations failed" % (len(failures), len(processes)))
 
     # assemble all ASM to HACK and binary match if available
-    asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
+    fpga_asm_filepaths = []
+    if args.fpga:
+        fpga_asm_filepaths = [os.path.join(_dir, os.path.basename(_dir) + ".asm") for _dir in jack_fpga_vm_dirpaths]
+    asm_filepaths = vm_asm_filepaths + binary_asm_filepaths + fpga_asm_filepaths
     for asm_filepath in asm_filepaths:
         assembler.assemble(asm_filepath, debug=debug)
     warnings.simplefilter("default")  # reset warning filter
