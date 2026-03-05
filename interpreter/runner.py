@@ -30,7 +30,23 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Nand2Tetris test runner")
     parser.add_argument('--debug', action='store_true', help='Enable verbose output')
+    parser.add_argument('--no-lint', action='store_true', help='Skip ruff linting')
     args = parser.parse_args()
+
+    # lint
+    if not args.no_lint:
+        interpreter_dir = os.path.dirname(os.path.abspath(__file__))
+        fmt = subprocess.run(["ruff", "format", interpreter_dir, "--check"], capture_output=True, text=True)
+        lint = subprocess.run(["ruff", "check", interpreter_dir], capture_output=True, text=True)
+        docs = subprocess.run(["pydoclint", interpreter_dir], capture_output=True, text=True)
+        if fmt.returncode:
+            print("ruff format:\n%s" % fmt.stdout.strip())
+        if lint.returncode:
+            print("ruff check:\n%s" % lint.stdout.strip())
+        if docs.returncode:
+            print("pydoclint:\n%s" % docs.stdout.strip())
+        if fmt.returncode or lint.returncode or docs.returncode:
+            raise SystemExit("Lint failed")
 
     from inputs import (jack_dirpaths, jack_filepaths, jack_filepath_lists,
                         vm_dirpaths, vm_bootstrap_paths, vm_asm_filepaths, binary_asm_filepaths,

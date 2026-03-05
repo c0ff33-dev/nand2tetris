@@ -5,7 +5,7 @@ A collection of nand2tetris coursework plus reworked implementations of course t
 ## Setup
 
 ```sh
-pip install -r requirements.txt
+pip install -e ".[dev]"   # runtime deps (rich, numpy, pygame) + dev deps (ruff, pydoclint)
 ```
 
 All Python scripts are run from within the `interpreter/` directory.
@@ -21,8 +21,9 @@ cd interpreter
 Orchestrates the entire pipeline end-to-end: compiles Jack → tokenizes → analyzes → compiles to VM → translates to ASM → assembles to HACK → executes and validates all tests (VMEmulator, CPUEmulator, HardwareSimulator, Tester, Interpreter).
 
 ```sh
-python runner.py            # run all tests
-python runner.py --debug    # verbose output
+python runner.py              # lint + run all tests
+python runner.py --debug      # verbose output
+python runner.py --no-lint    # skip ruff linting
 ```
 
 ### emulator.py — Pygame HACK platform emulator
@@ -110,6 +111,20 @@ Parses `.tst` test scripts and `.cmp` comparison files (used internally by `runn
 ```sh
 python tester.py    # parse all configured test files
 ```
+
+### Linting — ruff
+
+Ruff and pydoclint run automatically as part of `runner.py`. To run manually:
+
+```sh
+ruff check interpreter/          # lint check
+ruff format interpreter/ --check # format check (dry run)
+ruff check interpreter/ --fix    # attempt to auto-fix lint issues
+ruff format interpreter/         # apply formatting
+pydoclint interpreter/           # docstring lint
+```
+
+Configuration lives in `pyproject.toml` at the repo root.
 
 ## Java Tools
 

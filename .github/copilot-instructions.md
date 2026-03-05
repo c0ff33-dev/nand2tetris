@@ -43,20 +43,21 @@ The original nand2tetris Java-based tools (HardwareSimulator, CPUEmulator, VMEmu
 
 ## Build & Run
 
-Python dependencies:
+Python dependencies (defined in `pyproject.toml`):
 
 ```sh
-pip install -r requirements.txt   # rich, numpy, pygame
+pip install -e ".[dev]"   # runtime deps (rich, numpy, pygame) + dev deps (ruff, pydoclint)
 ```
 
 The interpreter modules are run from within the `interpreter/` directory (they import each other as siblings, not as a package).
 
 ```sh
 cd interpreter
-python runner.py                # run the full test suite
-python runner.py --debug        # run with verbose output
-python debugger.py file.asm      # run/debug a single .asm file
-python emulator.py file.asm     # run in pygame emulator
+python runner.py             # lint + run the full test suite
+python runner.py --debug     # run with verbose output
+python runner.py --no-lint   # skip ruff linting
+python debugger.py file.asm  # run/debug a single .asm file
+python emulator.py file.asm  # run in pygame emulator
 ```
 
 The Java tools are invoked via shell/batch scripts in `tools/`:
@@ -85,4 +86,5 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 - All tests must pass before marking a task as done.
 - Must run `source ~/src/nand2tetris/.venv/bin/activate` in each shell before running Python commands.
 - Must `cd ~/src/nand2tetris/interpreter` before running tests via `python runner.py`.
+- On lint failures, run `ruff format interpreter/` && `ruff check interpreter/ --fix` before attempting manual fixes.
 - Never commit changes (git commit) without being explicitly told to by the user.
