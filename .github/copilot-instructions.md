@@ -83,7 +83,7 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 
 ## Directives
 
-- All tests must pass before marking a task as done.
+- All tests and linting must pass before marking a task as done.
 - Must run `source ~/src/nand2tetris/.venv/bin/activate` in each shell before running Python commands.
 - Must `cd ~/src/nand2tetris/interpreter` before running tests via `python runner.py`.
 - On lint failures, run `ruff format interpreter/` && `ruff check interpreter/ --fix` before attempting manual fixes.

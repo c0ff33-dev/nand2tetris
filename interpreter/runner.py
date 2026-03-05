@@ -228,5 +228,3 @@ if __name__ == "__main__":
             base_out = out_file.replace("VME.out", ".out")
             if base_out != out_file and os.path.exists(base_out):
                 os.remove(base_out)
-
-    # FUTURE: diff Jack files (nand2tetris-fpga)

@@ -1736,6 +1736,18 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
                 end_block = True  # compilation triggered on next token due to if-no-else case
 
             elif symbol == "[":
+                # strict check: only Array-typed variables may be indexed
+                idx_type = None
+                if func_name and identifier in class_dict[class_name][func_name]["args"]:
+                    idx_type = class_dict[class_name][func_name]["args"][identifier]["type"]
+                elif class_name and identifier in class_dict[class_name]["args"]:
+                    idx_type = class_dict[class_name]["args"][identifier]["type"]
+                if idx_type != "Array":
+                    raise TypeError(
+                        "cannot index into '%s' of type '%s' in %s.%s"
+                        " — only Array variables can be indexed" % (identifier, idx_type, class_name, func_name)
+                    )
+
                 if lhs_array:
                     # array[index] (content) assignment
                     exp_buffer.pop()  # remove the previous entry which assumed assignment to array var
