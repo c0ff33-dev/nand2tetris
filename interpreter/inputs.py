@@ -73,8 +73,8 @@ for _dir in jack_fpga_dirpaths:
     jack_fpga_filepaths.extend(_files)
     jack_fpga_filepath_lists.append(_files)
 
-# FPGA VM program directories (subset with Main.jack, suitable for translation)
-jack_fpga_vm_dirpaths = [_dir for _dir in jack_fpga_dirpaths if os.path.exists(os.path.join(_dir, "Main.jack"))]
+# FPGA VM program directories (all FPGA dirs are standalone programs, suitable for translation)
+jack_fpga_vm_dirpaths = list(jack_fpga_dirpaths)
 
 # VM program directories (translator)
 vm_dirpaths = [

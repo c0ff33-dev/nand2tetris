@@ -750,7 +750,7 @@ class Translator:
 
         Walk call graph from Main.main to determine which files are live,
         check for undefined functions, and verify that all live classes
-        with init() are called from Sys.init().
+        with init() are called somewhere.
 
         :param vm_filelist: List of VM file paths to check.
         :param has_jack: Whether Jack source files are present.
@@ -762,13 +762,11 @@ class Translator:
         defined = {}  # func_name -> vm_filepath
         called = {}  # func_name -> set of vm_filepaths that call it
         file_calls = {}  # vm_filepath -> set of func_names called from that file
-        sys_init_calls = set()
 
         for vm_filepath in vm_filelist:
             file_calls[vm_filepath] = set()
 
             with open(vm_filepath) as f:
-                current_function = None
                 for line in f:
                     line = line.strip()
                     if line.startswith("//") or line == "":
@@ -776,13 +774,10 @@ class Translator:
                     if line.startswith("function "):
                         func_name = line.split(" ")[1]
                         defined[func_name] = vm_filepath
-                        current_function = func_name
                     elif line.startswith("call "):
                         callee = line.split(" ")[1]
                         called.setdefault(callee, set()).add(vm_filepath)
                         file_calls[vm_filepath].add(callee)
-                        if current_function == "Sys.init":
-                            sys_init_calls.add(callee)
 
         # walk call graph from Main.main to find all reachable files
         # Sys.vm is always live (entry point); start by tracing its calls
@@ -833,13 +828,16 @@ class Translator:
                         "Link error: %s: undefined function '%s' called from [%s]" % (project, func, callers)
                     )
 
-        # check that <Class>.init() is called in Sys.init() for all live files
+        # check that <Class>.init() is called somewhere for all live files
+        # typically Sys.init() but not always if some custom class defined and
+        # they didn't want to modify Sys.jack for instance.
+        all_called_funcs = set(called.keys())
         if has_jack and "Sys.init" in defined:
             for func_name, vm_filepath in defined.items():
                 if func_name.endswith(".init") and func_name != "Sys.init":
-                    if vm_filepath not in dead_files and func_name not in sys_init_calls:
+                    if vm_filepath not in dead_files and func_name not in all_called_funcs:
                         raise RuntimeError(
-                            "Link error: %s: '%s' defines init() but not called in Sys.init()" % (project, func_name)
+                            "Link error: %s: '%s' defines init() but never called" % (project, func_name)
                         )
 
         return dead_files
