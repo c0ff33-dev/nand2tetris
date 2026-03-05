@@ -80,6 +80,7 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 - Intermediate XML outputs (`*T.xml`, `*.xml`) are generated for validation against reference XML files when available.
 - `Engine` is the core CPU class (`engine.py`); `Translator` is the only other class-based module. All others use standalone functions.
 - Assembly output includes inline `//` comments tracing back to the source VM command for debuggability.
+- Jack source supports `// ASSERT REACHABLE` and `// ASSERT RAM[addr]=val` on `let`/`do`/`return` statements. `extract_asserts()` in `compiler.py` scans `.jack` files, the compiler emits them as VM comments, the translator carries them to ASM, and `debugger.py` evaluates them at runtime. When ASSERTs are present the cycle limit rises to 20M and **all** must be reached or the test fails.
 - The HACK CPU emulator simulates 57,344 words of RAM (extended from the original 24,577 for FPGA compatibility).
 - `Engine` encapsulates CPU state as attributes: `ram` (list), `A`, `D`, `pc` (int), `halted` (bool), `rom_raw`/`rom_debug` (lists), `address_labels` (dict).
 
