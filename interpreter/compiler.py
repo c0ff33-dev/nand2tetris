@@ -1413,6 +1413,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
     num_args = while_count = if_count = let_count = do_count = return_count = 0
     class_name = statement = func_name = func_type = keyword = var_type = var_kind = identifier = ""
     lhs_var_name = lhs_array = parent_obj = child_func = func_kind = var_scope = ""
+    last_ident_type = ""
 
     # walk AST
     if debug:
@@ -1521,8 +1522,12 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
                 if class_name:
                     if func_name and identifier in class_dict[class_name][func_name]["args"]:
                         var_scope = "local"
+                        last_ident_type = class_dict[class_name][func_name]["args"][identifier]["type"]
                     elif identifier in class_dict[class_name]["args"]:
                         var_scope = "member"
+                        last_ident_type = class_dict[class_name]["args"][identifier]["type"]
+                    else:
+                        last_ident_type = ""
 
                 # class declaration
                 if keyword == "class":
@@ -1737,16 +1742,12 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
 
             elif symbol == "[":
                 # strict check: only Array-typed variables may be indexed
-                idx_type = None
-                if func_name and identifier in class_dict[class_name][func_name]["args"]:
-                    idx_type = class_dict[class_name][func_name]["args"][identifier]["type"]
-                elif class_name and identifier in class_dict[class_name]["args"]:
-                    idx_type = class_dict[class_name]["args"][identifier]["type"]
-                if idx_type != "Array":
+                if last_ident_type and last_ident_type != "Array":
                     raise TypeError(
-                        "cannot index into '%s' of type '%s' in %s.%s"
-                        " — only Array variables can be indexed" % (identifier, idx_type, class_name, func_name)
+                        "cannot index into variable of type '%s' in %s.%s"
+                        " — only Array variables can be indexed" % (last_ident_type, class_name, func_name)
                     )
+                last_ident_type = ""
 
                 if lhs_array:
                     # array[index] (content) assignment
