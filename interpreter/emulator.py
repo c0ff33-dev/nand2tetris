@@ -7,6 +7,7 @@ while driving the CPU engine at approximately 6.25 MHz (hardware baseline).
 Usage:
     python emulator.py <file.asm> [--scale N] [--fps N]
 """
+
 import sys
 import numpy as np
 import pygame
@@ -29,33 +30,52 @@ DEFAULT_SCALE = 2
 
 # Pygame key → HACK key code (128+)
 KEY_MAP = {
-    pygame.K_RETURN: 128,    pygame.K_KP_ENTER: 128,
+    pygame.K_RETURN: 128,
+    pygame.K_KP_ENTER: 128,
     pygame.K_BACKSPACE: 129,
-    pygame.K_LEFT: 130,      pygame.K_UP: 131,
-    pygame.K_RIGHT: 132,     pygame.K_DOWN: 133,
-    pygame.K_HOME: 134,      pygame.K_END: 135,
-    pygame.K_PAGEUP: 136,    pygame.K_PAGEDOWN: 137,
-    pygame.K_INSERT: 138,    pygame.K_DELETE: 139,
+    pygame.K_LEFT: 130,
+    pygame.K_UP: 131,
+    pygame.K_RIGHT: 132,
+    pygame.K_DOWN: 133,
+    pygame.K_HOME: 134,
+    pygame.K_END: 135,
+    pygame.K_PAGEUP: 136,
+    pygame.K_PAGEDOWN: 137,
+    pygame.K_INSERT: 138,
+    pygame.K_DELETE: 139,
     pygame.K_ESCAPE: 140,
-    pygame.K_F1: 141,  pygame.K_F2: 142,  pygame.K_F3: 143,
-    pygame.K_F4: 144,  pygame.K_F5: 145,  pygame.K_F6: 146,
-    pygame.K_F7: 147,  pygame.K_F8: 148,  pygame.K_F9: 149,
-    pygame.K_F10: 150, pygame.K_F11: 151, pygame.K_F12: 152,
+    pygame.K_F1: 141,
+    pygame.K_F2: 142,
+    pygame.K_F3: 143,
+    pygame.K_F4: 144,
+    pygame.K_F5: 145,
+    pygame.K_F6: 146,
+    pygame.K_F7: 147,
+    pygame.K_F8: 148,
+    pygame.K_F9: 149,
+    pygame.K_F10: 150,
+    pygame.K_F11: 151,
+    pygame.K_F12: 152,
 }
 
 
-def render_screen(engine, surface):
-    """Bulk-convert HACK screen RAM to a pygame surface via numpy bit unpacking."""
+def render_screen(engine: Engine, surface: pygame.Surface) -> None:
+    """
+    Bulk-convert HACK screen RAM to a pygame surface via numpy bit unpacking.
+
+    :param engine: The HACK CPU engine instance.
+    :param surface: The pygame surface to render onto.
+    """
     # Extract screen memory, masking to 16 bits (HACK uses two's complement)
     screen_mem = np.array(engine.ram[SCREEN_BASE:SCREEN_END], dtype=np.int64)
     screen_mem = (screen_mem & 0xFFFF).astype(np.uint16)
 
     # View as bytes in native uint16 layout, then unpack bits
     # Force little-endian so bit ordering is correct: LSB = leftmost pixel
-    if sys.byteorder == 'big':
+    if sys.byteorder == "big":
         screen_mem = screen_mem.byteswap()
     screen_bytes = screen_mem.view(np.uint8).reshape(SCREEN_HEIGHT, WORDS_PER_ROW * 2)
-    pixels = np.unpackbits(screen_bytes, axis=1, bitorder='little')  # (256, 512), 0 or 1
+    pixels = np.unpackbits(screen_bytes, axis=1, bitorder="little")  # (256, 512), 0 or 1
 
     # HACK convention: bit set = black (0), bit clear = white (255)
     rgb = np.where(pixels, 0, 255).astype(np.uint8)
@@ -65,11 +85,14 @@ def render_screen(engine, surface):
     pygame.surfarray.blit_array(surface, rgb3)
 
 
-def poll_keyboard(engine):
-    """Process pygame events and update HACK keyboard memory-mapped register.
+def poll_keyboard(engine: Engine) -> bool:
+    """
+    Process pygame events and update HACK keyboard memory-mapped register.
 
-    Returns False if the window was closed (signals exit).
     HACK only tracks one key at a time: last KEYDOWN wins, matching KEYUP clears.
+
+    :param engine: The HACK CPU engine instance.
+    :return: False if the window was closed, True otherwise.
     """
     hack_code = engine.ram[KBD_ADDR]
     running = True
@@ -91,15 +114,16 @@ def poll_keyboard(engine):
     return running
 
 
-def main():
+def main() -> None:
+    """Entry point for the HACK emulator."""
     import argparse
 
     parser = argparse.ArgumentParser(description="Nand2Tetris HACK platform emulator")
-    parser.add_argument('file', help='Path to .asm file to execute')
-    parser.add_argument('--scale', type=int, default=DEFAULT_SCALE,
-                        help='Display scale factor (default: %d)' % DEFAULT_SCALE)
-    parser.add_argument('--fps', type=int, default=DEFAULT_FPS,
-                        help='Target render FPS (default: %d)' % DEFAULT_FPS)
+    parser.add_argument("file", help="Path to .asm file to execute")
+    parser.add_argument(
+        "--scale", type=int, default=DEFAULT_SCALE, help="Display scale factor (default: %d)" % DEFAULT_SCALE
+    )
+    parser.add_argument("--fps", type=int, default=DEFAULT_FPS, help="Target render FPS (default: %d)" % DEFAULT_FPS)
     args = parser.parse_args()
 
     cycles_per_frame = CPU_HZ // args.fps
@@ -150,5 +174,5 @@ def main():
     print("Emulator: %d total cycles executed" % total_cycles)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

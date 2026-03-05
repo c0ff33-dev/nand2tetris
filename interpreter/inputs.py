@@ -50,10 +50,10 @@ vm_dirpaths = [
     os.path.join("..", "projects", "07", "StackArithmetic", "StackTest"),
     os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop"),
     os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),  # requires non-spec bootstrap (vm_bootstrap_paths)
-    # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+    # os.path.join("..", "projects", "08", "FunctionCalls", "FibonacciElement"),  # non-spec bootstrap
+    # os.path.join("..", "projects", "08", "FunctionCalls", "NestedCall"),  # non-spec bootstrap
     os.path.join("..", "projects", "08", "FunctionCalls", "SimpleFunction"),
-    # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest"),  # requires non-spec bootstrap (vm_bootstrap_paths)
+    # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest"),  # non-spec bootstrap
     os.path.join("..", "projects", "09", "Average"),
     os.path.join("..", "projects", "09", "Fraction"),
     os.path.join("..", "projects", "09", "HelloWorld"),
@@ -113,7 +113,6 @@ binary_asm_filepaths = [
     os.path.join("..", "projects", "06", "pong", "PongL.asm"),
     os.path.join("..", "projects", "06", "rect", "Rect.asm"),
     os.path.join("..", "projects", "06", "rect", "RectL.asm"),
-
     # exercised during vm_asm_filepaths
     # os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.asm"),
     # os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.asm"),
@@ -126,30 +125,29 @@ binary_asm_filepaths = [
     # os.path.join("..", "projects", "08", "FunctionCalls", "StaticsTest", "StaticsTest.asm"),
     # os.path.join("..", "projects", "08", "ProgramFlow", "BasicLoop", "BasicLoop.asm"),
     # os.path.join("..", "projects", "08", "ProgramFlow", "FibonacciSeries", "FibonacciSeries.asm"),
-
     # ASSERT = at least one ASSERT directive present for test automation
     # os.path.join("..", "projects", "09", "Average", "Average.asm"),
-    os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"), # ASSERT
-    os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"), # ASSERT
-    os.path.join("..", "projects", "09", "List", "List.asm"), # ASSERT
+    os.path.join("..", "projects", "09", "Fraction", "Fraction.asm"),  # ASSERT
+    os.path.join("..", "projects", "09", "HelloWorld", "HelloWorld.asm"),  # ASSERT
+    os.path.join("..", "projects", "09", "List", "List.asm"),  # ASSERT
     os.path.join("..", "projects", "09", "Square", "Square.asm"),  # interactive
     os.path.join("..", "projects", "10", "ArrayTest", "ArrayTest.asm"),
     os.path.join("..", "projects", "10", "Square", "Square.asm"),  # different Main.jack to 9/11
     os.path.join("..", "projects", "11", "Average", "Average.asm"),
-    os.path.join("..", "projects", "11", "ComplexArrays", "ComplexArrays.asm"), # ASSERT
-    os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"), # ASSERT
+    os.path.join("..", "projects", "11", "ComplexArrays", "ComplexArrays.asm"),  # ASSERT
+    os.path.join("..", "projects", "11", "ConvertToBin", "ConvertToBin.asm"),  # ASSERT
     os.path.join("..", "projects", "11", "Pong", "Pong.asm"),
-    os.path.join("..", "projects", "11", "Seven", "Seven.asm"), # ASSERT
+    os.path.join("..", "projects", "11", "Seven", "Seven.asm"),  # ASSERT
     os.path.join("..", "projects", "11", "Square", "Square.asm"),  # interactive
     os.path.join("..", "projects", "12", "SysTest", "SysTest.asm"),  # interactive
-    os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"), # ASSERT
+    os.path.join("..", "projects", "12", "ArrayTest", "ArrayTest.asm"),  # ASSERT
     os.path.join("..", "projects", "12", "KeyboardTest", "KeyboardTest.asm"),
-    os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"), # ASSERT
-    os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"), # ASSERT
+    os.path.join("..", "projects", "12", "StringTest", "StringTest.asm"),  # ASSERT
+    os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.asm"),  # ASSERT
     os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.asm"),
-    os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"), # ASSERT
-    os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"), # ASSERT
-    os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"), # ASSERT
+    os.path.join("..", "projects", "12", "MathTest", "MathTest.asm"),  # ASSERT
+    os.path.join("..", "projects", "12", "OutputTest", "OutputTest.asm"),  # ASSERT
+    os.path.join("..", "projects", "12", "ScreenTest", "ScreenTest.asm"),  # ASSERT
 ]
 
 # HDL test scripts (interpreter: HardwareSimulator)
@@ -229,9 +227,8 @@ vm_tst_files = [
     os.path.join("..", "projects", "12", "MemoryTest", "MemoryTest.tst"),
     os.path.join("..", "projects", "12", "MemoryTest", "MemoryDiag", "MemoryDiag.tst"),
     os.path.join("..", "projects", "12", "MathTest", "MathTest.tst"),
-
     # interactively tested / no test files
-    # os.path.join("..", "projects", "12", "SysTest"),  
+    # os.path.join("..", "projects", "12", "SysTest"),
     # os.path.join("..", "projects", "12", "KeyboardTest"),
     # os.path.join("..", "projects", "12", "StringTest"),
     # os.path.join("..", "projects", "12", "OutputTest"),
@@ -244,7 +241,6 @@ tester_tst_files = [
     # os.path.join("..", "projects", "04", "fill", "Fill.tst"),  # interactive test (passed manually)
     # os.path.join("..", "projects", "04", "fill", "FillAutomatic.tst"),
     # os.path.join("..", "projects", "04", "mult", "Mult.tst"),
-
     os.path.join("..", "projects", "07", "MemoryAccess", "BasicTest", "BasicTest.tst"),
     os.path.join("..", "projects", "07", "MemoryAccess", "PointerTest", "PointerTest.tst"),
     os.path.join("..", "projects", "07", "MemoryAccess", "StaticTest", "StaticTest.tst"),

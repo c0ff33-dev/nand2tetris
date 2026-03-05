@@ -1,12 +1,21 @@
 """
-Parse Nand2Tetris test files and execute them in the Nand2Tetris Python Interpreter
-Equivalent to the course provided CPUEmulator in non-interactive mode
+Parse Nand2Tetris test files and execute them in the Nand2Tetris Python Interpreter.
+Equivalent to the course provided CPUEmulator in non-interactive mode.
 """
 
 import re
 
 
-def load_tst(tst_filepath, debug=False):
+def load_tst(tst_filepath: str, debug: bool = False) -> dict:
+    """
+    Parse a .tst test script into test parameters.
+
+    :param tst_filepath: Path to the .tst file.
+    :param debug: Enable verbose output.
+    :return: Dictionary of parsed test parameters.
+    :raises NotImplementedError: If an unsupported command is encountered.
+    :raises ValueError: If an unexpected set command is encountered.
+    """
     test_params = {
         "input_files": [],
         "out_file": "",
@@ -72,8 +81,13 @@ def load_tst(tst_filepath, debug=False):
                     set_var = test_cmd.split(" ")[1]
                     set_element = test_cmd.split(" ")[2]
 
-                set_var = set_var.replace("sp", "0").replace("local", "1").replace("argument", "2") \
-                    .replace("this", "3").replace("that", "4")
+                set_var = (
+                    set_var.replace("sp", "0")
+                    .replace("local", "1")
+                    .replace("argument", "2")
+                    .replace("this", "3")
+                    .replace("that", "4")
+                )
             elif test_cmd.startswith("set PC "):
                 pass
             else:
@@ -102,7 +116,16 @@ def load_tst(tst_filepath, debug=False):
     return test_params
 
 
-def load_cmp(cmp_filepath, debug=False):
+def load_cmp(cmp_filepath: str, debug: bool = False) -> dict:
+    """
+    Parse a .cmp comparison file.
+
+    :param cmp_filepath: Path to the .cmp file.
+    :param debug: Enable verbose output.
+    :return: Dictionary mapping RAM addresses to expected values.
+    :raises AssertionError: If address/value counts mismatch.
+    :raises ValueError: If address or value parsing fails.
+    """
     with open(cmp_filepath, "r") as cmp_file:
         cmp_content = cmp_file.readlines()
 
@@ -125,7 +148,7 @@ def load_cmp(cmp_filepath, debug=False):
                 if value != "":
                     value_list.append(int(value))
 
-    for (address, value) in zip(address_list, value_list):
+    for address, value in zip(address_list, value_list):
         cmp_dict[address] = value
 
     if debug:
@@ -143,7 +166,7 @@ def load_cmp(cmp_filepath, debug=False):
     return cmp_dict
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from inputs import tester_tst_files
 
     debug_runs = [True, False]

@@ -7,18 +7,18 @@ RAM_SIZE = 57344  # original spec: 24577 (~24K) words, FPGA spec: 57344 (56K) wo
 # HACK ALU computation lookup table — all 28 standard computations
 # Replaces eval() for bulk execution performance
 _COMP = {
-    "0":   lambda A, D, M: 0,
-    "1":   lambda A, D, M: 1,
-    "-1":  lambda A, D, M: -1,
-    "D":   lambda A, D, M: D,
-    "A":   lambda A, D, M: A,
-    "M":   lambda A, D, M: M,
-    "!D":  lambda A, D, M: ~D,
-    "!A":  lambda A, D, M: ~A,
-    "!M":  lambda A, D, M: ~M,
-    "-D":  lambda A, D, M: -D,
-    "-A":  lambda A, D, M: -A,
-    "-M":  lambda A, D, M: -M,
+    "0": lambda A, D, M: 0,
+    "1": lambda A, D, M: 1,
+    "-1": lambda A, D, M: -1,
+    "D": lambda A, D, M: D,
+    "A": lambda A, D, M: A,
+    "M": lambda A, D, M: M,
+    "!D": lambda A, D, M: ~D,
+    "!A": lambda A, D, M: ~A,
+    "!M": lambda A, D, M: ~M,
+    "-D": lambda A, D, M: -D,
+    "-A": lambda A, D, M: -A,
+    "-M": lambda A, D, M: -M,
     "D+1": lambda A, D, M: D + 1,
     "A+1": lambda A, D, M: A + 1,
     "M+1": lambda A, D, M: M + 1,
@@ -71,7 +71,6 @@ ADDRESS_LABELS = {
     "R11": 11,  # TEMP
     "R12": 12,  # TEMP
     "BASE": 15,  # R15 (statics assigned at BASE+n, starting at 1 e.g. RAM[16])
-
     # VM symbols
     "SP": 0,  # segmented by function (saved)
     "LCL": 1,  # segmented by function (saved) -- locals are initialized to zero on call
@@ -84,31 +83,29 @@ ADDRESS_LABELS = {
     "R15": 15,  # reserved for VM translator (volatile) -- microcode return address
     "STATIC": 16,  # 16-255 incl (segmented by VM source file, max 240 values)
     "STACK": 256,  # 256-2047 incl (persistent)
-
     # JACK symbols
     "HEAP": 2048,  # 2048-16383 incl (persistent)
     "IO": 16384,  # 16384-24576 incl (persistent)
     "SCREEN": 16384,  # 16384-24575 incl (persistent)
     "KBD": 24576,  # any RAM address >= 24576 is invalid in HACK ABI
-
     # FPGA symbols
     # the non-standard behaviour of these ports that don't behave like RAM is not emulated!
-    "LED":     4096,
-    "BUT":     4097,
+    "LED": 4096,
+    "BUT": 4097,
     "UART_TX": 4098,
     "UART_RX": 4099,
-    "SPI":     4100,
-    "SRAM_A":  4101,
-    "SRAM_D":  4102,
-    "GO":      4103,
-    "LCD8":    4104,
-    "LCD16":   4105,
-    "RTP":     4106,
-    "DEBUG0":  4107,
-    "DEBUG1":  4108,
-    "DEBUG2":  4109,
-    "DEBUG3":  4110,
-    "DEBUG4":  4111,
+    "SPI": 4100,
+    "SRAM_A": 4101,
+    "SRAM_D": 4102,
+    "GO": 4103,
+    "LCD8": 4104,
+    "LCD16": 4105,
+    "RTP": 4106,
+    "DEBUG0": 4107,
+    "DEBUG1": 4108,
+    "DEBUG2": 4109,
+    "DEBUG3": 4110,
+    "DEBUG4": 4111,
 }
 
 # New A/C instruction spec:
@@ -117,12 +114,17 @@ ADDRESS_LABELS = {
 # new A instructions: 0x0-0xDFFF (56k words)
 # new C instructions: 0xE000-FFFF (8K words)
 
-class Engine:
-    """HACK CPU engine — encapsulates registers, memory, and instruction execution."""
 
-    def __init__(self, ram_size=RAM_SIZE):
+class Engine:
+    """
+    HACK CPU engine — encapsulates registers, memory, and instruction execution.
+
+    :param ram_size: Number of words in RAM.
+    """
+
+    def __init__(self, ram_size: int = RAM_SIZE) -> None:
         self.ram = [0] * ram_size
-        self.rom_raw = []    # [[src_line, raw_cmd], ...]
+        self.rom_raw = []  # [[src_line, raw_cmd], ...]
         self.rom_debug = []  # [[src_line, debug_cmd], ...]
         self.A = 0
         self.D = 0
@@ -132,15 +134,20 @@ class Engine:
         self.address_labels = dict(ADDRESS_LABELS)
 
     @property
-    def M(self):
+    def M(self) -> int:
+        """Get the value at the memory address pointed to by register A."""
         return self.ram[self.A]
 
     @M.setter
-    def M(self, value):
+    def M(self, value: int) -> None:
         self.ram[self.A] = value
 
-    def load(self, asm_filepath):
-        """Load an ASM file, resolve symbols, and populate ROM."""
+    def load(self, asm_filepath: str) -> None:
+        """
+        Load an ASM file, resolve symbols, and populate ROM.
+
+        :param asm_filepath: Path to the ASM file.
+        """
         self.filepath = asm_filepath
 
         with open(asm_filepath, "r") as f:
@@ -159,7 +166,11 @@ class Engine:
                 continue  # empty line
             elif debug_cmd[0] == "/":
                 # preserve call/return/function comments for call tree tracking
-                if debug_cmd.startswith("// call ") or debug_cmd.startswith("// return") or debug_cmd.startswith("// function "):
+                if (
+                    debug_cmd.startswith("// call ")
+                    or debug_cmd.startswith("// return")
+                    or debug_cmd.startswith("// function ")
+                ):
                     pending_comment = debug_cmd
                 continue  # skip comment lines entirely
 
@@ -189,13 +200,18 @@ class Engine:
         self.rom_raw = raw_asm
         self.rom_debug = debug_asm
 
-    def step(self):
-        """Execute one instruction.
+    def step(self) -> tuple[int, str, str] | None:
+        """
+        Execute one instruction.
 
         Returns (src_line, raw_cmd, debug_cmd) for the executed instruction.
         Sets self.halted = True on @Sys.halt (instruction is NOT executed).
-        Raises RuntimeError on @Sys.error.
         Returns None if already halted or past end of ROM.
+
+        :return: Tuple of (src_line, raw_cmd, debug_cmd) or None.
+        :raises OverflowError: If statics overflow into the stack.
+        :raises RuntimeError: If Sys.error() is called.
+        :raises ValueError: If an unexpected command is encountered.
         """
         if self.halted or self.pc >= len(self.rom_raw):
             return None
@@ -237,7 +253,7 @@ class Engine:
         elif "=" in raw_cmd:
             eq = raw_cmd.index("=")
             dst = raw_cmd[:eq]
-            result = _COMP[raw_cmd[eq + 1:]](self.A, self.D, self.ram[self.A])
+            result = _COMP[raw_cmd[eq + 1 :]](self.A, self.D, self.ram[self.A])
             if "M" in dst:
                 self.ram[self.A] = result
             if "A" in dst:
@@ -254,16 +270,25 @@ class Engine:
                 self.pc += 1
 
         else:
-            raise ValueError("Engine: Unexpected command: %s %s --- %s %s" % (self.pc, raw_cmd, debug_cmd, self.filepath))
+            raise ValueError(
+                "Engine: Unexpected command: %s %s --- %s %s" % (self.pc, raw_cmd, debug_cmd, self.filepath)
+            )
 
         return (src_line, raw_cmd, debug_cmd)
 
-    def run_cycles(self, n):
-        """Execute up to n instruction cycles (optimized bulk execution).
+    def run_cycles(self, n: int) -> int:
+        """
+        Execute up to n instruction cycles (optimized bulk execution).
 
         Uses local variable caching and ALU lookup tables instead of eval() for
         significantly higher throughput than calling step() in a loop.
-        Returns the number of cycles actually executed. Stops early on halt or end of ROM.
+        Stops early on halt or end of ROM.
+
+        :param n: Maximum number of cycles to execute.
+        :return: Number of cycles actually executed.
+        :raises OverflowError: If statics overflow into the stack.
+        :raises RuntimeError: If Sys.error() is called.
+        :raises ValueError: If an unexpected command is encountered.
         """
         # Cache frequently accessed attributes as locals
         pc = self.pc
@@ -289,8 +314,7 @@ class Engine:
                         self.halted = True
                         break
                     if raw_cmd == "@Sys.error":
-                        raise RuntimeError("Engine: Sys.error() called @ src_line %d %s"
-                                           % (rom_raw[pc][0], filepath))
+                        raise RuntimeError("Engine: Sys.error() called @ src_line %d %s" % (rom_raw[pc][0], filepath))
 
                     label = raw_cmd[1:]
                     if label[0].isnumeric():
@@ -308,7 +332,7 @@ class Engine:
                 elif "=" in raw_cmd:
                     eq = raw_cmd.index("=")
                     dst = raw_cmd[:eq]
-                    result = _COMP[raw_cmd[eq + 1:]](A, D, ram[A])
+                    result = _COMP[raw_cmd[eq + 1 :]](A, D, ram[A])
                     if "M" in dst:
                         ram[A] = result
                     if "A" in dst:
@@ -325,8 +349,7 @@ class Engine:
                         pc += 1
 
                 else:
-                    raise ValueError("Engine: Unexpected command at pc=%d: %s %s"
-                                     % (pc, raw_cmd, filepath))
+                    raise ValueError("Engine: Unexpected command at pc=%d: %s %s" % (pc, raw_cmd, filepath))
 
                 cycle += 1
         finally:

@@ -1,6 +1,5 @@
-""""
-HACK CPU emulator and interactive debugger for Nand2Tetris
-"""
+"""HACK CPU emulator and interactive debugger for Nand2Tetris."""
+
 import re
 import os
 import sys
@@ -10,18 +9,29 @@ import termios
 from rich.console import Console
 from rich.table import Table
 from engine import Engine
+
 console = Console()
 step = False
 
 
-def process_debug(gui_log, debug_cmd, engine, src_line, call_tree):
+def process_debug(gui_log: list, debug_cmd: str, engine: Engine, src_line: str, call_tree: list) -> None:
+    """
+    Render the interactive debug TUI and process user input.
+
+    :param gui_log: List of log lines for the code panel.
+    :param debug_cmd: The current assembly command string.
+    :param engine: The HACK CPU engine instance.
+    :param src_line: Source line number of the current instruction.
+    :param call_tree: List of function names in the current call stack.
+    :raises ValueError: If an unexpected asm command is encountered.
+    """
     global step, console
 
     # highlight current command in red
     gui_log.append(f"[red]{src_line}: {debug_cmd}[/red]")
     if len(gui_log) > 1:
         gui_log[-2] = gui_log[-2].replace("[red]", "").replace("[/red]", "")
-    
+
     # how many lines to show in code panel
     if len(gui_log) > 17:
         gui_log.pop(0)
@@ -31,14 +41,14 @@ def process_debug(gui_log, debug_cmd, engine, src_line, call_tree):
     table.add_column(justify="left")
     table.add_column(justify="left")
 
-    def title(header, size):
+    def title(header: str, size: int) -> str:
         multi = int((size - len(header)) / 2)
         return "[bold magenta]%s[/bold magenta]" % ("[" + "-" * multi + header + "-" * multi + "]\n")
 
-    def code(gui_log):
+    def code(gui_log: list) -> str:
         _code = ""
         for cmd in gui_log:
-            _code += (cmd + "\n")
+            _code += cmd + "\n"
         return _code
 
     row_code = title("Code", 80) + code(gui_log)
@@ -80,51 +90,62 @@ def process_debug(gui_log, debug_cmd, engine, src_line, call_tree):
             d_style = "bold cyan"
     elif "=" in debug_cmd:
         dest = debug_cmd.split("=")[0]
-        if "A" in dest: a_style = "bold yellow"
-        if "D" in dest: d_style = "bold yellow"
-        if "M" in dest: m_style = "bold yellow"
+        if "A" in dest:
+            a_style = "bold yellow"
+        if "D" in dest:
+            d_style = "bold yellow"
+        if "M" in dest:
+            m_style = "bold yellow"
     else:
         raise ValueError(f"Unexpected asm command: {debug_cmd}")
 
-    def reg(label, value, style=None):
+    def reg(label: str, value: int, style: str | None = None) -> str:
         val = f"[{style}]{value}[/{style}]" if style else str(value)
         return f"[red]{label}[/red] {val}"
 
-    row_reg = title("Registers", 0) + "\n".join([
-        reg("A", engine.A, a_style),
-        reg("D", engine.D, d_style),
-        reg("M", engine.M, m_style),
-        reg("R0(SP)",   engine.ram[0]),
-        reg("R1(LCL)",  engine.ram[1]),
-        reg("R2(ARG)",  engine.ram[2]),
-        reg("R3(THIS)", engine.ram[3]),
-        reg("R4(THAT)", engine.ram[4]),
-        reg("R5",  engine.ram[5]),
-        reg("R6",  engine.ram[6]),
-        reg("R7",  engine.ram[7]),
-        reg("R8",  engine.ram[8]),
-        reg("R9",  engine.ram[9]),
-        reg("R10", engine.ram[10]),
-        reg("R11", engine.ram[11]),
-        reg("R12", engine.ram[12]),
-        reg("R13", engine.ram[13]),
-        reg("R14", engine.ram[14]),
-        reg("R15", engine.ram[15]),
-    ])
+    row_reg = title("Registers", 0) + "\n".join(
+        [
+            reg("A", engine.A, a_style),
+            reg("D", engine.D, d_style),
+            reg("M", engine.M, m_style),
+            reg("R0(SP)", engine.ram[0]),
+            reg("R1(LCL)", engine.ram[1]),
+            reg("R2(ARG)", engine.ram[2]),
+            reg("R3(THIS)", engine.ram[3]),
+            reg("R4(THAT)", engine.ram[4]),
+            reg("R5", engine.ram[5]),
+            reg("R6", engine.ram[6]),
+            reg("R7", engine.ram[7]),
+            reg("R8", engine.ram[8]),
+            reg("R9", engine.ram[9]),
+            reg("R10", engine.ram[10]),
+            reg("R11", engine.ram[11]),
+            reg("R12", engine.ram[12]),
+            reg("R13", engine.ram[13]),
+            reg("R14", engine.ram[14]),
+            reg("R15", engine.ram[15]),
+        ]
+    )
 
-    row_help = title("Keys", 0) + "\n".join([
-        "[bold]q[/bold] quit",
-        "[bold]p[/bold] run",
-        "[bold]n[/bold] step",
-        "[bold]i[/bold] peek\n\n",
-    ])
+    row_help = title("Keys", 0) + "\n".join(
+        [
+            "[bold]q[/bold] quit",
+            "[bold]p[/bold] run",
+            "[bold]n[/bold] step",
+            "[bold]i[/bold] peek\n\n",
+        ]
+    )
 
     table.add_row(row_code, row_reg, row_help + row_calls + row_stack)
 
     console.print(table)
 
-    def read_key():
-        """Read a single keypress using raw terminal mode (works on WSL/Wayland/SSH)."""
+    def read_key() -> str:
+        """
+        Read a single keypress using raw terminal mode (works on WSL/Wayland/SSH).
+
+        :return: The character read from stdin.
+        """
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
@@ -135,20 +156,36 @@ def process_debug(gui_log, debug_cmd, engine, src_line, call_tree):
 
     while True:
         ch = read_key()
-        if ch == 'q':
+        if ch == "q":
             os._exit(0)
-        elif ch == 'p':
+        elif ch == "p":
             step = False
             break
-        elif ch == 'n':
+        elif ch == "n":
             step = True
             break
-        elif ch == 'i':
+        elif ch == "i":
             addr = input("peek: ")
             print(f"RAM[{addr}] = {engine.ram[int(addr)]}")
 
 
-def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debug=False):
+def run(
+    asm_filepath: str,
+    tst_params: dict | None = None,
+    breakpoints: list[int] = [],
+    func_breakpoints: list[str] = [],
+    debug: bool = False,
+) -> None:
+    """
+    Load and execute an ASM program with optional debugging and test evaluation.
+
+    :param asm_filepath: Path to the ASM file.
+    :param tst_params: Optional test parameters from a .tst file.
+    :param breakpoints: List of source line numbers to break on.
+    :param func_breakpoints: List of function names to break on.
+    :param debug: Enable verbose output.
+    :raises AssertionError: If test assertions fail.
+    """
     gui_log = []
 
     # initialize engine
@@ -163,14 +200,14 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
 
     # unlimited cycles when setting breakpoints
     if breakpoints or func_breakpoints:
-        max_cycles = float('inf')
+        max_cycles = float("inf")
 
-    print('Interpreter: Running %s' % asm_filepath)
+    print("Interpreter: Running %s" % asm_filepath)
 
     engine.load(asm_filepath)
 
     # if ASSERTs are present, ensure proper bootstrap and enough cycles
-    expected_asserts = sum(1 for d in engine.rom_debug if '// ASSERT ' in d[1])
+    expected_asserts = sum(1 for d in engine.rom_debug if "// ASSERT " in d[1])
     if expected_asserts > 0:
         if max_cycles < 20000000:
             max_cycles = 20000000
@@ -186,21 +223,21 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
         src_line, raw_cmd, debug_cmd = result
 
         # inject Sys.init at top of call tree on bootstrap
-        if not call_tree and '// bootstrap: initialize SP' in debug_cmd:
-            call_tree.append('Sys.init')
+        if not call_tree and "// bootstrap: initialize SP" in debug_cmd:
+            call_tree.append("Sys.init")
 
         if engine.halted:
             break
 
         # evaluate ASSERT REACHABLE pre-execution
-        if '// ASSERT REACHABLE' in debug_cmd:
+        if "// ASSERT REACHABLE" in debug_cmd:
             assert_pass += 1
 
         # track call tree from translator comments
-        if '// call ' in debug_cmd:
-            func = debug_cmd.split('// call ')[1].split(' //')[0].rsplit(' ', 1)[0]
+        if "// call " in debug_cmd:
+            func = debug_cmd.split("// call ")[1].split(" //")[0].rsplit(" ", 1)[0]
             call_tree.append(func)
-        elif '// return' in debug_cmd and call_tree:
+        elif "// return" in debug_cmd and call_tree:
             call_tree.pop()
 
         #  render debug interface
@@ -215,19 +252,21 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
                 process_debug(gui_log, debug_cmd, engine, src_line, call_tree)
 
         # evaluate ASSERT directives (post-execution)
-        if '// ASSERT ' in debug_cmd:
-            assert_text = debug_cmd.split('// ASSERT ')[1].strip()
-            if assert_text == 'REACHABLE':
+        if "// ASSERT " in debug_cmd:
+            assert_text = debug_cmd.split("// ASSERT ")[1].strip()
+            if assert_text == "REACHABLE":
                 pass  # handled above
             else:
-                match = re.match(r'RAM\[(\d+)\]\s*=\s*(-?\d+)', assert_text)
+                match = re.match(r"RAM\[(\d+)\]\s*=\s*(-?\d+)", assert_text)
                 if match:
                     addr, expected = int(match.group(1)), int(match.group(2))
                     actual = engine.ram[addr]
                     if actual != expected:
                         assert_fail += 1
-                        print("ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d %s"
-                              % (addr, actual, expected, engine.pc-1, asm_filepath))
+                        print(
+                            "ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d %s"
+                            % (addr, actual, expected, engine.pc - 1, asm_filepath)
+                        )
                     else:
                         assert_pass += 1
 
@@ -247,9 +286,13 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
     if expected_asserts > 0:
         evaluated = assert_pass + assert_fail
         if evaluated == 0:
-            raise AssertionError("ASSERT: %d asserts in ROM but none were reached %s" % (expected_asserts, asm_filepath))
+            raise AssertionError(
+                "ASSERT: %d asserts in ROM but none were reached %s" % (expected_asserts, asm_filepath)
+            )
         elif evaluated < expected_asserts:
-            raise AssertionError("ASSERT: only %d/%d asserts were reached %s" % (evaluated, expected_asserts, asm_filepath))
+            raise AssertionError(
+                "ASSERT: only %d/%d asserts were reached %s" % (evaluated, expected_asserts, asm_filepath)
+            )
         if debug:
             print("\tASSERT: %d/%d passed, halted @ cycle %d" % (assert_pass, expected_asserts, cycle))
         if assert_fail > 0:
@@ -271,21 +314,26 @@ def run(asm_filepath, tst_params=None, breakpoints=[], func_breakpoints=[], debu
             raise AssertionError("Interpreter: Test results did not match for %s" % asm_filepath)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Nand2Tetris HACK CPU emulator")
-    parser.add_argument('file', help='Path to .asm file to execute')
-    parser.add_argument('--break', dest='breakpoints', nargs='+', default=[],
-                        help='Breakpoints: line numbers or function names (e.g. --break 42 Math.init)')
-    parser.add_argument('--debug', action='store_true', help='Enable verbose output')
+    parser.add_argument("file", help="Path to .asm file to execute")
+    parser.add_argument(
+        "--break",
+        dest="breakpoints",
+        nargs="+",
+        default=[],
+        help="Breakpoints: line numbers or function names (e.g. --break 42 Math.init)",
+    )
+    parser.add_argument("--debug", action="store_true", help="Enable verbose output")
     args = parser.parse_args()
 
     # split into line breakpoints (int) and function breakpoints (str)
     line_breaks = []
     func_breaks = []
     for bp in args.breakpoints:
-        if bp.lstrip('-').isnumeric():
+        if bp.lstrip("-").isnumeric():
             line_breaks.append(int(bp))
         else:
             func_breaks.append(bp)

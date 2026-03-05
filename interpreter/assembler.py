@@ -1,16 +1,23 @@
-"""
-Nand2Tetris HACK Assembler
-"""
+"""Nand2Tetris HACK Assembler."""
 
 import os
 import warnings
 
 
-def assemble(asm_filepath, debug=False, quiet=False):
+def assemble(asm_filepath: str, debug: bool = False, quiet: bool = False) -> None:
+    """
+    Assemble a HACK ASM file into binary.
+
+    :param asm_filepath: Path to the ASM file.
+    :param debug: Enable verbose output.
+    :param quiet: Suppress non-error output.
+    :raises AssertionError: If assembled output mismatches reference.
+    :raises ValueError: If an unexpected instruction is encountered.
+    """
     warnings.simplefilter("default")  # enable warnings on new file
 
     if debug:
-        print('%s: Assembling' % asm_filepath)
+        print("%s: Assembling" % asm_filepath)
     address_labels = {
         "R0": 0,
         "R1": 1,
@@ -38,22 +45,22 @@ def assemble(asm_filepath, debug=False, quiet=False):
         # --------
         "BASE": 15,
         # --------
-        "LED":     4096,
-        "BUT":     4097,
+        "LED": 4096,
+        "BUT": 4097,
         "UART_TX": 4098,
         "UART_RX": 4099,
-        "SPI":     4100,
-        "SRAM_A":  4101,
-        "SRAM_D":  4102,
-        "GO":      4103,
-        "LCD8":    4104,
-        "LCD16":   4105,
-        "RTP":     4106,
-        "DEBUG0":  4107,
-        "DEBUG1":  4108,
-        "DEBUG2":  4109,
-        "DEBUG3":  4110,
-        "DEBUG4":  4111,
+        "SPI": 4100,
+        "SRAM_A": 4101,
+        "SRAM_D": 4102,
+        "GO": 4103,
+        "LCD8": 4104,
+        "LCD16": 4105,
+        "RTP": 4106,
+        "DEBUG0": 4107,
+        "DEBUG1": 4108,
+        "DEBUG2": 4109,
+        "DEBUG3": 4110,
+        "DEBUG4": 4111,
     }
 
     with open(asm_filepath, "r") as asm_file:
@@ -105,10 +112,10 @@ def assemble(asm_filepath, debug=False, quiet=False):
         instruction = instruction.split("//")[0].strip()  # drop everything after inline comment
 
         if a_command:
-            '''
+            """
             prefix = instruction[0]
             address = instruction[1:15]
-            '''
+            """
             if instruction[1].isnumeric():
                 address = instruction[1:]  # assign if literal
             else:
@@ -124,29 +131,34 @@ def assemble(asm_filepath, debug=False, quiet=False):
             # if required, pad address to 16 bytes
             if len(address) <= 16:
                 i = 16 - len(address)
-                address = "0"*i + address
+                address = "0" * i + address
 
             # add complete instruction to file
             if len(address) > 16:
-                warnings.warn("Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
-                              % (asm_filepath, len(address), instruction, address), RuntimeWarning)
+                warnings.warn(
+                    "Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
+                    % (asm_filepath, len(address), instruction, address),
+                    RuntimeWarning,
+                )
                 warnings.simplefilter("ignore")  # suppress after first warning
 
             if len(address) >= 16:
                 binary_file.append(address)
                 line += 1
             else:
-                raise ValueError("Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
-                                   % (asm_filepath, len(address), instruction, address))
+                raise ValueError(
+                    "Assembler %s: Parsed %s bits worth of instructions (a command): %s >> %s"
+                    % (asm_filepath, len(address), instruction, address)
+                )
 
         elif c_command:
-            '''
+            """
             prefix = instruction[0:2]
             a/m = instruction[3:3]
             comp = instruction[4:9]
             dest = instruction[10:12]
             jump = instruction[13:15]
-            '''
+            """
             destination = ""
             jump = None
             binary_line = "111"  # prefix first 3 bits for C command
@@ -246,10 +258,11 @@ def assemble(asm_filepath, debug=False, quiet=False):
                 binary_file.append(binary_line)
                 line += 1
             else:
-                raise ValueError("Assembler: %s: Parsed %s bits worth of instructions (c command): %s >> %s"
-                                   % (asm_filepath, len(binary_line), instruction, binary_line))
+                raise ValueError(
+                    "Assembler: %s: Parsed %s bits worth of instructions (c command): %s >> %s"
+                    % (asm_filepath, len(binary_line), instruction, binary_line)
+                )
 
-    output_filepath = asm_filepath.replace(".asm", ".hack")
     solution_filepath = asm_filepath.replace(".asm", ".cmp")
 
     # write the output: if solution exists, check as written
@@ -259,37 +272,59 @@ def assemble(asm_filepath, debug=False, quiet=False):
             with open(asm_filepath.replace(".asm", ".cmp"), "r") as solution_file:
                 # dump the result
                 for i, ((bin_line, sol_line), in_line) in enumerate(
-                        zip(zip(binary_file, solution_file), asm_content_stripped)):
+                    zip(zip(binary_file, solution_file), asm_content_stripped)
+                ):
                     if debug:
-                        print('%s / %s' % (in_line, bin_line))
-                        print('map    : ' + 'ixx a cccccc ddd jjj')
-                        print('code   : ' + bin_line[0:3] + " " + bin_line[3] + " " + bin_line[4:10] +
-                              " " + bin_line[10:13] + " " + bin_line[13:])
+                        print("%s / %s" % (in_line, bin_line))
+                        print("map    : " + "ixx a cccccc ddd jjj")
+                        print(
+                            "code   : "
+                            + bin_line[0:3]
+                            + " "
+                            + bin_line[3]
+                            + " "
+                            + bin_line[4:10]
+                            + " "
+                            + bin_line[10:13]
+                            + " "
+                            + bin_line[13:]
+                        )
 
-                    output_file.write(bin_line + '\n')
+                    output_file.write(bin_line + "\n")
                     if bin_line.strip() != sol_line.strip():
                         if debug:
-                            print('target : ' + sol_line[0:3]+" "+sol_line[3]+" "+sol_line[4:10] +
-                                  " "+sol_line[10:13]+" "+sol_line[13:])
-                        raise AssertionError('Assembler: %s: mismatch on line %s' % (asm_filepath, i))
-            print('Assembler: %s Complete (no errors / matches solution file)' % asm_filepath)
+                            print(
+                                "target : "
+                                + sol_line[0:3]
+                                + " "
+                                + sol_line[3]
+                                + " "
+                                + sol_line[4:10]
+                                + " "
+                                + sol_line[10:13]
+                                + " "
+                                + sol_line[13:]
+                            )
+                        raise AssertionError("Assembler: %s: mismatch on line %s" % (asm_filepath, i))
+            print("Assembler: %s Complete (no errors / matches solution file)" % asm_filepath)
 
     else:
         # no solution file, just write the result
         with open(asm_filepath.replace(".asm", ".hack"), "w") as output_file:
-            for (bin_line, in_line) in zip(binary_file, asm_content_stripped):
-                output_file.write(bin_line + '\n')
+            for bin_line, in_line in zip(binary_file, asm_content_stripped):
+                output_file.write(bin_line + "\n")
         if not quiet:
-            print('Assembler: %s Complete (no errors / no solution file)' % asm_filepath)
+            print("Assembler: %s Complete (no errors / no solution file)" % asm_filepath)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
 
     if len(sys.argv) > 1:
         assemble(sys.argv[1], debug=False, quiet=True)
     else:
         from inputs import vm_asm_filepaths, binary_asm_filepaths
+
         _asm_filepaths = vm_asm_filepaths + binary_asm_filepaths
 
         for _asm_filepath in _asm_filepaths:
