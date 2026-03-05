@@ -66,26 +66,8 @@ if __name__ == "__main__":
     # init
     debug = args.debug
 
-    # compile Jack to VM (course compiler)
-    if sys.platform.startswith("win"):
-        cmd = os.path.join("..", "tools", "JackCompiler.bat")
-    else:
-        cmd = os.path.join("..", "tools", "JackCompiler.sh")
-    for jack_dir in jack_dirpaths:
-        result = subprocess.run([cmd, jack_dir], capture_output=True, text=True)
-        if result.stderr or result.returncode:
-            raise RuntimeError(result.stderr)
-        else:
-            print("Course Compiler: %s" % result.stdout.strip())
-
-    # rename course compiler .vm output to .cc for comparison (only files with matching .jack)
-    for jack_dir in jack_dirpaths:
-        for vm_file in _glob.glob(os.path.join(jack_dir, "*.vm")):
-            jack_file = vm_file.replace(".vm", ".jack")
-            if os.path.exists(jack_file):
-                os.rename(vm_file, vm_file.replace(".vm", ".cc"))
-
-    # join FPGA lists after course compiler (FPGA has no .cc references)
+    # join FPGA lists before course compiler so they get .cc references too
+    jack_fpga_dirpaths = []
     if args.fpga:
         from inputs import jack_fpga_dirpaths, jack_fpga_filepaths, jack_fpga_filepath_lists, jack_fpga_vm_dirpaths
 
@@ -93,6 +75,32 @@ if __name__ == "__main__":
         jack_filepaths = jack_filepaths + jack_fpga_filepaths
         jack_filepath_lists = jack_filepath_lists + jack_fpga_filepath_lists
         vm_dirpaths = vm_dirpaths + jack_fpga_vm_dirpaths
+
+    # compile Jack to VM (course compiler)
+    if sys.platform.startswith("win"):
+        cmd = os.path.join("..", "tools", "JackCompiler.bat")
+    else:
+        cmd = os.path.join("..", "tools", "JackCompiler.sh")
+    cc_skip_dirs = []
+    for jack_dir in jack_dirpaths:
+        result = subprocess.run([cmd, jack_dir], capture_output=True, text=True)
+        if result.stderr or result.returncode:
+            if jack_dir in jack_fpga_dirpaths:
+                print("Course Compiler: SKIP %s (%s)" % (jack_dir, result.stderr.strip().split("\n")[0]))
+                cc_skip_dirs.append(jack_dir)
+            else:
+                raise RuntimeError(result.stderr)
+        else:
+            print("Course Compiler: %s" % result.stdout.strip())
+
+    # rename course compiler .vm output to .cc for comparison (only files with matching .jack)
+    for jack_dir in jack_dirpaths:
+        if jack_dir in cc_skip_dirs:
+            continue
+        for vm_file in _glob.glob(os.path.join(jack_dir, "*.vm")):
+            jack_file = vm_file.replace(".vm", ".jack")
+            if os.path.exists(jack_file):
+                os.rename(vm_file, vm_file.replace(".vm", ".cc"))
 
     # tokenize / analyze Jack
     for filepath in jack_filepaths:

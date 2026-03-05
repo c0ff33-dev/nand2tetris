@@ -121,7 +121,7 @@ push constant 15
 push constant 21
 call Output.moveCursor 2
 pop temp 0
-call TetrisGame.score 2
+push this 6
 call Output.printInt 1
 pop temp 0
 push constant 0
@@ -172,9 +172,9 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push this 6
 push constant 40
 add
-call TetrisGame.score 2
 pop this 6
 label IF_FALSE0
 push argument 1
@@ -183,9 +183,9 @@ eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
+push this 6
 push constant 100
 add
-call TetrisGame.score 2
 pop this 6
 label IF_FALSE1
 push argument 1
@@ -194,9 +194,9 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
+push this 6
 push constant 300
 add
-call TetrisGame.score 2
 pop this 6
 label IF_FALSE2
 push argument 1
@@ -205,9 +205,9 @@ eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
+push this 6
 push constant 1200
 add
-call TetrisGame.score 2
 pop this 6
 label IF_FALSE3
 push constant 0
@@ -217,7 +217,7 @@ push constant 15
 push constant 21
 call Output.moveCursor 2
 pop temp 0
-call TetrisGame.score 2
+push this 6
 call Output.printInt 1
 pop temp 0
 push constant 0

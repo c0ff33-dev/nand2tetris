@@ -227,7 +227,7 @@ add
 pop local 0
 goto WHILE_EXP1
 label WHILE_END1
-call Grid.isClear 3
+push local 4
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1

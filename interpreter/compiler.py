@@ -256,6 +256,27 @@ def find_parent(tree: Et.Element, node: Et.Element) -> Et.Element:
     return parent_map[node]
 
 
+def _peek_next_is_paren(elem: Et.Element, parent_map: dict) -> bool:
+    """
+    Check whether the next sibling of elem in the parse tree is '('.
+
+    :param elem: Current XML element.
+    :param parent_map: Pre-built child-to-parent mapping.
+    :return: True if the next sibling is '('.
+    """
+    parent = parent_map.get(elem)
+    if parent is None:
+        return False
+    children = list(parent)
+    try:
+        idx = children.index(elem)
+    except ValueError:
+        return False
+    if idx + 1 < len(children):
+        return ((children[idx + 1].text or "")[1:-1]).strip() == "("
+    return False
+
+
 def store_pcode(pcode: list[str], cmd: str, debug: bool = False) -> list[str]:
     """
     Optionally dynamically print the pcode with additional debug information, store for later file output.
@@ -1013,9 +1034,19 @@ def compile_string(pcode: list[str], string: str, debug: bool = False) -> list[s
     :param debug: Enable verbose output.
     :return: Updated pseudocode buffer.
     """
-    pcode = store_pcode(pcode, "push constant %s // strlen" % len(string), debug)
+    # Backslash is an escape character in Jack string constants (e.g. \] → ])
+    chars = []
+    i = 0
+    while i < len(string):
+        if string[i] == "\\" and i + 1 < len(string):
+            chars.append(string[i + 1])
+            i += 2
+        else:
+            chars.append(string[i])
+            i += 1
+    pcode = store_pcode(pcode, "push constant %s // strlen" % len(chars), debug)
     pcode = store_pcode(pcode, 'call String.new 1 // "%s"' % string, debug)
-    for c, char in enumerate(string):
+    for char in chars:
         pcode = compile_char(pcode, char, debug=debug)
         pcode = store_pcode(pcode, "call String.appendChar 2", debug)
     return pcode
@@ -1047,6 +1078,7 @@ def expression_handler(
     child_func: str | None = None,
     symbol: str | None = None,
     keyword: str | None = None,
+    next_is_paren: bool = False,
     debug: bool = False,
 ) -> tuple[list[str], list[str], str | None, str | None]:
     """
@@ -1065,6 +1097,7 @@ def expression_handler(
     :param child_func: Child function for qualified calls.
     :param symbol: Current symbol token.
     :param keyword: Current keyword token.
+    :param next_is_paren: Whether the identifier's next sibling in the parse tree is '('.
     :param debug: Enable verbose output.
     :return: Tuple of pcode, exp_buffer, parent_obj, child_func.
     :raises NameError: If referenced class is not found.
@@ -1160,8 +1193,8 @@ def expression_handler(
             )
             parent_obj = child_func = ""
 
-        # compile unqualified function call
-        elif not array and identifier in class_dict[class_name]:
+        # compile unqualified function call (only when '(' follows to disambiguate from variables)
+        elif not array and next_is_paren and identifier in class_dict[class_name]:
             exp_buffer = compile_call(
                 pcode,
                 class_name,
@@ -1422,6 +1455,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
         print()  # formatting
 
     tree = Et.parse(filepath.replace(".jack", ".xml"))
+    parent_map = {child: parent for parent in tree.iter() for child in parent}
     for elem in tree.iter():
         elem.tag = elem.tag or ""
         elem.text = (elem.text or "")[1:-1]  # strip outermost padding
@@ -1622,6 +1656,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
                         func_name=func_name,
                         parent_obj=parent_obj,
                         child_func=child_func,
+                        next_is_paren=_peek_next_is_paren(elem, parent_map),
                         debug=debug,
                     )
 
@@ -1671,6 +1706,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
                             func_name=func_name,
                             parent_obj=parent_obj,
                             child_func=child_func,
+                            next_is_paren=_peek_next_is_paren(elem, parent_map),
                             debug=debug,
                         )
 
@@ -1686,6 +1722,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
                         func_name=func_name,
                         parent_obj=parent_obj,
                         child_func=child_func,
+                        next_is_paren=_peek_next_is_paren(elem, parent_map),
                         debug=debug,
                     )
                 else:
