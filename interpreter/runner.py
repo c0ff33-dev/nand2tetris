@@ -99,8 +99,26 @@ if __name__ == "__main__":
         tokenizer.main(filepath, debug=debug)
         analyzer.main(filepath, debug=debug)
 
-    # compile Jack to VM (match against course compiler .cc references)
+    # compile Jack to VM
     compiler._compile(jack_filepath_lists, debug=debug)
+
+    # enforce matching against course compiler references (.cc files)
+    cc_matches = []
+    for file_list in jack_filepath_lists:
+        for _filepath in file_list:
+            cc_path = _filepath.replace(".jack", ".cc")
+            if os.path.exists(cc_path):
+                cc_matches.append(cc_path)
+
+    for match in cc_matches:
+        vm_path = match.replace(".cc", ".vm")
+        with open(match) as org_file:
+            with open(vm_path) as cur_file:
+                cur_lines = (line for line in cur_file if not line.startswith("// ASSERT"))
+                for index, (solution, current) in enumerate(zip(org_file, cur_lines)):
+                    if solution != current:
+                        total = sum(1 for _ in open(match))
+                        raise AssertionError("%s mismatch after line %s/%s" % (vm_path, index, total))
 
     # translate VM to ASM (multiprocess)
     processes = []

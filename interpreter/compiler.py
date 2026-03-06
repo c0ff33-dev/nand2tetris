@@ -2015,11 +2015,9 @@ def _compile(jack_filepaths: list[list[str]], debug: bool = False) -> None:
     - update the object list
     - call the main engine
     - write pcode to output file
-    - where possible, enforce match to course compiled programs (.cc reference)
 
     :param jack_filepaths: Nested list of Jack file paths to compile.
     :param debug: Enable verbose output.
-    :raises AssertionError: If compiled output doesn't match reference.
     """
     for file_list in jack_filepaths:
         # check external modules at runtime
@@ -2032,12 +2030,6 @@ def _compile(jack_filepaths: list[list[str]], debug: bool = False) -> None:
             pcode = main(_filepath, file_list, debug=debug, asserts=asserts)
 
             vm_path = _filepath.replace(".jack", ".vm")
-            cc_path = _filepath.replace(".jack", ".cc")
-
-            # preserve course compiler output for comparison
-            # i.e. if vm exists pre-compilation assumed to be from course compiler
-            if os.path.exists(vm_path) and not os.path.exists(cc_path):
-                os.rename(vm_path, cc_path)
 
             # strip debug for result comparison
             with open(vm_path, "w") as f:
@@ -2055,29 +2047,6 @@ def _compile(jack_filepaths: list[list[str]], debug: bool = False) -> None:
                             f.write(line[:comment].strip() + "\n")
                         else:
                             f.write(line)
-
-    # enforce matching against course compiler references (.cc files)
-    matches = []
-    for file_list in jack_filepaths:
-        for _filepath in file_list:
-            cc_path = _filepath.replace(".jack", ".cc")
-            if os.path.exists(cc_path):
-                matches.append(cc_path)
-
-    for match in matches:
-        vm_path = match.replace(".cc", ".vm")
-        with open(match) as org_file:
-            with open(vm_path) as cur_file:
-                cur_lines = (line for line in cur_file if not line.startswith("// ASSERT"))
-                for index, (solution, current) in enumerate(zip(org_file, cur_lines)):
-                    if solution != current:
-                        total = sum(1 for _ in open(match))
-                        raise AssertionError("%s mismatch after line %s/%s" % (vm_path, index, total))
-
-    if debug and matches:
-        print("\nAll compilation results match solution!")
-        for match in matches:
-            print("    " + match.replace(".cc", ".vm"))
 
 
 if __name__ == "__main__":
