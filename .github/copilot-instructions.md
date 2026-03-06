@@ -91,3 +91,4 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 - Must `cd ~/src/nand2tetris/interpreter` before running tests via `python runner.py --fpga`.
 - On lint failures, run `ruff format interpreter/` && `ruff check interpreter/ --fix` before attempting manual fixes.
 - Never commit changes (git commit) without being explicitly told to by the user.
+- Use regular hyphens (-), never emdashes (—) in comments and documentation.

@@ -81,7 +81,9 @@ python compiler.py path/to/project/dir      # compile all .jack files in a direc
 Lexes Jack source into XML token streams (`*T.xml`).
 
 ```sh
-python tokenizer.py    # tokenize all configured Jack files
+python tokenizer.py                          # tokenize all configured Jack files
+python tokenizer.py path/to/file.jack        # tokenize a single file
+python tokenizer.py path/to/project/dir      # tokenize all .jack files in a directory
 ```
 
 ### analyzer.py: Jack parser
@@ -89,7 +91,9 @@ python tokenizer.py    # tokenize all configured Jack files
 Parses token streams into CST (`*.xml`).
 
 ```sh
-python analyzer.py    # analyze all configured Jack files
+python analyzer.py                           # analyze all configured Jack files
+python analyzer.py path/to/file.jack         # analyze a single file
+python analyzer.py path/to/project/dir       # analyze all .jack files in a directory
 ```
 
 ### translator.py: VM to ASM translator
@@ -118,7 +122,7 @@ There is a default cycle limit for batch runs, `--break` removes the limit for i
 
 ```sh
 python debugger.py path/to/file.asm                          # run a program
-python debugger.py path/to/file.asm --break 42 100           # break at ROM lines 42 and 100
+python debugger.py path/to/file.asm --break 42 100           # break at ROM (source asm) lines 42 and 100
 python debugger.py path/to/file.asm --break Math.init        # break on entering Math.init
 python debugger.py path/to/file.asm --break 42 String.init   # mix line numbers and function names
 python debugger.py path/to/file.asm --debug                  # verbose output
@@ -142,17 +146,6 @@ Parses `.tst` test scripts and `.cmp` comparison files (used internally by `runn
 python tester.py    # parse all configured test files
 ```
 
-## Java Tools
-
-The original nand2tetris Java-based tools (HardwareSimulator, CPUEmulator, VMEmulator, etc.) are in `tools/` and require a JRE:
-
-```sh
-# .bat on Windows
-tools/HardwareSimulator.sh   
-tools/CPUEmulator.sh
-tools/VMEmulator.sh
-```
-
 ### Linting: ruff/pydoclint
 
 Ruff and pydoclint run automatically as part of `runner.py`. To run manually:
@@ -166,3 +159,14 @@ pydoclint interpreter/           # docstring lint
 ```
 
 Configuration lives in `pyproject.toml` at the repo root.
+
+## Java Tools
+
+The original nand2tetris Java-based tools (HardwareSimulator, CPUEmulator, VMEmulator, etc.) are in `tools/` and require a JRE:
+
+```sh
+# .bat on Windows
+tools/HardwareSimulator.sh   
+tools/CPUEmulator.sh
+tools/VMEmulator.sh
+```
