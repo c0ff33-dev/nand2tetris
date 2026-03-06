@@ -2,6 +2,7 @@
 
 [project]
 name = "nand2tetris"
+version = "1.0.0"
 description = "Nand2tetris coursework and Python reimplementation of course tools."
 readme = "README.md"
 requires-python = ">= 3.11"
@@ -12,6 +13,9 @@ dev = [
     "ruff",
     "pydoclint",
 ]
+
+[tool.setuptools.packages.find]
+include = ["interpreter*"]
 
 [build-system]
 requires = ["setuptools"]
