@@ -159,7 +159,7 @@ def main(filepath: str, debug: bool = False) -> None:
                 line = line[:i].strip()
                 break
 
-        # string_constant parsing — split by " gives alternating code/string parts
+        # string_constant parsing - split by " gives alternating code/string parts
         # to handle multiple string literals in a line i.e. foobar("hello", "world");
         if '"' in line:
             parts = line.split('"')

@@ -80,7 +80,7 @@ def render_screen(engine: Engine, surface: pygame.Surface) -> None:
     # HACK convention: bit set = black (0), bit clear = white (255)
     rgb = np.where(pixels, 0, 255).astype(np.uint8)
 
-    # pygame surfarray expects (width, height, 3) — transpose and broadcast to RGB
+    # pygame surfarray expects (width, height, 3) - transpose and broadcast to RGB
     rgb3 = np.stack([rgb, rgb, rgb], axis=-1).transpose(1, 0, 2)
     pygame.surfarray.blit_array(surface, rgb3)
 
@@ -138,7 +138,7 @@ def main() -> None:
     window_w = SCREEN_WIDTH * args.scale
     window_h = SCREEN_HEIGHT * args.scale
     window = pygame.display.set_mode((window_w, window_h))
-    pygame.display.set_caption("HACK Emulator — %s" % args.file)
+    pygame.display.set_caption("HACK Emulator - %s" % args.file)
     screen_surface = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
 
@@ -164,7 +164,7 @@ def main() -> None:
         # 4. Show FPS in title bar
         fps = clock.get_fps()
         effective_mhz = (fps * cycles_per_frame) / 1_000_000 if fps > 0 else 0
-        pygame.display.set_caption("HACK — %s | %.1f FPS | %.2f MHz" % (args.file, fps, effective_mhz))
+        pygame.display.set_caption("HACK - %s | %.1f FPS | %.2f MHz" % (args.file, fps, effective_mhz))
         pygame.display.flip()
 
         # 5. Cap frame rate

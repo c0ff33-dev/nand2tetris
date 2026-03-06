@@ -4,9 +4,9 @@ A collection of nand2tetris coursework plus reworked implementations of course t
 
 ## Project Files
 
-`projects/01-12` contains the original [nand2tetris](https://www.nand2tetris.org/) course content.
+`projects/01-12` contains complete implementations of the the original [nand2tetris](https://www.nand2tetris.org/) course content.
 
-`projects/13_fpga` contains FPGA-targeted Jack programs symlinked from [nand2tetris-fpga](https://github.com/c0ff33-dev/nand2tetris-fpga).
+`projects/13_fpga` contains FPGA-targeted Jack programs symlinked from [nand2tetris-fpga](https://github.com/c0ff33-dev/nand2tetris-fpga), a complete implementation and fork of Michael Schröder's [course](https://gitlab.com/x653/nand2tetris-fpga).
 
 ### FPGA layout
 
@@ -33,10 +33,11 @@ The `--fpga` flag includes these programs in the test suite. Without it, `projec
 ## Setup
 
 ```sh
-pip install -e ".[dev]"   # runtime deps (rich, numpy, pygame) + dev deps (ruff, pydoclint)
+# runtime deps (rich, numpy, pygame) + dev deps (ruff, pydoclint)
+pip install -e ".[dev]"   
 ```
 
-All Python scripts are run from within the `interpreter/` directory.
+All Python scripts must be run from within the `interpreter/` directory.
 
 ```sh
 cd interpreter
@@ -44,7 +45,7 @@ cd interpreter
 
 ## Usage
 
-### runner.py — Fully automated end-to-end test suite
+### runner.py: Fully automated end-to-end test suite
 
 Orchestrates the entire pipeline end-to-end: compiles Jack → tokenizes → analyzes → compiles to VM → translates to ASM → assembles to HACK → executes and validates all tests (VMEmulator, CPUEmulator, HardwareSimulator, Tester, Interpreter).
 
@@ -55,7 +56,7 @@ python runner.py --debug      # verbose output
 python runner.py --no-lint    # skip ruff linting
 ```
 
-### emulator.py — Pygame HACK platform emulator
+### emulator.py: Pygame HACK platform emulator
 
 Graphical emulator that renders the memory-mapped screen and handles keyboard I/O while driving the CPU engine. Screen (RAM[16384..24575]) is rendered via numpy bit-unpacking at ~30 FPS; keyboard events map to RAM[24576].
 
@@ -65,7 +66,7 @@ python emulator.py path/to/file.asm --scale 3      # 3x display scale
 python emulator.py path/to/file.asm --fps 60       # target 60 FPS rendering
 ```
 
-### compiler.py — Jack to VM compiler
+### compiler.py: Jack to VM compiler
 
 Compiles Jack source files into VM bytecode and validates output against course compiler reference files.
 
@@ -75,7 +76,7 @@ python compiler.py path/to/file.jack        # compile a single file
 python compiler.py path/to/project/dir      # compile all .jack files in a directory
 ```
 
-### tokenizer.py — Jack lexer
+### tokenizer.py: Jack lexer
 
 Lexes Jack source into XML token streams (`*T.xml`).
 
@@ -83,15 +84,15 @@ Lexes Jack source into XML token streams (`*T.xml`).
 python tokenizer.py    # tokenize all configured Jack files
 ```
 
-### analyzer.py — Jack parser
+### analyzer.py: Jack parser
 
-Parses token streams into XML parse trees (`*.xml`).
+Parses token streams into CST (`*.xml`).
 
 ```sh
 python analyzer.py    # analyze all configured Jack files
 ```
 
-### translator.py — VM to ASM translator
+### translator.py: VM to ASM translator
 
 Translates VM bytecode directories into HACK assembly.
 
@@ -100,7 +101,7 @@ python translator.py                       # translate all configured VM directo
 python translator.py path/to/vm/dir        # translate a single VM directory
 ```
 
-### assembler.py — ASM to HACK assembler
+### assembler.py: ASM to HACK assembler
 
 Two-pass assembler that encodes HACK assembly into 16-bit binary.
 
@@ -109,7 +110,7 @@ python assembler.py                        # assemble all configured ASM files
 python assembler.py path/to/file.asm       # assemble a single file
 ```
 
-### debugger.py — HACK CPU debugger
+### debugger.py: HACK CPU debugger
 
 Interactive CPU debugger with a Rich TUI for step-through debugging. Uses `Engine` from `engine.py` for execution.
 
@@ -123,7 +124,7 @@ python debugger.py path/to/file.asm --break 42 String.init   # mix line numbers 
 python debugger.py path/to/file.asm --debug                  # verbose output
 ```
 
-### debugger.py — Jack ASSERT directives
+### debugger.py: Jack ASSERT directives
 
 The following Jack directives will activate special test behaviour in the interpreter:
 
@@ -133,7 +134,7 @@ The following Jack directives will activate special test behaviour in the interp
 Jack files are statically scanned for `ASSERT` directives at runtime, if there are any mismatches or if the number of processed directives does not match the expected result an `AssertionError` exception will be thrown.
 
 
-### tester.py — test script parser
+### tester.py: test script parser
 
 Parses `.tst` test scripts and `.cmp` comparison files (used internally by `runner.py`).
 
@@ -141,7 +142,18 @@ Parses `.tst` test scripts and `.cmp` comparison files (used internally by `runn
 python tester.py    # parse all configured test files
 ```
 
-### Linting — ruff
+## Java Tools
+
+The original nand2tetris Java-based tools (HardwareSimulator, CPUEmulator, VMEmulator, etc.) are in `tools/` and require a JRE:
+
+```sh
+# .bat on Windows
+tools/HardwareSimulator.sh   
+tools/CPUEmulator.sh
+tools/VMEmulator.sh
+```
+
+### Linting: ruff/pydoclint
 
 Ruff and pydoclint run automatically as part of `runner.py`. To run manually:
 
@@ -154,14 +166,3 @@ pydoclint interpreter/           # docstring lint
 ```
 
 Configuration lives in `pyproject.toml` at the repo root.
-
-## Java Tools
-
-The original nand2tetris Java-based tools (HardwareSimulator, CPUEmulator, VMEmulator, etc.) are in `tools/` and require a JRE:
-
-```sh
-# .bat on Windows
-tools/HardwareSimulator.sh   
-tools/CPUEmulator.sh
-tools/VMEmulator.sh
-```

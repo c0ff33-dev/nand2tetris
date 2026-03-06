@@ -1,4 +1,4 @@
-"""Nand2Tetris test runner — compiles, translates, assembles, and tests all projects."""
+"""Nand2Tetris test runner - compiles, translates, assembles, and tests all projects."""
 
 import os
 import sys
@@ -22,8 +22,8 @@ if __name__ == "__main__":
     Project 6:    ASM (assembler/interpreter) > HACK (python_hdl) matched against CMP binary
     Project 7-8:  VM (translator) > ASM // ASM > HACK as above
                   TST file (CPUEmulator/VMEmulator/tester) > OUT matched to CMP machine state
-    Project 9-11: JACK > T_XML (CST) > XML (AST) > VM (tokenizer > analyzer > compiler) // VM > ASM > HACK as above
-                  Only Project 10 has CST/AST solution XML files
+    Project 9-11: JACK > T_XML > XML (CST) > VM (tokenizer > analyzer > compiler) // VM > ASM > HACK as above
+                  Only Project 10 has solution XML files
     """
     import argparse
 

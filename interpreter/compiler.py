@@ -1295,8 +1295,8 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
     """
     Main engine.
 
-    - parse the AST
-    - prescan the AST for class/function declarations
+    - parse the CST
+    - prescan the CST for class/function declarations
     - tag metadata as tokens are parsed
       - tag scope is defined by tree depth, some need to be carried forward, others cleared on depth change
     - call compile functions once enough information is parsed
@@ -1449,9 +1449,9 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
     lhs_var_name = lhs_array = parent_obj = child_func = func_kind = var_scope = ""
     last_ident_type = ""
 
-    # walk AST
+    # walk CST
     if debug:
-        print("Parsing AST: %s" % filepath)
+        print("Parsing CST: %s" % filepath)
         print()  # formatting
 
     tree = Et.parse(filepath.replace(".jack", ".xml"))
@@ -1783,7 +1783,7 @@ def main(filepath: str, file_list: list[str], debug: bool = False, asserts: dict
                 if last_ident_type and last_ident_type != "Array":
                     raise TypeError(
                         "cannot index into variable of type '%s' in %s.%s"
-                        " — only Array variables can be indexed" % (last_ident_type, class_name, func_name)
+                        " - only Array variables can be indexed" % (last_ident_type, class_name, func_name)
                     )
                 last_ident_type = ""
 

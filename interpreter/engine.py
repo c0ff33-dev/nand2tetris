@@ -1,10 +1,10 @@
 """
-HACK CPU engine for Nand2Tetris — encapsulates all CPU state and execution logic.
+HACK CPU engine for Nand2Tetris - encapsulates all CPU state and execution logic.
 """
 
 RAM_SIZE = 57344  # original spec: 24577 (~24K) words, FPGA spec: 57344 (56K) words
 
-# HACK ALU computation lookup table — all 28 standard computations
+# HACK ALU computation lookup table - all 28 standard computations
 # Replaces eval() for bulk execution performance
 _COMP = {
     "0": lambda A, D, M: 0,
@@ -117,7 +117,7 @@ ADDRESS_LABELS = {
 
 class Engine:
     """
-    HACK CPU engine — encapsulates registers, memory, and instruction execution.
+    HACK CPU engine - encapsulates registers, memory, and instruction execution.
 
     :param ram_size: Number of words in RAM.
     """
