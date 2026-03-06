@@ -39,6 +39,6 @@ class Main {
         do Output.backSpace();
         do Output.printInt(6789);
         
-        return;
+        return; // ASSERT REACHABLE
     }
 }

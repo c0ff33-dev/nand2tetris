@@ -9,6 +9,6 @@ class Main {
       /* Prints some text using the standard library. */
       do Output.printString("Hello world!");
       do Output.println();      // New line
-      return;
+      return;                   // ASSERT REACHABLE
    }
 }

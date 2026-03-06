@@ -74,7 +74,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Screen.updateLocation 0
+function Screen._updateLocation 0
 push static 2
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -163,11 +163,11 @@ push static 0
 add
 pop pointer 1
 push that 0
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 push constant 0
 return
-function Screen.drawConditional 0
+function Screen._drawConditional 0
 push argument 2
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -302,7 +302,7 @@ pop local 10
 push local 1
 push local 0
 push local 6
-call Screen.drawConditional 3
+call Screen._drawConditional 3
 pop temp 0
 label WHILE_EXP0
 push local 1
@@ -349,7 +349,7 @@ pop local 1
 push local 1
 push local 0
 push local 6
-call Screen.drawConditional 3
+call Screen._drawConditional 3
 pop temp 0
 goto WHILE_EXP0
 label WHILE_END0
@@ -456,13 +456,13 @@ push local 0
 push local 5
 push local 6
 and
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 goto IF_END1
 label IF_FALSE1
 push local 0
 push local 6
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 push local 0
 push constant 1
@@ -477,7 +477,7 @@ if-goto WHILE_END1
 push local 0
 push constant 1
 neg
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 push local 0
 push constant 1
@@ -487,7 +487,7 @@ goto WHILE_EXP1
 label WHILE_END1
 push local 1
 push local 5
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 label IF_END1
 push argument 1
@@ -504,7 +504,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Screen.drawHorizontal 11
+function Screen._drawHorizontal 11
 push argument 1
 push argument 2
 call Math.min 2
@@ -604,13 +604,13 @@ push local 0
 push local 4
 push local 5
 and
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 goto IF_END1
 label IF_FALSE1
 push local 0
 push local 5
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 push local 0
 push constant 1
@@ -625,7 +625,7 @@ if-goto WHILE_END0
 push local 0
 push constant 1
 neg
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 push local 0
 push constant 1
@@ -635,13 +635,13 @@ goto WHILE_EXP0
 label WHILE_END0
 push local 3
 push local 4
-call Screen.updateLocation 2
+call Screen._updateLocation 2
 pop temp 0
 label IF_END1
 label IF_FALSE0
 push constant 0
 return
-function Screen.drawSymetric 0
+function Screen._drawSymetric 0
 push argument 1
 push argument 3
 sub
@@ -651,7 +651,7 @@ add
 push argument 0
 push argument 2
 sub
-call Screen.drawHorizontal 3
+call Screen._drawHorizontal 3
 pop temp 0
 push argument 1
 push argument 3
@@ -662,7 +662,7 @@ add
 push argument 0
 push argument 2
 sub
-call Screen.drawHorizontal 3
+call Screen._drawHorizontal 3
 pop temp 0
 push argument 1
 push argument 2
@@ -673,7 +673,7 @@ sub
 push argument 0
 push argument 3
 add
-call Screen.drawHorizontal 3
+call Screen._drawHorizontal 3
 pop temp 0
 push argument 1
 push argument 2
@@ -684,7 +684,7 @@ sub
 push argument 0
 push argument 3
 add
-call Screen.drawHorizontal 3
+call Screen._drawHorizontal 3
 pop temp 0
 push constant 0
 return
@@ -751,7 +751,7 @@ push argument 0
 push argument 1
 push local 0
 push local 1
-call Screen.drawSymetric 4
+call Screen._drawSymetric 4
 pop temp 0
 label WHILE_EXP0
 push local 1
@@ -798,7 +798,7 @@ push argument 0
 push argument 1
 push local 0
 push local 1
-call Screen.drawSymetric 4
+call Screen._drawSymetric 4
 pop temp 0
 goto WHILE_EXP0
 label WHILE_END0

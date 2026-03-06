@@ -1,610 +1,604 @@
-"""
-VM to HACK Assembly Translator
-"""
-import os
+"""VM to HACK Assembly Translator."""
 
-# TODO: common asm blocks should only be emitted once & reused
+import os
+import glob as _glob
+
 
 class Translator:
-    def __init__(self, debug=False):
+    """
+    Translate VM bytecode to HACK assembly.
+
+    :param debug: Enable verbose output.
+    """
+
+    def __init__(self, debug: bool = False) -> None:
         self.debug = debug
         self.asm = ""
         self.static_dict = {}
-        self.local_dict = {}
         self.offset_list = []
         self.guid = 0
-        self.call_generated = False
+        self.eq_sub_emitted = False
+        self.lt_sub_emitted = False
+        self.gt_sub_emitted = False
+        self.return_sub_emitted = False
+        self.call_sub_emitted = False
+        self.call_sigs_emitted = set()
+        self.asm_subroutines = ""
 
-    # 7-10 instructions per VM command
-    def gen_push(self, cmd, vm_segment, asm_segment, value, vm_filepath):
+    # 4-9 instructions per VM command (depends on segment/offset)
+    def gen_push(self, cmd: str, vm_segment: str, asm_segment: str | None, value: str | None, vm_filepath: str) -> None:
         """
-        push a new value onto the stack (either constant or segment+offset)
-        also called from within _call()
+        Push a new value onto the stack (either constant or segment+offset).
+
+        :param cmd: Original VM command for comments.
+        :param vm_segment: VM memory segment name.
+        :param asm_segment: Mapped ASM segment symbol.
+        :param value: Segment index value.
+        :param vm_filepath: Path to the source VM file.
         """
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
 
         # push an arbitrary value onto the stack
         if vm_segment == "constant":
-            self.asm += "@%s // %s (constant)\n" % (value, cmd)
-            self.asm += "D=A // d = constant\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n" 
-            self.asm += "M=D // esp = constant\n" 
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n" 
-        else:
-            # retrieve a value from segment+offset and push it onto the stack
-            if vm_segment == "temp":
-                # fixed 8 word segment at RAM[5-12]
-                self.asm += "@5 // %s (&asm_segment)\n" % cmd
-                self.asm += "D=A // d = &asm_segment\n" 
-            elif vm_segment == "pointer":
-                # fixed 2 word segment at RAM[3-4] (THIS/THAT)
-                self.asm += "@3 // %s (&asm_segment)\n" % cmd 
-                self.asm += "D=A // d = &asm_segment\n"
-            elif vm_segment == "static":
-                # fixed 240 word segment at RAM[16-255] (namespace per file)
-                pos = self.static_dict[vm_filepath][0]
-                offset = 16 + (self.offset_list[pos])
-                self.asm += "@%s // %s (&asm_segment) // static + src offset (%s)\n" % (offset, cmd, vm_filepath)
-                self.asm += "D=A // d = &asm_segment\n"
+            int_value = int(value)
+            if int_value in (0, 1, -1):
+                # special case: M=0, M=1, M=-1 avoid loading through D
+                self.asm += "@SP // %s\n" % cmd
+                self.asm += "AM=M+1 // SP++\n"
+                self.asm += "A=A-1 // A -> slot\n"
+                self.asm += "M=%s // direct assign\n" % int_value
             else:
-                # deref the virtual segment (local, argument, this, that)
+                self.asm += "@%s // %s (constant)\n" % (value, cmd)
+                self.asm += "D=A // d = constant\n"
+                self.asm += "@SP // &esp\n"
+                self.asm += "AM=M+1 // SP++\n"
+                self.asm += "A=A-1 // A -> slot\n"
+                self.asm += "M=D // slot = constant\n"
+        elif vm_segment in ("temp", "pointer"):
+            # direct addressing: address known at compile time
+            base = 5 if vm_segment == "temp" else 3
+            addr = base + int(value)
+            self.asm += "@%s // %s\n" % (addr, cmd)
+            self.asm += "D=M\n"
+            self.asm += "@SP\n"
+            self.asm += "AM=M+1\n"
+            self.asm += "A=A-1\n"
+            self.asm += "M=D\n"
+        elif vm_segment == "static":
+            # direct addressing: address known at compile time
+            pos = self.static_dict[vm_filepath][0]
+            addr = 16 + self.offset_list[pos] + int(value)
+            self.asm += "@%s // %s (static %s)\n" % (addr, cmd, vm_filepath)
+            self.asm += "D=M\n"
+            self.asm += "@SP\n"
+            self.asm += "AM=M+1\n"
+            self.asm += "A=A-1\n"
+            self.asm += "M=D\n"
+        else:
+            # virtual segments (local, argument, this, that)
+            int_offset = int(value)
+            if int_offset == 0:
+                self.asm += "@%s // %s\n" % (asm_segment, cmd)
+                self.asm += "A=M\n"
+                self.asm += "D=M\n"
+            elif int_offset == 1:
+                self.asm += "@%s // %s\n" % (asm_segment, cmd)
+                self.asm += "A=M+1\n"
+                self.asm += "D=M\n"
+            else:
                 self.asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
                 self.asm += "D=M // d = *asm_segment\n"
+                self.asm += "@%s // offset\n" % value
+                self.asm += "A=D+A // &(asm_segment+offset)\n"
+                self.asm += "D=M // d = *(asm_segment+offset)\n"
+            # push tail
+            self.asm += "@SP\n"
+            self.asm += "AM=M+1\n"
+            self.asm += "A=A-1\n"
+            self.asm += "M=D\n"
 
-            self.asm += "@%s // offset\n" % value
-            self.asm += "A=D+A // &(asm_segment+offset)\n"
-            self.asm += "D=M // d = *(asm_segment+offset)\n" 
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = *(asm_segment+offset)\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-    # 13 instructions per VM command
-    def gen_pop(self, cmd, vm_segment, asm_segment, value, vm_filepath):
+    # 5-13 instructions per VM command (depends on segment/offset)
+    def gen_pop(self, cmd: str, vm_segment: str, asm_segment: str | None, value: str, vm_filepath: str) -> None:
         """
-        pop a value from the stack into a segment+offset
-        also called from within gen_return()
+        Pop a value from the stack into a segment+offset.
+
+        :param cmd: Original VM command for comments.
+        :param vm_segment: VM memory segment name.
+        :param asm_segment: Mapped ASM segment symbol.
+        :param value: Segment index value.
+        :param vm_filepath: Path to the source VM file.
         """
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
 
-        # pop a value from the stack and store it in segment+offset
-        # (copy from src to dst and dec esp)
+        int_offset = int(value)
 
-        # resolve segment base address
-        if vm_segment == "temp":
-            # fixed 8 word segment at RAM[5-12]
-            self.asm += "@5 // %s (&temp)\n" % cmd
-            self.asm += "D=A // d = &temp\n"
-        elif vm_segment == "pointer":
-            # fixed 2 word segment at RAM[3-4] (THIS/THAT)
-            self.asm += "@3 // %s (&pointer)\n" % cmd
-            self.asm += "D=A // d = &pointer\n"
+        if vm_segment in ("temp", "pointer"):
+            # direct addressing: address known at compile time
+            base = 5 if vm_segment == "temp" else 3
+            addr = base + int_offset
+            self.asm += "@SP // %s\n" % cmd
+            self.asm += "AM=M-1\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % addr
+            self.asm += "M=D\n"
         elif vm_segment == "static":
-            # fixed 240 word segment at RAM[16-255] (namespace per file)
+            # direct addressing: address known at compile time
             pos = self.static_dict[vm_filepath][0]
-            offset = 16 + (self.offset_list[pos])
-            self.asm += "@%s // %s // static + src segment offset (%s)\n" % (offset, cmd, vm_filepath)
-            self.asm += "D=A // d = &(static+offset)\n"
+            addr = 16 + self.offset_list[pos] + int_offset
+            self.asm += "@SP // %s\n" % cmd
+            self.asm += "AM=M-1\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % addr
+            self.asm += "M=D\n"
+        elif int_offset <= 1:
+            # virtual segments offset 0/1: direct deref without R13
+            self.asm += "@SP // %s\n" % cmd
+            self.asm += "AM=M-1\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % asm_segment
+            if int_offset == 0:
+                self.asm += "A=M\n"
+            else:
+                self.asm += "A=M+1\n"
+            self.asm += "M=D\n"
         else:
-            # resolve the base address of the remaining segments (local, argument, this, that)
+            # general case: compute address, save to R13, pop, write
             self.asm += "@%s // %s (&asm_segment)\n" % (asm_segment, cmd)
-            self.asm += "D=M // d = *asm_segment\n"
+            self.asm += "D=M\n"
+            self.asm += "@%s\n" % value
+            self.asm += "D=D+A\n"
+            self.asm += "@R13\n"
+            self.asm += "M=D // R13 = dst addr\n"
+            self.asm += "@SP\n"
+            self.asm += "M=M-1\n"
+            self.asm += "A=M\n"
+            self.asm += "D=M\n"
+            self.asm += "@R13\n"
+            self.asm += "A=M\n"
+            self.asm += "M=D\n"
 
-        self.asm += "@%s // retrieve &dst (segment+offset) and store at R13\n" % value
-        self.asm += "D=D+A // d = &dst (asm_segment+offset)\n"
-        self.asm += "@R13 // &r13\n"
-        self.asm += "M=D // r13 = &dst\n"
-
-        # implicitly free the top slot on the stack
-        self.asm += "@SP // &esp // retrieve &src from top of the stack\n"
-        self.asm += "M=M-1 // &esp-- (&src)\n"
-        self.asm += "A=M // *src\n"
-        self.asm += "D=M // d = src\n"
-
-        # the extra level of indirection for local/argument/this/that is already handled above
-        self.asm += "@R13 // &r13 // retrieve &dst from r13 and complete the pop\n"
-        self.asm += "A=M // *r13 (*dst)\n"
-        self.asm += "M=D // dst = src (pop)\n"
-
-    # 10 instructions per VM command
-    def gen_add(self, cmd):
+    # 5 instructions per VM command
+    def gen_add(self, cmd: str) -> None:
         """
-        pop 2 values from the stack and push the result of their sum
-        """
-        self.asm += '\n// %s\n' % (cmd)
+        Pop 2 values from the stack and push the result of their sum.
 
-        # add two values, push result, dec/inc esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
+        :param cmd: Original VM command for comments.
+        """
+        self.asm += "\n// %s\n" % (cmd)
+
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp\n" 
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D+M // esp = val2 + val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=D+M // val1 = val2 + val1\n"
 
-    # 10 instructions per VM command
-    def gen_sub(self, cmd):
+    # 5 instructions per VM command
+    def gen_sub(self, cmd: str) -> None:
         """
-        pop 2 values from the stack and push the result of their difference
-        """
-        self.asm += '\n// %s\n' % (cmd)
+        Pop 2 values from the stack and push the result of their difference.
 
-        # eval two values, push result, dec esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
+        :param cmd: Original VM command for comments.
+        """
+        self.asm += "\n// %s\n" % (cmd)
+
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=M-D // esp = val1 - val2\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=M-D // val1 = val1 - val2\n"
 
-    # ~21 instructions per VM command
-    def gen_eq(self, cmd):
+    # 4 instructions per VM command (+ 16 instruction subroutine emitted once per type)
+    def _gen_comparison_sub(self, label: str, jump_skip: str) -> None:
         """
-        pop 2 values from the stack and push -1 if they are the same or 0 if not
+        Emit a shared comparison subroutine (once per type), deferred to end of output.
+
+        :param label: Comparison type label (EQ, LT, GT).
+        :param jump_skip: Jump mnemonic to skip the true branch.
+        """
+        self.asm_subroutines += "(%s_SUB)\n" % label
+        self.asm_subroutines += "@R15\n"
+        self.asm_subroutines += "M=D // save return addr\n"
+        self.asm_subroutines += "@SP\n"
+        self.asm_subroutines += "AM=M-1 // SP--, A -> val2\n"
+        self.asm_subroutines += "D=M // D = val2\n"
+        self.asm_subroutines += "A=A-1 // A -> val1 (result slot)\n"
+        self.asm_subroutines += "D=M-D // D = val1 - val2\n"
+        self.asm_subroutines += "M=0 // assume false\n"
+        self.asm_subroutines += "@%s_END\n" % label
+        self.asm_subroutines += "D;%s // skip if false\n" % jump_skip
+        self.asm_subroutines += "@SP\n"
+        self.asm_subroutines += "A=M-1 // A -> result slot\n"
+        self.asm_subroutines += "M=-1 // true\n"
+        self.asm_subroutines += "(%s_END)\n" % label
+        self.asm_subroutines += "@R15\n"
+        self.asm_subroutines += "A=M\n"
+        self.asm_subroutines += "0;JMP // sub return\n"
+
+    def _gen_comparison_call(self, cmd: str, label: str) -> None:
+        """
+        Emit a 4-instruction call to a comparison subroutine.
+
+        :param cmd: Original VM command for comments.
+        :param label: Comparison type label (EQ, LT, GT).
         """
         guid = self.gen_guid()
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
+        self.asm += "@RET_%s_%s\n" % (label, guid)
+        self.asm += "D=A\n"
+        self.asm += "@%s_SUB\n" % label
+        self.asm += "0;JMP\n"
+        self.asm += "(RET_%s_%s)\n" % (label, guid)
 
-        self.asm += "@SP // %s // &esp \n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
-        self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "D=M-D // d = val1 - val2\n"
-
-        self.asm += "@EQ_TRUE_%s\n" % guid
-        self.asm += "D;JEQ // jump if true\n"
-        self.asm += "// EQ_FALSE_%s\n" % guid
-        self.asm += "@0 // false\n"
-        self.asm += "D=A // d = false\n"
-        self.asm += "@EQ_END_%s\n" % guid
-        self.asm += "0;JMP // unconditional jump\n"
-
-        self.asm += "(EQ_TRUE_%s)\n" % guid
-        self.asm += "@0 // 0\n"
-        self.asm += "D=!A // d = -1 (true)\n"
-
-        self.asm += "(EQ_END_%s) // save eq result to stack\n" % guid
-        self.asm += "@SP // &esp (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D // esp = eq result\n"
-
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
-
-    def gen_guid(self):
+    def gen_eq(self, cmd: str) -> None:
         """
-        generate a unique numeric GUID for labels
+        Pop 2 values from the stack and push -1 if they are the same or 0 if not.
+
+        :param cmd: Original VM command for comments.
+        """
+        self._gen_comparison_call(cmd, "EQ")
+        if not self.eq_sub_emitted:
+            self.eq_sub_emitted = True
+            self._gen_comparison_sub("EQ", "JNE")
+
+    def gen_guid(self) -> int:
+        """
+        Generate a unique numeric GUID for labels.
+
+        :return: Unique integer identifier.
         """
         self.guid += 1
         return self.guid
 
-    # ~21 instructions per VM command
-    def gen_lt(self, cmd):
+    def gen_lt(self, cmd: str) -> None:
         """
-        pop 2 values from the stack and push -1 if val1 < val2 or 0 if not
-        """
-        guid = self.gen_guid()
-        self.asm += '\n// %s\n' % (cmd)
+        Pop 2 values from the stack and push -1 if val1 < val2 or 0 if not.
 
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
+        :param cmd: Original VM command for comments.
+        """
+        self._gen_comparison_call(cmd, "LT")
+        if not self.lt_sub_emitted:
+            self.lt_sub_emitted = True
+            self._gen_comparison_sub("LT", "JGE")
+
+    def gen_gt(self, cmd: str) -> None:
+        """
+        Pop 2 values from the stack and push -1 if val1 > val2 or 0 if not.
+
+        :param cmd: Original VM command for comments.
+        """
+        self._gen_comparison_call(cmd, "GT")
+        if not self.gt_sub_emitted:
+            self.gt_sub_emitted = True
+            self._gen_comparison_sub("GT", "JLE")
+
+    # 5 instructions per VM command
+    def gen_and(self, cmd: str) -> None:
+        """
+        Pop 2 values from the stack, push the AND result.
+
+        :param cmd: Original VM command for comments.
+        """
+        self.asm += "\n// %s\n" % (cmd)
+
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "D=M-D // d = val1 - val2\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=D&M // val1 = val2 & val1\n"
 
-        self.asm += "@JLT_TRUE_%s\n" % guid
-        self.asm += "D;JLT\n"
-        self.asm += "// JLT_FALSE_%s\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=A // d = false\n"
-        self.asm += "@JLT_END_%s\n" % guid
-        self.asm += "0;JMP\n"
-
-        self.asm += "(JLT_TRUE_%s)\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=!A // d = -1 (true)\n"
-
-        self.asm += "(JLT_END_%s)\n" % guid
-        self.asm += "@SP // &esp (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D // esp = lt result\n"
-
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
-
-    # ~21 instructions per VM command
-    def gen_gt(self, cmd):
+    # 5 instructions per VM command
+    def gen_or(self, cmd: str) -> None:
         """
-        pop 2 values from the stack and push -1 if val1 > val2 or 0 if not
-        """
-        guid = self.gen_guid()
-        self.asm += '\n// %s\n' % (cmd)
+        Pop 2 values from the stack, push the OR result.
 
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *val2\n"
+        :param cmd: Original VM command for comments.
+        """
+        self.asm += "\n// %s\n" % (cmd)
+
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val2\n"
         self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "D=M-D // d = val1 - val2\n"
+        self.asm += "A=A-1 // A -> val1\n"
+        self.asm += "M=M|D // val1 = val1 | val2\n"
 
-        self.asm += "@JGT_TRUE_%s\n" % guid
-        self.asm += "D;JGT\n"
-        self.asm += "// JGT_FALSE_%s\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=A // d = false\n"
-        self.asm += "@JGT_END_%s\n" % guid
-        self.asm += "0;JMP\n"
-
-        self.asm += "(JGT_TRUE_%s)\n" % guid
-        self.asm += "@0\n"
-        self.asm += "D=!A // d = -1 (true)\n"
-
-        self.asm += "(JGT_END_%s)\n" % guid
-        self.asm += "@SP // &esp (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=D // esp = gt result\n"
-
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
-
-    # 10 instructions per VM command
-    def gen_and(self, cmd):
+    # 3 instructions per VM command
+    def gen_not(self, cmd: str) -> None:
         """
-        pop 2 values from the stack, push the AND result
-        """
-        self.asm += '\n// %s\n' % (cmd)
+        NOT the top value on the stack in place.
 
-        # eval two values, push result, dec esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *esp (*val2)\n"
-        self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp = val1\n"
-        self.asm += "M=D&M // esp = val2 & val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
-
-    # 10 instructions per VM command
-    def gen_or(self, cmd):
+        :param cmd: Original VM command for comments.
         """
-        pop 2 values from the stack, push the OR result
-        """
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
 
-        # eval two values, push result, dec esp
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val2)\n"
-        self.asm += "A=M // *esp (*val2)\n"
-        self.asm += "D=M // d = val2\n"
-        self.asm += "@SP // &esp (&val2)\n"
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=M|D // esp = val1 | val2\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "A=M-1 // A -> top of stack\n"
+        self.asm += "M=!M // not in place\n"
 
-    # ~6 instructions per VM command
-    def gen_not(self, cmd):
+    # 3 instructions per VM command
+    def gen_neg(self, cmd: str) -> None:
         """
-        pop a value from the stack, push the NOT result
-        """
-        self.asm += '\n// %s\n' % (cmd)
+        Negate the top value on the stack in place.
 
-        # eval one value, push result
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // esp* (*val1)\n"
-        self.asm += "M=!M // esp = !val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
-
-    # ~6 instructions per VM command
-    def gen_neg(self, cmd):
+        :param cmd: Original VM command for comments.
         """
-        pop 2 values from the stack, push the MINUS result
-        """
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
 
-        # eval one value, push result
-        self.asm += "@SP // &esp // %s\n" % cmd
-        self.asm += "M=M-1 // &esp-- (&val1)\n"
-        self.asm += "A=M // *esp (*val1)\n"
-        self.asm += "M=-M // esp = -val1\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+1 // &esp++\n"
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "A=M-1 // A -> top of stack\n"
+        self.asm += "M=-M // neg in place\n"
 
     # ~0 instructions per VM command
-    def gen_label(self, cmd, src):
+    def gen_label(self, cmd: str, src: str) -> str:
         """
-        translate labels
+        Translate labels.
 
         label = src.label
         function = src.func.label
         call = src.func.guid
+
+        :param cmd: Original VM command for comments.
+        :param src: Source context for label scoping.
+        :return: Resolved assembly label.
+        :raises RuntimeError: If the command is not a recognized label type.
         """
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
         asm_label = cmd.split(" ")[1]
 
-        if cmd.startswith('function'):
+        if cmd.startswith("function"):
             self.asm += "(%s) // %s\n" % (asm_label, cmd)
-        elif cmd.startswith('call'):
+        elif cmd.startswith("call"):
             guid = self.gen_guid()
             self.asm += "(%s.%s.%s) // %s\n" % (src, asm_label, guid, cmd)
             asm_label = "%s.%s.%s" % (src, asm_label, guid)
-        elif cmd.startswith('label'):
-            self.asm += "(%s.%s) // %s\n" % (src, asm_label, cmd)
-            asm_label = "%s.%s" % (src, asm_label)
+        elif cmd.startswith("label"):
+            self.asm += "(%s$%s) // %s\n" % (src, asm_label, cmd)
+            asm_label = "%s$%s" % (src, asm_label)
         else:
             raise RuntimeError("Translator: Unexpected command %s")
-        
+
         return asm_label
 
     # ~2 instructions per VM command
-    def gen_goto(self, cmd, src):
+    def gen_goto(self, cmd: str, src: str) -> None:
         """
-        unconditional jump
+        Unconditional jump.
+
+        :param cmd: Original VM command for comments.
+        :param src: Source context for label scoping.
         """
         asm_label = cmd.split(" ")[1]
-        asm_label = "%s.%s" % (src, asm_label)
+        asm_label = "%s$%s" % (src, asm_label)
 
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
         self.asm += "@%s // %s\n" % (asm_label, cmd)
         self.asm += "0;JMP // unconditional jump\n"
 
-    # ~8 instructions per VM command
-    def gen_if_goto(self, cmd, src):
+    # 5 instructions per VM command
+    def gen_if_goto(self, cmd: str, src: str) -> None:
         """
-        pop a value off the stack and jump if true
+        Pop a value off the stack and jump if true.
+
+        :param cmd: Original VM command for comments.
+        :param src: Source context for label scoping.
         """
         asm_label = cmd.split(" ")[1]
-        asm_label = "%s.%s" % (src, asm_label)
+        asm_label = "%s$%s" % (src, asm_label)
 
-        self.asm += '\n// %s\n' % (cmd)
+        self.asm += "\n// %s\n" % (cmd)
 
-        self.asm += "// compare val (if-goto conditional) with 0\n"
-        self.asm += "@0 // %s\n" % cmd
-        self.asm += "D=A // d = 0\n"
-        self.asm += "@SP // &esp // compare val to 0\n"
-        self.asm += "M=M-1 // &esp-- (&val)\n"
-        self.asm += "A=M // *esp (*val)\n"
-        self.asm += "D=M-D // d = val - 0 // leave esp here (pop equivalent)\n"
-
+        self.asm += "@SP // %s\n" % cmd
+        self.asm += "AM=M-1 // SP--, A -> val\n"
+        self.asm += "D=M // d = val\n"
         self.asm += "@%s\n" % asm_label
         self.asm += "D;JNE // jump if not zero\n"
 
-    # TODO: optimize asm by using R13-15 instead of stack for storage (you are here)
-    # ~63 instructions per VM command + 7 per local + 7 per arg
-    def gen_call(self, cmd, src):
+    # 4 instructions per call site
+    def gen_call(self, cmd: str, src: str) -> None:
         """
-        save the caller stack frame and initialize the callee ARG/LCL segments
-        """
-        # TODO: this is fragile / maybe there is a better way to set RP?
-        prologue_size = 41  # realign stack frame (base = number of instructions in this func, excl push/label())
+        Emit a 4-instruction call stub that jumps to a per-signature block.
 
+        per-signature block (10 instr) and CALL_SUB (44 instr) emitted once each.
+
+        :param cmd: Original VM command for comments.
+        :param src: Source context for label scoping.
+        """  # noqa: D415
         num_args = int(cmd.split(" ")[2])
-        func_label = cmd.split(" ")[1]  # Module.funcName (entry point)
-        asm_label = self.gen_label(cmd, src)
+        func_label = cmd.split(" ")[1]
 
-        # stack frame before call = <args>...<SP>
-        # stack frame after call = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<SP>
-
-        if num_args == 0:
-            # TODO: the init'd return value doesn't matter so this could be inlined to just inc esp by num_locals?
-            self.gen_push("push constant 9999 // call %s // if no args, create a space on the stack for "
-                          "the return" % func_label, "constant", "constant", 9999, "")
-            prologue_size += 7  # 7 instructions per push()
-            num_args = 1
-            self.asm += "@%s // push RP\n" % asm_label # return point (RP)
-        else:
-            self.asm += "@%s // call %s // push RP\n" % (asm_label, func_label)
-        
-        # save RP before A is manipulated again
-        self.asm += "D=A // d = RP\n"
-        self.asm += "@R13\n"
-        self.asm += "M=D // r13 = RP\n"
-
-        # dynamic addresses need to be saved in registers to be ref'd in microcode
+        # unique return label placed at actual return point (no prologue_size fixup)
         guid = self.gen_guid()
-        self.asm += "@MICROCODE_CALL_MIDPOINT_%s // save to r14\n" % guid
-        self.asm += "D=A // d = &midpoint\n"
-        self.asm += "@R14 // &r14\n"
-        self.asm += "M=D // r14 = &midpoint\n"
+        ret_label = "RET_CALL_%s" % guid
+        sig_label = "CALL_%s_%s" % (func_label, num_args)
 
-        self.asm += "@R13 // &rp // restore RP\n"
-        self.asm += "D=M // d = *rp\n"
+        # call site: 4 instructions + 1 label
+        self.asm += "\n// %s\n" % cmd
+        self.asm += "@%s\n" % ret_label
+        self.asm += "D=A\n"
+        self.asm += "@%s\n" % sig_label
+        self.asm += "0;JMP\n"
+        self.asm += "(%s)\n" % ret_label
 
-        if self.call_generated:
-            self.asm += "@MICROCODE_CALL\n"
-            self.asm += "0;JMP\n"
-        else:
-            # generate the static call microcode (once)
-            self.call_generated = True
-            prologue_size += 34
+        # per-signature block (once per unique func+nArgs)
+        sig_key = (func_label, num_args)
+        if sig_key not in self.call_sigs_emitted:
+            self.call_sigs_emitted.add(sig_key)
+            sig = "(%s)\n" % sig_label
+            sig += "@R13\n"
+            sig += "M=D // R13 = retAddr\n"
+            sig += "@%s\n" % func_label
+            sig += "D=A\n"
+            sig += "@R14\n"
+            sig += "M=D // R14 = func addr\n"
+            sig += "@%s\n" % num_args
+            sig += "D=A // D = nArgs\n"
+            sig += "@CALL_SUB\n"
+            sig += "0;JMP\n"
+            self.asm_subroutines += sig
 
-            self.asm += "(MICROCODE_CALL)\n"
-            self.asm += "@SP // &esp // save RP to the stack\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = RP\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
+        # CALL_SUB (once)
+        if not self.call_sub_emitted:
+            self.call_sub_emitted = True
+            sub = "(CALL_SUB)\n"
+            # save nArgs for ARG calculation
+            sub += "@R15\n"
+            sub += "M=D // R15 = nArgs\n"
+            # push retAddr (from R13)
+            sub += "@R13\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "A=M\n"
+            sub += "M=D // push retAddr\n"
+            # push LCL
+            sub += "@LCL\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push LCL\n"
+            # push ARG
+            sub += "@ARG\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push ARG\n"
+            # push THIS
+            sub += "@THIS\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push THIS\n"
+            # push THAT
+            sub += "@THAT\n"
+            sub += "D=M\n"
+            sub += "@SP\n"
+            sub += "AM=M+1\n"
+            sub += "M=D // push THAT\n"
+            # SP++ (final increment for retAddr push)
+            sub += "@SP\n"
+            sub += "M=M+1\n"
+            # ARG = SP - nArgs - 5
+            sub += "@R15\n"
+            sub += "D=M // D = nArgs\n"
+            sub += "@5\n"
+            sub += "D=D+A // D = nArgs + 5\n"
+            sub += "@SP\n"
+            sub += "D=M-D // D = SP - nArgs - 5\n"
+            sub += "@ARG\n"
+            sub += "M=D // ARG = SP - nArgs - 5\n"
+            # LCL = SP
+            sub += "@SP\n"
+            sub += "D=M\n"
+            sub += "@LCL\n"
+            sub += "M=D // LCL = SP\n"
+            # jump to function (from R14)
+            sub += "@R14\n"
+            sub += "A=M\n"
+            sub += "0;JMP\n"
+            self.asm_subroutines += sub
 
-            self.asm += "@LCL // &lcl[0] // save LCL to the stack\n"
-            self.asm += "D=M // d = *lcl[0]\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = lcl[0]\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@ARG // &arg // save ARG to the stack\n"
-            self.asm += "D=M // d = *arg\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = arg\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@THIS // &this // save THIS to the stack\n"
-            self.asm += "D=M // d = *this\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = this\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@THAT // &that // save THAT to the stack\n"
-            self.asm += "D=M // d = *that\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "A=M // *esp\n"
-            self.asm += "M=D // esp = that\n"
-            self.asm += "@SP // &esp\n"
-            self.asm += "M=M+1 // &esp++\n"
-
-            self.asm += "@R14 // &midpoint\n"
-            self.asm += "A=M // *midpoint\n"
-            self.asm += "0;JMP // return to dynamic call code\n"
-
-        # TODO: inline remaining code as asm + pull dynamic values from R13-15
-        self.asm += "(MICROCODE_CALL_MIDPOINT_%s)\n" % guid
-        
-        # num_locals can be computed in advance but push() writes to asm
-        current_function = cmd.split(" ")[1]
-        if current_function in self.local_dict:
-            num_locals = self.local_dict[current_function]
-            for i in range(0, num_locals):
-                # VM spec requires local segment to be initialized to 0
-                # JACK spec does not require static/field/local to be initialized, only args
-                # the decompiled VM code however definitely assumes local init to 0
-                self.gen_push("push constant 0 // local(%s) init" % i, "constant", "constant", 0, "")
-                prologue_size += 7  # 7 instructions per push()
-        else:
-            num_locals = 0
-
-        # TODO: can this be refactored to push the correct value above rather than double handling?
-        self.asm += "@%s // increment RP (SP-5+num_locals) by prologue_size\n" % (5+num_locals)
-        self.asm += "D=A // d = 5+num_locals\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M-D // &esp = &esp-(5+num_locals) (&rp)\n"
-        self.asm += "@%s // prologue_size\n" % prologue_size
-        self.asm += "D=A // d = prologue_size\n"
-        self.asm += "@SP // &esp (&rp)\n"
-        self.asm += "A=M // *esp (*rp)\n"
-        self.asm += "M=M+D // rp = rp+prologue_size\n"
-        self.asm += "@%s // 5+num_locals\n" % (5+num_locals)
-        self.asm += "D=A // d = 5+num_locals\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=M+D // *esp = *esp+(5+num_locals)\n"
-
-        self.asm += "@%s // (5+num_locals) // initialize ARG segment for callee\n" % (5+num_locals)
-        self.asm += "D=A // d = (5+num_locals)\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "D=M-D // d = *esp-(5+num_locals) (*RP) \n"
-        self.asm += "@%s // parse num_args from call <label> <num_args>\n" % num_args
-        self.asm += "D=D-A // d = rp-num_args (&arg1)\n"
-        self.asm += "@ARG // &arg\n"
-        self.asm += "M=D // *arg = &arg1\n"
-
-        self.asm += "@%s // (num_locals) // initialize callee LCL (same as SP if none) \n" % num_locals
-        self.asm += "D=A // d = num_locals\n"
-        self.asm += "@SP // (&esp currently at bottom of stack frame)\n"
-        self.asm += "D=M-D // d = *esp-num_locals (&lcl[0])\n"
-        self.asm += "@LCL // &lcl[0]\n"
-        self.asm += "M=D // &lcl[0] = &lcl[0]\n"
-
-        self.asm += "@%s // &func (parsed from call <label> <num_args>)\n" % func_label
-        self.asm += "0;JMP // *func // jump to function (call target)\n"
-
-    # ~0 instructions per VM command
-    def gen_function(self, cmd, src):
+    # ~0 instructions per VM command (+ local init)
+    def gen_function(self, cmd: str, src: str) -> None:
         """
-        define a function label (entry point)
+        Emit function entry label and initialize local variables to 0.
+
+        :param cmd: Original VM command for comments.
+        :param src: Source context for label scoping.
         """
         _ = self.gen_label(cmd, src)
+        num_locals = int(cmd.split(" ")[2])
+        if num_locals > 0:
+            self.asm += "@SP\n"
+            self.asm += "A=M\n"
+            self.asm += "M=0\n"
+            for i in range(1, num_locals):
+                self.asm += "A=A+1\n"
+                self.asm += "M=0\n"
+            self.asm += "D=A+1\n"
+            self.asm += "@SP\n"
+            self.asm += "M=D\n"
 
     # ~40 instructions per VM command + 13 for the pop
-    def gen_return(self, cmd, vm_filepath):
+    def gen_return(self, cmd: str, vm_filepath: str) -> None:
         """
-        restore caller stack, pop result & jump to RP
+        Restore caller stack, pop result & jump to RP.
+
+        first return emits full subroutine; subsequent returns are 2-instr jumps
+
+        stack frame before return = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<result><SP>
+        stack frame after return = <result><SP> // ...<RP><LCL><ARG><THIS><THAT><locals>
+
+        :param cmd: Original VM command for comments.
+        :param vm_filepath: Path to the source VM file.
+        """  # noqa: D415
+        self.asm += "\n// %s\n" % (cmd)
+
+        if not self.return_sub_emitted:
+            self.return_sub_emitted = True
+            sub = "(RETURN_SUB)\n"
+            # R13 = frame (old LCL)
+            sub += "@LCL\n"
+            sub += "D=M\n"
+            sub += "@R13\n"
+            sub += "M=D // R13 = frame\n"
+            # R14 = retAddr = *(frame - 5)
+            sub += "@5\n"
+            sub += "A=D-A\n"
+            sub += "D=M\n"
+            sub += "@R14\n"
+            sub += "M=D // R14 = retAddr\n"
+            # *ARG = pop()
+            sub += "@SP\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@ARG\n"
+            sub += "A=M\n"
+            sub += "M=D // ARG[0] = result\n"
+            # SP = ARG + 1
+            sub += "@ARG\n"
+            sub += "D=M+1\n"
+            sub += "@SP\n"
+            sub += "M=D // SP = ARG + 1\n"
+            # THAT = *(frame - 1), decrement R13
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@THAT\n"
+            sub += "M=D\n"
+            # THIS = *(frame - 2)
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@THIS\n"
+            sub += "M=D\n"
+            # ARG = *(frame - 3)
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@ARG\n"
+            sub += "M=D\n"
+            # LCL = *(frame - 4)
+            sub += "@R13\n"
+            sub += "AM=M-1\n"
+            sub += "D=M\n"
+            sub += "@LCL\n"
+            sub += "M=D\n"
+            # goto retAddr
+            sub += "@R14\n"
+            sub += "A=M\n"
+            sub += "0;JMP\n"
+            self.asm_subroutines += sub
+
+        self.asm += "@RETURN_SUB\n"
+        self.asm += "0;JMP\n"
+
+    def parse_asm(self, vm_filepath: str) -> None:
         """
-        # stack frame before return = <args>...<RP><LCL><ARG><THIS><THAT><locals>...<result><SP>
-        # stack frame after return = <result><SP> // ...<RP><LCL><ARG><THIS><THAT><locals>
+        Translate the vm commands into a single asm file.
 
-        self.asm += '\n// %s\n' % (cmd)
-        self.gen_pop("pop argument 0 // return // move result to &arg[0] (soon to be last stack "
-                     "item)", "argument", "ARG", 0, vm_filepath)
-
-        self.asm += "@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]\n"
-        self.asm += "D=M+1 // d = *arg[1]\n"
-        self.asm += "@SP // &esp\n"
-        self.asm += "M=D // *esp = arg[1]\n"
-
-        self.asm += "@LCL // &lcl[0] // return: restore caller stack (THAT)\n"
-        self.asm += "A=M-1 // &that\n"
-        self.asm += "D=M // d = *that\n"
-        self.asm += "@THAT\n"
-        self.asm += "M=D // *that = *that\n"
-
-        self.asm += "@2 // return: restore caller stack (THIS)\n"
-        self.asm += "D=A // d=2\n"
-        self.asm += "@LCL // &lcl\n"
-        self.asm += "A=M-D // &this\n"
-        self.asm += "D=M // d = *this\n"
-        self.asm += "@THIS\n"
-        self.asm += "M=D // *this = *this\n"
-
-        self.asm += "@3 // return: restore caller stack (ARG)\n"
-        self.asm += "D=A // d=3\n"
-        self.asm += "@LCL // &lcl \n"
-        self.asm += "A=M-D // &lcl-3 (&arg)\n"
-        self.asm += "D=M // d = *arg\n"
-        self.asm += "@ARG\n"
-        self.asm += "M=D // *arg = *arg\n"
-
-        self.asm += "@LCL // &lcl // before restoring LCL, save it to R13\n"
-        self.asm += "D=M // d = *lcl\n"
-        self.asm += "@R13 // &r13\n"
-        self.asm += "M=D // *r13 = lcl\n"
-
-        self.asm += "@4 // return: restore caller stack (LCL)\n"
-        self.asm += "D=A // d=4\n"
-        self.asm += "@LCL // &lcl\n"
-        self.asm += "A=M-D // &lcl-4\n"
-        self.asm += "D=M // d = *lcl-4\n"
-        self.asm += "@LCL\n"
-        self.asm += "M=D // *lcl = *lcl-4\n"
-
-        self.asm += "@5 // return: unconditional jump to LCL-5 (RP)\n"
-        self.asm += "D=A // d=5\n"
-        self.asm += "@R13 // &r13 (old_lcl)\n"
-        self.asm += "A=M-D // &old_lcl-5 (&lcl)\n"
-        self.asm += "A=M // d = *lcl-5 (*lcl)\n"
-        self.asm += "0;JMP // return (jump to RP)\n"
-
-    def parse_asm(self, vm_filepath):
+        :param vm_filepath: Path to the source VM file.
+        :raises RuntimeError: If an unexpected command is encountered.
         """
-        translate the vm commands into a single asm file
-        """
-        src = vm_filepath.split(os.path.sep)[-1].split('.vm')[0]
+        src = vm_filepath.split(os.path.sep)[-1].split(".vm")[0]
+        current_function = src  # fallback; updated on each 'function' command
 
         with open(vm_filepath) as vm_file:
             vm_contents = vm_file.readlines()
@@ -613,7 +607,17 @@ class Translator:
         for cmd in vm_contents:
             # cleanup test file
             cmd = cmd.strip()
-            if cmd.startswith(r'//'):
+            if cmd.startswith("// ASSERT"):
+                # attach ASSERT to last emitted ASM instruction
+                # skip trailing return labels and their jumps to land on the call site
+                lines = self.asm.rstrip("\n").split("\n")
+                target = len(lines) - 1
+                if lines[target].strip().startswith("(RET_"):
+                    target -= 2  # skip label and 0;JMP to reach @CALL_* or @*_SUB
+                lines[target] += " " + cmd
+                self.asm = "\n".join(lines) + "\n"
+                continue
+            elif cmd.startswith(r"//"):
                 continue
             elif cmd == "":
                 continue
@@ -670,12 +674,13 @@ class Translator:
             elif cmd.startswith("neg"):
                 self.gen_neg(cmd)
             elif cmd.startswith("label"):
-                _ = self.gen_label(cmd, src)
+                _ = self.gen_label(cmd, current_function)
             elif cmd.startswith("goto"):
-                self.gen_goto(cmd, src)
+                self.gen_goto(cmd, current_function)
             elif cmd.startswith("if-goto"):
-                self.gen_if_goto(cmd, src)
+                self.gen_if_goto(cmd, current_function)
             elif cmd.startswith("function"):
+                current_function = cmd.split(" ")[1]
                 stored_comment = " // %s" % cmd  # function only creates a label which gets parsed out
                 self.gen_function(cmd, src)
             elif cmd.startswith("return"):
@@ -697,14 +702,20 @@ class Translator:
                     else:
                         raise RuntimeError(r"Translator: Could not append stored_comment, ASM did not end with \n")
 
-    def parse_static(self, vm_filepath):
+    def parse_static(self, vm_filepath: str) -> None:
+        """
+        Parse static variable declarations to build the static offset table.
+
+        :param vm_filepath: Path to the source VM file.
+        :raises ValueError: If a command value cannot be parsed.
+        """
         with open(vm_filepath) as vm_file:
             vm_content = vm_file.readlines()
 
         for cmd in vm_content:
             # cleanup test file
             cmd = cmd.strip()
-            if cmd.startswith(r'//'):
+            if cmd.startswith(r"//"):
                 continue
             elif cmd == "":
                 continue
@@ -718,12 +729,7 @@ class Translator:
                     try:
                         value = int(parsed_cmd[2])
                     except ValueError:
-                        raise RuntimeError("Translator: No value to parse, add to exclude or fix code: %s" % cmd)
-
-            # update local dictionary
-            if cmd.startswith("function"):
-                current_function = parsed_cmd[1]
-                self.local_dict[current_function] = value
+                        raise ValueError("Translator: No value to parse, add to exclude or fix code: %s" % cmd)
 
             # update static dictionary
             if cmd.startswith("pop static") or cmd.startswith("push static"):
@@ -738,44 +744,146 @@ class Translator:
         if vm_filepath in self.static_dict:
             self.static_dict[vm_filepath][1] += 1  # inc by 1 as it starts at zero
 
-    # TODO: don't bother translating common libs (i.e. symlinks, when implemented)
-    def translate(self, vm_dir, vm_bootstrap_paths=()):
+    def link_check(self, vm_filelist: list[str], has_jack: bool, vm_dir: str) -> set[str]:
         """
-        translate vm files/dirs into asm
+        Pre-translation validation.
+
+        Walk call graph from Main.main to determine which files are live,
+        check for undefined functions, and verify that all live classes
+        with init() are called somewhere.
+
+        :param vm_filelist: List of VM file paths to check.
+        :param has_jack: Whether Jack source files are present.
+        :param vm_dir: Directory containing the VM files.
+        :return: Set of dead file paths pruned from compilation.
+        :raises RuntimeError: If undefined functions or missing init calls found.
+        """
+        project = os.path.basename(os.path.abspath(vm_dir))
+        defined = {}  # func_name -> vm_filepath
+        called = {}  # func_name -> set of vm_filepaths that call it
+        file_calls = {}  # vm_filepath -> set of func_names called from that file
+
+        for vm_filepath in vm_filelist:
+            file_calls[vm_filepath] = set()
+
+            with open(vm_filepath) as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith("//") or line == "":
+                        continue
+                    if line.startswith("function "):
+                        func_name = line.split(" ")[1]
+                        defined[func_name] = vm_filepath
+                    elif line.startswith("call "):
+                        callee = line.split(" ")[1]
+                        called.setdefault(callee, set()).add(vm_filepath)
+                        file_calls[vm_filepath].add(callee)
+
+        # walk call graph from Main.main to find all reachable files
+        # Sys.vm is always live (entry point); start by tracing its calls
+        live_files = set()
+        sys_file = defined.get("Sys.init")
+        if sys_file:
+            live_files.add(sys_file)
+
+        # seed with files directly called from Sys.init (Main.main, *.init, etc.)
+        worklist = set()
+        for callee in file_calls.get(sys_file, set()):
+            if callee in defined:
+                worklist.add(defined[callee])
+
+        # BFS: for each live file, trace all call sites to find more live files
+        while worklist:
+            vm_filepath = worklist.pop()
+            if vm_filepath in live_files:
+                continue
+            live_files.add(vm_filepath)
+            for callee in file_calls.get(vm_filepath, set()):
+                if callee in defined:
+                    target = defined[callee]
+                    if target not in live_files:
+                        worklist.add(target)
+
+        # dead files = not reachable from call graph
+        dead_files = set()
+        if has_jack and len(vm_filelist) > 1:
+            for vm_filepath in vm_filelist:
+                if vm_filepath not in live_files:
+                    name = os.path.basename(vm_filepath)
+                    dead_files.add(vm_filepath)
+                    print(
+                        "\tLink warning: %s: file %s has no refs and will be pruned from compilation" % (project, name)
+                    )
+
+        # check for undefined functions (skip if all callers are dead files)
+        all_called = set(called.keys())
+        all_defined = set(defined.keys())
+        undefined = all_called - all_defined
+        if undefined:
+            for func in sorted(undefined):
+                live_callers = called[func] - dead_files
+                if live_callers:
+                    callers = ", ".join(os.path.basename(f) for f in sorted(live_callers))
+                    raise RuntimeError(
+                        "Link error: %s: undefined function '%s' called from [%s]" % (project, func, callers)
+                    )
+
+        # check that <Class>.init() is called somewhere for all live files
+        # typically Sys.init() but not always if some custom class defined and
+        # they didn't want to modify Sys.jack for instance.
+        all_called_funcs = set(called.keys())
+        if has_jack and "Sys.init" in defined:
+            for func_name, vm_filepath in defined.items():
+                if func_name.endswith(".init") and func_name != "Sys.init":
+                    if vm_filepath not in dead_files and func_name not in all_called_funcs:
+                        raise RuntimeError(
+                            "Link error: %s: '%s' defines init() but never called" % (project, func_name)
+                        )
+
+        return dead_files
+
+    def translate(self, vm_dir: str, vm_bootstrap_paths: tuple[str, ...] = (), quiet: bool = False) -> None:
+        """
+        Translate vm files/dirs into asm.
+
+        :param vm_dir: Directory containing the VM files.
+        :param vm_bootstrap_paths: Paths requiring bootstrap initialization.
+        :param quiet: Suppress translation output.
         """
         # walk the VM program directories
         vm_dir_filelist = []
 
-        # TODO: this should probably be a glob pattern w/ logic to preserve order where it matters (sys.vm)
-        # TODO: _out.vm files not processed (relevant if diverging from course compiler implementation later)
-        # spec dictates that Sys.init() is first function to run on boot which then calls Main.main()
-        # so functionally anything after sys.vm doesn't matter other than changing compilation order
-        vm_filelist = [
-            os.path.join(vm_dir, 'Sys.vm'),
-            os.path.join(vm_dir, 'Main.vm'),
-            os.path.join(vm_dir, vm_dir.split(os.path.sep)[-1]+'.vm'),
-            os.path.join(vm_dir, 'Class1.vm'),
-            os.path.join(vm_dir, 'Class2.vm'),
-            os.path.join(vm_dir, 'Array.vm'),
-            os.path.join(vm_dir, 'Ball.vm'),
-            os.path.join(vm_dir, 'Bat.vm'),
-            os.path.join(vm_dir, 'Keyboard.vm'),
-            os.path.join(vm_dir, 'Math.vm'),
-            os.path.join(vm_dir, 'Memory.vm'),
-            os.path.join(vm_dir, 'Output.vm'),
-            os.path.join(vm_dir, 'PongGame.vm'),
-            os.path.join(vm_dir, 'Screen.vm'),
-            os.path.join(vm_dir, 'SquareGame.vm'),
-            os.path.join(vm_dir, 'String.vm'),
-        ]
+        # discover .vm files; Sys.vm first, Main.vm second
+        vm_filelist = _glob.glob(os.path.join(vm_dir, "*.vm"))
+
+        def vm_sort_key(path: str) -> tuple[int, str]:
+            name = os.path.basename(path)
+            if name == "Sys.vm":
+                return (0, name)
+            elif name == "Main.vm":
+                return (1, name)
+            else:
+                return (2, name)
+
+        vm_filelist.sort(key=vm_sort_key)
+
+        # detect Jack files in the directory (Jack programs need SP=256 bootstrap)
+        has_jack = any(f.endswith(".jack") for f in os.listdir(vm_dir) if os.path.isfile(os.path.join(vm_dir, f)))
+
+        # pre-translation link checks
+        dead_files = set()
+        if len(vm_filelist) > 1:
+            dead_files = self.link_check(vm_filelist, has_jack, vm_dir)
+
+        # cull dead files from translation
+        if dead_files:
+            vm_filelist = [f for f in vm_filelist if f not in dead_files]
 
         for vm_filepath in vm_filelist:
-            if os.path.exists(vm_filepath):
-                self.parse_static(vm_filepath)
+            self.parse_static(vm_filepath)
 
         # initialize offset array
         for i in range(0, len(self.static_dict)):
-            # TODO: why is this a seperate structure from static_dict?
             self.offset_list.append(-1)
 
         # drop the size of each offset into array position
@@ -790,77 +898,53 @@ class Translator:
             new_value = old_value + new_value
 
         for vm_filepath in vm_filelist:
-            if os.path.exists(vm_filepath):
-                if self.debug:
-                    print(vm_filepath)
-                self.parse_asm(vm_filepath)
-                vm_dir_filelist.append(vm_filepath)
+            if self.debug:
+                print(vm_filepath)
+            self.parse_asm(vm_filepath)
+            vm_dir_filelist.append(vm_filepath)
 
             # write asm_file
-            asm_path = os.path.join(vm_dir, vm_dir.split(os.path.sep)[-1]+'.asm')
-            with open(asm_path, 'w') as asm_file:
+            file_base = vm_dir.split(os.path.sep)[-1] or "out"
+            asm_path = os.path.join(vm_dir, file_base + ".asm")
+            with open(asm_path, "w") as asm_file:
+                # halt loop prevents fall-through into subroutines
+                halt = ""
+                if self.asm_subroutines:
+                    halt = "\n// halt\n(END_PROGRAM)\n@END_PROGRAM\n0;JMP\n"
                 if any(bootstrap_path in asm_path for bootstrap_path in vm_bootstrap_paths):
                     # test scripts do not conform to spec (256)
                     bootstrap = "@261 // bootstrap: initialize SP as 261\n"
                     bootstrap += "D=A\n"
                     bootstrap += "@0\n"
                     bootstrap += "M=D\n"
-                    asm_file.write(bootstrap+self.asm)
+                    asm_file.write(bootstrap + self.asm + halt + self.asm_subroutines)
+                elif has_jack:
+                    # Jack programs: initialize SP to spec (256)
+                    bootstrap = "@256 // bootstrap: initialize SP as 256\n"
+                    bootstrap += "D=A\n"
+                    bootstrap += "@0\n"
+                    bootstrap += "M=D\n"
+                    asm_file.write(bootstrap + self.asm + halt + self.asm_subroutines)
                 else:
-                    asm_file.write(self.asm)
+                    asm_file.write(self.asm + halt + self.asm_subroutines)
 
-        print("Translated VM file(s) in directory: %s" % vm_dir)
-        for vm_filepath in vm_dir_filelist:
-            print("\t%s" % vm_filepath)
+        if not quiet:
+            print("Translated VM file(s) in directory: %s" % vm_dir)
+            for vm_filepath in vm_dir_filelist:
+                print("\t%s" % vm_filepath)
 
 
 if __name__ == "__main__":
-    # regular VM programs
-    # projects 1-12 accounted for, included in interpreter
-    _vm_dirpaths = [
-        r'../projects/07/MemoryAccess/BasicTest',
-        r'../projects/07/MemoryAccess/PointerTest',
-        r'../projects/07/MemoryAccess/StaticTest',
-        r'../projects/07/StackArithmetic/SimpleAdd',
-        r'../projects/07/StackArithmetic/StackTest',
-        r'../projects/08/ProgramFlow/BasicLoop',
-        r'../projects/08/ProgramFlow/FibonacciSeries',
-        # r'../projects/08/FunctionCalls/FibonacciElement',  # requires non-spec bootstrap (vm_bootstrap_paths)
-        # r'../projects/08/FunctionCalls/NestedCall',  # requires non-spec bootstrap (vm_bootstrap_paths)
-        r'../projects/08/FunctionCalls/SimpleFunction',
-        # r'../projects/08/FunctionCalls/StaticsTest'  # requires non-spec bootstrap (vm_bootstrap_paths)
-        r"../projects/09/Average",
-        r"../projects/09/Fraction",
-        r"../projects/09/HelloWorld",
-        r"../projects/09/List",
-        r"../projects/09/Square",
-        r"../projects/10/ArrayTest",
-        # r"../projects/10/ExpressionLessSquare",  # nonsense code that shouldn't compile or run
-        r"../projects/10/Square",
-        r"../projects/11/Average",
-        r"../projects/11/ComplexArrays",
-        r"../projects/11/ConvertToBin",
-        r"../projects/11/Pong",
-        r"../projects/11/Seven",
-        r"../projects/11/Square",
+    import sys
 
-        # TODO: Project 12
-        r"../projects/12/SysTest",
-        r"../projects/12/ArrayTest",
-        r"../projects/12/KeyboardTest",
-        r"../projects/12/StringTest",
-        # r"../projects/12/MemoryTest"
-    ]
-
-    # VM programs that require non-spec bootstrap to pass tests
-    _vm_bootstrap_paths = [
-        r'../projects/08/FunctionCalls/FibonacciElement',
-        r'../projects/08/FunctionCalls/NestedCall',
-        r'../projects/08/FunctionCalls/StaticsTest'
-    ]
-
-    _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
-
-    for _vm_dir in _vm_dirpaths:
+    if len(sys.argv) > 1:
         t = Translator(debug=False)
-        t.translate(_vm_dir, _vm_bootstrap_paths)
+        t.translate(sys.argv[1], quiet=True)
+    else:
+        from inputs import vm_dirpaths as _vm_dirpaths, vm_bootstrap_paths as _vm_bootstrap_paths
+
+        _vm_dirpaths = _vm_dirpaths + _vm_bootstrap_paths
+
+        for _vm_dir in _vm_dirpaths:
+            t = Translator(debug=False)
+            t.translate(_vm_dir, _vm_bootstrap_paths)

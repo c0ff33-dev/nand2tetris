@@ -31,6 +31,6 @@ class Main {
         do Screen.drawLine(106,60,86,60);       
         do Screen.drawLine(117,35,102,20);       
         
-        return;
+        return; // ASSERT REACHABLE
     }
 }
