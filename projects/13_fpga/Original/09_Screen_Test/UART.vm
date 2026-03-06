@@ -1,0 +1,69 @@
+function UART.init 0
+push constant 4098
+pop static 0
+push constant 4099
+pop static 1
+push constant 0
+push static 1
+add
+push constant 1
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function UART.writeChar 0
+push constant 0
+push static 0
+add
+push argument 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label WHILE_EXP0
+push constant 0
+push static 0
+add
+pop pointer 1
+push that 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function UART.readChar 1
+label WHILE_EXP0
+push constant 0
+push static 1
+add
+pop pointer 1
+push that 0
+push constant 0
+lt
+not
+if-goto WHILE_END0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+push static 1
+add
+pop pointer 1
+push that 0
+pop local 0
+push constant 0
+push static 1
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+return

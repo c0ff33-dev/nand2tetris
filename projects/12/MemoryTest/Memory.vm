@@ -262,7 +262,23 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+goto IF_END5
 label IF_FALSE5
+label IF_END5
+push constant 0
+push local 0
+add
+pop pointer 1
+push that 0
+push argument 0
+lt
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 6
+call Sys.error 1
+pop temp 0
+label IF_FALSE7
 push constant 0
 push local 0
 add

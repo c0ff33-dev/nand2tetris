@@ -29,11 +29,11 @@ class Output {
         let colIdx = 0;
         let strInt = String.new(6); // max strInt = -16384
         do Output.initMap();
-        do Output.createShiftedMap();
+        do Output._createShiftedMap();
         return;
     }
 
-    // Initializes the character map array
+    /** Initializes the character map array. */
     function void initMap() {
         let charMaps = Array.new(127);
         
@@ -149,7 +149,7 @@ class Output {
 	    return;
     }
 
-    // Creates the character map array of the given character index, using the given values.
+    /** Creates the character map array of the given character index, using the given values. */
     function void create(int index, int a, int b, int c, int d, int e,
                          int f, int g, int h, int i, int j, int k) {
 	    var Array map;
@@ -172,9 +172,8 @@ class Output {
         return;
     }
 
-    // Internal API seen in reversed VM code only
-    // Create a copy of the map with all values shifted left by 8
-    function void createShiftedMap() {
+    /** Create a copy of the map with all values shifted left by 8. */
+    function void _createShiftedMap() {
         var Array map, shiftMap;
         var int i, j;
 
@@ -203,9 +202,9 @@ class Output {
         return;
     }
     
-    // Returns the character map (array of size 11) of the given character.
-    // If the given character is invalid or non-printable, returns the
-    // character map of a black square.
+    /** Returns the character map (array of size 11) of the given character.
+     * If the given character is invalid or non-printable, returns the
+     * character map of a black square. */
     function Array getMap(char c) {
         var Array map;
 
@@ -223,9 +222,8 @@ class Output {
         return map;
     }
 
-    // Internal API seen in reversed VM code only
-    // Write one 8x11 char bitmap into SCREEN memory offset
-    function void drawChar(char c) {
+    /** Write one 8x11 char bitmap into SCREEN memory offset. */
+    function void _drawChar(char c) {
         var int j, i; 
         var Array map;
         var int byte;
@@ -261,7 +259,7 @@ class Output {
         let colIdx = j / 2; // 2 char per word
         let scrIdx = 32 + (i * 352) + colIdx; // 352 = 11 rows/char x 32 words/row
         let loByte = (j = (colIdx * 2)); // odd or even
-        do Output.drawChar(32); // space
+        do Output._drawChar(32); // space
         return;
     }
 
@@ -274,7 +272,7 @@ class Output {
             if (c = String.backSpace()) {
                 do Output.backSpace();
             } else {
-                do Output.drawChar(c);
+                do Output._drawChar(c);
                 if (~loByte) {
                     let colIdx = colIdx + 1;
                     let scrIdx = scrIdx + 1;
@@ -342,7 +340,7 @@ class Output {
         } else {
             let loByte = true;
         }
-        do Output.drawChar(32); // space
+        do Output._drawChar(32); // space
         return;
     }
 }

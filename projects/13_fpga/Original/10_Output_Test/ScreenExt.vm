@@ -1,0 +1,393 @@
+function ScreenExt.init 2
+push constant 4104
+pop static 0
+push constant 120
+pop static 1
+push constant 0
+pop local 1
+push constant 54
+call ScreenExt.writeCommand 1
+pop temp 0
+push local 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 8
+push constant 32
+add
+call ScreenExt._write8BitData 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push constant 64
+push constant 8
+add
+call ScreenExt._write8BitData 1
+pop temp 0
+label IF_END0
+push constant 58
+call ScreenExt.writeCommand 1
+pop temp 0
+push constant 85
+call ScreenExt._write8BitData 1
+pop temp 0
+push static 1
+call Sys.wait 1
+pop temp 0
+push constant 17
+call ScreenExt.writeCommand 1
+pop temp 0
+push static 1
+call Sys.wait 1
+pop temp 0
+push constant 41
+call ScreenExt.writeCommand 1
+pop temp 0
+push static 1
+call Sys.wait 1
+pop temp 0
+call ScreenExt._completeTransaction 0
+pop temp 0
+call ScreenExt.BLACK 0
+call ScreenExt.setPenColor 1
+pop temp 0
+call ScreenExt.WHITE 0
+call ScreenExt.setBackColor 1
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 17
+call Array.new 1
+pop static 4
+push constant 0
+push static 4
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label WHILE_EXP0
+push local 0
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push local 0
+push constant 1
+add
+pop local 0
+push local 0
+push static 4
+add
+push local 0
+push constant 1
+sub
+push static 4
+add
+pop pointer 1
+push that 0
+push local 0
+push constant 1
+sub
+push static 4
+add
+pop pointer 1
+push that 0
+add
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function ScreenExt.writeCommand 1
+push constant 0
+push static 0
+add
+push argument 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+neg
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push constant 0
+push static 0
+add
+pop pointer 1
+push that 0
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function ScreenExt._write8BitData 0
+push constant 512
+push argument 0
+add
+call ScreenExt.writeCommand 1
+pop temp 0
+push constant 0
+return
+function ScreenExt.writeData 1
+push constant 1
+push static 0
+add
+push argument 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+neg
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push constant 1
+push static 0
+add
+pop pointer 1
+push that 0
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function ScreenExt.setPenColor 0
+push argument 0
+pop static 2
+push constant 0
+return
+function ScreenExt.getPenColor 0
+push static 2
+return
+function ScreenExt.setBackColor 0
+push argument 0
+pop static 3
+push constant 0
+return
+function ScreenExt.getBackColor 0
+push static 3
+return
+function ScreenExt.setWindow 2
+push constant 42
+call ScreenExt.writeCommand 1
+pop temp 0
+push argument 0
+call ScreenExt.writeData 1
+pop temp 0
+push argument 2
+call ScreenExt.writeData 1
+pop temp 0
+push constant 43
+call ScreenExt.writeCommand 1
+pop temp 0
+push argument 1
+call ScreenExt.writeData 1
+pop temp 0
+push argument 3
+call ScreenExt.writeData 1
+pop temp 0
+call ScreenExt._completeTransaction 0
+pop temp 0
+push constant 0
+return
+function ScreenExt.writeRgbData 0
+push constant 44
+call ScreenExt.writeCommand 1
+pop temp 0
+push argument 0
+call ScreenExt.writeData 1
+pop temp 0
+call ScreenExt._completeTransaction 0
+pop temp 0
+push constant 0
+return
+function ScreenExt._completeTransaction 1
+push constant 0
+push static 0
+add
+push constant 256
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+neg
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push constant 0
+push static 0
+add
+pop pointer 1
+push that 0
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function ScreenExt.drawBitMap 6
+push argument 0
+push argument 1
+push argument 2
+push argument 3
+call ScreenExt.setWindow 4
+pop temp 0
+call ScreenExt.getPenColor 0
+pop local 2
+call ScreenExt.getBackColor 0
+pop local 3
+push constant 44
+call ScreenExt.writeCommand 1
+pop temp 0
+push argument 3
+push argument 1
+sub
+push constant 1
+add
+pop local 5
+push argument 2
+push argument 0
+sub
+push constant 1
+add
+pop local 4
+label WHILE_EXP0
+push local 1
+push local 5
+lt
+not
+if-goto WHILE_END0
+push constant 0
+pop local 0
+label WHILE_EXP1
+push local 0
+push local 4
+lt
+not
+if-goto WHILE_END1
+push local 1
+push argument 4
+add
+pop pointer 1
+push that 0
+push local 0
+push static 4
+add
+pop pointer 1
+push that 0
+and
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 2
+call ScreenExt.writeData 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push local 3
+call ScreenExt.writeData 1
+pop temp 0
+label IF_END0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP1
+label WHILE_END1
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+call ScreenExt._completeTransaction 0
+pop temp 0
+push constant 0
+return
+function ScreenExt.BLACK 0
+push constant 0
+return
+function ScreenExt.NAVY 0
+push constant 30
+return
+function ScreenExt.BLUE 0
+push constant 31
+return
+function ScreenExt.LIME 0
+push constant 2016
+return
+function ScreenExt.GREEN 0
+push constant 1920
+return
+function ScreenExt.CYAN 0
+push constant 2047
+return
+function ScreenExt.MAROON 0
+push constant 4096
+neg
+return
+function ScreenExt.PURPLE 0
+push constant 4066
+neg
+return
+function ScreenExt.OLIVE 0
+push constant 2176
+neg
+return
+function ScreenExt.DARKGREY 0
+push constant 14824
+neg
+return
+function ScreenExt.TEAL 0
+push constant 1950
+return
+function ScreenExt.LIGHTGREY 0
+push constant 6372
+neg
+return
+function ScreenExt.RED 0
+push constant 2048
+neg
+return
+function ScreenExt.MAGENTA 0
+push constant 2017
+neg
+return
+function ScreenExt.YELLOW 0
+push constant 32
+neg
+return
+function ScreenExt.ORANGE 0
+push constant 128
+neg
+return
+function ScreenExt.WHITE 0
+push constant 1
+neg
+return

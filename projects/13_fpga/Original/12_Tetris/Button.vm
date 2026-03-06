@@ -1,0 +1,112 @@
+function Button.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push pointer 0
+return
+function Button.dispose 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+call String.dispose 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Button.draw 3
+push argument 0
+pop pointer 0
+push this 0
+push constant 3
+and
+pop local 0
+push this 0
+push constant 4
+call Math.divide 2
+pop local 1
+push argument 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call ScreenExt.DARKGREY 0
+pop local 2
+goto IF_END0
+label IF_FALSE0
+call ScreenExt.LIGHTGREY 0
+pop local 2
+label IF_END0
+push local 2
+call ScreenExt.setPenColor 1
+pop temp 0
+push local 0
+push constant 60
+call Math.multiply 2
+push constant 1
+add
+push constant 288
+push local 1
+push constant 33
+call Math.multiply 2
+sub
+push local 0
+push constant 60
+call Math.multiply 2
+push constant 58
+add
+push constant 318
+push local 1
+push constant 33
+call Math.multiply 2
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push local 2
+call ScreenExt.setBackColor 1
+pop temp 0
+call ScreenExt.BLACK 0
+call ScreenExt.setPenColor 1
+pop temp 0
+push constant 27
+push constant 3
+push local 1
+call Math.multiply 2
+sub
+push constant 1
+push local 0
+push constant 15
+call Math.multiply 2
+push constant 2
+call Math.divide 2
+add
+call Output.moveCursor 2
+pop temp 0
+push this 1
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+call Output.printString 1
+pop temp 0
+label IF_FALSE1
+call ScreenExt.WHITE 0
+call ScreenExt.setBackColor 1
+pop temp 0
+push constant 0
+return

@@ -18,6 +18,7 @@ class Array {
         if (~(size > 0)) {
             do Sys.error(2);
         }
+
         return Memory.alloc(size);
     }
 

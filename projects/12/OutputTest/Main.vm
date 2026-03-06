@@ -252,3 +252,4 @@ call Output.printInt 1
 pop temp 0
 push constant 0
 return
+// ASSERT REACHABLE

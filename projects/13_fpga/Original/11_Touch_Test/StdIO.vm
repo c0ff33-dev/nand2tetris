@@ -1,0 +1,118 @@
+function StdIO.printString 2
+push constant 0
+pop local 0
+push argument 0
+call String.length 1
+pop local 1
+label WHILE_EXP0
+push local 0
+push local 1
+lt
+not
+if-goto WHILE_END0
+push argument 0
+push local 0
+call String.charAt 2
+call UART.writeChar 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function StdIO.printInt 1
+push constant 6
+call String.new 1
+pop local 0
+push local 0
+push argument 0
+call String.setInt 2
+pop temp 0
+push local 0
+call StdIO.printString 1
+pop temp 0
+push local 0
+call String.dispose 1
+pop temp 0
+push constant 0
+return
+function StdIO.println 0
+push constant 13
+call UART.writeChar 1
+pop temp 0
+push constant 10
+call UART.writeChar 1
+pop temp 0
+push constant 0
+return
+function StdIO.readInt 2
+push argument 0
+call StdIO.readLine 1
+pop local 0
+push local 0
+call String.intValue 1
+pop local 1
+push local 0
+call String.dispose 1
+pop temp 0
+push local 1
+return
+function StdIO.readLine 3
+push constant 50
+call String.new 1
+pop local 0
+push argument 0
+call StdIO.printString 1
+pop temp 0
+push argument 0
+call String.dispose 1
+pop temp 0
+call UART.readChar 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 10
+eq
+push local 1
+push constant 13
+eq
+or
+not
+not
+if-goto WHILE_END0
+push local 1
+push constant 8
+eq
+push local 1
+push constant 127
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+call String.eraseLastChar 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push local 0
+push local 1
+call String.appendChar 2
+pop temp 0
+label IF_END0
+call UART.readChar 0
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+call StdIO.println 0
+pop temp 0
+push local 0
+call StdIO.printString 1
+pop temp 0
+call StdIO.println 0
+pop temp 0
+push local 0
+return

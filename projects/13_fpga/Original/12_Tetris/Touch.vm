@@ -1,0 +1,184 @@
+function Touch.init 1
+push constant 4106
+pop static 0
+push constant 192
+pop static 9
+push constant 208
+pop static 10
+push constant 224
+pop static 11
+push constant 256
+pop static 12
+push constant 4094
+pop static 7
+push constant 100
+pop static 8
+push constant 0
+return
+function Touch.writeRTP 0
+push constant 0
+push static 0
+add
+push argument 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label WHILE_EXP0
+push constant 0
+push static 0
+add
+pop pointer 1
+push that 0
+push constant 0
+lt
+not
+if-goto WHILE_END0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+push static 0
+add
+pop pointer 1
+push that 0
+return
+function Touch.getEvent 0
+push static 11
+call Touch.writeRTP 1
+pop temp 0
+push static 12
+call Touch.writeRTP 1
+pop static 3
+push static 3
+push static 8
+gt
+push static 3
+push static 7
+lt
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push static 9
+call Touch.writeRTP 1
+pop temp 0
+push static 12
+call Touch.writeRTP 1
+pop static 1
+push static 10
+call Touch.writeRTP 1
+pop temp 0
+push static 7
+push static 12
+call Touch.writeRTP 1
+sub
+pop static 2
+push static 1
+push static 7
+lt
+push static 2
+push static 7
+lt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+pop static 4
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push constant 0
+pop static 4
+push constant 0
+return
+function Touch.getX 0
+push static 1
+return
+function Touch.getY 0
+push static 2
+return
+function Touch.getZ 0
+push static 3
+return
+function Touch.getPen 0
+push static 4
+return
+function Touch._map 6
+push argument 0
+push argument 1
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+pop argument 0
+label IF_FALSE0
+push argument 0
+push argument 2
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 2
+pop argument 0
+label IF_FALSE1
+push argument 0
+push argument 1
+sub
+pop local 1
+push argument 4
+push argument 3
+sub
+pop local 2
+push argument 2
+push argument 1
+sub
+pop local 3
+push constant 0
+pop local 4
+push constant 0
+pop local 5
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push local 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push constant 1
+add
+pop local 0
+push local 5
+push local 2
+add
+pop local 5
+push local 5
+push local 3
+gt
+push local 5
+push local 3
+eq
+or
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 5
+push local 3
+sub
+pop local 5
+push local 4
+push constant 1
+add
+pop local 4
+label IF_FALSE2
+goto WHILE_EXP0
+label WHILE_END0
+push argument 3
+push local 4
+add
+return

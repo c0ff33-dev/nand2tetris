@@ -1,0 +1,18 @@
+function Sys.init 0
+call GPIO.init 0
+pop temp 0
+label WHILE_EXP0
+push constant 0
+not
+not
+if-goto WHILE_END0
+call GPIO.readBut 0
+call GPIO.writeLed 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Sys.wait 0
+push constant 0
+return

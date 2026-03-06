@@ -1,0 +1,21 @@
+function Sys.init 0
+call UART.init 0
+pop temp 0
+push constant 71
+call UART.writeChar 1
+pop temp 0
+push constant 79
+call UART.writeChar 1
+pop temp 0
+label WHILE_EXP0
+push constant 0
+not
+not
+if-goto WHILE_END0
+call UART.readChar 0
+call UART.writeChar 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

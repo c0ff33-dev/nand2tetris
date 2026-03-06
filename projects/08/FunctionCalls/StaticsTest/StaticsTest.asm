@@ -10,737 +10,361 @@ M=D
 @6 // push constant 6 // function Sys.init 0 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 // push constant 8
 @8 // push constant 8 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Class1.set 2
-(Sys.Class1.set.1) // call Class1.set 2
-@Sys.Class1.set.1 // call Class1.set // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_2 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-(MICROCODE_CALL)
-@SP // &esp // save RP to the stack
-A=M // *esp
-M=D // esp = RP
-@SP // &esp
-M=M+1 // &esp++
-@LCL // &lcl[0] // save LCL to the stack
-D=M // d = *lcl[0]
-@SP // &esp
-A=M // *esp
-M=D // esp = lcl[0]
-@SP // &esp
-M=M+1 // &esp++
-@ARG // &arg // save ARG to the stack
-D=M // d = *arg
-@SP // &esp
-A=M // *esp
-M=D // esp = arg
-@SP // &esp
-M=M+1 // &esp++
-@THIS // &this // save THIS to the stack
-D=M // d = *this
-@SP // &esp
-A=M // *esp
-M=D // esp = this
-@SP // &esp
-M=M+1 // &esp++
-@THAT // &that // save THAT to the stack
-D=M // d = *that
-@SP // &esp
-A=M // *esp
-M=D // esp = that
-@SP // &esp
-M=M+1 // &esp++
-@R14 // &midpoint
-A=M // *midpoint
-0;JMP // return to dynamic call code
-(MICROCODE_CALL_MIDPOINT_2)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@75 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Class1.set // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+@RET_CALL_1
+D=A
+@CALL_Class1.set_2
+0;JMP
+(RET_CALL_1)
 
 // pop temp 0 // Dumps the return value
-@5 // pop temp 0 // Dumps the return value (&temp)
-D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop temp 0 // Dumps the return value
+AM=M-1
+D=M
+@5
+M=D
 
 // push constant 23
 @23 // push constant 23 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // push constant 15
 @15 // push constant 15 (constant)
 D=A // d = constant
 @SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=D // slot = constant
 
 // call Class2.set 2
-(Sys.Class2.set.3) // call Class2.set 2
-@Sys.Class2.set.3 // call Class2.set // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_4 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_2
+D=A
+@CALL_Class2.set_2
 0;JMP
-(MICROCODE_CALL_MIDPOINT_4)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@41 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@2 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Class2.set // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_2)
 
 // pop temp 0 // Dumps the return value
-@5 // pop temp 0 // Dumps the return value (&temp)
-D=A // d = &temp
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop temp 0 // Dumps the return value
+AM=M-1
+D=M
+@5
+M=D
 
 // call Class1.get 0
-(Sys.Class1.get.5) // call Class1.get 0
-
-// push constant 9999 // call Class1.get // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Class1.get // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
-@Sys.Class1.get.5 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_6 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_3
+D=A
+@CALL_Class1.get_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_6)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Class1.get // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_3)
 
 // call Class2.get 0
-(Sys.Class2.get.7) // call Class2.get 0
-
-// push constant 9999 // call Class2.get // if no args, create a space on the stack for the return
-@9999 // push constant 9999 // call Class2.get // if no args, create a space on the stack for the return (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
-@Sys.Class2.get.7 // push RP
-D=A // d = RP
-@R13
-M=D // r13 = RP
-@MICROCODE_CALL_MIDPOINT_8 // save to r14
-D=A // d = &midpoint
-@R14 // &r14
-M=D // r14 = &midpoint
-@R13 // &rp // restore RP
-D=M // d = *rp
-@MICROCODE_CALL
+@RET_CALL_4
+D=A
+@CALL_Class2.get_0
 0;JMP
-(MICROCODE_CALL_MIDPOINT_8)
-@5 // increment RP (SP-5+num_locals) by prologue_size
-D=A // d = 5+num_locals
-@SP // &esp
-M=M-D // &esp = &esp-(5+num_locals) (&rp)
-@48 // prologue_size
-D=A // d = prologue_size
-@SP // &esp (&rp)
-A=M // *esp (*rp)
-M=M+D // rp = rp+prologue_size
-@5 // 5+num_locals
-D=A // d = 5+num_locals
-@SP // &esp
-M=M+D // *esp = *esp+(5+num_locals)
-@5 // (5+num_locals) // initialize ARG segment for callee
-D=A // d = (5+num_locals)
-@SP // &esp
-D=M-D // d = *esp-(5+num_locals) (*RP) 
-@1 // parse num_args from call <label> <num_args>
-D=D-A // d = rp-num_args (&arg1)
-@ARG // &arg
-M=D // *arg = &arg1
-@0 // (num_locals) // initialize callee LCL (same as SP if none) 
-D=A // d = num_locals
-@SP // (&esp currently at bottom of stack frame)
-D=M-D // d = *esp-num_locals (&lcl[0])
-@LCL // &lcl[0]
-M=D // &lcl[0] = &lcl[0]
-@Class2.get // &func (parsed from call <label> <num_args>)
-0;JMP // *func // jump to function (call target)
+(RET_CALL_4)
 
 // label WHILE
-(Sys.WHILE) // label WHILE
+(Sys.init$WHILE) // label WHILE
 
 // goto WHILE
-@Sys.WHILE // goto WHILE
+@Sys.init$WHILE // goto WHILE
 0;JMP // unconditional jump
 
 // function Class1.set 0
 (Class1.set) // function Class1.set 0
 
 // push argument 0
-@ARG // push argument 0 // function Class1.set 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 0 // function Class1.set 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // pop static 0
-@16 // pop static 0 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
-D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 0
+AM=M-1
+D=M
+@16
+M=D
 
 // push argument 1
-@ARG // push argument 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // pop static 1
-@16 // pop static 1 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
-D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 1
+AM=M-1
+D=M
+@17
+M=D
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Class1.get 0
 (Class1.get) // function Class1.get 0
 
 // push static 0
-@16 // push static 0 // function Class1.get 0 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
-D=A // d = &asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@16 // push static 0 // function Class1.get 0 (static ../projects/08/FunctionCalls/StaticsTest/Class1.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // push static 1
-@16 // push static 1 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class1.vm)
-D=A // d = &asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@17 // push static 1 (static ../projects/08/FunctionCalls/StaticsTest/Class1.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Class2.set 0
 (Class2.set) // function Class2.set 0
 
 // push argument 0
-@ARG // push argument 0 // function Class2.set 0 (&asm_segment)
-D=M // d = *asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 0 // function Class2.set 0
+A=M
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // pop static 0
-@18 // pop static 0 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
-D=A // d = &(static+offset)
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 0
+AM=M-1
+D=M
+@18
+M=D
 
 // push argument 1
-@ARG // push argument 1 (&asm_segment)
-D=M // d = *asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@ARG // push argument 1
+A=M+1
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // pop static 1
-@18 // pop static 1 // static + src segment offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
-D=A // d = &(static+offset)
-@1 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
+@SP // pop static 1
+AM=M-1
+D=M
+@19
+M=D
 
 // push constant 0
-@0 // push constant 0 (constant)
-D=A // d = constant
-@SP // &esp
-A=M // *esp
-M=D // esp = constant
-@SP // &esp
-M=M+1 // &esp++
+@SP // push constant 0
+AM=M+1 // SP++
+A=A-1 // A -> slot
+M=0 // direct assign
 
 // return
-
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
-@LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+@RETURN_SUB
+0;JMP
 
 // function Class2.get 0
 (Class2.get) // function Class2.get 0
 
 // push static 0
-@18 // push static 0 // function Class2.get 0 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
-D=A // d = &asm_segment
-@0 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@18 // push static 0 // function Class2.get 0 (static ../projects/08/FunctionCalls/StaticsTest/Class2.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 // push static 1
-@18 // push static 1 (&asm_segment) // static + src offset (..\projects\08\FunctionCalls\StaticsTest\Class2.vm)
-D=A // d = &asm_segment
-@1 // offset
-A=D+A // &(asm_segment+offset)
-D=M // d = *(asm_segment+offset)
-@SP // &esp
-A=M // *esp
-M=D // esp = *(asm_segment+offset)
-@SP // &esp
-M=M+1 // &esp++
+@19 // push static 1 (static ../projects/08/FunctionCalls/StaticsTest/Class2.vm)
+D=M
+@SP
+AM=M+1
+A=A-1
+M=D
 
 // sub
-@SP // &esp // sub
-M=M-1 // &esp-- (&val2)
-A=M // *val2
+@SP // sub
+AM=M-1 // SP--, A -> val2
 D=M // d = val2
-@SP // &esp (&val2)
-M=M-1 // &esp-- (&val1)
-A=M // *esp (*val1)
-M=M-D // esp = val1 - val2
-@SP // &esp
-M=M+1 // &esp++
+A=A-1 // A -> val1
+M=M-D // val1 = val1 - val2
 
 // return
+@RETURN_SUB
+0;JMP
 
-// pop argument 0 // return // move result to &arg[0] (soon to be last stack item)
-@ARG // pop argument 0 // return // move result to &arg[0] (soon to be last stack item) (&asm_segment)
-D=M // d = *asm_segment
-@0 // retrieve &dst (segment+offset) and store at R13
-D=D+A // d = &dst (asm_segment+offset)
-@R13 // &r13
-M=D // r13 = &dst
-@SP // &esp // retrieve &src from top of the stack
-M=M-1 // &esp-- (&src)
-A=M // *src
-D=M // d = src
-@R13 // &r13 // retrieve &dst from r13 and complete the pop
-A=M // *r13 (*dst)
-M=D // dst = src (pop)
-@ARG // &arg[0] // return: discard the callee stack leaving result in &arg[0] and esp at &arg[1]
-D=M+1 // d = *arg[1]
-@SP // &esp
-M=D // *esp = arg[1]
-@LCL // &lcl[0] // return: restore caller stack (THAT)
-A=M-1 // &that
-D=M // d = *that
-@THAT
-M=D // *that = *that
-@2 // return: restore caller stack (THIS)
-D=A // d=2
-@LCL // &lcl
-A=M-D // &this
-D=M // d = *this
-@THIS
-M=D // *this = *this
-@3 // return: restore caller stack (ARG)
-D=A // d=3
-@LCL // &lcl 
-A=M-D // &lcl-3 (&arg)
-D=M // d = *arg
-@ARG
-M=D // *arg = *arg
-@LCL // &lcl // before restoring LCL, save it to R13
-D=M // d = *lcl
-@R13 // &r13
-M=D // *r13 = lcl
-@4 // return: restore caller stack (LCL)
-D=A // d=4
-@LCL // &lcl
-A=M-D // &lcl-4
-D=M // d = *lcl-4
+// halt
+(END_PROGRAM)
+@END_PROGRAM
+0;JMP
+(CALL_Class1.set_2)
+@R13
+M=D // R13 = retAddr
+@Class1.set
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_SUB)
+@R15
+M=D // R15 = nArgs
+@R13
+D=M
+@SP
+A=M
+M=D // push retAddr
 @LCL
-M=D // *lcl = *lcl-4
-@5 // return: unconditional jump to LCL-5 (RP)
-D=A // d=5
-@R13 // &r13 (old_lcl)
-A=M-D // &old_lcl-5 (&lcl)
-A=M // d = *lcl-5 (*lcl)
-0;JMP // return (jump to RP)
+D=M
+@SP
+AM=M+1
+M=D // push LCL
+@ARG
+D=M
+@SP
+AM=M+1
+M=D // push ARG
+@THIS
+D=M
+@SP
+AM=M+1
+M=D // push THIS
+@THAT
+D=M
+@SP
+AM=M+1
+M=D // push THAT
+@SP
+M=M+1
+@R15
+D=M // D = nArgs
+@5
+D=D+A // D = nArgs + 5
+@SP
+D=M-D // D = SP - nArgs - 5
+@ARG
+M=D // ARG = SP - nArgs - 5
+@SP
+D=M
+@LCL
+M=D // LCL = SP
+@R14
+A=M
+0;JMP
+(CALL_Class2.set_2)
+@R13
+M=D // R13 = retAddr
+@Class2.set
+D=A
+@R14
+M=D // R14 = func addr
+@2
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Class1.get_0)
+@R13
+M=D // R13 = retAddr
+@Class1.get
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(CALL_Class2.get_0)
+@R13
+M=D // R13 = retAddr
+@Class2.get
+D=A
+@R14
+M=D // R14 = func addr
+@0
+D=A // D = nArgs
+@CALL_SUB
+0;JMP
+(RETURN_SUB)
+@LCL
+D=M
+@R13
+M=D // R13 = frame
+@5
+A=D-A
+D=M
+@R14
+M=D // R14 = retAddr
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D // ARG[0] = result
+@ARG
+D=M+1
+@SP
+M=D // SP = ARG + 1
+@R13
+AM=M-1
+D=M
+@THAT
+M=D
+@R13
+AM=M-1
+D=M
+@THIS
+M=D
+@R13
+AM=M-1
+D=M
+@ARG
+M=D
+@R13
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP

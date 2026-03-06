@@ -1,0 +1,332 @@
+function Grid.new 1
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push constant 220
+call Array.new 1
+pop this 0
+call ScreenExt.DARKGREY 0
+call ScreenExt.setPenColor 1
+pop temp 0
+push constant 2
+push constant 4
+push constant 3
+push constant 283
+call Screen.drawRectangle 4
+pop temp 0
+push constant 2
+push constant 284
+push constant 147
+push constant 285
+call Screen.drawRectangle 4
+pop temp 0
+push constant 146
+push constant 4
+push constant 147
+push constant 285
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 220
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 0
+add
+push constant 1
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push pointer 0
+return
+function Grid.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Array.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Grid.draw 0
+push argument 0
+pop pointer 0
+push argument 3
+call ScreenExt.setPenColor 1
+pop temp 0
+push argument 1
+push constant 14
+call Math.multiply 2
+push constant 6
+add
+push argument 2
+push constant 14
+call Math.multiply 2
+push constant 24
+sub
+push argument 1
+push constant 14
+call Math.multiply 2
+push constant 18
+add
+push argument 2
+push constant 14
+call Math.multiply 2
+push constant 12
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push argument 1
+push constant 10
+lt
+push argument 1
+push constant 1
+neg
+gt
+and
+push argument 2
+push constant 1
+neg
+gt
+and
+push argument 2
+push constant 22
+lt
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 2
+push constant 10
+call Math.multiply 2
+push argument 1
+add
+push this 0
+add
+push argument 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE0
+push constant 0
+return
+function Grid.hasTile 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 9
+gt
+push argument 1
+push constant 0
+lt
+or
+push argument 2
+push constant 21
+gt
+or
+push argument 2
+push constant 0
+lt
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push argument 2
+push constant 10
+call Math.multiply 2
+push argument 1
+add
+push this 0
+add
+pop pointer 1
+push that 0
+push constant 1
+neg
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+return
+label IF_FALSE1
+push constant 0
+not
+return
+function Grid.isClear 0
+push argument 0
+pop pointer 0
+push argument 2
+push constant 10
+call Math.multiply 2
+push argument 1
+add
+push this 0
+add
+pop pointer 1
+push that 0
+call ScreenExt.DARKGREY 0
+eq
+return
+function Grid.clearRow 5
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+push constant 0
+pop local 3
+label WHILE_EXP0
+push local 1
+push constant 22
+lt
+not
+if-goto WHILE_END0
+push constant 0
+not
+pop local 4
+push constant 0
+pop local 0
+label WHILE_EXP1
+push local 0
+push constant 10
+lt
+not
+if-goto WHILE_END1
+push pointer 0
+push local 0
+push local 1
+call Grid.hasTile 3
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop local 4
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP1
+label WHILE_END1
+push local 4
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 3
+push constant 1
+add
+pop local 3
+push constant 0
+pop local 0
+label WHILE_EXP2
+push local 0
+push constant 10
+lt
+not
+if-goto WHILE_END2
+push pointer 0
+push local 0
+push local 1
+call ScreenExt.DARKGREY 0
+call Grid.draw 4
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP2
+label WHILE_END2
+label IF_FALSE1
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 1
+pop local 1
+label WHILE_EXP3
+push local 1
+push constant 22
+lt
+not
+if-goto WHILE_END3
+push constant 0
+pop local 0
+label WHILE_EXP4
+push local 0
+push constant 10
+lt
+not
+if-goto WHILE_END4
+push pointer 0
+push local 0
+push local 1
+call Grid.isClear 3
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 1
+pop local 2
+label WHILE_EXP5
+push local 2
+push constant 0
+gt
+not
+if-goto WHILE_END5
+push pointer 0
+push local 0
+push local 2
+push local 2
+push constant 10
+call Math.multiply 2
+push constant 10
+sub
+push local 0
+add
+push this 0
+add
+pop pointer 1
+push that 0
+call Grid.draw 4
+pop temp 0
+push local 2
+push constant 1
+sub
+pop local 2
+goto WHILE_EXP5
+label WHILE_END5
+label IF_FALSE2
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP4
+label WHILE_END4
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP3
+label WHILE_END3
+push local 3
+return

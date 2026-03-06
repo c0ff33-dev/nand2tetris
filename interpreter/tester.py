@@ -1,12 +1,21 @@
 """
-Parse Nand2Tetris test files and execute them in the Nand2Tetris Python Interpreter
-Equivalent to the course provided CPUEmulator in non-interactive mode
+Parse Nand2Tetris test files and execute them in the Nand2Tetris Python Interpreter.
+Equivalent to the course provided CPUEmulator in non-interactive mode.
 """
 
 import re
 
 
-def load_tst(tst_filepath, debug=False):
+def load_tst(tst_filepath: str, debug: bool = False) -> dict:
+    """
+    Parse a .tst test script into test parameters.
+
+    :param tst_filepath: Path to the .tst file.
+    :param debug: Enable verbose output.
+    :return: Dictionary of parsed test parameters.
+    :raises NotImplementedError: If an unsupported command is encountered.
+    :raises ValueError: If an unexpected set command is encountered.
+    """
     test_params = {
         "input_files": [],
         "out_file": "",
@@ -72,12 +81,17 @@ def load_tst(tst_filepath, debug=False):
                     set_var = test_cmd.split(" ")[1]
                     set_element = test_cmd.split(" ")[2]
 
-                set_var = set_var.replace("sp", "0").replace("local", "1").replace("argument", "2") \
-                    .replace("this", "3").replace("that", "4")
+                set_var = (
+                    set_var.replace("sp", "0")
+                    .replace("local", "1")
+                    .replace("argument", "2")
+                    .replace("this", "3")
+                    .replace("that", "4")
+                )
             elif test_cmd.startswith("set PC "):
                 pass
             else:
-                raise RuntimeError("Tester: Unexpected set command: %s" % test_cmd)
+                raise ValueError("Tester: Unexpected set command: %s" % test_cmd)
 
             test_params["RAM"][int(set_var)] = int(set_element.replace(",", "").replace(";", ""))
 
@@ -102,7 +116,16 @@ def load_tst(tst_filepath, debug=False):
     return test_params
 
 
-def load_cmp(cmp_filepath, debug=False):
+def load_cmp(cmp_filepath: str, debug: bool = False) -> dict:
+    """
+    Parse a .cmp comparison file.
+
+    :param cmp_filepath: Path to the .cmp file.
+    :param debug: Enable verbose output.
+    :return: Dictionary mapping RAM addresses to expected values.
+    :raises AssertionError: If address/value counts mismatch.
+    :raises ValueError: If address or value parsing fails.
+    """
     with open(cmp_filepath, "r") as cmp_file:
         cmp_content = cmp_file.readlines()
 
@@ -125,7 +148,7 @@ def load_cmp(cmp_filepath, debug=False):
                 if value != "":
                     value_list.append(int(value))
 
-    for (address, value) in zip(address_list, value_list):
+    for address, value in zip(address_list, value_list):
         cmp_dict[address] = value
 
     if debug:
@@ -135,39 +158,20 @@ def load_cmp(cmp_filepath, debug=False):
         print(cmp_dict)
 
     if not len(address_list) or not len(value_list):
-        raise RuntimeError("Tester: Address or Value parsing error (no values): %s" % cmp_filepath)
+        raise ValueError("Tester: Address or Value parsing error (no values): %s" % cmp_filepath)
     if len(address_list) != len(value_list):
-        raise RuntimeError("Tester: Address/Value mismatch in cmp file parsing: %s" % cmp_filepath)
+        raise AssertionError("Tester: Address/Value mismatch in cmp file parsing: %s" % cmp_filepath)
 
     print("Tester: loaded test targets %s" % cmp_filepath)
     return cmp_dict
 
 
-if __name__ == '__main__':
-    tst_filepaths = [
-        # project 1-12 accounted for & included in interpreter!
-
-        # week 5 and below use different multi row format (tested with HardwareSimulator/CPUEmulator)
-        # r'../projects/04/fill/Fill.tst',  # interactive test (passed manually)
-        # r'../projects/04/fill/FillAutomatic.tst',
-        # r'../projects/04/mult/Mult.tst',
-
-        r'../projects/07/MemoryAccess/BasicTest/BasicTest.tst',
-        r'../projects/07/MemoryAccess/PointerTest/PointerTest.tst',
-        r'../projects/07/MemoryAccess/StaticTest/StaticTest.tst',
-        r'../projects/07/StackArithmetic/SimpleAdd/SimpleAdd.tst',
-        r'../projects/07/StackArithmetic/StackTest/StackTest.tst',
-        r'../projects/08/FunctionCalls/FibonacciElement/FibonacciElement.tst',
-        r'../projects/08/FunctionCalls/NestedCall/NestedCall.tst',
-        r'../projects/08/FunctionCalls/SimpleFunction/SimpleFunction.tst',
-        r'../projects/08/FunctionCalls/StaticsTest/StaticsTest.tst',
-        r'../projects/08/ProgramFlow/BasicLoop/BasicLoop.tst',
-        r'../projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.tst',
-    ]
+if __name__ == "__main__":
+    from inputs import tester_tst_files
 
     debug_runs = [True, False]
     for _debug in debug_runs:
-        for _tst_filepath in tst_filepaths:
+        for _tst_filepath in tester_tst_files:
             _cmp_filepath = _tst_filepath.replace("VME", "").replace(".tst", ".cmp")
             _tst_params = load_tst(_tst_filepath, debug=_debug)
             _tst_params["compare"] = load_cmp(_cmp_filepath, debug=_debug)

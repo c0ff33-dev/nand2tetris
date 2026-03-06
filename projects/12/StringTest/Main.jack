@@ -90,6 +90,6 @@ class Main {
         do i.dispose();
         do s.dispose();
 
-        return;
+        return; // ASSERT REACHABLE
     }
 }

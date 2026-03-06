@@ -1,0 +1,40 @@
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+
+[project]
+name = "nand2tetris"
+version = "1.0.0"
+description = "Nand2tetris coursework and Python reimplementation of course tools."
+readme = "README.md"
+requires-python = ">= 3.11"
+dependencies = ["rich", "numpy", "pygame"]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pydoclint",
+]
+
+[tool.setuptools.packages.find]
+include = ["interpreter*"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.pydoclint]
+style = "sphinx"
+exclude = "venv|.tox|.git"
+skip-checking-short-docstrings = false
+
+# these are already enforced through ruff (pydocstyle)
+arg-type-hints-in-docstring = false
+check-return-types = false
+check-yield-types = false
+
+[tool.ruff]
+line-length = 120 # E501
+
+# The defaults + ANN (flake8-annotations for typing) + line length (E501)
+# + D* pydocstyle to catch missing docstrings + misc style conventions
+lint.select = ["E4", "E7", "E9", "F", "ANN", "E501", "D101", "D102", "D103", "D106", "D201", "D202",
+"D207", "D208", "D209", "D210", "D211", "D213", "D300", "D301", "D403", "D415", "D417", "D419"]

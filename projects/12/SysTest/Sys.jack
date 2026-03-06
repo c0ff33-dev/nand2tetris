@@ -8,7 +8,7 @@
  */
 class Sys {
 
-    /** Performs all the initializations required by the OS */
+    /** Performs all the initializations required by the OS. */
     function void init() {
         do Memory.init();
         do Math.init();
@@ -26,7 +26,7 @@ class Sys {
         return;
     }
 
-    /** Attempts to sleep for duration milliseconds and returns */
+    /** Attempts to sleep for duration milliseconds and returns. */
     function void wait(int duration) {
         var int count;
 
