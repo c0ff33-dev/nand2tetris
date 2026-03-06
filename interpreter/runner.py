@@ -30,7 +30,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Nand2Tetris test runner")
     parser.add_argument("--debug", action="store_true", help="Enable verbose output")
     parser.add_argument("--no-lint", action="store_true", help="Skip ruff linting")
-    parser.add_argument("--fpga", action="store_true", help="Also compile FPGA Jack programs (projects/13)")
+    parser.add_argument("--fpga", action="store_true", help="Also compile FPGA Jack programs (projects/13_fpga)")
     args = parser.parse_args()
 
     # lint

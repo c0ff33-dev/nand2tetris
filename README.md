@@ -2,6 +2,34 @@
 
 A collection of nand2tetris coursework plus reworked implementations of course tools to enhance the student/developer experience.
 
+## Project Files
+
+`projects/01-12` contains the original [nand2tetris](https://www.nand2tetris.org/) course content.
+
+`projects/13_fpga` contains FPGA-targeted Jack programs symlinked from [nand2tetris-fpga](https://github.com/c0ff33-dev/nand2tetris-fpga).
+
+### FPGA layout
+
+```
+projects/13_fpga/
+├── Original/     # symlinks to nand2tetris-fpga/07_Operating_System/01-12
+│   ├── 01_GPIO_Test/
+│   ├── ...
+│   └── 12_Tetris/
+└── Classic/      # symlinks to nand2tetris-fpga/09_More_Fun_to_Go/02-03
+    ├── 02_Operating_System/
+    └── 03_Pong/
+```
+
+Both repos must (optionally) be cloned as siblings under the same parent directory so the symlinks resolve:
+
+```sh
+git clone https://github.com/c0ff33-dev/nand2tetris.git
+git clone https://github.com/c0ff33-dev/nand2tetris-fpga.git
+```
+
+The `--fpga` flag includes these programs in the test suite. Without it, `projects/13_fpga` is ignored.
+
 ## Setup
 
 ```sh
@@ -22,6 +50,7 @@ Orchestrates the entire pipeline end-to-end: compiles Jack → tokenizes → ana
 
 ```sh
 python runner.py              # lint + run all tests
+python runner.py --fpga       # include FPGA programs (projects/13_fpga)
 python runner.py --debug      # verbose output
 python runner.py --no-lint    # skip ruff linting
 ```

@@ -34,7 +34,7 @@ Follow the nand2tetris course progression:
 - **07-08**: VM translator input (`.vm` files)
 - **09-11**: Jack programs and compiler (`.jack` files)
 - **12**: Jack OS standard library (`.jack`)
-- **13**: FPGA Jack programs (`.jack` symlinks to `nand2tetris-fpga`). `Original/` mirrors `07_Operating_System/01-12`, `Classic/` mirrors `09_More_Fun_to_Go/02-03`. Compiled via `--fpga` flag.
+- **13_fpga**: FPGA Jack programs (`.jack` symlinks to `nand2tetris-fpga`). `Original/` mirrors `07_Operating_System/01-12`, `Classic/` mirrors `09_More_Fun_to_Go/02-03`. Compiled via `--fpga` flag.
 
 Test/comparison files: `.tst` (test scripts), `.cmp` (expected output).
 
@@ -55,7 +55,7 @@ The interpreter modules are run from within the `interpreter/` directory (they i
 ```sh
 cd interpreter
 python runner.py             # lint + run the full test suite
-python runner.py --fpga      # also compile FPGA Jack programs (projects/13)
+python runner.py --fpga      # also compile FPGA Jack programs (projects/13_fpga)
 python runner.py --debug     # run with verbose output
 python runner.py --no-lint   # skip ruff linting
 python debugger.py file.asm  # run/debug a single .asm file

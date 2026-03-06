@@ -41,28 +41,28 @@ for _dir in jack_dirpaths:
     jack_filepaths.extend(_files)
     jack_filepath_lists.append(_files)
 
-# FPGA Jack program directories (nand2tetris-fpga symlinked into projects/13)
+# FPGA Jack program directories (nand2tetris-fpga symlinked into projects/13_fpga)
 jack_fpga_dirpaths = [
     # Original (nand2tetris-fpga/07_Operating_System/01-12)
-    os.path.join("..", "projects", "13", "Original", "01_GPIO_Test"),
-    os.path.join("..", "projects", "13", "Original", "02_UART_Test"),
-    os.path.join("..", "projects", "13", "Original", "03_Sys_Test"),
-    os.path.join("..", "projects", "13", "Original", "04_Memory_Test"),
-    os.path.join("..", "projects", "13", "Original", "05_Array_Test"),
-    os.path.join("..", "projects", "13", "Original", "06_Math_Test"),
-    os.path.join("..", "projects", "13", "Original", "07_String_Test"),
-    os.path.join("..", "projects", "13", "Original", "08_StdIO_Test"),
-    os.path.join("..", "projects", "13", "Original", "09_Screen_Test"),
-    os.path.join("..", "projects", "13", "Original", "10_Output_Test"),
-    os.path.join("..", "projects", "13", "Original", "11_Touch_Test"),
-    os.path.join("..", "projects", "13", "Original", "12_Tetris"),
+    os.path.join("..", "projects", "13_fpga", "Original", "01_GPIO_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "02_UART_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "03_Sys_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "04_Memory_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "05_Array_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "06_Math_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "07_String_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "08_StdIO_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "09_Screen_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "10_Output_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "11_Touch_Test"),
+    os.path.join("..", "projects", "13_fpga", "Original", "12_Tetris"),
     # Classic (nand2tetris-fpga/09_More_Fun_to_Go/02-03)
     # 02_Operating_System root is library-only (no Main.jack), only subdirs are programs
-    os.path.join("..", "projects", "13", "Classic", "02_Operating_System", "07_String_Test"),
-    os.path.join("..", "projects", "13", "Classic", "02_Operating_System", "09_Screen_Test"),
-    os.path.join("..", "projects", "13", "Classic", "02_Operating_System", "10_Output_Test"),
-    os.path.join("..", "projects", "13", "Classic", "02_Operating_System", "14_Keyboard_Test"),
-    os.path.join("..", "projects", "13", "Classic", "03_Pong"),
+    os.path.join("..", "projects", "13_fpga", "Classic", "02_Operating_System", "07_String_Test"),
+    os.path.join("..", "projects", "13_fpga", "Classic", "02_Operating_System", "09_Screen_Test"),
+    os.path.join("..", "projects", "13_fpga", "Classic", "02_Operating_System", "10_Output_Test"),
+    os.path.join("..", "projects", "13_fpga", "Classic", "02_Operating_System", "14_Keyboard_Test"),
+    os.path.join("..", "projects", "13_fpga", "Classic", "03_Pong"),
 ]
 
 # FPGA Jack source files derived from jack_fpga_dirpaths
