@@ -44,6 +44,16 @@ CLEAR_TRIGGER = 4112
 CPU_HZ = 15_000_000
 DEFAULT_FPS = 60
 DEFAULT_SCALE = 1
+TETRIS_FILENAME = "12_Tetris.asm"
+
+# Tetris-only keyboard overlay: A/W/S/D simulate the four on-screen control buttons.
+# W maps to the "L" button and S maps to the "R" button.
+TETRIS_WASD_TOUCH = {
+    pygame.K_a: (30, 303),
+    pygame.K_w: (90, 303),
+    pygame.K_s: (150, 303),
+    pygame.K_d: (210, 303),
+}
 
 # Pre-computed RGB565 -> RGB888 lookup table (65536 entries x 3 channels)
 _RGB565_LUT = np.empty((65536, 3), dtype=np.uint8)
@@ -147,6 +157,7 @@ class TouchController:
         self.mouse_x = 0
         self.mouse_y = 0
         self.mouse_down = False
+        self._virtual_buttons: dict[int, tuple[int, int]] = {}
         self._response = 0
 
     def update(self, lcd_x: int, lcd_y: int, pressed: bool) -> None:
@@ -155,24 +166,45 @@ class TouchController:
         self.mouse_y = max(0, min(lcd_y, LCD_HEIGHT - 1))
         self.mouse_down = pressed
 
+    def press_virtual(self, key: int, lcd_x: int, lcd_y: int) -> None:
+        """Press a virtual touch point, overriding the mouse while held."""
+        self._virtual_buttons.pop(key, None)
+        self._virtual_buttons[key] = (
+            max(0, min(lcd_x, LCD_WIDTH - 1)),
+            max(0, min(lcd_y, LCD_HEIGHT - 1)),
+        )
+
+    def release_virtual(self, key: int) -> None:
+        """Release a previously pressed virtual touch point."""
+        self._virtual_buttons.pop(key, None)
+
+    def _active_touch(self) -> tuple[int, int, bool]:
+        """Return the currently active touch source, preferring virtual presses."""
+        if self._virtual_buttons:
+            key = next(reversed(self._virtual_buttons))
+            x, y = self._virtual_buttons[key]
+            return (x, y, True)
+        return (self.mouse_x, self.mouse_y, self.mouse_down)
+
     def write(self, value: int) -> None:
         """Handle write to RTP[0] (RAM[4106])."""
+        touch_x, touch_y, touch_down = self._active_touch()
         if value == RTP_READ:
             if self.current_reg == RTP_SET_X:
-                if self.mouse_down:
-                    self._response = self.mouse_x * RTP_ADC_MAX // max(LCD_WIDTH - 1, 1)
+                if touch_down:
+                    self._response = touch_x * RTP_ADC_MAX // max(LCD_WIDTH - 1, 1)
                 else:
                     self._response = 4095  # invalid = no touch
             elif self.current_reg == RTP_SET_Y:
-                if self.mouse_down:
+                if touch_down:
                     # NS2009 inverts Y axis - provide raw inverted value
                     # (Touch.jack re-inverts: y_coord = adc_max - readValue)
-                    adc_y = self.mouse_y * RTP_ADC_MAX // max(LCD_HEIGHT - 1, 1)
+                    adc_y = touch_y * RTP_ADC_MAX // max(LCD_HEIGHT - 1, 1)
                     self._response = RTP_ADC_MAX - adc_y
                 else:
                     self._response = 4095
             elif self.current_reg == RTP_SET_Z:
-                self._response = 500 if self.mouse_down else 0
+                self._response = 500 if touch_down else 0
             else:
                 self._response = 0
         else:
@@ -327,7 +359,7 @@ def render_screen(lcd: LcdController, surface: pygame.Surface) -> None:
     lcd.dirty = False
 
 
-def poll_input(touch: TouchController, scale: int) -> bool:
+def poll_input(touch: TouchController, scale: int, tetris_wasd: bool = False) -> bool:
     """Process pygame events and feed mouse state to the touch controller."""
     running = True
     for event in pygame.event.get():
@@ -335,6 +367,10 @@ def poll_input(touch: TouchController, scale: int) -> bool:
             running = False
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             running = False
+        elif tetris_wasd and event.type == pygame.KEYDOWN and event.key in TETRIS_WASD_TOUCH:
+            touch.press_virtual(event.key, *TETRIS_WASD_TOUCH[event.key])
+        elif tetris_wasd and event.type == pygame.KEYUP and event.key in TETRIS_WASD_TOUCH:
+            touch.release_virtual(event.key)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             touch.update(event.pos[0] // scale, event.pos[1] // scale, True)
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
@@ -362,6 +398,7 @@ def main() -> None:
     args = parser.parse_args()
 
     cycles_per_frame = CPU_HZ // args.fps
+    tetris_wasd = args.file.endswith(TETRIS_FILENAME)
 
     # Initialize peripheral controllers
     lcd = LcdController()
@@ -382,6 +419,8 @@ def main() -> None:
             print("FPGA Emulator: Preserving Sys.wait delay loops")
     else:
         print("FPGA Emulator: Compiled backend unavailable (build with `python build_fpga_backend.py`)")
+    if tetris_wasd:
+        print("FPGA Emulator: Tetris WASD overlay enabled (A=left, W=L, S=R, D=right)")
     print("FPGA Emulator: Loaded %s (%d instructions)" % (args.file, len(engine.rom_raw)))
 
     # Initialize pygame
@@ -396,7 +435,7 @@ def main() -> None:
     running = True
     total_cycles = 0
     while running:
-        running = poll_input(touch, args.scale)
+        running = poll_input(touch, args.scale, tetris_wasd=tetris_wasd)
 
         if not engine.halted:
             executed = engine.run_cycles(cycles_per_frame)
