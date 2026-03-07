@@ -12,7 +12,86 @@ Usage:
 import sys
 import numpy as np
 import pygame
-from engine import Engine, RAM_SIZE
+from engine import Engine, RAM_SIZE, _COMP, _JUMP
+
+# 16-bit signed masking for HACK CPU arithmetic.
+# Python integers are unbounded but the HACK CPU uses 16-bit twos complement.
+# FPGA programs rely on overflow (e.g. bit-shifting via addition in Tile.draw).
+_MASK = 0xFFFF
+_COMP_16 = {}
+for _k, _fn in _COMP.items():
+    _COMP_16[_k] = _fn
+_COMP_KEYS = list(_COMP.keys())
+
+
+class FpgaEngine(Engine):
+    """Engine subclass that enforces 16-bit signed arithmetic wrapping."""
+
+    def run_cycles(self, n: int) -> int:
+        """Execute up to n cycles with 16-bit masking on all ALU results."""
+        pc = self.pc
+        A = self.A
+        D = self.D
+        ram = self.ram
+        rom_raw = self.rom_raw
+        rom_len = len(rom_raw)
+        labels = self.address_labels
+        filepath = self.filepath
+
+        cycle = 0
+        try:
+            while cycle < n:
+                if pc >= rom_len:
+                    break
+                raw_cmd = rom_raw[pc][1]
+                if raw_cmd[0] == "@":
+                    if raw_cmd == "@Sys.halt":
+                        self.halted = True
+                        break
+                    if raw_cmd == "@Sys.error":
+                        raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (rom_raw[pc][0], filepath))
+                    label = raw_cmd[1:]
+                    if label[0].isnumeric():
+                        A = int(label)
+                    else:
+                        if label not in labels:
+                            labels["BASE"] += 1
+                            if labels["BASE"] >= 255:
+                                raise OverflowError("Engine: Statics overflow! %s" % filepath)
+                            labels[label] = labels["BASE"]
+                        A = labels[label]
+                    pc += 1
+                elif "=" in raw_cmd:
+                    eq = raw_cmd.index("=")
+                    dst = raw_cmd[:eq]
+                    result = _COMP[raw_cmd[eq + 1 :]](A, D, ram[A])
+                    result = result & _MASK
+                    if result >= 0x8000:
+                        result -= 0x10000
+                    if "M" in dst:
+                        ram[A] = result
+                    if "A" in dst:
+                        A = result
+                    if "D" in dst:
+                        D = result
+                    pc += 1
+                elif ";" in raw_cmd:
+                    if _JUMP[raw_cmd[2:]](D):
+                        pc = A
+                    else:
+                        pc += 1
+                else:
+                    raise ValueError("Engine: Unexpected command at pc=%d: %s %s" % (pc, raw_cmd, filepath))
+                cycle += 1
+        finally:
+            self.pc = pc
+            self.A = A
+            self.D = D
+        return cycle
+
+
+# 16-bit signed mask for HACK CPU arithmetic
+_MASK = 0xFFFF
 
 # FPGA I/O memory map
 LCD8_ADDR = 4104  # LCD command port (8-bit SPI)
@@ -65,13 +144,11 @@ class LcdController:
         self.pixel_x = 0
         self.pixel_y = 0
         self.dirty = True
-        self._bulk_skip = False  # when True, swallow RAMWR data writes
 
     def write_command(self, cmd: int) -> None:
         """Handle write to LCD command port (LCD[0] / RAM[4104])."""
         if cmd == CMD_COMPLETE:
             self.current_cmd = None
-            self._bulk_skip = False
             return
 
         # 8-bit data sent via command port with bit 9 set (MADCTL/COLMOD config)
@@ -80,19 +157,10 @@ class LcdController:
 
         self.current_cmd = cmd
         self.cmd_data_idx = 0
-        self._bulk_skip = False
 
         if cmd == CMD_RAMWR:
             self.pixel_x = self.window_x1
             self.pixel_y = self.window_y1
-            # Full-screen window: bulk-fill on first pixel instead of 76,800 SPI writes
-            if (
-                self.window_x1 == 0
-                and self.window_y1 == 0
-                and self.window_x2 == LCD_WIDTH - 1
-                and self.window_y2 == LCD_HEIGHT - 1
-            ):
-                self._bulk_skip = True
 
     def write_data(self, data: int) -> None:
         """Handle write to LCD data port (LCD[1] / RAM[4105])."""
@@ -113,9 +181,6 @@ class LcdController:
             self.cmd_data_idx += 1
 
         elif cmd == CMD_RAMWR:
-            if self._bulk_skip:
-                self._bulk_fill(data)
-                return
             self._set_pixel(data)
             # Row-major fill: x increments first, then y
             self.pixel_x += 1
@@ -124,14 +189,6 @@ class LcdController:
                 self.pixel_y += 1
                 if self.pixel_y > self.window_y2:
                     self.pixel_y = self.window_y1
-
-    def _bulk_fill(self, rgb565: int) -> None:
-        """Fill entire framebuffer with one color (clearScreen fast path)."""
-        val = rgb565 & 0xFFFF
-        self.framebuffer[:, :, 0] = ((val >> 11) & 0x1F) * 255 // 31
-        self.framebuffer[:, :, 1] = ((val >> 5) & 0x3F) * 255 // 63
-        self.framebuffer[:, :, 2] = (val & 0x1F) * 255 // 31
-        self.dirty = True
 
     def clear(self) -> None:
         """Fill entire framebuffer with white (called via ROM-patched Screen.clearScreen)."""
@@ -367,7 +424,7 @@ def main() -> None:
     touch = TouchController()
 
     # Initialize engine with I/O-intercepting RAM
-    engine = Engine()
+    engine = FpgaEngine()
     engine.ram = FpgaRAM(RAM_SIZE, lcd, touch)
     engine.load(args.file)
     _patch_rom(engine)
