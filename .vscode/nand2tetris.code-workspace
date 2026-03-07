@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../nand2tetris-fpga"
+		},
+		{
+			"path": "../../hack-fpga"
+		}
+	],
+	"settings": {}
+}

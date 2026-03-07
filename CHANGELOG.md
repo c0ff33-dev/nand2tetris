@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.1.0
+
+* History rewrite to purge compilation artifacts, use `git fetch && git reset "@{u}" --hard` to sync to new `main`.
+* Updates to ignored files can still be tracked with `git add <path> -f`.
+* Minor updates to documentation.
+* Windows is no longer supported.
+
 ## Version 1.0.0
 
 This project has been developed over the course of several years, below is a high level summary of feature development starting in 2026.
@@ -19,7 +26,7 @@ This project has been developed over the course of several years, below is a hig
     - Reworked keyboard handler for Linux support.
     - Debugger: added stack & call tree tracking.
 - Test Automation
-    - ASSERTs: Compiler injects `// ASSERT` and `// ASSERT REACHABLE` directives from Jack into VM > ASM where interpreter actions them accordingly, added to many non-interactive programs & tests.
+    - `ASSERT` directives: Compiler injects `// ASSERT` and `// ASSERT REACHABLE` directives from Jack into VM > ASM where interpreter actions them accordingly, added to many non-interactive programs & tests.
     - `Sys.error/halt`: Interpreter traps `Sys.error()` as a `RuntimeError` and breaks on `Sys.halt` entry.
     - CLI: Added `argparse` entry points to compiler toolchain for standalone use.
     - Centralized all input file path lists into `inputs.py`.

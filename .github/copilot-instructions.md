@@ -86,7 +86,7 @@ Code changes should be focused on the `interpreter/` folder. Never modify files 
 
 ## Directives
 
-- All tests and linting must pass before marking a task as done.
+- All tests and linting must pass before marking a task as done. `runner.py` and every module it orchestrates raise a Python exception on failure - a zero exit code confirms success.
 - Must run `source ~/src/nand2tetris/.venv/bin/activate` in each shell before running Python commands.
 - Must `cd ~/src/nand2tetris/interpreter` before running tests via `python runner.py --fpga`.
 - On lint failures, run `ruff format interpreter/` && `ruff check interpreter/ --fix` before attempting manual fixes.

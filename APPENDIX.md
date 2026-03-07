@@ -4,15 +4,15 @@ Cliff notes for environment setup/installation.
 
 ## Install dependencies
 
-### Python 3.11
+### Python 3.12
 
 ```sh
 $ sudo apt update
 $ sudo apt install software-properties-common
 $ sudo add-apt-repository ppa:deadsnakes/ppa
-$ sudo apt install python3.11 python3.11-venv python3.11-dev
+$ sudo apt install python3.12 python3.12-venv python3.12-dev
 $ sudo apt install libevdev-dev # input devices
-$ sudo apt install default-jre # java (course compiler)
+$ sudo apt install default-jre # java (course tools)
 ```
 
 ### git and repos
@@ -27,7 +27,7 @@ $ git clone git@github.com:c0ff33-dev/nand2tetris.git
 
 ```sh
 $ cd ~/src/nand2tetris
-$ python3.11 -m venv .venv
+$ python3.12 -m venv .venv
 $ source ~/src/nand2tetris/.venv/bin/activate
 $ pip install -e ".[dev]"
 ```

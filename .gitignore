@@ -6,3 +6,9 @@ projects/**/*.out
 projects/**/*.cc
 build/
 *.egg-info/
+.ruff_cache/
+*.asm
+*.hack
+*.cmp
+*.xml
+*.vm

@@ -930,8 +930,9 @@ class Translator:
 
         if not quiet:
             print("Translated VM file(s) in directory: %s" % vm_dir)
-            for vm_filepath in vm_dir_filelist:
-                print("\t%s" % vm_filepath)
+            if self.debug:
+                for vm_filepath in vm_dir_filelist:
+                    print("\t%s" % vm_filepath)
 
 
 if __name__ == "__main__":

@@ -3,6 +3,3 @@ The original nand2tetris tooling is written in Java and requires Java Runtime En
 Install JRE on WSL:
 sudo apt update
 sudo apt install default-jre
-
-Install JRE on Windows:
-https://www.java.com/en/download/
