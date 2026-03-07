@@ -41,7 +41,7 @@ RTP_ADC_MAX = 4094
 
 # Emulator-internal trigger address for ROM-patched Screen.clearScreen
 CLEAR_TRIGGER = 4112
-CPU_HZ = 25_000_000
+CPU_HZ = 15_000_000
 DEFAULT_FPS = 60
 DEFAULT_SCALE = 1
 
@@ -298,15 +298,18 @@ def _patch_function_to_nop(engine: Engine, func_name: str, local_count: int, tri
     return True
 
 
-def _patch_rom(engine: Engine) -> None:
+def _patch_rom(engine: Engine, patch_wait: bool = True) -> None:
     """
     Apply all ROM patches for FPGA emulation.
 
-    - Sys.wait: skip busy-loop delays (LCD init waits, animation timing)
+    - Sys.wait: optionally skip busy-loop delays (LCD init waits, animation timing)
     - Screen.clearScreen: skip 76,800 SPI pixel writes, trigger numpy fill instead
+
+    :param engine: Engine with ROM loaded.
+    :param patch_wait: When True, patch Sys.wait to return immediately.
     """
     patched = []
-    if _patch_function_to_nop(engine, "Sys.wait", 1):
+    if patch_wait and _patch_function_to_nop(engine, "Sys.wait", 1):
         patched.append("Sys.wait")
     if _patch_function_to_nop(engine, "Screen.clearScreen", 3, trigger_addr=CLEAR_TRIGGER):
         patched.append("Screen.clearScreen")
@@ -351,6 +354,11 @@ def main() -> None:
         "--scale", type=int, default=DEFAULT_SCALE, help="Display scale factor (default: %d)" % DEFAULT_SCALE
     )
     parser.add_argument("--fps", type=int, default=DEFAULT_FPS, help="Target render FPS (default: %d)" % DEFAULT_FPS)
+    parser.add_argument(
+        "--patch-wait",
+        action="store_true",
+        help="Patch Sys.wait to return immediately instead of emulating its delay loop",
+    )
     args = parser.parse_args()
 
     cycles_per_frame = CPU_HZ // args.fps
@@ -366,9 +374,12 @@ def main() -> None:
         engine = Engine()
         engine.ram = FpgaRAM(RAM_SIZE, lcd, touch)
     engine.load(args.file)
-    _patch_rom(engine)
+    patch_wait = args.patch_wait or not ACCEL_AVAILABLE
+    _patch_rom(engine, patch_wait=patch_wait)
     if ACCEL_AVAILABLE:
         print("FPGA Emulator: Using compiled backend")
+        if not patch_wait:
+            print("FPGA Emulator: Preserving Sys.wait delay loops")
     else:
         print("FPGA Emulator: Compiled backend unavailable (build with `python build_fpga_backend.py`)")
     print("FPGA Emulator: Loaded %s (%d instructions)" % (args.file, len(engine.rom_raw)))
