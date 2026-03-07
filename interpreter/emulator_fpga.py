@@ -13,6 +13,7 @@ import sys
 import numpy as np
 import pygame
 from engine import Engine, RAM_SIZE
+from fpga_backend import ACCEL_AVAILABLE, AcceleratedFpgaEngine
 
 # FPGA I/O memory map
 LCD8_ADDR = 4104  # LCD command port (8-bit SPI)
@@ -40,9 +41,9 @@ RTP_ADC_MAX = 4094
 
 # Emulator-internal trigger address for ROM-patched Screen.clearScreen
 CLEAR_TRIGGER = 4112
-CPU_HZ = 5_000_000
-DEFAULT_FPS = 15
-DEFAULT_SCALE = 2
+CPU_HZ = 25_000_000
+DEFAULT_FPS = 60
+DEFAULT_SCALE = 1
 
 # Pre-computed RGB565 -> RGB888 lookup table (65536 entries x 3 channels)
 _RGB565_LUT = np.empty((65536, 3), dtype=np.uint8)
@@ -359,10 +360,17 @@ def main() -> None:
     touch = TouchController()
 
     # Initialize engine with I/O-intercepting RAM
-    engine = Engine()
-    engine.ram = FpgaRAM(RAM_SIZE, lcd, touch)
+    if ACCEL_AVAILABLE:
+        engine = AcceleratedFpgaEngine(lcd, touch)
+    else:
+        engine = Engine()
+        engine.ram = FpgaRAM(RAM_SIZE, lcd, touch)
     engine.load(args.file)
     _patch_rom(engine)
+    if ACCEL_AVAILABLE:
+        print("FPGA Emulator: Using compiled backend")
+    else:
+        print("FPGA Emulator: Compiled backend unavailable (build with `python build_fpga_backend.py`)")
     print("FPGA Emulator: Loaded %s (%d instructions)" % (args.file, len(engine.rom_raw)))
 
     # Initialize pygame

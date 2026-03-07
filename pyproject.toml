@@ -10,6 +10,8 @@ dependencies = ["rich", "numpy", "pygame"]
 
 [project.optional-dependencies]
 dev = [
+    "Cython",
+    "setuptools",
     "ruff",
     "pydoclint",
 ]
