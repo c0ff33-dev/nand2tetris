@@ -40,9 +40,17 @@ RTP_ADC_MAX = 4094
 
 # Emulator-internal trigger address for ROM-patched Screen.clearScreen
 CLEAR_TRIGGER = 4112
-CPU_HZ = 2_500_000
-DEFAULT_FPS = 60
+CPU_HZ = 5_000_000
+DEFAULT_FPS = 15
 DEFAULT_SCALE = 2
+
+# Pre-computed RGB565 -> RGB888 lookup table (65536 entries x 3 channels)
+_RGB565_LUT = np.empty((65536, 3), dtype=np.uint8)
+_lut_i = np.arange(65536, dtype=np.uint32)
+_RGB565_LUT[:, 0] = ((_lut_i >> 11) & 0x1F) * 255 // 31
+_RGB565_LUT[:, 1] = ((_lut_i >> 5) & 0x3F) * 255 // 63
+_RGB565_LUT[:, 2] = (_lut_i & 0x1F) * 255 // 31
+del _lut_i
 
 
 class LcdController:
@@ -55,7 +63,8 @@ class LcdController:
     """
 
     def __init__(self) -> None:
-        self.framebuffer = np.full((LCD_HEIGHT, LCD_WIDTH, 3), 255, dtype=np.uint8)
+        # Stored as (width, height, 3) - surfarray-native order, avoids transpose on render
+        self.framebuffer = np.full((LCD_WIDTH, LCD_HEIGHT, 3), 255, dtype=np.uint8)
         self.window_x1 = 0
         self.window_y1 = 0
         self.window_x2 = LCD_WIDTH - 1
@@ -117,13 +126,10 @@ class LcdController:
         self.dirty = True
 
     def _set_pixel(self, rgb565: int) -> None:
-        """Convert RGB565 to RGB888 and write to framebuffer."""
+        """Convert RGB565 to RGB888 via LUT and write to framebuffer."""
         x, y = self.pixel_x, self.pixel_y
         if 0 <= x < LCD_WIDTH and 0 <= y < LCD_HEIGHT:
-            val = rgb565 & 0xFFFF
-            self.framebuffer[y, x, 0] = ((val >> 11) & 0x1F) * 255 // 31
-            self.framebuffer[y, x, 1] = ((val >> 5) & 0x3F) * 255 // 63
-            self.framebuffer[y, x, 2] = (val & 0x1F) * 255 // 31
+            self.framebuffer[x, y] = _RGB565_LUT[rgb565 & 0xFFFF]
             self.dirty = True
 
 
@@ -193,8 +199,12 @@ class FpgaRAM:
         self._touch = touch
 
     def __getitem__(self, key: int | slice) -> int | list[int]:
-        if isinstance(key, slice):
-            return self._data[key]
+        # Fast path: skip I/O checks for the 99% of accesses outside I/O range
+        try:
+            if key < 4096 or key > 4112:
+                return self._data[key]
+        except TypeError:
+            return self._data[key]  # slice fallback
         if key == LCD8_ADDR or key == LCD16_ADDR:
             return 0  # busy bit never set
         if key == RTP_ADDR:
@@ -204,6 +214,9 @@ class FpgaRAM:
         return self._data[key]
 
     def __setitem__(self, key: int, value: int) -> None:
+        if key < 4096 or key > 4112:
+            self._data[key] = value
+            return
         if key == LCD8_ADDR:
             self._lcd.write_command(value)
         elif key == LCD16_ADDR:
@@ -298,14 +311,15 @@ def _patch_rom(engine: Engine) -> None:
         patched.append("Screen.clearScreen")
     if patched:
         print("FPGA Emulator: Patched out %s" % ", ".join(patched))
+    engine.decode()  # re-decode after ROM modifications
 
 
 def render_screen(lcd: LcdController, surface: pygame.Surface) -> None:
     """Blit LCD framebuffer onto the pygame surface."""
     if not lcd.dirty:
         return
-    # framebuffer is (height, width, 3) - surfarray expects (width, height, 3)
-    pygame.surfarray.blit_array(surface, lcd.framebuffer.transpose(1, 0, 2).copy())
+    # framebuffer is already (width, height, 3) - surfarray-native order
+    pygame.surfarray.blit_array(surface, lcd.framebuffer)
     lcd.dirty = False
 
 
