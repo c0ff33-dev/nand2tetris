@@ -38,7 +38,8 @@ RTP_SET_Z = 224  # 0xE0
 RTP_READ = 256  # in[8]=1 for read
 RTP_ADC_MAX = 4094
 
-# Timing
+# Emulator-internal trigger address for ROM-patched Screen.clearScreen
+CLEAR_TRIGGER = 4112
 CPU_HZ = 2_500_000
 DEFAULT_FPS = 60
 DEFAULT_SCALE = 2
@@ -64,11 +65,13 @@ class LcdController:
         self.pixel_x = 0
         self.pixel_y = 0
         self.dirty = True
+        self._bulk_skip = False  # when True, swallow RAMWR data writes
 
     def write_command(self, cmd: int) -> None:
         """Handle write to LCD command port (LCD[0] / RAM[4104])."""
         if cmd == CMD_COMPLETE:
             self.current_cmd = None
+            self._bulk_skip = False
             return
 
         # 8-bit data sent via command port with bit 9 set (MADCTL/COLMOD config)
@@ -77,10 +80,19 @@ class LcdController:
 
         self.current_cmd = cmd
         self.cmd_data_idx = 0
+        self._bulk_skip = False
 
         if cmd == CMD_RAMWR:
             self.pixel_x = self.window_x1
             self.pixel_y = self.window_y1
+            # Full-screen window: bulk-fill on first pixel instead of 76,800 SPI writes
+            if (
+                self.window_x1 == 0
+                and self.window_y1 == 0
+                and self.window_x2 == LCD_WIDTH - 1
+                and self.window_y2 == LCD_HEIGHT - 1
+            ):
+                self._bulk_skip = True
 
     def write_data(self, data: int) -> None:
         """Handle write to LCD data port (LCD[1] / RAM[4105])."""
@@ -101,14 +113,30 @@ class LcdController:
             self.cmd_data_idx += 1
 
         elif cmd == CMD_RAMWR:
+            if self._bulk_skip:
+                self._bulk_fill(data)
+                return
             self._set_pixel(data)
-            # row-major fill: x increments first, then y
+            # Row-major fill: x increments first, then y
             self.pixel_x += 1
             if self.pixel_x > self.window_x2:
                 self.pixel_x = self.window_x1
                 self.pixel_y += 1
                 if self.pixel_y > self.window_y2:
                     self.pixel_y = self.window_y1
+
+    def _bulk_fill(self, rgb565: int) -> None:
+        """Fill entire framebuffer with one color (clearScreen fast path)."""
+        val = rgb565 & 0xFFFF
+        self.framebuffer[:, :, 0] = ((val >> 11) & 0x1F) * 255 // 31
+        self.framebuffer[:, :, 1] = ((val >> 5) & 0x3F) * 255 // 63
+        self.framebuffer[:, :, 2] = (val & 0x1F) * 255 // 31
+        self.dirty = True
+
+    def clear(self) -> None:
+        """Fill entire framebuffer with white (called via ROM-patched Screen.clearScreen)."""
+        self.framebuffer[:] = 255
+        self.dirty = True
 
     def _set_pixel(self, rgb565: int) -> None:
         """Convert RGB565 to RGB888 and write to framebuffer."""
@@ -209,11 +237,89 @@ class FpgaRAM:
             if 0 < (value & 0x7F) < 128:
                 sys.stdout.write(chr(value & 0x7F))
                 sys.stdout.flush()
+        elif key == CLEAR_TRIGGER:
+            self._lcd.clear()
         else:
             self._data[key] = value
 
     def __len__(self) -> int:
         return len(self._data)
+
+
+def _patch_function_to_nop(engine: Engine, func_name: str, local_count: int, trigger_addr: int | None = None) -> bool:
+    """
+    Patch a function to skip its body and return immediately.
+
+    Replaces body instructions after local variable init with a direct jump
+    to the function's return sequence. Optionally writes to a trigger address
+    first (used by Screen.clearScreen to signal the LCD controller).
+
+    :param engine: Engine with ROM loaded.
+    :param func_name: Function label (e.g. "Sys.wait").
+    :param local_count: Number of local variables (determines init instruction count).
+    :param trigger_addr: Optional RAM address to write to before returning.
+    :return: True if patched successfully.
+    """
+    if func_name not in engine.address_labels:
+        return False
+
+    addr = engine.address_labels[func_name]
+    rom = engine.rom_raw
+
+    # Find the function's return: @RETURN_SUB followed by 0;JMP
+    ret_jmp = None
+    for i in range(addr + 6, min(addr + 500, len(rom))):
+        if rom[i][1] == "0;JMP" and i > 0 and "RETURN" in rom[i - 1][1]:
+            ret_jmp = i
+            break
+
+    if ret_jmp is None:
+        return False
+
+    # Return sequence is 6 instructions: push 0 + @RETURN_SUB + 0;JMP
+    ret_start = ret_jmp - 5
+
+    # Skip past local variable init prologue:
+    # @SP, A=M, [M=0, A=A+1] * (n-1), M=0, D=A+1, @SP, M=D
+    # = 4 + 2*locals instructions (or 6 minimum when locals >= 1)
+    init_len = max(4 + 2 * local_count, 6) if local_count > 0 else 0
+    body = addr + init_len
+
+    if trigger_addr is not None:
+        # @trigger_addr; M=0; @ret_start; 0;JMP
+        src = rom[body][0]
+        rom[body] = [src, "@%d" % trigger_addr]
+        engine.rom_debug[body] = [src, "@%d // %s: trigger" % (trigger_addr, func_name)]
+        body += 1
+        src = rom[body][0]
+        rom[body] = [src, "M=0"]
+        engine.rom_debug[body] = [src, "M=0 // %s: trigger write" % func_name]
+        body += 1
+
+    src0 = rom[body][0]
+    rom[body] = [src0, "@%d" % ret_start]
+    engine.rom_debug[body] = [src0, "@%d // %s: skip to return" % (ret_start, func_name)]
+
+    src1 = rom[body + 1][0]
+    rom[body + 1] = [src1, "0;JMP"]
+    engine.rom_debug[body + 1] = [src1, "0;JMP // %s: skip body" % func_name]
+    return True
+
+
+def _patch_rom(engine: Engine) -> None:
+    """
+    Apply all ROM patches for FPGA emulation.
+
+    - Sys.wait: skip busy-loop delays (LCD init waits, animation timing)
+    - Screen.clearScreen: skip 76,800 SPI pixel writes, trigger numpy fill instead
+    """
+    patched = []
+    if _patch_function_to_nop(engine, "Sys.wait", 1):
+        patched.append("Sys.wait")
+    if _patch_function_to_nop(engine, "Screen.clearScreen", 3, trigger_addr=CLEAR_TRIGGER):
+        patched.append("Screen.clearScreen")
+    if patched:
+        print("FPGA Emulator: Patched out %s" % ", ".join(patched))
 
 
 def render_screen(lcd: LcdController, surface: pygame.Surface) -> None:
@@ -264,6 +370,7 @@ def main() -> None:
     engine = Engine()
     engine.ram = FpgaRAM(RAM_SIZE, lcd, touch)
     engine.load(args.file)
+    _patch_rom(engine)
     print("FPGA Emulator: Loaded %s (%d instructions)" % (args.file, len(engine.rom_raw)))
 
     # Initialize pygame
