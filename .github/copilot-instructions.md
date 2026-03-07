@@ -15,7 +15,8 @@ Jack source → tokenizer.py → analyzer.py → compiler.py → translator.py �
 ```
 
 - **engine.py** — `Engine` class encapsulating all HACK CPU state (RAM, ROM, registers, PC) and execution logic. Provides `load()` to parse ASM files, `step()` for per-instruction execution (returns debug info), and `run_cycles(n)` for optimized bulk execution. Uses ALU lookup tables (`_COMP`, `_JUMP`) instead of `eval()`.
-- **emulator.py** — Pygame-based HACK platform emulator. Renders the memory-mapped screen (RAM[16384..24575]) via numpy bit-unpacking, handles keyboard I/O (RAM[24576]), and drives the engine at ~208K cycles/frame (6.25 MHz / 30 FPS target).
+- **emulator/computer.py** — Pygame-based standard computer emulator. Renders the memory-mapped display (RAM[16384..24575]) via numpy bit-unpacking, handles keyboard I/O (RAM[24576]), and can optionally use the compiled accelerator via `AcceleratedEngine`.
+- **emulator/fpga.py** — Pygame-based FPGA platform emulator. Emulates the LCD/touch/UART memory map and can optionally use the compiled accelerator via `AcceleratedFpgaEngine`.
 - **debugger.py** — Interactive debugger with Rich TUI for step-through debugging (breakpoints, call tree, stack view). Uses `Engine` from `engine.py`. Standalone entry point for running/debugging individual `.asm` files.
 - **runner.py** — Test runner that orchestrates the full pipeline: course compiler, tokenizer, analyzer, compiler, translator, assembler, and all test suites (HardwareSimulator, CPUEmulator, VMEmulator). This is the main entry point for running all tests.
 - **tokenizer.py** — Lexes Jack source into XML token stream. Uses recursive descent with a string placeholder system (`__string0__`, etc.).
@@ -50,7 +51,7 @@ Python dependencies (defined in `pyproject.toml`):
 pip install -e ".[dev]"   # runtime deps (rich, numpy, pygame) + dev deps (ruff, pydoclint)
 ```
 
-The interpreter modules are run from within the `interpreter/` directory (they import each other as siblings, not as a package).
+Toolchain modules are run from within the `interpreter/` directory. The interactive emulators are run from the repo root via `emulator/`.
 
 ```sh
 cd interpreter
@@ -59,7 +60,12 @@ python runner.py --fpga      # also compile FPGA Jack programs (projects/13_fpga
 python runner.py --debug     # run with verbose output
 python runner.py --no-lint   # skip ruff linting
 python debugger.py file.asm  # run/debug a single .asm file
-python emulator.py file.asm  # run in pygame emulator
+python build_accelerator.py  # build the optional compiled emulator accelerator
+```
+
+```sh
+python emulator/computer.py file.asm  # run in the standard pygame emulator
+python emulator/fpga.py file.asm  # run in the FPGA pygame emulator
 ```
 
 The Java tools are invoked via shell/batch scripts in `tools/`:
@@ -72,7 +78,7 @@ tools/VMEmulator.bat
 
 ## Scope
 
-Code changes should be focused on the `interpreter/` folder. Never modify files in `projects/` or `tools/` unless explicitly told otherwise.
+Code changes should be focused on the `interpreter/` and `emulator/` folders. Never modify files in `projects/` or `tools/` unless explicitly told otherwise.
 
 ## Conventions
 

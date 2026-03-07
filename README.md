@@ -9,24 +9,37 @@ A complete collection of nand2tetris coursework plus sophisticated implementatio
 pip install -e ".[dev]"   
 ```
 
-All Python scripts must be run from within the `interpreter/` directory.
-
-```sh
-cd interpreter
-```
+Most toolchain scripts still run from within `interpreter/`, but the interactive emulators
+now live in the root `emulator/` directory.
 
 ## Features / Usage
 
-## emulator.py: HACK emulator
+## emulator/computer.py: Computer emulator
 
-Pygame frontend that renders the memory-mapped screen and handles keyboard I/O while driving the CPU engine which interprets the symbolic HACK assembly.
+Pygame frontend for the standard computer platform. It renders the memory-mapped display and handles keyboard I/O while driving the CPU engine on symbolic assembly.
 
 ![](./tools/emulator.jpg)
 
 ```sh
-python emulator.py path/to/file.asm                # run in emulator (default: 2x scale, 60 fps)
-python emulator.py path/to/file.asm --scale 1      # custom display scale
-python emulator.py path/to/file.asm --fps 30       # custom fps target
+python emulator/computer.py path/to/file.asm                # run in emulator (default: 2x scale, 60 fps)
+python emulator/computer.py path/to/file.asm --scale 1      # custom display scale
+python emulator/computer.py path/to/file.asm --fps 30       # custom fps target
+```
+
+Optional compiled acceleration is shared by both emulators. Build it manually when host tooling is available:
+
+```sh
+cd interpreter
+python build_accelerator.py
+```
+
+## emulator/fpga.py: FPGA emulator
+
+Pygame frontend for the FPGA-targeted platform with LCD/touch/UART emulation. When the optional accelerator is built, both the standard HACK emulator and the FPGA emulator can use it.
+
+```sh
+python emulator/fpga.py path/to/file.asm               # run in FPGA emulator
+python emulator/fpga.py path/to/file.asm --patch-wait # skip Sys.wait delay loops
 ```
 
 ## debugger.py: HACK debugger

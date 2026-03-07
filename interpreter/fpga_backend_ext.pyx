@@ -56,7 +56,128 @@ cdef inline int _normalize16(int value):
     return ((value + 32768) & 65535) - 32768
 
 
-def run_cycles_accelerated(
+cdef inline int _eval_comp(int comp_kind, int register_d, int x):
+    if comp_kind == COMP_ZERO:
+        return 0
+    elif comp_kind == COMP_ONE:
+        return 1
+    elif comp_kind == COMP_NEG_ONE:
+        return -1
+    elif comp_kind == COMP_D:
+        return register_d
+    elif comp_kind == COMP_X:
+        return x
+    elif comp_kind == COMP_NOT_D:
+        return ~register_d
+    elif comp_kind == COMP_NOT_X:
+        return ~x
+    elif comp_kind == COMP_NEG_D:
+        return -register_d
+    elif comp_kind == COMP_NEG_X:
+        return -x
+    elif comp_kind == COMP_D_PLUS_1:
+        return register_d + 1
+    elif comp_kind == COMP_X_PLUS_1:
+        return x + 1
+    elif comp_kind == COMP_D_MINUS_1:
+        return register_d - 1
+    elif comp_kind == COMP_X_MINUS_1:
+        return x - 1
+    elif comp_kind == COMP_D_PLUS_X:
+        return register_d + x
+    elif comp_kind == COMP_D_MINUS_X:
+        return register_d - x
+    elif comp_kind == COMP_X_MINUS_D:
+        return x - register_d
+    elif comp_kind == COMP_D_AND_X:
+        return register_d & x
+    return register_d | x
+
+
+def run_cycles_accelerated_plain(
+    int n,
+    int pc,
+    int register_a,
+    int register_d,
+    object ram_obj,
+    object inst_type_obj,
+    object arg0_obj,
+    object arg1_obj,
+    object filepath,
+):
+    """Execute up to n cycles for the plain HACK engine."""
+    cdef int[:] ram = ram_obj
+    cdef unsigned char[:] inst_type = inst_type_obj
+    cdef int[:] arg0 = arg0_obj
+    cdef unsigned char[:] arg1 = arg1_obj
+    cdef Py_ssize_t dec_len = inst_type.shape[0]
+    cdef int cycle = 0
+    cdef int instruction
+    cdef int addr
+    cdef int x
+    cdef int comp
+    cdef int dst
+    cdef int jump
+    cdef int result
+    cdef bint halted = False
+
+    while cycle < n:
+        if pc >= dec_len:
+            break
+
+        instruction = inst_type[pc]
+        if instruction == INST_CDEST:
+            comp = arg0[pc]
+            dst = arg1[pc]
+            addr = register_a
+            if comp & COMP_USE_M:
+                x = ram[addr]
+            else:
+                x = register_a
+
+            result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
+            if dst & DEST_M:
+                ram[addr] = result
+            if dst & DEST_A:
+                register_a = result
+            if dst & DEST_D:
+                register_d = result
+            pc += 1
+
+        elif instruction == INST_A:
+            register_a = arg0[pc]
+            pc += 1
+
+        elif instruction == INST_CJMP:
+            jump = arg0[pc]
+            if jump == JUMP_GT:
+                pc = register_a if register_d > 0 else pc + 1
+            elif jump == JUMP_GE:
+                pc = register_a if register_d >= 0 else pc + 1
+            elif jump == JUMP_EQ:
+                pc = register_a if register_d == 0 else pc + 1
+            elif jump == JUMP_NE:
+                pc = register_a if register_d != 0 else pc + 1
+            elif jump == JUMP_LT:
+                pc = register_a if register_d < 0 else pc + 1
+            elif jump == JUMP_LE:
+                pc = register_a if register_d <= 0 else pc + 1
+            else:
+                pc = register_a
+
+        elif instruction == INST_HALT:
+            halted = True
+            break
+
+        else:
+            raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (arg0[pc], filepath))
+
+        cycle += 1
+
+    return cycle, pc, register_a, register_d, halted
+
+
+def run_cycles_accelerated_fpga(
     int n,
     int pc,
     int register_a,
@@ -117,45 +238,7 @@ def run_cycles_accelerated(
             else:
                 x = register_a
 
-            comp_kind = comp & COMP_MASK
-            if comp_kind == COMP_ZERO:
-                result = 0
-            elif comp_kind == COMP_ONE:
-                result = 1
-            elif comp_kind == COMP_NEG_ONE:
-                result = -1
-            elif comp_kind == COMP_D:
-                result = register_d
-            elif comp_kind == COMP_X:
-                result = x
-            elif comp_kind == COMP_NOT_D:
-                result = ~register_d
-            elif comp_kind == COMP_NOT_X:
-                result = ~x
-            elif comp_kind == COMP_NEG_D:
-                result = -register_d
-            elif comp_kind == COMP_NEG_X:
-                result = -x
-            elif comp_kind == COMP_D_PLUS_1:
-                result = register_d + 1
-            elif comp_kind == COMP_X_PLUS_1:
-                result = x + 1
-            elif comp_kind == COMP_D_MINUS_1:
-                result = register_d - 1
-            elif comp_kind == COMP_X_MINUS_1:
-                result = x - 1
-            elif comp_kind == COMP_D_PLUS_X:
-                result = register_d + x
-            elif comp_kind == COMP_D_MINUS_X:
-                result = register_d - x
-            elif comp_kind == COMP_X_MINUS_D:
-                result = x - register_d
-            elif comp_kind == COMP_D_AND_X:
-                result = register_d & x
-            else:
-                result = register_d | x
-
-            result = _normalize16(result)
+            result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
             if dst & DEST_M:
                 if addr < IO_MIN or addr > IO_MAX:
                     ram[addr] = result
@@ -211,3 +294,8 @@ def run_cycles_accelerated(
         cycle += 1
 
     return cycle, pc, register_a, register_d, halted
+
+
+def run_cycles_accelerated(*args):
+    """Backward-compatible alias for the FPGA-specific accelerator entry point."""
+    return run_cycles_accelerated_fpga(*args)

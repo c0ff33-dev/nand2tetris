@@ -37,7 +37,9 @@ $ pip install -e ".[dev]"
 ```sh
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python runner.py
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python debugger.py ~/src/nand2tetris/projects/11/Pong/Pong.asm --break Main.main
-cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator.py ~/src/nand2tetris/projects/11/Pong/Pong.asm
+cd ~/src/nand2tetris && ~/src/nand2tetris/.venv/bin/python emulator/computer.py ~/src/nand2tetris/projects/11/Pong/Pong.asm
+cd ~/src/nand2tetris && ~/src/nand2tetris/.venv/bin/python emulator/fpga.py ~/src/nand2tetris/projects/13_fpga/Original/12_Tetris/12_Tetris.asm
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python build_accelerator.py
 ```
 
 ## Miscellaneous

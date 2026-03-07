@@ -2904,6 +2904,7 @@ static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
 static CYTHON_INLINE int __pyx_f_16fpga_backend_ext__normalize16(int); /*proto*/
+static CYTHON_INLINE int __pyx_f_16fpga_backend_ext__eval_comp(int, int, int); /*proto*/
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char const *, char *); /*proto*/
 static PyObject *__pyx_memoryview_new(PyObject *, int, int, __Pyx_TypeInfo const *); /*proto*/
@@ -2999,7 +3000,9 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n, int __pyx_v_pc, int __pyx_v_register_a, int __pyx_v_register_d, PyObject *__pyx_v_ram_obj, PyObject *__pyx_v_inst_type_obj, PyObject *__pyx_v_arg0_obj, PyObject *__pyx_v_arg1_obj, PyObject *__pyx_v_lcd, PyObject *__pyx_v_touch, PyObject *__pyx_v_filepath); /* proto */
+static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated_plain(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n, int __pyx_v_pc, int __pyx_v_register_a, int __pyx_v_register_d, PyObject *__pyx_v_ram_obj, PyObject *__pyx_v_inst_type_obj, PyObject *__pyx_v_arg0_obj, PyObject *__pyx_v_arg1_obj, PyObject *__pyx_v_filepath); /* proto */
+static PyObject *__pyx_pf_16fpga_backend_ext_2run_cycles_accelerated_fpga(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n, int __pyx_v_pc, int __pyx_v_register_a, int __pyx_v_register_d, PyObject *__pyx_v_ram_obj, PyObject *__pyx_v_inst_type_obj, PyObject *__pyx_v_arg0_obj, PyObject *__pyx_v_arg1_obj, PyObject *__pyx_v_lcd, PyObject *__pyx_v_touch, PyObject *__pyx_v_filepath); /* proto */
+static PyObject *__pyx_pf_16fpga_backend_ext_4run_cycles_accelerated(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3037,8 +3040,8 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[1];
-  PyObject *__pyx_codeobj_tab[1];
-  PyObject *__pyx_string_tab[160];
+  PyObject *__pyx_codeobj_tab[3];
+  PyObject *__pyx_string_tab[165];
   PyObject *__pyx_number_tab[4];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -3139,107 +3142,112 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_arg0_obj __pyx_string_tab[56]
 #define __pyx_n_u_arg1 __pyx_string_tab[57]
 #define __pyx_n_u_arg1_obj __pyx_string_tab[58]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[59]
-#define __pyx_n_u_base __pyx_string_tab[60]
-#define __pyx_n_u_c __pyx_string_tab[61]
-#define __pyx_n_u_class __pyx_string_tab[62]
-#define __pyx_n_u_class_getitem __pyx_string_tab[63]
-#define __pyx_n_u_clear __pyx_string_tab[64]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[65]
-#define __pyx_n_u_comp __pyx_string_tab[66]
-#define __pyx_n_u_comp_kind __pyx_string_tab[67]
-#define __pyx_n_u_count __pyx_string_tab[68]
-#define __pyx_n_u_cycle __pyx_string_tab[69]
-#define __pyx_n_u_d __pyx_string_tab[70]
-#define __pyx_n_u_dec_len __pyx_string_tab[71]
-#define __pyx_n_u_dict __pyx_string_tab[72]
-#define __pyx_n_u_dst __pyx_string_tab[73]
-#define __pyx_n_u_dtype_is_object __pyx_string_tab[74]
-#define __pyx_n_u_encode __pyx_string_tab[75]
-#define __pyx_n_u_enumerate __pyx_string_tab[76]
-#define __pyx_n_u_error __pyx_string_tab[77]
-#define __pyx_n_u_filepath __pyx_string_tab[78]
-#define __pyx_n_u_flags __pyx_string_tab[79]
-#define __pyx_n_u_flush __pyx_string_tab[80]
-#define __pyx_n_u_format __pyx_string_tab[81]
-#define __pyx_n_u_fortran __pyx_string_tab[82]
-#define __pyx_n_u_fpga_backend_ext __pyx_string_tab[83]
-#define __pyx_n_u_func __pyx_string_tab[84]
-#define __pyx_n_u_getstate __pyx_string_tab[85]
-#define __pyx_n_u_halted __pyx_string_tab[86]
-#define __pyx_n_u_id __pyx_string_tab[87]
-#define __pyx_n_u_import __pyx_string_tab[88]
-#define __pyx_n_u_index __pyx_string_tab[89]
-#define __pyx_n_u_inst_type __pyx_string_tab[90]
-#define __pyx_n_u_inst_type_obj __pyx_string_tab[91]
-#define __pyx_n_u_instruction __pyx_string_tab[92]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[93]
-#define __pyx_n_u_items __pyx_string_tab[94]
-#define __pyx_n_u_itemsize __pyx_string_tab[95]
-#define __pyx_n_u_jump __pyx_string_tab[96]
-#define __pyx_n_u_lcd __pyx_string_tab[97]
-#define __pyx_n_u_lcd_clear __pyx_string_tab[98]
-#define __pyx_n_u_lcd_write_command __pyx_string_tab[99]
-#define __pyx_n_u_lcd_write_data __pyx_string_tab[100]
-#define __pyx_n_u_m __pyx_string_tab[101]
-#define __pyx_n_u_main __pyx_string_tab[102]
-#define __pyx_n_u_memview __pyx_string_tab[103]
-#define __pyx_n_u_mode __pyx_string_tab[104]
-#define __pyx_n_u_module __pyx_string_tab[105]
-#define __pyx_n_u_n __pyx_string_tab[106]
-#define __pyx_n_u_name __pyx_string_tab[107]
-#define __pyx_n_u_name_2 __pyx_string_tab[108]
-#define __pyx_n_u_ndim __pyx_string_tab[109]
-#define __pyx_n_u_new __pyx_string_tab[110]
-#define __pyx_n_u_obj __pyx_string_tab[111]
-#define __pyx_n_u_pack __pyx_string_tab[112]
-#define __pyx_n_u_pc __pyx_string_tab[113]
-#define __pyx_n_u_pop __pyx_string_tab[114]
-#define __pyx_n_u_pyx_checksum __pyx_string_tab[115]
-#define __pyx_n_u_pyx_state __pyx_string_tab[116]
-#define __pyx_n_u_pyx_type __pyx_string_tab[117]
-#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[118]
-#define __pyx_n_u_pyx_vtable __pyx_string_tab[119]
-#define __pyx_n_u_qualname __pyx_string_tab[120]
-#define __pyx_n_u_ram __pyx_string_tab[121]
-#define __pyx_n_u_ram_obj __pyx_string_tab[122]
-#define __pyx_n_u_read __pyx_string_tab[123]
-#define __pyx_n_u_reduce __pyx_string_tab[124]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[125]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[126]
-#define __pyx_n_u_register __pyx_string_tab[127]
-#define __pyx_n_u_register_a __pyx_string_tab[128]
-#define __pyx_n_u_register_d __pyx_string_tab[129]
-#define __pyx_n_u_result __pyx_string_tab[130]
-#define __pyx_n_u_run_cycles_accelerated __pyx_string_tab[131]
-#define __pyx_n_u_set_name __pyx_string_tab[132]
-#define __pyx_n_u_setdefault __pyx_string_tab[133]
-#define __pyx_n_u_setstate __pyx_string_tab[134]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[135]
-#define __pyx_n_u_shape __pyx_string_tab[136]
-#define __pyx_n_u_size __pyx_string_tab[137]
-#define __pyx_n_u_start __pyx_string_tab[138]
-#define __pyx_n_u_stdout __pyx_string_tab[139]
-#define __pyx_n_u_stdout_flush __pyx_string_tab[140]
-#define __pyx_n_u_stdout_write __pyx_string_tab[141]
-#define __pyx_n_u_step __pyx_string_tab[142]
-#define __pyx_n_u_stop __pyx_string_tab[143]
-#define __pyx_n_u_struct __pyx_string_tab[144]
-#define __pyx_n_u_sys __pyx_string_tab[145]
-#define __pyx_n_u_test __pyx_string_tab[146]
-#define __pyx_n_u_touch __pyx_string_tab[147]
-#define __pyx_n_u_touch_read __pyx_string_tab[148]
-#define __pyx_n_u_touch_write __pyx_string_tab[149]
-#define __pyx_n_u_unpack __pyx_string_tab[150]
-#define __pyx_n_u_update __pyx_string_tab[151]
-#define __pyx_n_u_value __pyx_string_tab[152]
-#define __pyx_n_u_values __pyx_string_tab[153]
-#define __pyx_n_u_write __pyx_string_tab[154]
-#define __pyx_n_u_write_command __pyx_string_tab[155]
-#define __pyx_n_u_write_data __pyx_string_tab[156]
-#define __pyx_n_u_x __pyx_string_tab[157]
-#define __pyx_kp_b_iso88591_a_a_q_ivQa_Q_q_Cq_A_Cq_U_e1_s_s __pyx_string_tab[158]
-#define __pyx_n_b_O __pyx_string_tab[159]
+#define __pyx_n_u_args __pyx_string_tab[59]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[60]
+#define __pyx_n_u_base __pyx_string_tab[61]
+#define __pyx_n_u_c __pyx_string_tab[62]
+#define __pyx_n_u_class __pyx_string_tab[63]
+#define __pyx_n_u_class_getitem __pyx_string_tab[64]
+#define __pyx_n_u_clear __pyx_string_tab[65]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[66]
+#define __pyx_n_u_comp __pyx_string_tab[67]
+#define __pyx_n_u_comp_kind __pyx_string_tab[68]
+#define __pyx_n_u_count __pyx_string_tab[69]
+#define __pyx_n_u_cycle __pyx_string_tab[70]
+#define __pyx_n_u_d __pyx_string_tab[71]
+#define __pyx_n_u_dec_len __pyx_string_tab[72]
+#define __pyx_n_u_dict __pyx_string_tab[73]
+#define __pyx_n_u_dst __pyx_string_tab[74]
+#define __pyx_n_u_dtype_is_object __pyx_string_tab[75]
+#define __pyx_n_u_encode __pyx_string_tab[76]
+#define __pyx_n_u_enumerate __pyx_string_tab[77]
+#define __pyx_n_u_error __pyx_string_tab[78]
+#define __pyx_n_u_filepath __pyx_string_tab[79]
+#define __pyx_n_u_flags __pyx_string_tab[80]
+#define __pyx_n_u_flush __pyx_string_tab[81]
+#define __pyx_n_u_format __pyx_string_tab[82]
+#define __pyx_n_u_fortran __pyx_string_tab[83]
+#define __pyx_n_u_fpga_backend_ext __pyx_string_tab[84]
+#define __pyx_n_u_func __pyx_string_tab[85]
+#define __pyx_n_u_getstate __pyx_string_tab[86]
+#define __pyx_n_u_halted __pyx_string_tab[87]
+#define __pyx_n_u_id __pyx_string_tab[88]
+#define __pyx_n_u_import __pyx_string_tab[89]
+#define __pyx_n_u_index __pyx_string_tab[90]
+#define __pyx_n_u_inst_type __pyx_string_tab[91]
+#define __pyx_n_u_inst_type_obj __pyx_string_tab[92]
+#define __pyx_n_u_instruction __pyx_string_tab[93]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[94]
+#define __pyx_n_u_items __pyx_string_tab[95]
+#define __pyx_n_u_itemsize __pyx_string_tab[96]
+#define __pyx_n_u_jump __pyx_string_tab[97]
+#define __pyx_n_u_lcd __pyx_string_tab[98]
+#define __pyx_n_u_lcd_clear __pyx_string_tab[99]
+#define __pyx_n_u_lcd_write_command __pyx_string_tab[100]
+#define __pyx_n_u_lcd_write_data __pyx_string_tab[101]
+#define __pyx_n_u_m __pyx_string_tab[102]
+#define __pyx_n_u_main __pyx_string_tab[103]
+#define __pyx_n_u_memview __pyx_string_tab[104]
+#define __pyx_n_u_mode __pyx_string_tab[105]
+#define __pyx_n_u_module __pyx_string_tab[106]
+#define __pyx_n_u_n __pyx_string_tab[107]
+#define __pyx_n_u_name __pyx_string_tab[108]
+#define __pyx_n_u_name_2 __pyx_string_tab[109]
+#define __pyx_n_u_ndim __pyx_string_tab[110]
+#define __pyx_n_u_new __pyx_string_tab[111]
+#define __pyx_n_u_obj __pyx_string_tab[112]
+#define __pyx_n_u_pack __pyx_string_tab[113]
+#define __pyx_n_u_pc __pyx_string_tab[114]
+#define __pyx_n_u_pop __pyx_string_tab[115]
+#define __pyx_n_u_pyx_checksum __pyx_string_tab[116]
+#define __pyx_n_u_pyx_state __pyx_string_tab[117]
+#define __pyx_n_u_pyx_type __pyx_string_tab[118]
+#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[119]
+#define __pyx_n_u_pyx_vtable __pyx_string_tab[120]
+#define __pyx_n_u_qualname __pyx_string_tab[121]
+#define __pyx_n_u_ram __pyx_string_tab[122]
+#define __pyx_n_u_ram_obj __pyx_string_tab[123]
+#define __pyx_n_u_read __pyx_string_tab[124]
+#define __pyx_n_u_reduce __pyx_string_tab[125]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[126]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[127]
+#define __pyx_n_u_register __pyx_string_tab[128]
+#define __pyx_n_u_register_a __pyx_string_tab[129]
+#define __pyx_n_u_register_d __pyx_string_tab[130]
+#define __pyx_n_u_result __pyx_string_tab[131]
+#define __pyx_n_u_run_cycles_accelerated __pyx_string_tab[132]
+#define __pyx_n_u_run_cycles_accelerated_fpga __pyx_string_tab[133]
+#define __pyx_n_u_run_cycles_accelerated_plain __pyx_string_tab[134]
+#define __pyx_n_u_set_name __pyx_string_tab[135]
+#define __pyx_n_u_setdefault __pyx_string_tab[136]
+#define __pyx_n_u_setstate __pyx_string_tab[137]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[138]
+#define __pyx_n_u_shape __pyx_string_tab[139]
+#define __pyx_n_u_size __pyx_string_tab[140]
+#define __pyx_n_u_start __pyx_string_tab[141]
+#define __pyx_n_u_stdout __pyx_string_tab[142]
+#define __pyx_n_u_stdout_flush __pyx_string_tab[143]
+#define __pyx_n_u_stdout_write __pyx_string_tab[144]
+#define __pyx_n_u_step __pyx_string_tab[145]
+#define __pyx_n_u_stop __pyx_string_tab[146]
+#define __pyx_n_u_struct __pyx_string_tab[147]
+#define __pyx_n_u_sys __pyx_string_tab[148]
+#define __pyx_n_u_test __pyx_string_tab[149]
+#define __pyx_n_u_touch __pyx_string_tab[150]
+#define __pyx_n_u_touch_read __pyx_string_tab[151]
+#define __pyx_n_u_touch_write __pyx_string_tab[152]
+#define __pyx_n_u_unpack __pyx_string_tab[153]
+#define __pyx_n_u_update __pyx_string_tab[154]
+#define __pyx_n_u_value __pyx_string_tab[155]
+#define __pyx_n_u_values __pyx_string_tab[156]
+#define __pyx_n_u_write __pyx_string_tab[157]
+#define __pyx_n_u_write_command __pyx_string_tab[158]
+#define __pyx_n_u_write_data __pyx_string_tab[159]
+#define __pyx_n_u_x __pyx_string_tab[160]
+#define __pyx_kp_b_iso88591_a_a_q_ivQa_Q_q_3c_iq_s_4q_aq_1 __pyx_string_tab[161]
+#define __pyx_kp_b_iso88591_a_a_q_ivQa_Q_q_Cq_A_Cq_U_e1_s_s __pyx_string_tab[162]
+#define __pyx_kp_b_iso88591_b __pyx_string_tab[163]
+#define __pyx_n_b_O __pyx_string_tab[164]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_neg_1 __pyx_number_tab[1]
 #define __pyx_int_1 __pyx_number_tab[2]
@@ -3268,8 +3276,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<160; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<165; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -3303,8 +3311,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<160; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<165; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -16623,22 +16631,1511 @@ static CYTHON_INLINE int __pyx_f_16fpga_backend_ext__normalize16(int __pyx_v_val
 /* "fpga_backend_ext.pyx":59
  * 
  * 
- * def run_cycles_accelerated(             # <<<<<<<<<<<<<<
+ * cdef inline int _eval_comp(int comp_kind, int register_d, int x):             # <<<<<<<<<<<<<<
+ *     if comp_kind == COMP_ZERO:
+ *         return 0
+*/
+
+static CYTHON_INLINE int __pyx_f_16fpga_backend_ext__eval_comp(int __pyx_v_comp_kind, int __pyx_v_register_d, int __pyx_v_x) {
+  int __pyx_r;
+  int __pyx_t_1;
+
+  /* "fpga_backend_ext.pyx":60
+ * 
+ * cdef inline int _eval_comp(int comp_kind, int register_d, int x):
+ *     if comp_kind == COMP_ZERO:             # <<<<<<<<<<<<<<
+ *         return 0
+ *     elif comp_kind == COMP_ONE:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_ZERO);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":61
+ * cdef inline int _eval_comp(int comp_kind, int register_d, int x):
+ *     if comp_kind == COMP_ZERO:
+ *         return 0             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_ONE:
+ *         return 1
+*/
+    __pyx_r = 0;
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":60
+ * 
+ * cdef inline int _eval_comp(int comp_kind, int register_d, int x):
+ *     if comp_kind == COMP_ZERO:             # <<<<<<<<<<<<<<
+ *         return 0
+ *     elif comp_kind == COMP_ONE:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":62
+ *     if comp_kind == COMP_ZERO:
+ *         return 0
+ *     elif comp_kind == COMP_ONE:             # <<<<<<<<<<<<<<
+ *         return 1
+ *     elif comp_kind == COMP_NEG_ONE:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_ONE);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":63
+ *         return 0
+ *     elif comp_kind == COMP_ONE:
+ *         return 1             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_NEG_ONE:
+ *         return -1
+*/
+    __pyx_r = 1;
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":62
+ *     if comp_kind == COMP_ZERO:
+ *         return 0
+ *     elif comp_kind == COMP_ONE:             # <<<<<<<<<<<<<<
+ *         return 1
+ *     elif comp_kind == COMP_NEG_ONE:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":64
+ *     elif comp_kind == COMP_ONE:
+ *         return 1
+ *     elif comp_kind == COMP_NEG_ONE:             # <<<<<<<<<<<<<<
+ *         return -1
+ *     elif comp_kind == COMP_D:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NEG_ONE);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":65
+ *         return 1
+ *     elif comp_kind == COMP_NEG_ONE:
+ *         return -1             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_D:
+ *         return register_d
+*/
+    __pyx_r = -1;
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":64
+ *     elif comp_kind == COMP_ONE:
+ *         return 1
+ *     elif comp_kind == COMP_NEG_ONE:             # <<<<<<<<<<<<<<
+ *         return -1
+ *     elif comp_kind == COMP_D:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":66
+ *     elif comp_kind == COMP_NEG_ONE:
+ *         return -1
+ *     elif comp_kind == COMP_D:             # <<<<<<<<<<<<<<
+ *         return register_d
+ *     elif comp_kind == COMP_X:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":67
+ *         return -1
+ *     elif comp_kind == COMP_D:
+ *         return register_d             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_X:
+ *         return x
+*/
+    __pyx_r = __pyx_v_register_d;
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":66
+ *     elif comp_kind == COMP_NEG_ONE:
+ *         return -1
+ *     elif comp_kind == COMP_D:             # <<<<<<<<<<<<<<
+ *         return register_d
+ *     elif comp_kind == COMP_X:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":68
+ *     elif comp_kind == COMP_D:
+ *         return register_d
+ *     elif comp_kind == COMP_X:             # <<<<<<<<<<<<<<
+ *         return x
+ *     elif comp_kind == COMP_NOT_D:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":69
+ *         return register_d
+ *     elif comp_kind == COMP_X:
+ *         return x             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_NOT_D:
+ *         return ~register_d
+*/
+    __pyx_r = __pyx_v_x;
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":68
+ *     elif comp_kind == COMP_D:
+ *         return register_d
+ *     elif comp_kind == COMP_X:             # <<<<<<<<<<<<<<
+ *         return x
+ *     elif comp_kind == COMP_NOT_D:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":70
+ *     elif comp_kind == COMP_X:
+ *         return x
+ *     elif comp_kind == COMP_NOT_D:             # <<<<<<<<<<<<<<
+ *         return ~register_d
+ *     elif comp_kind == COMP_NOT_X:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NOT_D);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":71
+ *         return x
+ *     elif comp_kind == COMP_NOT_D:
+ *         return ~register_d             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_NOT_X:
+ *         return ~x
+*/
+    __pyx_r = (~__pyx_v_register_d);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":70
+ *     elif comp_kind == COMP_X:
+ *         return x
+ *     elif comp_kind == COMP_NOT_D:             # <<<<<<<<<<<<<<
+ *         return ~register_d
+ *     elif comp_kind == COMP_NOT_X:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":72
+ *     elif comp_kind == COMP_NOT_D:
+ *         return ~register_d
+ *     elif comp_kind == COMP_NOT_X:             # <<<<<<<<<<<<<<
+ *         return ~x
+ *     elif comp_kind == COMP_NEG_D:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NOT_X);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":73
+ *         return ~register_d
+ *     elif comp_kind == COMP_NOT_X:
+ *         return ~x             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_NEG_D:
+ *         return -register_d
+*/
+    __pyx_r = (~__pyx_v_x);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":72
+ *     elif comp_kind == COMP_NOT_D:
+ *         return ~register_d
+ *     elif comp_kind == COMP_NOT_X:             # <<<<<<<<<<<<<<
+ *         return ~x
+ *     elif comp_kind == COMP_NEG_D:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":74
+ *     elif comp_kind == COMP_NOT_X:
+ *         return ~x
+ *     elif comp_kind == COMP_NEG_D:             # <<<<<<<<<<<<<<
+ *         return -register_d
+ *     elif comp_kind == COMP_NEG_X:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NEG_D);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":75
+ *         return ~x
+ *     elif comp_kind == COMP_NEG_D:
+ *         return -register_d             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_NEG_X:
+ *         return -x
+*/
+    __pyx_r = (-__pyx_v_register_d);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":74
+ *     elif comp_kind == COMP_NOT_X:
+ *         return ~x
+ *     elif comp_kind == COMP_NEG_D:             # <<<<<<<<<<<<<<
+ *         return -register_d
+ *     elif comp_kind == COMP_NEG_X:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":76
+ *     elif comp_kind == COMP_NEG_D:
+ *         return -register_d
+ *     elif comp_kind == COMP_NEG_X:             # <<<<<<<<<<<<<<
+ *         return -x
+ *     elif comp_kind == COMP_D_PLUS_1:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NEG_X);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":77
+ *         return -register_d
+ *     elif comp_kind == COMP_NEG_X:
+ *         return -x             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_D_PLUS_1:
+ *         return register_d + 1
+*/
+    __pyx_r = (-__pyx_v_x);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":76
+ *     elif comp_kind == COMP_NEG_D:
+ *         return -register_d
+ *     elif comp_kind == COMP_NEG_X:             # <<<<<<<<<<<<<<
+ *         return -x
+ *     elif comp_kind == COMP_D_PLUS_1:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":78
+ *     elif comp_kind == COMP_NEG_X:
+ *         return -x
+ *     elif comp_kind == COMP_D_PLUS_1:             # <<<<<<<<<<<<<<
+ *         return register_d + 1
+ *     elif comp_kind == COMP_X_PLUS_1:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_PLUS_1);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":79
+ *         return -x
+ *     elif comp_kind == COMP_D_PLUS_1:
+ *         return register_d + 1             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_X_PLUS_1:
+ *         return x + 1
+*/
+    __pyx_r = (__pyx_v_register_d + 1);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":78
+ *     elif comp_kind == COMP_NEG_X:
+ *         return -x
+ *     elif comp_kind == COMP_D_PLUS_1:             # <<<<<<<<<<<<<<
+ *         return register_d + 1
+ *     elif comp_kind == COMP_X_PLUS_1:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":80
+ *     elif comp_kind == COMP_D_PLUS_1:
+ *         return register_d + 1
+ *     elif comp_kind == COMP_X_PLUS_1:             # <<<<<<<<<<<<<<
+ *         return x + 1
+ *     elif comp_kind == COMP_D_MINUS_1:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X_PLUS_1);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":81
+ *         return register_d + 1
+ *     elif comp_kind == COMP_X_PLUS_1:
+ *         return x + 1             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_D_MINUS_1:
+ *         return register_d - 1
+*/
+    __pyx_r = (__pyx_v_x + 1);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":80
+ *     elif comp_kind == COMP_D_PLUS_1:
+ *         return register_d + 1
+ *     elif comp_kind == COMP_X_PLUS_1:             # <<<<<<<<<<<<<<
+ *         return x + 1
+ *     elif comp_kind == COMP_D_MINUS_1:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":82
+ *     elif comp_kind == COMP_X_PLUS_1:
+ *         return x + 1
+ *     elif comp_kind == COMP_D_MINUS_1:             # <<<<<<<<<<<<<<
+ *         return register_d - 1
+ *     elif comp_kind == COMP_X_MINUS_1:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_MINUS_1);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":83
+ *         return x + 1
+ *     elif comp_kind == COMP_D_MINUS_1:
+ *         return register_d - 1             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_X_MINUS_1:
+ *         return x - 1
+*/
+    __pyx_r = (__pyx_v_register_d - 1);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":82
+ *     elif comp_kind == COMP_X_PLUS_1:
+ *         return x + 1
+ *     elif comp_kind == COMP_D_MINUS_1:             # <<<<<<<<<<<<<<
+ *         return register_d - 1
+ *     elif comp_kind == COMP_X_MINUS_1:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":84
+ *     elif comp_kind == COMP_D_MINUS_1:
+ *         return register_d - 1
+ *     elif comp_kind == COMP_X_MINUS_1:             # <<<<<<<<<<<<<<
+ *         return x - 1
+ *     elif comp_kind == COMP_D_PLUS_X:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X_MINUS_1);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":85
+ *         return register_d - 1
+ *     elif comp_kind == COMP_X_MINUS_1:
+ *         return x - 1             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_D_PLUS_X:
+ *         return register_d + x
+*/
+    __pyx_r = (__pyx_v_x - 1);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":84
+ *     elif comp_kind == COMP_D_MINUS_1:
+ *         return register_d - 1
+ *     elif comp_kind == COMP_X_MINUS_1:             # <<<<<<<<<<<<<<
+ *         return x - 1
+ *     elif comp_kind == COMP_D_PLUS_X:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":86
+ *     elif comp_kind == COMP_X_MINUS_1:
+ *         return x - 1
+ *     elif comp_kind == COMP_D_PLUS_X:             # <<<<<<<<<<<<<<
+ *         return register_d + x
+ *     elif comp_kind == COMP_D_MINUS_X:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_PLUS_X);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":87
+ *         return x - 1
+ *     elif comp_kind == COMP_D_PLUS_X:
+ *         return register_d + x             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_D_MINUS_X:
+ *         return register_d - x
+*/
+    __pyx_r = (__pyx_v_register_d + __pyx_v_x);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":86
+ *     elif comp_kind == COMP_X_MINUS_1:
+ *         return x - 1
+ *     elif comp_kind == COMP_D_PLUS_X:             # <<<<<<<<<<<<<<
+ *         return register_d + x
+ *     elif comp_kind == COMP_D_MINUS_X:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":88
+ *     elif comp_kind == COMP_D_PLUS_X:
+ *         return register_d + x
+ *     elif comp_kind == COMP_D_MINUS_X:             # <<<<<<<<<<<<<<
+ *         return register_d - x
+ *     elif comp_kind == COMP_X_MINUS_D:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_MINUS_X);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":89
+ *         return register_d + x
+ *     elif comp_kind == COMP_D_MINUS_X:
+ *         return register_d - x             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_X_MINUS_D:
+ *         return x - register_d
+*/
+    __pyx_r = (__pyx_v_register_d - __pyx_v_x);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":88
+ *     elif comp_kind == COMP_D_PLUS_X:
+ *         return register_d + x
+ *     elif comp_kind == COMP_D_MINUS_X:             # <<<<<<<<<<<<<<
+ *         return register_d - x
+ *     elif comp_kind == COMP_X_MINUS_D:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":90
+ *     elif comp_kind == COMP_D_MINUS_X:
+ *         return register_d - x
+ *     elif comp_kind == COMP_X_MINUS_D:             # <<<<<<<<<<<<<<
+ *         return x - register_d
+ *     elif comp_kind == COMP_D_AND_X:
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X_MINUS_D);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":91
+ *         return register_d - x
+ *     elif comp_kind == COMP_X_MINUS_D:
+ *         return x - register_d             # <<<<<<<<<<<<<<
+ *     elif comp_kind == COMP_D_AND_X:
+ *         return register_d & x
+*/
+    __pyx_r = (__pyx_v_x - __pyx_v_register_d);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":90
+ *     elif comp_kind == COMP_D_MINUS_X:
+ *         return register_d - x
+ *     elif comp_kind == COMP_X_MINUS_D:             # <<<<<<<<<<<<<<
+ *         return x - register_d
+ *     elif comp_kind == COMP_D_AND_X:
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":92
+ *     elif comp_kind == COMP_X_MINUS_D:
+ *         return x - register_d
+ *     elif comp_kind == COMP_D_AND_X:             # <<<<<<<<<<<<<<
+ *         return register_d & x
+ *     return register_d | x
+*/
+  __pyx_t_1 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_AND_X);
+  if (__pyx_t_1) {
+
+    /* "fpga_backend_ext.pyx":93
+ *         return x - register_d
+ *     elif comp_kind == COMP_D_AND_X:
+ *         return register_d & x             # <<<<<<<<<<<<<<
+ *     return register_d | x
+ * 
+*/
+    __pyx_r = (__pyx_v_register_d & __pyx_v_x);
+    goto __pyx_L0;
+
+    /* "fpga_backend_ext.pyx":92
+ *     elif comp_kind == COMP_X_MINUS_D:
+ *         return x - register_d
+ *     elif comp_kind == COMP_D_AND_X:             # <<<<<<<<<<<<<<
+ *         return register_d & x
+ *     return register_d | x
+*/
+  }
+
+  /* "fpga_backend_ext.pyx":94
+ *     elif comp_kind == COMP_D_AND_X:
+ *         return register_d & x
+ *     return register_d | x             # <<<<<<<<<<<<<<
+ * 
+ * 
+*/
+  __pyx_r = (__pyx_v_register_d | __pyx_v_x);
+  goto __pyx_L0;
+
+  /* "fpga_backend_ext.pyx":59
+ * 
+ * 
+ * cdef inline int _eval_comp(int comp_kind, int register_d, int x):             # <<<<<<<<<<<<<<
+ *     if comp_kind == COMP_ZERO:
+ *         return 0
+*/
+
+  /* function exit code */
+  __pyx_L0:;
+  return __pyx_r;
+}
+
+/* "fpga_backend_ext.pyx":97
+ * 
+ * 
+ * def run_cycles_accelerated_plain(             # <<<<<<<<<<<<<<
  *     int n,
  *     int pc,
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16fpga_backend_ext_1run_cycles_accelerated(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_16fpga_backend_ext_1run_cycles_accelerated_plain(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_16fpga_backend_ext_run_cycles_accelerated, "Execute up to n cycles and return updated register state.");
-static PyMethodDef __pyx_mdef_16fpga_backend_ext_1run_cycles_accelerated = {"run_cycles_accelerated", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_16fpga_backend_ext_1run_cycles_accelerated, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_16fpga_backend_ext_run_cycles_accelerated};
-static PyObject *__pyx_pw_16fpga_backend_ext_1run_cycles_accelerated(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_16fpga_backend_ext_run_cycles_accelerated_plain, "Execute up to n cycles for the plain HACK engine.");
+static PyMethodDef __pyx_mdef_16fpga_backend_ext_1run_cycles_accelerated_plain = {"run_cycles_accelerated_plain", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_16fpga_backend_ext_1run_cycles_accelerated_plain, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_16fpga_backend_ext_run_cycles_accelerated_plain};
+static PyObject *__pyx_pw_16fpga_backend_ext_1run_cycles_accelerated_plain(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  int __pyx_v_n;
+  int __pyx_v_pc;
+  int __pyx_v_register_a;
+  int __pyx_v_register_d;
+  PyObject *__pyx_v_ram_obj = 0;
+  PyObject *__pyx_v_inst_type_obj = 0;
+  PyObject *__pyx_v_arg0_obj = 0;
+  PyObject *__pyx_v_arg1_obj = 0;
+  PyObject *__pyx_v_filepath = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[9] = {0,0,0,0,0,0,0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("run_cycles_accelerated_plain (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_n,&__pyx_mstate_global->__pyx_n_u_pc,&__pyx_mstate_global->__pyx_n_u_register_a,&__pyx_mstate_global->__pyx_n_u_register_d,&__pyx_mstate_global->__pyx_n_u_ram_obj,&__pyx_mstate_global->__pyx_n_u_inst_type_obj,&__pyx_mstate_global->__pyx_n_u_arg0_obj,&__pyx_mstate_global->__pyx_n_u_arg1_obj,&__pyx_mstate_global->__pyx_n_u_filepath,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 97, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  9:
+        values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  8:
+        values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  7:
+        values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  6:
+        values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  5:
+        values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  4:
+        values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "run_cycles_accelerated_plain", 0) < (0)) __PYX_ERR(0, 97, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 9; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("run_cycles_accelerated_plain", 1, 9, 9, i); __PYX_ERR(0, 97, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 9)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 97, __pyx_L3_error)
+      values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 97, __pyx_L3_error)
+    }
+    __pyx_v_n = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_n == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L3_error)
+    __pyx_v_pc = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_pc == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L3_error)
+    __pyx_v_register_a = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_register_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
+    __pyx_v_register_d = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_register_d == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 101, __pyx_L3_error)
+    __pyx_v_ram_obj = values[4];
+    __pyx_v_inst_type_obj = values[5];
+    __pyx_v_arg0_obj = values[6];
+    __pyx_v_arg1_obj = values[7];
+    __pyx_v_filepath = values[8];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("run_cycles_accelerated_plain", 1, 9, 9, __pyx_nargs); __PYX_ERR(0, 97, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("fpga_backend_ext.run_cycles_accelerated_plain", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_16fpga_backend_ext_run_cycles_accelerated_plain(__pyx_self, __pyx_v_n, __pyx_v_pc, __pyx_v_register_a, __pyx_v_register_d, __pyx_v_ram_obj, __pyx_v_inst_type_obj, __pyx_v_arg0_obj, __pyx_v_arg1_obj, __pyx_v_filepath);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated_plain(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n, int __pyx_v_pc, int __pyx_v_register_a, int __pyx_v_register_d, PyObject *__pyx_v_ram_obj, PyObject *__pyx_v_inst_type_obj, PyObject *__pyx_v_arg0_obj, PyObject *__pyx_v_arg1_obj, PyObject *__pyx_v_filepath) {
+  __Pyx_memviewslice __pyx_v_ram = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_inst_type = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_arg0 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_arg1 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  Py_ssize_t __pyx_v_dec_len;
+  int __pyx_v_cycle;
+  int __pyx_v_instruction;
+  int __pyx_v_addr;
+  int __pyx_v_x;
+  int __pyx_v_comp;
+  int __pyx_v_dst;
+  int __pyx_v_jump;
+  int __pyx_v_result;
+  int __pyx_v_halted;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_t_2 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  int __pyx_t_3;
+  Py_ssize_t __pyx_t_4;
+  int __pyx_t_5;
+  int __pyx_t_6;
+  long __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *__pyx_t_11 = NULL;
+  PyObject *__pyx_t_12[4];
+  PyObject *__pyx_t_13 = NULL;
+  size_t __pyx_t_14;
+  PyObject *__pyx_t_15 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("run_cycles_accelerated_plain", 0);
+
+  /* "fpga_backend_ext.pyx":109
+ * ):
+ *     """Execute up to n cycles for the plain HACK engine."""
+ *     cdef int[:] ram = ram_obj             # <<<<<<<<<<<<<<
+ *     cdef unsigned char[:] inst_type = inst_type_obj
+ *     cdef int[:] arg0 = arg0_obj
+*/
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_ram_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_v_ram = __pyx_t_1;
+  __pyx_t_1.memview = NULL;
+  __pyx_t_1.data = NULL;
+
+  /* "fpga_backend_ext.pyx":110
+ *     """Execute up to n cycles for the plain HACK engine."""
+ *     cdef int[:] ram = ram_obj
+ *     cdef unsigned char[:] inst_type = inst_type_obj             # <<<<<<<<<<<<<<
+ *     cdef int[:] arg0 = arg0_obj
+ *     cdef unsigned char[:] arg1 = arg1_obj
+*/
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char(__pyx_v_inst_type_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_v_inst_type = __pyx_t_2;
+  __pyx_t_2.memview = NULL;
+  __pyx_t_2.data = NULL;
+
+  /* "fpga_backend_ext.pyx":111
+ *     cdef int[:] ram = ram_obj
+ *     cdef unsigned char[:] inst_type = inst_type_obj
+ *     cdef int[:] arg0 = arg0_obj             # <<<<<<<<<<<<<<
+ *     cdef unsigned char[:] arg1 = arg1_obj
+ *     cdef Py_ssize_t dec_len = inst_type.shape[0]
+*/
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_arg0_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_v_arg0 = __pyx_t_1;
+  __pyx_t_1.memview = NULL;
+  __pyx_t_1.data = NULL;
+
+  /* "fpga_backend_ext.pyx":112
+ *     cdef unsigned char[:] inst_type = inst_type_obj
+ *     cdef int[:] arg0 = arg0_obj
+ *     cdef unsigned char[:] arg1 = arg1_obj             # <<<<<<<<<<<<<<
+ *     cdef Py_ssize_t dec_len = inst_type.shape[0]
+ *     cdef int cycle = 0
+*/
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char(__pyx_v_arg1_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_v_arg1 = __pyx_t_2;
+  __pyx_t_2.memview = NULL;
+  __pyx_t_2.data = NULL;
+
+  /* "fpga_backend_ext.pyx":113
+ *     cdef int[:] arg0 = arg0_obj
+ *     cdef unsigned char[:] arg1 = arg1_obj
+ *     cdef Py_ssize_t dec_len = inst_type.shape[0]             # <<<<<<<<<<<<<<
+ *     cdef int cycle = 0
+ *     cdef int instruction
+*/
+  __pyx_v_dec_len = (__pyx_v_inst_type.shape[0]);
+
+  /* "fpga_backend_ext.pyx":114
+ *     cdef unsigned char[:] arg1 = arg1_obj
+ *     cdef Py_ssize_t dec_len = inst_type.shape[0]
+ *     cdef int cycle = 0             # <<<<<<<<<<<<<<
+ *     cdef int instruction
+ *     cdef int addr
+*/
+  __pyx_v_cycle = 0;
+
+  /* "fpga_backend_ext.pyx":122
+ *     cdef int jump
+ *     cdef int result
+ *     cdef bint halted = False             # <<<<<<<<<<<<<<
+ * 
+ *     while cycle < n:
+*/
+  __pyx_v_halted = 0;
+
+  /* "fpga_backend_ext.pyx":124
+ *     cdef bint halted = False
+ * 
+ *     while cycle < n:             # <<<<<<<<<<<<<<
+ *         if pc >= dec_len:
+ *             break
+*/
+  while (1) {
+    __pyx_t_3 = (__pyx_v_cycle < __pyx_v_n);
+    if (!__pyx_t_3) break;
+
+    /* "fpga_backend_ext.pyx":125
+ * 
+ *     while cycle < n:
+ *         if pc >= dec_len:             # <<<<<<<<<<<<<<
+ *             break
+ * 
+*/
+    __pyx_t_3 = (__pyx_v_pc >= __pyx_v_dec_len);
+    if (__pyx_t_3) {
+
+      /* "fpga_backend_ext.pyx":126
+ *     while cycle < n:
+ *         if pc >= dec_len:
+ *             break             # <<<<<<<<<<<<<<
+ * 
+ *         instruction = inst_type[pc]
+*/
+      goto __pyx_L4_break;
+
+      /* "fpga_backend_ext.pyx":125
+ * 
+ *     while cycle < n:
+ *         if pc >= dec_len:             # <<<<<<<<<<<<<<
+ *             break
+ * 
+*/
+    }
+
+    /* "fpga_backend_ext.pyx":128
+ *             break
+ * 
+ *         instruction = inst_type[pc]             # <<<<<<<<<<<<<<
+ *         if instruction == INST_CDEST:
+ *             comp = arg0[pc]
+*/
+    __pyx_t_4 = __pyx_v_pc;
+    __pyx_v_instruction = (*((unsigned char *) ( /* dim=0 */ (__pyx_v_inst_type.data + __pyx_t_4 * __pyx_v_inst_type.strides[0]) )));
+
+    /* "fpga_backend_ext.pyx":129
+ * 
+ *         instruction = inst_type[pc]
+ *         if instruction == INST_CDEST:             # <<<<<<<<<<<<<<
+ *             comp = arg0[pc]
+ *             dst = arg1[pc]
+*/
+    __pyx_t_3 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_CDEST);
+    if (__pyx_t_3) {
+
+      /* "fpga_backend_ext.pyx":130
+ *         instruction = inst_type[pc]
+ *         if instruction == INST_CDEST:
+ *             comp = arg0[pc]             # <<<<<<<<<<<<<<
+ *             dst = arg1[pc]
+ *             addr = register_a
+*/
+      __pyx_t_4 = __pyx_v_pc;
+      __pyx_v_comp = (*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_4 * __pyx_v_arg0.strides[0]) )));
+
+      /* "fpga_backend_ext.pyx":131
+ *         if instruction == INST_CDEST:
+ *             comp = arg0[pc]
+ *             dst = arg1[pc]             # <<<<<<<<<<<<<<
+ *             addr = register_a
+ *             if comp & COMP_USE_M:
+*/
+      __pyx_t_4 = __pyx_v_pc;
+      __pyx_v_dst = (*((unsigned char *) ( /* dim=0 */ (__pyx_v_arg1.data + __pyx_t_4 * __pyx_v_arg1.strides[0]) )));
+
+      /* "fpga_backend_ext.pyx":132
+ *             comp = arg0[pc]
+ *             dst = arg1[pc]
+ *             addr = register_a             # <<<<<<<<<<<<<<
+ *             if comp & COMP_USE_M:
+ *                 x = ram[addr]
+*/
+      __pyx_v_addr = __pyx_v_register_a;
+
+      /* "fpga_backend_ext.pyx":133
+ *             dst = arg1[pc]
+ *             addr = register_a
+ *             if comp & COMP_USE_M:             # <<<<<<<<<<<<<<
+ *                 x = ram[addr]
+ *             else:
+*/
+      __pyx_t_3 = ((__pyx_v_comp & __pyx_v_16fpga_backend_ext_COMP_USE_M) != 0);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":134
+ *             addr = register_a
+ *             if comp & COMP_USE_M:
+ *                 x = ram[addr]             # <<<<<<<<<<<<<<
+ *             else:
+ *                 x = register_a
+*/
+        __pyx_t_4 = __pyx_v_addr;
+        __pyx_v_x = (*((int *) ( /* dim=0 */ (__pyx_v_ram.data + __pyx_t_4 * __pyx_v_ram.strides[0]) )));
+
+        /* "fpga_backend_ext.pyx":133
+ *             dst = arg1[pc]
+ *             addr = register_a
+ *             if comp & COMP_USE_M:             # <<<<<<<<<<<<<<
+ *                 x = ram[addr]
+ *             else:
+*/
+        goto __pyx_L7;
+      }
+
+      /* "fpga_backend_ext.pyx":136
+ *                 x = ram[addr]
+ *             else:
+ *                 x = register_a             # <<<<<<<<<<<<<<
+ * 
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
+*/
+      /*else*/ {
+        __pyx_v_x = __pyx_v_register_a;
+      }
+      __pyx_L7:;
+
+      /* "fpga_backend_ext.pyx":138
+ *                 x = register_a
+ * 
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))             # <<<<<<<<<<<<<<
+ *             if dst & DEST_M:
+ *                 ram[addr] = result
+*/
+      __pyx_t_5 = __pyx_f_16fpga_backend_ext__eval_comp((__pyx_v_comp & __pyx_v_16fpga_backend_ext_COMP_MASK), __pyx_v_register_d, __pyx_v_x); if (unlikely(__pyx_t_5 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_16fpga_backend_ext__normalize16(__pyx_t_5); if (unlikely(__pyx_t_6 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_v_result = __pyx_t_6;
+
+      /* "fpga_backend_ext.pyx":139
+ * 
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
+ *             if dst & DEST_M:             # <<<<<<<<<<<<<<
+ *                 ram[addr] = result
+ *             if dst & DEST_A:
+*/
+      __pyx_t_3 = ((__pyx_v_dst & __pyx_v_16fpga_backend_ext_DEST_M) != 0);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":140
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
+ *             if dst & DEST_M:
+ *                 ram[addr] = result             # <<<<<<<<<<<<<<
+ *             if dst & DEST_A:
+ *                 register_a = result
+*/
+        __pyx_t_4 = __pyx_v_addr;
+        *((int *) ( /* dim=0 */ (__pyx_v_ram.data + __pyx_t_4 * __pyx_v_ram.strides[0]) )) = __pyx_v_result;
+
+        /* "fpga_backend_ext.pyx":139
+ * 
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
+ *             if dst & DEST_M:             # <<<<<<<<<<<<<<
+ *                 ram[addr] = result
+ *             if dst & DEST_A:
+*/
+      }
+
+      /* "fpga_backend_ext.pyx":141
+ *             if dst & DEST_M:
+ *                 ram[addr] = result
+ *             if dst & DEST_A:             # <<<<<<<<<<<<<<
+ *                 register_a = result
+ *             if dst & DEST_D:
+*/
+      __pyx_t_3 = ((__pyx_v_dst & __pyx_v_16fpga_backend_ext_DEST_A) != 0);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":142
+ *                 ram[addr] = result
+ *             if dst & DEST_A:
+ *                 register_a = result             # <<<<<<<<<<<<<<
+ *             if dst & DEST_D:
+ *                 register_d = result
+*/
+        __pyx_v_register_a = __pyx_v_result;
+
+        /* "fpga_backend_ext.pyx":141
+ *             if dst & DEST_M:
+ *                 ram[addr] = result
+ *             if dst & DEST_A:             # <<<<<<<<<<<<<<
+ *                 register_a = result
+ *             if dst & DEST_D:
+*/
+      }
+
+      /* "fpga_backend_ext.pyx":143
+ *             if dst & DEST_A:
+ *                 register_a = result
+ *             if dst & DEST_D:             # <<<<<<<<<<<<<<
+ *                 register_d = result
+ *             pc += 1
+*/
+      __pyx_t_3 = ((__pyx_v_dst & __pyx_v_16fpga_backend_ext_DEST_D) != 0);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":144
+ *                 register_a = result
+ *             if dst & DEST_D:
+ *                 register_d = result             # <<<<<<<<<<<<<<
+ *             pc += 1
+ * 
+*/
+        __pyx_v_register_d = __pyx_v_result;
+
+        /* "fpga_backend_ext.pyx":143
+ *             if dst & DEST_A:
+ *                 register_a = result
+ *             if dst & DEST_D:             # <<<<<<<<<<<<<<
+ *                 register_d = result
+ *             pc += 1
+*/
+      }
+
+      /* "fpga_backend_ext.pyx":145
+ *             if dst & DEST_D:
+ *                 register_d = result
+ *             pc += 1             # <<<<<<<<<<<<<<
+ * 
+ *         elif instruction == INST_A:
+*/
+      __pyx_v_pc = (__pyx_v_pc + 1);
+
+      /* "fpga_backend_ext.pyx":129
+ * 
+ *         instruction = inst_type[pc]
+ *         if instruction == INST_CDEST:             # <<<<<<<<<<<<<<
+ *             comp = arg0[pc]
+ *             dst = arg1[pc]
+*/
+      goto __pyx_L6;
+    }
+
+    /* "fpga_backend_ext.pyx":147
+ *             pc += 1
+ * 
+ *         elif instruction == INST_A:             # <<<<<<<<<<<<<<
+ *             register_a = arg0[pc]
+ *             pc += 1
+*/
+    __pyx_t_3 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_A);
+    if (__pyx_t_3) {
+
+      /* "fpga_backend_ext.pyx":148
+ * 
+ *         elif instruction == INST_A:
+ *             register_a = arg0[pc]             # <<<<<<<<<<<<<<
+ *             pc += 1
+ * 
+*/
+      __pyx_t_4 = __pyx_v_pc;
+      __pyx_v_register_a = (*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_4 * __pyx_v_arg0.strides[0]) )));
+
+      /* "fpga_backend_ext.pyx":149
+ *         elif instruction == INST_A:
+ *             register_a = arg0[pc]
+ *             pc += 1             # <<<<<<<<<<<<<<
+ * 
+ *         elif instruction == INST_CJMP:
+*/
+      __pyx_v_pc = (__pyx_v_pc + 1);
+
+      /* "fpga_backend_ext.pyx":147
+ *             pc += 1
+ * 
+ *         elif instruction == INST_A:             # <<<<<<<<<<<<<<
+ *             register_a = arg0[pc]
+ *             pc += 1
+*/
+      goto __pyx_L6;
+    }
+
+    /* "fpga_backend_ext.pyx":151
+ *             pc += 1
+ * 
+ *         elif instruction == INST_CJMP:             # <<<<<<<<<<<<<<
+ *             jump = arg0[pc]
+ *             if jump == JUMP_GT:
+*/
+    __pyx_t_3 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_CJMP);
+    if (__pyx_t_3) {
+
+      /* "fpga_backend_ext.pyx":152
+ * 
+ *         elif instruction == INST_CJMP:
+ *             jump = arg0[pc]             # <<<<<<<<<<<<<<
+ *             if jump == JUMP_GT:
+ *                 pc = register_a if register_d > 0 else pc + 1
+*/
+      __pyx_t_4 = __pyx_v_pc;
+      __pyx_v_jump = (*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_4 * __pyx_v_arg0.strides[0]) )));
+
+      /* "fpga_backend_ext.pyx":153
+ *         elif instruction == INST_CJMP:
+ *             jump = arg0[pc]
+ *             if jump == JUMP_GT:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d > 0 else pc + 1
+ *             elif jump == JUMP_GE:
+*/
+      __pyx_t_3 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_GT);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":154
+ *             jump = arg0[pc]
+ *             if jump == JUMP_GT:
+ *                 pc = register_a if register_d > 0 else pc + 1             # <<<<<<<<<<<<<<
+ *             elif jump == JUMP_GE:
+ *                 pc = register_a if register_d >= 0 else pc + 1
+*/
+        __pyx_t_3 = (__pyx_v_register_d > 0);
+        if (__pyx_t_3) {
+          __pyx_t_7 = __pyx_v_register_a;
+        } else {
+          __pyx_t_7 = (__pyx_v_pc + 1);
+        }
+        __pyx_v_pc = __pyx_t_7;
+
+        /* "fpga_backend_ext.pyx":153
+ *         elif instruction == INST_CJMP:
+ *             jump = arg0[pc]
+ *             if jump == JUMP_GT:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d > 0 else pc + 1
+ *             elif jump == JUMP_GE:
+*/
+        goto __pyx_L11;
+      }
+
+      /* "fpga_backend_ext.pyx":155
+ *             if jump == JUMP_GT:
+ *                 pc = register_a if register_d > 0 else pc + 1
+ *             elif jump == JUMP_GE:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d >= 0 else pc + 1
+ *             elif jump == JUMP_EQ:
+*/
+      __pyx_t_3 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_GE);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":156
+ *                 pc = register_a if register_d > 0 else pc + 1
+ *             elif jump == JUMP_GE:
+ *                 pc = register_a if register_d >= 0 else pc + 1             # <<<<<<<<<<<<<<
+ *             elif jump == JUMP_EQ:
+ *                 pc = register_a if register_d == 0 else pc + 1
+*/
+        __pyx_t_3 = (__pyx_v_register_d >= 0);
+        if (__pyx_t_3) {
+          __pyx_t_7 = __pyx_v_register_a;
+        } else {
+          __pyx_t_7 = (__pyx_v_pc + 1);
+        }
+        __pyx_v_pc = __pyx_t_7;
+
+        /* "fpga_backend_ext.pyx":155
+ *             if jump == JUMP_GT:
+ *                 pc = register_a if register_d > 0 else pc + 1
+ *             elif jump == JUMP_GE:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d >= 0 else pc + 1
+ *             elif jump == JUMP_EQ:
+*/
+        goto __pyx_L11;
+      }
+
+      /* "fpga_backend_ext.pyx":157
+ *             elif jump == JUMP_GE:
+ *                 pc = register_a if register_d >= 0 else pc + 1
+ *             elif jump == JUMP_EQ:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d == 0 else pc + 1
+ *             elif jump == JUMP_NE:
+*/
+      __pyx_t_3 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_EQ);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":158
+ *                 pc = register_a if register_d >= 0 else pc + 1
+ *             elif jump == JUMP_EQ:
+ *                 pc = register_a if register_d == 0 else pc + 1             # <<<<<<<<<<<<<<
+ *             elif jump == JUMP_NE:
+ *                 pc = register_a if register_d != 0 else pc + 1
+*/
+        __pyx_t_3 = (__pyx_v_register_d == 0);
+        if (__pyx_t_3) {
+          __pyx_t_7 = __pyx_v_register_a;
+        } else {
+          __pyx_t_7 = (__pyx_v_pc + 1);
+        }
+        __pyx_v_pc = __pyx_t_7;
+
+        /* "fpga_backend_ext.pyx":157
+ *             elif jump == JUMP_GE:
+ *                 pc = register_a if register_d >= 0 else pc + 1
+ *             elif jump == JUMP_EQ:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d == 0 else pc + 1
+ *             elif jump == JUMP_NE:
+*/
+        goto __pyx_L11;
+      }
+
+      /* "fpga_backend_ext.pyx":159
+ *             elif jump == JUMP_EQ:
+ *                 pc = register_a if register_d == 0 else pc + 1
+ *             elif jump == JUMP_NE:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d != 0 else pc + 1
+ *             elif jump == JUMP_LT:
+*/
+      __pyx_t_3 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_NE);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":160
+ *                 pc = register_a if register_d == 0 else pc + 1
+ *             elif jump == JUMP_NE:
+ *                 pc = register_a if register_d != 0 else pc + 1             # <<<<<<<<<<<<<<
+ *             elif jump == JUMP_LT:
+ *                 pc = register_a if register_d < 0 else pc + 1
+*/
+        __pyx_t_3 = (__pyx_v_register_d != 0);
+        if (__pyx_t_3) {
+          __pyx_t_7 = __pyx_v_register_a;
+        } else {
+          __pyx_t_7 = (__pyx_v_pc + 1);
+        }
+        __pyx_v_pc = __pyx_t_7;
+
+        /* "fpga_backend_ext.pyx":159
+ *             elif jump == JUMP_EQ:
+ *                 pc = register_a if register_d == 0 else pc + 1
+ *             elif jump == JUMP_NE:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d != 0 else pc + 1
+ *             elif jump == JUMP_LT:
+*/
+        goto __pyx_L11;
+      }
+
+      /* "fpga_backend_ext.pyx":161
+ *             elif jump == JUMP_NE:
+ *                 pc = register_a if register_d != 0 else pc + 1
+ *             elif jump == JUMP_LT:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d < 0 else pc + 1
+ *             elif jump == JUMP_LE:
+*/
+      __pyx_t_3 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_LT);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":162
+ *                 pc = register_a if register_d != 0 else pc + 1
+ *             elif jump == JUMP_LT:
+ *                 pc = register_a if register_d < 0 else pc + 1             # <<<<<<<<<<<<<<
+ *             elif jump == JUMP_LE:
+ *                 pc = register_a if register_d <= 0 else pc + 1
+*/
+        __pyx_t_3 = (__pyx_v_register_d < 0);
+        if (__pyx_t_3) {
+          __pyx_t_7 = __pyx_v_register_a;
+        } else {
+          __pyx_t_7 = (__pyx_v_pc + 1);
+        }
+        __pyx_v_pc = __pyx_t_7;
+
+        /* "fpga_backend_ext.pyx":161
+ *             elif jump == JUMP_NE:
+ *                 pc = register_a if register_d != 0 else pc + 1
+ *             elif jump == JUMP_LT:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d < 0 else pc + 1
+ *             elif jump == JUMP_LE:
+*/
+        goto __pyx_L11;
+      }
+
+      /* "fpga_backend_ext.pyx":163
+ *             elif jump == JUMP_LT:
+ *                 pc = register_a if register_d < 0 else pc + 1
+ *             elif jump == JUMP_LE:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d <= 0 else pc + 1
+ *             else:
+*/
+      __pyx_t_3 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_LE);
+      if (__pyx_t_3) {
+
+        /* "fpga_backend_ext.pyx":164
+ *                 pc = register_a if register_d < 0 else pc + 1
+ *             elif jump == JUMP_LE:
+ *                 pc = register_a if register_d <= 0 else pc + 1             # <<<<<<<<<<<<<<
+ *             else:
+ *                 pc = register_a
+*/
+        __pyx_t_3 = (__pyx_v_register_d <= 0);
+        if (__pyx_t_3) {
+          __pyx_t_7 = __pyx_v_register_a;
+        } else {
+          __pyx_t_7 = (__pyx_v_pc + 1);
+        }
+        __pyx_v_pc = __pyx_t_7;
+
+        /* "fpga_backend_ext.pyx":163
+ *             elif jump == JUMP_LT:
+ *                 pc = register_a if register_d < 0 else pc + 1
+ *             elif jump == JUMP_LE:             # <<<<<<<<<<<<<<
+ *                 pc = register_a if register_d <= 0 else pc + 1
+ *             else:
+*/
+        goto __pyx_L11;
+      }
+
+      /* "fpga_backend_ext.pyx":166
+ *                 pc = register_a if register_d <= 0 else pc + 1
+ *             else:
+ *                 pc = register_a             # <<<<<<<<<<<<<<
+ * 
+ *         elif instruction == INST_HALT:
+*/
+      /*else*/ {
+        __pyx_v_pc = __pyx_v_register_a;
+      }
+      __pyx_L11:;
+
+      /* "fpga_backend_ext.pyx":151
+ *             pc += 1
+ * 
+ *         elif instruction == INST_CJMP:             # <<<<<<<<<<<<<<
+ *             jump = arg0[pc]
+ *             if jump == JUMP_GT:
+*/
+      goto __pyx_L6;
+    }
+
+    /* "fpga_backend_ext.pyx":168
+ *                 pc = register_a
+ * 
+ *         elif instruction == INST_HALT:             # <<<<<<<<<<<<<<
+ *             halted = True
+ *             break
+*/
+    __pyx_t_3 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_HALT);
+    if (likely(__pyx_t_3)) {
+
+      /* "fpga_backend_ext.pyx":169
+ * 
+ *         elif instruction == INST_HALT:
+ *             halted = True             # <<<<<<<<<<<<<<
+ *             break
+ * 
+*/
+      __pyx_v_halted = 1;
+
+      /* "fpga_backend_ext.pyx":170
+ *         elif instruction == INST_HALT:
+ *             halted = True
+ *             break             # <<<<<<<<<<<<<<
+ * 
+ *         else:
+*/
+      goto __pyx_L4_break;
+
+      /* "fpga_backend_ext.pyx":168
+ *                 pc = register_a
+ * 
+ *         elif instruction == INST_HALT:             # <<<<<<<<<<<<<<
+ *             halted = True
+ *             break
+*/
+    }
+
+    /* "fpga_backend_ext.pyx":173
+ * 
+ *         else:
+ *             raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (arg0[pc], filepath))             # <<<<<<<<<<<<<<
+ * 
+ *         cycle += 1
+*/
+    /*else*/ {
+      __pyx_t_9 = NULL;
+      __pyx_t_4 = __pyx_v_pc;
+      __pyx_t_10 = __Pyx_PyUnicode_From_int((*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_4 * __pyx_v_arg0.strides[0]) ))), 0, ' ', 'd'); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      __pyx_t_11 = __Pyx_PyObject_FormatSimpleAndDecref(PyObject_Str(__pyx_v_filepath), __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_11);
+      __pyx_t_12[0] = __pyx_mstate_global->__pyx_kp_u_Engine_Sys_error_src_line;
+      __pyx_t_12[1] = __pyx_t_10;
+      __pyx_t_12[2] = __pyx_mstate_global->__pyx_kp_u__6;
+      __pyx_t_12[3] = __pyx_t_11;
+      __pyx_t_13 = __Pyx_PyUnicode_Join(__pyx_t_12, 4, 31 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_10) + 1 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_11), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_11));
+      if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+      __pyx_t_14 = 1;
+      {
+        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_t_13};
+        __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_RuntimeError)), __pyx_callargs+__pyx_t_14, (2-__pyx_t_14) | (__pyx_t_14*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_8);
+      }
+      __Pyx_Raise(__pyx_t_8, 0, 0, 0);
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __PYX_ERR(0, 173, __pyx_L1_error)
+    }
+    __pyx_L6:;
+
+    /* "fpga_backend_ext.pyx":175
+ *             raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (arg0[pc], filepath))
+ * 
+ *         cycle += 1             # <<<<<<<<<<<<<<
+ * 
+ *     return cycle, pc, register_a, register_d, halted
+*/
+    __pyx_v_cycle = (__pyx_v_cycle + 1);
+  }
+  __pyx_L4_break:;
+
+  /* "fpga_backend_ext.pyx":177
+ *         cycle += 1
+ * 
+ *     return cycle, pc, register_a, register_d, halted             # <<<<<<<<<<<<<<
+ * 
+ * 
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_cycle); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_13 = __Pyx_PyLong_From_int(__pyx_v_pc); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_13);
+  __pyx_t_9 = __Pyx_PyLong_From_int(__pyx_v_register_a); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_11 = __Pyx_PyLong_From_int(__pyx_v_register_d); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_11);
+  __pyx_t_10 = __Pyx_PyBool_FromLong(__pyx_v_halted); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __pyx_t_15 = PyTuple_New(5); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_15);
+  __Pyx_GIVEREF(__pyx_t_8);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_8) != (0)) __PYX_ERR(0, 177, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_13);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_13) != (0)) __PYX_ERR(0, 177, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_9);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 2, __pyx_t_9) != (0)) __PYX_ERR(0, 177, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_11);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 3, __pyx_t_11) != (0)) __PYX_ERR(0, 177, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_10);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 4, __pyx_t_10) != (0)) __PYX_ERR(0, 177, __pyx_L1_error);
+  __pyx_t_8 = 0;
+  __pyx_t_13 = 0;
+  __pyx_t_9 = 0;
+  __pyx_t_11 = 0;
+  __pyx_t_10 = 0;
+  __pyx_r = __pyx_t_15;
+  __pyx_t_15 = 0;
+  goto __pyx_L0;
+
+  /* "fpga_backend_ext.pyx":97
+ * 
+ * 
+ * def run_cycles_accelerated_plain(             # <<<<<<<<<<<<<<
+ *     int n,
+ *     int pc,
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __PYX_XCLEAR_MEMVIEW(&__pyx_t_1, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_t_2, 1);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_XDECREF(__pyx_t_11);
+  __Pyx_XDECREF(__pyx_t_13);
+  __Pyx_XDECREF(__pyx_t_15);
+  __Pyx_AddTraceback("fpga_backend_ext.run_cycles_accelerated_plain", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_ram, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_inst_type, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_arg0, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_arg1, 1);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "fpga_backend_ext.pyx":180
+ * 
+ * 
+ * def run_cycles_accelerated_fpga(             # <<<<<<<<<<<<<<
+ *     int n,
+ *     int pc,
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_16fpga_backend_ext_3run_cycles_accelerated_fpga(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_16fpga_backend_ext_2run_cycles_accelerated_fpga, "Execute up to n cycles and return updated register state.");
+static PyMethodDef __pyx_mdef_16fpga_backend_ext_3run_cycles_accelerated_fpga = {"run_cycles_accelerated_fpga", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_16fpga_backend_ext_3run_cycles_accelerated_fpga, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_16fpga_backend_ext_2run_cycles_accelerated_fpga};
+static PyObject *__pyx_pw_16fpga_backend_ext_3run_cycles_accelerated_fpga(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -16666,7 +18163,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("run_cycles_accelerated (wrapper)", 0);
+  __Pyx_RefNannySetupContext("run_cycles_accelerated_fpga (wrapper)", 0);
   #if !CYTHON_METH_FASTCALL
   #if CYTHON_ASSUME_SAFE_SIZE
   __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -16678,91 +18175,91 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_n,&__pyx_mstate_global->__pyx_n_u_pc,&__pyx_mstate_global->__pyx_n_u_register_a,&__pyx_mstate_global->__pyx_n_u_register_d,&__pyx_mstate_global->__pyx_n_u_ram_obj,&__pyx_mstate_global->__pyx_n_u_inst_type_obj,&__pyx_mstate_global->__pyx_n_u_arg0_obj,&__pyx_mstate_global->__pyx_n_u_arg1_obj,&__pyx_mstate_global->__pyx_n_u_lcd,&__pyx_mstate_global->__pyx_n_u_touch,&__pyx_mstate_global->__pyx_n_u_filepath,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 59, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 180, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case 11:
         values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 10:
         values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 59, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "run_cycles_accelerated", 0) < (0)) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "run_cycles_accelerated_fpga", 0) < (0)) __PYX_ERR(0, 180, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 11; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("run_cycles_accelerated", 1, 11, 11, i); __PYX_ERR(0, 59, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("run_cycles_accelerated_fpga", 1, 11, 11, i); __PYX_ERR(0, 180, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 11)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 180, __pyx_L3_error)
       values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 59, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 180, __pyx_L3_error)
     }
-    __pyx_v_n = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_n == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L3_error)
-    __pyx_v_pc = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_pc == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 61, __pyx_L3_error)
-    __pyx_v_register_a = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_register_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 62, __pyx_L3_error)
-    __pyx_v_register_d = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_register_d == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L3_error)
+    __pyx_v_n = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_n == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 181, __pyx_L3_error)
+    __pyx_v_pc = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_pc == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L3_error)
+    __pyx_v_register_a = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_register_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 183, __pyx_L3_error)
+    __pyx_v_register_d = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_register_d == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 184, __pyx_L3_error)
     __pyx_v_ram_obj = values[4];
     __pyx_v_inst_type_obj = values[5];
     __pyx_v_arg0_obj = values[6];
@@ -16773,18 +18270,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("run_cycles_accelerated", 1, 11, 11, __pyx_nargs); __PYX_ERR(0, 59, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("run_cycles_accelerated_fpga", 1, 11, 11, __pyx_nargs); __PYX_ERR(0, 180, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
     Py_XDECREF(values[__pyx_temp]);
   }
-  __Pyx_AddTraceback("fpga_backend_ext.run_cycles_accelerated", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("fpga_backend_ext.run_cycles_accelerated_fpga", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16fpga_backend_ext_run_cycles_accelerated(__pyx_self, __pyx_v_n, __pyx_v_pc, __pyx_v_register_a, __pyx_v_register_d, __pyx_v_ram_obj, __pyx_v_inst_type_obj, __pyx_v_arg0_obj, __pyx_v_arg1_obj, __pyx_v_lcd, __pyx_v_touch, __pyx_v_filepath);
+  __pyx_r = __pyx_pf_16fpga_backend_ext_2run_cycles_accelerated_fpga(__pyx_self, __pyx_v_n, __pyx_v_pc, __pyx_v_register_a, __pyx_v_register_d, __pyx_v_ram_obj, __pyx_v_inst_type_obj, __pyx_v_arg0_obj, __pyx_v_arg1_obj, __pyx_v_lcd, __pyx_v_touch, __pyx_v_filepath);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -16794,7 +18291,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n, int __pyx_v_pc, int __pyx_v_register_a, int __pyx_v_register_d, PyObject *__pyx_v_ram_obj, PyObject *__pyx_v_inst_type_obj, PyObject *__pyx_v_arg0_obj, PyObject *__pyx_v_arg1_obj, PyObject *__pyx_v_lcd, PyObject *__pyx_v_touch, PyObject *__pyx_v_filepath) {
+static PyObject *__pyx_pf_16fpga_backend_ext_2run_cycles_accelerated_fpga(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n, int __pyx_v_pc, int __pyx_v_register_a, int __pyx_v_register_d, PyObject *__pyx_v_ram_obj, PyObject *__pyx_v_inst_type_obj, PyObject *__pyx_v_arg0_obj, PyObject *__pyx_v_arg1_obj, PyObject *__pyx_v_lcd, PyObject *__pyx_v_touch, PyObject *__pyx_v_filepath) {
   __Pyx_memviewslice __pyx_v_ram = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_inst_type = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_arg0 = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -16806,7 +18303,6 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
   int __pyx_v_m;
   int __pyx_v_x;
   int __pyx_v_comp;
-  int __pyx_v_comp_kind;
   int __pyx_v_dst;
   int __pyx_v_jump;
   int __pyx_v_result;
@@ -16831,65 +18327,66 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
   PyObject *__pyx_t_8 = NULL;
   size_t __pyx_t_9;
   int __pyx_t_10;
-  PyObject *__pyx_t_11 = NULL;
-  long __pyx_t_12;
-  PyObject *__pyx_t_13[4];
-  PyObject *__pyx_t_14 = NULL;
+  int __pyx_t_11;
+  PyObject *__pyx_t_12 = NULL;
+  long __pyx_t_13;
+  PyObject *__pyx_t_14[4];
   PyObject *__pyx_t_15 = NULL;
+  PyObject *__pyx_t_16 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("run_cycles_accelerated", 0);
+  __Pyx_RefNannySetupContext("run_cycles_accelerated_fpga", 0);
 
-  /* "fpga_backend_ext.pyx":73
+  /* "fpga_backend_ext.pyx":194
  * ):
  *     """Execute up to n cycles and return updated register state."""
  *     cdef int[:] ram = ram_obj             # <<<<<<<<<<<<<<
  *     cdef unsigned char[:] inst_type = inst_type_obj
  *     cdef int[:] arg0 = arg0_obj
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_ram_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_ram_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 194, __pyx_L1_error)
   __pyx_v_ram = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "fpga_backend_ext.pyx":74
+  /* "fpga_backend_ext.pyx":195
  *     """Execute up to n cycles and return updated register state."""
  *     cdef int[:] ram = ram_obj
  *     cdef unsigned char[:] inst_type = inst_type_obj             # <<<<<<<<<<<<<<
  *     cdef int[:] arg0 = arg0_obj
  *     cdef unsigned char[:] arg1 = arg1_obj
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char(__pyx_v_inst_type_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char(__pyx_v_inst_type_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 195, __pyx_L1_error)
   __pyx_v_inst_type = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "fpga_backend_ext.pyx":75
+  /* "fpga_backend_ext.pyx":196
  *     cdef int[:] ram = ram_obj
  *     cdef unsigned char[:] inst_type = inst_type_obj
  *     cdef int[:] arg0 = arg0_obj             # <<<<<<<<<<<<<<
  *     cdef unsigned char[:] arg1 = arg1_obj
  *     cdef Py_ssize_t dec_len = inst_type.shape[0]
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_arg0_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_arg0_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 196, __pyx_L1_error)
   __pyx_v_arg0 = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "fpga_backend_ext.pyx":76
+  /* "fpga_backend_ext.pyx":197
  *     cdef unsigned char[:] inst_type = inst_type_obj
  *     cdef int[:] arg0 = arg0_obj
  *     cdef unsigned char[:] arg1 = arg1_obj             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t dec_len = inst_type.shape[0]
  *     cdef int cycle = 0
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char(__pyx_v_arg1_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char(__pyx_v_arg1_obj, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 197, __pyx_L1_error)
   __pyx_v_arg1 = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "fpga_backend_ext.pyx":77
+  /* "fpga_backend_ext.pyx":198
  *     cdef int[:] arg0 = arg0_obj
  *     cdef unsigned char[:] arg1 = arg1_obj
  *     cdef Py_ssize_t dec_len = inst_type.shape[0]             # <<<<<<<<<<<<<<
@@ -16898,7 +18395,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
   __pyx_v_dec_len = (__pyx_v_inst_type.shape[0]);
 
-  /* "fpga_backend_ext.pyx":78
+  /* "fpga_backend_ext.pyx":199
  *     cdef unsigned char[:] arg1 = arg1_obj
  *     cdef Py_ssize_t dec_len = inst_type.shape[0]
  *     cdef int cycle = 0             # <<<<<<<<<<<<<<
@@ -16907,7 +18404,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
   __pyx_v_cycle = 0;
 
-  /* "fpga_backend_ext.pyx":89
+  /* "fpga_backend_ext.pyx":210
  *     cdef int result
  *     cdef int value
  *     cdef bint halted = False             # <<<<<<<<<<<<<<
@@ -16916,103 +18413,103 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
   __pyx_v_halted = 0;
 
-  /* "fpga_backend_ext.pyx":90
+  /* "fpga_backend_ext.pyx":211
  *     cdef int value
  *     cdef bint halted = False
  *     cdef object lcd_write_command = lcd.write_command             # <<<<<<<<<<<<<<
  *     cdef object lcd_write_data = lcd.write_data
  *     cdef object lcd_clear = lcd.clear
 */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_lcd, __pyx_mstate_global->__pyx_n_u_write_command); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_lcd, __pyx_mstate_global->__pyx_n_u_write_command); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_lcd_write_command = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "fpga_backend_ext.pyx":91
+  /* "fpga_backend_ext.pyx":212
  *     cdef bint halted = False
  *     cdef object lcd_write_command = lcd.write_command
  *     cdef object lcd_write_data = lcd.write_data             # <<<<<<<<<<<<<<
  *     cdef object lcd_clear = lcd.clear
  *     cdef object touch_read = touch.read
 */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_lcd, __pyx_mstate_global->__pyx_n_u_write_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_lcd, __pyx_mstate_global->__pyx_n_u_write_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_lcd_write_data = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "fpga_backend_ext.pyx":92
+  /* "fpga_backend_ext.pyx":213
  *     cdef object lcd_write_command = lcd.write_command
  *     cdef object lcd_write_data = lcd.write_data
  *     cdef object lcd_clear = lcd.clear             # <<<<<<<<<<<<<<
  *     cdef object touch_read = touch.read
  *     cdef object touch_write = touch.write
 */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_lcd, __pyx_mstate_global->__pyx_n_u_clear); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_lcd, __pyx_mstate_global->__pyx_n_u_clear); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_lcd_clear = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "fpga_backend_ext.pyx":93
+  /* "fpga_backend_ext.pyx":214
  *     cdef object lcd_write_data = lcd.write_data
  *     cdef object lcd_clear = lcd.clear
  *     cdef object touch_read = touch.read             # <<<<<<<<<<<<<<
  *     cdef object touch_write = touch.write
  *     cdef object stdout_write = sys.stdout.write
 */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_touch, __pyx_mstate_global->__pyx_n_u_read); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_touch, __pyx_mstate_global->__pyx_n_u_read); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_touch_read = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "fpga_backend_ext.pyx":94
+  /* "fpga_backend_ext.pyx":215
  *     cdef object lcd_clear = lcd.clear
  *     cdef object touch_read = touch.read
  *     cdef object touch_write = touch.write             # <<<<<<<<<<<<<<
  *     cdef object stdout_write = sys.stdout.write
  *     cdef object stdout_flush = sys.stdout.flush
 */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_touch, __pyx_mstate_global->__pyx_n_u_write); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_touch, __pyx_mstate_global->__pyx_n_u_write); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_touch_write = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "fpga_backend_ext.pyx":95
+  /* "fpga_backend_ext.pyx":216
  *     cdef object touch_read = touch.read
  *     cdef object touch_write = touch.write
  *     cdef object stdout_write = sys.stdout.write             # <<<<<<<<<<<<<<
  *     cdef object stdout_flush = sys.stdout.flush
  * 
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_stdout); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_stdout); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_write); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_write); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_stdout_write = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "fpga_backend_ext.pyx":96
+  /* "fpga_backend_ext.pyx":217
  *     cdef object touch_write = touch.write
  *     cdef object stdout_write = sys.stdout.write
  *     cdef object stdout_flush = sys.stdout.flush             # <<<<<<<<<<<<<<
  * 
  *     while cycle < n:
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_stdout); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_stdout); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_flush); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_flush); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_stdout_flush = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "fpga_backend_ext.pyx":98
+  /* "fpga_backend_ext.pyx":219
  *     cdef object stdout_flush = sys.stdout.flush
  * 
  *     while cycle < n:             # <<<<<<<<<<<<<<
@@ -17023,7 +18520,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     __pyx_t_5 = (__pyx_v_cycle < __pyx_v_n);
     if (!__pyx_t_5) break;
 
-    /* "fpga_backend_ext.pyx":99
+    /* "fpga_backend_ext.pyx":220
  * 
  *     while cycle < n:
  *         if pc >= dec_len:             # <<<<<<<<<<<<<<
@@ -17033,7 +18530,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     __pyx_t_5 = (__pyx_v_pc >= __pyx_v_dec_len);
     if (__pyx_t_5) {
 
-      /* "fpga_backend_ext.pyx":100
+      /* "fpga_backend_ext.pyx":221
  *     while cycle < n:
  *         if pc >= dec_len:
  *             break             # <<<<<<<<<<<<<<
@@ -17042,7 +18539,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       goto __pyx_L4_break;
 
-      /* "fpga_backend_ext.pyx":99
+      /* "fpga_backend_ext.pyx":220
  * 
  *     while cycle < n:
  *         if pc >= dec_len:             # <<<<<<<<<<<<<<
@@ -17051,7 +18548,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
     }
 
-    /* "fpga_backend_ext.pyx":102
+    /* "fpga_backend_ext.pyx":223
  *             break
  * 
  *         instruction = inst_type[pc]             # <<<<<<<<<<<<<<
@@ -17061,7 +18558,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     __pyx_t_6 = __pyx_v_pc;
     __pyx_v_instruction = (*((unsigned char *) ( /* dim=0 */ (__pyx_v_inst_type.data + __pyx_t_6 * __pyx_v_inst_type.strides[0]) )));
 
-    /* "fpga_backend_ext.pyx":103
+    /* "fpga_backend_ext.pyx":224
  * 
  *         instruction = inst_type[pc]
  *         if instruction == INST_CDEST:             # <<<<<<<<<<<<<<
@@ -17071,7 +18568,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     __pyx_t_5 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_CDEST);
     if (__pyx_t_5) {
 
-      /* "fpga_backend_ext.pyx":104
+      /* "fpga_backend_ext.pyx":225
  *         instruction = inst_type[pc]
  *         if instruction == INST_CDEST:
  *             comp = arg0[pc]             # <<<<<<<<<<<<<<
@@ -17081,7 +18578,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_6 = __pyx_v_pc;
       __pyx_v_comp = (*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_6 * __pyx_v_arg0.strides[0]) )));
 
-      /* "fpga_backend_ext.pyx":105
+      /* "fpga_backend_ext.pyx":226
  *         if instruction == INST_CDEST:
  *             comp = arg0[pc]
  *             dst = arg1[pc]             # <<<<<<<<<<<<<<
@@ -17091,7 +18588,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_6 = __pyx_v_pc;
       __pyx_v_dst = (*((unsigned char *) ( /* dim=0 */ (__pyx_v_arg1.data + __pyx_t_6 * __pyx_v_arg1.strides[0]) )));
 
-      /* "fpga_backend_ext.pyx":106
+      /* "fpga_backend_ext.pyx":227
  *             comp = arg0[pc]
  *             dst = arg1[pc]
  *             addr = register_a             # <<<<<<<<<<<<<<
@@ -17100,7 +18597,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       __pyx_v_addr = __pyx_v_register_a;
 
-      /* "fpga_backend_ext.pyx":107
+      /* "fpga_backend_ext.pyx":228
  *             dst = arg1[pc]
  *             addr = register_a
  *             if comp & COMP_USE_M:             # <<<<<<<<<<<<<<
@@ -17110,7 +18607,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = ((__pyx_v_comp & __pyx_v_16fpga_backend_ext_COMP_USE_M) != 0);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":108
+        /* "fpga_backend_ext.pyx":229
  *             addr = register_a
  *             if comp & COMP_USE_M:
  *                 if addr < IO_MIN or addr > IO_MAX:             # <<<<<<<<<<<<<<
@@ -17128,7 +18625,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_L9_bool_binop_done:;
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":109
+          /* "fpga_backend_ext.pyx":230
  *             if comp & COMP_USE_M:
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     m = ram[addr]             # <<<<<<<<<<<<<<
@@ -17138,7 +18635,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           __pyx_t_6 = __pyx_v_addr;
           __pyx_v_m = (*((int *) ( /* dim=0 */ (__pyx_v_ram.data + __pyx_t_6 * __pyx_v_ram.strides[0]) )));
 
-          /* "fpga_backend_ext.pyx":108
+          /* "fpga_backend_ext.pyx":229
  *             addr = register_a
  *             if comp & COMP_USE_M:
  *                 if addr < IO_MIN or addr > IO_MAX:             # <<<<<<<<<<<<<<
@@ -17148,7 +18645,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           goto __pyx_L8;
         }
 
-        /* "fpga_backend_ext.pyx":110
+        /* "fpga_backend_ext.pyx":231
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     m = ram[addr]
  *                 elif addr == RTP_ADDR:             # <<<<<<<<<<<<<<
@@ -17158,7 +18655,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_t_5 = (__pyx_v_addr == __pyx_v_16fpga_backend_ext_RTP_ADDR);
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":111
+          /* "fpga_backend_ext.pyx":232
  *                     m = ram[addr]
  *                 elif addr == RTP_ADDR:
  *                     m = <int>touch_read()             # <<<<<<<<<<<<<<
@@ -17185,14 +18682,14 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
             __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_9, (1-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
           }
-          __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 111, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 232, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __pyx_v_m = ((int)__pyx_t_10);
 
-          /* "fpga_backend_ext.pyx":110
+          /* "fpga_backend_ext.pyx":231
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     m = ram[addr]
  *                 elif addr == RTP_ADDR:             # <<<<<<<<<<<<<<
@@ -17202,7 +18699,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           goto __pyx_L8;
         }
 
-        /* "fpga_backend_ext.pyx":112
+        /* "fpga_backend_ext.pyx":233
  *                 elif addr == RTP_ADDR:
  *                     m = <int>touch_read()
  *                 elif addr == LCD8_ADDR or addr == LCD16_ADDR or addr == UART_TX_ADDR:             # <<<<<<<<<<<<<<
@@ -17226,7 +18723,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_L11_bool_binop_done:;
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":113
+          /* "fpga_backend_ext.pyx":234
  *                     m = <int>touch_read()
  *                 elif addr == LCD8_ADDR or addr == LCD16_ADDR or addr == UART_TX_ADDR:
  *                     m = 0             # <<<<<<<<<<<<<<
@@ -17235,7 +18732,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
           __pyx_v_m = 0;
 
-          /* "fpga_backend_ext.pyx":112
+          /* "fpga_backend_ext.pyx":233
  *                 elif addr == RTP_ADDR:
  *                     m = <int>touch_read()
  *                 elif addr == LCD8_ADDR or addr == LCD16_ADDR or addr == UART_TX_ADDR:             # <<<<<<<<<<<<<<
@@ -17245,7 +18742,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           goto __pyx_L8;
         }
 
-        /* "fpga_backend_ext.pyx":115
+        /* "fpga_backend_ext.pyx":236
  *                     m = 0
  *                 else:
  *                     m = ram[addr]             # <<<<<<<<<<<<<<
@@ -17258,7 +18755,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         }
         __pyx_L8:;
 
-        /* "fpga_backend_ext.pyx":116
+        /* "fpga_backend_ext.pyx":237
  *                 else:
  *                     m = ram[addr]
  *                 x = m             # <<<<<<<<<<<<<<
@@ -17267,7 +18764,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_v_x = __pyx_v_m;
 
-        /* "fpga_backend_ext.pyx":107
+        /* "fpga_backend_ext.pyx":228
  *             dst = arg1[pc]
  *             addr = register_a
  *             if comp & COMP_USE_M:             # <<<<<<<<<<<<<<
@@ -17277,545 +18774,32 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         goto __pyx_L7;
       }
 
-      /* "fpga_backend_ext.pyx":118
+      /* "fpga_backend_ext.pyx":239
  *                 x = m
  *             else:
  *                 x = register_a             # <<<<<<<<<<<<<<
  * 
- *             comp_kind = comp & COMP_MASK
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
 */
       /*else*/ {
         __pyx_v_x = __pyx_v_register_a;
       }
       __pyx_L7:;
 
-      /* "fpga_backend_ext.pyx":120
+      /* "fpga_backend_ext.pyx":241
  *                 x = register_a
  * 
- *             comp_kind = comp & COMP_MASK             # <<<<<<<<<<<<<<
- *             if comp_kind == COMP_ZERO:
- *                 result = 0
-*/
-      __pyx_v_comp_kind = (__pyx_v_comp & __pyx_v_16fpga_backend_ext_COMP_MASK);
-
-      /* "fpga_backend_ext.pyx":121
- * 
- *             comp_kind = comp & COMP_MASK
- *             if comp_kind == COMP_ZERO:             # <<<<<<<<<<<<<<
- *                 result = 0
- *             elif comp_kind == COMP_ONE:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_ZERO);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":122
- *             comp_kind = comp & COMP_MASK
- *             if comp_kind == COMP_ZERO:
- *                 result = 0             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_ONE:
- *                 result = 1
-*/
-        __pyx_v_result = 0;
-
-        /* "fpga_backend_ext.pyx":121
- * 
- *             comp_kind = comp & COMP_MASK
- *             if comp_kind == COMP_ZERO:             # <<<<<<<<<<<<<<
- *                 result = 0
- *             elif comp_kind == COMP_ONE:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":123
- *             if comp_kind == COMP_ZERO:
- *                 result = 0
- *             elif comp_kind == COMP_ONE:             # <<<<<<<<<<<<<<
- *                 result = 1
- *             elif comp_kind == COMP_NEG_ONE:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_ONE);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":124
- *                 result = 0
- *             elif comp_kind == COMP_ONE:
- *                 result = 1             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_NEG_ONE:
- *                 result = -1
-*/
-        __pyx_v_result = 1;
-
-        /* "fpga_backend_ext.pyx":123
- *             if comp_kind == COMP_ZERO:
- *                 result = 0
- *             elif comp_kind == COMP_ONE:             # <<<<<<<<<<<<<<
- *                 result = 1
- *             elif comp_kind == COMP_NEG_ONE:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":125
- *             elif comp_kind == COMP_ONE:
- *                 result = 1
- *             elif comp_kind == COMP_NEG_ONE:             # <<<<<<<<<<<<<<
- *                 result = -1
- *             elif comp_kind == COMP_D:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NEG_ONE);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":126
- *                 result = 1
- *             elif comp_kind == COMP_NEG_ONE:
- *                 result = -1             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_D:
- *                 result = register_d
-*/
-        __pyx_v_result = -1;
-
-        /* "fpga_backend_ext.pyx":125
- *             elif comp_kind == COMP_ONE:
- *                 result = 1
- *             elif comp_kind == COMP_NEG_ONE:             # <<<<<<<<<<<<<<
- *                 result = -1
- *             elif comp_kind == COMP_D:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":127
- *             elif comp_kind == COMP_NEG_ONE:
- *                 result = -1
- *             elif comp_kind == COMP_D:             # <<<<<<<<<<<<<<
- *                 result = register_d
- *             elif comp_kind == COMP_X:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":128
- *                 result = -1
- *             elif comp_kind == COMP_D:
- *                 result = register_d             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_X:
- *                 result = x
-*/
-        __pyx_v_result = __pyx_v_register_d;
-
-        /* "fpga_backend_ext.pyx":127
- *             elif comp_kind == COMP_NEG_ONE:
- *                 result = -1
- *             elif comp_kind == COMP_D:             # <<<<<<<<<<<<<<
- *                 result = register_d
- *             elif comp_kind == COMP_X:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":129
- *             elif comp_kind == COMP_D:
- *                 result = register_d
- *             elif comp_kind == COMP_X:             # <<<<<<<<<<<<<<
- *                 result = x
- *             elif comp_kind == COMP_NOT_D:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":130
- *                 result = register_d
- *             elif comp_kind == COMP_X:
- *                 result = x             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_NOT_D:
- *                 result = ~register_d
-*/
-        __pyx_v_result = __pyx_v_x;
-
-        /* "fpga_backend_ext.pyx":129
- *             elif comp_kind == COMP_D:
- *                 result = register_d
- *             elif comp_kind == COMP_X:             # <<<<<<<<<<<<<<
- *                 result = x
- *             elif comp_kind == COMP_NOT_D:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":131
- *             elif comp_kind == COMP_X:
- *                 result = x
- *             elif comp_kind == COMP_NOT_D:             # <<<<<<<<<<<<<<
- *                 result = ~register_d
- *             elif comp_kind == COMP_NOT_X:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NOT_D);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":132
- *                 result = x
- *             elif comp_kind == COMP_NOT_D:
- *                 result = ~register_d             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_NOT_X:
- *                 result = ~x
-*/
-        __pyx_v_result = (~__pyx_v_register_d);
-
-        /* "fpga_backend_ext.pyx":131
- *             elif comp_kind == COMP_X:
- *                 result = x
- *             elif comp_kind == COMP_NOT_D:             # <<<<<<<<<<<<<<
- *                 result = ~register_d
- *             elif comp_kind == COMP_NOT_X:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":133
- *             elif comp_kind == COMP_NOT_D:
- *                 result = ~register_d
- *             elif comp_kind == COMP_NOT_X:             # <<<<<<<<<<<<<<
- *                 result = ~x
- *             elif comp_kind == COMP_NEG_D:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NOT_X);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":134
- *                 result = ~register_d
- *             elif comp_kind == COMP_NOT_X:
- *                 result = ~x             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_NEG_D:
- *                 result = -register_d
-*/
-        __pyx_v_result = (~__pyx_v_x);
-
-        /* "fpga_backend_ext.pyx":133
- *             elif comp_kind == COMP_NOT_D:
- *                 result = ~register_d
- *             elif comp_kind == COMP_NOT_X:             # <<<<<<<<<<<<<<
- *                 result = ~x
- *             elif comp_kind == COMP_NEG_D:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":135
- *             elif comp_kind == COMP_NOT_X:
- *                 result = ~x
- *             elif comp_kind == COMP_NEG_D:             # <<<<<<<<<<<<<<
- *                 result = -register_d
- *             elif comp_kind == COMP_NEG_X:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NEG_D);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":136
- *                 result = ~x
- *             elif comp_kind == COMP_NEG_D:
- *                 result = -register_d             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_NEG_X:
- *                 result = -x
-*/
-        __pyx_v_result = (-__pyx_v_register_d);
-
-        /* "fpga_backend_ext.pyx":135
- *             elif comp_kind == COMP_NOT_X:
- *                 result = ~x
- *             elif comp_kind == COMP_NEG_D:             # <<<<<<<<<<<<<<
- *                 result = -register_d
- *             elif comp_kind == COMP_NEG_X:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":137
- *             elif comp_kind == COMP_NEG_D:
- *                 result = -register_d
- *             elif comp_kind == COMP_NEG_X:             # <<<<<<<<<<<<<<
- *                 result = -x
- *             elif comp_kind == COMP_D_PLUS_1:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_NEG_X);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":138
- *                 result = -register_d
- *             elif comp_kind == COMP_NEG_X:
- *                 result = -x             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_D_PLUS_1:
- *                 result = register_d + 1
-*/
-        __pyx_v_result = (-__pyx_v_x);
-
-        /* "fpga_backend_ext.pyx":137
- *             elif comp_kind == COMP_NEG_D:
- *                 result = -register_d
- *             elif comp_kind == COMP_NEG_X:             # <<<<<<<<<<<<<<
- *                 result = -x
- *             elif comp_kind == COMP_D_PLUS_1:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":139
- *             elif comp_kind == COMP_NEG_X:
- *                 result = -x
- *             elif comp_kind == COMP_D_PLUS_1:             # <<<<<<<<<<<<<<
- *                 result = register_d + 1
- *             elif comp_kind == COMP_X_PLUS_1:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_PLUS_1);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":140
- *                 result = -x
- *             elif comp_kind == COMP_D_PLUS_1:
- *                 result = register_d + 1             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_X_PLUS_1:
- *                 result = x + 1
-*/
-        __pyx_v_result = (__pyx_v_register_d + 1);
-
-        /* "fpga_backend_ext.pyx":139
- *             elif comp_kind == COMP_NEG_X:
- *                 result = -x
- *             elif comp_kind == COMP_D_PLUS_1:             # <<<<<<<<<<<<<<
- *                 result = register_d + 1
- *             elif comp_kind == COMP_X_PLUS_1:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":141
- *             elif comp_kind == COMP_D_PLUS_1:
- *                 result = register_d + 1
- *             elif comp_kind == COMP_X_PLUS_1:             # <<<<<<<<<<<<<<
- *                 result = x + 1
- *             elif comp_kind == COMP_D_MINUS_1:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X_PLUS_1);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":142
- *                 result = register_d + 1
- *             elif comp_kind == COMP_X_PLUS_1:
- *                 result = x + 1             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_D_MINUS_1:
- *                 result = register_d - 1
-*/
-        __pyx_v_result = (__pyx_v_x + 1);
-
-        /* "fpga_backend_ext.pyx":141
- *             elif comp_kind == COMP_D_PLUS_1:
- *                 result = register_d + 1
- *             elif comp_kind == COMP_X_PLUS_1:             # <<<<<<<<<<<<<<
- *                 result = x + 1
- *             elif comp_kind == COMP_D_MINUS_1:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":143
- *             elif comp_kind == COMP_X_PLUS_1:
- *                 result = x + 1
- *             elif comp_kind == COMP_D_MINUS_1:             # <<<<<<<<<<<<<<
- *                 result = register_d - 1
- *             elif comp_kind == COMP_X_MINUS_1:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_MINUS_1);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":144
- *                 result = x + 1
- *             elif comp_kind == COMP_D_MINUS_1:
- *                 result = register_d - 1             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_X_MINUS_1:
- *                 result = x - 1
-*/
-        __pyx_v_result = (__pyx_v_register_d - 1);
-
-        /* "fpga_backend_ext.pyx":143
- *             elif comp_kind == COMP_X_PLUS_1:
- *                 result = x + 1
- *             elif comp_kind == COMP_D_MINUS_1:             # <<<<<<<<<<<<<<
- *                 result = register_d - 1
- *             elif comp_kind == COMP_X_MINUS_1:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":145
- *             elif comp_kind == COMP_D_MINUS_1:
- *                 result = register_d - 1
- *             elif comp_kind == COMP_X_MINUS_1:             # <<<<<<<<<<<<<<
- *                 result = x - 1
- *             elif comp_kind == COMP_D_PLUS_X:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X_MINUS_1);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":146
- *                 result = register_d - 1
- *             elif comp_kind == COMP_X_MINUS_1:
- *                 result = x - 1             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_D_PLUS_X:
- *                 result = register_d + x
-*/
-        __pyx_v_result = (__pyx_v_x - 1);
-
-        /* "fpga_backend_ext.pyx":145
- *             elif comp_kind == COMP_D_MINUS_1:
- *                 result = register_d - 1
- *             elif comp_kind == COMP_X_MINUS_1:             # <<<<<<<<<<<<<<
- *                 result = x - 1
- *             elif comp_kind == COMP_D_PLUS_X:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":147
- *             elif comp_kind == COMP_X_MINUS_1:
- *                 result = x - 1
- *             elif comp_kind == COMP_D_PLUS_X:             # <<<<<<<<<<<<<<
- *                 result = register_d + x
- *             elif comp_kind == COMP_D_MINUS_X:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_PLUS_X);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":148
- *                 result = x - 1
- *             elif comp_kind == COMP_D_PLUS_X:
- *                 result = register_d + x             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_D_MINUS_X:
- *                 result = register_d - x
-*/
-        __pyx_v_result = (__pyx_v_register_d + __pyx_v_x);
-
-        /* "fpga_backend_ext.pyx":147
- *             elif comp_kind == COMP_X_MINUS_1:
- *                 result = x - 1
- *             elif comp_kind == COMP_D_PLUS_X:             # <<<<<<<<<<<<<<
- *                 result = register_d + x
- *             elif comp_kind == COMP_D_MINUS_X:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":149
- *             elif comp_kind == COMP_D_PLUS_X:
- *                 result = register_d + x
- *             elif comp_kind == COMP_D_MINUS_X:             # <<<<<<<<<<<<<<
- *                 result = register_d - x
- *             elif comp_kind == COMP_X_MINUS_D:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_MINUS_X);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":150
- *                 result = register_d + x
- *             elif comp_kind == COMP_D_MINUS_X:
- *                 result = register_d - x             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_X_MINUS_D:
- *                 result = x - register_d
-*/
-        __pyx_v_result = (__pyx_v_register_d - __pyx_v_x);
-
-        /* "fpga_backend_ext.pyx":149
- *             elif comp_kind == COMP_D_PLUS_X:
- *                 result = register_d + x
- *             elif comp_kind == COMP_D_MINUS_X:             # <<<<<<<<<<<<<<
- *                 result = register_d - x
- *             elif comp_kind == COMP_X_MINUS_D:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":151
- *             elif comp_kind == COMP_D_MINUS_X:
- *                 result = register_d - x
- *             elif comp_kind == COMP_X_MINUS_D:             # <<<<<<<<<<<<<<
- *                 result = x - register_d
- *             elif comp_kind == COMP_D_AND_X:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_X_MINUS_D);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":152
- *                 result = register_d - x
- *             elif comp_kind == COMP_X_MINUS_D:
- *                 result = x - register_d             # <<<<<<<<<<<<<<
- *             elif comp_kind == COMP_D_AND_X:
- *                 result = register_d & x
-*/
-        __pyx_v_result = (__pyx_v_x - __pyx_v_register_d);
-
-        /* "fpga_backend_ext.pyx":151
- *             elif comp_kind == COMP_D_MINUS_X:
- *                 result = register_d - x
- *             elif comp_kind == COMP_X_MINUS_D:             # <<<<<<<<<<<<<<
- *                 result = x - register_d
- *             elif comp_kind == COMP_D_AND_X:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":153
- *             elif comp_kind == COMP_X_MINUS_D:
- *                 result = x - register_d
- *             elif comp_kind == COMP_D_AND_X:             # <<<<<<<<<<<<<<
- *                 result = register_d & x
- *             else:
-*/
-      __pyx_t_5 = (__pyx_v_comp_kind == __pyx_v_16fpga_backend_ext_COMP_D_AND_X);
-      if (__pyx_t_5) {
-
-        /* "fpga_backend_ext.pyx":154
- *                 result = x - register_d
- *             elif comp_kind == COMP_D_AND_X:
- *                 result = register_d & x             # <<<<<<<<<<<<<<
- *             else:
- *                 result = register_d | x
-*/
-        __pyx_v_result = (__pyx_v_register_d & __pyx_v_x);
-
-        /* "fpga_backend_ext.pyx":153
- *             elif comp_kind == COMP_X_MINUS_D:
- *                 result = x - register_d
- *             elif comp_kind == COMP_D_AND_X:             # <<<<<<<<<<<<<<
- *                 result = register_d & x
- *             else:
-*/
-        goto __pyx_L14;
-      }
-
-      /* "fpga_backend_ext.pyx":156
- *                 result = register_d & x
- *             else:
- *                 result = register_d | x             # <<<<<<<<<<<<<<
- * 
- *             result = _normalize16(result)
-*/
-      /*else*/ {
-        __pyx_v_result = (__pyx_v_register_d | __pyx_v_x);
-      }
-      __pyx_L14:;
-
-      /* "fpga_backend_ext.pyx":158
- *                 result = register_d | x
- * 
- *             result = _normalize16(result)             # <<<<<<<<<<<<<<
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))             # <<<<<<<<<<<<<<
  *             if dst & DEST_M:
  *                 if addr < IO_MIN or addr > IO_MAX:
 */
-      __pyx_t_10 = __pyx_f_16fpga_backend_ext__normalize16(__pyx_v_result); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 158, __pyx_L1_error)
-      __pyx_v_result = __pyx_t_10;
+      __pyx_t_10 = __pyx_f_16fpga_backend_ext__eval_comp((__pyx_v_comp & __pyx_v_16fpga_backend_ext_COMP_MASK), __pyx_v_register_d, __pyx_v_x); if (unlikely(__pyx_t_10 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
+      __pyx_t_11 = __pyx_f_16fpga_backend_ext__normalize16(__pyx_t_10); if (unlikely(__pyx_t_11 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
+      __pyx_v_result = __pyx_t_11;
 
-      /* "fpga_backend_ext.pyx":159
+      /* "fpga_backend_ext.pyx":242
  * 
- *             result = _normalize16(result)
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
  *             if dst & DEST_M:             # <<<<<<<<<<<<<<
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     ram[addr] = result
@@ -17823,8 +18807,8 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = ((__pyx_v_dst & __pyx_v_16fpga_backend_ext_DEST_M) != 0);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":160
- *             result = _normalize16(result)
+        /* "fpga_backend_ext.pyx":243
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
  *             if dst & DEST_M:
  *                 if addr < IO_MIN or addr > IO_MAX:             # <<<<<<<<<<<<<<
  *                     ram[addr] = result
@@ -17834,14 +18818,14 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         if (!__pyx_t_7) {
         } else {
           __pyx_t_5 = __pyx_t_7;
-          goto __pyx_L17_bool_binop_done;
+          goto __pyx_L16_bool_binop_done;
         }
         __pyx_t_7 = (__pyx_v_addr > __pyx_v_16fpga_backend_ext_IO_MAX);
         __pyx_t_5 = __pyx_t_7;
-        __pyx_L17_bool_binop_done:;
+        __pyx_L16_bool_binop_done:;
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":161
+          /* "fpga_backend_ext.pyx":244
  *             if dst & DEST_M:
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     ram[addr] = result             # <<<<<<<<<<<<<<
@@ -17851,17 +18835,17 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           __pyx_t_6 = __pyx_v_addr;
           *((int *) ( /* dim=0 */ (__pyx_v_ram.data + __pyx_t_6 * __pyx_v_ram.strides[0]) )) = __pyx_v_result;
 
-          /* "fpga_backend_ext.pyx":160
- *             result = _normalize16(result)
+          /* "fpga_backend_ext.pyx":243
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
  *             if dst & DEST_M:
  *                 if addr < IO_MIN or addr > IO_MAX:             # <<<<<<<<<<<<<<
  *                     ram[addr] = result
  *                 elif addr == LCD8_ADDR:
 */
-          goto __pyx_L16;
+          goto __pyx_L15;
         }
 
-        /* "fpga_backend_ext.pyx":162
+        /* "fpga_backend_ext.pyx":245
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     ram[addr] = result
  *                 elif addr == LCD8_ADDR:             # <<<<<<<<<<<<<<
@@ -17871,7 +18855,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_t_5 = (__pyx_v_addr == __pyx_v_16fpga_backend_ext_LCD8_ADDR);
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":163
+          /* "fpga_backend_ext.pyx":246
  *                     ram[addr] = result
  *                 elif addr == LCD8_ADDR:
  *                     lcd_write_command(result)             # <<<<<<<<<<<<<<
@@ -17881,8 +18865,8 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           __pyx_t_8 = NULL;
           __Pyx_INCREF(__pyx_v_lcd_write_command);
           __pyx_t_4 = __pyx_v_lcd_write_command; 
-          __pyx_t_11 = __Pyx_PyLong_From_int(__pyx_v_result); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 163, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_11);
+          __pyx_t_12 = __Pyx_PyLong_From_int(__pyx_v_result); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 246, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_12);
           __pyx_t_9 = 1;
           #if CYTHON_UNPACK_METHODS
           if (likely(PyMethod_Check(__pyx_t_4))) {
@@ -17896,27 +18880,27 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_t_11};
+            PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_t_12};
             __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
             __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
+            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
           }
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "fpga_backend_ext.pyx":162
+          /* "fpga_backend_ext.pyx":245
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     ram[addr] = result
  *                 elif addr == LCD8_ADDR:             # <<<<<<<<<<<<<<
  *                     lcd_write_command(result)
  *                 elif addr == LCD16_ADDR:
 */
-          goto __pyx_L16;
+          goto __pyx_L15;
         }
 
-        /* "fpga_backend_ext.pyx":164
+        /* "fpga_backend_ext.pyx":247
  *                 elif addr == LCD8_ADDR:
  *                     lcd_write_command(result)
  *                 elif addr == LCD16_ADDR:             # <<<<<<<<<<<<<<
@@ -17926,7 +18910,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_t_5 = (__pyx_v_addr == __pyx_v_16fpga_backend_ext_LCD16_ADDR);
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":165
+          /* "fpga_backend_ext.pyx":248
  *                     lcd_write_command(result)
  *                 elif addr == LCD16_ADDR:
  *                     lcd_write_data(result)             # <<<<<<<<<<<<<<
@@ -17935,43 +18919,43 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
           __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_lcd_write_data);
-          __pyx_t_11 = __pyx_v_lcd_write_data; 
-          __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_result); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 165, __pyx_L1_error)
+          __pyx_t_12 = __pyx_v_lcd_write_data; 
+          __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_result); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 248, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __pyx_t_9 = 1;
           #if CYTHON_UNPACK_METHODS
-          if (likely(PyMethod_Check(__pyx_t_11))) {
-            __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_11);
+          if (likely(PyMethod_Check(__pyx_t_12))) {
+            __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_12);
             assert(__pyx_t_4);
-            PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_11);
+            PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_12);
             __Pyx_INCREF(__pyx_t_4);
             __Pyx_INCREF(__pyx__function);
-            __Pyx_DECREF_SET(__pyx_t_11, __pyx__function);
+            __Pyx_DECREF_SET(__pyx_t_12, __pyx__function);
             __pyx_t_9 = 0;
           }
           #endif
           {
             PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_t_8};
-            __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+            __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_12, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
           }
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "fpga_backend_ext.pyx":164
+          /* "fpga_backend_ext.pyx":247
  *                 elif addr == LCD8_ADDR:
  *                     lcd_write_command(result)
  *                 elif addr == LCD16_ADDR:             # <<<<<<<<<<<<<<
  *                     lcd_write_data(result)
  *                 elif addr == RTP_ADDR:
 */
-          goto __pyx_L16;
+          goto __pyx_L15;
         }
 
-        /* "fpga_backend_ext.pyx":166
+        /* "fpga_backend_ext.pyx":249
  *                 elif addr == LCD16_ADDR:
  *                     lcd_write_data(result)
  *                 elif addr == RTP_ADDR:             # <<<<<<<<<<<<<<
@@ -17981,52 +18965,52 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_t_5 = (__pyx_v_addr == __pyx_v_16fpga_backend_ext_RTP_ADDR);
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":167
+          /* "fpga_backend_ext.pyx":250
  *                     lcd_write_data(result)
  *                 elif addr == RTP_ADDR:
  *                     touch_write(result)             # <<<<<<<<<<<<<<
  *                 elif addr == UART_TX_ADDR:
  *                     value = result & 0x7F
 */
-          __pyx_t_11 = NULL;
+          __pyx_t_12 = NULL;
           __Pyx_INCREF(__pyx_v_touch_write);
           __pyx_t_8 = __pyx_v_touch_write; 
-          __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 250, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           __pyx_t_9 = 1;
           #if CYTHON_UNPACK_METHODS
           if (likely(PyMethod_Check(__pyx_t_8))) {
-            __pyx_t_11 = PyMethod_GET_SELF(__pyx_t_8);
-            assert(__pyx_t_11);
+            __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_8);
+            assert(__pyx_t_12);
             PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_8);
-            __Pyx_INCREF(__pyx_t_11);
+            __Pyx_INCREF(__pyx_t_12);
             __Pyx_INCREF(__pyx__function);
             __Pyx_DECREF_SET(__pyx_t_8, __pyx__function);
             __pyx_t_9 = 0;
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_11, __pyx_t_4};
+            PyObject *__pyx_callargs[2] = {__pyx_t_12, __pyx_t_4};
             __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-            __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
+            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
           }
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "fpga_backend_ext.pyx":166
+          /* "fpga_backend_ext.pyx":249
  *                 elif addr == LCD16_ADDR:
  *                     lcd_write_data(result)
  *                 elif addr == RTP_ADDR:             # <<<<<<<<<<<<<<
  *                     touch_write(result)
  *                 elif addr == UART_TX_ADDR:
 */
-          goto __pyx_L16;
+          goto __pyx_L15;
         }
 
-        /* "fpga_backend_ext.pyx":168
+        /* "fpga_backend_ext.pyx":251
  *                 elif addr == RTP_ADDR:
  *                     touch_write(result)
  *                 elif addr == UART_TX_ADDR:             # <<<<<<<<<<<<<<
@@ -18036,7 +19020,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_t_5 = (__pyx_v_addr == __pyx_v_16fpga_backend_ext_UART_TX_ADDR);
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":169
+          /* "fpga_backend_ext.pyx":252
  *                     touch_write(result)
  *                 elif addr == UART_TX_ADDR:
  *                     value = result & 0x7F             # <<<<<<<<<<<<<<
@@ -18045,7 +19029,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
           __pyx_v_value = (__pyx_v_result & 0x7F);
 
-          /* "fpga_backend_ext.pyx":170
+          /* "fpga_backend_ext.pyx":253
  *                 elif addr == UART_TX_ADDR:
  *                     value = result & 0x7F
  *                     if 0 < value < 128:             # <<<<<<<<<<<<<<
@@ -18058,7 +19042,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           }
           if (__pyx_t_5) {
 
-            /* "fpga_backend_ext.pyx":171
+            /* "fpga_backend_ext.pyx":254
  *                     value = result & 0x7F
  *                     if 0 < value < 128:
  *                         stdout_write(chr(value))             # <<<<<<<<<<<<<<
@@ -18068,8 +19052,8 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
             __pyx_t_8 = NULL;
             __Pyx_INCREF(__pyx_v_stdout_write);
             __pyx_t_4 = __pyx_v_stdout_write; 
-            __pyx_t_11 = PyUnicode_FromOrdinal(__pyx_v_value); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 171, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_11);
+            __pyx_t_12 = PyUnicode_FromOrdinal(__pyx_v_value); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 254, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_12);
             __pyx_t_9 = 1;
             #if CYTHON_UNPACK_METHODS
             if (likely(PyMethod_Check(__pyx_t_4))) {
@@ -18083,17 +19067,17 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
             }
             #endif
             {
-              PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_t_11};
+              PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_t_12};
               __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
               __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-              __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+              __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 171, __pyx_L1_error)
+              if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_3);
             }
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-            /* "fpga_backend_ext.pyx":172
+            /* "fpga_backend_ext.pyx":255
  *                     if 0 < value < 128:
  *                         stdout_write(chr(value))
  *                         stdout_flush()             # <<<<<<<<<<<<<<
@@ -18102,30 +19086,30 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
             __pyx_t_4 = NULL;
             __Pyx_INCREF(__pyx_v_stdout_flush);
-            __pyx_t_11 = __pyx_v_stdout_flush; 
+            __pyx_t_12 = __pyx_v_stdout_flush; 
             __pyx_t_9 = 1;
             #if CYTHON_UNPACK_METHODS
-            if (likely(PyMethod_Check(__pyx_t_11))) {
-              __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_11);
+            if (likely(PyMethod_Check(__pyx_t_12))) {
+              __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_12);
               assert(__pyx_t_4);
-              PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_11);
+              PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_12);
               __Pyx_INCREF(__pyx_t_4);
               __Pyx_INCREF(__pyx__function);
-              __Pyx_DECREF_SET(__pyx_t_11, __pyx__function);
+              __Pyx_DECREF_SET(__pyx_t_12, __pyx__function);
               __pyx_t_9 = 0;
             }
             #endif
             {
               PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
-              __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_9, (1-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+              __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_12, __pyx_callargs+__pyx_t_9, (1-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
               __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-              if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+              if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_3);
             }
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-            /* "fpga_backend_ext.pyx":170
+            /* "fpga_backend_ext.pyx":253
  *                 elif addr == UART_TX_ADDR:
  *                     value = result & 0x7F
  *                     if 0 < value < 128:             # <<<<<<<<<<<<<<
@@ -18134,17 +19118,17 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
           }
 
-          /* "fpga_backend_ext.pyx":168
+          /* "fpga_backend_ext.pyx":251
  *                 elif addr == RTP_ADDR:
  *                     touch_write(result)
  *                 elif addr == UART_TX_ADDR:             # <<<<<<<<<<<<<<
  *                     value = result & 0x7F
  *                     if 0 < value < 128:
 */
-          goto __pyx_L16;
+          goto __pyx_L15;
         }
 
-        /* "fpga_backend_ext.pyx":173
+        /* "fpga_backend_ext.pyx":256
  *                         stdout_write(chr(value))
  *                         stdout_flush()
  *                 elif addr == CLEAR_TRIGGER:             # <<<<<<<<<<<<<<
@@ -18154,49 +19138,49 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
         __pyx_t_5 = (__pyx_v_addr == __pyx_v_16fpga_backend_ext_CLEAR_TRIGGER);
         if (__pyx_t_5) {
 
-          /* "fpga_backend_ext.pyx":174
+          /* "fpga_backend_ext.pyx":257
  *                         stdout_flush()
  *                 elif addr == CLEAR_TRIGGER:
  *                     lcd_clear()             # <<<<<<<<<<<<<<
  *                 else:
  *                     ram[addr] = result
 */
-          __pyx_t_11 = NULL;
+          __pyx_t_12 = NULL;
           __Pyx_INCREF(__pyx_v_lcd_clear);
           __pyx_t_4 = __pyx_v_lcd_clear; 
           __pyx_t_9 = 1;
           #if CYTHON_UNPACK_METHODS
           if (likely(PyMethod_Check(__pyx_t_4))) {
-            __pyx_t_11 = PyMethod_GET_SELF(__pyx_t_4);
-            assert(__pyx_t_11);
+            __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_4);
+            assert(__pyx_t_12);
             PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-            __Pyx_INCREF(__pyx_t_11);
+            __Pyx_INCREF(__pyx_t_12);
             __Pyx_INCREF(__pyx__function);
             __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
             __pyx_t_9 = 0;
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_11, NULL};
+            PyObject *__pyx_callargs[2] = {__pyx_t_12, NULL};
             __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_9, (1-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-            __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 174, __pyx_L1_error)
+            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
           }
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "fpga_backend_ext.pyx":173
+          /* "fpga_backend_ext.pyx":256
  *                         stdout_write(chr(value))
  *                         stdout_flush()
  *                 elif addr == CLEAR_TRIGGER:             # <<<<<<<<<<<<<<
  *                     lcd_clear()
  *                 else:
 */
-          goto __pyx_L16;
+          goto __pyx_L15;
         }
 
-        /* "fpga_backend_ext.pyx":176
+        /* "fpga_backend_ext.pyx":259
  *                     lcd_clear()
  *                 else:
  *                     ram[addr] = result             # <<<<<<<<<<<<<<
@@ -18207,18 +19191,18 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
           __pyx_t_6 = __pyx_v_addr;
           *((int *) ( /* dim=0 */ (__pyx_v_ram.data + __pyx_t_6 * __pyx_v_ram.strides[0]) )) = __pyx_v_result;
         }
-        __pyx_L16:;
+        __pyx_L15:;
 
-        /* "fpga_backend_ext.pyx":159
+        /* "fpga_backend_ext.pyx":242
  * 
- *             result = _normalize16(result)
+ *             result = _normalize16(_eval_comp(comp & COMP_MASK, register_d, x))
  *             if dst & DEST_M:             # <<<<<<<<<<<<<<
  *                 if addr < IO_MIN or addr > IO_MAX:
  *                     ram[addr] = result
 */
       }
 
-      /* "fpga_backend_ext.pyx":177
+      /* "fpga_backend_ext.pyx":260
  *                 else:
  *                     ram[addr] = result
  *             if dst & DEST_A:             # <<<<<<<<<<<<<<
@@ -18228,7 +19212,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = ((__pyx_v_dst & __pyx_v_16fpga_backend_ext_DEST_A) != 0);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":178
+        /* "fpga_backend_ext.pyx":261
  *                     ram[addr] = result
  *             if dst & DEST_A:
  *                 register_a = result             # <<<<<<<<<<<<<<
@@ -18237,7 +19221,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_v_register_a = __pyx_v_result;
 
-        /* "fpga_backend_ext.pyx":177
+        /* "fpga_backend_ext.pyx":260
  *                 else:
  *                     ram[addr] = result
  *             if dst & DEST_A:             # <<<<<<<<<<<<<<
@@ -18246,7 +19230,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       }
 
-      /* "fpga_backend_ext.pyx":179
+      /* "fpga_backend_ext.pyx":262
  *             if dst & DEST_A:
  *                 register_a = result
  *             if dst & DEST_D:             # <<<<<<<<<<<<<<
@@ -18256,7 +19240,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = ((__pyx_v_dst & __pyx_v_16fpga_backend_ext_DEST_D) != 0);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":180
+        /* "fpga_backend_ext.pyx":263
  *                 register_a = result
  *             if dst & DEST_D:
  *                 register_d = result             # <<<<<<<<<<<<<<
@@ -18265,7 +19249,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_v_register_d = __pyx_v_result;
 
-        /* "fpga_backend_ext.pyx":179
+        /* "fpga_backend_ext.pyx":262
  *             if dst & DEST_A:
  *                 register_a = result
  *             if dst & DEST_D:             # <<<<<<<<<<<<<<
@@ -18274,7 +19258,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       }
 
-      /* "fpga_backend_ext.pyx":181
+      /* "fpga_backend_ext.pyx":264
  *             if dst & DEST_D:
  *                 register_d = result
  *             pc += 1             # <<<<<<<<<<<<<<
@@ -18283,7 +19267,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       __pyx_v_pc = (__pyx_v_pc + 1);
 
-      /* "fpga_backend_ext.pyx":103
+      /* "fpga_backend_ext.pyx":224
  * 
  *         instruction = inst_type[pc]
  *         if instruction == INST_CDEST:             # <<<<<<<<<<<<<<
@@ -18293,7 +19277,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       goto __pyx_L6;
     }
 
-    /* "fpga_backend_ext.pyx":183
+    /* "fpga_backend_ext.pyx":266
  *             pc += 1
  * 
  *         elif instruction == INST_A:             # <<<<<<<<<<<<<<
@@ -18303,7 +19287,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     __pyx_t_5 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_A);
     if (__pyx_t_5) {
 
-      /* "fpga_backend_ext.pyx":184
+      /* "fpga_backend_ext.pyx":267
  * 
  *         elif instruction == INST_A:
  *             register_a = arg0[pc]             # <<<<<<<<<<<<<<
@@ -18313,7 +19297,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_6 = __pyx_v_pc;
       __pyx_v_register_a = (*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_6 * __pyx_v_arg0.strides[0]) )));
 
-      /* "fpga_backend_ext.pyx":185
+      /* "fpga_backend_ext.pyx":268
  *         elif instruction == INST_A:
  *             register_a = arg0[pc]
  *             pc += 1             # <<<<<<<<<<<<<<
@@ -18322,7 +19306,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       __pyx_v_pc = (__pyx_v_pc + 1);
 
-      /* "fpga_backend_ext.pyx":183
+      /* "fpga_backend_ext.pyx":266
  *             pc += 1
  * 
  *         elif instruction == INST_A:             # <<<<<<<<<<<<<<
@@ -18332,7 +19316,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       goto __pyx_L6;
     }
 
-    /* "fpga_backend_ext.pyx":187
+    /* "fpga_backend_ext.pyx":270
  *             pc += 1
  * 
  *         elif instruction == INST_CJMP:             # <<<<<<<<<<<<<<
@@ -18342,7 +19326,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     __pyx_t_5 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_CJMP);
     if (__pyx_t_5) {
 
-      /* "fpga_backend_ext.pyx":188
+      /* "fpga_backend_ext.pyx":271
  * 
  *         elif instruction == INST_CJMP:
  *             jump = arg0[pc]             # <<<<<<<<<<<<<<
@@ -18352,7 +19336,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_6 = __pyx_v_pc;
       __pyx_v_jump = (*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_6 * __pyx_v_arg0.strides[0]) )));
 
-      /* "fpga_backend_ext.pyx":189
+      /* "fpga_backend_ext.pyx":272
  *         elif instruction == INST_CJMP:
  *             jump = arg0[pc]
  *             if jump == JUMP_GT:             # <<<<<<<<<<<<<<
@@ -18362,7 +19346,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_GT);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":190
+        /* "fpga_backend_ext.pyx":273
  *             jump = arg0[pc]
  *             if jump == JUMP_GT:
  *                 pc = register_a if register_d > 0 else pc + 1             # <<<<<<<<<<<<<<
@@ -18371,23 +19355,23 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_t_5 = (__pyx_v_register_d > 0);
         if (__pyx_t_5) {
-          __pyx_t_12 = __pyx_v_register_a;
+          __pyx_t_13 = __pyx_v_register_a;
         } else {
-          __pyx_t_12 = (__pyx_v_pc + 1);
+          __pyx_t_13 = (__pyx_v_pc + 1);
         }
-        __pyx_v_pc = __pyx_t_12;
+        __pyx_v_pc = __pyx_t_13;
 
-        /* "fpga_backend_ext.pyx":189
+        /* "fpga_backend_ext.pyx":272
  *         elif instruction == INST_CJMP:
  *             jump = arg0[pc]
  *             if jump == JUMP_GT:             # <<<<<<<<<<<<<<
  *                 pc = register_a if register_d > 0 else pc + 1
  *             elif jump == JUMP_GE:
 */
-        goto __pyx_L22;
+        goto __pyx_L21;
       }
 
-      /* "fpga_backend_ext.pyx":191
+      /* "fpga_backend_ext.pyx":274
  *             if jump == JUMP_GT:
  *                 pc = register_a if register_d > 0 else pc + 1
  *             elif jump == JUMP_GE:             # <<<<<<<<<<<<<<
@@ -18397,7 +19381,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_GE);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":192
+        /* "fpga_backend_ext.pyx":275
  *                 pc = register_a if register_d > 0 else pc + 1
  *             elif jump == JUMP_GE:
  *                 pc = register_a if register_d >= 0 else pc + 1             # <<<<<<<<<<<<<<
@@ -18406,23 +19390,23 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_t_5 = (__pyx_v_register_d >= 0);
         if (__pyx_t_5) {
-          __pyx_t_12 = __pyx_v_register_a;
+          __pyx_t_13 = __pyx_v_register_a;
         } else {
-          __pyx_t_12 = (__pyx_v_pc + 1);
+          __pyx_t_13 = (__pyx_v_pc + 1);
         }
-        __pyx_v_pc = __pyx_t_12;
+        __pyx_v_pc = __pyx_t_13;
 
-        /* "fpga_backend_ext.pyx":191
+        /* "fpga_backend_ext.pyx":274
  *             if jump == JUMP_GT:
  *                 pc = register_a if register_d > 0 else pc + 1
  *             elif jump == JUMP_GE:             # <<<<<<<<<<<<<<
  *                 pc = register_a if register_d >= 0 else pc + 1
  *             elif jump == JUMP_EQ:
 */
-        goto __pyx_L22;
+        goto __pyx_L21;
       }
 
-      /* "fpga_backend_ext.pyx":193
+      /* "fpga_backend_ext.pyx":276
  *             elif jump == JUMP_GE:
  *                 pc = register_a if register_d >= 0 else pc + 1
  *             elif jump == JUMP_EQ:             # <<<<<<<<<<<<<<
@@ -18432,7 +19416,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_EQ);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":194
+        /* "fpga_backend_ext.pyx":277
  *                 pc = register_a if register_d >= 0 else pc + 1
  *             elif jump == JUMP_EQ:
  *                 pc = register_a if register_d == 0 else pc + 1             # <<<<<<<<<<<<<<
@@ -18441,23 +19425,23 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_t_5 = (__pyx_v_register_d == 0);
         if (__pyx_t_5) {
-          __pyx_t_12 = __pyx_v_register_a;
+          __pyx_t_13 = __pyx_v_register_a;
         } else {
-          __pyx_t_12 = (__pyx_v_pc + 1);
+          __pyx_t_13 = (__pyx_v_pc + 1);
         }
-        __pyx_v_pc = __pyx_t_12;
+        __pyx_v_pc = __pyx_t_13;
 
-        /* "fpga_backend_ext.pyx":193
+        /* "fpga_backend_ext.pyx":276
  *             elif jump == JUMP_GE:
  *                 pc = register_a if register_d >= 0 else pc + 1
  *             elif jump == JUMP_EQ:             # <<<<<<<<<<<<<<
  *                 pc = register_a if register_d == 0 else pc + 1
  *             elif jump == JUMP_NE:
 */
-        goto __pyx_L22;
+        goto __pyx_L21;
       }
 
-      /* "fpga_backend_ext.pyx":195
+      /* "fpga_backend_ext.pyx":278
  *             elif jump == JUMP_EQ:
  *                 pc = register_a if register_d == 0 else pc + 1
  *             elif jump == JUMP_NE:             # <<<<<<<<<<<<<<
@@ -18467,7 +19451,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_NE);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":196
+        /* "fpga_backend_ext.pyx":279
  *                 pc = register_a if register_d == 0 else pc + 1
  *             elif jump == JUMP_NE:
  *                 pc = register_a if register_d != 0 else pc + 1             # <<<<<<<<<<<<<<
@@ -18476,23 +19460,23 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_t_5 = (__pyx_v_register_d != 0);
         if (__pyx_t_5) {
-          __pyx_t_12 = __pyx_v_register_a;
+          __pyx_t_13 = __pyx_v_register_a;
         } else {
-          __pyx_t_12 = (__pyx_v_pc + 1);
+          __pyx_t_13 = (__pyx_v_pc + 1);
         }
-        __pyx_v_pc = __pyx_t_12;
+        __pyx_v_pc = __pyx_t_13;
 
-        /* "fpga_backend_ext.pyx":195
+        /* "fpga_backend_ext.pyx":278
  *             elif jump == JUMP_EQ:
  *                 pc = register_a if register_d == 0 else pc + 1
  *             elif jump == JUMP_NE:             # <<<<<<<<<<<<<<
  *                 pc = register_a if register_d != 0 else pc + 1
  *             elif jump == JUMP_LT:
 */
-        goto __pyx_L22;
+        goto __pyx_L21;
       }
 
-      /* "fpga_backend_ext.pyx":197
+      /* "fpga_backend_ext.pyx":280
  *             elif jump == JUMP_NE:
  *                 pc = register_a if register_d != 0 else pc + 1
  *             elif jump == JUMP_LT:             # <<<<<<<<<<<<<<
@@ -18502,7 +19486,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_LT);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":198
+        /* "fpga_backend_ext.pyx":281
  *                 pc = register_a if register_d != 0 else pc + 1
  *             elif jump == JUMP_LT:
  *                 pc = register_a if register_d < 0 else pc + 1             # <<<<<<<<<<<<<<
@@ -18511,23 +19495,23 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_t_5 = (__pyx_v_register_d < 0);
         if (__pyx_t_5) {
-          __pyx_t_12 = __pyx_v_register_a;
+          __pyx_t_13 = __pyx_v_register_a;
         } else {
-          __pyx_t_12 = (__pyx_v_pc + 1);
+          __pyx_t_13 = (__pyx_v_pc + 1);
         }
-        __pyx_v_pc = __pyx_t_12;
+        __pyx_v_pc = __pyx_t_13;
 
-        /* "fpga_backend_ext.pyx":197
+        /* "fpga_backend_ext.pyx":280
  *             elif jump == JUMP_NE:
  *                 pc = register_a if register_d != 0 else pc + 1
  *             elif jump == JUMP_LT:             # <<<<<<<<<<<<<<
  *                 pc = register_a if register_d < 0 else pc + 1
  *             elif jump == JUMP_LE:
 */
-        goto __pyx_L22;
+        goto __pyx_L21;
       }
 
-      /* "fpga_backend_ext.pyx":199
+      /* "fpga_backend_ext.pyx":282
  *             elif jump == JUMP_LT:
  *                 pc = register_a if register_d < 0 else pc + 1
  *             elif jump == JUMP_LE:             # <<<<<<<<<<<<<<
@@ -18537,7 +19521,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       __pyx_t_5 = (__pyx_v_jump == __pyx_v_16fpga_backend_ext_JUMP_LE);
       if (__pyx_t_5) {
 
-        /* "fpga_backend_ext.pyx":200
+        /* "fpga_backend_ext.pyx":283
  *                 pc = register_a if register_d < 0 else pc + 1
  *             elif jump == JUMP_LE:
  *                 pc = register_a if register_d <= 0 else pc + 1             # <<<<<<<<<<<<<<
@@ -18546,23 +19530,23 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
         __pyx_t_5 = (__pyx_v_register_d <= 0);
         if (__pyx_t_5) {
-          __pyx_t_12 = __pyx_v_register_a;
+          __pyx_t_13 = __pyx_v_register_a;
         } else {
-          __pyx_t_12 = (__pyx_v_pc + 1);
+          __pyx_t_13 = (__pyx_v_pc + 1);
         }
-        __pyx_v_pc = __pyx_t_12;
+        __pyx_v_pc = __pyx_t_13;
 
-        /* "fpga_backend_ext.pyx":199
+        /* "fpga_backend_ext.pyx":282
  *             elif jump == JUMP_LT:
  *                 pc = register_a if register_d < 0 else pc + 1
  *             elif jump == JUMP_LE:             # <<<<<<<<<<<<<<
  *                 pc = register_a if register_d <= 0 else pc + 1
  *             else:
 */
-        goto __pyx_L22;
+        goto __pyx_L21;
       }
 
-      /* "fpga_backend_ext.pyx":202
+      /* "fpga_backend_ext.pyx":285
  *                 pc = register_a if register_d <= 0 else pc + 1
  *             else:
  *                 pc = register_a             # <<<<<<<<<<<<<<
@@ -18572,9 +19556,9 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       /*else*/ {
         __pyx_v_pc = __pyx_v_register_a;
       }
-      __pyx_L22:;
+      __pyx_L21:;
 
-      /* "fpga_backend_ext.pyx":187
+      /* "fpga_backend_ext.pyx":270
  *             pc += 1
  * 
  *         elif instruction == INST_CJMP:             # <<<<<<<<<<<<<<
@@ -18584,7 +19568,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
       goto __pyx_L6;
     }
 
-    /* "fpga_backend_ext.pyx":204
+    /* "fpga_backend_ext.pyx":287
  *                 pc = register_a
  * 
  *         elif instruction == INST_HALT:             # <<<<<<<<<<<<<<
@@ -18594,7 +19578,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     __pyx_t_5 = (__pyx_v_instruction == __pyx_v_16fpga_backend_ext_INST_HALT);
     if (likely(__pyx_t_5)) {
 
-      /* "fpga_backend_ext.pyx":205
+      /* "fpga_backend_ext.pyx":288
  * 
  *         elif instruction == INST_HALT:
  *             halted = True             # <<<<<<<<<<<<<<
@@ -18603,7 +19587,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       __pyx_v_halted = 1;
 
-      /* "fpga_backend_ext.pyx":206
+      /* "fpga_backend_ext.pyx":289
  *         elif instruction == INST_HALT:
  *             halted = True
  *             break             # <<<<<<<<<<<<<<
@@ -18612,7 +19596,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
       goto __pyx_L4_break;
 
-      /* "fpga_backend_ext.pyx":204
+      /* "fpga_backend_ext.pyx":287
  *                 pc = register_a
  * 
  *         elif instruction == INST_HALT:             # <<<<<<<<<<<<<<
@@ -18621,7 +19605,7 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
 */
     }
 
-    /* "fpga_backend_ext.pyx":209
+    /* "fpga_backend_ext.pyx":292
  * 
  *         else:
  *             raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (arg0[pc], filepath))             # <<<<<<<<<<<<<<
@@ -18631,35 +19615,35 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
     /*else*/ {
       __pyx_t_4 = NULL;
       __pyx_t_6 = __pyx_v_pc;
-      __pyx_t_11 = __Pyx_PyUnicode_From_int((*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_6 * __pyx_v_arg0.strides[0]) ))), 0, ' ', 'd'); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 209, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_8 = __Pyx_PyObject_FormatSimpleAndDecref(PyObject_Str(__pyx_v_filepath), __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 209, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyUnicode_From_int((*((int *) ( /* dim=0 */ (__pyx_v_arg0.data + __pyx_t_6 * __pyx_v_arg0.strides[0]) ))), 0, ' ', 'd'); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 292, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_12);
+      __pyx_t_8 = __Pyx_PyObject_FormatSimpleAndDecref(PyObject_Str(__pyx_v_filepath), __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 292, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_13[0] = __pyx_mstate_global->__pyx_kp_u_Engine_Sys_error_src_line;
-      __pyx_t_13[1] = __pyx_t_11;
-      __pyx_t_13[2] = __pyx_mstate_global->__pyx_kp_u__6;
-      __pyx_t_13[3] = __pyx_t_8;
-      __pyx_t_14 = __Pyx_PyUnicode_Join(__pyx_t_13, 4, 31 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_11) + 1 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_8), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_8));
-      if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 209, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_14);
-      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+      __pyx_t_14[0] = __pyx_mstate_global->__pyx_kp_u_Engine_Sys_error_src_line;
+      __pyx_t_14[1] = __pyx_t_12;
+      __pyx_t_14[2] = __pyx_mstate_global->__pyx_kp_u__6;
+      __pyx_t_14[3] = __pyx_t_8;
+      __pyx_t_15 = __Pyx_PyUnicode_Join(__pyx_t_14, 4, 31 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_12) + 1 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_8), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_8));
+      if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 292, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_15);
+      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_9 = 1;
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_t_14};
+        PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_t_15};
         __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_RuntimeError)), __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
       }
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __PYX_ERR(0, 209, __pyx_L1_error)
+      __PYX_ERR(0, 292, __pyx_L1_error)
     }
     __pyx_L6:;
 
-    /* "fpga_backend_ext.pyx":211
+    /* "fpga_backend_ext.pyx":294
  *             raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (arg0[pc], filepath))
  * 
  *         cycle += 1             # <<<<<<<<<<<<<<
@@ -18670,47 +19654,49 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
   }
   __pyx_L4_break:;
 
-  /* "fpga_backend_ext.pyx":213
+  /* "fpga_backend_ext.pyx":296
  *         cycle += 1
  * 
  *     return cycle, pc, register_a, register_d, halted             # <<<<<<<<<<<<<<
+ * 
+ * 
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_cycle); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_cycle); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_14 = __Pyx_PyLong_From_int(__pyx_v_pc); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_register_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_register_d); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_11 = __Pyx_PyBool_FromLong(__pyx_v_halted); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_15 = PyTuple_New(5); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_15 = __Pyx_PyLong_From_int(__pyx_v_pc); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_15);
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_register_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_register_d); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_12 = __Pyx_PyBool_FromLong(__pyx_v_halted); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_12);
+  __pyx_t_16 = PyTuple_New(5); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_16);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 213, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_14);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_14) != (0)) __PYX_ERR(0, 213, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 296, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_15);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_16, 1, __pyx_t_15) != (0)) __PYX_ERR(0, 296, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 2, __pyx_t_4) != (0)) __PYX_ERR(0, 213, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_16, 2, __pyx_t_4) != (0)) __PYX_ERR(0, 296, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_8);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 3, __pyx_t_8) != (0)) __PYX_ERR(0, 213, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_11);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 4, __pyx_t_11) != (0)) __PYX_ERR(0, 213, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_16, 3, __pyx_t_8) != (0)) __PYX_ERR(0, 296, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_12);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_16, 4, __pyx_t_12) != (0)) __PYX_ERR(0, 296, __pyx_L1_error);
   __pyx_t_3 = 0;
-  __pyx_t_14 = 0;
+  __pyx_t_15 = 0;
   __pyx_t_4 = 0;
   __pyx_t_8 = 0;
-  __pyx_t_11 = 0;
-  __pyx_r = __pyx_t_15;
-  __pyx_t_15 = 0;
+  __pyx_t_12 = 0;
+  __pyx_r = __pyx_t_16;
+  __pyx_t_16 = 0;
   goto __pyx_L0;
 
-  /* "fpga_backend_ext.pyx":59
+  /* "fpga_backend_ext.pyx":180
  * 
  * 
- * def run_cycles_accelerated(             # <<<<<<<<<<<<<<
+ * def run_cycles_accelerated_fpga(             # <<<<<<<<<<<<<<
  *     int n,
  *     int pc,
 */
@@ -18722,10 +19708,10 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_11);
-  __Pyx_XDECREF(__pyx_t_14);
+  __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_15);
-  __Pyx_AddTraceback("fpga_backend_ext.run_cycles_accelerated", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_16);
+  __Pyx_AddTraceback("fpga_backend_ext.run_cycles_accelerated_fpga", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_ram, 1);
@@ -18739,6 +19725,89 @@ static PyObject *__pyx_pf_16fpga_backend_ext_run_cycles_accelerated(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_v_touch_write);
   __Pyx_XDECREF(__pyx_v_stdout_write);
   __Pyx_XDECREF(__pyx_v_stdout_flush);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "fpga_backend_ext.pyx":299
+ * 
+ * 
+ * def run_cycles_accelerated(*args):             # <<<<<<<<<<<<<<
+ *     """Backward-compatible alias for the FPGA-specific accelerator entry point."""
+ *     return run_cycles_accelerated_fpga(*args)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_16fpga_backend_ext_5run_cycles_accelerated(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+PyDoc_STRVAR(__pyx_doc_16fpga_backend_ext_4run_cycles_accelerated, "Backward-compatible alias for the FPGA-specific accelerator entry point.");
+static PyMethodDef __pyx_mdef_16fpga_backend_ext_5run_cycles_accelerated = {"run_cycles_accelerated", (PyCFunction)(void(*)(void))(PyCFunctionWithKeywords)__pyx_pw_16fpga_backend_ext_5run_cycles_accelerated, METH_VARARGS|METH_KEYWORDS, __pyx_doc_16fpga_backend_ext_4run_cycles_accelerated};
+static PyObject *__pyx_pw_16fpga_backend_ext_5run_cycles_accelerated(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_args = 0;
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("run_cycles_accelerated (wrapper)", 0);
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_VARARGS(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("run_cycles_accelerated", __pyx_kwds); return NULL;}
+  __Pyx_INCREF(__pyx_args);
+  __pyx_v_args = __pyx_args;
+  __pyx_r = __pyx_pf_16fpga_backend_ext_4run_cycles_accelerated(__pyx_self, __pyx_v_args);
+
+  /* function exit code */
+  __Pyx_DECREF(__pyx_v_args);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_16fpga_backend_ext_4run_cycles_accelerated(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_args) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("run_cycles_accelerated", 0);
+
+  /* "fpga_backend_ext.pyx":301
+ * def run_cycles_accelerated(*args):
+ *     """Backward-compatible alias for the FPGA-specific accelerator entry point."""
+ *     return run_cycles_accelerated_fpga(*args)             # <<<<<<<<<<<<<<
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated_fpga); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "fpga_backend_ext.pyx":299
+ * 
+ * 
+ * def run_cycles_accelerated(*args):             # <<<<<<<<<<<<<<
+ *     """Backward-compatible alias for the FPGA-specific accelerator entry point."""
+ *     return run_cycles_accelerated_fpga(*args)
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("fpga_backend_ext.run_cycles_accelerated", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -20967,19 +22036,49 @@ __Pyx_RefNannySetupContext("PyInit_fpga_backend_ext", 0);
 */
   __pyx_v_16fpga_backend_ext_JUMP_MP = 7;
 
-  /* "fpga_backend_ext.pyx":59
+  /* "fpga_backend_ext.pyx":97
  * 
  * 
- * def run_cycles_accelerated(             # <<<<<<<<<<<<<<
+ * def run_cycles_accelerated_plain(             # <<<<<<<<<<<<<<
  *     int n,
  *     int pc,
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_16fpga_backend_ext_1run_cycles_accelerated, 0, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated, NULL, __pyx_mstate_global->__pyx_n_u_fpga_backend_ext, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_16fpga_backend_ext_1run_cycles_accelerated_plain, 0, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated_plain, NULL, __pyx_mstate_global->__pyx_n_u_fpga_backend_ext, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated, __pyx_t_4) < (0)) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated_plain, __pyx_t_4) < (0)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "fpga_backend_ext.pyx":180
+ * 
+ * 
+ * def run_cycles_accelerated_fpga(             # <<<<<<<<<<<<<<
+ *     int n,
+ *     int pc,
+*/
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_16fpga_backend_ext_3run_cycles_accelerated_fpga, 0, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated_fpga, NULL, __pyx_mstate_global->__pyx_n_u_fpga_backend_ext, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  #endif
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated_fpga, __pyx_t_4) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "fpga_backend_ext.pyx":299
+ * 
+ * 
+ * def run_cycles_accelerated(*args):             # <<<<<<<<<<<<<<
+ *     """Backward-compatible alias for the FPGA-specific accelerator entry point."""
+ *     return run_cycles_accelerated_fpga(*args)
+*/
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_16fpga_backend_ext_5run_cycles_accelerated, 0, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated, NULL, __pyx_mstate_global->__pyx_n_u_fpga_backend_ext, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  #endif
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_run_cycles_accelerated, __pyx_t_4) < (0)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "fpga_backend_ext.pyx":1
@@ -21125,31 +22224,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{31},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{20},{2},{6},{35},{9},{30},{50},{8},{20},{32},{22},{30},{37},{5},{8},{20},{8},{15},{3},{4},{15},{4},{8},{4},{8},{18},{4},{1},{9},{17},{5},{18},{4},{9},{5},{5},{1},{7},{8},{3},{15},{6},{9},{5},{8},{5},{5},{6},{7},{16},{8},{12},{6},{2},{10},{5},{9},{13},{11},{13},{5},{8},{4},{3},{9},{17},{14},{1},{8},{7},{4},{10},{1},{4},{8},{4},{7},{3},{4},{2},{3},{14},{11},{10},{19},{14},{12},{3},{7},{4},{10},{17},{13},{8},{10},{10},{6},{22},{12},{10},{12},{19},{5},{4},{5},{6},{12},{12},{4},{4},{6},{3},{8},{5},{10},{11},{6},{6},{5},{6},{5},{13},{10},{1},{949},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1745 bytes) */
-const char* const cstring = "BZh91AY&SY\307q\232\341\000\001-\377\377\377\336\377\377\377\357~\337\377\243\377\025\277\377\377\360@@@@@@@@@@@@@\000@\000`\006\177f\355l\332\306\355\357V\005\260R\236\240\301$\211L\322\236#FF\247\247\243SL\232j\017I\352=M44h4\000\006F\201\246\233Q\2654b\033(\321\265\004\246\220\206F\246\211\223\3242hS'\244\304\3202\014\200h\000\000\000h\000\0004\310\006\2011A\002\236\241\3522=@\r\000\006 4\0002\000\000\000\r\000\003@i\2214)&\324\323M\017P\320\000\000\000\000\000\000\000\000\000\000\r\000\340\000\000\006\200\000\000\032\000h\000\006\200\000\032\000\000\000\006\242OS\324\323Q\350C#5\014\2152\030F&\200\014\201\210\323##\002a\r\000\003\322d\362\024p\215\000EU\n\213\350\004?n\240\005\340\027\013\200D\301\202\330\027\014A\303\020\337(\2451\010\321\025\316\332\300\200\351&\030I\201\243`T\306\260`q\355h\004\r\220m\244B\306\234\331&h\221\321\006k#\203\270\331\270\230\256\276\340\265h\t\221\203MJH\305OrU\222\344\000M\024\311p\310\031\313\013\234|\370\013\345\341\367\337\372m\337.\t0g\r\006\216k\256\215\263\037Z=\265\004\271\006f3\324?\032\264\026\004\321I\253I\354\010\254\337)z\252\262\363\373}/N7g\365l\224\243x\357\373cy\032\272~\315\220Y\311\035\255\020\241\025\014k@\302\253\353\245\024?\335QjY>4V\221K\312h\252Bi4k\353\023r\327\324\0361\274\034\366\260'\025\272#\322y\252H\214$\\\303\004y\3733\341\td\322{\302-nIr|\031\020\375\354/\341\330\265\353\244$q=\234\270\352\0227\n\346\336\034v\203>\260\337\200\007\311\357\330\021\347\313\361\3211\2606l\013\273\035-\301\254\035ZQ\214D\3657\323\215\372n\335\276l\245\263\273\\\344\373\356\266S\212\245\375j7\327\323\267\207\005m\215}\252\302\313q\347a`e\210\220\250`\225Q4\316\334\322\346\313!\207V*\022\250\3463\211\251N\002\014]\007\244\367\304\3615X\013-\214\373pI1\"Ff$=\177\001T\031\314Xk3Z\036\353X)\027\nT<\240\r\006\224\022\256b*\307\276\244B\304\326\370=\211\335,\310n\232f\2520z\016\345\010K\027\333\32294\306l\225U\367nv[I\235\276\335O\325\323\375\377\245\nu\277-\331\032%\234\024z/s\005\007\200w\217 \256\346\310\354\355\312\233""\345r\313PJ\325\201\261\247\220\246\316\260h\350\244y\307\210QB\333\030\253\233\231e\357f\000rSrH\353\025\t\244z@@\003\302CK+S\245\034\302s\004\210\220P\003\246\003\004\321r\014\032\024\2479\016S\224\334\351\004\003\361\212\213\363\005\026\210\033\203gqY\02331\210\205\235\331p\335!\035N\0268\003\033\230L}tN:\204\r\321\304%\237\240\302\20660\303J\324\342\026\273+a.*\005\355\016X$\023\026#x\3663AU\014\016\266\200\036\267\263c\376X\014y)\220\230\330\317)KR\354\367\242o\311\231\270\246\244C\331\302j\0263\003,\t\004E\254\370\345\265\204\022\005U]^[I\223\201\204\032$\001bE?\010\026\205[\246\ty+\243\354\014\220\216\355w\256`}p\200H\307b\357\271\356\204(KT3K\222\354\267\252j\320a\252\032iz\325\2716\345IF\013k4\320\367\234(\330?\362\237\237\341h\016\256\246\311\212\206\031\366g\303\002\035\014\364\321+\035\256\r\323\216=\tZ\330\\w|\3305\347\0017\304\023A\016\230O\263a\233\370\327\242#\273\022;I!(]6\313(\3151\206v\263\030s\":\n\355V\026\346\307>\234\271a\241\256\020\224\3461`^\321\300\2140l\252\304'\205\227I\272\204\236\r\321\343\346\261re\213U\006\234\371@+z\322L5,\254.Pjpa\025\215IF\336\257'Z\300\213+\305Gs9\223a\206\244\024\210\tn\324a\304\300\031\006pO!\261R\242&\024{\263B\223p\264C0S\342w\200!\325J(f@\303\203 \3226\346\354\001\027\325\226\224\200\211\0056\010\224\035\252\260h\305\211\331zHHDn,\n\rm\315\030\264f\250C\035\201D\027P\274AV\320n\255r\010M\005\244;\227\243\203\220\362\207\t\007\016\022\337\024\307\221!\313\331\234\312\366HHn\353*7\t<\233\014\345E\273\2537%m\224x\247^\006M\310\207\322N\026\331\231\364\361\316Xn\327\033\270\030\350s\245\310\034\306]4\350{\242\2312G\006\365)\006\210o\266|\2617\355\324j\334\030\201\240\235\320\272\271\242\025\032\274\300\002x\214W\016!\240\004\002\243&l\234\320\276B\031\340D\245lFU&\031\367\335\354\214c\010!\346q\337\031\030\347m\033`\320\314K\001\264\344\325\266)\357\032\327\210\261&\2165\2429\232\372t\331\023\203\222\332\357\204\365l6x\035r\303{yn\246\341\020G^D@\307+LY\211\312*o{Y\005{k\3240\300\262\253\000<\020K\t\004\213\351""\n\",F\376\366\350&\340\221bH\324\303\355b\255LI\311fV\201Mz\3601%!\273\224_\204\350\330]\013\265\252^\207]F\323\377T\260 \323\03659N\312#\270BN,J\321\263\2374\2419\326\025z\363 X\345\207v\331\031$\342YQ\315D\250\241\305\257%\004\204\240\353$V\005\2511\325w[\300\206X\244,\357\221\327\213\233I\303\013Y\263`\323\220\022T9\202\310%5\n\373_%\303t_\231\232\373\177E\202\361\222\230=\005\243\333}2\016\037\265\275\301?\\\201lU\215\375m\023\023\000\300\343x2\220\311Ve\343d\263\251-\366d\262\315\342%\300\000\331kY\233x\247\370)\253\342v\3533\256\361g\200p\226\266\343\3678\213}\233\217\001\357?~\312u\016\256\234\233\337\334\"\320\215\252\211\234]\251\263\245p)\261K\t\027j\217\023m\031\\\243b\274\3161c\372\313\201\017\370\351\203\213aX\242\034y\026\232\355\274m<\346*s,Y\270\317X\220e\305\235\324\251\230w\254\221\024QV\016\031\310a\014\020z1&\031B!\352\252\220ir\364z\274\267\3732k{\224\234\336\211\177\305\334\221N\024$1\334f\270@";
-    PyObject *data = __Pyx_DecompressString(cstring, 1745, 2);
+    const struct { const unsigned int length: 10; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{31},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{20},{2},{6},{35},{9},{30},{50},{8},{20},{32},{22},{30},{37},{5},{8},{20},{8},{15},{3},{4},{15},{4},{8},{4},{8},{4},{18},{4},{1},{9},{17},{5},{18},{4},{9},{5},{5},{1},{7},{8},{3},{15},{6},{9},{5},{8},{5},{5},{6},{7},{16},{8},{12},{6},{2},{10},{5},{9},{13},{11},{13},{5},{8},{4},{3},{9},{17},{14},{1},{8},{7},{4},{10},{1},{4},{8},{4},{7},{3},{4},{2},{3},{14},{11},{10},{19},{14},{12},{3},{7},{4},{10},{17},{13},{8},{10},{10},{6},{22},{27},{28},{12},{10},{12},{19},{5},{4},{5},{6},{12},{12},{4},{4},{6},{3},{8},{5},{10},{11},{6},{6},{5},{6},{5},{13},{10},{1},{446},{697},{12},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1808 bytes) */
+const char* const cstring = "BZh91AY&SY\304\233\370\351\000\001J\177\377\377\336\377\367\377\377~\337\377\353\377\025\277\377\377\364@@@@@@@@@@@@@\000@\000`\006\377\016u\202lj=\313\265\316\316\206[oQ\002QT\320\003A\241\372\247\242\000\006\2152\r\0004\000\000\003F\200=FM\000d\036\246 hB\233\023)\264\024\365A\241\345\036\247\352G\250\000i\246F\200\000\000\000\000\003CC\023@\r4&\210M&\243M2i\246L\215\003F\232\032\000\000\003@\000\000\000h\321\246A\240\030\223SM4\247\246\251\243\324\364\230\236\246\200\304\00024\032\000\000\310\000\000\003M24\000\007\000\000\000\000\000\000\000\000\000\000\000\000\000\000\0002\004\240\204h\023@\320M\rMOS\023M\032=COPi\2404\0004\000\001\240d\001\221\243\312a\253\014u\035q;gm;a\335c\372qN\340\301\376\001\310\207\"\001\210!\377r\234\201\020\220D\300\345\3260\242\304\021\")1\204\335\021'\004qE\024A$\\\027\334V \303\024\210\356o\031\240\"\220\022I9\242\252$\002\006A\321$@\264a\201,\332!i\260\357\n\005\310\004\246D\200\\%G\n$\251+\000*\005\370U\036\315\001\244=\341\264\233D\374z\272s~8\316y\363a\263\356Rz2\213\225\005\266d\221\324a\034J\324X\027=iV\244X\025\235\364(\266\233P\363\277{\236\233\322\366tJO`D\373Q8\\P\323R\362\216A\203V\225<,\325D^\026\035%~\346a\352\272h$\355\362#=\004\257\230\2532\nJ\222{\315:[r0\016*e\214\301\226\010\031\031C|\003\2428\034e\033\341G\027)\003\253\267\237\363g\230Xb3\270n\373\232\310\231sG)\003\265\"\275\335\213\271\271S\304\337isqf\025Kr\027t\3075\0160\213\260\rg\313\360DG:\023\355d\230%\246\315\201I\364x9D\220\313E\342\326\005\340\255rjS\365\302z\215\225\311'=\312v~X\241\320\221:gGb\007\025\355\3278\014\371,\217Y\376\367\201iv\203iy\000Q4\211\027\021\307\031\214\275\2163\300\254\246\237Ga\236\273M;U\313\204K\300\206.\223\242;\354q\016;\215\271\274\333\307\230\226\"\273\272)\307\315f\004\322vM\350\265\251M\326P\224Z\224a\024E\001\346VB\205\240\2070\266Z\034\t\224\237\003\315U%v\024&iD\264\213\212\360\210\030\024\312\023x0\324\246\221\234\r\3455:\205P\240\275\265\246uG\371\376\007\207\361~V0S\033\301a\321jP+\031\303\244\321\013rk\206\276""\351\032\264\226\352\321\2438KJ\334kJ\264\213R2\334\2042\325\016i\306T\257D\224\3406\234\301\216p\343\2125\272\013\370\r\342\323\177\214\010\000\341%\246\260\321\263N\365\245\357ZV\032\202W\003\335N\220\201\211V! \301|\352\302\214\220.S%\306\036\246`\300\017\215\213\016.\242\013\340A\274\250q(\222\024\361\215\301\r@b\245\005C\354\251Xew3\214A\260\211\013\225\312\353.\225\020p\205*E\245\322\302`UGb\201T*\024#\202\326;\315*\234H-rp\"\270\263#\372\323\016u\353\206\270\316N\331\223[\017\027\323\245\352\022`K ;Q\202\244\212\030q\210\004\002\036\224kJd\220H\023Y\262\325\t\260\325\326\3512\252\263\002\306\233\351\260\205\006ql\031\030\310\334\037@\213\025rv\331\203\034aH,\352+{\222\310 \240h\261W\331\205\266\353\",\244@\254Uo\234\354\251\305q\231\255G\261\"q\204\234l\014d\204\3224\333\345\212@\316\260\255!\020!,\231B\001X\344\372o^4&\201\220X\027\215\223\024\0327.\304\263X\303\023k@F\0102!6.(\267\347\211[\206b(\037\224\220J\022\250\336\274\363T,\275%\210~\010\014\241n\352\310\242\354W\345\303\275|iH\242\254\346! \255!\000\265@\255\211\005:\027\232\302\340\206\"\213p0\014D\032dt\024L\n\345mk\002\374\r\311\206e\302E*\351V\253\022\010\270\255#\n8\366\371\022\010\"\326-L\305\346\tfR\245\022\234\302\334\332\013\374\027\000\240x\t\024\017\203*\221\034J.\322IC\001\244\244\202\255\204\314\340;\005\232\025*?N.\327x\311\363\rH\001\025l\312B\250\017\000\261\300B\2101\261`\027r*\215i \220A\344\"\004\301\246E\334\275Jb\030\267\002\245\nj+\024-Lfu\327\020y\250P?\013T\300\303\371\303\004Ce\221\322,\306\211\021\212\321\030\302\264U\025D\347aRl'\202Yyh\271\363]\26631{'G\\FXL%d\345k[5\tf\007\2626\337\223^C\036S0\221m\0001\3002\025i\202\242\242\251\253EU:@M)~\030\2154f3d\020s\031:^\233n\202\026\211o\000\014\360\206\231\216A \014\r\022\206gD\307a\033\330\316)&jt\254\2322\202>\226iB\020Gu6=F\375\221\221~4\3117G\270\215\202e\301-\242\n\325\211C@\\D\324\337\\p\271+\253\211\024\233\261\035\326k'\230\3347<>\240H\321\241s\243\257\010\007\304\274\035\305\211\261\221)]M\032\252\224\2305R\311g\"mv""\227\002\016\202DD$+\234\004\321r\036\275\344\240\216\035\002)!t\206\276E\206v\212\250[\226\200*\327\256\303\021\030\211\302\245vN\244\262\227\247Z\325Z\214\276 \231y-$\016\216\010\270\213\206\221\205\324\032$.qp\266\331Q\026I.,X\240\262\244\\\234\263!\220\004\204\342\373,!|\312\346\320R@\240%\006W\220\262\002\224\210\314fX@ U\251\005{`y\360ct&\366P\211\314\207\223 \241)\337\023!5\352\225\360\257\322u\204\375\317\254C\364\035\234\307a\334$\262:\014\021D\337H\"\251\253\030\224\"\210\036\344\223\010\216\010\350\367\203z!\360\351\034g\352\0354\037\371\025\030\300C\203\262\007\t\332D\324vM}\315BW\236c\343\324%\010\244\231\346\307\017\204\200v\276Q\207\242\254\322ZF>b\275 \030\346E\024\207'\002^\330(\243p\271\341\215+'\r\033\331\314\361^\221\227c\204R\240\266*I\200\217\035\206\000\026E5\231\372\030\200:\010 O\203@L\2322\371[?\210C\303K(\274\0244ty\375\003\211\\\"@\346\020&Hz\034q\311\0161A\022\201B\004Y`P!\001\010\005\rC0\216\352\362y<\206Q\371N\351A2b\221wF\200\303\037\370\273\222)\302\204\206$\337\307H";
+    PyObject *data = __Pyx_DecompressString(cstring, 1808, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1573 bytes) */
-const char* const cstring = "x\332\245UKs\0247\020\306`'\256`*\370\305\233 \023\314B\305laC*\024q\234\030\343\244|\010\2608\344@\245\242\322J\332]\341\031i<\322\330\273\234r\364q\216s\234\343\036}\364\221#G\216{\334\237\300OH\267f\037\266\241\022*\251\332\231i\265ZR\367\367}\255}HV\203\200\010\025Jm\225\321\226D\261\344R(]\037:\311\274 ab\035\251J\242\264\220M)\010\323\202h\343\210\r\024\204?Jj5\031\223\035%w\2110\322\372)\331\214\214\225\304\272X\ti\327\230&F\007-\302c\311\234$\214T\213E\256\301\034Q\226p\243\235\252'&\261p\010\teh\342V\031V\341V\314ZU\327\304\031\002\213\305\035\277O\021\201G\366\202z\033\357\306\312\261j {\001ER\265\330\204\377\264\326\227Ev\225k\020\327\212$)\365\374.f\332\3722\206K\2120X\241\000*w\010\273\307\207\001S\005\010E\320z\030\271\026\261\r\006[\273$\202\344j&&\274\345\032F\227Y\034\263\326\272\256+-\037\222\315\226-\31386\361\255\333\344'bcN\003\360\223\r\237\237I\03415R5\211\026\226\334bM8d^\334\336\3700\225\202\233$\212L\354\244\330\320;,P@\242\021r\001y\201`\340\260\304K\004\322(A.Xgi\201\324aU?\270\310\026\250\360\307,\377\352\353\377\035\353\207\024\236\030@\3323\267\346\213\300r\205\014TU\306\300\001 \214\254\303!\236^M\236\255?\273s\377\301}\257\232X\276\202\343-dW\345\001\020\013j\301\232\022\02588\014\321\267e\262Q#-\223\020-!M`=\202\270\303\013\\Cjb\245C\203\224<U\314A\335\024\226\203tK=\330\325\216\304\325?\263\300\312\362\323#\340A\312=\3751\316\245\355\243\271\351dDB\326\362\370\201\334_\313\330\014\201~\241\275\260`K\020\353\216\214A7N\20686U,\252\274R\272M~dBP\215\370`\265\004 \272\333\344&\0100\037`\246\314\252|\371\220\3261\250\310v\345\270\273/\261\025\241,\036,\375\361\265\250\316h\225\361-\251\005\225MW\216Z\315:'\267\220\273\272W\034\226\205\r\014\223R;\337N\303^V\266\330F`\352V\275\226d\371\007r\367\003=j\003|\326X\0228Bi,E\302%\245D$\276zm\364\035\340wG\261\000f\271\322\312\301d\201\301\312r\321\360\342He\037\372Py\203\002\217\314\017\274\311\000n\026\004\206\373[\003s#\2029V\376\310l!Y\334\243w\351\224W7\32766\326\203@EVYJ\237\265\232\360<""\006e\322'\200\316sY\333\224\333\211\324\\\242\260\313C\215\003I@c\334\337\231\026Zaq\375.>\024J\205\357\">\336\266-\315\225)s\023C\213B\277\332*\263\222\0034\250WJ\373F]:D\035\207\222\305\034;\233*\020m\314\270DF\271\t#|\350\026`\300A\250\216\267 T\010\330+\220\232R\201\231Sa\235\300>\241PR\001:T\000\255-u\022\372\376\363\027HM\0052b\256Q\013X\335\326\202\3046\200\343\220\271^\267\037\227\021\245\265Ds\314\025\262\264\016\213\246\r\026\300=\241\004\245*\304\233\004\276x\017)m\035v\232\034\030\230\006\016\342\304\213\034\023\033`Q\350\254'\266WI\030\005\\\300\257\300\000\r\274\260%\304\207!07t \311\000U\310\000!\n\267/^\275x\201\301\300\210$\200\257\326,\304O\361\006\211\303[\356RL&\202\302\"\036\231\210Rh\017\312\033\222o\331$,F\275\352\320\364\311{+\321\221\342[\260\355\272\356\307\355\370\377\021\204d;aAqL\314B\370\341\021\370o2l\215\201U4\321!\207l\242YW\026n\303\376\227\262\201%bi\241\313\342DSO\266\245x!\005\236G\330\037.\271^\201`\365:\322\333\275\"\016\331\375\223}\027 \330\340\216aN\000\017\305\233z\031\364l\2172\244\020Yg\242\202:\333\002\261\242\023\336&\341\r\377\242Xha\371%\000\024\200\233D\300\217\204\177\212\244xY?w\204\312!\215\315\277F\336_91v>e\235\321\2339\274\316\247\333\235\321\271|\2623\372U\246\362\235v\245\r\316\331\264\362\376\334\211\261\0138w#_\313}\310t\276\332\031\275\222\255e0\272\232\275\310\347p\211\314\027;\243\3272\233\227\332\223\003\243;\372\305\336\315\364d:\327\031?\275wo\217\247\223\235\2113\335\361s\251\312\266\363\021t.\2476\233\353LL\247\367\323\355l\24431\225\336H\031\234\006\236\305\316\304\227{I\372\0102<;\235~\233\235\314Jp\364z{\252\275\330\231\271\220\235\312\026\263\325\316\354\245\354\353\254\202\343\261\354%\244\347\307/s\333\236o\333\375o\0166\337\214\275\331|;\202\363#\335\301\242\2633\351j\327\277&p\335s(\004\216z\235M\343\334\305l\2623y9\273\227\261\243\366%\310\363c\376c\366\321\250O\036]\316\037\001\t\303\361T\266\004e\375\367\371O\212\357\016\214\211\331\364\217|\022\230\004\034\\\272\224V>\0029\010$\033\007""\326\372\220\317\347\0258\242?\272\236\317\201\002\372\243k\236\337\376\350J\366K\276\224Wp\213\0302y\000\201\027n\344\253\371f{\004\304\202\346 \364jV\351\016N\032&\003\356\343\243\251t\256{\346\242\347l\342b6\223U\240\260#\316\201\246PEk\240\251\263\263\351\237\371\367\355\352\376\347\373\366\340\372\301jg\362\\\312\201\275\236\237\357\237?8u\260tP\371\237\376\177\335\277\013\216\312 M\260\241)\336\177v\342\314t\272\220\261w\3276\336\316\274\255\274\225\3576\177\353\216O\246\320C\247\367\276\203\256\010\362\2056{\3727\326\354\2542";
-    PyObject *data = __Pyx_DecompressString(cstring, 1573, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1588 bytes) */
+const char* const cstring = "x\332\355U\317s\024E\024&\222hJBI~A\260@:HX\320\260E\020K\nc4\204\250)K`\215x\240,\273z\273{w\233\314tO\246{\222]\312\203\307\034\3478\3079\3561\307\0349\346\310q\217\373'\360'\370^\317\356\346\027*Uz\264jg\346\365\353\327\335\357}\337\367z\357\223\345  B\205R[e\264%Q,\271\024J\327\017\234dN\2200\261\216T%QZ\310\246\024\204iA\264q\304\006\n\302\037$\265\232\214\311\226\222\333D\030i\375\224lF\306Jb]\254\204\264+L\023\243\203\026\341\261dN\022F\252\305\"\327`\216(K\270\321N\325\023\223X8\204\20424q\253\014\253p+f\255\252k\342\014\201\305\342\226\337\247\210\300#{A\275\215\267c\345X5\220\275\200\"\251Zl\302\277[\353\313\"\333\3125\210kE\222\224z~\0273m}\031\007K\2120X\241\000*w\010\273\207\207\001S\005\010E\320j\030\271\026\261\r\006[\273$\202\344j&&\274\345\032F\227Y\034\263\326\252\256+-\357\223\365\226-\31386\361\215\233\344\033bcN\003\360\2235\237\237I\03415R5\211\026\226\334`M8dN\334\\;\231J\301M\022E&vR\254\351-\026( \321\0109\217\274@0pX\342%\002i\224 \027\254\2634O\352\260\252\037\\d\013T\370c\026\177\364\365\377\202\365C\n\217\014 \355\231[\361E`\271B\006\252*c\340\000\020F\326\341\020O\257&OV\237\334\272{\357\256WM,\237\303\361\026\262\253\362\000\210\005\265`M\211\n\034\034\206\350\3332Y\253\221\226I\210\226\220&\260\036A\334\341\005\256!5\261\322\241AJ\236*\346\240n\n\313A\272\245\036\354jK\342\352oY`e\371\361\021\360 \345\236\376\030\347\322\366\321\\w2\"!ky\374@\356/dl\016\200~\252\275\260`K\020\353\226\214A7N\20686U,\252\274T\272I\276fBP\215\370`\265\004 \272\335\344&\0100\037`\246\314\252|\361\220\3261\250\310v\351\270\273/\261%\241,\036,\375\361\265\250\316h\225\361\r\251\005\225MW\216Z\315:'7\220\273\272W\034\226\205\r\014\223R;\337N\007\275\254l\261\215\300\324\255z!\311\342W\344\366\t=j\003|\326X\0228Bi,E\302%\245D$\276zm\364-\340wK\261\000f\271\322\312\301d\201\301\322b\321\360\342He'}\250\274A\201G\346\007\336d\0007\013\002\303\375\255\201\271\021\301\034+\277a\266\220,\356\321\273t\312\313\353+kk\253A\240\"\253,\245OZMx\036\2022\351#@\347'Y[""\227\233\211\324\\\242\260\313\007\032\007\222\200\306\270\2773-\264\302\342\372m|(\224\n\337\005|z\266e\266\245\2712enbhS\350Y[eVr\200\0075Ki\337\250K\207\310\343P\262\230cwS\005\302\215\031\227\310*7a\204\017\335\000\0348\210\325\361\026\204\n\001{\005RS*0{*\254\023\330+\024\312*\200\207*\240\275\245NB\337\203\376\022\251\251@F\3145j\001\253\333Z\220\330\006\360\0342\327\353\370\343R\242\264\226h\216\271B\226\326a\341\264\301\002\270+\224\240T\205x\233\300\027\357\"\245\255\303n\223\003\003\323\300A\234x\241cb\003,\n\255\365\004\367<\t\243\200\013\370\025\030\240\201\227\266\204\3700\004\366\016\034H4@\0252@\210\302\r\214\327/^b00\"\t\340\2535\013\361S\274A\346\360\226\333\024\223\211\240\260\210G&\242\024Z\204\362\206\344\0336\t\213Q\257:4}\362\336Jt\244\370\006l\273\252\373q[\376\277\004!\331LXP\034\023\263\020~x\004\376\243\034\264\307\300*\032\351\220C6\321\254+\0137b\377K\331\300\022\261\264\320iq\242\251'\333R\274\224\002\317\243x\263\227\"w\1771\025\005\036/\270\037{\270\200\325kfo\367j?d\367\023\366\r\204\034\201;\2069\001\364\025o\352\325\323\263=9\220yd\235\211\n\306m\0134\216Nx\233\2047\374\213\">\205\345\227\000\276\300I\022\001\255\022\376d\222\342e\375\334\021\005\034\260\337\374c\350\365\314\251\221\013)\353\014_\317\341u!\335\354\014\317\346\343\235\341\2172\225o\265+mpN\247\225\327\347N\215\314\244\233\335\341\367w\256\247\357\244\263\235\3213;\237\355\360t\2743v\266;z>U\331f>\204\316\305\324f\263\235\261\311\364n\272\231\ru\306&\322k)\203M\301\263\320\031\373`'I\037\300a\347\246\322\025\234\357\202\261\334\035\233N\177\315\307\363O\332\313\355\247\273Ww\177\330\373}\337\307\272\364NZ\351\234\203\225\351\367\331\362!\317\345\254r|4\221\316v\317^\314&1\356b6\225U2v\3249\310\010s\200\303;\347\246\323\337\362/\333\325\335\367v\355\336\325\275\345\316\370\371\224g\343}?\337\275\260wz\357\316^\345_\372\377q\377.8*\2034\301\006H_\277{\352\354d:\237\261WW\326\366\247\366+\373\362\325\372\317\335\321\361t\274;|f\347\013\3004\310\347\333\014\330\273\364V""\354\235\367\354u\206\257\345+\271\017\231\314\227;\303\227\262\225\014F\227\263\247\371,.\221\371Bg\370Jf\363R{|`\374g\224O\246\237g\357d%8z\265=\321^\350L\315d\247\263\005\250y\372\303\354c\240\020\306#\3313H\317\217\237\345\266=\327\266\273\237\356\255\277\034y\271\276?\204\363C\335\301\"/\234\267S\317\261c\001\244l\0242\357\037;\227W\000\273\376\350j>\013(\364GW|\215\375\321\245\354\273\374N^\301-\342l\"\273\007\2013\327\362\345|\275=\004\200\2419\010\005Mv\007'\375/\334\223\302\205\341\2533\327\363j{\350\361\237\027i\0301";
+    PyObject *data = __Pyx_DecompressString(cstring, 1588, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (3100 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayEngine: Sys.error() @ src_line Index out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>') ?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablefpga_backend_ext.pyxgc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object><strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsis__Pyx_PyDict_NextRefSequenceView.MemoryViewabcaddrallocate_bufferarg0arg0_objarg1arg1_objasyncio.coroutinesbasec__class____class_getitem__clearcline_in_tracebackcompcomp_kindcountcycleddec_len__dict__dstdtype_is_objectencodeenumerateerrorfilepathflagsflushformatfortranfpga_backend_ext__func____getstate__haltedid__import__indexinst_typeinst_type_objinstruction_is_coroutineitemsitemsizejumplcdlcd_clearlcd_write_commandlcd_write_datam__main__memviewmode__module__nname__name__ndim__new__objpackpcpop__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__ramram_objread__reduce____reduce_cython____reduce_ex__registerregister_aregister_dresultrun_cycles_accelerated__set_name__setdefault__setstate____setstate_cytho""n__shapesizestartstdoutstdout_flushstdout_writestepstopstructsys__test__touchtouch_readtouch_writeunpackupdatevaluevalueswritewrite_commandwrite_datax\200\001\360\034\000\005\027\220a\330\004&\240a\330\004\027\220q\330\004!\240\021\330\004\036\230i\240v\250Q\250a\330\004\025\220Q\360\026\000\005\030\220q\330\004$\240C\240q\330\004!\240\023\240A\330\004\034\230C\230q\330\004\035\230U\240!\330\004\036\230e\2401\330\004\037\230s\240'\250\021\330\004\037\230s\240'\250\021\340\004\n\210&\220\002\220!\330\010\013\2103\210c\220\021\330\014\r\340\010\026\220i\230q\240\001\330\010\013\210<\220s\230!\330\014\023\2204\220q\230\001\330\014\022\220$\220a\220q\330\014\023\2201\330\014\017\210u\220B\220a\330\020\023\2205\230\002\230'\240\023\240E\250\022\2501\330\024\030\230\003\2301\230A\330\025\032\230#\230Q\330\024\030\230\005\230Z\240q\330\025\032\230#\230Z\240s\250%\250s\260+\270S\300\005\300S\310\001\330\024\030\230\001\340\024\030\230\003\2301\230A\330\020\024\220A\340\020\024\220A\340\014\030\230\005\230R\230q\330\014\017\210z\230\023\230A\330\020\031\230\021\330\021\033\2303\230a\330\020\031\230\021\330\021\033\2303\230a\330\020\032\230!\330\021\033\2303\230a\330\020\031\230\021\330\021\033\2303\230a\330\020\031\230\021\330\021\033\2303\230a\330\020\031\230\021\230!\330\021\033\2303\230a\330\020\031\230\021\230!\330\021\033\2303\230a\330\020\031\230\021\230!\330\021\033\2303\230a\330\020\031\230\021\230!\330\021\033\2303\230a\330\020\031\230\033\240B\240a\330\021\033\2303\230a\330\020\031\230\022\2302\230Q\330\021\033\2303\230a\330\020\031\230\033\240B\240a\330\021\033\2303\230a\330\020\031\230\022\2302\230Q\330\021\033\2303\230a\330\020\031\230\033\240B\240a\330\021\033\2303\230a\330\020\031\230\033\240B\240a\330\021\033\2303\230a\330\020\031\230\022\2302\230Q\330\021\033\2303\230a\330\020\031\230\033\240B\240a\340\020\031\230\033\240B\240a\340\014\025\220\\\240\021\240!\330\014\017\210t\2202\220Q\330\020\023\2205\230\002\230'\240\023\240E\250\022\2501\330\024\027\220q""\230\010\240\001\330\025\032\230#\230Q\330\024%\240Q\240a\330\025\032\230#\230Q\330\024\"\240!\2401\330\025\032\230#\230Q\330\024\037\230q\240\001\330\025\032\230#\230Q\330\024\034\230G\2402\240Q\330\024\027\220r\230\022\2308\2401\330\030$\240A\240S\250\001\250\021\330\030$\240A\330\025\032\230#\230Q\330\024\035\230Q\340\024\027\220q\230\010\240\001\330\014\017\210t\2202\220Q\330\020\035\230Q\330\014\017\210t\2202\220Q\330\020\035\230Q\330\014\022\220!\340\r\031\230\023\230A\330\014\031\230\024\230Q\230a\330\014\022\220!\340\r\031\230\023\230A\330\014\023\2204\220q\230\001\330\014\017\210u\220C\220q\330\020\025\220^\240;\250b\260\007\260s\270\"\270A\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250b\260\007\260s\270\"\270A\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\340\020\025\220Q\340\r\031\230\023\230A\330\014\025\220Q\330\014\r\360\006\000\r\023\220,\230a\320\037I\310\024\310Q\310e\320ST\340\010\021\220\021\340\004\013\2107\220$\220l\240,\250aO";
+    #else /* compression: none (3365 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayEngine: Sys.error() @ src_line Index out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>') ?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablefpga_backend_ext.pyxgc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object><strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsis__Pyx_PyDict_NextRefSequenceView.MemoryViewabcaddrallocate_bufferarg0arg0_objarg1arg1_objargsasyncio.coroutinesbasec__class____class_getitem__clearcline_in_tracebackcompcomp_kindcountcycleddec_len__dict__dstdtype_is_objectencodeenumerateerrorfilepathflagsflushformatfortranfpga_backend_ext__func____getstate__haltedid__import__indexinst_typeinst_type_objinstruction_is_coroutineitemsitemsizejumplcdlcd_clearlcd_write_commandlcd_write_datam__main__memviewmode__module__nname__name__ndim__new__objpackpcpop__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__ramram_objread__reduce____reduce_cython____reduce_ex__registerregister_aregister_dresultrun_cycles_acceleratedrun_cycles_accelerated_fpgarun_cycles_accelera""ted_plain__set_name__setdefault__setstate____setstate_cython__shapesizestartstdoutstdout_flushstdout_writestepstopstructsys__test__touchtouch_readtouch_writeunpackupdatevaluevalueswritewrite_commandwrite_datax\200\001\360\030\000\005\027\220a\330\004&\240a\330\004\027\220q\330\004!\240\021\330\004\036\230i\240v\250Q\250a\330\004\025\220Q\360\020\000\005\030\220q\340\004\n\210&\220\002\220!\330\010\013\2103\210c\220\021\330\014\r\340\010\026\220i\230q\240\001\330\010\013\210<\220s\230!\330\014\023\2204\220q\230\001\330\014\022\220$\220a\220q\330\014\023\2201\330\014\017\210u\220B\220a\330\020\024\220C\220q\230\001\340\020\024\220A\340\014\025\220\\\240\021\240*\250A\250U\260\"\260K\270|\3101\330\014\017\210t\2202\220Q\330\020\023\2201\220H\230A\330\014\017\210t\2202\220Q\330\020\035\230Q\330\014\017\210t\2202\220Q\330\020\035\230Q\330\014\022\220!\340\r\031\230\023\230A\330\014\031\230\024\230Q\230a\330\014\022\220!\340\r\031\230\023\230A\330\014\023\2204\220q\230\001\330\014\017\210u\220C\220q\330\020\025\220^\240;\250b\260\007\260s\270\"\270A\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250b\260\007\260s\270\"\270A\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\340\020\025\220Q\340\r\031\230\023\230A\330\014\025\220Q\330\014\r\360\006\000\r\023\220,\230a\320\037I\310\024\310Q\310e\320ST\340\010\021\220\021\340\004\013\2107\220$\220l\240,\250a\200\001\360\034\000\005\027\220a\330\004&\240a\330\004\027\220q\330\004!\240\021\330\004\036\230i\240v\250Q\250a\330\004\025\220Q\360\026\000\005\030\220q\330\004$\240C\240q\330\004!\240\023\240A\330\004\034\230C\230q\330\004\035\230U\240!\330\004\036\230e\2401\330\004\037\230s\240'\250\021\330\004\037\230s\240'\250\021\340\004\n\210&\220\002\220!\330\010\013\2103""\210c\220\021\330\014\r\340\010\026\220i\230q\240\001\330\010\013\210<\220s\230!\330\014\023\2204\220q\230\001\330\014\022\220$\220a\220q\330\014\023\2201\330\014\017\210u\220B\220a\330\020\023\2205\230\002\230'\240\023\240E\250\022\2501\330\024\030\230\003\2301\230A\330\025\032\230#\230Q\330\024\030\230\005\230Z\240q\330\025\032\230#\230Z\240s\250%\250s\260+\270S\300\005\300S\310\001\330\024\030\230\001\340\024\030\230\003\2301\230A\330\020\024\220A\340\020\024\220A\340\014\025\220\\\240\021\240*\250A\250U\260\"\260K\270|\3101\330\014\017\210t\2202\220Q\330\020\023\2205\230\002\230'\240\023\240E\250\022\2501\330\024\027\220q\230\010\240\001\330\025\032\230#\230Q\330\024%\240Q\240a\330\025\032\230#\230Q\330\024\"\240!\2401\330\025\032\230#\230Q\330\024\037\230q\240\001\330\025\032\230#\230Q\330\024\034\230G\2402\240Q\330\024\027\220r\230\022\2308\2401\330\030$\240A\240S\250\001\250\021\330\030$\240A\330\025\032\230#\230Q\330\024\035\230Q\340\024\027\220q\230\010\240\001\330\014\017\210t\2202\220Q\330\020\035\230Q\330\014\017\210t\2202\220Q\330\020\035\230Q\330\014\022\220!\340\r\031\230\023\230A\330\014\031\230\024\230Q\230a\330\014\022\220!\340\r\031\230\023\230A\330\014\023\2204\220q\230\001\330\014\017\210u\220C\220q\330\020\025\220^\240;\250b\260\007\260s\270\"\270A\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\330\021\026\220c\230\021\330\020\025\220^\240;\250b\260\007\260s\270\"\270A\330\021\026\220c\230\021\330\020\025\220^\240;\250c\260\027\270\003\2702\270Q\340\020\025\220Q\340\r\031\230\023\230A\330\014\025\220Q\330\014\r\360\006\000\r\023\220,\230a\320\037I\310\024\310Q\310e\320ST\340\010\021\220\021\340\004\013\2107\220$\220l\240,\250a\200\001\340\004\013\320\013&\240b\250\001O";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 158; i++) {
+    for (int i = 0; i < 161; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 47) PyUnicode_InternInPlace(&string);
@@ -21160,7 +22259,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 158; i < 160; i++) {
+    for (int i = 161; i < 165; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -21171,15 +22270,15 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 160; i++) {
+    for (Py_ssize_t i = 0; i < 165; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 158;
-      for (Py_ssize_t i=0; i<2; ++i) {
+      PyObject **table = stringtab + 161;
+      for (Py_ssize_t i=0; i<4; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
         if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -21235,7 +22334,7 @@ typedef struct {
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 6;
     unsigned int flags : 10;
-    unsigned int first_line : 6;
+    unsigned int first_line : 9;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -21252,9 +22351,19 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {11, 0, 0, 35, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 59};
+    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 23, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 97};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_n, __pyx_mstate->__pyx_n_u_pc, __pyx_mstate->__pyx_n_u_register_a, __pyx_mstate->__pyx_n_u_register_d, __pyx_mstate->__pyx_n_u_ram_obj, __pyx_mstate->__pyx_n_u_inst_type_obj, __pyx_mstate->__pyx_n_u_arg0_obj, __pyx_mstate->__pyx_n_u_arg1_obj, __pyx_mstate->__pyx_n_u_filepath, __pyx_mstate->__pyx_n_u_ram, __pyx_mstate->__pyx_n_u_inst_type, __pyx_mstate->__pyx_n_u_arg0, __pyx_mstate->__pyx_n_u_arg1, __pyx_mstate->__pyx_n_u_dec_len, __pyx_mstate->__pyx_n_u_cycle, __pyx_mstate->__pyx_n_u_instruction, __pyx_mstate->__pyx_n_u_addr, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_comp, __pyx_mstate->__pyx_n_u_dst, __pyx_mstate->__pyx_n_u_jump, __pyx_mstate->__pyx_n_u_result, __pyx_mstate->__pyx_n_u_halted};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_fpga_backend_ext_pyx, __pyx_mstate->__pyx_n_u_run_cycles_accelerated_plain, __pyx_mstate->__pyx_kp_b_iso88591_a_a_q_ivQa_Q_q_3c_iq_s_4q_aq_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {11, 0, 0, 35, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 180};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_n, __pyx_mstate->__pyx_n_u_pc, __pyx_mstate->__pyx_n_u_register_a, __pyx_mstate->__pyx_n_u_register_d, __pyx_mstate->__pyx_n_u_ram_obj, __pyx_mstate->__pyx_n_u_inst_type_obj, __pyx_mstate->__pyx_n_u_arg0_obj, __pyx_mstate->__pyx_n_u_arg1_obj, __pyx_mstate->__pyx_n_u_lcd, __pyx_mstate->__pyx_n_u_touch, __pyx_mstate->__pyx_n_u_filepath, __pyx_mstate->__pyx_n_u_ram, __pyx_mstate->__pyx_n_u_inst_type, __pyx_mstate->__pyx_n_u_arg0, __pyx_mstate->__pyx_n_u_arg1, __pyx_mstate->__pyx_n_u_dec_len, __pyx_mstate->__pyx_n_u_cycle, __pyx_mstate->__pyx_n_u_instruction, __pyx_mstate->__pyx_n_u_addr, __pyx_mstate->__pyx_n_u_m, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_comp, __pyx_mstate->__pyx_n_u_comp_kind, __pyx_mstate->__pyx_n_u_dst, __pyx_mstate->__pyx_n_u_jump, __pyx_mstate->__pyx_n_u_result, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_halted, __pyx_mstate->__pyx_n_u_lcd_write_command, __pyx_mstate->__pyx_n_u_lcd_write_data, __pyx_mstate->__pyx_n_u_lcd_clear, __pyx_mstate->__pyx_n_u_touch_read, __pyx_mstate->__pyx_n_u_touch_write, __pyx_mstate->__pyx_n_u_stdout_write, __pyx_mstate->__pyx_n_u_stdout_flush};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_fpga_backend_ext_pyx, __pyx_mstate->__pyx_n_u_run_cycles_accelerated, __pyx_mstate->__pyx_kp_b_iso88591_a_a_q_ivQa_Q_q_Cq_A_Cq_U_e1_s_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_fpga_backend_ext_pyx, __pyx_mstate->__pyx_n_u_run_cycles_accelerated_fpga, __pyx_mstate->__pyx_kp_b_iso88591_a_a_q_ivQa_Q_q_Cq_A_Cq_U_e1_s_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS), 299};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args};
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_fpga_backend_ext_pyx, __pyx_mstate->__pyx_n_u_run_cycles_accelerated, __pyx_mstate->__pyx_kp_b_iso88591_b, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
