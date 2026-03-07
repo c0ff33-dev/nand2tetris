@@ -4,6 +4,9 @@ HACK CPU engine for Nand2Tetris - encapsulates all CPU state and execution logic
 
 RAM_SIZE = 57344  # original spec: 24577 (~24K) words, FPGA spec: 57344 (56K) words
 
+# 16-bit signed masking - HACK CPU uses twos complement arithmetic
+_MASK = 0xFFFF
+
 # HACK ALU computation lookup table - all 28 standard computations
 # Replaces eval() for bulk execution performance
 _COMP = {
@@ -254,6 +257,7 @@ class Engine:
             eq = raw_cmd.index("=")
             dst = raw_cmd[:eq]
             result = _COMP[raw_cmd[eq + 1 :]](self.A, self.D, self.ram[self.A])
+            result = (result & _MASK) - (0x10000 if result & 0x8000 else 0)  # truncate to signed 16-bit
             if "M" in dst:
                 self.ram[self.A] = result
             if "A" in dst:
@@ -333,6 +337,7 @@ class Engine:
                     eq = raw_cmd.index("=")
                     dst = raw_cmd[:eq]
                     result = _COMP[raw_cmd[eq + 1 :]](A, D, ram[A])
+                    result = (result & _MASK) - (0x10000 if result & 0x8000 else 0)  # truncate to signed 16-bit
                     if "M" in dst:
                         ram[A] = result
                     if "A" in dst:

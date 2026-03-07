@@ -12,86 +12,7 @@ Usage:
 import sys
 import numpy as np
 import pygame
-from engine import Engine, RAM_SIZE, _COMP, _JUMP
-
-# 16-bit signed masking for HACK CPU arithmetic.
-# Python integers are unbounded but the HACK CPU uses 16-bit twos complement.
-# FPGA programs rely on overflow (e.g. bit-shifting via addition in Tile.draw).
-_MASK = 0xFFFF
-_COMP_16 = {}
-for _k, _fn in _COMP.items():
-    _COMP_16[_k] = _fn
-_COMP_KEYS = list(_COMP.keys())
-
-
-class FpgaEngine(Engine):
-    """Engine subclass that enforces 16-bit signed arithmetic wrapping."""
-
-    def run_cycles(self, n: int) -> int:
-        """Execute up to n cycles with 16-bit masking on all ALU results."""
-        pc = self.pc
-        A = self.A
-        D = self.D
-        ram = self.ram
-        rom_raw = self.rom_raw
-        rom_len = len(rom_raw)
-        labels = self.address_labels
-        filepath = self.filepath
-
-        cycle = 0
-        try:
-            while cycle < n:
-                if pc >= rom_len:
-                    break
-                raw_cmd = rom_raw[pc][1]
-                if raw_cmd[0] == "@":
-                    if raw_cmd == "@Sys.halt":
-                        self.halted = True
-                        break
-                    if raw_cmd == "@Sys.error":
-                        raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (rom_raw[pc][0], filepath))
-                    label = raw_cmd[1:]
-                    if label[0].isnumeric():
-                        A = int(label)
-                    else:
-                        if label not in labels:
-                            labels["BASE"] += 1
-                            if labels["BASE"] >= 255:
-                                raise OverflowError("Engine: Statics overflow! %s" % filepath)
-                            labels[label] = labels["BASE"]
-                        A = labels[label]
-                    pc += 1
-                elif "=" in raw_cmd:
-                    eq = raw_cmd.index("=")
-                    dst = raw_cmd[:eq]
-                    result = _COMP[raw_cmd[eq + 1 :]](A, D, ram[A])
-                    result = result & _MASK
-                    if result >= 0x8000:
-                        result -= 0x10000
-                    if "M" in dst:
-                        ram[A] = result
-                    if "A" in dst:
-                        A = result
-                    if "D" in dst:
-                        D = result
-                    pc += 1
-                elif ";" in raw_cmd:
-                    if _JUMP[raw_cmd[2:]](D):
-                        pc = A
-                    else:
-                        pc += 1
-                else:
-                    raise ValueError("Engine: Unexpected command at pc=%d: %s %s" % (pc, raw_cmd, filepath))
-                cycle += 1
-        finally:
-            self.pc = pc
-            self.A = A
-            self.D = D
-        return cycle
-
-
-# 16-bit signed mask for HACK CPU arithmetic
-_MASK = 0xFFFF
+from engine import Engine, RAM_SIZE
 
 # FPGA I/O memory map
 LCD8_ADDR = 4104  # LCD command port (8-bit SPI)
@@ -424,7 +345,7 @@ def main() -> None:
     touch = TouchController()
 
     # Initialize engine with I/O-intercepting RAM
-    engine = FpgaEngine()
+    engine = Engine()
     engine.ram = FpgaRAM(RAM_SIZE, lcd, touch)
     engine.load(args.file)
     _patch_rom(engine)
