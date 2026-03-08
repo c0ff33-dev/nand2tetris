@@ -48,8 +48,10 @@ $ cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python engine/
 ```sh
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python runner.py --fpga
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python debugger.py ~/src/nand2tetris/projects/11/Pong/Pong.asm --break Main.main
-cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python debugger.py ~/src/nand2tetris/projects/11/Pong/Pong.asm --no-cython
-cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator.py ~/src/nand2tetris/projects/11/Pong/Pong.asm --cpu-hz 1M
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator.py ~/src/nand2tetris/projects/11/Pong/Pong.asm
+
+# includes WASD emulation for the buttons
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator_fpga.py ~/src/nand2tetris/projects/13_fpga/Original/12_Tetris/12_Tetris.asm
 ```
 
 ## Miscellaneous

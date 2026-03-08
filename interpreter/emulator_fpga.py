@@ -46,7 +46,7 @@ RTP_ADC_MAX = 4094
 CLEAR_TRIGGER = 4112
 CPU_HZ = 15_000_000
 DEFAULT_FPS = 60
-DEFAULT_SCALE = 1
+DEFAULT_SCALE = 2
 TETRIS_FILENAME = "12_Tetris.asm"
 
 # Tetris-only keyboard overlay: A/W/S/D simulate the four on-screen control buttons.

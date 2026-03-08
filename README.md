@@ -25,18 +25,18 @@ Pygame frontend for the standard HACK platform. It renders the memory-mapped dis
 
 ```sh
 python emulator.py path/to/file.asm                # run in HACK emulator (default: 2x scale, 60 fps)
-python emulator.py path/to/file.asm --cpu-hz 1M    # target 1 MHz
+python emulator.py path/to/file.asm --cpu-hz 1M    # limit clock speed to 1 MHz
 python emulator.py path/to/file.asm --scale 1      # custom display scale
 python emulator.py path/to/file.asm --fps 30       # custom fps target
 ```
 
-Optional compiled acceleration is shared by both emulators and the debugger. Build it manually when host tooling is available:
+Optional compiled acceleration is shared by both emulators. Build it manually when host tooling is available:
 
 ```sh
 python engine/build_accelerator.py
 ```
 
-When the compiled backend is present, `emulator.py`, `emulator_fpga.py`, and `debugger.py` use it automatically where supported. Pass `--no-cython` to force the pure Python path for comparisons and testing.
+When the compiled backend is present, `emulator.py` and `emulator_fpga.py` use it automatically. Pass `--no-cython` to force the pure Python path for comparisons and testing.
 
 ## emulator_fpga.py: FPGA emulator
 

@@ -1,6 +1,5 @@
 """HACK CPU emulator and interactive debugger for Nand2Tetris."""
 
-from array import array
 import re
 import os
 import sys
@@ -11,40 +10,9 @@ from rich.console import Console
 from rich.table import Table
 
 from engine import Engine
-from engine.accelerated_engine import ACCEL_AVAILABLE, AcceleratedEngine
 
 console = Console()
 step = False
-
-
-def _load_ram_image(engine: Engine, ram_image: list[int]) -> None:
-    """
-    Copy a test RAM image into the selected engine implementation.
-
-    :param engine: The active engine instance.
-    :param ram_image: RAM words from a .tst file.
-    """
-    if isinstance(engine, AcceleratedEngine):
-        engine.ram = array("i", ram_image)
-    else:
-        engine.ram = list(ram_image)
-
-
-def _run_accelerated(engine: AcceleratedEngine, max_cycles: int) -> int:
-    """
-    Execute up to max_cycles with the compiled backend.
-
-    :param engine: Accelerated engine instance with a loaded ROM.
-    :param max_cycles: Maximum number of cycles to execute.
-    :return: Number of cycles actually executed.
-    """
-    cycle = 0
-    while cycle < max_cycles and not engine.halted and engine.pc < len(engine.rom_raw):
-        executed = engine.run_cycles(max_cycles - cycle)
-        if executed <= 0:
-            break
-        cycle += executed
-    return cycle
 
 
 def process_debug(gui_log: list, debug_cmd: str, engine: Engine, src_line: str, call_tree: list) -> None:
@@ -207,7 +175,6 @@ def run(
     tst_params: dict | None = None,
     breakpoints: list[int] = [],
     func_breakpoints: list[str] = [],
-    use_cython: bool = True,
     debug: bool = False,
 ) -> None:
     """
@@ -217,21 +184,19 @@ def run(
     :param tst_params: Optional test parameters from a .tst file.
     :param breakpoints: List of source line numbers to break on.
     :param func_breakpoints: List of function names to break on.
-    :param use_cython: Allow the compiled backend when available.
     :param debug: Enable verbose output.
     :raises AssertionError: If test assertions fail.
     """
     gui_log = []
 
     # initialize engine
-    use_accelerated_engine = use_cython and ACCEL_AVAILABLE
-    engine = AcceleratedEngine() if use_accelerated_engine else Engine()
+    engine = Engine()
 
     max_cycles = 1000  # ~20M for full system init in Jack OS tests
 
     # load test params
     if tst_params is not None:
-        _load_ram_image(engine, tst_params["RAM"])
+        engine.ram = tst_params["RAM"]
         max_cycles = tst_params["MAX"]
 
     # unlimited cycles when setting breakpoints
@@ -248,78 +213,64 @@ def run(
         if max_cycles < 20000000:
             max_cycles = 20000000
 
-    use_compiled_backend = use_accelerated_engine and not breakpoints and not func_breakpoints and expected_asserts == 0
+    cycle = 0
+    call_tree = []
     assert_pass = assert_fail = 0
-    if not use_cython:
-        print("Debugger: Compiled backend disabled (--no-cython)")
-    elif use_compiled_backend:
-        print("Debugger: Using compiled backend")
-    elif not ACCEL_AVAILABLE:
-        print("Debugger: Compiled backend unavailable (build with `python engine/build_accelerator.py`)")
-    else:
-        print("Debugger: Compiled backend disabled while using breakpoints or ASSERT directives")
+    while cycle < max_cycles:
+        result = engine.step()
+        if result is None:
+            break
+        src_line, raw_cmd, debug_cmd = result
 
-    if use_compiled_backend:
-        cycle = _run_accelerated(engine, max_cycles)
-    else:
-        # runtime
-        cycle = 0
-        call_tree = []
-        while cycle < max_cycles:
-            result = engine.step()
-            if result is None:
-                break
-            src_line, raw_cmd, debug_cmd = result
+        # inject Sys.init at top of call tree on bootstrap
+        if not call_tree and "// bootstrap: initialize SP" in debug_cmd:
+            call_tree.append("Sys.init")
 
-            # inject Sys.init at top of call tree on bootstrap
-            if not call_tree and "// bootstrap: initialize SP" in debug_cmd:
-                call_tree.append("Sys.init")
+        if engine.halted:
+            break
 
-            if engine.halted:
-                break
+        # evaluate ASSERT REACHABLE pre-execution
+        if "// ASSERT REACHABLE" in debug_cmd:
+            assert_pass += 1
 
-            # evaluate ASSERT REACHABLE pre-execution
-            if "// ASSERT REACHABLE" in debug_cmd:
-                assert_pass += 1
+        # track call tree from translator comments
+        if "// call " in debug_cmd:
+            func = debug_cmd.split("// call ")[1].split(" //")[0].rsplit(" ", 1)[0]
+            call_tree.append(func)
+        elif "// return" in debug_cmd and call_tree:
+            call_tree.pop()
 
-            # track call tree from translator comments
-            if "// call " in debug_cmd:
-                func = debug_cmd.split("// call ")[1].split(" //")[0].rsplit(" ", 1)[0]
-                call_tree.append(func)
-            elif "// return" in debug_cmd and call_tree:
-                call_tree.pop()
+        #  render debug interface
+        if breakpoints or func_breakpoints:
+            func_break_hit = False
+            if func_breakpoints:
+                for fb in func_breakpoints:
+                    if "// (%s)" % fb in debug_cmd:
+                        func_break_hit = True
+                        break
+            if src_line in breakpoints or step or breakpoints == [-1] or func_break_hit:
+                process_debug(gui_log, debug_cmd, engine, src_line, call_tree)
 
-            #  render debug interface
-            if breakpoints or func_breakpoints:
-                func_break_hit = False
-                if func_breakpoints:
-                    for fb in func_breakpoints:
-                        if "// (%s)" % fb in debug_cmd:
-                            func_break_hit = True
-                            break
-                if src_line in breakpoints or step or breakpoints == [-1] or func_break_hit:
-                    process_debug(gui_log, debug_cmd, engine, src_line, call_tree)
+        # evaluate ASSERT directives (post-execution)
+        if "// ASSERT " in debug_cmd:
+            assert_text = debug_cmd.split("// ASSERT ")[1].strip()
+            if assert_text == "REACHABLE":
+                pass  # handled above
+            else:
+                match = re.match(r"RAM\[(\d+)\]\s*=\s*(-?\d+)", assert_text)
+                if match:
+                    addr, expected = int(match.group(1)), int(match.group(2))
+                    actual = engine.ram[addr]
+                    if actual != expected:
+                        assert_fail += 1
+                        print(
+                            "ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d %s"
+                            % (addr, actual, expected, engine.pc - 1, asm_filepath)
+                        )
+                    else:
+                        assert_pass += 1
 
-            # evaluate ASSERT directives (post-execution)
-            if "// ASSERT " in debug_cmd:
-                assert_text = debug_cmd.split("// ASSERT ")[1].strip()
-                if assert_text == "REACHABLE":
-                    pass  # handled above
-                else:
-                    match = re.match(r"RAM\[(\d+)\]\s*=\s*(-?\d+)", assert_text)
-                    if match:
-                        addr, expected = int(match.group(1)), int(match.group(2))
-                        actual = engine.ram[addr]
-                        if actual != expected:
-                            assert_fail += 1
-                            print(
-                                "ASSERT FAILED: RAM[%d] = %d (expected %d) at PC=%d %s"
-                                % (addr, actual, expected, engine.pc - 1, asm_filepath)
-                            )
-                        else:
-                            assert_pass += 1
-
-            cycle += 1  # always advance clock cycle
+        cycle += 1  # always advance clock cycle
 
     # program end
     if engine.halted:
@@ -375,11 +326,6 @@ if __name__ == "__main__":
         default=[],
         help="Breakpoints: line numbers or function names (e.g. --break 42 Math.init)",
     )
-    parser.add_argument(
-        "--no-cython",
-        action="store_true",
-        help="Use the Python engine even when the compiled backend is available",
-    )
     parser.add_argument("--debug", action="store_true", help="Enable verbose output")
     args = parser.parse_args()
 
@@ -396,6 +342,5 @@ if __name__ == "__main__":
         args.file,
         breakpoints=line_breaks,
         func_breakpoints=func_breaks,
-        use_cython=not args.no_cython,
         debug=args.debug,
     )
