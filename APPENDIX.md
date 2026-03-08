@@ -6,10 +6,15 @@ Cliff notes for environment setup/installation.
 
 ### Python 3.12
 
+Only need to add `deadsnakes` repo if target python version is not shipped in current distro:
+
 ```sh
-$ sudo apt update
 $ sudo apt install software-properties-common
 $ sudo add-apt-repository ppa:deadsnakes/ppa
+```
+
+```sh
+$ sudo apt update
 $ sudo apt install python3.12 python3.12-venv python3.12-dev
 $ sudo apt install libevdev-dev # input devices
 $ sudo apt install default-jre # java (course tools)
