@@ -40,7 +40,9 @@ When the compiled backend is present, `emulator.py` and `emulator_fpga.py` use i
 
 ## emulator_fpga.py: FPGA emulator
 
-Pygame frontend for the FPGA-targeted platform with LCD/touch/UART emulation. When the optional accelerator is built, both the standard HACK emulator and the FPGA emulator can use it.
+Pygame frontend for the FPGA-targeted platform with `LCD` & `RTP` emulation, unemulated hardware features are stubbed out.
+
+When the optional accelerator is built, both the standard HACK emulator and the FPGA emulator can use it.
 
 ```sh
 python emulator_fpga.py path/to/file.asm               # run in FPGA emulator

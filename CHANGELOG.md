@@ -1,13 +1,20 @@
 # Changelog
 
-## Version 1.1.0
+## Version 1.2.0: Emulator updates
+
+* Add FPGA specific emulator with `LCD` and `RTP` support to run Tetris (requires checking out the `nand2tetris-fpga` repo for symlinks to resolve).
+* Add optional cython backend to accelerate the main engine loop of the emulators, falls back to Python backend if not available.
+* More performance optimizations for the Python backend.
+* Richer CLI options for the
+
+## Version 1.1.0: Purge compilation artifacts
 
 * History rewrite to purge compilation artifacts, use `git fetch && git reset "@{u}" --hard` to sync to new `main`.
 * Updates to ignored files can still be tracked with `git add <path> -f`.
 * Minor updates to documentation.
 * Windows is no longer supported.
 
-## Version 1.0.0
+## Version 1.0.0: Initial release
 
 This project has been developed over the course of several years, below is a high level summary of feature development starting in 2026.
 
