@@ -17,7 +17,8 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["interpreter*"]
+where = ["interpreter"]
+include = ["engine*"]
 
 [build-system]
 requires = ["setuptools"]

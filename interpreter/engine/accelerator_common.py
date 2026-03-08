@@ -3,11 +3,12 @@ Shared helpers for the optional compiled engine accelerators.
 """
 
 from array import array
-from importlib import util
+from importlib import import_module, util
 from itertools import chain
 from pathlib import Path
 
-EXTENSION_NAME = "fpga_backend_ext"
+EXTENSION_BASENAME = "fpga_backend_ext"
+PACKAGE_NAME = Path(__file__).resolve().parent.name
 
 INST_A = 0
 INST_CDEST = 1
@@ -102,25 +103,28 @@ def _load_extension_functions() -> tuple[object | None, object | None]:
     """Load the compiled accelerator entry points when available."""
     module = None
     try:
-        import fpga_backend_ext as imported_module
+        imported_module = import_module(f"{PACKAGE_NAME}.{EXTENSION_BASENAME}")
     except ImportError:
         imported_module = None
 
     if imported_module is not None:
         module = imported_module
     else:
-        interpreter_dir = Path(__file__).resolve().parent
+        package_dir = Path(__file__).resolve().parent
+        interpreter_dir = package_dir.parent
         repo_root = interpreter_dir.parent
         candidates = {
             path.resolve()
             for path in chain(
-                interpreter_dir.glob("%s*.so" % EXTENSION_NAME),
-                repo_root.glob("%s*.so" % EXTENSION_NAME),
-                (repo_root / "build").glob("**/%s*.so" % EXTENSION_NAME),
+                package_dir.glob(f"{EXTENSION_BASENAME}*.so"),
+                interpreter_dir.glob(f"{EXTENSION_BASENAME}*.so"),
+                repo_root.glob(f"{EXTENSION_BASENAME}*.so"),
+                (repo_root / "build").glob(f"**/{EXTENSION_BASENAME}*.so"),
             )
         }
+        module_name = f"{PACKAGE_NAME}.{EXTENSION_BASENAME}"
         for extension_path in sorted(candidates, key=lambda path: path.stat().st_mtime, reverse=True):
-            spec = util.spec_from_file_location(EXTENSION_NAME, extension_path)
+            spec = util.spec_from_file_location(module_name, extension_path)
             if spec and spec.loader:
                 module = util.module_from_spec(spec)
                 spec.loader.exec_module(module)

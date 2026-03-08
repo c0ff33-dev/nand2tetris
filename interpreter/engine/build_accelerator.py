@@ -8,11 +8,15 @@ from Cython.Build import cythonize
 from setuptools import Distribution, Extension
 from setuptools.command.build_ext import build_ext
 
+EXTENSION_BASENAME = "fpga_backend_ext"
+PACKAGE_NAME = Path(__file__).resolve().parent.name
 
-def _find_built_extension(interpreter_dir: Path, repo_root: Path) -> Path:
+
+def _find_built_extension(package_dir: Path, interpreter_dir: Path, repo_root: Path) -> Path:
     """
     Locate the built shared object across setuptools/Cython output locations.
 
+    :param package_dir: engine/ directory in the repo.
     :param interpreter_dir: interpreter/ directory in the repo.
     :param repo_root: Repository root.
     :return: Path to the newest built extension.
@@ -21,23 +25,28 @@ def _find_built_extension(interpreter_dir: Path, repo_root: Path) -> Path:
     candidates = {
         path.resolve()
         for path in chain(
-            interpreter_dir.glob("fpga_backend_ext*.so"),
-            repo_root.glob("fpga_backend_ext*.so"),
-            (repo_root / "build").glob("**/fpga_backend_ext*.so"),
+            package_dir.glob(f"{EXTENSION_BASENAME}*.so"),
+            interpreter_dir.glob(f"{EXTENSION_BASENAME}*.so"),
+            repo_root.glob(f"{EXTENSION_BASENAME}*.so"),
+            (repo_root / "build").glob(f"**/{EXTENSION_BASENAME}*.so"),
         )
     }
     if not candidates:
-        raise FileNotFoundError("Built accelerator not found; search for fpga_backend_ext*.so returned no matches")
+        raise FileNotFoundError(f"Built accelerator not found; search for {EXTENSION_BASENAME}*.so returned no matches")
     return max(candidates, key=lambda path: path.stat().st_mtime)
 
 
 def main() -> None:
     """
-    Build fpga_backend_ext and copy the shared object next to the interpreter modules.
+    Build fpga_backend_ext and copy the shared object next to the engine modules.
     """
-    interpreter_dir = Path(__file__).resolve().parent
+    package_dir = Path(__file__).resolve().parent
+    interpreter_dir = package_dir.parent
     repo_root = interpreter_dir.parent
-    extension = Extension("fpga_backend_ext", [str(interpreter_dir / "fpga_backend_ext.pyx")])
+    extension = Extension(
+        f"{PACKAGE_NAME}.{EXTENSION_BASENAME}",
+        [str(package_dir / f"{EXTENSION_BASENAME}.pyx")],
+    )
     distribution = Distribution(
         {
             "name": "nand2tetris-accelerator",
@@ -49,8 +58,8 @@ def main() -> None:
     command.ensure_finalized()
     command.run()
 
-    built_ext = _find_built_extension(interpreter_dir, repo_root)
-    target = interpreter_dir / built_ext.name
+    built_ext = _find_built_extension(package_dir, interpreter_dir, repo_root)
+    target = package_dir / built_ext.name
     if built_ext != target:
         shutil.copy2(built_ext, target)
     print("Built accelerator: %s" % target)

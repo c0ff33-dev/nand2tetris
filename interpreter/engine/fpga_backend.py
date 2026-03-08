@@ -8,9 +8,9 @@ accelerated engine path while sharing the compiled instruction stream format.
 import sys
 from array import array
 
-from accelerator_common import FPGA_ACCEL_AVAILABLE as ACCEL_AVAILABLE
-from accelerator_common import RUN_CYCLES_ACCELERATED_FPGA, build_instruction_stream
-from engine import Engine, RAM_SIZE
+from .accelerator_common import FPGA_ACCEL_AVAILABLE as ACCEL_AVAILABLE
+from .accelerator_common import RUN_CYCLES_ACCELERATED_FPGA, build_instruction_stream
+from .engine import Engine, RAM_SIZE
 
 LCD8_ADDR = 4104
 LCD16_ADDR = 4105

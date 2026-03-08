@@ -8,6 +8,7 @@ import tty
 import termios
 from rich.console import Console
 from rich.table import Table
+
 from engine import Engine
 
 console = Console()

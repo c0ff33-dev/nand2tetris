@@ -4,9 +4,9 @@ Optional compiled accelerator for the standard HACK engine.
 
 from array import array
 
-from accelerator_common import ENGINE_ACCEL_AVAILABLE as ACCEL_AVAILABLE
-from accelerator_common import RUN_CYCLES_ACCELERATED_PLAIN, build_instruction_stream
-from engine import Engine, RAM_SIZE
+from .accelerator_common import ENGINE_ACCEL_AVAILABLE as ACCEL_AVAILABLE
+from .accelerator_common import RUN_CYCLES_ACCELERATED_PLAIN, build_instruction_stream
+from .engine import Engine, RAM_SIZE
 
 
 class AcceleratedEngine(Engine):
