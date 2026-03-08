@@ -15,11 +15,11 @@ All Python scripts must be run from within the `interpreter/` directory.
 cd interpreter
 ```
 
-## Features / Usage
+## Features
 
 ## emulator.py: HACK emulator
 
-Pygame frontend for the standard HACK platform. It renders the memory-mapped display and handles keyboard I/O while driving the CPU engine on symbolic assembly.
+Pygame frontend for the HACK platform. It renders the memory-mapped display and handles keyboard I/O while driving the CPU engine on symbolic assembly.
 
 ![](./tools/emulator.jpg)
 
@@ -40,9 +40,13 @@ When the compiled backend is present, `emulator.py` and `emulator_fpga.py` use i
 
 ## emulator_fpga.py: FPGA emulator
 
-Pygame frontend for the FPGA-targeted platform with Screen (`LCD`) & Touch (`RTP`) emulation from the [nand2tetris-fpga](https://github.com/c0ff33-dev/nand2tetris-fpga) project, unemulated hardware features are stubbed out. Uses mouse input to drive the touch screen and specifically for Michael Schröder's `Tetris` program also includes virtual translation of the WASD keys to button presses.
+Pygame frontend for the "Original" FPGA platform with Screen (`LCD`) & Touch (`RTP`) emulation from the [nand2tetris-fpga](https://github.com/c0ff33-dev/nand2tetris-fpga) project, unemulated hardware features are stubbed out. Uses mouse input to drive the touch screen and specifically for Michael Schröder's `Tetris` program also includes virtual translation of the WASD keys to button presses.
 
-![](./tools/tetris1.jpg) ![](./tools/tetris2.jpg)
+<p align="center">
+  <img src="./tools/tetris1.jpg" width="45%">
+    &nbsp;
+  <img src="./tools/tetris2.jpg" width="45%">
+</p>
 
 ```sh
 python emulator_fpga.py path/to/file.asm               # run in FPGA emulator
