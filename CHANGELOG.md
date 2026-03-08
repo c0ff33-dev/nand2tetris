@@ -2,10 +2,10 @@
 
 ## Version 1.2.0: Emulator updates
 
-* Add FPGA specific emulator with `LCD` and `RTP` support to run Tetris (requires checking out the `nand2tetris-fpga` repo for symlinks to resolve).
-* Add optional cython backend to accelerate the main engine loop of the emulators, falls back to Python backend if not available.
+* Added FPGA specific emulator with `LCD` and `RTP` support to run Tetris (requires checking out the `nand2tetris-fpga` repo for symlinks to resolve).
+* Added optional cython backend to accelerate the main engine loop of the emulators, falls back to Python backend if not available.
 * More performance optimizations for the Python backend.
-* Richer CLI options for the
+* Added richer CLI options for both emulators.
 
 ## Version 1.1.0: Purge compilation artifacts
 
