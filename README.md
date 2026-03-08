@@ -40,9 +40,9 @@ When the compiled backend is present, `emulator.py` and `emulator_fpga.py` use i
 
 ## emulator_fpga.py: FPGA emulator
 
-Pygame frontend for the FPGA-targeted platform with `LCD` & `RTP` emulation, unemulated hardware features are stubbed out.
+Pygame frontend for the FPGA-targeted platform with Screen (`LCD`) & Touch (`RTP`) emulation from the [nand2tetris-fpga](https://github.com/c0ff33-dev/nand2tetris-fpga) project, unemulated hardware features are stubbed out. Uses mouse input to drive the touch screen and specifically for Michael Schröder's `Tetris` program also includes virtual translation of the WASD keys to button presses.
 
-When the optional accelerator is built, both the standard HACK emulator and the FPGA emulator can use it.
+![](./tools/tetris1.jpg) ![](./tools/tetris2.jpg)
 
 ```sh
 python emulator_fpga.py path/to/file.asm               # run in FPGA emulator
