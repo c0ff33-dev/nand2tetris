@@ -4,6 +4,17 @@ HACK CPU engine for Nand2Tetris - encapsulates all CPU state and execution logic
 
 RAM_SIZE = 57344  # original spec: 24577 (~24K) words, FPGA spec: 57344 (56K) words
 
+# 16-bit signed masking - HACK CPU uses twos complement arithmetic
+_MASK = 0xFFFF
+
+# Pre-decoded instruction types for run_cycles (eliminates string parsing from hot loop)
+_INST_A = 0  # A-instruction with resolved numeric value
+_INST_LABEL = 1  # A-instruction with unresolved label (resolved on first encounter)
+_INST_CDEST = 2  # C-instruction: dest=comp
+_INST_CJMP = 3  # C-instruction: comp;jump
+_INST_HALT = 4  # @Sys.halt sentinel
+_INST_ERROR = 5  # @Sys.error sentinel
+
 # HACK ALU computation lookup table - all 28 standard computations
 # Replaces eval() for bulk execution performance
 _COMP = {
@@ -199,6 +210,41 @@ class Engine:
 
         self.rom_raw = raw_asm
         self.rom_debug = debug_asm
+        self.decode()
+
+    def decode(self) -> None:
+        """
+        Pre-decode ROM into tuples for optimized execution.
+
+        Converts string-based instructions into typed tuples with resolved function
+        pointers, eliminating all string parsing from the run_cycles hot loop.
+        Must be called after load() and any ROM patching.
+        """
+        decoded = []
+        labels = self.address_labels
+        for _src_line, raw_cmd in self.rom_raw:
+            if raw_cmd[0] == "@":
+                if raw_cmd == "@Sys.halt":
+                    decoded.append((_INST_HALT,))
+                elif raw_cmd == "@Sys.error":
+                    decoded.append((_INST_ERROR, _src_line))
+                else:
+                    label = raw_cmd[1:]
+                    if label[0].isnumeric():
+                        decoded.append((_INST_A, int(label)))
+                    elif label in labels:
+                        decoded.append((_INST_A, labels[label]))
+                    else:
+                        decoded.append((_INST_LABEL, label))
+            elif "=" in raw_cmd:
+                eq = raw_cmd.index("=")
+                dst = raw_cmd[:eq]
+                decoded.append((_INST_CDEST, _COMP[raw_cmd[eq + 1 :]], "M" in dst, "A" in dst, "D" in dst))
+            elif ";" in raw_cmd:
+                decoded.append((_INST_CJMP, _JUMP[raw_cmd[2:]]))
+            else:
+                raise ValueError("decode: Unexpected command: %s" % raw_cmd)
+        self.rom_decoded = decoded
 
     def step(self) -> tuple[int, str, str] | None:
         """
@@ -254,6 +300,7 @@ class Engine:
             eq = raw_cmd.index("=")
             dst = raw_cmd[:eq]
             result = _COMP[raw_cmd[eq + 1 :]](self.A, self.D, self.ram[self.A])
+            result = (result & _MASK) - (0x10000 if result & 0x8000 else 0)  # truncate to signed 16-bit
             if "M" in dst:
                 self.ram[self.A] = result
             if "A" in dst:
@@ -280,80 +327,87 @@ class Engine:
         """
         Execute up to n instruction cycles (optimized bulk execution).
 
-        Uses local variable caching and ALU lookup tables instead of eval() for
-        significantly higher throughput than calling step() in a loop.
+        Uses pre-decoded instruction tuples and local variable caching for
+        maximum throughput. Call decode() after any ROM modifications.
         Stops early on halt or end of ROM.
 
         :param n: Maximum number of cycles to execute.
         :return: Number of cycles actually executed.
         :raises OverflowError: If statics overflow into the stack.
         :raises RuntimeError: If Sys.error() is called.
-        :raises ValueError: If an unexpected command is encountered.
         """
-        # Cache frequently accessed attributes as locals
+        # Cache as locals for LOAD_FAST bytecode
         pc = self.pc
         A = self.A
         D = self.D
         ram = self.ram
-        rom_raw = self.rom_raw
-        rom_len = len(rom_raw)
+        decoded = self.rom_decoded
+        dec_len = len(decoded)
         labels = self.address_labels
         filepath = self.filepath
+        rom_raw = self.rom_raw
+        MASK = _MASK
+        IA = _INST_A
+        IC = _INST_CDEST
+        IJ = _INST_CJMP
+        IH = _INST_HALT
+        IE = _INST_ERROR
+        IL = _INST_LABEL
 
         cycle = 0
         try:
             while cycle < n:
-                if pc >= rom_len:
+                if pc >= dec_len:
                     break
 
-                raw_cmd = rom_raw[pc][1]
+                instr = decoded[pc]
+                t = instr[0]
 
-                # A-instruction (@address / @label)
-                if raw_cmd[0] == "@":
-                    if raw_cmd == "@Sys.halt":
-                        self.halted = True
-                        break
-                    if raw_cmd == "@Sys.error":
-                        raise RuntimeError("Engine: Sys.error() called @ src_line %d %s" % (rom_raw[pc][0], filepath))
-
-                    label = raw_cmd[1:]
-                    if label[0].isnumeric():
-                        A = int(label)
-                    else:
-                        if label not in labels:
-                            labels["BASE"] += 1
-                            if labels["BASE"] >= 255:
-                                raise OverflowError("Engine: Statics overflow! %s" % filepath)
-                            labels[label] = labels["BASE"]
-                        A = labels[label]
-                    pc += 1
-
-                # C-instruction with destination (dest=comp)
-                elif "=" in raw_cmd:
-                    eq = raw_cmd.index("=")
-                    dst = raw_cmd[:eq]
-                    result = _COMP[raw_cmd[eq + 1 :]](A, D, ram[A])
-                    if "M" in dst:
+                # C-instruction dest=comp (~61% of instructions)
+                if t == IC:
+                    result = instr[1](A, D, ram[A])
+                    result = (result & MASK) - (0x10000 if result & 0x8000 else 0)  # truncate to signed 16-bit
+                    if instr[2]:
                         ram[A] = result
-                    if "A" in dst:
+                    if instr[3]:
                         A = result
-                    if "D" in dst:
+                    if instr[4]:
                         D = result
                     pc += 1
 
-                # C-instruction with jump (comp;jump)
-                elif ";" in raw_cmd:
-                    if _JUMP[raw_cmd[2:]](D):
+                # A-instruction with resolved value (~33%)
+                elif t == IA:
+                    A = instr[1]
+                    pc += 1
+
+                # C-instruction comp;jump (~4%)
+                elif t == IJ:
+                    if instr[1](D):
                         pc = A
                     else:
                         pc += 1
 
-                else:
-                    raise ValueError("Engine: Unexpected command at pc=%d: %s %s" % (pc, raw_cmd, filepath))
+                elif t == IH:
+                    self.halted = True
+                    break
+
+                elif t == IE:
+                    raise RuntimeError("Engine: Sys.error() @ src_line %d %s" % (rom_raw[pc][0], filepath))
+
+                # A-instruction with unresolved label (resolved once, then cached)
+                elif t == IL:
+                    label = instr[1]
+                    if label not in labels:
+                        labels["BASE"] += 1
+                        if labels["BASE"] >= 255:
+                            raise OverflowError("Engine: Statics overflow! %s" % filepath)
+                        labels[label] = labels["BASE"]
+                    A = labels[label]
+                    decoded[pc] = (IA, A)
+                    pc += 1
 
                 cycle += 1
         finally:
-            # Always write back locals to self, even on exception
             self.pc = pc
             self.A = A
             self.D = D

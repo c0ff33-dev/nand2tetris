@@ -12,3 +12,5 @@ build/
 *.cmp
 *.xml
 *.vm
+*.so
+interpreter/engine/*.c

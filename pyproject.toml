@@ -10,12 +10,15 @@ dependencies = ["rich", "numpy", "pygame"]
 
 [project.optional-dependencies]
 dev = [
+    "Cython",
+    "setuptools",
     "ruff",
     "pydoclint",
 ]
 
 [tool.setuptools.packages.find]
-include = ["interpreter*"]
+where = ["interpreter"]
+include = ["engine*"]
 
 [build-system]
 requires = ["setuptools"]

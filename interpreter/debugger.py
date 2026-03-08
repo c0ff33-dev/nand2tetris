@@ -8,6 +8,7 @@ import tty
 import termios
 from rich.console import Console
 from rich.table import Table
+
 from engine import Engine
 
 console = Console()
@@ -212,7 +213,6 @@ def run(
         if max_cycles < 20000000:
             max_cycles = 20000000
 
-    # runtime
     cycle = 0
     call_tree = []
     assert_pass = assert_fail = 0
@@ -317,7 +317,7 @@ def run(
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="Nand2Tetris HACK CPU emulator")
+    parser = argparse.ArgumentParser(description="Nand2Tetris HACK debugger")
     parser.add_argument("file", help="Path to .asm file to execute")
     parser.add_argument(
         "--break",
@@ -338,4 +338,9 @@ if __name__ == "__main__":
         else:
             func_breaks.append(bp)
 
-    run(args.file, breakpoints=line_breaks, func_breakpoints=func_breaks, debug=args.debug)
+    run(
+        args.file,
+        breakpoints=line_breaks,
+        func_breakpoints=func_breaks,
+        debug=args.debug,
+    )
