@@ -17,6 +17,8 @@ Jack source → tokenizer.py → analyzer.py → compiler.py → translator.py �
 - **engine/engine.py** — `Engine` class encapsulating all HACK CPU state (RAM, ROM, registers, PC) and execution logic. Provides `load()` to parse ASM files, `step()` for per-instruction execution (returns debug info), and `run_cycles(n)` for optimized bulk execution. Uses ALU lookup tables (`_COMP`, `_JUMP`) instead of `eval()`.
 - **emulator/emulator.py** — Pygame-based HACK platform emulator frontend. Renders the memory-mapped display (RAM[16384..24575]) via numpy bit-unpacking, handles keyboard I/O (RAM[24576]), and can optionally use the compiled accelerator via `AcceleratedEngine`.
 - **emulator/emulator_fpga.py** — Pygame-based FPGA platform emulator front end. Emulates the LCD/touch/UART memory map and can optionally use the compiled accelerator via `AcceleratedFpgaEngine`.
+- **emulator/pong/pong.pygame** / **emulator/pong/pong_launcher.py** — Batocera/Knulli-oriented Pong launcher. Uses direct joystick polling plus 640x480-friendly letterboxing and intentionally avoids numpy so it can fit the leaner handheld PyGame runtime.
+- **emulator/pong/build_package.py** — Stages a deployment-ready pure-Python Pong package under `interpreter/build/pong/`. It copies `pong.pygame`, `pong_launcher.py`, `Pong.asm`, and only the base `engine/` subset needed on the handheld.
 - **debugger.py** — Interactive debugger with Rich TUI for step-through debugging (breakpoints, call tree, stack view). Uses `Engine` from `engine/engine.py`. Standalone entry point for running/debugging individual `.asm` files.
 - **runner.py** — Test runner that orchestrates the full pipeline: course compiler, tokenizer, analyzer, compiler, translator, assembler, and all test suites (HardwareSimulator, CPUEmulator, VMEmulator). This is the main entry point for running all tests.
 - **tokenizer.py** — Lexes Jack source into XML token stream. Uses recursive descent with a string placeholder system (`__string0__`, etc.).
@@ -66,6 +68,8 @@ python engine/build_accelerator.py  # build the optional compiled emulator accel
 ```sh
 python -m emulator.emulator file.asm  # run in the HACK emulator
 python -m emulator.emulator_fpga file.asm  # run in the FPGA pygame emulator
+python emulator/pong/pong.pygame --windowed  # run the Batocera/Knulli Pong launcher locally
+python emulator/pong/build_package.py  # stage interpreter/build/pong/ for device deployment
 ```
 
 The Java tools are invoked via shell/batch scripts in `tools/`:

@@ -49,6 +49,8 @@ $ cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python engine/
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python runner.py --fpga
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python debugger.py ~/src/nand2tetris/projects/11/Pong/Pong.asm --break Main.main
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python -m emulator.emulator ~/src/nand2tetris/projects/11/Pong/Pong.asm
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator/pong/pong.pygame --windowed
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator/pong/build_package.py
 
 # includes WASD emulation for the buttons
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python -m emulator.emulator_fpga ~/src/nand2tetris/projects/13_fpga/Original/12_Tetris/12_Tetris.asm

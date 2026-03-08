@@ -6,6 +6,8 @@
 * Added optional cython backend to accelerate the main engine loop of the emulators, falls back to Python backend if not available.
 * More performance optimizations for the Python backend.
 * Added richer CLI options for both emulators.
+* Added a Batocera/Knulli-oriented `interpreter/emulator/pong/pong.pygame` launcher with direct gamepad input and 640x480 letterboxing.
+* Added `interpreter/emulator/pong/build_package.py` to stage a pure-Python deployment folder under `interpreter/build/pong/`.
 
 ## Version 1.1.0: Purge compilation artifacts
 

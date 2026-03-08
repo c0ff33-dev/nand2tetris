@@ -201,6 +201,36 @@ git clone https://github.com/c0ff33-dev/nand2tetris-fpga.git
 
 The `--fpga` flag includes these programs in the test suite. Without it, `projects/13_fpga` is ignored.
 
+## Batocera/Knulli Pong launcher
+
+`interpreter/emulator/pong/pong.pygame` is a handheld-oriented Pong launcher for Batocera/Knulli-style `.pygame` packaging. It reuses the HACK engine, maps joystick input directly for Pong, letterboxes the 512x256 framebuffer into 640x480-style displays, and avoids a numpy dependency so it can run in the leaner PyGame runtime used by handheld firmware.
+
+For local testing, run it from within `interpreter/`:
+
+```sh
+python emulator/pong/pong.pygame --windowed --no-cython
+python emulator/pong/build_package.py
+```
+
+Packaging/staging notes:
+
+- Run `python emulator/pong/build_package.py` to stage `interpreter/build/pong/`.
+- Copy the staged folder to `/userdata/roms/pygame/pong/`.
+- The staged package contains the pure-Python `engine/` subset only, with no Cython accelerator files.
+
+Recommended Batocera/Knulli core settings:
+
+- `pygame.videomode`: `640x480` on RG35XX Plus-class devices
+- `pygame.ratio`: leave flexible/auto, the launcher letterboxes internally
+- `pygame.padtokeyboard`: prefer off because the launcher reads joystick hats/buttons directly
+- `pygame.decoration`: off
+
+Default controls:
+
+- D-pad left/right or the primary analog X axis move the bat
+- `Esc` exits on desktop
+- `Hotkey + Start` exits on handhelds
+
 ## Java Tools
 
 The original nand2tetris Java-based tools (`HardwareSimulator`, `CPUEmulator`, `VMEmulator`, etc.) are in `tools/` and require any modern version of the JRE:
