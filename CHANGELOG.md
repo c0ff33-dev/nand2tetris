@@ -29,7 +29,7 @@ This project has been developed over the course of several years, below is a hig
 - Interpreter: 
     - Extracted test orchestration from `interpreter.py` into `runner.py`.
     - Decoupled CPU emulation core from `interpreter.py` into new `engine.py` module.
-    - Pygame Emulator: New `emulator.py` - graphical HACK platform emulator.
+    - Pygame Emulator: New `emulator/emulator.py` - graphical HACK platform emulator.
     - Reworked keyboard handler for Linux support.
     - Debugger: added stack & call tree tracking.
 - Test Automation

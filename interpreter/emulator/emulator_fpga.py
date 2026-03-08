@@ -6,7 +6,7 @@ touch panel via memory-mapped I/O interception. Mouse clicks/drags are translate
 touch events. UART/GPIO writes are swallowed so busy-wait loops don't block.
 
 Usage:
-    python emulator_fpga.py <file.asm> [--scale N] [--fps N] [--cpu-hz 15M] [--no-cython]
+    python -m emulator.emulator_fpga <file.asm> [--scale N] [--fps N] [--cpu-hz 15M] [--no-cython]
 """
 
 import sys
@@ -14,7 +14,7 @@ import sys
 import numpy as np
 import pygame
 
-from emulator_cli import parse_cpu_hz
+from .emulator_cli import parse_cpu_hz
 from engine import Engine, RAM_SIZE
 from engine.fpga_backend import ACCEL_AVAILABLE, AcceleratedFpgaEngine
 

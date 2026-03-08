@@ -6,14 +6,14 @@ I/O (RAM[24576]) while driving the CPU engine at a configurable target frequency
 (default: 2.5 MHz).
 
 Usage:
-    python emulator.py <file.asm> [--scale N] [--fps N] [--cpu-hz 2.5M] [--no-cython]
+    python -m emulator.emulator <file.asm> [--scale N] [--fps N] [--cpu-hz 2.5M] [--no-cython]
 """
 
 import numpy as np
 import pygame
 import sys
 
-from emulator_cli import parse_cpu_hz
+from .emulator_cli import parse_cpu_hz
 from engine import Engine
 from engine.accelerated_engine import ACCEL_AVAILABLE, AcceleratedEngine
 

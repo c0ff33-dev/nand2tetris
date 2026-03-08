@@ -24,10 +24,10 @@ cd interpreter
 Pygame frontend for the HACK platform. It renders the memory-mapped display and handles keyboard I/O while driving the CPU engine on symbolic assembly.
 
 ```sh
-python emulator.py path/to/file.asm                # run in HACK emulator (default: 2x scale, 60 fps)
-python emulator.py path/to/file.asm --cpu-hz 1M    # limit clock speed to 1 MHz
-python emulator.py path/to/file.asm --scale 1      # custom display scale
-python emulator.py path/to/file.asm --fps 30       # custom fps target
+python -m emulator.emulator path/to/file.asm                # run in HACK emulator (default: 2x scale, 60 fps)
+python -m emulator.emulator path/to/file.asm --cpu-hz 1M    # limit clock speed to 1 MHz
+python -m emulator.emulator path/to/file.asm --scale 1      # custom display scale
+python -m emulator.emulator path/to/file.asm --fps 30       # custom fps target
 ```
 
 Optional acceleration via a compiled cython backend is shared by both emulators. Build it manually when host tooling is available:
@@ -36,7 +36,7 @@ Optional acceleration via a compiled cython backend is shared by both emulators.
 python engine/build_accelerator.py
 ```
 
-When the compiled backend is present, `emulator.py` and `emulator_fpga.py` use it automatically. Pass `--no-cython` to force the pure Python path for comparisons and testing.
+When the compiled backend is present, `emulator/emulator.py` and `emulator/emulator_fpga.py` use it automatically. Pass `--no-cython` to force the pure Python path for comparisons and testing.
 
 ## FPGA emulator
 
@@ -49,9 +49,9 @@ When the compiled backend is present, `emulator.py` and `emulator_fpga.py` use i
 Pygame frontend for the "Original" [nand2tetris-fpga](https://github.com/c0ff33-dev/nand2tetris-fpga) project with Screen (`LCD`) & Touch (`RTP`) support, unemulated hardware features are stubbed out. Uses mouse input to drive the touch screen and specifically for Michael Schröder's `Tetris` program also includes virtual translation of the WASD keys to button presses.
 
 ```sh
-python emulator_fpga.py path/to/file.asm               # run in FPGA emulator
-python emulator_fpga.py path/to/file.asm --cpu-hz 10M  # target 10 MHz
-python emulator_fpga.py path/to/file.asm --patch-wait  # monkeypatch Sys.wait delay loops to skip them
+python -m emulator.emulator_fpga path/to/file.asm               # run in FPGA emulator
+python -m emulator.emulator_fpga path/to/file.asm --cpu-hz 10M  # target 10 MHz
+python -m emulator.emulator_fpga path/to/file.asm --patch-wait  # monkeypatch Sys.wait delay loops to skip them
 ```
 
 ## HACK debugger

@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../../hack-fpga"
+		},
+		{
+			"path": "../../retrotrivia"
 		}
 	],
 	"settings": {}
