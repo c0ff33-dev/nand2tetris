@@ -30,13 +30,18 @@ $ cd ~/src/nand2tetris
 $ python3.12 -m venv .venv
 $ source ~/src/nand2tetris/.venv/bin/activate
 $ pip install -e ".[dev]"
+```
+
+### Install accelerator (cython backend)
+
+```sh
 $ cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python engine/build_accelerator.py
 ```
 
 ### Run interpreter
 
 ```sh
-cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python runner.py
+cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python runner.py --fpga
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python debugger.py ~/src/nand2tetris/projects/11/Pong/Pong.asm --break Main.main
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator.py ~/src/nand2tetris/projects/11/Pong/Pong.asm
 cd ~/src/nand2tetris/interpreter && ~/src/nand2tetris/.venv/bin/python emulator_fpga.py ~/src/nand2tetris/projects/13_fpga/Original/12_Tetris/12_Tetris.asm
