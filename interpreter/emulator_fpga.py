@@ -6,7 +6,7 @@ touch panel via memory-mapped I/O interception. Mouse clicks/drags are translate
 touch events. UART/GPIO writes are swallowed so busy-wait loops don't block.
 
 Usage:
-    python emulator_fpga.py <file.asm> [--scale N] [--fps N]
+    python emulator_fpga.py <file.asm> [--scale N] [--fps N] [--cpu-hz 15M] [--no-cython]
 """
 
 import sys
@@ -14,6 +14,7 @@ import sys
 import numpy as np
 import pygame
 
+from emulator_cli import parse_cpu_hz
 from engine import Engine, RAM_SIZE
 from engine.fpga_backend import ACCEL_AVAILABLE, AcceleratedFpgaEngine
 
@@ -399,32 +400,49 @@ def main() -> None:
     )
     parser.add_argument("--fps", type=int, default=DEFAULT_FPS, help="Target render FPS (default: %d)" % DEFAULT_FPS)
     parser.add_argument(
+        "--cpu-hz",
+        type=parse_cpu_hz,
+        default=CPU_HZ,
+        help="Target CPU frequency in Hz/K/M notation (e.g. 10M, 15M; default: 15M)",
+    )
+    parser.add_argument(
+        "--no-cython",
+        action="store_true",
+        help="Use the Python engine even when the compiled backend is available",
+    )
+    parser.add_argument(
         "--patch-wait",
         action="store_true",
         help="Patch Sys.wait to return immediately instead of emulating its delay loop",
     )
     args = parser.parse_args()
 
-    cycles_per_frame = CPU_HZ // args.fps
+    if args.cpu_hz < args.fps:
+        parser.error("--cpu-hz must be at least as large as --fps")
+    cycles_per_frame = args.cpu_hz // args.fps
     tetris_wasd = args.file.endswith(TETRIS_FILENAME)
+    use_cython = not args.no_cython
+    use_compiled_backend = use_cython and ACCEL_AVAILABLE
 
     lcd = LcdController()
     touch = TouchController()
 
-    if ACCEL_AVAILABLE:
+    if use_compiled_backend:
         engine = AcceleratedFpgaEngine(lcd, touch)
     else:
         engine = Engine()
         engine.ram = FpgaRAM(RAM_SIZE, lcd, touch)
     engine.load(args.file)
-    patch_wait = args.patch_wait or not ACCEL_AVAILABLE
+    patch_wait = args.patch_wait or not use_compiled_backend
     _patch_rom(engine, patch_wait=patch_wait)
-    if ACCEL_AVAILABLE:
+    if use_compiled_backend:
         print("FPGA Emulator: Using compiled backend")
         if not patch_wait:
             print("FPGA Emulator: Preserving Sys.wait delay loops")
-    else:
+    elif use_cython:
         print("FPGA Emulator: Compiled backend unavailable (build with `python engine/build_accelerator.py`)")
+    else:
+        print("FPGA Emulator: Compiled backend disabled (--no-cython)")
     if tetris_wasd:
         print("FPGA Emulator: Tetris WASD overlay enabled (A=left, W=L, S=R, D=right)")
     print("FPGA Emulator: Loaded %s (%d instructions)" % (args.file, len(engine.rom_raw)))

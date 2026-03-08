@@ -2,16 +2,18 @@
 Pygame-based HACK emulator for Nand2Tetris.
 
 Renders the standard memory-mapped display (RAM[16384..24575]) and handles keyboard
-I/O (RAM[24576]) while driving the CPU engine at approximately 2.5 MHz.
+I/O (RAM[24576]) while driving the CPU engine at a configurable target frequency
+(default: 2.5 MHz).
 
 Usage:
-    python emulator.py <file.asm> [--scale N] [--fps N]
+    python emulator.py <file.asm> [--scale N] [--fps N] [--cpu-hz 2.5M] [--no-cython]
 """
 
 import numpy as np
 import pygame
 import sys
 
+from emulator_cli import parse_cpu_hz
 from engine import Engine
 from engine.accelerated_engine import ACCEL_AVAILABLE, AcceleratedEngine
 
@@ -118,16 +120,33 @@ def main() -> None:
         "--scale", type=int, default=DEFAULT_SCALE, help="Display scale factor (default: %d)" % DEFAULT_SCALE
     )
     parser.add_argument("--fps", type=int, default=DEFAULT_FPS, help="Target render FPS (default: %d)" % DEFAULT_FPS)
+    parser.add_argument(
+        "--cpu-hz",
+        type=parse_cpu_hz,
+        default=CPU_HZ,
+        help="Target CPU frequency in Hz/K/M notation (e.g. 1M, 2.5M; default: 2.5M)",
+    )
+    parser.add_argument(
+        "--no-cython",
+        action="store_true",
+        help="Use the Python engine even when the compiled backend is available",
+    )
     args = parser.parse_args()
 
-    cycles_per_frame = CPU_HZ // args.fps
+    if args.cpu_hz < args.fps:
+        parser.error("--cpu-hz must be at least as large as --fps")
+    cycles_per_frame = args.cpu_hz // args.fps
+    use_cython = not args.no_cython
 
-    if ACCEL_AVAILABLE:
+    if use_cython and ACCEL_AVAILABLE:
         engine = AcceleratedEngine()
         print("HACK Emulator: Using compiled backend")
-    else:
+    elif use_cython:
         engine = Engine()
         print("HACK Emulator: Compiled backend unavailable (build with `python engine/build_accelerator.py`)")
+    else:
+        engine = Engine()
+        print("HACK Emulator: Compiled backend disabled (--no-cython)")
     engine.load(args.file)
     print("HACK Emulator: Loaded %s (%d instructions)" % (args.file, len(engine.rom_raw)))
 
