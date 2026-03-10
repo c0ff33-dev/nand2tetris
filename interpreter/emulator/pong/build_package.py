@@ -255,7 +255,7 @@ def main(argv: list[str] | None = None) -> int:
     if zip_path is not None:
         build_zip(output_dir, zip_path)
         print("Built PortMaster zip at %s" % zip_path)
-        print("Unzip this archive into the target PortMaster directory.")
+        print("On Knulli, copy this zip to /userdata/system/.local/share/PortMaster/autoinstall/.")
     else:
         print("Skipped zip creation (--no-zip)")
     return 0
