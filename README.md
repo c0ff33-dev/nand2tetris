@@ -212,11 +212,36 @@ python emulator/pong/pong.pygame --windowed --no-cython
 python emulator/pong/build_package.py
 ```
 
+To build a portable ARM64 `pygame` runtime and accelerator bundle in Docker:
+
+```sh
+cd emulator/pong/runtime_builder
+
+# Open an interactive shell in the ARM64 build container.
+docker compose run --rm runtime_builder /bin/bash
+
+# Build the runtime SquashFS plus staged accelerator engine files.
+docker compose up --abort-on-container-exit
+
+# Shut the service down when you are done.
+docker compose down
+```
+
+The runtime builder writes these ignored artifacts under `interpreter/build/pong-runtime/`:
+
+- `pong_pygame_<PYGAME_VERSION>_python_<PYTHON_VERSION>.squashfs`
+- `engine/{__init__.py,engine.py,accelerated_engine.py,accelerator_common.py,fpga_backend_ext*.so}`
+- `latest-runtime.txt`
+- If `docker compose up` fails with `exec /bin/bash: exec format error`, the host Docker engine does not currently have ARM64 emulation enabled; run the builder on an ARM machine or enable Docker's ARM emulation support first.
+
 Packaging/staging notes:
 
 - Run `python emulator/pong/build_package.py` to stage `interpreter/build/pong/`.
+- Pass `--runtime-artifact build/pong-runtime/<artifact>.squashfs` to bundle a runtime image.
+- Pass `--accelerated` to include the staged accelerator files from `build/pong-runtime/engine/`, or override the source with `--accelerated-engine-dir`.
 - Copy the staged folder to `/userdata/roms/pygame/pong/`.
-- The staged package contains the pure-Python `engine/` subset only, with no Cython accelerator files.
+- Pure-Python packaging remains the default; runtime and accelerator files are opt-in.
+- When a bundled runtime is present, `pong.pygame` mounts it and reruns itself with the runtime Python. Set `NAND2TETRIS_PONG_DISABLE_BUNDLED_RUNTIME=1` to force the system Python path.
 
 Recommended Batocera/Knulli core settings:
 

@@ -1,0 +1,17 @@
+services:
+  runtime_builder:
+    image: python:3.12.8-bookworm
+    platform: linux/arm64
+    command:
+      - "/bin/bash"
+      - "-lc"
+      - "bash /local/interpreter/emulator/pong/runtime_builder/build-runtime.sh 2>&1"
+    env_file:
+      - build-config
+    stdin_open: true
+    tty: true
+    working_dir: /local/interpreter/emulator/pong/runtime_builder
+    volumes:
+      - type: bind
+        source: ../../../..
+        target: /local
