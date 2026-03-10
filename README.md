@@ -221,7 +221,8 @@ docker run --privileged --rm tonistiigi/binfmt --install arm64
 cd emulator/pong/runtime_builder
 
 # Build the runtime SquashFS plus staged accelerator engine files.
-docker compose up --abort-on-container-exit
+# pygame will take a while to build from source so don't throw away!
+docker compose up
 
 # Shut the service down when you are done.
 docker compose down
