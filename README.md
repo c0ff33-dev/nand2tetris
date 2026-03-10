@@ -236,6 +236,7 @@ Packaging/staging notes:
 - Pass `--no-zip` if you only want the staged PortMaster tree without the final archive.
 - The staged tree mirrors the upstream `pygame-ce-runtime` pattern: `Pong/` plus `Pong.sh`.
 - On Knulli, copy `interpreter/build/Pong.zip` to `/userdata/system/.local/share/PortMaster/autoinstall/` and let PortMaster install it from there.
+- For on-device debugging after a failed launch, run `tail -n 100 /userdata/roms/ports/Pong/log.txt` over SSH.
 - Pure-Python packaging remains the default; accelerator files stay opt-in.
 - `Pong.sh` mounts `runtime/*.squashfs` when present and launches `pong.pygame` through the bundled runtime. For direct `.pygame` deployment outside PortMaster, `pong.pygame` can still auto-mount bundled runtimes; set `NAND2TETRIS_PONG_DISABLE_BUNDLED_RUNTIME=1` to force the system Python path.
 

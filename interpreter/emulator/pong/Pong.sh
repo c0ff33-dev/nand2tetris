@@ -59,7 +59,7 @@ if [ -d "${runtime_root}" ]; then
       finish 1
     fi
 
-    runtime_mount="$HOME/pygame-ce-runtime/$PACKAGE"
+    runtime_mount="$HOME/nand2tetris-pong-runtime/$PACKAGE"
     mkdir -p "${runtime_mount}"
     $ESUDO umount "${runtime_mount}" >/dev/null 2>&1
     if ! $ESUDO mount "${runtime_image}" "${runtime_mount}"; then
