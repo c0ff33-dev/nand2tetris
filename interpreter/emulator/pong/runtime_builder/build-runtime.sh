@@ -29,7 +29,10 @@ python -m venv --copies /runtime
 source /runtime/bin/activate
 
 python -m pip install --upgrade pip setuptools wheel Cython
-python -m pip install "pygame==${PYGAME_VERSION}"
+# Build from source so pygame links dynamically against the container's SDL2
+# instead of bundling a generic manylinux SDL2 that lacks vendor video drivers
+# (e.g. mali on RG35XX Plus).  At runtime the device's system libSDL2 is used.
+python -m pip install --no-binary pygame "pygame==${PYGAME_VERSION}"
 
 if [[ -f "${BUILDER_DIR}/build/requirements.txt" ]]; then
   python -m pip install -r "${BUILDER_DIR}/build/requirements.txt"

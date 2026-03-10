@@ -262,7 +262,6 @@ def main(argv: Optional[List[str]] = None) -> int:
     print("Pong Launcher: Loaded %s (%d instructions)" % (asm_path, len(engine.rom_raw)))
 
     pygame.init()
-    pygame.mouse.set_visible(False)
     pygame.joystick.init()
 
     if args.windowed:
@@ -276,6 +275,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     window = pygame.display.set_mode(window_size, WINDOW_SURFACE)
     pygame.display.set_caption("Nand2Tetris Pong")
+    pygame.mouse.set_visible(False)
     render_rect = _letterbox_rect(window_size)
     raw_surface = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT)).convert()
     raw_surface.fill(WHITE)

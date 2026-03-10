@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../../retrotrivia"
+		},
+		{
+			"path": "../../pygame-ce-runtime"
 		}
 	],
 	"settings": {}
