@@ -209,7 +209,7 @@ For local testing, run it from within `interpreter/`:
 
 ```sh
 python emulator/pong/pong.pygame --windowed --no-cython
-python emulator/pong/build_package.py
+python emulator/pong/build_package.py  # stages build/pong/ and writes build/Pong.zip
 ```
 
 To build a portable ARM64 `pygame` runtime and accelerator bundle in Docker:
@@ -219,9 +219,6 @@ To build a portable ARM64 `pygame` runtime and accelerator bundle in Docker:
 docker run --privileged --rm tonistiigi/binfmt --install arm64
 
 cd emulator/pong/runtime_builder
-
-# Open an interactive shell in the ARM64 build container if needed for debugging:
-# docker compose run --rm runtime_builder /bin/bash
 
 # Build the runtime SquashFS plus staged accelerator engine files.
 docker compose up --abort-on-container-exit
@@ -233,12 +230,14 @@ docker compose down
 
 Packaging/staging notes:
 
-- Run `python emulator/pong/build_package.py` to stage `interpreter/build/pong/`.
-- Pass `--runtime-artifact build/pong-runtime/<artifact>.squashfs` to bundle a runtime image.
+- Run `python emulator/pong/build_package.py` to stage `interpreter/build/pong/` and emit `interpreter/build/Pong.zip`.
+- If `interpreter/build/pong-runtime/` already contains a runtime SquashFS, the CLI auto-bundles the most recent one. Pass `--runtime-artifact build/pong-runtime/<artifact>.squashfs` to override it.
 - Pass `--accelerated` to include the staged accelerator files from `build/pong-runtime/engine/`, or override the source with `--accelerated-engine-dir`.
-- Copy the staged folder to `/userdata/roms/pygame/pong/`.
-- Pure-Python packaging remains the default; runtime and accelerator files are opt-in.
-- When a bundled runtime is present, `pong.pygame` mounts it and reruns itself with the runtime Python. Set `NAND2TETRIS_PONG_DISABLE_BUNDLED_RUNTIME=1` to force the system Python path.
+- Pass `--no-zip` if you only want the staged PortMaster tree without the final archive.
+- The staged tree mirrors the upstream `pygame-ce-runtime` pattern: `Pong/` plus `Pong.sh`.
+- Unzip `interpreter/build/Pong.zip` into the target PortMaster directory on the device.
+- Pure-Python packaging remains the default; accelerator files stay opt-in.
+- `Pong.sh` mounts `runtime/*.squashfs` when present and launches `pong.pygame` through the bundled runtime. For direct `.pygame` deployment outside PortMaster, `pong.pygame` can still auto-mount bundled runtimes; set `NAND2TETRIS_PONG_DISABLE_BUNDLED_RUNTIME=1` to force the system Python path.
 
 Recommended Batocera/Knulli core settings:
 
