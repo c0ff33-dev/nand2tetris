@@ -215,10 +215,13 @@ python emulator/pong/build_package.py
 To build a portable ARM64 `pygame` runtime and accelerator bundle in Docker:
 
 ```sh
+# On Linux Docker Engine, enable arm64 emulation once if needed.
+docker run --privileged --rm tonistiigi/binfmt --install arm64
+
 cd emulator/pong/runtime_builder
 
-# Open an interactive shell in the ARM64 build container.
-docker compose run --rm runtime_builder /bin/bash
+# Open an interactive shell in the ARM64 build container if needed for debugging:
+# docker compose run --rm runtime_builder /bin/bash
 
 # Build the runtime SquashFS plus staged accelerator engine files.
 docker compose up --abort-on-container-exit
@@ -227,12 +230,6 @@ docker compose up --abort-on-container-exit
 docker compose down
 ```
 
-The runtime builder writes these ignored artifacts under `interpreter/build/pong-runtime/`:
-
-- `pong_pygame_<PYGAME_VERSION>_python_<PYTHON_VERSION>.squashfs`
-- `engine/{__init__.py,engine.py,accelerated_engine.py,accelerator_common.py,fpga_backend_ext*.so}`
-- `latest-runtime.txt`
-- If `docker compose up` fails with `exec /bin/bash: exec format error`, the host Docker engine does not currently have ARM64 emulation enabled; run the builder on an ARM machine or enable Docker's ARM emulation support first.
 
 Packaging/staging notes:
 
