@@ -215,7 +215,7 @@ python emulator/hack/build_package.py  # stages build/hack/ and writes build/HAC
 To build a portable ARM64 `pygame` runtime and accelerator bundle in Docker:
 
 ```sh
-# On Linux Docker Engine, enable arm64 emulation once if needed
+# On Linux Docker Engine, enable arm64 emulation if needed
 # `exec /bin/bash: exec format error` == install emulation or run on arm64 machine
 docker run --privileged --rm tonistiigi/binfmt --install arm64
 
@@ -255,7 +255,7 @@ Default controls:
 
 - D-pad left/right or the primary analog X axis move the bat
 - `Esc` exits the program
-- `Hotkey + Start` exits the program on handhelds
+- `Menu` exits the program on handhelds
 
 ## Java Tools
 

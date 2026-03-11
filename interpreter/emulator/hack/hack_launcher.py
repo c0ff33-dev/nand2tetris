@@ -72,11 +72,8 @@ AXIS_THRESHOLD = 0.5
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-# Joystick mappings observed in known-good Batocera/Knulli scripts
-LEFT_BUTTONS = (10, 15)
-RIGHT_BUTTONS = (11, 16)
-HOTKEY_BUTTONS = (12,)
-START_BUTTONS = (6, 17)
+# Joystick mappings for RG35XX Plus / Knulli
+MENU_BUTTONS = (11, 16)
 WINDOW_SURFACE = pygame.HWSURFACE | pygame.DOUBLEBUF
 
 
@@ -87,8 +84,8 @@ def _button_pressed(joystick: pygame.joystick.Joystick, button_ids: Tuple[int, .
     return False
 
 
-def _quit_combo_pressed(joystick: pygame.joystick.Joystick) -> bool:
-    return _button_pressed(joystick, HOTKEY_BUTTONS) and _button_pressed(joystick, START_BUTTONS)
+def _menu_pressed(joystick: pygame.joystick.Joystick) -> bool:
+    return _button_pressed(joystick, MENU_BUTTONS)
 
 
 def _joystick_key_code(joystick: pygame.joystick.Joystick) -> int:
@@ -106,10 +103,6 @@ def _joystick_key_code(joystick: pygame.joystick.Joystick) -> int:
         if axis_x >= AXIS_THRESHOLD:
             return 132
 
-    if _button_pressed(joystick, LEFT_BUTTONS):
-        return 130
-    if _button_pressed(joystick, RIGHT_BUTTONS):
-        return 132
     return 0
 
 
@@ -131,7 +124,7 @@ def _poll_input(joysticks: List[pygame.joystick.Joystick]) -> Tuple[bool, int]:
         return (True, 132)
 
     for joystick in joysticks:
-        if _quit_combo_pressed(joystick):
+        if _menu_pressed(joystick):
             return (False, 0)
 
     for joystick in joysticks:
