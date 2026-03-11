@@ -48,12 +48,7 @@ except ImportError:
 
 
 from engine import Engine
-
-try:
-    from engine.accelerated_engine import ACCEL_AVAILABLE, AcceleratedEngine
-except ImportError:
-    ACCEL_AVAILABLE = False
-    AcceleratedEngine = None
+from engine.accelerated_engine import AcceleratedEngine
 
 # Standard HACK memory map
 SCREEN_BASE = 16384
@@ -168,15 +163,8 @@ def _resolve_pong_asm(file_arg: Optional[str]) -> Path:
     raise FileNotFoundError("Could not locate Pong.asm in launcher or repository paths")
 
 
-def _create_engine(use_cython: bool) -> Engine:
-    if use_cython and ACCEL_AVAILABLE:
-        print("Pong Launcher: Using compiled backend")
-        return AcceleratedEngine()
-    if use_cython:
-        print("Pong Launcher: Compiled backend unavailable - using Python engine")
-    else:
-        print("Pong Launcher: Compiled backend disabled (--no-cython)")
-    return Engine()
+def _create_engine() -> Engine:
+    return AcceleratedEngine()
 
 
 def _render_word(surface: pygame.Surface, word_index: int, word_value: int) -> None:
@@ -233,16 +221,6 @@ def main(argv: Optional[List[str]] = None) -> int:
         help="Target CPU frequency in Hz/K/M notation (e.g. 1M, 2.5M; default: 2.5M)",
     )
     parser.add_argument(
-        "--no-cython",
-        action="store_true",
-        help="Use the Python engine even when the compiled backend is available",
-    )
-    parser.add_argument(
-        "--windowed",
-        action="store_true",
-        help="Use a 640x480 development window instead of the current display resolution",
-    )
-    parser.add_argument(
         "--max-frames",
         type=int,
         help="Exit after rendering the given number of frames (useful for automated smoke tests)",
@@ -257,21 +235,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     asm_path = _resolve_pong_asm(args.file)
     cycles_per_frame = args.cpu_hz // args.fps
 
-    engine = _create_engine(use_cython=not args.no_cython)
+    engine = _create_engine()
     engine.load(str(asm_path))
     print("Pong Launcher: Loaded %s (%d instructions)" % (asm_path, len(engine.rom_raw)))
 
     pygame.init()
     pygame.joystick.init()
 
-    if args.windowed:
-        window_size = DEFAULT_WINDOW_SIZE
-    else:
-        display_info = pygame.display.Info()
-        window_size = (
-            display_info.current_w or DEFAULT_WINDOW_SIZE[0],
-            display_info.current_h or DEFAULT_WINDOW_SIZE[1],
-        )
+    window_size = DEFAULT_WINDOW_SIZE
 
     window = pygame.display.set_mode(window_size, WINDOW_SURFACE)
     pygame.display.set_caption("Nand2Tetris Pong")

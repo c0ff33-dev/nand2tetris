@@ -203,13 +203,12 @@ The `--fpga` flag includes these programs in the test suite. Without it, `projec
 
 ## Batocera/Knulli Pong launcher
 
-`interpreter/emulator/pong/pong.pygame` is a handheld-oriented Pong launcher for Batocera/Knulli-style `.pygame` packaging. It reuses the HACK engine, maps joystick input directly for Pong, letterboxes the 512x256 framebuffer into 640x480-style displays, and avoids a numpy dependency so it can run in the leaner PyGame runtime used by handheld firmware. FIXME: Never asked for that, we should aim to make the baselines as similar as possible now that the build is bundled.
+`interpreter/emulator/pong/pong.pygame` is a handheld-oriented Pong launcher for Batocera/Knulli-style `.pygame` packaging. It reuses the HACK engine with the compiled accelerator backend, maps joystick input directly for Pong, and letterboxes the 512x256 framebuffer into a 640x480 display.
 
 For local testing, run it from within `interpreter/`:
 
 ```sh
-# FIXME: there is no entrypoint for CLI params in this version?
-python emulator/pong/pong.pygame --windowed --no-cython
+python emulator/pong/pong.pygame
 python emulator/pong/build_package.py  # stages build/pong/ and writes build/Pong.zip
 ```
 
@@ -234,8 +233,6 @@ Packaging/staging notes:
 
 - Run `python emulator/pong/build_package.py` to stage `interpreter/build/pong/` and emit `interpreter/build/Pong.zip`.
 - If `interpreter/build/pong-runtime/` already contains a runtime SquashFS, the CLI auto-bundles the most recent one. Pass `--runtime-artifact build/pong-runtime/<artifact>.squashfs` to override it.
-- Pass `--accelerated` to include the staged accelerator files from `build/pong-runtime/engine/`, or override the source with `--accelerated-engine-dir`.
-- Pass `--no-zip` if you only want the staged PortMaster tree without the final archive.
 - The staged tree mirrors the upstream `pygame-ce-runtime` pattern: `Pong/` plus `Pong.sh`.
 - On Knulli, copy `interpreter/build/Pong.zip` to `/userdata/system/.local/share/PortMaster/autoinstall/` and let PortMaster install it from there.
   - `scp build/Pong.zip root@192.168.2.178:/userdata/system/.local/share/PortMaster/autoinstall/`
@@ -243,12 +240,9 @@ Packaging/staging notes:
     - TODO: update game list if first time
   - TODO: ssh gotchas (file system is always 777?)
   - TODO: add link to docs for joining wifi etc
-  - TODO: simplify as much of the build as possible, so much CLI bloat/permutation
   - TODO: investigate better workflow for
 - For on-device debugging after a failed launch, run `tail -n 100 /userdata/roms/ports/Pong/log.txt` over SSH.
-- FIXME: clean this crap up:
-  - Pure-Python packaging remains the default; accelerator files stay opt-in.
-  - `Pong.sh` mounts `runtime/*.squashfs` when present and launches `pong.pygame` through the bundled runtime. For direct `.pygame` deployment outside PortMaster, `pong.pygame` can still auto-mount bundled runtimes; set `NAND2TETRIS_PONG_DISABLE_BUNDLED_RUNTIME=1` to force the system Python path.
+- `Pong.sh` mounts `runtime/*.squashfs` when present and launches `pong.pygame` through the bundled runtime.
 
 Recommended Batocera/Knulli core settings:
 

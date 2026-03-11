@@ -9,7 +9,7 @@ DEPLOYMENT_FILES = ("pong.pygame", "pong_launcher.py")
 PORTMASTER_SCRIPT = "Pong.sh"
 PORTMASTER_GAME_DIR = "Pong"
 PURE_ENGINE_FILES = ("__init__.py", "engine.py")
-ACCEL_ENGINE_FILES = PURE_ENGINE_FILES + ("accelerated_engine.py", "accelerator_common.py")
+ENGINE_FILES = PURE_ENGINE_FILES + ("accelerated_engine.py", "accelerator_common.py")
 ACCELERATOR_GLOB = "fpga_backend_ext*.so"
 DEFAULT_RUNTIME_BUILD_DIRNAME = "pong-runtime"
 
@@ -47,21 +47,16 @@ def _find_default_runtime_artifact(interpreter_dir: Path) -> Path | None:
     return artifacts[-1].resolve()
 
 
-def _resolve_accelerated_engine_dir(interpreter_dir: Path, accelerated_engine_dir: Path | None) -> Path:
-    candidates = []
-    if accelerated_engine_dir is not None:
-        candidates.append(accelerated_engine_dir.expanduser().resolve())
-    candidates.extend(
-        [
-            interpreter_dir / "build" / DEFAULT_RUNTIME_BUILD_DIRNAME / "engine",
-            interpreter_dir / "engine",
-        ]
-    )
+def _resolve_engine_dir(interpreter_dir: Path) -> Path:
+    candidates = [
+        interpreter_dir / "build" / DEFAULT_RUNTIME_BUILD_DIRNAME / "engine",
+        interpreter_dir / "engine",
+    ]
 
     for candidate in candidates:
         if not candidate.is_dir():
             continue
-        required_files = [candidate / name for name in ACCEL_ENGINE_FILES]
+        required_files = [candidate / name for name in ENGINE_FILES]
         if all(path.exists() for path in required_files) and _find_accelerator_binaries(candidate):
             return candidate
 
@@ -77,43 +72,35 @@ def build_package(
     output_dir: Path,
     asm_path: Path | None = None,
     runtime_artifact: Path | None = None,
-    accelerated: bool = False,
-    accelerated_engine_dir: Path | None = None,
 ) -> Path:
     """
     Stage the PortMaster Pong package tree in a deployment directory.
 
+    Always bundles the accelerated engine and compiled shared object.
+
     :param output_dir: Destination directory to recreate with PortMaster contents.
     :param asm_path: Optional override for the Pong.asm source.
     :param runtime_artifact: Optional SquashFS runtime artifact to bundle.
-    :param accelerated: Whether to stage the accelerated engine helpers and shared object.
-    :param accelerated_engine_dir: Optional override for a pre-staged accelerator engine directory.
     :return: The populated deployment directory containing `Pong/` plus `Pong.sh`.
     :raises FileNotFoundError: If any required source file is missing.
     """
     launcher_dir = Path(__file__).resolve().parent
     interpreter_dir = launcher_dir.parents[1]
     repo_root = interpreter_dir.parent
-    engine_dir = interpreter_dir / "engine"
     package_dir = output_dir / PORTMASTER_GAME_DIR
     startup_script = launcher_dir / PORTMASTER_SCRIPT
     source_asm = asm_path or repo_root / "projects" / "11" / "Pong" / "Pong.asm"
     if runtime_artifact is not None:
         runtime_artifact = runtime_artifact.expanduser().resolve()
-    if accelerated:
-        package_engine_dir = _resolve_accelerated_engine_dir(interpreter_dir, accelerated_engine_dir)
-        engine_files = ACCEL_ENGINE_FILES
-        accelerator_binaries = _find_accelerator_binaries(package_engine_dir)
-    else:
-        package_engine_dir = engine_dir
-        engine_files = PURE_ENGINE_FILES
-        accelerator_binaries = []
+
+    package_engine_dir = _resolve_engine_dir(interpreter_dir)
+    accelerator_binaries = _find_accelerator_binaries(package_engine_dir)
 
     required_files = [
         startup_script,
         *(launcher_dir / name for name in DEPLOYMENT_FILES),
         source_asm,
-        *(package_engine_dir / name for name in engine_files),
+        *(package_engine_dir / name for name in ENGINE_FILES),
     ]
     if runtime_artifact is not None:
         required_files.append(runtime_artifact)
@@ -138,7 +125,7 @@ def build_package(
 
     _copy_file(source_asm, package_dir / "Pong.asm")
 
-    for filename in engine_files:
+    for filename in ENGINE_FILES:
         _copy_file(package_engine_dir / filename, package_dir / "engine" / filename)
 
     for accelerator_binary in accelerator_binaries:
@@ -196,11 +183,6 @@ def main(argv: list[str] | None = None) -> int:
         help="Optional destination zip path (default: <output-dir parent>/Pong.zip)",
     )
     parser.add_argument(
-        "--no-zip",
-        action="store_true",
-        help="Only stage the PortMaster tree without creating the final zip",
-    )
-    parser.add_argument(
         "--asm",
         type=Path,
         help="Optional source path for Pong.asm (default: projects/11/Pong/Pong.asm)",
@@ -210,18 +192,7 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         help="Optional SquashFS runtime artifact to bundle under Pong/runtime/",
     )
-    parser.add_argument(
-        "--accelerated",
-        action="store_true",
-        help="Bundle accelerated engine helpers and the compiled shared object when available",
-    )
-    parser.add_argument(
-        "--accelerated-engine-dir",
-        type=Path,
-        help="Optional directory containing accelerated engine files and fpga_backend_ext*.so",
-    )
     args = parser.parse_args(argv)
-    include_accelerator = args.accelerated or args.accelerated_engine_dir is not None
     runtime_artifact = (
         args.runtime_artifact.expanduser().resolve()
         if args.runtime_artifact is not None
@@ -229,35 +200,24 @@ def main(argv: list[str] | None = None) -> int:
     )
     output_dir = args.output_dir.expanduser().resolve()
     zip_path = (
-        None
-        if args.no_zip
-        else (
-            args.zip_path.expanduser().resolve()
-            if args.zip_path is not None
-            else output_dir.parent / ("%s.zip" % PORTMASTER_GAME_DIR)
-        )
+        args.zip_path.expanduser().resolve()
+        if args.zip_path is not None
+        else output_dir.parent / ("%s.zip" % PORTMASTER_GAME_DIR)
     )
 
     build_package(
         output_dir,
         None if args.asm is None else args.asm.expanduser().resolve(),
         runtime_artifact,
-        include_accelerator,
-        None if args.accelerated_engine_dir is None else args.accelerated_engine_dir.expanduser().resolve(),
     )
     print("Staged PortMaster package at %s" % output_dir)
     if runtime_artifact is not None:
         print("Bundled runtime artifact: %s" % runtime_artifact)
     else:
         print("No runtime artifact bundled; the package will rely on a host Python interpreter.")
-    if include_accelerator:
-        print("Bundled accelerator support files")
-    if zip_path is not None:
-        build_zip(output_dir, zip_path)
-        print("Built PortMaster zip at %s" % zip_path)
-        print("On Knulli, copy this zip to /userdata/system/.local/share/PortMaster/autoinstall/.")
-    else:
-        print("Skipped zip creation (--no-zip)")
+    build_zip(output_dir, zip_path)
+    print("Built PortMaster zip at %s" % zip_path)
+    print("On Knulli, copy this zip to /userdata/system/.local/share/PortMaster/autoinstall/.")
     return 0
 
 

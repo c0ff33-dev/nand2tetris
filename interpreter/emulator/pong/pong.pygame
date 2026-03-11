@@ -11,7 +11,6 @@ sys.dont_write_bytecode = True
 SCRIPT_PATH = Path(__file__).resolve()
 APP_DIR = SCRIPT_PATH.parent
 RUNTIME_ACTIVE_ENV = "NAND2TETRIS_PONG_RUNTIME_ACTIVE"
-DISABLE_BUNDLED_RUNTIME_ENV = "NAND2TETRIS_PONG_DISABLE_BUNDLED_RUNTIME"
 MOUNT_COMMAND_ENV = "NAND2TETRIS_PONG_MOUNT_CMD"
 UMOUNT_COMMAND_ENV = "NAND2TETRIS_PONG_UMOUNT_CMD"
 
@@ -73,9 +72,8 @@ def _mount_runtime(runtime_image: Path) -> Path:
         subprocess.run([*mount_command, str(runtime_image), str(mount_dir)], check=True)
     except (OSError, subprocess.CalledProcessError) as exc:
         raise RuntimeError(
-            "Failed to mount bundled runtime %s. "
-            "Set %s=1 to skip it or extract the runtime under %s."
-            % (runtime_image, DISABLE_BUNDLED_RUNTIME_ENV, runtime_image.parent)
+            "Failed to mount bundled runtime %s; extract the runtime under %s."
+            % (runtime_image, runtime_image.parent)
         ) from exc
     return mount_dir
 
@@ -87,8 +85,6 @@ def _unmount_runtime(mount_dir: Path) -> None:
 
 def _maybe_run_with_bundled_runtime() -> int | None:
     if os.environ.get(RUNTIME_ACTIVE_ENV) == "1":
-        return None
-    if os.environ.get(DISABLE_BUNDLED_RUNTIME_ENV, "").strip().lower() in {"1", "true", "yes"}:
         return None
 
     runtime_root = APP_DIR / "runtime"
