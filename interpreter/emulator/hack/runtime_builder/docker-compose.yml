@@ -5,12 +5,12 @@ services:
     command:
       - "/bin/bash"
       - "-lc"
-      - "bash /local/interpreter/emulator/pong/runtime_builder/build-runtime.sh 2>&1"
+      - "bash /local/interpreter/emulator/hack/runtime_builder/build-runtime.sh 2>&1"
     env_file:
       - build-config
     stdin_open: true
     tty: true
-    working_dir: /local/interpreter/emulator/pong/runtime_builder
+    working_dir: /local/interpreter/emulator/hack/runtime_builder
     volumes:
       - type: bind
         source: ../../../..

@@ -1,4 +1,4 @@
-"""Batocera/Knulli-friendly Pong launcher for the HACK emulator."""
+"""Batocera/Knulli-friendly HACK emulator launcher."""
 
 import argparse
 from decimal import Decimal, InvalidOperation
@@ -142,7 +142,7 @@ def _poll_input(joysticks: List[pygame.joystick.Joystick]) -> Tuple[bool, int]:
     return (True, 0)
 
 
-def _resolve_pong_asm(file_arg: Optional[str]) -> Path:
+def _resolve_asm(file_arg: Optional[str]) -> Path:
     app_dir = Path(__file__).resolve().parent
     repo_root = app_dir.parents[2]
     candidates = []
@@ -160,7 +160,7 @@ def _resolve_pong_asm(file_arg: Optional[str]) -> Path:
         if candidate.exists():
             return candidate
 
-    raise FileNotFoundError("Could not locate Pong.asm in launcher or repository paths")
+    raise FileNotFoundError("Could not locate Pong.asm in launcher or repository paths; pass an explicit path")
 
 
 def _create_engine() -> Engine:
@@ -206,13 +206,13 @@ def _letterbox_rect(window_size: Tuple[int, int]) -> pygame.Rect:
 
 def main(argv: Optional[List[str]] = None) -> int:
     """
-    Run the Batocera/Knulli-friendly Pong launcher.
+    Run the Batocera/Knulli-friendly HACK emulator launcher.
 
     :param argv: Optional CLI arguments for testing or local development.
     :return: Process exit code.
     """
-    parser = argparse.ArgumentParser(description="Nand2Tetris Pong launcher for Batocera/Knulli")
-    parser.add_argument("file", nargs="?", help="Optional path to Pong.asm")
+    parser = argparse.ArgumentParser(description="Nand2Tetris HACK emulator for Batocera/Knulli")
+    parser.add_argument("file", nargs="?", help="Optional path to a .asm program (default: Pong.asm)")
     parser.add_argument("--fps", type=int, default=DEFAULT_FPS, help="Target render FPS (default: %d)" % DEFAULT_FPS)
     parser.add_argument(
         "--cpu-hz",
@@ -232,12 +232,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.max_frames is not None and args.max_frames <= 0:
         parser.error("--max-frames must be positive")
 
-    asm_path = _resolve_pong_asm(args.file)
+    asm_path = _resolve_asm(args.file)
     cycles_per_frame = args.cpu_hz // args.fps
 
     engine = _create_engine()
     engine.load(str(asm_path))
-    print("Pong Launcher: Loaded %s (%d instructions)" % (asm_path, len(engine.rom_raw)))
+    print("HACK Launcher: Loaded %s (%d instructions)" % (asm_path, len(engine.rom_raw)))
 
     pygame.init()
     pygame.joystick.init()
@@ -245,7 +245,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     window_size = DEFAULT_WINDOW_SIZE
 
     window = pygame.display.set_mode(window_size, WINDOW_SURFACE)
-    pygame.display.set_caption("Nand2Tetris Pong")
+    pygame.display.set_caption("Nand2Tetris HACK")
     pygame.mouse.set_visible(False)
     render_rect = _letterbox_rect(window_size)
     raw_surface = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT)).convert()
@@ -282,7 +282,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         clock.tick(args.fps)
 
     pygame.quit()
-    print("Pong Launcher: %d total cycles executed" % total_cycles)
+    print("HACK Launcher: %d total cycles executed" % total_cycles)
     return 0
 
 

@@ -68,7 +68,7 @@ python engine/build_accelerator.py  # build the optional compiled emulator accel
 ```sh
 python -m emulator.emulator file.asm  # run in the HACK emulator
 python -m emulator.emulator_fpga file.asm  # run in the FPGA pygame emulator
-python emulator/pong/pong.pygame --windowed  # run the Batocera/Knulli Pong launcher locally
+python emulator/pong/pong.pygame # run the Batocera/Knulli Pong launcher locally
 python emulator/pong/build_package.py  # stage interpreter/build/pong/ for device deployment
 ```
 

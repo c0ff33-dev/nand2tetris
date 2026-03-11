@@ -201,24 +201,25 @@ git clone https://github.com/c0ff33-dev/nand2tetris-fpga.git
 
 The `--fpga` flag includes these programs in the test suite. Without it, `projects/13_fpga` is ignored.
 
-## Batocera/Knulli Pong launcher
+## Batocera/Knulli HACK emulator
 
-`interpreter/emulator/pong/pong.pygame` is a handheld-oriented Pong launcher for Batocera/Knulli-style `.pygame` packaging. It reuses the HACK engine with the compiled accelerator backend, maps joystick input directly for Pong, and letterboxes the 512x256 framebuffer into a 640x480 display.
+`interpreter/emulator/hack/hack.pygame` is a handheld-oriented HACK emulator for Batocera/Knulli-style `.pygame` packaging. It uses the compiled accelerator backend, maps joystick input directly, and renders the 512x256 framebuffer into a 640x480 display. Pong is the default program.
 
 For local testing, run it from within `interpreter/`:
 
 ```sh
-python emulator/pong/pong.pygame
-python emulator/pong/build_package.py  # stages build/pong/ and writes build/Pong.zip
+python emulator/hack/hack.pygame
+python emulator/hack/build_package.py  # stages build/hack/ and writes build/HACK.zip
 ```
 
 To build a portable ARM64 `pygame` runtime and accelerator bundle in Docker:
 
 ```sh
-# On Linux Docker Engine, enable arm64 emulation once if needed.
+# On Linux Docker Engine, enable arm64 emulation once if needed
+# `exec /bin/bash: exec format error` == install emulation or run on arm64 machine
 docker run --privileged --rm tonistiigi/binfmt --install arm64
 
-cd emulator/pong/runtime_builder
+cd emulator/hack/runtime_builder
 
 # Build the runtime SquashFS plus staged accelerator engine files.
 # pygame will take a while to build from source so don't throw away!
@@ -231,18 +232,17 @@ docker compose down
 
 Packaging/staging notes:
 
-- Run `python emulator/pong/build_package.py` to stage `interpreter/build/pong/` and emit `interpreter/build/Pong.zip`.
-- If `interpreter/build/pong-runtime/` already contains a runtime SquashFS, the CLI auto-bundles the most recent one. Pass `--runtime-artifact build/pong-runtime/<artifact>.squashfs` to override it.
-- The staged tree mirrors the upstream `pygame-ce-runtime` pattern: `Pong/` plus `Pong.sh`.
-- On Knulli, copy `interpreter/build/Pong.zip` to `/userdata/system/.local/share/PortMaster/autoinstall/` and let PortMaster install it from there.
-  - `scp build/Pong.zip root@192.168.2.178:/userdata/system/.local/share/PortMaster/autoinstall/`
-  - Run `Ports > Portmaster` to trigger install
-    - TODO: update game list if first time
-  - TODO: ssh gotchas (file system is always 777?)
-  - TODO: add link to docs for joining wifi etc
-  - TODO: investigate better workflow for
-- For on-device debugging after a failed launch, run `tail -n 100 /userdata/roms/ports/Pong/log.txt` over SSH.
-- `Pong.sh` mounts `runtime/*.squashfs` when present and launches `pong.pygame` through the bundled runtime.
+- Run `python emulator/hack/build_package.py` to stage `interpreter/build/hack/` and emit `interpreter/build/HACK.zip`.
+- If `interpreter/build/hack-runtime/` already contains a runtime SquashFS, the CLI auto-bundles the most recent one. Pass `--runtime-artifact build/hack-runtime/<artifact>.squashfs` to override it.
+- For first time install on Knulli:
+  - Join device to wifi (`Start > Network Settings`).
+  - Copy `interpreter/build/HACK.zip` to `/userdata/system/.local/share/PortMaster/autoinstall/` and let PortMaster install it from there.
+  - `scp build/HACK.zip root@<ip>:/userdata/system/.local/share/PortMaster/autoinstall/`
+    - Note on `ssh`: no Unix permissions model on `FAT32` or `exFAT` partitions, so `ssh` key won't be accepted.
+  - Run `Ports > Portmaster` to trigger install and update the game list (`Start > Game Settings > Update Gamelists`).
+- Run current HACK program from `Ports > HACK`.
+- For on-device debugging after a failed launch, run `tail -n 100 /userdata/roms/ports/HACK/log.txt` over SSH.
+- Runtime modifications need a new build to replace the `squashfs` artifact, top level emulator changes can be `scp`'d in directly.
 
 Recommended Batocera/Knulli core settings:
 

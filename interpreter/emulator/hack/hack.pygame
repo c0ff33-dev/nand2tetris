@@ -10,9 +10,9 @@ sys.dont_write_bytecode = True
 
 SCRIPT_PATH = Path(__file__).resolve()
 APP_DIR = SCRIPT_PATH.parent
-RUNTIME_ACTIVE_ENV = "NAND2TETRIS_PONG_RUNTIME_ACTIVE"
-MOUNT_COMMAND_ENV = "NAND2TETRIS_PONG_MOUNT_CMD"
-UMOUNT_COMMAND_ENV = "NAND2TETRIS_PONG_UMOUNT_CMD"
+RUNTIME_ACTIVE_ENV = "NAND2TETRIS_HACK_RUNTIME_ACTIVE"
+MOUNT_COMMAND_ENV = "NAND2TETRIS_HACK_MOUNT_CMD"
+UMOUNT_COMMAND_ENV = "NAND2TETRIS_HACK_UMOUNT_CMD"
 
 
 def _runtime_python_lib(runtime_dir: Path) -> Path:
@@ -40,7 +40,7 @@ def _run_with_runtime(runtime_dir: Path) -> int:
     runtime_python = runtime_dir / "bin" / "python"
     if not runtime_python.exists():
         raise FileNotFoundError("Bundled runtime is missing %s" % runtime_python)
-    print("Pong runtime: Using bundled runtime %s" % runtime_dir)
+    print("HACK runtime: Using bundled runtime %s" % runtime_dir)
     completed = subprocess.run([str(runtime_python), str(SCRIPT_PATH), *sys.argv[1:]], env=_runtime_environment(runtime_dir))
     return completed.returncode
 
@@ -117,6 +117,6 @@ for candidate in (APP_DIR, *APP_DIR.parents[:2]):
     if candidate_str not in sys.path:
         sys.path.insert(0, candidate_str)
 
-from pong_launcher import main
+from hack_launcher import main
 
 raise SystemExit(main())

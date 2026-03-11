@@ -1,17 +1,17 @@
-"""Build a PortMaster-ready Pong package under interpreter/build."""
+"""Build a PortMaster-ready HACK package under interpreter/build."""
 
 import argparse
 import shutil
 import zipfile
 from pathlib import Path
 
-DEPLOYMENT_FILES = ("pong.pygame", "pong_launcher.py")
-PORTMASTER_SCRIPT = "Pong.sh"
-PORTMASTER_GAME_DIR = "Pong"
+DEPLOYMENT_FILES = ("hack.pygame", "hack_launcher.py")
+PORTMASTER_SCRIPT = "HACK.sh"
+PORTMASTER_GAME_DIR = "HACK"
 PURE_ENGINE_FILES = ("__init__.py", "engine.py")
 ENGINE_FILES = PURE_ENGINE_FILES + ("accelerated_engine.py", "accelerator_common.py")
 ACCELERATOR_GLOB = "fpga_backend_ext*.so"
-DEFAULT_RUNTIME_BUILD_DIRNAME = "pong-runtime"
+DEFAULT_RUNTIME_BUILD_DIRNAME = "hack-runtime"
 
 
 def _copy_file(src: Path, dst: Path) -> None:
@@ -74,14 +74,14 @@ def build_package(
     runtime_artifact: Path | None = None,
 ) -> Path:
     """
-    Stage the PortMaster Pong package tree in a deployment directory.
+    Stage the PortMaster HACK package tree in a deployment directory.
 
     Always bundles the accelerated engine and compiled shared object.
 
     :param output_dir: Destination directory to recreate with PortMaster contents.
-    :param asm_path: Optional override for the Pong.asm source.
+    :param asm_path: Optional override for the default .asm program.
     :param runtime_artifact: Optional SquashFS runtime artifact to bundle.
-    :return: The populated deployment directory containing `Pong/` plus `Pong.sh`.
+    :return: The populated deployment directory containing `HACK/` plus `HACK.sh`.
     :raises FileNotFoundError: If any required source file is missing.
     """
     launcher_dir = Path(__file__).resolve().parent
@@ -161,16 +161,16 @@ def build_zip(staging_dir: Path, zip_path: Path) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     """
-    Build the staged Pong package tree and the final PortMaster zip.
+    Build the staged HACK package tree and the final PortMaster zip.
 
     :param argv: Optional CLI arguments for tests or reuse.
     :return: Process exit code.
     """
     launcher_dir = Path(__file__).resolve().parent
     interpreter_dir = launcher_dir.parents[1]
-    default_output_dir = interpreter_dir / "build" / "pong"
+    default_output_dir = interpreter_dir / "build" / "hack"
 
-    parser = argparse.ArgumentParser(description="Build the PortMaster-ready Pong package")
+    parser = argparse.ArgumentParser(description="Build the PortMaster-ready HACK package")
     parser.add_argument(
         "--output-dir",
         type=Path,
@@ -185,12 +185,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--asm",
         type=Path,
-        help="Optional source path for Pong.asm (default: projects/11/Pong/Pong.asm)",
+        help="Optional source path for the default .asm program (default: projects/11/Pong/Pong.asm)",
     )
     parser.add_argument(
         "--runtime-artifact",
         type=Path,
-        help="Optional SquashFS runtime artifact to bundle under Pong/runtime/",
+        help="Optional SquashFS runtime artifact to bundle under HACK/runtime/",
     )
     args = parser.parse_args(argv)
     runtime_artifact = (

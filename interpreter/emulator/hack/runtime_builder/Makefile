@@ -7,5 +7,5 @@ shell:
 	docker compose run --rm runtime_builder /bin/bash
 
 clean:
-	rm -rf ../../../build/pong-runtime
+	rm -rf ../../../build/hack-runtime
 	docker compose down

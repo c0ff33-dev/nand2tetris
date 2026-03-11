@@ -1,8 +1,8 @@
 #!/bin/bash
-# PortMaster startup script for nand2tetris Pong
+# PortMaster startup script for nand2tetris HACK emulator
 
-PACKAGE="Pong"
-ENTRYPOINT="pong.pygame"
+PACKAGE="HACK"
+ENTRYPOINT="hack.pygame"
 
 XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 export XDG_RUNTIME_DIR=/var/run
@@ -32,7 +32,7 @@ cd "${GAMEDIR}" || exit 1
 
 CONFDIR="$GAMEDIR/conf"
 mkdir -p "${CONFDIR}"
-bind_directories "$HOME/.config/nand2tetris-pong/$PACKAGE" "${CONFDIR}"
+bind_directories "$HOME/.config/nand2tetris-hack/$PACKAGE" "${CONFDIR}"
 
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-mali}"
@@ -59,7 +59,7 @@ if [ -d "${runtime_root}" ]; then
       finish 1
     fi
 
-    runtime_mount="$HOME/nand2tetris-pong-runtime/$PACKAGE"
+    runtime_mount="$HOME/nand2tetris-hack-runtime/$PACKAGE"
     mkdir -p "${runtime_mount}"
     $ESUDO umount "${runtime_mount}" >/dev/null 2>&1
     if ! $ESUDO mount "${runtime_image}" "${runtime_mount}"; then
@@ -90,7 +90,7 @@ if [ -n "${runtime_dir}" ]; then
   pm_platform_helper "${python_bin}"
   [ -f "${runtime_dir}/bin/activate" ] && source "${runtime_dir}/bin/activate"
 
-  export NAND2TETRIS_PONG_RUNTIME_ACTIVE=1
+  export NAND2TETRIS_HACK_RUNTIME_ACTIVE=1
   export PATH="${runtime_dir}/bin:${PATH}"
   export PYTHONHOME="${runtime_dir}"
   if [ -d "${runtime_dir}/lib" ]; then

@@ -8,10 +8,10 @@ set -euo pipefail
 PY_VER=${PYTHON_VERSION%.*}
 LOCAL_ROOT=/local
 INTERPRETER_DIR="${LOCAL_ROOT}/interpreter"
-BUILDER_DIR="${INTERPRETER_DIR}/emulator/pong/runtime_builder"
-BUILD_ROOT="${INTERPRETER_DIR}/build/pong-runtime"
+BUILDER_DIR="${INTERPRETER_DIR}/emulator/hack/runtime_builder"
+BUILD_ROOT="${INTERPRETER_DIR}/build/hack-runtime"
 ENGINE_STAGE_DIR="${BUILD_ROOT}/engine"
-RUNTIME_NAME="pong_pygame_${PYGAME_VERSION}_python_${PYTHON_VERSION}"
+RUNTIME_NAME="hack_pygame_${PYGAME_VERSION}_python_${PYTHON_VERSION}"
 RUNTIME_IMAGE="${BUILD_ROOT}/${RUNTIME_NAME}.squashfs"
 
 cd "${HOME}"
