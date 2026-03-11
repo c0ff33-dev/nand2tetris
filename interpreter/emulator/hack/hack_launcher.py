@@ -124,7 +124,7 @@ def _poll_input(joysticks: List[pygame.joystick.Joystick]) -> Tuple[bool, int]:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]:
-        return (True, 140)
+        return (False, 0)
     if keys[pygame.K_LEFT]:
         return (True, 130)
     if keys[pygame.K_RIGHT]:
@@ -132,7 +132,7 @@ def _poll_input(joysticks: List[pygame.joystick.Joystick]) -> Tuple[bool, int]:
 
     for joystick in joysticks:
         if _quit_combo_pressed(joystick):
-            return (True, 140)
+            return (False, 0)
 
     for joystick in joysticks:
         key_code = _joystick_key_code(joystick)

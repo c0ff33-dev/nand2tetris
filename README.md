@@ -247,15 +247,15 @@ Packaging/staging notes:
 Recommended Batocera/Knulli core settings:
 
 - `pygame.videomode`: `640x480` on RG35XX Plus-class devices
-- `pygame.ratio`: leave flexible/auto, the launcher letterboxes internally
-- `pygame.padtokeyboard`: prefer off because the launcher reads joystick hats/buttons directly
+- `pygame.ratio`: leave flexible/auto, the program letterboxes internally
+- `pygame.padtokeyboard`: prefer off because the program reads joystick hats/buttons directly
 - `pygame.decoration`: off
 
 Default controls:
 
 - D-pad left/right or the primary analog X axis move the bat
-- `Esc` exits on desktop
-- `Hotkey + Start` exits on handhelds
+- `Esc` exits the program
+- `Hotkey + Start` exits the program on handhelds
 
 ## Java Tools
 
