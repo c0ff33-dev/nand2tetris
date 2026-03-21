@@ -233,7 +233,7 @@ docker compose down
 Packaging/staging notes:
 
 - Run `python emulator/hack/build_package.py` to stage `interpreter/build/hack/` and emit `interpreter/build/HACK.zip`.
-- If `interpreter/build/hack-runtime/` already contains a runtime SquashFS, the CLI auto-bundles the most recent one. Pass `--runtime-artifact build/hack-runtime/<artifact>.squashfs` to override it.
+- If `interpreter/build/hack-runtime/` already contains a SquashFS artifact, the CLI auto-bundles the most recent one. Pass `--runtime-artifact build/hack-runtime/<artifact>.squashfs` to override it.
 - For first time install on Knulli:
   - Join device to wifi (`Start > Network Settings`).
   - Copy `interpreter/build/HACK.zip` to `/userdata/system/.local/share/PortMaster/autoinstall/` and let PortMaster install it from there.
@@ -246,7 +246,7 @@ Packaging/staging notes:
 
 Recommended Batocera/Knulli core settings:
 
-- `pygame.videomode`: `640x480` on RG35XX Plus-class devices
+- `pygame.videomode`: `640x480` on RG35XX Plus (other devices may need some changes)
 - `pygame.ratio`: leave flexible/auto, the program letterboxes internally
 - `pygame.padtokeyboard`: prefer off because the program reads joystick hats/buttons directly
 - `pygame.decoration`: off
