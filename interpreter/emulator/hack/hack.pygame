@@ -1,0 +1,122 @@
+#!/usr/bin/env python
+
+import os
+from pathlib import Path
+import shlex
+import subprocess
+import sys
+
+sys.dont_write_bytecode = True
+
+SCRIPT_PATH = Path(__file__).resolve()
+APP_DIR = SCRIPT_PATH.parent
+RUNTIME_ACTIVE_ENV = "NAND2TETRIS_HACK_RUNTIME_ACTIVE"
+MOUNT_COMMAND_ENV = "NAND2TETRIS_HACK_MOUNT_CMD"
+UMOUNT_COMMAND_ENV = "NAND2TETRIS_HACK_UMOUNT_CMD"
+
+
+def _runtime_python_lib(runtime_dir: Path) -> Path:
+    matches = sorted(path for path in (runtime_dir / "lib").glob("python*") if path.is_dir())
+    if not matches:
+        raise FileNotFoundError("Bundled runtime is missing lib/python*")
+    return matches[0]
+
+
+def _runtime_environment(runtime_dir: Path) -> dict[str, str]:
+    runtime_python = _runtime_python_lib(runtime_dir)
+    cache_dir = APP_DIR / ".runtime-cache" / runtime_dir.name
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    env = os.environ.copy()
+    env[RUNTIME_ACTIVE_ENV] = "1"
+    env["PATH"] = "%s%s%s" % (runtime_dir / "bin", os.pathsep, env.get("PATH", ""))
+    env["PYTHONHOME"] = str(runtime_dir)
+    env["PYTHONPATH"] = str(runtime_python)
+    env["PYTHONPYCACHEPREFIX"] = str(cache_dir)
+    env["VIRTUAL_ENV"] = str(runtime_dir)
+    return env
+
+
+def _run_with_runtime(runtime_dir: Path) -> int:
+    runtime_python = runtime_dir / "bin" / "python"
+    if not runtime_python.exists():
+        raise FileNotFoundError("Bundled runtime is missing %s" % runtime_python)
+    print("HACK runtime: Using bundled runtime %s" % runtime_dir)
+    completed = subprocess.run([str(runtime_python), str(SCRIPT_PATH), *sys.argv[1:]], env=_runtime_environment(runtime_dir))
+    return completed.returncode
+
+
+def _command_prefix_from_env(name: str, default: list[str]) -> list[str]:
+    value = os.environ.get(name, "").strip()
+    if not value:
+        return default
+    return shlex.split(value)
+
+
+def _sudo_prefix() -> list[str]:
+    esudo = os.environ.get("ESUDO", "").strip()
+    if not esudo:
+        return []
+    return shlex.split(esudo)
+
+
+def _mount_runtime(runtime_image: Path) -> Path:
+    mount_dir = APP_DIR / ".runtime" / runtime_image.stem
+    mount_dir.mkdir(parents=True, exist_ok=True)
+    if (mount_dir / "bin" / "python").exists():
+        return mount_dir
+
+    mount_command = _command_prefix_from_env(
+        MOUNT_COMMAND_ENV, [*_sudo_prefix(), "mount", "-t", "squashfs", "-o", "loop,ro"]
+    )
+    try:
+        subprocess.run([*mount_command, str(runtime_image), str(mount_dir)], check=True)
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise RuntimeError(
+            "Failed to mount bundled runtime %s; extract the runtime under %s."
+            % (runtime_image, runtime_image.parent)
+        ) from exc
+    return mount_dir
+
+
+def _unmount_runtime(mount_dir: Path) -> None:
+    umount_command = _command_prefix_from_env(UMOUNT_COMMAND_ENV, [*_sudo_prefix(), "umount"])
+    subprocess.run([*umount_command, str(mount_dir)], check=True)
+
+
+def _maybe_run_with_bundled_runtime() -> int | None:
+    if os.environ.get(RUNTIME_ACTIVE_ENV) == "1":
+        return None
+
+    runtime_root = APP_DIR / "runtime"
+    if not runtime_root.exists():
+        return None
+
+    runtime_dirs = sorted(
+        path for path in runtime_root.iterdir() if path.is_dir() and (path / "bin" / "python").exists()
+    )
+    if runtime_dirs:
+        return _run_with_runtime(runtime_dirs[0].resolve())
+
+    runtime_images = sorted(runtime_root.glob("*.squashfs"))
+    if not runtime_images:
+        return None
+
+    mount_dir = _mount_runtime(runtime_images[0].resolve())
+    try:
+        return _run_with_runtime(mount_dir.resolve())
+    finally:
+        _unmount_runtime(mount_dir.resolve())
+
+
+runtime_exit_code = _maybe_run_with_bundled_runtime()
+if runtime_exit_code is not None:
+    raise SystemExit(runtime_exit_code)
+
+for candidate in (APP_DIR, *APP_DIR.parents[:2]):
+    candidate_str = str(candidate)
+    if candidate_str not in sys.path:
+        sys.path.insert(0, candidate_str)
+
+from hack_launcher import main
+
+raise SystemExit(main())

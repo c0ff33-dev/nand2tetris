@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 1.3.0: Knulli Emulator + PortMaster runtime
+
+* Minor refactor to organize emulator related code under `interpreter/emulator`, original emulators are otherwise unchanged.
+* New/extended emulator implementation under `interpreter/emulator/hack` to support Knulli with direct gamepad input and letterboxed 640x480 display.
+  * Still uses shared engine logic (`interpreter/engine`) where possible, most of the differences are in the pygame frontend & runtime boilerplate:
+    * Added boilerplate generation to bundle the emulator as a [PortMaster](https://portmaster.games/) runtime for use on various Linux CFW that supports pygame.
+    * Currently only tested on Anbernic RG35XX Plus running Knulli `2025/08/13` [release](https://github.com/knulli-cfw/distribution/releases).
+
 ## Version 1.2.0: Emulator updates
 
 * Added FPGA specific emulator with `LCD` and `RTP` support to run Tetris (requires checking out the `nand2tetris-fpga` repo for symlinks to resolve).
@@ -29,7 +37,7 @@ This project has been developed over the course of several years, below is a hig
 - Interpreter: 
     - Extracted test orchestration from `interpreter.py` into `runner.py`.
     - Decoupled CPU emulation core from `interpreter.py` into new `engine.py` module.
-    - Pygame Emulator: New `emulator.py` - graphical HACK platform emulator.
+    - Pygame Emulator: New `emulator/emulator.py` - graphical HACK platform emulator.
     - Reworked keyboard handler for Linux support.
     - Debugger: added stack & call tree tracking.
 - Test Automation
