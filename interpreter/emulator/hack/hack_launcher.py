@@ -1,4 +1,4 @@
-"""Batocera/Knulli-friendly HACK emulator launcher."""
+"""Handheld-friendly HACK emulator launcher."""
 
 import argparse
 from decimal import Decimal, InvalidOperation
@@ -199,12 +199,12 @@ def _letterbox_rect(window_size: Tuple[int, int]) -> pygame.Rect:
 
 def main(argv: Optional[List[str]] = None) -> int:
     """
-    Run the Batocera/Knulli-friendly HACK emulator launcher.
+    Run the handheld-friendly HACK emulator launcher.
 
     :param argv: Optional CLI arguments for testing or local development.
     :return: Process exit code.
     """
-    parser = argparse.ArgumentParser(description="Nand2Tetris HACK emulator for Batocera/Knulli")
+    parser = argparse.ArgumentParser(description="Nand2Tetris HACK emulator for Knulli")
     parser.add_argument("file", nargs="?", help="Optional path to a .asm program (default: Pong.asm)")
     parser.add_argument("--fps", type=int, default=DEFAULT_FPS, help="Target render FPS (default: %d)" % DEFAULT_FPS)
     parser.add_argument(

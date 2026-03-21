@@ -1,1 +1,1 @@
-"""Batocera/Knulli-oriented HACK emulator launcher assets."""
+"""Handheld-friendly HACK emulator launcher assets."""

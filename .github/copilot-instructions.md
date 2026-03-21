@@ -14,24 +14,24 @@ Jack source → tokenizer.py → analyzer.py → compiler.py → translator.py �
               *T.xml            *.xml
 ```
 
-- **engine/engine.py** — `Engine` class encapsulating all HACK CPU state (RAM, ROM, registers, PC) and execution logic. Provides `load()` to parse ASM files, `step()` for per-instruction execution (returns debug info), and `run_cycles(n)` for optimized bulk execution. Uses ALU lookup tables (`_COMP`, `_JUMP`) instead of `eval()`.
-- **emulator/emulator.py** — Pygame-based HACK platform emulator frontend. Renders the memory-mapped display (RAM[16384..24575]) via numpy bit-unpacking, handles keyboard I/O (RAM[24576]), and can optionally use the compiled accelerator via `AcceleratedEngine`.
-- **emulator/emulator_fpga.py** — Pygame-based FPGA platform emulator front end. Emulates the LCD/touch/UART memory map and can optionally use the compiled accelerator via `AcceleratedFpgaEngine`.
-- **emulator/hack/hack.pygame** / **emulator/hack/hack_launcher.py** — Handheld-oriented HACK emulator for Batocera/Knulli-style `.pygame` packaging. Uses the compiled accelerator backend, maps joystick input directly, and renders the 512x256 framebuffer into a 640x480 display. Pong is the default program.
-- **emulator/hack/build_package.py** — Stages a deployment-ready HACK emulator package under `interpreter/build/hack/` and writes `build/HACK.zip` for PortMaster deployment.
-- **debugger.py** — Interactive debugger with Rich TUI for step-through debugging (breakpoints, call tree, stack view). Uses `Engine` from `engine/engine.py`. Standalone entry point for running/debugging individual `.asm` files.
-- **runner.py** — Test runner that orchestrates the full pipeline: course compiler, tokenizer, analyzer, compiler, translator, assembler, and all test suites (HardwareSimulator, CPUEmulator, VMEmulator). This is the main entry point for running all tests.
-- **tokenizer.py** — Lexes Jack source into XML token stream. Uses recursive descent with a string placeholder system (`__string0__`, etc.).
-- **analyzer.py** — Parses token stream into XML parse tree. Stateful parsing with parent pointer tracking and look-ahead.
-- **compiler.py** — Compiles parse tree XML into VM bytecode. Handles Jack's class/method/constructor semantics, array/pointer arithmetic, and standard library (`sys_func` dict).
-- **translator.py** — `Translator` class converts VM instructions to HACK assembly. Manages memory segments (temp, pointer, static, local, argument, this, that) and emits inline comments for traceability.
-- **assembler.py** — Two-pass assembler: first pass resolves labels to addresses, second pass encodes A/C-instructions into 16-bit binary.
-- **tester.py** — Parses `.tst` test scripts and `.cmp` comparison files; equivalent to the course's CPUEmulator in non-interactive mode.
+- **engine/engine.py** - `Engine` class encapsulating all HACK CPU state (RAM, ROM, registers, PC) and execution logic. Provides `load()` to parse ASM files, `step()` for per-instruction execution (returns debug info), and `run_cycles(n)` for optimized bulk execution. Uses ALU lookup tables (`_COMP`, `_JUMP`) instead of `eval()`.
+- **emulator/emulator.py** - Pygame-based HACK platform emulator frontend. Renders the memory-mapped display (RAM[16384..24575]) via numpy bit-unpacking, handles keyboard I/O (RAM[24576]), and can optionally use the compiled accelerator via `AcceleratedEngine`.
+- **emulator/emulator_fpga.py** - Pygame-based FPGA platform emulator front end. Emulates the LCD/touch/UART memory map and can optionally use the compiled accelerator via `AcceleratedFpgaEngine`.
+- **emulator/hack/hack.pygame** / **emulator/hack/hack_launcher.py** - Handheld-friendly HACK emulator for Knulli with PortMaster packaging. Uses the compiled accelerator backend, maps joystick input directly, and renders the 512x256 framebuffer into a 640x480 display. Pong is the default program.
+- **emulator/hack/build_package.py** - Stages a deployment-ready HACK emulator package under `interpreter/build/hack/` and writes `build/HACK.zip` for PortMaster deployment.
+- **debugger.py** - Interactive debugger with Rich TUI for step-through debugging (breakpoints, call tree, stack view). Uses `Engine` from `engine/engine.py`. Standalone entry point for running/debugging individual `.asm` files.
+- **runner.py** - Test runner that orchestrates the full pipeline: course compiler, tokenizer, analyzer, compiler, translator, assembler, and all test suites (HardwareSimulator, CPUEmulator, VMEmulator). This is the main entry point for running all tests.
+- **tokenizer.py** - Lexes Jack source into XML token stream. Uses recursive descent with a string placeholder system (`__string0__`, etc.).
+- **analyzer.py** - Parses token stream into XML parse tree. Stateful parsing with parent pointer tracking and look-ahead.
+- **compiler.py** - Compiles parse tree XML into VM bytecode. Handles Jack's class/method/constructor semantics, array/pointer arithmetic, and standard library (`sys_func` dict).
+- **translator.py** - `Translator` class converts VM instructions to HACK assembly. Manages memory segments (temp, pointer, static, local, argument, this, that) and emits inline comments for traceability.
+- **assembler.py** - Two-pass assembler: first pass resolves labels to addresses, second pass encodes A/C-instructions into 16-bit binary.
+- **tester.py** - Parses `.tst` test scripts and `.cmp` comparison files; equivalent to the course's CPUEmulator in non-interactive mode.
 
 ### Project Files (`projects/01-12`)
 
 Follow the nand2tetris course progression:
-- **01-03**: Hardware (`.hdl` files) — logic gates, arithmetic, sequential chips
+- **01-03**: Hardware (`.hdl` files) - logic gates, arithmetic, sequential chips
 - **04-05**: Machine language and computer architecture (`.asm`, `.hdl`)
 - **06**: Assembler input/output (`.asm` → `.hack`)
 - **07-08**: VM translator input (`.vm` files)
@@ -101,4 +101,4 @@ Code changes should be focused on the `interpreter/` tree. Never modify files in
 - Must `cd ~/src/nand2tetris/interpreter` before running tests via `python runner.py --fpga`.
 - On lint failures, run `ruff format interpreter/` && `ruff check interpreter/ --fix` before attempting manual fixes.
 - Never commit changes (git commit) without being explicitly told to by the user.
-- Use regular hyphens (-), never emdashes (—) in comments and documentation.
+- Use regular hyphens (-), never emdashes (-) in comments and documentation.
